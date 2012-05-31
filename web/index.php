@@ -46,6 +46,32 @@ if (defined('ENVIRONMENT')) {
 
 /*
  * ---------------------------------------------------------------
+ * Default timezone of server
+ * ---------------------------------------------------------------
+ *
+ * This setting timezone.
+ *
+ */
+date_default_timezone_set('Asia/Shanghai');
+
+/*
+ * ---------------------------------------------------------------
+ * Iconv encoding
+ * ---------------------------------------------------------------
+ *
+ */
+iconv_set_encoding("internal_encoding", "UTF-8");
+
+/*
+ * ---------------------------------------------------------------
+ * Multibyte encoding
+ * ---------------------------------------------------------------
+ *
+ */
+mb_internal_encoding('UTF-8');
+
+/*
+ * ---------------------------------------------------------------
  * SYSTEM FOLDER NAME
  * ---------------------------------------------------------------
  *
@@ -164,6 +190,8 @@ define('FCPATH', str_replace(SELF, '', __FILE__));
 
 // Name of the "system folder"
 define('SYSDIR', trim(strrchr(trim(BASEPATH, '/'), '/'), '/'));
+
+define('TIMESTAMP', time());
 
 
 // The path to the "application" folder

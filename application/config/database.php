@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.2.99';
+$db['default']['hostname'] = '202.108.13.29';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'wunxin';
+$db['default']['password'] = 'wunxin';
+$db['default']['database'] = 'test';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'wx_';
 $db['default']['pconnect'] = TRUE;
