@@ -19,11 +19,14 @@ class ck extends CI_Controller {
 	 */
 	public function index()
 	{
-        //$this->load->model('user/user', 'user');
+        $this->load->model('user/user', 'user');
+        $data = $this->user->getUserById(1);
+
         //$this->user->userNameIsExist('asd');
 		//$this->load->view('ck');
         //$db = this->load->database('aaa,',false)
         //this->db->query
+        echo '<pre>';print_r($data);
 	}
 
 	public function aa()

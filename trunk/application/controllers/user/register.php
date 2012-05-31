@@ -44,14 +44,13 @@ class register extends CI_Controller
                 $response['msg'] = '用户名不合法';
                 break;
             }
-            if ($password !== $repassword)
-            {
+            if ($password !== $repassword) {
                 $response['code'] = '10003';
                 $response['msg'] = '两次输入密码不一致';
                 break;
             }
 
-            if (! length_limit($password, 8, 16)) {
+            if (!length_limit($password, 8, 16)) {
                 $response['code'] = '10004';
                 $response['msg'] = '密码不合法';
                 break;
@@ -75,9 +74,14 @@ class register extends CI_Controller
             $data = array(
                 'uname' => $username,
                 'password' => $password,
+                'nickname' => $username,
                 'source' => $source,
             );
-            $this->user->registerUser($data);
+            $uid = $this->user->registerUser($data);
+            if (!$uid) {
+                $response['code'] = '10006';
+                $response['msg'] = '注册用户失败';
+            }
         }
         echo json_encode($response);
     }
