@@ -114,7 +114,8 @@ class user extends CI_Model
      */
     public function userNameIsExist($uName)
     {
-
+        $a = $this->db->get('wx_user');
+        print_r($a);
     }
 
 

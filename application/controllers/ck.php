@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class login extends CI_Controller {
+class ck extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -19,6 +19,8 @@ class login extends CI_Controller {
 	 */
 	public function index()
 	{
+        //$this->load->model('user/user');
+        //$this->user->userNameIsExist('asd');
 		$this->load->view('ck');
 	}
 
