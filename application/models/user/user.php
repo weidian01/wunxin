@@ -8,15 +8,6 @@
  */
 class user extends CI_Model
 {
-    private $userTable = 'wx_user';
-    private $userInfoTable = 'wx_user_info';
-
-    function __construct()
-    {
-        $this->load->database();
-
-        parent::__construct();
-    }
 
     /**
      * @name 注册用户
@@ -26,7 +17,14 @@ class user extends CI_Model
      */
     public function registerUser(array $userInfo)
     {
-
+        $data = array(
+            'uname' => $userInfo['uname'] ,
+            'password' => $userInfo['password'] ,
+            'source' => $userInfo['source'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP) ,
+        );
+        $this->db->insert('user', $data);
+        return $this->db->insert_id();
     }
 
     /**
@@ -110,13 +108,13 @@ class user extends CI_Model
      * @name 检测用户是否存在
      *
      * @param $uName 用户名 -- 邮箱地址
-     * @return boolean
+     * @return int
      */
     public function userNameIsExist($uName)
     {
-
-        $a = $this->db->get('wx_user');
-        print_r($a);
+        $this->db->from('user');
+        $this->db->where("uname = '{$uName}'");
+        return $this->db->count_all_results();
     }
 
 
