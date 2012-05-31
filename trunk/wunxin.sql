@@ -1,8 +1,7 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2012-05-30 14:54:26                          */
+/* Created on:     2012-05-31 10:51:02                          */
 /*==============================================================*/
-
 
 /*==============================================================*/
 /* Table: wx_activity                                           */
@@ -200,6 +199,21 @@ create table wx_card_model
 engine = MYISAM;
 
 alter table wx_card_model comment '卡模型表';
+
+/*==============================================================*/
+/* Table: wx_color                                              */
+/*==============================================================*/
+create table wx_color
+(
+   color_id             int unsigned not null comment '颜色ID',
+   china_name           varchar(16) comment '颜色中文名',
+   english_name         varchar(16) comment '颜色英文名',
+   code                 char(6) comment '颜色代码',
+   descr                varchar(64) comment '颜色描述',
+   primary key (color_id)
+);
+
+alter table wx_color comment '颜色表';
 
 /*==============================================================*/
 /* Table: wx_degisn                                             */
@@ -552,6 +566,7 @@ create table wx_product
    pid                  int not null comment '产品ID',
    did                  int comment '设计图ID',
    class_id             int comment '分类ID',
+   color_id             int comment '颜色ID',
    pname                varchar(120) comment '产品名称',
    market_price         int comment '单位为分',
    sell_price           int comment '单位为分',
@@ -1004,6 +1019,7 @@ create table wx_share
    uname                varchar(16) comment '用户名称',
    title                varchar(64) comment '标题',
    content              varchar(255) comment '内容',
+   ip                   char(11) comment 'IP地址',
    create_time          datetime comment '创建时间',
    primary key (share_id)
 )
@@ -1065,12 +1081,13 @@ create index Index_uid on wx_share_comment
 /*==============================================================*/
 create table wx_share_images
 (
-   id                   int not null comment '自增ID',
-   share_id             int comment '晒单ID',
+   id                   int unsigned not null comment '自增ID',
+   share_id             int unsigned comment '晒单ID',
    img_addr             varchar(128) comment '图片地址',
    descr                varchar(255) comment '图片说明',
-   is_cover             tinyint comment '是否为封面，0否，1是',
-   status               tinyint comment '状态，0已删除，1正常',
+   is_cover             tinyint unsigned comment '是否为封面，0否，1是',
+   status               tinyint unsigned comment '状态，0已删除，1正常',
+   is_like              int unsigned comment '是否喜欢，记录喜欢的人数',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
