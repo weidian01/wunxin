@@ -77,7 +77,7 @@ class register extends CI_Controller
                 'password' => $password,
                 'source' => $source,
             );
-            echo $this->user->registerUser($data);
+            $this->user->registerUser($data);
         }
         echo json_encode($response);
     }
