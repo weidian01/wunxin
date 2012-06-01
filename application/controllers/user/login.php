@@ -26,6 +26,7 @@ class login extends CI_Controller
     public function submit()
     {
         $this->load->helper('validation');
+        $this->load->helper('cookie');
 
         $username = $this->input->get_post('username');
         $password = $this->input->get_post('password');
@@ -36,6 +37,9 @@ class login extends CI_Controller
         $response['msg'] = $redirect_url;
 
         do {
+            if (get_user_cookie()) {
+                break;
+            }
             if (!is_username($username)) {
                 $response['code'] = '10001';
                 $response['msg'] = '用户名不合法';
@@ -62,15 +66,8 @@ class login extends CI_Controller
 
             //$response['user_info'] = $uInfo;
 
-            $this->input->set_cookie('uid', $uInfo['uid']);
-            $this->input->set_cookie('username', $uInfo['uname']);
-            $this->input->set_cookie('nickname', $uInfo['nickname']);
-            $this->input->set_cookie('integral', $uInfo['integral']);
-            $this->input->set_cookie('balance', $uInfo['balance']);
-            $this->input->set_cookie('amount', $uInfo['amount']);
-            $this->input->set_cookie('level', $uInfo['lid']);
-
-            //delete_cookie('username', $domain, $path, $prefix)
+            //设置用户登陆状态
+            set_user_cookie($uInfo);
 
         } while (false);
 
@@ -80,13 +77,13 @@ class login extends CI_Controller
 
     public function login_out()
     {
-        $this->input->set_cookie('uid', $uInfo['uid']);
-        $this->input->set_cookie('username', $uInfo['uname']);
-        $this->input->set_cookie('nickname', $uInfo['nickname']);
-        $this->input->set_cookie('integral', $uInfo['integral']);
-        $this->input->set_cookie('balance', $uInfo['balance']);
-        $this->input->set_cookie('amount', $uInfo['amount']);
-        $this->input->set_cookie('level', $uInfo['lid']);
+        $this->load->helper('url');
+        $redirect_url = $this->input->get_post('redirect_url');
+        $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url');
+        $this->load->helper('cookie');
+        delete_user_cookie();
+
+        redirect($redirect_url);
     }
 }
 
