@@ -13,7 +13,9 @@ create table user_integral_log
    descr                varchar(128) comment '操作描述',
    create_time          datetime comment '创建时间',
    primary key (integral_id)
-);
+)
+engine = MYISAM
+auto_increment  = 1;
 
 alter table user_integral_log comment '用户积分日志表';
 
@@ -63,7 +65,6 @@ create table wx_activity_comment
    id                   int unsigned not null auto_increment  comment '自增ID',
    activity_id          int unsigned comment '活动ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    title                varchar(32) comment '评论标题',
    content              varchar(255) comment '评论内容',
    ip                   char(16) comment 'IP地址',
@@ -152,7 +153,9 @@ create table wx_apply_cach_back_log
    status               tinyint unsigned comment '状态,0提交申请，1已打款，2取消',
    create_time          datetime comment '创建时间',
    primary key (acb_id)
-);
+)
+engine = MYISAM
+auto_increment  = 1;
 
 alter table wx_apply_cach_back_log comment '申请返现记录';
 
@@ -282,7 +285,6 @@ create table wx_degisn
    did                  int unsigned not null auto_increment  comment '设计图ID',
    class_id             int unsigned comment '设计图分类',
    uid                  int comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    dname                varchar(16) comment '设计图名称',
    ddetail              varchar(32) comment '设计图介绍',
    design_img           varchar(128) comment '设计图片',
@@ -352,7 +354,6 @@ create table wx_design_comment
    id                   int unsigned not null auto_increment  comment '自增ID',
    did                  int unsigned comment '设计图ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    title                varchar(32) comment '评论标题',
    content              varchar(255) comment '评论内容',
    ip                   char(16) comment 'IP地址',
@@ -471,7 +472,9 @@ create table wx_integral_redemption_product
    end_time             datetime comment '结束时间',
    create_time          datetime comment '创建时间',
    primary key (redemption_id)
-);
+)
+engine = MYISAM
+auto_increment  = 1;
 
 alter table wx_integral_redemption_product comment '积分换购表积分换购产品表';
 
@@ -811,7 +814,6 @@ create table wx_product_comment
    comment_id           int unsigned not null auto_increment  comment '评论ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    comment_title        varchar(60) comment '评论标题',
    comment_content      varchar(128) comment '评论内容',
    ip                   char(16) comment '评论IP地址',
@@ -918,7 +920,6 @@ create table wx_product_qa
    qa_id                int unsigned not null auto_increment  comment '问答ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    qa_title             varchar(32) comment '问题标题',
    qa_content           varchar(255) comment '问题内容',
    reply_content        varchar(255) comment '回答内容',
@@ -1038,7 +1039,6 @@ create table wx_receivable
    receiver_id          int unsigned not null auto_increment  comment '收款单ID',
    order_sn             int unsigned comment '订单号',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    amount               int unsigned comment '金额,单位为分',
    pay_time             datetime comment '汇款时间',
    pay_type             tinyint unsigned comment '汇款类型，1银行汇款，2支付宝转账',
@@ -1129,7 +1129,6 @@ create table wx_share
    share_id             int unsigned not null auto_increment  comment '晒单ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    title                varchar(32) comment '标题',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
@@ -1165,7 +1164,6 @@ create table wx_share_comment
    id                   int unsigned not null auto_increment  comment '自增ID',
    share_id             int unsigned comment '晒单ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    content              varchar(255) comment '回复内容',
    create_time          datetime comment '创建时间',
    primary key (id)
@@ -1297,7 +1295,6 @@ create table wx_tuan_comment
    id                   int unsigned not null auto_increment  comment '自增ID',
    tuan_id              int unsigned comment '团购ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名字',
    title                varchar(32) comment '评论标题',
    content              varchar(255) comment '评论内容',
    status               tinyint unsigned comment '评论状态',
@@ -1353,9 +1350,9 @@ alter table wx_tuan_product comment '团购产品表';
 create table wx_user
 (
    uid                  int unsigned not null auto_increment  comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    nickname             varchar(32) comment '昵称',
    lid                  int unsigned default 1 comment '等级ID',
-   uname                varchar(32) comment '用户名称,存储用户邮箱地址',
    password             char(32) comment '登陆密码',
    source               varchar(128) default '1' comment '用户来源，1主站',
    integral             int unsigned default 0 comment '用户积分',
@@ -1384,7 +1381,6 @@ create table wx_user_consume_log
 (
    consume_id           int unsigned not null auto_increment  comment '消费记录ID',
    uid                  int comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    operat_type          tinyint unsigned comment '操作类型，1消费，2充值，3退款，4返现，5其他',
    before_amount        int unsigned comment '操作前金额，单位为分',
    after_amount         int unsigned comment '操作后金额，单位为分',
@@ -1516,7 +1512,6 @@ create table wx_user_message
 (
    message_id           int unsigned not null auto_increment  comment '留言ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
    create_time          datetime comment '创建时间',
@@ -1598,7 +1593,6 @@ create table wx_user_up_level_log
 (
    id                   int unsigned not null auto_increment  comment '自增ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    up_action            tinyint unsigned comment '升级事件',
    former_level         tinyint unsigned comment '原等级',
    current_level        tinyint unsigned comment '现等级',
