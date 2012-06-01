@@ -4,25 +4,16 @@ class login extends CI_Controller
 {
 
     /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     *         http://example.com/index.php/welcome
-     *    - or -
-     *         http://example.com/index.php/welcome/index
-     *    - or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
+     * 展示登陆页面.
      */
     public function index()
     {
         echo '123';
     }
 
+    /**
+     * 提交登陆
+     */
     public function submit()
     {
         $this->load->helper('validation');
@@ -30,6 +21,7 @@ class login extends CI_Controller
 
         $username = $this->input->get_post('username');
         $password = $this->input->get_post('password');
+        $source   = intval( $this->input->get_post('source') );
         $redirect_url = $this->input->get_post('redirect_url');
         $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url');
 
@@ -69,21 +61,27 @@ class login extends CI_Controller
             //设置用户登陆状态
             set_user_cookie($uInfo);
 
-        } while (false);
+            //记录用户登陆日志
+            $ip = $this->input->ip_address();
+            $this->load->model('user/user_log', 'userlog');
+            $this->userlog->record_login_log($uInfo['uid'],$ip, $source);
 
+        } while (false);
 
         echo json_encode($response);
     }
-
+    /**
+     * 退出登陆
+     */
     public function login_out()
     {
+        $this->load->helper('validation');
         $this->load->helper('url');
-        $redirect_url = $this->input->get_post('redirect_url');
-        $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url');
         $this->load->helper('cookie');
+
         delete_user_cookie();
 
-        redirect($redirect_url);
+        redirect(config_item('base_url'), 'refresh');
     }
 }
 
