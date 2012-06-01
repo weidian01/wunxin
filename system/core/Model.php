@@ -55,10 +55,10 @@ class CI_Model {
 
     function __destruct()
     {
-        /*
+        //*
         echo '<pre>';
         foreach ($this->db->queries as $k=>$v) {
-            echo '<b style="color:red;font-size:20px;">SQL:</b>'.str_replace("\n", '', $v).' ------ <b style="color:red;font-size:20px;">TIME:</b>'.$this->db->query_times[$k];
+            echo '<b style="color:red;font-size:20px;">SQL:</b>'.str_replace("\n", '', $v).' ------ <b style="color:red;font-size:20px;">TIME:</b>'.$this->db->query_times[$k].'<br>';
         }
         //*/
     }

@@ -29,6 +29,43 @@ class user extends CI_Model
     }
 
     /**
+     * @name 设置用户收货地址
+     *
+     * @param array $addrInfo 用户信息
+     * @return boolean
+     */
+    public function addUserRecipientAddress(array $addrInfo)
+    {
+        $data = array(
+            'uid' => $addrInfo['uid'],
+            'uname' => $addrInfo['uname'],
+            'recent_name' => $addrInfo['recent_name'],
+            'country' => $addrInfo['country'],
+            'province' => $addrInfo['province'],
+            'city' => $addrInfo['city'],
+            'area' => $addrInfo['area'],
+            'detail_address' => $addrInfo['detail_address'],
+            'zipcode' => $addrInfo['zipcode'],
+            'phone_num' => $addrInfo['phone_num'],
+            'call_num' => $addrInfo['call_num'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
+        );
+
+        $this->db->insert('user_recipient_address', $data);
+        return $this->db->insert_id();
+    }
+    /**
+     * @name 获取用户收货地址
+     *
+     * @param array $uid 用户ID
+     * @return boolean
+     */
+    public function getUserRecipientAddressByUid($uid)
+    {
+        return $this->db->select('*')->get_where('user_recipient_address', array('uid' => $uid))->result_array();
+    }
+
+    /**
      * @name 删除用户 -- 通过用户ID
      *
      * @param $uId 用户ID
@@ -102,6 +139,17 @@ class user extends CI_Model
         return $this->db->get()->row_array();
     }
 
+    /**
+     * @name 获取用户所有发票信息 -- 通过用户ID
+     *
+     * @param $uId 用户ID
+     * @return array
+     */
+    public function getUserAllInvoiceInfoByUid($uId)
+    {
+        return $this->db->select('*')->get_where('invoice', array('uid' => $uId))->result_array();
+    }
+
 
     public function userLogin($uName, $password)
     {
@@ -138,16 +186,75 @@ class user extends CI_Model
      * @name 修改用户信息 -- 通过用户ID
      *
      * @param $uId 用户ID
+     * @param $userInfo 用户信息
      * @return boolean
      */
     public function modifyUserByUserId($uId, array $userInfo)
     {
+        $data = array(
+            'real_name' => $userInfo['real_name'],
+            'header' => $userInfo['header'],
+            'sex' => $userInfo['sex'],
+            'birthday' => $userInfo['birthday'],
+            'country' => $userInfo['country'],
+            'province' => $userInfo['province'],
+            'city' => $userInfo['city'],
+            'zipcode' => $userInfo['zipcode'],
+            'detail_address' => $userInfo['detail_address'],
+            'phone' => $userInfo['phone'],
+            'company_call' => $userInfo['company_call'],
+            'family_call' => $userInfo['family_call'],
+            'height' => $userInfo['height'],
+            'weight' => $userInfo['weight'],
+            'body_type' => $userInfo['body_type'],
+            'marital_status' => $userInfo['marital_status'],
+            'education_level' => $userInfo['education_level'],
+            'job' => $userInfo['job'],
+            'industry' => $userInfo['industry'],
+            'income' => $userInfo['income'],
+            'interest' => $userInfo['interest'],
+            'introduction' => $userInfo['introduction'],
+            'website' => $userInfo['website'],
+            'id_card' => $userInfo['id_card'],
+            'bank_name' => $userInfo['bank_name'],
+            'bank_account' => $userInfo['bank_account']
+        );
 
+        return $this->db->where('uid', $uId)->update('user', $data);
     }
 
+    /**
+     * @name 修改用户密码 -- 通过用户ID
+     *
+     * @param $uId 用户ID
+     * @param $oldPassword 用户当前密码
+     * @param $newPassword 用户新密码
+     * @return boolean
+     */
     public function mofidyUserPasswordByUserId($uId, $oldPassword, $newPassword)
     {
+        //新老密码一致
+        if (md5(trim($oldPassword)) == md5(trim($newPassword)))
+        {
+            return true;
+        }
 
+        $uInfo = $this->db->select('uid, nickname, password, lid, uname, integral, balance, amount, create_time')->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
+
+        //用户不存在
+        if (empty ($uInfo) || !is_array($uInfo))
+        {
+            return 2;
+        }
+
+        //密码验证失败
+        if ($uInfo['password'] != md5(trim($oldPassword)))
+        {
+            return 3;
+        }
+
+        $data = array('password' => md5($newPassword));
+        return $this->db->where('uid', $uId)->update('user', $data);
     }
 
 

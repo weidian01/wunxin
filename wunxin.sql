@@ -4,7 +4,7 @@
 /*==============================================================*/
 create table user_integral_log
 (
-   integral_id          int unsigned not null auto_increment ,
+   integral_id          int unsigned not null auto_increment,
    uid                  int unsigned,
    operat_type          tinyint unsigned comment '操作类型，0消耗，1增加',
    consume_amount       int unsigned comment '消费金额',
@@ -15,7 +15,7 @@ create table user_integral_log
    primary key (integral_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table user_integral_log comment '用户积分日志表';
 
@@ -40,7 +40,7 @@ create index Index_create_time on user_integral_log
 /*==============================================================*/
 create table wx_activity
 (
-   activity_id          int unsigned not null auto_increment  comment '活动ID',
+   activity_id          int unsigned not null auto_increment comment '活动ID',
    subject              varchar(128) comment '活动主题',
    start_time           datetime comment '开始时间',
    end_time             datetime comment '结束时间',
@@ -53,7 +53,7 @@ create table wx_activity
    primary key (activity_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_activity comment '活动表';
 
@@ -62,7 +62,7 @@ alter table wx_activity comment '活动表';
 /*==============================================================*/
 create table wx_activity_comment
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    activity_id          int unsigned comment '活动ID',
    uid                  int unsigned comment '用户ID',
    title                varchar(32) comment '评论标题',
@@ -72,7 +72,7 @@ create table wx_activity_comment
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_activity_comment comment '活动评论表';
 
@@ -81,7 +81,7 @@ alter table wx_activity_comment comment '活动评论表';
 /*==============================================================*/
 create table wx_activity_prize
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    activity_id          int unsigned comment '活动ID',
    prize_name           varchar(64) comment '奖品名称',
    img_addr             varchar(128) comment '图片地址',
@@ -91,7 +91,7 @@ create table wx_activity_prize
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_activity_prize comment '活动奖品设置';
 
@@ -100,7 +100,7 @@ alter table wx_activity_prize comment '活动奖品设置';
 /*==============================================================*/
 create table wx_advert
 (
-   ad_id                int unsigned not null auto_increment  comment '广告ID',
+   ad_id                int unsigned not null auto_increment comment '广告ID',
    position_id          int unsigned comment '位置ID',
    ad_name              int comment '广告名称',
    ad_type              tinyint unsigned comment '广告类型，1:图片 2:flash 3:代码 4:文字',
@@ -116,7 +116,7 @@ create table wx_advert
    primary key (ad_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_advert comment '广告';
 
@@ -125,7 +125,7 @@ alter table wx_advert comment '广告';
 /*==============================================================*/
 create table wx_advert_position
 (
-   position_id          int unsigned not null auto_increment  comment '位置ID',
+   position_id          int unsigned not null auto_increment comment '位置ID',
    name                 varchar(32) comment '位置名称',
    width                int unsigned comment '宽度',
    height               int unsigned comment '高度',
@@ -136,7 +136,7 @@ create table wx_advert_position
    primary key (position_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_advert_position comment '广告位置表';
 
@@ -145,8 +145,9 @@ alter table wx_advert_position comment '广告位置表';
 /*==============================================================*/
 create table wx_apply_cach_back_log
 (
-   acb_id               int unsigned not null auto_increment  comment '返现记录ID',
+   acb_id               int unsigned not null auto_increment comment '返现记录ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    amount               int unsigned comment '金额,单位为分',
    descr                varchar(128) comment '描述',
    ip                   char(16) comment 'IP地址',
@@ -155,7 +156,7 @@ create table wx_apply_cach_back_log
    primary key (acb_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_apply_cach_back_log comment '申请返现记录';
 
@@ -164,14 +165,14 @@ alter table wx_apply_cach_back_log comment '申请返现记录';
 /*==============================================================*/
 create table wx_area
 (
-   area_id              int unsigned not null auto_increment  comment '地区ID',
+   area_id              int unsigned not null auto_increment comment '地区ID',
    parent_id            int unsigned comment '地区父ID',
    area_name            varchar(50) comment '地区名称',
    sort                 smallint unsigned comment '排序',
    primary key (area_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_area comment '地区信息表';
 
@@ -188,7 +189,7 @@ create index Index_parent_id on wx_area
 /*==============================================================*/
 create table wx_article
 (
-   id                   int unsigned not null auto_increment  comment '文章ID',
+   id                   int unsigned not null auto_increment comment '文章ID',
    cid                  int unsigned comment '分类',
    title                varchar(32) comment '文章标题',
    content              text comment '内容',
@@ -203,7 +204,7 @@ create table wx_article
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_article comment '文章表';
 
@@ -212,7 +213,7 @@ alter table wx_article comment '文章表';
 /*==============================================================*/
 create table wx_article_category
 (
-   cid                  int unsigned not null auto_increment  comment '分类ID',
+   cid                  int unsigned not null auto_increment comment '分类ID',
    cname                varchar(64) comment '名称',
    parent_id            int unsigned comment '父类ID',
    sort                 smallint unsigned comment '排序',
@@ -221,7 +222,7 @@ create table wx_article_category
    primary key (cid)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_article_category comment '文章分类表';
 
@@ -230,7 +231,7 @@ alter table wx_article_category comment '文章分类表';
 /*==============================================================*/
 create table wx_attribute
 (
-   attr_id              int unsigned not null auto_increment  comment '属性id',
+   attr_id              int unsigned not null auto_increment comment '属性id',
    model_id             int unsigned comment '模型id',
    attr_name            varchar(32) comment '属性名称',
    attr_value           varchar(255) comment '属性值',
@@ -238,7 +239,7 @@ create table wx_attribute
    primary key (attr_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_attribute comment '存放模型属性';
 
@@ -247,7 +248,7 @@ alter table wx_attribute comment '存放模型属性';
 /*==============================================================*/
 create table wx_card_model
 (
-   model_id             int unsigned not null auto_increment  comment '模型id',
+   model_id             int unsigned not null auto_increment comment '模型id',
    card_name            varchar(32) comment '卡名称',
    card_type            tinyint unsigned comment '卡类型,1礼物卡，2代金卷，3返现卡',
    card_amount          int unsigned comment '卡金额',
@@ -256,7 +257,7 @@ create table wx_card_model
    primary key (model_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_card_model comment '卡模型表';
 
@@ -265,7 +266,7 @@ alter table wx_card_model comment '卡模型表';
 /*==============================================================*/
 create table wx_color
 (
-   color_id             int unsigned not null auto_increment  comment '颜色ID',
+   color_id             int unsigned not null auto_increment comment '颜色ID',
    china_name           varchar(16) comment '颜色中文名',
    english_name         varchar(16) comment '颜色英文名',
    code                 char(6) comment '颜色代码',
@@ -273,7 +274,7 @@ create table wx_color
    primary key (color_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_color comment '颜色表';
 
@@ -282,7 +283,7 @@ alter table wx_color comment '颜色表';
 /*==============================================================*/
 create table wx_degisn
 (
-   did                  int unsigned not null auto_increment  comment '设计图ID',
+   did                  int unsigned not null auto_increment comment '设计图ID',
    class_id             int unsigned comment '设计图分类',
    uid                  int comment '用户ID',
    dname                varchar(16) comment '设计图名称',
@@ -298,7 +299,7 @@ create table wx_degisn
    primary key (did)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_degisn comment '设计图';
 
@@ -323,7 +324,7 @@ create index Index_class_id on wx_degisn
 /*==============================================================*/
 create table wx_design_category
 (
-   class_id             int unsigned not null auto_increment  comment '分类ID',
+   class_id             int unsigned not null auto_increment comment '分类ID',
    cname                varchar(64) comment '分类名称',
    parent_id            int unsigned comment '分类父ID',
    sort                 smallint unsigned comment '排序',
@@ -334,7 +335,7 @@ create table wx_design_category
    primary key (class_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_design_category comment '设计图分类表';
 
@@ -351,9 +352,10 @@ create index Index_parent_id on wx_design_category
 /*==============================================================*/
 create table wx_design_comment
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    did                  int unsigned comment '设计图ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    title                varchar(32) comment '评论标题',
    content              varchar(255) comment '评论内容',
    ip                   char(16) comment 'IP地址',
@@ -362,7 +364,7 @@ create table wx_design_comment
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_design_comment comment '设计图评论表';
 
@@ -379,7 +381,9 @@ create index Index_did on wx_design_comment
 /*==============================================================*/
 create table wx_design_vote
 (
-   score_id             int unsigned not null auto_increment  comment '投票ID',
+   score_id             int unsigned not null auto_increment comment '投票ID',
+   uid                  int comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    did                  int unsigned comment '设计图ID',
    score                tinyint unsigned comment '评分1,不喜欢，2需要改进，3一般，4喜欢，5非常喜欢',
    ip                   char(16) comment 'IP地址',
@@ -387,7 +391,7 @@ create table wx_design_vote
    primary key (score_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_design_vote comment '设计图投票表';
 
@@ -404,7 +408,7 @@ create index Index_did on wx_design_vote
 /*==============================================================*/
 create table wx_express_delivery_company
 (
-   ed_id                int unsigned not null auto_increment  comment '自增ID',
+   ed_id                int unsigned not null auto_increment comment '自增ID',
    name                 varchar(32) comment '快递名称',
    descr                varchar(128) comment '快递描述',
    website              varchar(64) comment '网址',
@@ -414,7 +418,7 @@ create table wx_express_delivery_company
    primary key (ed_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_express_delivery_company comment '快递企业表';
 
@@ -423,7 +427,7 @@ alter table wx_express_delivery_company comment '快递企业表';
 /*==============================================================*/
 create table wx_gift_card
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    card_no              char(20) comment '卡号',
    model_id             int comment '模型id',
    card_amount          int unsigned comment '卡金额,单位为分',
@@ -432,13 +436,14 @@ create table wx_gift_card
    end_time             datetime comment '截止时间',
    integral             int unsigned comment '兑换积分',
    uid                  int unsigned comment '用户id',
+   uname                varchar(32) comment '用户名称',
    use_num              tinyint unsigned default 0 comment '使用次数',
    status               tinyint comment '状态 0删除  1初始 2已绑定',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_gift_card comment '代金卷/礼品卡';
 
@@ -463,7 +468,7 @@ create unique index Index_card_no on wx_gift_card
 /*==============================================================*/
 create table wx_integral_redemption_product
 (
-   redemption_id        int unsigned not null auto_increment  comment '换购ID',
+   redemption_id        int unsigned not null auto_increment comment '换购ID',
    pid                  int unsigned comment '产品ID',
    redemption_integral  int unsigned comment '换购积分',
    price                int unsigned comment '产品价格',
@@ -474,7 +479,7 @@ create table wx_integral_redemption_product
    primary key (redemption_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_integral_redemption_product comment '积分换购表积分换购产品表';
 
@@ -483,17 +488,21 @@ alter table wx_integral_redemption_product comment '积分换购表积分换购�
 /*==============================================================*/
 create table wx_invoice
 (
-   invoice_id           int unsigned not null auto_increment  comment '发票ID',
+   invoice_id           int unsigned not null auto_increment comment '发票ID',
    uid                  int unsigned comment '用户ID',
    order_sn             int unsigned comment '订单ID',
    invoice_payable      varchar(64) comment '发票抬头',
    invoice_content      varchar(16) default '1' comment '发票内容，1服装，2其他,3用户写入内容',
+   create_time          datetime comment '创建时间',
    primary key (invoice_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_invoice comment '发票';
+
+INSERT INTO `wx_invoice` (`invoice_id`,`uid`,`order_sn`,`invoice_payable`,`invoice_content`,`create_time`) VALUES (1,1,1,'北京市万象乾鑫商贸有限公司','1','2012-06-01 21:45:01');
+INSERT INTO `wx_invoice` (`invoice_id`,`uid`,`order_sn`,`invoice_payable`,`invoice_content`,`create_time`) VALUES (2,1,1,'北京市万象乾鑫科技有限公司','1','2012-06-01 21:45:39');
 
 /*==============================================================*/
 /* Index: index_uid                                             */
@@ -516,7 +525,7 @@ create index Index_order_sn on wx_invoice
 /*==============================================================*/
 create table wx_mail_subscription
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    uid                  int unsigned comment '用户ID',
    email_addr           varchar(16) comment '邮件地址',
    get_info_type        tinyint unsigned comment '需要得到那类信息,1特价优惠,2时尚搭配,3新品咨询',
@@ -524,7 +533,7 @@ create table wx_mail_subscription
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_mail_subscription comment '邮件列表订阅表';
 
@@ -533,7 +542,7 @@ alter table wx_mail_subscription comment '邮件列表订阅表';
 /*==============================================================*/
 create table wx_order
 (
-   order_sn             int unsigned not null auto_increment  comment '订单ID',
+   order_sn             int unsigned not null auto_increment comment '订单ID',
    address_id           int unsigned comment '收货地址',
    uid                  int comment '用户ID',
    uname                varchar(32) comment '用户名称',
@@ -555,9 +564,11 @@ create table wx_order
    primary key (order_sn)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_order comment '订单表';
+
+INSERT INTO `wx_order` (`order_sn`,`address_id`,`uid`,`uname`,`after_discount_price`,`discount_rate`,`before_discount_price`,`pay_type`,`defray_type`,`is_pay`,`order_source`,`pay_time`,`delivert_time`,`annotated`,`invoice`,`paid`,`need_pay`,`ip`,`create_time`) VALUES (1,1,1,'hjpking@gmail.com',10,10,10,1,'0',0,1,'2012-06-01 19:16:15',1,'麻烦快点发货',0,10,0,'127.0.0.01','2012-06-01 19:16:15');
 
 /*==============================================================*/
 /* Index: Index_uid                                             */
@@ -572,10 +583,11 @@ create index Index_uid on wx_order
 /*==============================================================*/
 create table wx_order_product
 (
-   id                   int not null auto_increment  comment '自增ID',
+   id                   int not null auto_increment comment '自增ID',
    order_sn             int comment '订单ID',
    pid                  int comment '产品ID',
    uid                  int comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    pname                varchar(120) comment '产品名称',
    market_price         int comment '市场价格',
    sall_price           int comment '销售价格',
@@ -589,9 +601,12 @@ create table wx_order_product
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_order_product comment '订单产品';
+
+INSERT INTO `wx_order_product` (`id`,`order_sn`,`pid`,`uid`,`uname`,`pname`,`market_price`,`sall_price`,`product_num`,`create_time`,`comment_status`,`share_status`,`product_size`,`presentation_integral`,`preferential`) VALUES (1,1,1,1,'hjpking@gmail.com','潮人必备个性T恤-红色',10,10,10,'2012-06-01 19:16:15',1,1,1,10,0);
+INSERT INTO `wx_order_product` (`id`,`order_sn`,`pid`,`uid`,`uname`,`pname`,`market_price`,`sall_price`,`product_num`,`create_time`,`comment_status`,`share_status`,`product_size`,`presentation_integral`,`preferential`) VALUES (2,1,2,1,'hjpking@gmail.com','潮人必备个性T恤-白色',10,10,10,'2012-06-01 19:16:15',1,1,1,10,0);
 
 /*==============================================================*/
 /* Index: Index_order_sn                                        */
@@ -606,7 +621,7 @@ create index Index_order_sn on wx_order_product
 /*==============================================================*/
 create table wx_picking
 (
-   picking_id           int unsigned not null auto_increment  comment '配货ID',
+   picking_id           int unsigned not null auto_increment comment '配货ID',
    order_sn             int unsigned comment '订单ID',
    ed_id                int unsigned comment '配送方式，顺风，申通，圆通',
    address_id           int unsigned comment '地址ID',
@@ -618,7 +633,7 @@ create table wx_picking
    primary key (picking_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_picking comment '配货表';
 
@@ -635,7 +650,7 @@ create index Index_order_sn on wx_picking
 /*==============================================================*/
 create table wx_picking_product
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
    picking_id           int unsigned comment '配货ID',
    product_num          int unsigned comment '产品数量',
@@ -643,7 +658,7 @@ create table wx_picking_product
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_picking_product comment '配货产品表';
 
@@ -660,11 +675,12 @@ create index Index_picking_id on wx_picking_product
 /*==============================================================*/
 create table wx_product
 (
-   pid                  int unsigned not null auto_increment  comment '产品ID',
+   pid                  int unsigned not null auto_increment comment '产品ID',
    did                  int unsigned comment '设计图ID',
    class_id             int unsigned comment '分类ID',
    color_id             int unsigned comment '颜色ID',
    uid                  int comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    pname                varchar(120) comment '产品名称',
    market_price         int unsigned comment '市场价格，单位为分',
    sell_price           int unsigned comment '销售价格，单位为分',
@@ -684,7 +700,7 @@ create table wx_product
    primary key (pid)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product comment '产品表';
 
@@ -725,7 +741,7 @@ create index Index_sell_price on wx_product
 /*==============================================================*/
 create table wx_product_attr
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品id',
    attr_id              int unsigned comment '属性id',
    model_id             int unsigned comment '模型id',
@@ -734,7 +750,7 @@ create table wx_product_attr
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_attr comment '产品属性表';
 
@@ -759,7 +775,7 @@ create index Index_attr_value on wx_product_attr
 /*==============================================================*/
 create table wx_product_category
 (
-   class_id             int unsigned not null auto_increment  comment '分类ID',
+   class_id             int unsigned not null auto_increment comment '分类ID',
    cname                varchar(64) comment '分类名称',
    parent_id            int unsigned comment '分类父ID',
    sort                 smallint comment '排序',
@@ -770,7 +786,7 @@ create table wx_product_category
    primary key (class_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_category comment '产品分类表';
 
@@ -787,14 +803,14 @@ create index Index_parent_id on wx_product_category
 /*==============================================================*/
 create table wx_product_collocation
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '主产品ID',
    spid                 int unsigned comment '搭配产品ID',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_collocation comment '产品搭配表';
 
@@ -811,9 +827,10 @@ create index Index_pid on wx_product_collocation
 /*==============================================================*/
 create table wx_product_comment
 (
-   comment_id           int unsigned not null auto_increment  comment '评论ID',
+   comment_id           int unsigned not null auto_increment comment '评论ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    comment_title        varchar(60) comment '评论标题',
    comment_content      varchar(128) comment '评论内容',
    ip                   char(16) comment '评论IP地址',
@@ -827,7 +844,7 @@ create table wx_product_comment
    primary key (comment_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_comment comment '产品评论表';
 
@@ -852,7 +869,7 @@ create index Index_uid on wx_product_comment
 /*==============================================================*/
 create table wx_product_favorite
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
@@ -861,7 +878,7 @@ create table wx_product_favorite
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_favorite comment '产品收藏表';
 
@@ -886,12 +903,12 @@ create index Index_uid on wx_product_favorite
 /*==============================================================*/
 create table wx_product_model
 (
-   model_id             int unsigned not null auto_increment  comment '模型id',
+   model_id             int unsigned not null auto_increment comment '模型id',
    model_name           varchar(32) comment '模型名称',
    primary key (model_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_model comment '产品模型表';
 
@@ -900,7 +917,7 @@ alter table wx_product_model comment '产品模型表';
 /*==============================================================*/
 create table wx_product_photo
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
    img_addr             varchar(128) comment '图片地址',
    is_default           tinyint unsigned comment '0否，1是',
@@ -908,7 +925,7 @@ create table wx_product_photo
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_photo comment '产品图片表';
 
@@ -917,9 +934,10 @@ alter table wx_product_photo comment '产品图片表';
 /*==============================================================*/
 create table wx_product_qa
 (
-   qa_id                int unsigned not null auto_increment  comment '问答ID',
+   qa_id                int unsigned not null auto_increment comment '问答ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    qa_title             varchar(32) comment '问题标题',
    qa_content           varchar(255) comment '问题内容',
    reply_content        varchar(255) comment '回答内容',
@@ -933,7 +951,7 @@ create table wx_product_qa
    primary key (qa_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_qa comment '产品疑难问答';
 
@@ -958,7 +976,7 @@ create index Index_uid on wx_product_qa
 /*==============================================================*/
 create table wx_product_qa_reply
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    qa_id                int unsigned comment '问答ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
@@ -968,7 +986,7 @@ create table wx_product_qa_reply
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_qa_reply comment '产品疑难问答回复';
 
@@ -985,7 +1003,7 @@ create index Index_qa_id on wx_product_qa_reply
 /*==============================================================*/
 create table wx_product_reply
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    comment_id           int unsigned comment '评论ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
@@ -995,7 +1013,7 @@ create table wx_product_reply
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_reply comment '产品评论回复表';
 
@@ -1012,14 +1030,14 @@ create index Index_comment_id on wx_product_reply
 /*==============================================================*/
 create table wx_product_size
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
    size_id              int unsigned not null comment '尺码ID',
    abbreviation         char(6) comment '尺码简称',
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_product_size comment '产品尺码表';
 
@@ -1036,9 +1054,10 @@ create index Index_pid on wx_product_size
 /*==============================================================*/
 create table wx_receivable
 (
-   receiver_id          int unsigned not null auto_increment  comment '收款单ID',
+   receiver_id          int unsigned not null auto_increment comment '收款单ID',
    order_sn             int unsigned comment '订单号',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    amount               int unsigned comment '金额,单位为分',
    pay_time             datetime comment '汇款时间',
    pay_type             tinyint unsigned comment '汇款类型，1银行汇款，2支付宝转账',
@@ -1050,7 +1069,7 @@ create table wx_receivable
    primary key (receiver_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_receivable comment '收款单表';
 
@@ -1075,7 +1094,7 @@ create index Index_uid on wx_receivable
 /*==============================================================*/
 create table wx_retrieve_password_log
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    uid                  int comment '用户ID',
    passwd_code          char(32) comment '校验串',
    end_time             tinyint unsigned comment '过期时间',
@@ -1083,7 +1102,7 @@ create table wx_retrieve_password_log
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_retrieve_password_log comment '找回密码申请日志表';
 
@@ -1100,7 +1119,7 @@ create index Index_uname_code on wx_retrieve_password_log
 /*==============================================================*/
 create table wx_returns
 (
-   return_id            int not null auto_increment  comment '退换货ID',
+   return_id            int not null auto_increment comment '退换货ID',
    order_sn             int comment '订单ID',
    pid                  int comment '产品ID',
    type                 tinyint comment '类型1，退货，2换货',
@@ -1117,7 +1136,7 @@ create table wx_returns
    primary key (return_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_returns comment '退换货表';
 
@@ -1126,9 +1145,10 @@ alter table wx_returns comment '退换货表';
 /*==============================================================*/
 create table wx_share
 (
-   share_id             int unsigned not null auto_increment  comment '晒单ID',
+   share_id             int unsigned not null auto_increment comment '晒单ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    title                varchar(32) comment '标题',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
@@ -1136,7 +1156,7 @@ create table wx_share
    primary key (share_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_share comment '晒单表';
 
@@ -1161,15 +1181,16 @@ create index Index_uid on wx_share
 /*==============================================================*/
 create table wx_share_comment
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    share_id             int unsigned comment '晒单ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    content              varchar(255) comment '回复内容',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_share_comment comment '晒单评论表';
 
@@ -1194,7 +1215,7 @@ create index Index_uid on wx_share_comment
 /*==============================================================*/
 create table wx_share_images
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    share_id             int unsigned comment '晒单ID',
    img_addr             varchar(128) comment '图片地址',
    descr                varchar(128) comment '图片说明',
@@ -1205,7 +1226,7 @@ create table wx_share_images
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_share_images comment '晒单图片表';
 
@@ -1222,7 +1243,7 @@ create index Index_share_id on wx_share_images
 /*==============================================================*/
 create table wx_shop_car
 (
-   car_id               int unsigned not null auto_increment  comment '购物车ID',
+   car_id               int unsigned not null auto_increment comment '购物车ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
    pname                varchar(120) comment '产品名称',
@@ -1232,7 +1253,7 @@ create table wx_shop_car
    primary key (car_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_shop_car comment '购物车表';
 
@@ -1257,7 +1278,7 @@ create index Index_uid on wx_shop_car
 /*==============================================================*/
 create table wx_size
 (
-   size_id              int unsigned not null auto_increment  comment '尺码ID',
+   size_id              int unsigned not null auto_increment comment '尺码ID',
    name                 varchar(32) comment '尺码名称',
    abbreviation         char(6) comment '尺码简称',
    descr                varchar(128) comment '尺码描述',
@@ -1265,7 +1286,7 @@ create table wx_size
    primary key (size_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_size comment '尺码表';
 
@@ -1274,7 +1295,7 @@ alter table wx_size comment '尺码表';
 /*==============================================================*/
 create table wx_system_proposal
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    title                varchar(32) comment '标题',
    content              varchar(255) comment '内容',
    uid                  int unsigned comment '用户ID',
@@ -1283,7 +1304,7 @@ create table wx_system_proposal
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_system_proposal comment '系统意见和建议';
 
@@ -1292,9 +1313,10 @@ alter table wx_system_proposal comment '系统意见和建议';
 /*==============================================================*/
 create table wx_tuan_comment
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    tuan_id              int unsigned comment '团购ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    title                varchar(32) comment '评论标题',
    content              varchar(255) comment '评论内容',
    status               tinyint unsigned comment '评论状态',
@@ -1304,7 +1326,7 @@ create table wx_tuan_comment
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_tuan_comment comment '团购评价表';
 
@@ -1321,7 +1343,7 @@ create index Index_tuan_id on wx_tuan_comment
 /*==============================================================*/
 create table wx_tuan_product
 (
-   tuan_id              int unsigned not null auto_increment  comment '自增ID',
+   tuan_id              int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
    pname                varchar(120) comment '产品名称',
    product_images       varchar(64) comment '产品图片',
@@ -1340,7 +1362,7 @@ create table wx_tuan_product
    primary key (tuan_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_tuan_product comment '团购产品表';
 
@@ -1349,7 +1371,7 @@ alter table wx_tuan_product comment '团购产品表';
 /*==============================================================*/
 create table wx_user
 (
-   uid                  int unsigned not null auto_increment  comment '用户ID',
+   uid                  int unsigned not null auto_increment comment '用户ID',
    uname                varchar(32) comment '用户名称',
    nickname             varchar(32) comment '昵称',
    lid                  int unsigned default 1 comment '等级ID',
@@ -1362,7 +1384,7 @@ create table wx_user
    primary key (uid)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user comment '用户基本信息表';
 
@@ -1379,7 +1401,7 @@ create unique index index_uname on wx_user
 /*==============================================================*/
 create table wx_user_consume_log
 (
-   consume_id           int unsigned not null auto_increment  comment '消费记录ID',
+   consume_id           int unsigned not null auto_increment comment '消费记录ID',
    uid                  int comment '用户ID',
    operat_type          tinyint unsigned comment '操作类型，1消费，2充值，3退款，4返现，5其他',
    before_amount        int unsigned comment '操作前金额，单位为分',
@@ -1390,7 +1412,7 @@ create table wx_user_consume_log
    primary key (consume_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_consume_log comment '用户消费记录表';
 
@@ -1444,7 +1466,7 @@ create table wx_user_info
    bank_account         char(19) comment '银行账号'
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_info comment '用户详细信息表';
 
@@ -1461,7 +1483,7 @@ create unique index uid_unique on wx_user_info
 /*==============================================================*/
 create table wx_user_level
 (
-   lid                  int unsigned not null auto_increment  comment '等级ID',
+   lid                  int unsigned not null auto_increment comment '等级ID',
    name                 varchar(16) comment '等级名称',
    type                 tinyint unsigned comment '组类别',
    descr                varchar(128) comment '等级描述',
@@ -1470,7 +1492,7 @@ create table wx_user_level
    primary key (lid)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_level comment '用户等级表';
 
@@ -1479,7 +1501,7 @@ alter table wx_user_level comment '用户等级表';
 /*==============================================================*/
 create table wx_user_login_log
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    uid                  int comment '用户Id',
    login_source         tinyint comment '登陆来源,1主站，2站外，3其他',
    ip                   char(16) comment '登陆IP',
@@ -1487,7 +1509,7 @@ create table wx_user_login_log
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_login_log comment '用户登陆日志表';
 
@@ -1510,15 +1532,16 @@ create index index_uid on wx_user_login_log
 /*==============================================================*/
 create table wx_user_message
 (
-   message_id           int unsigned not null auto_increment  comment '留言ID',
+   message_id           int unsigned not null auto_increment comment '留言ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
    create_time          datetime comment '创建时间',
    primary key (message_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_message comment '用户留言表';
 
@@ -1535,7 +1558,9 @@ create index Index_uid on wx_user_message
 /*==============================================================*/
 create table wx_user_message_reply
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
+   uid                  int comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    message_id           int unsigned comment '留言ID',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
@@ -1543,7 +1568,7 @@ create table wx_user_message_reply
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_message_reply comment '留言回复表';
 
@@ -1560,8 +1585,9 @@ create index Index_message_id on wx_user_message_reply
 /*==============================================================*/
 create table wx_user_recipient_address
 (
-   address_id           int not null auto_increment  comment '地址ID',
+   address_id           int not null auto_increment comment '地址ID',
    uid                  int comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    recent_name          varchar(16) comment '收货人',
    province             varchar(16) comment '省份',
    city                 varchar(16) comment '城市',
@@ -1574,7 +1600,7 @@ create table wx_user_recipient_address
    primary key (address_id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_recipient_address comment '用户收件地址';
 
@@ -1591,7 +1617,7 @@ create index Index_uid on wx_user_recipient_address
 /*==============================================================*/
 create table wx_user_up_level_log
 (
-   id                   int unsigned not null auto_increment  comment '自增ID',
+   id                   int unsigned not null auto_increment comment '自增ID',
    uid                  int unsigned comment '用户ID',
    up_action            tinyint unsigned comment '升级事件',
    former_level         tinyint unsigned comment '原等级',
@@ -1600,7 +1626,7 @@ create table wx_user_up_level_log
    primary key (id)
 )
 engine = MYISAM
-auto_increment  = 1;
+auto_increment = 1;
 
 alter table wx_user_up_level_log comment '用户升级日志表';
 
