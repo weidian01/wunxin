@@ -65,7 +65,7 @@ class register extends MY_Controller
                 break;
             }
 
-            $this->load->model('user/user', 'user');
+            $this->load->model('user/Model_User', 'user');
             if ($this->user->userNameIsExist($username)) {
                 $response = error(10002);
                 break;
@@ -83,8 +83,7 @@ class register extends MY_Controller
             );
             $uid = $this->user->registerUser($data);
             if (!$uid) {
-                $response['code'] = '10006';
-                $response['msg'] = '注册用户失败';
+                $response = error(10008);
             }
         }
         echo json_encode($response);
@@ -107,7 +106,7 @@ class register extends MY_Controller
         }
         else
         {
-            $this->load->model('user/user', 'user');
+            $this->load->model('user/Model_User', 'user');
             if ($this->user->userNameIsExist($username)) {
                 $response = error(10002);
             }
