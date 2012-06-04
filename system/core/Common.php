@@ -170,7 +170,6 @@ if ( ! function_exists('load_class'))
 
 		// Keep track of what we just loaded
 		is_loaded($class);
-
 		$_classes[$class] = new $name();
 		return $_classes[$class];
 	}
@@ -560,5 +559,21 @@ if ( ! function_exists('html_escape'))
 	}
 }
 
+if ( ! function_exists('error'))
+{
+    function error($code)
+    {
+        static $_error;
+        if(! $_error)
+        {
+            $_error = require(APPPATH.'config/error.php');
+        }
+        if (!isset($_error[$code]))
+        {
+            $code = 99999;
+        }
+        return $_error[$code];
+    }
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
