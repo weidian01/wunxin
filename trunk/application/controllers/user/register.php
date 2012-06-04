@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class register extends CI_Controller
+class register extends MY_Controller
 {
 
     /**
@@ -18,11 +18,18 @@ class register extends CI_Controller
      * map to /index.php/welcome/<method_name>
      * @see http://codeigniter.com/user_guide/general/urls.html
      */
+
+    /**
+     * 显示注册页面
+     */
     public function index()
     {
         $this->load->view('user/reg');
     }
 
+    /**
+     * 接受注册表单信息页面
+     */
     public function submit()
     {
         $this->load->helper('validation');
@@ -53,7 +60,7 @@ class register extends CI_Controller
                 break;
             }
 
-            if (!$verifyCode) {
+            if ('' === $verifyCode || strtolower($verifyCode) !== strtolower($this->getVerifyCode())) {
                 $response = error(10005);
                 break;
             }
@@ -64,6 +71,8 @@ class register extends CI_Controller
                 break;
             }
         } while (false);
+
+        $this->usetVerifyCode();
 
         if (! isset($response['error'])) {
             $data = array(
@@ -81,6 +90,9 @@ class register extends CI_Controller
         echo json_encode($response);
     }
 
+    /**
+     * 检查用户名是否存在
+     */
     public function checkUserName()
     {
         $username = $this->input->get_post('username');
@@ -104,7 +116,56 @@ class register extends CI_Controller
         echo json_encode($response);
     }
 
+    /**
+     * 显示验证码图片
+     */
+    public function verifyCode()
+    {
+        $code = $this->setVerifyCode();
+        $this->lib('codeimg', array('code'=>$code));
+        $this->codeimg->display();
+    }
 
+    public function show()
+    {
+        echo $this->getVerifyCode();
+    }
+    /**
+     * 生成验证码
+     * @param int $lenght
+     * @return mixed
+     */
+    private function setVerifyCode($lenght = 6)
+    {
+
+        $this->load->helper('string');
+        $rand_str =  str_replace(array('0','O','1','l'), array('o','o','L','L'), random_string('alnum', $lenght));
+        $newdata = array('verifyCode'  => $rand_str);
+        $this->lib('session');
+        $this->session->set_userdata($newdata);
+        return $rand_str;
+    }
+
+    /**
+     * 获取验证码
+     * @return mixed
+     */
+    private function getVerifyCode()
+    {
+        $this->lib('session');
+        return $this->session->userdata('verifyCode');
+    }
+
+    /**
+     * 销毁验证码
+     * @return mixed
+     */
+    private function usetVerifyCode()
+    {
+        $this->lib('session');
+        $this->session->unset_userdata('verifyCode');
+        return;
+    }
 }
 
 /* End of file welcome.php */

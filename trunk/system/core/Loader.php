@@ -881,7 +881,7 @@ class CI_Loader {
 		// Get the class name, and while we're at it trim any slashes.
 		// The directory path can be included as part of the class name,
 		// but we don't want a leading slash
-		$class = str_replace('.php', '', trim($class, '/'));
+	    $class = str_replace('.php', '', trim($class, '/'));
 
 		// Was the path included with the class name?
 		// We look for a slash to determine this
@@ -903,7 +903,7 @@ class CI_Loader {
 			// Is this a class extension request?
 			if (file_exists($subclass))
 			{
-				$baseclass = BASEPATH.'libraries/'.ucfirst($class).'.php';
+			    $baseclass = BASEPATH.'libraries/'.ucfirst($class).'.php';
 
 				if ( ! file_exists($baseclass))
 				{
