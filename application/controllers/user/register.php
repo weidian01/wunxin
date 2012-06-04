@@ -40,37 +40,32 @@ class register extends CI_Controller
         $response['msg'] = $redirect_url;
         do {
             if (!is_username($username)) {
-                $response['code'] = '10001';
-                $response['msg'] = '用户名不合法';
+                $response = error(10001);
                 break;
             }
             if ($password !== $repassword) {
-                $response['code'] = '10003';
-                $response['msg'] = '两次输入密码不一致';
+                $response = error(10003);
                 break;
             }
 
             if (!length_limit($password, 8, 16)) {
-                $response['code'] = '10004';
-                $response['msg'] = '密码不合法';
+                $response = error(10004);
                 break;
             }
 
             if (!$verifyCode) {
-                $response['code'] = '10005';
-                $response['msg'] = '验证码错误';
+                $response = error(10005);
                 break;
             }
 
             $this->load->model('user/user', 'user');
             if ($this->user->userNameIsExist($username)) {
-                $response['code'] = '10002';
-                $response['msg'] = '用户已存在';
+                $response = error(10002);
                 break;
             }
         } while (false);
 
-        if ($response['code'] === '0') {
+        if (! isset($response['error'])) {
             $data = array(
                 'uname' => $username,
                 'password' => $password,
@@ -96,19 +91,16 @@ class register extends CI_Controller
         $response['msg'] = '用户名可用';
 
         if (!is_username($username)) {
-            $response['code'] = '10001';
-            $response['msg'] = '用户名不合法';
+            $response = error(10001);
         }
         else
         {
             $this->load->model('user/user', 'user');
             if ($this->user->userNameIsExist($username)) {
-                $response['code'] = '10002';
-                $response['msg'] = '用户已存在';
+                $response = error(10002);
             }
         }
-        //$this->model->query("select * from wx_user");
-        //var_dump($this->db);// = null;
+
         echo json_encode($response);
     }
 
