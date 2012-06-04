@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class login extends CI_Controller
+class login extends MY_Controller
 {
 
     /**
@@ -33,26 +33,22 @@ class login extends CI_Controller
                 break;
             }
             if (!is_username($username)) {
-                $response['code'] = '10001';
-                $response['msg'] = '用户名不合法';
+                $response = error(10001);
                 break;
             }
             if (!length_limit($password, 8, 16)) {
-                $response['code'] = '10002';
-                $response['msg'] = '密码不合法';
+                $response = error(10004);
                 break;
             }
 
-            $this->load->model('user/user', 'user');
+            $this->load->model('user/Model_User', 'user');
             $uInfo = $this->user->userLogin($username, $password);
 
             if ($uInfo === 1) {
-                $response['code'] = '10003';
-                $response['msg'] = '用户不存在';
+                $response = error(10006);
                 break;
             } elseif ($uInfo === 2) {
-                $response['code'] = '10004';
-                $response['msg'] = '用户密码错误';
+                $response = error(10007);
                 break;
             }
 
@@ -63,7 +59,7 @@ class login extends CI_Controller
 
             //记录用户登陆日志
             $ip = $this->input->ip_address();
-            $this->load->model('user/user_log', 'userlog');
+            $this->load->model('user/Model_User_Log', 'userlog');
             $this->userlog->record_login_log($uInfo['uid'],$ip, $source);
 
         } while (false);
