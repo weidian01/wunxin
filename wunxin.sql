@@ -474,9 +474,9 @@ create table wx_invoice
 (
    invoice_id           int unsigned not null auto_increment comment '发票ID',
    uid                  int unsigned comment '用户ID',
-   order_sn             int unsigned comment '订单ID',
    invoice_payable      varchar(64) comment '发票抬头',
    invoice_content      varchar(16) default '1' comment '发票内容，1服装，2其他,3用户写入内容',
+   `default`            tinyint default 1 comment '默认发票,0否，1是',
    create_time          datetime comment '创建时间',
    primary key (invoice_id)
 )
@@ -485,8 +485,8 @@ auto_increment = 1;
 
 alter table wx_invoice comment '发票';
 
-INSERT INTO `wx_invoice` (`invoice_id`,`uid`,`order_sn`,`invoice_payable`,`invoice_content`,`create_time`) VALUES (1,1,1,'北京市万象乾鑫商贸有限公司','1','2012-06-01 21:45:01');
-INSERT INTO `wx_invoice` (`invoice_id`,`uid`,`order_sn`,`invoice_payable`,`invoice_content`,`create_time`) VALUES (2,1,1,'北京市万象乾鑫科技有限公司','1','2012-06-01 21:45:39');
+INSERT INTO `wx_invoice` (`invoice_id`,`uid`,`invoice_payable`,`invoice_content`,`create_time`) VALUES (1,1,'北京市万象乾鑫商贸有限公司','1','2012-06-01 21:45:01');
+INSERT INTO `wx_invoice` (`invoice_id`,`uid`,`invoice_payable`,`invoice_content`,`create_time`) VALUES (2,1,'北京市万象乾鑫科技有限公司','1','2012-06-01 21:45:39');
 
 /*==============================================================*/
 /* Index: index_uid                                             */
@@ -494,14 +494,6 @@ INSERT INTO `wx_invoice` (`invoice_id`,`uid`,`order_sn`,`invoice_payable`,`invoi
 create index index_uid on wx_invoice
 (
    uid
-);
-
-/*==============================================================*/
-/* Index: Index_order_sn                                        */
-/*==============================================================*/
-create index Index_order_sn on wx_invoice
-(
-   order_sn
 );
 
 /*==============================================================*/
@@ -544,6 +536,18 @@ create table wx_order
    paid                 int comment '已付款，用户已支付多少',
    need_pay             int comment '需要支付款',
    ip                   char(16) comment 'IP地址',
+   invoice_payable      varchar(64) comment '发票抬头',
+   invoice_content      varchar(16) default '1' comment '发票内容，1服装，2其他,3用户写入内容',
+   uname2               varchar(32) comment '用户名称',
+   recent_name          varchar(16) comment '收货人',
+   country              varchar(16) comment '国家',
+   province             varchar(16) comment '省份',
+   city                 varchar(16) comment '城市',
+   area                 varchar(16) comment '区域',
+   detail_address       varchar(128) comment '详细地址',
+   zipcode              char(7) comment '邮编',
+   phone_num            char(11) comment '手机号码',
+   call_num             char(11) comment '座机',
    create_time          datetime comment '创建时间',
    primary key (order_sn)
 )
@@ -815,8 +819,8 @@ create table wx_product_comment
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
-   comment_title        varchar(60) comment '评论标题',
-   comment_content      varchar(128) comment '评论内容',
+   title                varchar(60) comment '评论标题',
+   content              varchar(128) comment '评论内容',
    ip                   char(16) comment '评论IP地址',
    rank                 tinyint unsigned comment '评价等级',
    is_valid             int unsigned default 0 comment '是否有效',
@@ -925,10 +929,10 @@ create table wx_product_qa
    ip                   char(16) comment '提问IP地址',
    reply_time           datetime comment '回复时间',
    is_reply             tinyint unsigned comment '是否回复',
-   create_time          datetime comment '提问时间',
    is_valid             int unsigned comment '是否有效',
    is_invalid           int unsigned comment '是否无效',
    reply_num            smallint unsigned comment '回复数量',
+   create_time          datetime comment '提问时间',
    primary key (qa_id)
 )
 engine = MYISAM
@@ -962,8 +966,8 @@ create table wx_product_qa_reply
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
    ip                   char(16) comment '回复IP地址',
-   create_time          datetime comment '创建时间',
    reply_content        varchar(255) comment '回复内容',
+   create_time          datetime comment '创建时间',
    primary key (id)
 )
 engine = MYISAM
@@ -1199,8 +1203,8 @@ create table wx_share_images
    share_id             int unsigned comment '晒单ID',
    img_addr             varchar(128) comment '图片地址',
    descr                varchar(128) comment '图片说明',
-   is_cover             tinyint unsigned comment '是否为封面，0否，1是',
-   status               tinyint unsigned comment '状态，0已删除，1正常',
+   is_cover             tinyint unsigned default 0 comment '是否为封面，0否，1是',
+   status               tinyint unsigned default 1 comment '状态，0已删除，1正常',
    is_like              int unsigned comment '是否喜欢，记录喜欢的人数',
    create_time          datetime comment '创建时间',
    primary key (id)
@@ -1618,6 +1622,7 @@ create table wx_user_recipient_address
    zipcode              char(7) comment '邮编',
    phone_num            char(11) comment '手机号码',
    call_num             char(11) comment '座机',
+   default_address      tinyint comment '默认地址,0否，1是',
    create_time          datetime comment '创建时间',
    primary key (address_id)
 )
