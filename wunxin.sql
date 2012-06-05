@@ -1,41 +1,5 @@
 
 /*==============================================================*/
-/* Table: user_integral_log                                     */
-/*==============================================================*/
-create table user_integral_log
-(
-   integral_id          int unsigned not null auto_increment,
-   uid                  int unsigned,
-   operat_type          tinyint unsigned comment '操作类型，0消耗，1增加',
-   consume_amount       int unsigned comment '消费金额',
-   before_amount        int unsigned comment '操作前金额，单位为分',
-   after_amount         int unsigned comment '操作后金额，单位为分',
-   descr                varchar(128) comment '操作描述',
-   create_time          datetime comment '创建时间',
-   primary key (integral_id)
-)
-engine = MYISAM
-auto_increment = 1;
-
-alter table user_integral_log comment '用户积分日志表';
-
-/*==============================================================*/
-/* Index: Index_uid                                             */
-/*==============================================================*/
-create index Index_uid on user_integral_log
-(
-   uid
-);
-
-/*==============================================================*/
-/* Index: Index_create_time                                     */
-/*==============================================================*/
-create index Index_create_time on user_integral_log
-(
-   create_time
-);
-
-/*==============================================================*/
 /* Table: wx_activity                                           */
 /*==============================================================*/
 create table wx_activity
@@ -1497,6 +1461,42 @@ alter table wx_user_info comment '用户详细信息表';
 create unique index uid_unique on wx_user_info
 (
    uid
+);
+
+/*==============================================================*/
+/* Table: wx_user_integral_log                                  */
+/*==============================================================*/
+create table wx_user_integral_log
+(
+   integral_id          int unsigned not null auto_increment,
+   uid                  int unsigned,
+   operat_type          tinyint unsigned comment '操作类型，0消耗，1增加',
+   consume_amount       int unsigned comment '消费金额',
+   before_amount        int unsigned comment '操作前金额，单位为分',
+   after_amount         int unsigned comment '操作后金额，单位为分',
+   descr                varchar(128) comment '操作描述',
+   create_time          datetime comment '创建时间',
+   primary key (integral_id)
+)
+engine = MYISAM
+auto_increment = 1;
+
+alter table wx_user_integral_log comment '用户积分日志表';
+
+/*==============================================================*/
+/* Index: Index_uid                                             */
+/*==============================================================*/
+create index Index_uid on wx_user_integral_log
+(
+   uid
+);
+
+/*==============================================================*/
+/* Index: Index_create_time                                     */
+/*==============================================================*/
+create index Index_create_time on wx_user_integral_log
+(
+   create_time
 );
 
 /*==============================================================*/

@@ -40,7 +40,7 @@ class MY_Controller extends CI_Controller
 
         $this->load->model('user/Model_User', 'user');
         $uInfo = $this->user->getUserById($uid);
-        var_dump(empty ($uInfo));exit;
+        //var_dump(!is_array($uInfo));exit;
 echo '<pre>';print_r($uInfo);exit;
         if (empty ($uInfo) || !is_array($uInfo) || $uInfo['password'] != $password) {
             return false;
