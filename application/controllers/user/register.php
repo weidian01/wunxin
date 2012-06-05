@@ -86,7 +86,7 @@ class register extends MY_Controller
                 $response = error(10008);
             }
         }
-        echo json_encode($response);
+        echo self::json_output($response);
     }
 
     /**
@@ -112,7 +112,7 @@ class register extends MY_Controller
             }
         }
 
-        echo json_encode($response);
+        echo self::json_output($response);
     }
 
     /**

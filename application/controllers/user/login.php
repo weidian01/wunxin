@@ -75,7 +75,7 @@ class login extends MY_Controller
 
         } while (false);
 
-        echo json_encode($response);
+        echo self::json_output($response);
     }
 
 
