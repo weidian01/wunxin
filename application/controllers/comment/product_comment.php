@@ -8,5 +8,16 @@
  */
 class product_comment extends MY_Controller
 {
+    public function postProductComment()
+    {
+        $uid = $this->input->get_post('uid');
+        $pid = $this->input->get_post('pid');
+        $title = $this->input->get_post('title');
+        $content = $this->input->get_post('content');
+        $ip = $this->input->ip_address();
+        $rank = $this->input->get_post('rank');
 
+        $this->load->model('order/Model_order', 'order');
+        $this->order->userIsBuyProduct(1, 1);
+    }
 }

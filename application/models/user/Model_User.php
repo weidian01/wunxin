@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: EvanHou
@@ -54,6 +54,7 @@ class Model_User extends MY_Model
         $this->db->insert('user_recipient_address', $data);
         return $this->db->insert_id();
     }
+
     /**
      * @name 获取用户收货地址
      *
@@ -156,13 +157,11 @@ class Model_User extends MY_Model
         //$uInfo = $this->getUserByName($uName);
         $uInfo = $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
 
-        if (empty ($uInfo) || !is_array($uInfo))
-        {
+        if (empty ($uInfo) || !is_array($uInfo)) {
             return 1;
         }
 
-        if ($uInfo['password'] != md5(trim($password)))
-        {
+        if ($uInfo['password'] != md5(trim($password))) {
             return 2;
         }
 
@@ -234,22 +233,20 @@ class Model_User extends MY_Model
     public function mofidyUserPasswordByUserId($uId, $oldPassword, $newPassword)
     {
         //新老密码一致
-        if (md5(trim($oldPassword)) == md5(trim($newPassword)))
-        {
+        if (md5(trim($oldPassword)) == md5(trim($newPassword))) {
             return true;
         }
 
-        $uInfo = $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
+        $uInfo = $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')
+            ->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
 
         //用户不存在
-        if (empty ($uInfo) || !is_array($uInfo))
-        {
+        if (empty ($uInfo) || !is_array($uInfo)) {
             return 2;
         }
 
         //密码验证失败
-        if ($uInfo['password'] != md5(trim($oldPassword)))
-        {
+        if ($uInfo['password'] != md5(trim($oldPassword))) {
             return 3;
         }
 

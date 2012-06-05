@@ -20,6 +20,9 @@ class ck extends CI_Controller
      */
     public function index()
     {
+        $this->load->model('user/Model_User', 'user');
+        echo '<pre>';print_r($this->user->getUserAllInvoiceInfoByUid(1));exit;
+
         /*
         $orderData = array(
             array(

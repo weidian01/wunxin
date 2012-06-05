@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Evan Hou
@@ -81,10 +81,10 @@ class Model_Order extends MY_Model
     public function addOrderAndProduct(array $orderInfo, array $productInfo)
     {
         $orderSn = $this->addOrder($orderInfo);
-        if ( !$orderInfo ) return false;
+        if (!$orderInfo) return false;
 
         $status = $this->addOrderProduct($productInfo, $orderSn);
-        if ( !$status ) return false;
+        if (!$status) return false;
 
         return true;
     }
@@ -195,12 +195,12 @@ class Model_Order extends MY_Model
      * @param $offset
      * @param $limit
      */
-    public function getOrderByUser($uid, $limit=20, $offset=0)
+    public function getOrderByUser($uid, $limit = 20, $offset = 0)
     {
         $data = $this->db->select('*')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
         //var_dump($data);
         $orders = $ordersn = array();
-        foreach($data as $item)
+        foreach ($data as $item)
         {
             $orders[$item['order_sn']] = $item;
             $ordersn[] = $item['order_sn'];
@@ -208,15 +208,29 @@ class Model_Order extends MY_Model
 
         unset($data);
 
-        if($ordersn)
-        {
+        if ($ordersn) {
             $products = $this->db->select('*')->from('order_product')->where_in('order_sn', $ordersn)->get()->result_array();
             //var_dump($products);
-            foreach($products as $item)
+            foreach ($products as $item)
             {
                 $orders[$item['order_sn']]['products'][] = $item;
             }
         }
         return $orders;
+    }
+
+    public function userIsBuyProduct($uid, $pid)
+    {
+        $field = '*';
+        $data = $this->db->select($field)->from('order_product')
+            ->join('order', 'order_product.order_sn=order.order_sn', 'left')
+            ->where('order_product.uid', $uid)
+            ->where('order_product.pid', $pid)
+            ->where('order.is_pay', '1');
+        echo '<pre>';
+        print_r($data);
+        exit;
+        $sql = "select * from wx_order_product p left join wx_order o on p.order_sn=o.order_sn
+            where p.uid={$uid} and p.pid={$pid} and o.is_pay=1";
     }
 }
