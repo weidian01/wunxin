@@ -28,14 +28,24 @@ $error[10007] = array('error' => '10007', 'msg' => '密码错误', 'code' => 'pa
 
 $error[10008] = array('error' => '10008', 'msg' => '注册用户失败', 'code' => 'register_user_failure');
 
+$error[10009] = array('error' => '10009', 'msg' => '用户未登陆', 'code' => 'User_not_logged');
+
 
 
 /**
  * 产品错误代码  --  产品相关错误代码以 20 开头
  */
 $error[20001] = array('error' => '20001', 'msg' => '产品不合法', 'code' => 'product_illegal');
+
 $error[20002] = array('error' => '20002', 'msg' => '产品不存在', 'code' => 'product_does_not_exist');
+
 $error[20003] = array('error' => '20003', 'msg' => '产品收藏成功', 'code' => 'product_favorite_success');
+
+$error[20004] = array('error' => '20004', 'msg' => '产品晒单成功', 'code' => 'product_share_success');
+
+$error[20005] = array('error' => '20005', 'msg' => '产品晒单失败', 'code' => 'product_share_failure');
+
+$error[20006] = array('error' => '20006', 'msg' => '产品晒单参数不全', 'code' => 'product_share_parameter_failure');
 
 
 
@@ -57,6 +67,40 @@ $error[40001] = array('error' => '40001', 'msg' => '设计图不合法', 'code' 
  * 评论错误代码  --  评论相关错误代码以 50 开头
  */
 $error[50001] = array('error' => '50001', 'msg' => '评论不合法', 'code' => 'comment_illegal');
+
+$error[50002] = array('error' => '50002', 'msg' => '未购买产品不能评论', 'code' => 'not_buy_product_can_not_comment');
+
+$error[50003] = array('error' => '50003', 'msg' => '添加评论失败', 'code' => 'add_comment_failure');
+
+$error[50004] = array('error' => '50004', 'msg' => '评论成功', 'code' => 'comment_success');
+
+$error[50005] = array('error' => '50005', 'msg' => '评论是否有效提供成功', 'code' => 'comment_whether_effective_delivery_successful');
+
+$error[50006] = array('error' => '50006', 'msg' => '评论回复成功', 'code' => 'comment_reply_success');
+
+$error[50007] = array('error' => '50007', 'msg' => '评论回复失败', 'code' => 'comment_reply_failure');
+
+$error[50008] = array('error' => '50008', 'msg' => '评论参数不全', 'code' => 'comment_parameter_failure');
+
+$error[50009] = array('error' => '50009', 'msg' => '评论是否有效提供失败', 'code' => 'comment_whether_effective_delivery_failure');
+
+$error[50010] = array('error' => '50010', 'msg' => '疑难问答参数不全', 'code' => 'qa_parameter_failure');
+
+$error[50011] = array('error' => '50011', 'msg' => '疑难问答提交失败', 'code' => 'qa_delivery_failure');
+
+$error[50012] = array('error' => '50012', 'msg' => '疑难问答提交成功', 'code' => 'qa_delivery_success');
+
+$error[50013] = array('error' => '50013', 'msg' => '疑难问答是否有效提供成功', 'code' => 'qa_whether_effective_delivery_successful');
+
+$error[50014] = array('error' => '50014', 'msg' => '疑难问答是否有效提供失败', 'code' => 'qa_whether_effective_delivery_failure');
+
+$error[50015] = array('error' => '50015', 'msg' => '疑难问答是否有效参数不全', 'code' => 'qa_whether_effective_parameter_failure');
+
+$error[50016] = array('error' => '50016', 'msg' => '疑难问答回复成功', 'code' => 'qa_whether_effective_reply_successful');
+
+$error[50017] = array('error' => '50017', 'msg' => '疑难问答回复失败', 'code' => 'qa_whether_effective_reply_failure');
+
+$error[50018] = array('error' => '50018', 'msg' => '疑难问答回复参数不全', 'code' => 'qa_whether_effective_reply_failure');
 
 
 

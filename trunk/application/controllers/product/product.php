@@ -46,18 +46,5 @@ class Product extends MY_Controller
         echo json_encode($response);
     }
 
-    /**
-     * 晒单
-     */
-    public function productShare()
-    {
-        $pid = $this->input->get_post('pid');
-        $uid = $this->input->get_post('uid');
-        $title = $this->input->get_post('title');
-        $content = $this->input->get_post('content');
-        $ip = $this->input->ip_address();
 
-        //$shareImage = $this->input->get_post();
-
-    }
 }

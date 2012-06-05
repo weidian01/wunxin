@@ -1,0 +1,92 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Evan Hou
+ * Date: 12-6-1
+ * Time: 上午8:51
+ * wunxin E-commerce management system
+ */
+class Model_Product_Share extends MY_Model
+{
+    /**
+     * @name 产品晒单
+     *
+     * @param array $sInfo
+     * @return bool
+     */
+    public function productShare($sInfo)
+    {
+        $tableName = 'wx_share';
+        $checkStatus = $this->batchCheckTableField($tableName, $sInfo, true);
+        if (!$checkStatus) return false;
+
+        $data = array(
+            'pid' => $sInfo['pid'],
+            'uid' => $sInfo['uid'],
+            'title' => $sInfo['title'],
+            'content' => $sInfo['content'],
+            'ip' => $sInfo['ip'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
+        );
+
+        $this->db->insert('share', $data);
+        return $this->db->insert_id();
+    }
+
+    /**
+     * 保存产品晒单图片
+     *
+     * @param array $siInfo
+     * @return boolean
+     */
+    public function saveProductShareImage(array $siInfo)
+    {
+        $data = array(
+            'share_id' => $siInfo['share_id'],
+            'img_addr' => $siInfo['img_addr'],
+            'descr' => $siInfo['descr'],
+            'is_cover' => $siInfo['is_cover'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
+        );
+
+        $this->db->insert('share_images', $data);
+        return $this->db->insert_id();
+    }
+
+    /**
+     * 获取产品的晒单
+     *
+     * @param int $pId
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function getProductShareByPid($pId, $limit = 20, $offset = 0)
+    {
+        return $this->db->select('*')->get_where('share', array('uid' => $pId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取用户的晒单
+     *
+     * @param int $uId
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function getProductShareByUid($uId, $limit = 20, $offset = 0)
+    {
+        return $this->db->select('*')->get_where('share', array('uid' => $uId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取晒单信息
+     *
+     * @param int $shareId
+     */
+    public function getShareByShareId($shareId)
+    {
+
+    }
+
+}
