@@ -23,12 +23,11 @@ class Model_Product extends MY_Model
         $data = array(
             'pid' => $fInfo['pid'],
             'uid' => $fInfo['uid'],
-            'uname' => $fInfo['uname'],
             'favorite_ip' => $fInfo['favorite_ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
-        $this->db->insert('order', $data);
+        $this->db->insert($tableName, $data);
         return $this->db->insert_id();
     }
 
