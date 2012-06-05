@@ -40,17 +40,15 @@ class login extends MY_Controller
         $response['msg'] = $redirect_url;
 
         do {
-            //*
-            echo '<pre>';print_r($this->isLogin());exit;
             if ($this->isLogin()) {
                 break;
             }
-            //*/
 
             if (!is_username($username)) {
                 $response = error(10001);
                 break;
             }
+
             if (!length_limit($password, 8, 16)) {
                 $response = error(10004);
                 break;
@@ -66,8 +64,6 @@ class login extends MY_Controller
                 $response = error(10007);
                 break;
             }
-
-            //$response['user_info'] = $uInfo;
 
             //设置用户登陆状态
             $this->set_user_cookie($uInfo);

@@ -129,6 +129,7 @@ class register extends MY_Controller
     {
         echo $this->getVerifyCode();
     }
+
     /**
      * 生成验证码
      * @param int $lenght
