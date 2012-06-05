@@ -197,7 +197,7 @@ class Model_Order extends MY_Model
      */
     public function getOrderByUser($uid, $limit = 20, $offset = 0)
     {
-        $data = $this->db->select('*')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
+        $data = $this->db->select('*')->order_by('order_sn','desc')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
         //var_dump($data);
         $orders = $ordersn = array();
         foreach ($data as $item)
