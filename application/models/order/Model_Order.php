@@ -226,11 +226,8 @@ class Model_Order extends MY_Model
             ->join('order', 'order_product.order_sn=order.order_sn', 'left')
             ->where('order_product.uid', $uid)
             ->where('order_product.pid', $pid)
-            ->where('order.is_pay', '1');
-        echo '<pre>';
-        print_r($data);
-        exit;
-        $sql = "select * from wx_order_product p left join wx_order o on p.order_sn=o.order_sn
-            where p.uid={$uid} and p.pid={$pid} and o.is_pay=1";
+            ->where('order.is_pay', '1')->get()->row_array();
+
+        return $data;
     }
 }

@@ -17,7 +17,14 @@ class product_comment extends MY_Controller
         $ip = $this->input->ip_address();
         $rank = $this->input->get_post('rank');
 
+        do {
+
+        } while(false);
         $this->load->model('order/Model_order', 'order');
-        $this->order->userIsBuyProduct(1, 1);
+        $data = $this->order->userIsBuyProduct($uid, $pid);
+        if (empty ($data)) {
+
+        }
+
     }
 }
