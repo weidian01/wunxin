@@ -47,4 +47,9 @@ class MY_Controller extends CI_Controller
 
         return $uInfo;
     }
+
+    static public function json_output($data)
+    {
+        die(json_encode($data));
+    }
 }
