@@ -90,29 +90,6 @@ class Model_Order extends MY_Model
     }
 
     /**
-     * @name 增加订单发票信息
-     *
-     * @param $uid 用户ID
-     * @param $orderSn 订单ID
-     * @param $payable 发票抬头
-     * @param $content 发票内容
-     * @return array
-     */
-    public function addOrderInvoice($uid, $orderSn, $payable, $content = '1')
-    {
-        $data = array(
-            'uid' => $uid,
-            'order_sn' => $orderSn,
-            'invoice_payable' => $payable,
-            'invoice_content' => $content,
-            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
-        );
-
-        $this->db->insert('invoice', $data);
-        return $this->db->insert_id();
-    }
-
-    /**
      * @name 获取订单信息 -- 通过订单ID
      *
      * @param $orderSn 订单ID
@@ -157,17 +134,6 @@ class Model_Order extends MY_Model
 
         return $orderInfo;
 
-    }
-
-    /**
-     * @name 获取订单发票信息 -- 通过订单ID
-     *
-     * @param $orderSn 订单ID
-     * @return boolean
-     */
-    public function getOrderInvoiceInfoByOrderSn($orderSn)
-    {
-        return $this->db->select('*')->get_where('invoice', array('order_sn' => $orderSn))->row_array();
     }
 
     /**
@@ -229,5 +195,10 @@ class Model_Order extends MY_Model
             ->where('order.is_pay', '1')->get()->row_array();
 
         return $data;
+    }
+
+    public function createAddress()
+    {
+
     }
 }
