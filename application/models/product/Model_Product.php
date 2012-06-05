@@ -32,11 +32,11 @@ class Model_Product extends MY_Model
     }
 
     /**
-         * @name 获取产品信息 -- 通过产品ID
-         *
-         * @param int $pid
-         * @return bool
-         */
+     * @name 获取产品信息 -- 通过产品ID
+     *
+     * @param int $pid
+     * @return bool
+     */
     public function getProductById($pid)
     {
         $this->db->get_where('wx_product', array('pid' => $pid))->row_array();
@@ -54,33 +54,6 @@ class Model_Product extends MY_Model
 
         return empty ($pInfo) ? false : true;
     }
-
-    /**
-     * @name 产品晒单
-     *
-     * @param array $sInfo
-     * @return bool
-     */
-    public function productShare($sInfo)
-    {
-        $tableName = 'wx_share';
-        $checkStatus = $this->batchCheckTableField($tableName, $sInfo, true);
-        if (!$checkStatus) return false;
-
-        $data = array(
-            'pid' => $sInfo['pid'],
-            'uid' => $sInfo['uid'],
-            'title' => $sInfo['title'],
-            'content' => $sInfo['content'],
-            'ip' => $sInfo['ip'],
-            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
-        );
-
-        $this->db->insert('order', $data);
-        return $this->db->insert_id();
-    }
-
-
 
 
 }
