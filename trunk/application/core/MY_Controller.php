@@ -30,11 +30,22 @@ class MY_Controller extends CI_Controller
      */
     function isLogin()
     {
-        $uid = $this->input->cookie('uid');
-        $password = $this->input->cookie('password');
+        $prefix = config_item('cookie_prefix');
+        $uid = $this->input->cookie($prefix.'uid');
+        $password = $this->input->cookie($prefix.'password');
 
+        if (empty ($uid) || empty ($password)) {
+            return false;
+        }
 
-        $this->load->model('');
-        return empty ($uid) ? false : true;
+        $this->load->model('user/Model_User', 'user');
+        $uInfo = $this->user->getUserById($uid);
+        var_dump(empty ($uInfo));exit;
+echo '<pre>';print_r($uInfo);exit;
+        if (empty ($uInfo) || !is_array($uInfo) || $uInfo['password'] != $password) {
+            return false;
+        }
+
+        return $uInfo;
     }
 }

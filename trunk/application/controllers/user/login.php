@@ -40,11 +40,12 @@ class login extends MY_Controller
         $response['msg'] = $redirect_url;
 
         do {
-            /*
-            if ($this->get_user_cookie()) {
+            //*
+            echo '<pre>';print_r($this->isLogin());exit;
+            if ($this->isLogin()) {
                 break;
             }
-            */
+            //*/
 
             if (!is_username($username)) {
                 $response = error(10001);
