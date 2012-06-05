@@ -165,7 +165,7 @@ class Model_User extends MY_Model
         {
             return 2;
         }
-        unset ($uInfo['password']);
+        
         return $uInfo;
     }
 
