@@ -160,7 +160,7 @@ class Model_Order extends MY_Model
     }
 
     /**
-     * @name 更新订单发票信息 -- 通过订单ID
+     * @name 获取订单发票信息 -- 通过订单ID
      *
      * @param $orderSn 订单ID
      * @return boolean
