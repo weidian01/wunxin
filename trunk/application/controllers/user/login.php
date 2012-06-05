@@ -71,7 +71,6 @@ class login extends MY_Controller
      */
     public function login_out()
     {
-        $this->load->helper('validation');
         $this->load->helper('url');
         $this->load->helper('cookie');
 
