@@ -95,7 +95,7 @@ class Model_User extends MY_Model
      */
     public function getUserById($uId)
     {
-        return $this->db->select('uid, nickname, lid, uname, integral, amount, create_time')->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
+        return $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
     }
 
     /**
@@ -106,7 +106,7 @@ class Model_User extends MY_Model
      */
     public function getUserByName($uName)
     {
-        return $this->db->select('uid, nickname, lid, uname, integral, amount, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
+        return $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
     }
 
     /**
@@ -117,7 +117,7 @@ class Model_User extends MY_Model
      */
     public function getUserAllInfoById($uId)
     {
-        $field = 'user.uid, nickname, lid, uname, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone,
+        $field = 'user.uid, nickname, password, lid, uname, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone,
             company_call, family_call, height, weight, body_type, marital_status, education_level, job, industry, income, interest, introduction, website, create_time';
 
         $this->db->select($field)->from('user')->join('user_info', 'user.uid = user_info.uid')->where('user.uid', $uId)->where('user.status', 1);
@@ -132,7 +132,7 @@ class Model_User extends MY_Model
      */
     public function getUserALlInfoByName($uName)
     {
-        $field = 'user.uid, nickname, lid, uname, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone,
+        $field = 'user.uid, password, nickname, lid, uname, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone,
             company_call, family_call, height, weight, body_type, marital_status, education_level, job, industry, income, interest, introduction, website, create_time';
 
         $this->db->select($field)->from('user')->join('user_info', 'user.uid = user_info.uid')->where('user.uname', $uName)->where('user.status', 1);
@@ -165,7 +165,7 @@ class Model_User extends MY_Model
         {
             return 2;
         }
-        
+
         return $uInfo;
     }
 

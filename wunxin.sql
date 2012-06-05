@@ -1,3 +1,228 @@
+drop index Index_create_time on user_integral_log;
+
+drop index Index_uid on user_integral_log;
+
+drop table if exists user_integral_log;
+
+drop table if exists wx_activity;
+
+drop table if exists wx_activity_comment;
+
+drop table if exists wx_activity_prize;
+
+drop table if exists wx_admin_user;
+
+drop table if exists wx_advert;
+
+drop table if exists wx_advert_position;
+
+drop table if exists wx_apply_cach_back_log;
+
+drop index Index_parent_id on wx_area;
+
+drop table if exists wx_area;
+
+drop table if exists wx_article;
+
+drop table if exists wx_article_category;
+
+drop table if exists wx_attribute;
+
+drop table if exists wx_card_model;
+
+drop table if exists wx_color;
+
+drop index Index_class_id on wx_degisn;
+
+drop index Index_uid on wx_degisn;
+
+drop table if exists wx_degisn;
+
+drop index Index_parent_id on wx_design_category;
+
+drop table if exists wx_design_category;
+
+drop index Index_did on wx_design_comment;
+
+drop table if exists wx_design_comment;
+
+drop index Index_did on wx_design_vote;
+
+drop table if exists wx_design_vote;
+
+drop table if exists wx_express_delivery_company;
+
+drop index Index_card_no on wx_gift_card;
+
+drop index Index_uid on wx_gift_card;
+
+drop table if exists wx_gift_card;
+
+drop table if exists wx_integral_redemption_product;
+
+drop index Index_order_sn on wx_invoice;
+
+drop index index_uid on wx_invoice;
+
+drop table if exists wx_invoice;
+
+drop table if exists wx_mail_subscription;
+
+drop index Index_uid on wx_order;
+
+drop table if exists wx_order;
+
+drop index Index_order_sn on wx_order_product;
+
+drop table if exists wx_order_product;
+
+drop index Index_order_sn on wx_picking;
+
+drop table if exists wx_picking;
+
+drop index Index_picking_id on wx_picking_product;
+
+drop table if exists wx_picking_product;
+
+drop index Index_sell_price on wx_product;
+
+drop index Index_pname on wx_product;
+
+drop index Index_did on wx_product;
+
+drop index Index_class_id on wx_product;
+
+drop table if exists wx_product;
+
+drop index Index_attr_value on wx_product_attr;
+
+drop index Index_pid on wx_product_attr;
+
+drop table if exists wx_product_attr;
+
+drop index Index_parent_id on wx_product_category;
+
+drop table if exists wx_product_category;
+
+drop index Index_pid on wx_product_collocation;
+
+drop table if exists wx_product_collocation;
+
+drop index Index_uid on wx_product_comment;
+
+drop index Index_pid on wx_product_comment;
+
+drop table if exists wx_product_comment;
+
+drop index Index_uid on wx_product_favorite;
+
+drop index Index_pid on wx_product_favorite;
+
+drop table if exists wx_product_favorite;
+
+drop table if exists wx_product_model;
+
+drop table if exists wx_product_photo;
+
+drop index Index_uid on wx_product_qa;
+
+drop index Index_pid on wx_product_qa;
+
+drop table if exists wx_product_qa;
+
+drop index Index_qa_id on wx_product_qa_reply;
+
+drop table if exists wx_product_qa_reply;
+
+drop index Index_comment_id on wx_product_reply;
+
+drop table if exists wx_product_reply;
+
+drop index Index_pid on wx_product_size;
+
+drop table if exists wx_product_size;
+
+drop index Index_uid on wx_receivable;
+
+drop index Index_order_sn on wx_receivable;
+
+drop table if exists wx_receivable;
+
+drop index Index_uname_code on wx_retrieve_password_log;
+
+drop table if exists wx_retrieve_password_log;
+
+drop table if exists wx_returns;
+
+drop index Index_uid on wx_share;
+
+drop index Index_pid on wx_share;
+
+drop table if exists wx_share;
+
+drop index Index_uid on wx_share_comment;
+
+drop index Index_share_id on wx_share_comment;
+
+drop table if exists wx_share_comment;
+
+drop index Index_share_id on wx_share_images;
+
+drop table if exists wx_share_images;
+
+drop index Index_uid on wx_shopping_cart;
+
+drop index uid_pid_unqiue on wx_shopping_cart;
+
+drop table if exists wx_shopping_cart;
+
+drop table if exists wx_size;
+
+drop table if exists wx_system_proposal;
+
+drop index Index_tuan_id on wx_tuan_comment;
+
+drop table if exists wx_tuan_comment;
+
+drop table if exists wx_tuan_product;
+
+drop index index_uname on wx_user;
+
+drop table if exists wx_user;
+
+drop index Index_create_time on wx_user_consume_log;
+
+drop index index_uid on wx_user_consume_log;
+
+drop table if exists wx_user_consume_log;
+
+drop index uid_unique on wx_user_info;
+
+drop table if exists wx_user_info;
+
+drop table if exists wx_user_level;
+
+drop index index_uid on wx_user_login_log;
+
+drop table if exists wx_user_login_log;
+
+drop index Index_uid on wx_user_message;
+
+drop table if exists wx_user_message;
+
+drop index Index_message_id on wx_user_message_reply;
+
+drop table if exists wx_user_message_reply;
+
+drop index Index_uid on wx_user_recipient_address;
+
+drop table if exists wx_user_recipient_address;
+
+drop index Index_create_time on wx_user_up_level_log;
+
+drop index Index_uid on wx_user_up_level_log;
+
+drop table if exists wx_user_up_level_log;
 
 /*==============================================================*/
 /* Table: user_integral_log                                     */
@@ -94,6 +319,26 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_activity_prize comment '活动奖品设置';
+
+/*==============================================================*/
+/* Table: wx_admin_user                                         */
+/*==============================================================*/
+create table wx_admin_user
+(
+   user_id              int comment '用户ID',
+   username             varchar(32) comment '用户名称',
+   password             char(32) comment '用户密码',
+   ip                   char(16) comment '最后登陆IP',
+   last_login_time      datetime comment '最后登陆时间',
+   status               tinyint comment '用户状态,0已禁用，1正常',
+   contact              char(12) comment '联系电话'
+)
+engine = MYISAM
+auto_increment = 1;
+
+alter table wx_admin_user comment '后台用户表';
+
+INSERT INTO `test`.`wx_admin_user` SET `user_id`=1,`username`='hjpking',`password`='25f2261cd6924d96df4bf75227f3d5fa',`ip`='127.0.01',`last_login_time`='2012-06-02 16:20:00',`status`=1,`contact`='15101559313';
 
 /*==============================================================*/
 /* Table: wx_advert                                             */
@@ -592,12 +837,12 @@ create table wx_order_product
    market_price         int comment '市场价格',
    sall_price           int comment '销售价格',
    product_num          int comment '产品数量',
-   create_time          datetime comment '创建时间',
    comment_status       tinyint default 0 comment '是否评论，0未评论，1已评论',
    share_status         tinyint default 0 comment '是否晒单，0未晒单，1已晒单',
    product_size         int comment '产品尺码ID',
    presentation_integral int comment '赠送积分',
    preferential         int comment '优惠,人民币，单位为分',
+   create_time          datetime comment '创建时间',
    primary key (id)
 )
 engine = MYISAM
@@ -694,9 +939,9 @@ create table wx_product
    gender               tinyint unsigned comment '产品属性，0中性，1男，2女，3 男童，4女童',
    status               tinyint unsigned comment '状态,0已删除，1正常',
    check_status         tinyint unsigned comment '审核，0未通过，1已通过',
-   create_time          datetime comment '创建时间',
    shelves              tinyint unsigned comment '上架，0下架，1上架',
    cost_price           int unsigned comment '成本价格，单位为分',
+   create_time          datetime comment '创建时间',
    primary key (pid)
 )
 engine = MYISAM
@@ -834,12 +1079,10 @@ create table wx_product_comment
    comment_title        varchar(60) comment '评论标题',
    comment_content      varchar(128) comment '评论内容',
    ip                   char(16) comment '评论IP地址',
-   ext1                 char(8) comment '扩展字段1',
-   ext2                 char(8) comment '扩展字段2',
    rank                 tinyint unsigned comment '评价等级',
-   is_valid             int unsigned comment '是否有效',
-   is_invalid           int unsigned comment '是否无效',
-   reply_num            smallint unsigned comment '回复数量',
+   is_valid             int unsigned default 0 comment '是否有效',
+   is_invalid           int unsigned default 0 comment '是否无效',
+   reply_num            smallint unsigned default 0 comment '回复数量',
    create_time          datetime comment '评论时间',
    primary key (comment_id)
 )
@@ -872,7 +1115,6 @@ create table wx_product_favorite
    id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    favorite_ip          char(16) comment '收藏IP地址',
    create_time          datetime comment '收藏时间',
    primary key (id)
@@ -1008,8 +1250,8 @@ create table wx_product_reply
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
    ip                   char(16) comment '回复IP地址',
-   create_time          datetime comment '创建时间',
    reply_content        varchar(255) comment '回复内容',
+   create_time          datetime comment '创建时间',
    primary key (id)
 )
 engine = MYISAM
@@ -1148,7 +1390,6 @@ create table wx_share
    share_id             int unsigned not null auto_increment comment '晒单ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
    title                varchar(32) comment '标题',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
@@ -1239,36 +1480,41 @@ create index Index_share_id on wx_share_images
 );
 
 /*==============================================================*/
-/* Table: wx_shop_car                                           */
+/* Table: wx_shopping_cart                                      */
 /*==============================================================*/
-create table wx_shop_car
+create table wx_shopping_cart
 (
-   car_id               int unsigned not null auto_increment comment '购物车ID',
+   cart_id              int unsigned not null auto_increment comment '购物车ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
    pname                varchar(120) comment '产品名称',
    product_price        int unsigned comment '产品价格，单位为分',
    product_num          int unsigned comment '产品数量',
    product_img          varchar(128) comment '产品图片地址',
-   primary key (car_id)
+   create_time          datetime comment '创建时间',
+   primary key (cart_id)
 )
 engine = MYISAM
 auto_increment = 1;
 
-alter table wx_shop_car comment '购物车表';
+alter table wx_shopping_cart comment '购物车表';
+
+INSERT INTO `wx_shopping_cart` (`cart_id`,`pid`,`uid`,`pname`,`product_price`,`product_num`,`product_img`,`create_time`) VALUES (1,1,1,'潮人必备个性T恤-红色',10,1,'/dd/a/ss.jpg','2012-06-01 23:57:37');
+INSERT INTO `wx_shopping_cart` (`cart_id`,`pid`,`uid`,`pname`,`product_price`,`product_num`,`product_img`,`create_time`) VALUES (2,2,1,'潮人必备个性T恤-白色',10,1,'/dd/a/ss.jpg','2012-06-01 23:57:37');
 
 /*==============================================================*/
 /* Index: uid_pid_unqiue                                        */
 /*==============================================================*/
-create unique index uid_pid_unqiue on wx_shop_car
+create unique index uid_pid_unqiue on wx_shopping_cart
 (
-   pid
+   pid,
+   uid
 );
 
 /*==============================================================*/
 /* Index: Index_uid                                             */
 /*==============================================================*/
-create index Index_uid on wx_shop_car
+create index Index_uid on wx_shopping_cart
 (
    uid
 );
@@ -1589,6 +1835,7 @@ create table wx_user_recipient_address
    uid                  int comment '用户ID',
    uname                varchar(32) comment '用户名称',
    recent_name          varchar(16) comment '收货人',
+   country              varchar(16) comment '国家',
    province             varchar(16) comment '省份',
    city                 varchar(16) comment '城市',
    area                 varchar(16) comment '区域',
@@ -1603,6 +1850,9 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_user_recipient_address comment '用户收件地址';
+
+INSERT INTO `wx_user_recipient_address` (`address_id`,`uid`,`uname`,`recent_name`,`country`,`province`,`city`,`area`,`detail_address`,`zipcode`,`phone_num`,`call_num`,`create_time`) VALUES (1,1,'weidian01@gmail.com','兰国宾','中国','北京','北京市','朝阳区','中国北京市朝阳区十六里桥','100010','13693573005','','2012-06-01 22:14:46');
+INSERT INTO `wx_user_recipient_address` (`address_id`,`uid`,`uname`,`recent_name`,`country`,`province`,`city`,`area`,`detail_address`,`zipcode`,`phone_num`,`call_num`,`create_time`) VALUES (2,2,'hjpking@gmail.com','侯积平','中国','北京','北京市','朝阳区','中国北京市朝阳区半壁店','100010','15101559313','','2012-06-01 22:13:06');
 
 /*==============================================================*/
 /* Index: Index_uid                                             */
