@@ -35,8 +35,7 @@ class Product extends MY_Controller
             $data = array(
                 'pid' => $pid,
                 'uid' => $uInfo['uid'],
-                'uname' => $uInfo['uname'],
-                'favorite_ip' => $ip['favorite_ip']
+                'favorite_ip' => $ip
             );
 
             $this->product->productFavorite($data);
