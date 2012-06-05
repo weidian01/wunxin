@@ -26,6 +26,11 @@
  */
 class CI_Model
 {
+    /**
+     * 对象实例计数器
+     * @var int
+     */
+    static $obj_num = 0;
 
     /**
      * Constructor
@@ -35,7 +40,7 @@ class CI_Model
     function __construct()
     {
         $this->load->database();
-
+        ++self::$obj_num;
         log_message('debug', "Model Class Initialized");
     }
 
@@ -71,12 +76,14 @@ class CI_Model
 
     function __destruct()
     {
+        --self::$obj_num;
         //*
-        if (ENVIRONMENT === 'development' && get_called_class() !== 'CI_Model') {
+        if (ENVIRONMENT === 'development' && self::$obj_num === 0) {
             echo '<pre>';
             foreach ($this->db->queries as $k => $v) {
-                echo '<b style="color:red;font-size:20px;">SQL:</b>' . str_replace("\n", '', $v) . ' ------ <b style="color:red;font-size:20px;">TIME:</b>' . $this->db->query_times[$k];
+                echo '<b style="color:red;font-size:20px;">SQL:</b>' . str_replace("\n", '', $v) . ' ------ <b style="color:red;font-size:20px;">TIME:</b>' . $this->db->query_times[$k],"\n";
             }
+            echo '</pre>';
         }
         //*/
     }
