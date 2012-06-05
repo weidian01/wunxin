@@ -70,7 +70,7 @@ class product_share extends MY_Controller
 
     public function likeShareImage()
     {
-        
+
     }
 
 }
