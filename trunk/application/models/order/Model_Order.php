@@ -189,4 +189,34 @@ class Model_Order extends MY_Model
         return $this->db->where('order_sn', $orderSn)->update('order', $data);
     }
 
+    /**
+     * 根据用户id获取订单信息
+     * @param $uid
+     * @param $offset
+     * @param $limit
+     */
+    public function getOrderByUser($uid, $limit=20, $offset=0)
+    {
+        $data = $this->db->select('*')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
+        //var_dump($data);
+        $orders = $ordersn = array();
+        foreach($data as $item)
+        {
+            $orders[$item['order_sn']] = $item;
+            $ordersn[] = $item['order_sn'];
+        }
+
+        unset($data);
+
+        if($ordersn)
+        {
+            $products = $this->db->select('*')->from('order_product')->where_in('order_sn', $ordersn)->get()->result_array();
+            //var_dump($products);
+            foreach($products as $item)
+            {
+                $orders[$item['order_sn']]['products'][] = $item;
+            }
+        }
+        return $orders;
+    }
 }
