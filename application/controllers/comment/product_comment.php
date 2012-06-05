@@ -8,5 +8,5 @@
  */
 class product_comment extends MY_Controller
 {
-    
+
 }

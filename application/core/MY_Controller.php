@@ -16,10 +16,25 @@ class MY_Controller extends CI_Controller
     protected function lib($name, $params = NULL)
     {
         static $lib;
-        if(! isset($lib[$name]))
-        {
+        if (!isset($lib[$name])) {
             $lib[$name] = true;
             $this->load->library($name, $params);
         }
+    }
+
+    /**
+     * 用户是否登陆
+     *
+     * @access    public
+     * @return    void
+     */
+    function isLogin()
+    {
+        $uid = $this->input->cookie('uid');
+        $password = $this->input->cookie('password');
+
+
+        $this->load->model('');
+        return empty ($uid) ? false : true;
     }
 }
