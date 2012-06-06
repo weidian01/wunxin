@@ -10,7 +10,8 @@ class Model_Admin_User extends MY_Model
 {
     public function adminUserLogin($username, $password)
     {
-        $uInfo = $this->db->select('*')->get_where('admin_user', array('username' => $username))->row_array();
+        $field = 'am_uid, am_uname, password, ip, last_login_time, contact';
+        $uInfo = $this->db->select($field)->get_where('admin_user', array('am_uname' => $username, 'status' => 1))->row_array();
 
         if (empty ($uInfo) || !is_array($uInfo)) {
             return false;
@@ -31,7 +32,7 @@ class Model_Admin_User extends MY_Model
             'last_login_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
-        return $this->db->where('user_id', $user_id)->update('admin_user', $data);
+        return $this->db->where('am_uid', $user_id)->update('admin_user', $data);
     }
 
     public function getUserInfoByAmUid($amUid)
