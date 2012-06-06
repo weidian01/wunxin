@@ -47,6 +47,12 @@ $error[20005] = array('error' => '20005', 'msg' => '产品晒单失败', 'code' 
 
 $error[20006] = array('error' => '20006', 'msg' => '产品晒单参数不全', 'code' => 'product_share_parameter_failure');
 
+$error[20007] = array('error' => '20007', 'msg' => '喜欢晒单产品成功', 'code' => 'like_share_product_success');
+
+$error[20008] = array('error' => '20008', 'msg' => '喜欢晒单产品失败', 'code' => 'like_share_product_failure');
+
+$error[20009] = array('error' => '20009', 'msg' => '喜欢晒单产品参数不全', 'code' => 'like_share_product_parameter_failure');
+
 
 
 /**

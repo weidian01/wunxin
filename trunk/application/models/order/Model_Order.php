@@ -34,6 +34,13 @@ class Model_Order extends MY_Model
             'paid' => $orderInfo['paid'],
             'need_pay' => $orderInfo['need_pay'],
             'ip' => $orderInfo['ip'],
+            'invoice_payable' => $orderInfo['invoice_payable'],
+            'invoice_content' => $orderInfo['invoice_content'],
+            'recent_name' => $orderInfo['recent_name'],
+            'recent_address' => $orderInfo['recent_address'],
+            'zipcode' => $orderInfo['zipcode'],
+            'phone_num' => $orderInfo['phone_num'],
+            'call_num' => $orderInfo['call_num'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
@@ -161,9 +168,9 @@ class Model_Order extends MY_Model
      * @param $offset
      * @param $limit
      */
-    public function getOrderByUser($uid, $limit = 20, $offset = 0)
+    public function getOrderByUid($uid, $limit = 20, $offset = 0)
     {
-        $data = $this->db->select('*')->order_by('order_sn','desc')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
+        $data = $this->db->select('*')->order_by('order_sn', 'desc')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
         //var_dump($data);
         $orders = $ordersn = array();
         foreach ($data as $item)
