@@ -12,7 +12,6 @@ class Admin_login extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-
         $this->load->helper('url');
         if ($this->AdminIsLogin()) redirect('/administrator/main/index');
     }
