@@ -9,29 +9,29 @@
 class Model_Designer_Comment extends MY_Model
 {
     /**
-         * @name 获取设计师评论 -- 通过用户ID
+         * @name 获取设计师评论 -- 通过设计师ID
          *
          * @param $uid
          * @param int $limit
          * @param int $offset
          * @return array
          */
-        public function getCommentByUid($uid, $limit = 20, $offset = 0)
+        public function getCommentByUid($designerid, $limit = 20, $offset = 0)
         {
-            return $this->db->get_where('user_message', array('uid' => $uid), $limit, $offset)->array_result();
+            return $this->db->get_where('user_message', array('designer_id' => $designerid), $limit, $offset)->array_result();
         }
 
         /**
-         * @name 获取产品评论 -- 通过产品ID
+         * @name 获取用户评论 -- 通过产品ID
          *
          * @param int $pid
          * @param int $limit
          * @param int $offset
          * @return array
          */
-        public function getProductCommentByPid($pid, $limit = 20, $offset = 0)
+        public function getProductCommentByUid($uid, $limit = 20, $offset = 0)
         {
-            return $this->db->get_where('product_comment', array('uid' => $pid), $limit, $offset)->array_result();
+            return $this->db->get_where('user_message', array('uid' => $uid), $limit, $offset)->array_result();
         }
 
         /**
