@@ -9,29 +9,6 @@
 class Model_Product extends MY_Model
 {
     /**
-     * @name 产品收藏
-     *
-     * @param array $fInfo
-     * @return bool
-     */
-    public function productFavorite(array $fInfo)
-    {
-        $tableName = 'wx_product_favorite';
-        $checkStatus = $this->batchCheckTableField($tableName, $fInfo, true);
-        if (!$checkStatus) return false;
-
-        $data = array(
-            'pid' => $fInfo['pid'],
-            'uid' => $fInfo['uid'],
-            'favorite_ip' => $fInfo['favorite_ip'],
-            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
-        );
-
-        $this->db->insert($tableName, $data);
-        return $this->db->insert_id();
-    }
-
-    /**
      * @name 获取产品信息 -- 通过产品ID
      *
      * @param int $pid
@@ -39,7 +16,7 @@ class Model_Product extends MY_Model
      */
     public function getProductById($pid)
     {
-        $this->db->get_where('wx_product', array('pid' => $pid))->row_array();
+        return $this->db->get_where('wx_product', array('pid' => $pid))->row_array();
     }
 
     /**
