@@ -12,7 +12,7 @@ class Main extends MY_Controller
     {
         parent::__construct();
 
-        if ( !$this->isLogin() ) {
+        if ( !$this->AdminIsLogin() ) {
             $this->load->helper('url');
             redirect('/administrator/admin_login/index');
         }
@@ -20,10 +20,8 @@ class Main extends MY_Controller
 
     public function index()
     {
-        //$this->login();
-        $username = $this->getLoginUser();
+        $this->load->view('administrator/index', array('username' => $this->amInfo['am_uname']));
 
-        $this->load->view('administrator/index', array('username' => $username));
     }
 
     public function login()
@@ -36,7 +34,7 @@ class Main extends MY_Controller
         $username = $this->input->get_post('username');
         $password = $this->input->get_post('password');
 
-        $this->load->model('administrator/admin_user', 'adminuser');
+        $this->load->model('administrator/Model_Admin_User', 'adminuser');
         $status = $this->adminuser->adminUserLogin($username, $password);
 
         if ($status) {

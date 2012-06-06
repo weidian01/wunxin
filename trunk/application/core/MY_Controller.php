@@ -78,7 +78,7 @@ class MY_Controller extends CI_Controller
         if($auth)
         {
             $am = explode("\t", authcode($auth, 'DECODE'));
-            $this->load->model('adminstrator/Model_Admin_User', 'admin');
+            $this->load->model('administrator/Model_Admin_User', 'admin');
             $uinfo = $this->admin->getUserInfoByAmUid($am[0]);
             if (isset($uinfo) && $uinfo['password'] === $am[2]) {
                 $this->amInfo = $uinfo;
