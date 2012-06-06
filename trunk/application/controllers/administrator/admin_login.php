@@ -30,11 +30,13 @@ class Admin_login extends AM_Controller
         $username = $this->input->get_post('username');
         $password = $this->input->get_post('password');
 
-        $this->load->model('administrator/admin_user', 'adminuser');
+        $this->load->model('administrator/Model_admin_user', 'adminuser');
         $status = $this->adminuser->adminUserLogin($username, $password);
 
         if ($status) {
-            $this->input->set_cookie('username', $status['username'], 3600);
+            //$this->input->set_cookie('username', $status['username'], 3600);
+            set_cookie('auth', authcode("{$status['user_id']}\t{$status['username']}\t{$status['password']}", 'ENCODE'), 0);
+
             $ip = $this->input->ip_address();
             $this->adminuser->adminUserLoginLog($status['user_id'], $ip);
             $url = '/administrator/main/index';
@@ -47,7 +49,7 @@ class Admin_login extends AM_Controller
         $this->load->helper('cookie');
         $this->load->helper('url');
 
-        delete_user_cookie();
+        delete_cookie('admin_auth');
         redirect('/administrator/admin_login/');
     }
 }
