@@ -33,4 +33,9 @@ class Model_Admin_User extends MY_Model
 
         return $this->db->where('user_id', $user_id)->update('admin_user', $data);
     }
+
+    public function getUserInfoByAmUid($amUid)
+    {
+        $this->db->select('*')->get_where('admin_user', array('am_uid' => $amUid))->row_array();
+    }
 }
