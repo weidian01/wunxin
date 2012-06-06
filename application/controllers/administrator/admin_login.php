@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Evan Hou
@@ -12,13 +12,13 @@ class Admin_login extends MY_Controller
     public function __construct()
     {
         parent::__construct();
+
+        $this->load->helper('url');
+        if ($this->isLogin()) redirect('/administrator/main/index');
     }
 
     public function index()
     {
-        $this->load->helper('url');
-        if ( $this->isLogin() ) redirect('/administrator/main/index');
-
         $this->load->view('administrator/login');
     }
 
@@ -29,6 +29,10 @@ class Admin_login extends MY_Controller
         $url = '/administrator/admin_login/';
         $username = $this->input->get_post('username');
         $password = $this->input->get_post('password');
+
+        if (empty ($username) || empty ($password)) {
+            show_error('用户名或密码为空!', 500);
+        }
 
         $this->load->model('administrator/Model_admin_user', 'adminuser');
         $status = $this->adminuser->adminUserLogin($username, $password);
@@ -41,7 +45,8 @@ class Admin_login extends MY_Controller
             $this->adminuser->adminUserLoginLog($status['am_uid'], $ip);
             $url = '/administrator/main/index';
         }
-        //redirect($url);
+        //echo $url;exit;
+        redirect($url);
     }
 
     public function loginOut()

@@ -13,7 +13,7 @@ class model extends MY_Controller
         parent::__construct();
 
         $this->load->helper('url');
-        if ( !$this->isLogin() ) redirect('/administrator/admin_login/index');
+        if ( !$this->AdminIsLogin() ) redirect('/administrator/admin_login/index');
     }
 
     public function modelAdd()
