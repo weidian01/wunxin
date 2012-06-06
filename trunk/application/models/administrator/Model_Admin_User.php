@@ -8,6 +8,13 @@
  */
 class Model_Admin_User extends MY_Model
 {
+    /**
+     * 后台用户登陆
+     *
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
     public function adminUserLogin($username, $password)
     {
         $field = 'am_uid, am_uname, password, ip, last_login_time, contact';
@@ -25,16 +32,28 @@ class Model_Admin_User extends MY_Model
         return $uInfo;
     }
 
-    public function adminUserLoginLog($user_id, $ip)
+    /**
+     * 后台用户登陆 更新登陆记录
+     *
+     * @param int $am_uid
+     * @param $ip
+     * @return  boolen
+     */
+    public function adminUserLoginLog($am_uid, $ip)
     {
         $data = array(
             'ip' => $ip,
             'last_login_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
-        return $this->db->where('am_uid', $user_id)->update('admin_user', $data);
+        return $this->db->where('am_uid', $am_uid)->update('admin_user', $data);
     }
 
+    /**
+     * 获取后台用户 -- 通过后台用户ID
+     * @param $amUid
+     * @return null
+     */
     public function getUserInfoByAmUid($amUid)
     {
         $data = $this->db->select('*')->get_where('admin_user', array('am_uid' => $amUid))->row_array();

@@ -1,13 +1,12 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Model_Order extends MY_Model
+class Model_Order_Invoice extends MY_Model
 {
 
     /**
      * @name 增加发票信息
      *
      * @param $uid 用户ID
-     * @param $orderSn 订单ID
      * @param $payable 发票抬头
      * @param $content 发票内容
      * @return array
@@ -30,7 +29,10 @@ class Model_Order extends MY_Model
 
     /**
      * 根据发票id和uid设置为默认
+     *
      * @param $invoice_id
+     * @param $uid
+     * @return bool
      */
     public function setDefaultInvoice($invoice_id, $uid)
     {
@@ -39,6 +41,7 @@ class Model_Order extends MY_Model
         {
             $this->db->update('invoice', array('default'=>0), array('invoice_id != ' => $invoice_id, 'uid' => $uid));
         }
+        return true;
     }
 
     /**
@@ -49,6 +52,23 @@ class Model_Order extends MY_Model
     public function deleteInvoice($invoice_id, $uid)
     {
         $this->db->delete('invoice', array('invoice_id' => $invoice_id, 'uid' => $uid));
+    }
+
+    /**
+     * 编辑发票信息
+     *
+     * @param $invoice_id
+     * @param $iInfo
+     * @return mixed
+     */
+    public function editInvoice($invoice_id, $iInfo)
+    {
+        $data = array(
+            'invoice_payable' => $iInfo['invoice_payable'],
+            'invoice_content' => $iInfo['invoice_content']
+        );
+
+        return $this->db->update('invoice', $data, array('invoice_id != ' => $invoice_id));
     }
 
 }

@@ -254,5 +254,22 @@ class Model_User extends MY_Model
         return $this->db->where('uid', $uId)->update('user', $data);
     }
 
+    /**
+     * @name 用户是否购买过此产品
+     *
+     * @param $uid
+     * @param $pid
+     * @return array
+     */
+    public function userIsBuyProduct($uid, $pid)
+    {
+        $field = '*';
+        $data = $this->db->select($field)->from('order_product')
+            ->join('order', 'order_product.order_sn=order.order_sn', 'left')
+            ->where('order_product.uid', $uid)
+            ->where('order_product.pid', $pid)
+            ->where('order.is_pay', '1')->get()->row_array();
 
+        return $data;
+    }
 }
