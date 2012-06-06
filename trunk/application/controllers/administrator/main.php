@@ -6,7 +6,7 @@
  * Time: 上午8:51
  * wunxin E-commerce management system
  */
-class Main extends AM_Controller
+class Main extends MY_Controller
 {
     public function __construct()
     {

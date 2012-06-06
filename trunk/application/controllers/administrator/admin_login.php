@@ -7,7 +7,7 @@
  * wunxin E-commerce management system
  */
 
-class Admin_login extends AM_Controller
+class Admin_login extends MY_Controller
 {
     public function __construct()
     {
