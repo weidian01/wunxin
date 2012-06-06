@@ -20,15 +20,21 @@ drop table if exists wx_article;
 
 drop table if exists wx_article_category;
 
+drop index Index_card_no on wx_card;
+
+drop index Index_uid on wx_card;
+
+drop table if exists wx_card;
+
 drop table if exists wx_card_model;
 
 drop table if exists wx_color;
 
-drop index Index_class_id on wx_degisn;
+drop index Index_class_id on wx_design;
 
-drop index Index_uid on wx_degisn;
+drop index Index_uid on wx_design;
 
-drop table if exists wx_degisn;
+drop table if exists wx_design;
 
 drop index Index_parent_id on wx_design_category;
 
@@ -40,23 +46,25 @@ drop table if exists wx_design_comment;
 
 drop table if exists wx_design_comment_reply;
 
+drop index Index_uid on wx_design_favorite;
+
+drop index Index_did on wx_design_favorite;
+
+drop table if exists wx_design_favorite;
+
 drop index Index_did on wx_design_vote;
 
 drop table if exists wx_design_vote;
 
 drop table if exists wx_express_delivery_company;
 
-drop index Index_card_no on wx_gift_card;
-
-drop index Index_uid on wx_gift_card;
-
-drop table if exists wx_gift_card;
-
 drop table if exists wx_integral_redemption_product;
 
 drop index index_uid on wx_invoice;
 
 drop table if exists wx_invoice;
+
+drop index Index_uid on wx_mail_subscription;
 
 drop table if exists wx_mail_subscription;
 
@@ -145,6 +153,10 @@ drop table if exists wx_receivable;
 drop index Index_uname_code on wx_retrieve_password_log;
 
 drop table if exists wx_retrieve_password_log;
+
+drop index Index_order_sn on wx_returns;
+
+drop index Index_uid on wx_returns;
 
 drop table if exists wx_returns;
 
@@ -442,6 +454,47 @@ auto_increment = 1;
 alter table wx_article_category comment '文章分类表';
 
 /*==============================================================*/
+/* Table: wx_card                                               */
+/*==============================================================*/
+create table wx_card
+(
+   id                   int unsigned not null auto_increment comment '自增ID',
+   card_no              char(20) comment '卡号',
+   model_id             int comment '模型id',
+   card_amount          int unsigned comment '卡金额,单位为分',
+   card_pass            char(8) comment '卡密码',
+   start_time           datetime comment '开始时间',
+   end_time             datetime comment '截止时间',
+   integral             int unsigned comment '兑换积分',
+   uid                  int unsigned comment '用户id',
+   uname                varchar(32) comment '用户名称',
+   use_num              tinyint unsigned default 0 comment '使用次数',
+   status               tinyint default 1 comment '状态 0删除  1初始 2已绑定',
+   create_time          datetime comment '创建时间',
+   primary key (id)
+)
+engine = MYISAM
+auto_increment = 1;
+
+alter table wx_card comment '代金卷/礼品卡';
+
+/*==============================================================*/
+/* Index: Index_uid                                             */
+/*==============================================================*/
+create index Index_uid on wx_card
+(
+   uid
+);
+
+/*==============================================================*/
+/* Index: Index_card_no                                         */
+/*==============================================================*/
+create unique index Index_card_no on wx_card
+(
+   card_no
+);
+
+/*==============================================================*/
 /* Table: wx_card_model                                         */
 /*==============================================================*/
 create table wx_card_model
@@ -477,9 +530,9 @@ auto_increment = 1;
 alter table wx_color comment '颜色表';
 
 /*==============================================================*/
-/* Table: wx_degisn                                             */
+/* Table: wx_design                                             */
 /*==============================================================*/
-create table wx_degisn
+create table wx_design
 (
    did                  int unsigned not null auto_increment comment '设计图ID',
    class_id             int unsigned comment '设计图分类',
@@ -499,12 +552,12 @@ create table wx_degisn
 engine = MYISAM
 auto_increment = 1;
 
-alter table wx_degisn comment '设计图';
+alter table wx_design comment '设计图';
 
 /*==============================================================*/
 /* Index: Index_uid                                             */
 /*==============================================================*/
-create index Index_uid on wx_degisn
+create index Index_uid on wx_design
 (
    uid
 );
@@ -512,7 +565,7 @@ create index Index_uid on wx_degisn
 /*==============================================================*/
 /* Index: Index_class_id                                        */
 /*==============================================================*/
-create index Index_class_id on wx_degisn
+create index Index_class_id on wx_design
 (
    class_id
 );
@@ -557,7 +610,7 @@ create table wx_design_comment
    title                varchar(32) comment '评论标题',
    content              varchar(255) comment '评论内容',
    ip                   char(16) comment 'IP地址',
-   status               tinyint unsigned comment '状态,0删除，1正常',
+   reply_num            int comment '评论回复数量',
    create_time          datetime comment '创建时间',
    primary key (comment_id)
 )
@@ -590,6 +643,40 @@ create table wx_design_comment_reply
 );
 
 alter table wx_design_comment_reply comment '设计师评论回复表';
+
+/*==============================================================*/
+/* Table: wx_design_favorite                                    */
+/*==============================================================*/
+create table wx_design_favorite
+(
+   id                   int unsigned not null auto_increment comment '自增ID',
+   did                  int unsigned comment '设计图ID',
+   uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
+   ip                   char(16) comment '收藏IP地址',
+   create_time          datetime comment '收藏时间',
+   primary key (id)
+)
+engine = MYISAM
+auto_increment = 1;
+
+alter table wx_design_favorite comment '设计图收藏表';
+
+/*==============================================================*/
+/* Index: Index_did                                             */
+/*==============================================================*/
+create index Index_did on wx_design_favorite
+(
+   did
+);
+
+/*==============================================================*/
+/* Index: Index_uid                                             */
+/*==============================================================*/
+create index Index_uid on wx_design_favorite
+(
+   uid
+);
 
 /*==============================================================*/
 /* Table: wx_design_vote                                        */
@@ -636,47 +723,6 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_express_delivery_company comment '快递企业表';
-
-/*==============================================================*/
-/* Table: wx_gift_card                                          */
-/*==============================================================*/
-create table wx_gift_card
-(
-   id                   int unsigned not null auto_increment comment '自增ID',
-   card_no              char(20) comment '卡号',
-   model_id             int comment '模型id',
-   card_amount          int unsigned comment '卡金额,单位为分',
-   card_pass            char(8) comment '卡密码',
-   start_time           datetime comment '开始时间',
-   end_time             datetime comment '截止时间',
-   integral             int unsigned comment '兑换积分',
-   uid                  int unsigned comment '用户id',
-   uname                varchar(32) comment '用户名称',
-   use_num              tinyint unsigned default 0 comment '使用次数',
-   status               tinyint comment '状态 0删除  1初始 2已绑定',
-   create_time          datetime comment '创建时间',
-   primary key (id)
-)
-engine = MYISAM
-auto_increment = 1;
-
-alter table wx_gift_card comment '代金卷/礼品卡';
-
-/*==============================================================*/
-/* Index: Index_uid                                             */
-/*==============================================================*/
-create index Index_uid on wx_gift_card
-(
-   uid
-);
-
-/*==============================================================*/
-/* Index: Index_card_no                                         */
-/*==============================================================*/
-create unique index Index_card_no on wx_gift_card
-(
-   card_no
-);
 
 /*==============================================================*/
 /* Table: wx_integral_redemption_product                        */
@@ -743,6 +789,14 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_mail_subscription comment '邮件列表订阅表';
+
+/*==============================================================*/
+/* Index: Index_uid                                             */
+/*==============================================================*/
+create unique index Index_uid on wx_mail_subscription
+(
+   uid
+);
 
 /*==============================================================*/
 /* Table: wx_order                                              */
@@ -1349,6 +1403,7 @@ create index Index_uname_code on wx_retrieve_password_log
 create table wx_returns
 (
    return_id            int not null auto_increment comment '退换货ID',
+   uid                  int unsigned comment '用户ID',
    order_sn             int comment '订单ID',
    pid                  int comment '产品ID',
    type                 tinyint comment '类型1，退货，2换货',
@@ -1356,18 +1411,36 @@ create table wx_returns
    descr                varchar(128) comment '描述',
    logistic_num         char(16) comment '退换货物流单号',
    cs_operations        tinyint default 0 comment '客服操作，0初始，1协商成功，2协商失败',
-   store_operations     tinyint default 0 comment '仓库操作，0初始，物流配送中，1货物确认成功，2货物确认失败',
+   store_operations     tinyint default 0 comment '仓库操作，0初始，退货的货物 物流配送中，1货物确认成功，2货物确认失败，',
    financial_operations tinyint default 0 comment '财务操作，0初始，1金额已退换 ',
    img_one              varchar(128) comment '拍照图片1,整体效果图',
    img_two              varchar(128) comment '拍照图片2，问题效果图',
-   status               tinyint comment '状态，0初始，1处理成功，2取消',
+   status               tinyint default 0 comment '状态，0初始，1处理成功，2取消',
    create_time          datetime comment '创建时间',
    primary key (return_id)
 )
 engine = MYISAM
 auto_increment = 1;
 
-alter table wx_returns comment '退换货表';
+alter table wx_returns comment '退换货表
+
+退货流程--> 客服与顾客协商 --> 成功 --> 退货流程结束。协调失败 -->';
+
+/*==============================================================*/
+/* Index: Index_uid                                             */
+/*==============================================================*/
+create index Index_uid on wx_returns
+(
+   uid
+);
+
+/*==============================================================*/
+/* Index: Index_order_sn                                        */
+/*==============================================================*/
+create index Index_order_sn on wx_returns
+(
+   order_sn
+);
 
 /*==============================================================*/
 /* Table: wx_share                                              */

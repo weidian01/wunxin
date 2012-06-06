@@ -1,4 +1,4 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Evan Hou
@@ -9,12 +9,12 @@
 class Model_User_Favorite extends MY_Model
 {
     /**
-     * @name 用户收藏
+     * @name 用户收藏产品
      *
      * @param array $fInfo
      * @return boolean
      */
-    public function userFavorite(array $fInfo)
+    public function userFavoriteProduct(array $fInfo)
     {
         $tableName = 'user_favorite';
         $checkStatus = $this->batchCheckTableField($tableName, $fInfo, true);
@@ -33,7 +33,7 @@ class Model_User_Favorite extends MY_Model
     }
 
     /**
-     * 获取用户产品收藏
+     * 获取用户收藏的产品
      *
      * @param int $uId
      * @param int $limit
@@ -46,7 +46,7 @@ class Model_User_Favorite extends MY_Model
     }
 
     /**
-     * 删除一个产品收藏
+     * 删除一个用户收藏的产品
      *
      * @param int $fId
      * @return boolean
@@ -58,7 +58,7 @@ class Model_User_Favorite extends MY_Model
     }
 
     /**
-     * 清空用户产品收藏
+     * 清空用户收藏的产品
      *
      * @param int $uId
      * @return boolean

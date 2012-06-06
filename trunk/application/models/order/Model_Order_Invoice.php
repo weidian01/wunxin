@@ -13,7 +13,7 @@ class Model_Order_Invoice extends MY_Model
      */
     public function addOrderInvoice($uid, $payable, $content = '1')
     {
-        $this->db->update('invoice', array('default'=>0), array('uid' => $uid));
+        $this->db->update('invoice', array('default' => 0), array('uid' => $uid));
 
         $data = array(
             'uid' => $uid,
@@ -36,10 +36,9 @@ class Model_Order_Invoice extends MY_Model
      */
     public function setDefaultInvoice($invoice_id, $uid)
     {
-        $this->db->update('invoice', array('default'=>1), array('invoice_id' => $invoice_id, 'uid' => $uid));
-        if($this->db->affected_rows())
-        {
-            $this->db->update('invoice', array('default'=>0), array('invoice_id != ' => $invoice_id, 'uid' => $uid));
+        $this->db->update('invoice', array('default' => 1), array('invoice_id' => $invoice_id, 'uid' => $uid));
+        if ($this->db->affected_rows()) {
+            $this->db->update('invoice', array('default' => 0), array('invoice_id != ' => $invoice_id, 'uid' => $uid));
         }
         return true;
     }
@@ -71,4 +70,14 @@ class Model_Order_Invoice extends MY_Model
         return $this->db->update('invoice', $data, array('invoice_id != ' => $invoice_id));
     }
 
+    /**
+     * @name 获取用户所有发票信息 -- 通过用户ID
+     *
+     * @param $uId 用户ID
+     * @return array
+     */
+    public function getUserAllInvoiceInfoByUid($uId)
+    {
+        return $this->db->select('*')->get_where('invoice', array('uid' => $uId))->result_array();
+    }
 }

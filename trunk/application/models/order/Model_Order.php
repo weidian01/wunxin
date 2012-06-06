@@ -175,8 +175,7 @@ class Model_Order extends MY_Model
         $data = $this->db->select('*')->order_by('order_sn', 'desc')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
         //var_dump($data);
         $orders = $ordersn = array();
-        foreach ($data as $item)
-        {
+        foreach ($data as $item) {
             $orders[$item['order_sn']] = $item;
             $ordersn[] = $item['order_sn'];
         }
@@ -186,13 +185,29 @@ class Model_Order extends MY_Model
         if ($ordersn) {
             $products = $this->db->select('*')->from('order_product')->where_in('order_sn', $ordersn)->get()->result_array();
             //var_dump($products);
-            foreach ($products as $item)
-            {
+            foreach ($products as $item) {
                 $orders[$item['order_sn']]['products'][] = $item;
             }
         }
         return $orders;
     }
 
+    /**
+     * @name 用户是否购买过此产品
+     *
+     * @param $uid
+     * @param $pid
+     * @return array
+     */
+    public function userIsBuyProduct($uid, $pid)
+    {
+        $field = '*';
+        $data = $this->db->select($field)->from('order_product')
+            ->join('order', 'order_product.order_sn=order.order_sn', 'left')
+            ->where('order_product.uid', $uid)
+            ->where('order_product.pid', $pid)
+            ->where('order.is_pay', '1')->get()->row_array();
 
+        return $data;
+    }
 }
