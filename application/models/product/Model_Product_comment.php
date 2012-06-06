@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Evan Hou
@@ -6,65 +6,81 @@
  * Time: 上午8:51
  * wunxin E-commerce management system
  */
-class Model_Designer_Comment extends MY_Model
+class Model_Product_Comment extends MY_Model
 {
     /**
-     * @name 获取设计师留言 -- 通过设计师ID
+     * @name 获取产品评论 -- 通过用户ID
      *
-     * @param int $designerId
+     * @param $uid
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getDesignerByUid($designerId, $limit = 20, $offset = 0)
+    public function getCommentByUid($uid, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('user_message', array('designer_id' => $designerId), $limit, $offset)->array_result();
+        return $this->db->get_where('product_comment', array('uid' => $uid), $limit, $offset)->array_result();
     }
 
     /**
-     * @name 获取用户留言 -- 通过用户ID
+     * @name 获取产品评论 -- 通过产品ID
      *
-     * @param int $uid
+     * @param int $pid
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getDesignerCommentByUid($uid, $limit = 20, $offset = 0)
+    public function getProductCommentByPid($pid, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('user_message', array('uid' => $uid), $limit, $offset)->array_result();
+        return $this->db->get_where('product_comment', array('uid' => $pid), $limit, $offset)->array_result();
     }
 
     /**
-     * @name 添加产品留言
+     * @name 添加产品评论
      *
      * @param array $cInfo
      * @return boolean
      */
-    public function addDesignerComment(array $cInfo)
+    public function addProductComment(array $cInfo)
     {
         $data = array(
-            'designer_id' => $cInfo['pid'],
+            'pid' => $cInfo['pid'],
             'uid' => $cInfo['uid'],
             'uname' => $cInfo['uname'],
-            'content' => $cInfo['comment_title'],
+            'comment_title' => $cInfo['comment_title'],
+            'comment_content' => $cInfo['comment_content'],
             'ip' => $cInfo['ip'],
             'rank' => $cInfo['rank'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
-        $this->db->insert('user_message', $data);
+        $this->db->insert('product_comment', $data);
         return $this->db->insert_id();
     }
 
+    /**
+     * 评论是否有效
+     *
+     * @param $commentId
+     * @param bool $type true 有效， false 无效
+     * @return boolean
+     */
+    public function productCommentIsValid($commentId, $type = true)
+    {
+        $field = $type ? 'is_valid' : 'is_invalid';
+        $data = array($field => $field . '+1');
+
+        $this->db->where('comment_id', $commentId);
+        return $this->db->set($data, '', false)->update('product_comment');
+    }
 
     /**
-     * 删除产品留言 -- 通过留言ID
+     * 删除产品评论 -- 通过评论ID
      * @param $cId
      * @return bool
      */
     public function deleteProductCommentByCommentId($cId)
     {
-        $this->db->delete('user_message', array('comment_id' => $cId));
+        $this->db->delete('product_reply', array('comment_id' => $cId));
 
         $this->db->delete('product_comment', array('comment_id' => $cId));
 
@@ -72,7 +88,7 @@ class Model_Designer_Comment extends MY_Model
     }
 
     /**
-     * 更新留言回复数量
+     * 更新评论回复数量
      *
      * @param int $commentId
      * @return array
@@ -114,6 +130,8 @@ class Model_Designer_Comment extends MY_Model
             'reply_content' => $rInfo['reply_content'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
+
+        $this->updateCommentReplyNum($rInfo['comment_id']);
 
         $this->db->insert('product_reply', $data);
         return $this->db->insert_id();
