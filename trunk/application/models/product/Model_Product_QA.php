@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Evan Hou
@@ -134,6 +134,8 @@ class Model_Product_QA extends MY_Model
             'reply_content' => $rInfo['reply_content'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
+
+        $this->updateQAReplyNum($rInfo['qa_id']);
 
         $this->db->insert('product_qa_reply', $data);
         return $this->db->insert_id();

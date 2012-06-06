@@ -38,6 +38,8 @@ drop index Index_did on wx_design_comment;
 
 drop table if exists wx_design_comment;
 
+drop table if exists wx_design_comment_reply;
+
 drop index Index_did on wx_design_vote;
 
 drop table if exists wx_design_vote;
@@ -548,7 +550,7 @@ create index Index_parent_id on wx_design_category
 /*==============================================================*/
 create table wx_design_comment
 (
-   id                   int unsigned not null auto_increment comment '自增ID',
+   comment_id           int unsigned not null auto_increment comment '设计图评论ID',
    did                  int unsigned comment '设计图ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
@@ -557,7 +559,7 @@ create table wx_design_comment
    ip                   char(16) comment 'IP地址',
    status               tinyint unsigned comment '状态,0删除，1正常',
    create_time          datetime comment '创建时间',
-   primary key (id)
+   primary key (comment_id)
 )
 engine = MYISAM
 auto_increment = 1;
@@ -571,6 +573,23 @@ create index Index_did on wx_design_comment
 (
    did
 );
+
+/*==============================================================*/
+/* Table: wx_design_comment_reply                               */
+/*==============================================================*/
+create table wx_design_comment_reply
+(
+   id                   int unsigned not null auto_increment comment '自增ID',
+   comment_id           int unsigned comment '评论ID',
+   uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
+   content              varchar(255) comment '内容',
+   ip                   char(16) comment 'IP地址',
+   create_time          datetime comment '创建时间',
+   primary key (id)
+);
+
+alter table wx_design_comment_reply comment '设计师评论回复表';
 
 /*==============================================================*/
 /* Table: wx_design_vote                                        */
@@ -1812,6 +1831,7 @@ create table wx_user_message
    uname                varchar(32) comment '用户名称',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
+   reply_num            int unsigned comment '留言回复数量',
    create_time          datetime comment '创建时间',
    primary key (message_id)
 )
