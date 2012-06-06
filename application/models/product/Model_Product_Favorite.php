@@ -12,7 +12,7 @@ class Model_Product_Favorite extends MY_Model
      * @name 产品收藏
      *
      * @param array $fInfo
-     * @return bool
+     * @return boolean
      */
     public function productFavorite(array $fInfo)
     {
@@ -23,7 +23,7 @@ class Model_Product_Favorite extends MY_Model
         $data = array(
             'pid' => $fInfo['pid'],
             'uid' => $fInfo['uid'],
-            'favorite_ip' => $fInfo['favorite_ip'],
+            'ip' => $fInfo['ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
@@ -31,8 +31,40 @@ class Model_Product_Favorite extends MY_Model
         return $this->db->insert_id();
     }
 
+    /**
+     * 获取用户产品收藏
+     *
+     * @param int $uId
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
     public function getUserProductFavorite($uId, $limit = 20, $offset = 0)
     {
-        $this->db->select('*')->get_where('product_favorite', array('uid' => $uId), $limit, $offset);
+        return $this->db->select('*')->get_where('product_favorite', array('uid' => $uId), $limit, $offset);
+    }
+
+    /**
+     * 删除一个产品收藏
+     *
+     * @param int $fId
+     * @return boolean
+     */
+    public function deleteUserProductFavorite($fId)
+    {
+        $this->db->where('id', $fId);
+        return $this->db->delete('product_favorite');
+    }
+
+    /**
+     * 清空用户产品收藏
+     *
+     * @param int $uId
+     * @return boolean
+     */
+    public function emptyUserProductFavorite($uId)
+    {
+        $this->db->where('uid', $uId);
+        return $this->db->delete('product_favorite');
     }
 }
