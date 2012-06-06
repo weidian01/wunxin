@@ -33,4 +33,18 @@ class Model_Product extends MY_Model
     }
 
 
+    public function addProduct(array $pInfo)
+    {
+
+    }
+
+    public function editProduct($pId, array $pInfo)
+    {
+
+    }
+
+    public function deleteProduct($pId)
+    {
+
+    }
 }

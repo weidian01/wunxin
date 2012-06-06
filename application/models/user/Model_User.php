@@ -29,44 +29,6 @@ class Model_User extends MY_Model
     }
 
     /**
-     * @name 设置用户收货地址
-     *
-     * @param array $addrInfo 用户信息
-     * @return boolean
-     */
-    public function addUserRecipientAddress(array $addrInfo)
-    {
-        $data = array(
-            'uid' => $addrInfo['uid'],
-            'uname' => $addrInfo['uname'],
-            'recent_name' => $addrInfo['recent_name'],
-            'country' => $addrInfo['country'],
-            'province' => $addrInfo['province'],
-            'city' => $addrInfo['city'],
-            'area' => $addrInfo['area'],
-            'detail_address' => $addrInfo['detail_address'],
-            'zipcode' => $addrInfo['zipcode'],
-            'phone_num' => $addrInfo['phone_num'],
-            'call_num' => $addrInfo['call_num'],
-            'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
-        );
-
-        $this->db->insert('user_recipient_address', $data);
-        return $this->db->insert_id();
-    }
-
-    /**
-     * @name 获取用户收货地址
-     *
-     * @param array $uid 用户ID
-     * @return boolean
-     */
-    public function getUserRecipientAddressByUid($uid)
-    {
-        return $this->db->select('*')->get_where('user_recipient_address', array('uid' => $uid))->result_array();
-    }
-
-    /**
      * @name 删除用户 -- 通过用户ID
      *
      * @param $uId 用户ID
@@ -141,17 +103,12 @@ class Model_User extends MY_Model
     }
 
     /**
-     * @name 获取用户所有发票信息 -- 通过用户ID
+     * 用户登陆
      *
-     * @param $uId 用户ID
-     * @return array
+     * @param $uName
+     * @param $password
+     * @return int
      */
-    public function getUserAllInvoiceInfoByUid($uId)
-    {
-        return $this->db->select('*')->get_where('invoice', array('uid' => $uId))->result_array();
-    }
-
-
     public function userLogin($uName, $password)
     {
         //$uInfo = $this->getUserByName($uName);
@@ -230,7 +187,7 @@ class Model_User extends MY_Model
      * @param $newPassword 用户新密码
      * @return boolean
      */
-    public function mofidyUserPasswordByUserId($uId, $oldPassword, $newPassword)
+    public function modifyUserPasswordByUserId($uId, $oldPassword, $newPassword)
     {
         //新老密码一致
         if (md5(trim($oldPassword)) == md5(trim($newPassword))) {
@@ -255,21 +212,15 @@ class Model_User extends MY_Model
     }
 
     /**
-     * @name 用户是否购买过此产品
+     * 修改用户昵称
      *
-     * @param $uid
-     * @param $pid
-     * @return array
+     * @param $uId
+     * @param $nickName
+     * @return boolean
      */
-    public function userIsBuyProduct($uid, $pid)
+    public function modifyUserNickName($uId, $nickName)
     {
-        $field = '*';
-        $data = $this->db->select($field)->from('order_product')
-            ->join('order', 'order_product.order_sn=order.order_sn', 'left')
-            ->where('order_product.uid', $uid)
-            ->where('order_product.pid', $pid)
-            ->where('order.is_pay', '1')->get()->row_array();
-
-        return $data;
+        $data = array('nickname' => $nickName);
+        return $this->db->where('uid', $uId)->update('user', $data);
     }
 }
