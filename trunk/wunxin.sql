@@ -1,3 +1,226 @@
+drop table if exists wx_activity;
+
+drop table if exists wx_activity_comment;
+
+drop table if exists wx_activity_prize;
+
+drop table if exists wx_admin_user;
+
+drop table if exists wx_advert;
+
+drop table if exists wx_advert_position;
+
+drop table if exists wx_apply_cach_back_log;
+
+drop index Index_parent_id on wx_area;
+
+drop table if exists wx_area;
+
+drop table if exists wx_article;
+
+drop table if exists wx_article_category;
+
+drop table if exists wx_attribute;
+
+drop table if exists wx_card_model;
+
+drop table if exists wx_color;
+
+drop index Index_class_id on wx_degisn;
+
+drop index Index_uid on wx_degisn;
+
+drop table if exists wx_degisn;
+
+drop index Index_parent_id on wx_design_category;
+
+drop table if exists wx_design_category;
+
+drop index Index_did on wx_design_comment;
+
+drop table if exists wx_design_comment;
+
+drop index Index_did on wx_design_vote;
+
+drop table if exists wx_design_vote;
+
+drop table if exists wx_express_delivery_company;
+
+drop index Index_card_no on wx_gift_card;
+
+drop index Index_uid on wx_gift_card;
+
+drop table if exists wx_gift_card;
+
+drop table if exists wx_integral_redemption_product;
+
+drop index index_uid on wx_invoice;
+
+drop table if exists wx_invoice;
+
+drop table if exists wx_mail_subscription;
+
+drop index Index_uid on wx_order;
+
+drop table if exists wx_order;
+
+drop index Index_order_sn on wx_order_product;
+
+drop table if exists wx_order_product;
+
+drop index Index_order_sn on wx_picking;
+
+drop table if exists wx_picking;
+
+drop index Index_picking_id on wx_picking_product;
+
+drop table if exists wx_picking_product;
+
+drop index Index_sell_price on wx_product;
+
+drop index Index_pname on wx_product;
+
+drop index Index_did on wx_product;
+
+drop index Index_class_id on wx_product;
+
+drop table if exists wx_product;
+
+drop index Index_attr_value on wx_product_attr;
+
+drop index Index_pid on wx_product_attr;
+
+drop table if exists wx_product_attr;
+
+drop index Index_parent_id on wx_product_category;
+
+drop table if exists wx_product_category;
+
+drop index Index_pid on wx_product_collocation;
+
+drop table if exists wx_product_collocation;
+
+drop index Index_uid on wx_product_comment;
+
+drop index Index_pid on wx_product_comment;
+
+drop table if exists wx_product_comment;
+
+drop index Index_uid on wx_product_favorite;
+
+drop index Index_pid on wx_product_favorite;
+
+drop table if exists wx_product_favorite;
+
+drop table if exists wx_product_model;
+
+drop table if exists wx_product_photo;
+
+drop index Index_uid on wx_product_qa;
+
+drop index Index_pid on wx_product_qa;
+
+drop table if exists wx_product_qa;
+
+drop index Index_qa_id on wx_product_qa_reply;
+
+drop table if exists wx_product_qa_reply;
+
+drop index Index_comment_id on wx_product_reply;
+
+drop table if exists wx_product_reply;
+
+drop index Index_pid on wx_product_size;
+
+drop table if exists wx_product_size;
+
+drop index Index_uid on wx_receivable;
+
+drop index Index_order_sn on wx_receivable;
+
+drop table if exists wx_receivable;
+
+drop index Index_uname_code on wx_retrieve_password_log;
+
+drop table if exists wx_retrieve_password_log;
+
+drop table if exists wx_returns;
+
+drop index Index_uid on wx_share;
+
+drop index Index_pid on wx_share;
+
+drop table if exists wx_share;
+
+drop index Index_uid on wx_share_comment;
+
+drop index Index_share_id on wx_share_comment;
+
+drop table if exists wx_share_comment;
+
+drop index Index_share_id on wx_share_images;
+
+drop table if exists wx_share_images;
+
+drop index Index_uid on wx_shopping_cart;
+
+drop index uid_pid_unqiue on wx_shopping_cart;
+
+drop table if exists wx_shopping_cart;
+
+drop table if exists wx_size;
+
+drop table if exists wx_system_proposal;
+
+drop index Index_tuan_id on wx_tuan_comment;
+
+drop table if exists wx_tuan_comment;
+
+drop table if exists wx_tuan_product;
+
+drop index index_uname on wx_user;
+
+drop table if exists wx_user;
+
+drop index Index_create_time on wx_user_consume_log;
+
+drop index index_uid on wx_user_consume_log;
+
+drop table if exists wx_user_consume_log;
+
+drop index uid_unique on wx_user_info;
+
+drop table if exists wx_user_info;
+
+drop index Index_create_time on wx_user_integral_log;
+
+drop index Index_uid on wx_user_integral_log;
+
+drop table if exists wx_user_integral_log;
+
+drop table if exists wx_user_level;
+
+drop index index_uid on wx_user_login_log;
+
+drop table if exists wx_user_login_log;
+
+drop index Index_uid on wx_user_message;
+
+drop table if exists wx_user_message;
+
+drop index Index_message_id on wx_user_message_reply;
+
+drop table if exists wx_user_message_reply;
+
+drop index Index_uid on wx_user_recipient_address;
+
+drop table if exists wx_user_recipient_address;
+
+drop index Index_create_time on wx_user_up_level_log;
+
+drop index Index_uid on wx_user_up_level_log;
+
+drop table if exists wx_user_up_level_log;
 
 /*==============================================================*/
 /* Table: wx_activity                                           */
@@ -538,13 +761,8 @@ create table wx_order
    ip                   char(16) comment 'IP地址',
    invoice_payable      varchar(64) comment '发票抬头',
    invoice_content      varchar(16) default '1' comment '发票内容，1服装，2其他,3用户写入内容',
-   uname2               varchar(32) comment '用户名称',
    recent_name          varchar(16) comment '收货人',
-   country              varchar(16) comment '国家',
-   province             varchar(16) comment '省份',
-   city                 varchar(16) comment '城市',
-   area                 varchar(16) comment '区域',
-   detail_address       varchar(128) comment '详细地址',
+   recent_address       varchar(128) comment '收货地址',
    zipcode              char(7) comment '邮编',
    phone_num            char(11) comment '手机号码',
    call_num             char(11) comment '座机',
