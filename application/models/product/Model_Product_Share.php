@@ -79,6 +79,13 @@ class Model_Product_Share extends MY_Model
         return $this->db->select('*')->get_where('share', array('uid' => $uId), $limit, $offset)->result_array();
     }
 
+    public function likeProductShareImage($imgId)
+    {
+        $data = array('is_like' => 'is_like+1');
+        $this->db->where('id', $imgId);
+        return $this->db->set($data, '', false)->update('share_images');
+    }
+
     /**
      * 获取晒单信息
      *

@@ -68,9 +68,30 @@ class product_share extends MY_Controller
         $this->json_output($response);
     }
 
+    /**
+     * 喜欢晒单产品图片
+     */
     public function likeShareImage()
     {
+        $imgId = $this->input->get_post('img_id');
 
+        $response = error(20007);
+
+        do {
+            if (empty ($imgId)) {
+                $response = error(20009);
+                break;
+            }
+
+            $this->load->model('Model_Product_Share', 'share');
+            $status = $this->share->likeProductShareImage($imgId);
+            if (!$status) {
+                $response = error(20008);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
     }
 
 }
