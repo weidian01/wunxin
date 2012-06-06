@@ -40,7 +40,7 @@ class Model_Designer_Comment extends MY_Model
          * @param array $cInfo
          * @return boolean
          */
-        public function addProductComment(array $cInfo)
+        public function addDesignerComment(array $cInfo)
         {
             $data = array(
                 'pid' => $cInfo['pid'],
