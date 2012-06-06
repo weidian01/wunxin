@@ -35,7 +35,7 @@ class Admin_login extends AM_Controller
 
         if ($status) {
             //$this->input->set_cookie('username', $status['username'], 3600);
-            set_cookie('auth', authcode("{$status['user_id']}\t{$status['username']}\t{$status['password']}", 'ENCODE'), 0);
+            set_cookie('admin_auth', authcode("{$status['am_uid']}\t{$status['am_uname']}\t{$status['password']}", 'ENCODE'), 0);
 
             $ip = $this->input->ip_address();
             $this->adminuser->adminUserLoginLog($status['user_id'], $ip);
