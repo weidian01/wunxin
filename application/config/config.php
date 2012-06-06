@@ -106,14 +106,9 @@ $config['enable_hooks'] = FALSE;
 | http://codeigniter.com/user_guide/general/creating_libraries.html
 |
 */
-if(strpos($_SERVER['REQUEST_URI'], '/administrator') === 0)
-{
-    $config['subclass_prefix'] = 'AM_';
-}
-else
-{
-    $config['subclass_prefix'] = 'MY_';
-}
+
+$config['subclass_prefix'] = 'MY_';
+
 
 /*
 |--------------------------------------------------------------------------
