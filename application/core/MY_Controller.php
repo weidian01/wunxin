@@ -64,8 +64,8 @@ class MY_Controller extends CI_Controller
         if (! $uInfo || $uInfo['password'] != $password) {
             return false;
         }
-
-        return $uInfo;
+        $this->uInfo = $uinfo;
+        return true;
     }
 
 
@@ -81,7 +81,8 @@ class MY_Controller extends CI_Controller
             $this->load->model('adminstrator/Model_Admin_User', 'admin');
             $uinfo = $this->admin->getUserInfoByAmUid($am[0]);
             if (isset($uinfo) && $uinfo['password'] === $am[2]) {
-                return $uinfo;
+                $this->amInfo = $uinfo;
+                return true;
             }
         }
         return false;
