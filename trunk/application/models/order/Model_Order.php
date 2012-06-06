@@ -163,10 +163,12 @@ class Model_Order extends MY_Model
     }
 
     /**
-     * 根据用户id获取订单信息
-     * @param $uid
-     * @param $offset
-     * @param $limit
+     * @name 根据用户id获取订单信息
+     *
+     * @param int $uid
+     * @param int $limit
+     * @param int $offset
+     * @return array
      */
     public function getOrderByUid($uid, $limit = 20, $offset = 0)
     {
@@ -192,6 +194,13 @@ class Model_Order extends MY_Model
         return $orders;
     }
 
+    /**
+     * @name 用户是否购买过此产品
+     *
+     * @param $uid
+     * @param $pid
+     * @return array
+     */
     public function userIsBuyProduct($uid, $pid)
     {
         $field = '*';
