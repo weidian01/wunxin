@@ -39,7 +39,7 @@
 							<li><a href="/administrator/product/category_list" title="" target="content_iframe">产品分类列表</a></li>
 							<li><a href="/administrator/product/category_add" title="" target="content_iframe">产品分类添加</a></li>
 							<li><a href="/administrator/product/model_list" title="" target="content_iframe">产品模型列表</a></li>
-                            <li><a href="/administrator/product/model_add" title="" target="content_iframe">产品模型添加</a></li>
+                            <li><a href="/administrator/product/model_create" title="" target="content_iframe">产品模型添加</a></li>
 						</ul>
 					</div>
 				<div class="navhead"><span>订单管理</span></div>
