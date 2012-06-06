@@ -20,8 +20,6 @@ drop table if exists wx_article;
 
 drop table if exists wx_article_category;
 
-drop table if exists wx_attribute;
-
 drop table if exists wx_card_model;
 
 drop table if exists wx_color;
@@ -114,6 +112,8 @@ drop table if exists wx_product_favorite;
 
 drop table if exists wx_product_model;
 
+drop table if exists wx_product_model_attr;
+
 drop table if exists wx_product_photo;
 
 drop index Index_uid on wx_product_qa;
@@ -188,6 +188,10 @@ drop index index_uid on wx_user_consume_log;
 
 drop table if exists wx_user_consume_log;
 
+drop index Index_favorite_uid on wx_user_favorite;
+
+drop table if exists wx_user_favorite;
+
 drop index uid_unique on wx_user_info;
 
 drop table if exists wx_user_info;
@@ -203,6 +207,8 @@ drop table if exists wx_user_level;
 drop index index_uid on wx_user_login_log;
 
 drop table if exists wx_user_login_log;
+
+drop index Index_designer_id on wx_user_message;
 
 drop index Index_uid on wx_user_message;
 
@@ -287,8 +293,8 @@ alter table wx_activity_prize comment '活动奖品设置';
 /*==============================================================*/
 create table wx_admin_user
 (
-   user_id              int comment '用户ID',
-   username             varchar(32) comment '用户名称',
+   am_uid               int comment '用户ID',
+   am_uname             varchar(32) comment '用户名称',
    password             char(32) comment '用户密码',
    ip                   char(16) comment '最后登陆IP',
    last_login_time      datetime comment '最后登陆时间',
@@ -300,7 +306,7 @@ auto_increment = 1;
 
 alter table wx_admin_user comment '后台用户表';
 
-INSERT INTO `wx_admin_user` SET `user_id`=1,`username`='hjpking',`password`='25f2261cd6924d96df4bf75227f3d5fa',`ip`='127.0.01',`last_login_time`='2012-06-02 16:20:00',`status`=1,`contact`='15101559313';
+INSERT INTO `wx_admin_user` SET `am_uid`=1,`am_uname`='hjpking',`password`='25f2261cd6924d96df4bf75227f3d5fa',`ip`='127.0.01',`last_login_time`='2012-06-02 16:20:00',`status`=1,`contact`='15101559313';
 
 /*==============================================================*/
 /* Table: wx_advert                                             */
@@ -432,23 +438,6 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_article_category comment '文章分类表';
-
-/*==============================================================*/
-/* Table: wx_attribute                                          */
-/*==============================================================*/
-create table wx_attribute
-(
-   attr_id              int unsigned not null auto_increment comment '属性id',
-   model_id             int unsigned comment '模型id',
-   attr_name            varchar(32) comment '属性名称',
-   attr_value           varchar(255) comment '属性值',
-   sort                 smallint unsigned comment '排序',
-   primary key (attr_id)
-)
-engine = MYISAM
-auto_increment = 1;
-
-alter table wx_attribute comment '存放模型属性';
 
 /*==============================================================*/
 /* Table: wx_card_model                                         */
@@ -886,6 +875,7 @@ create table wx_product
    class_id             int unsigned comment '分类ID',
    color_id             int unsigned comment '颜色ID',
    uid                  int comment '用户ID',
+   model_id             int comment '模型id',
    uname                varchar(32) comment '用户名称',
    pname                varchar(120) comment '产品名称',
    market_price         int unsigned comment '市场价格，单位为分',
@@ -1076,7 +1066,7 @@ create table wx_product_favorite
    id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
-   favorite_ip          char(16) comment '收藏IP地址',
+   ip                   char(16) comment '收藏IP地址',
    create_time          datetime comment '收藏时间',
    primary key (id)
 )
@@ -1114,6 +1104,23 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_product_model comment '产品模型表';
+
+/*==============================================================*/
+/* Table: wx_product_model_attr                                 */
+/*==============================================================*/
+create table wx_product_model_attr
+(
+   attr_id              int unsigned not null auto_increment comment '属性id',
+   model_id             int unsigned comment '模型id',
+   attr_name            varchar(32) comment '属性名称',
+   attr_value           varchar(255) comment '属性值',
+   sort                 smallint unsigned comment '排序',
+   primary key (attr_id)
+)
+engine = MYISAM
+auto_increment = 1;
+
+alter table wx_product_model_attr comment '产品模型属性表';
 
 /*==============================================================*/
 /* Table: wx_product_photo                                      */
@@ -1640,6 +1647,30 @@ create index Index_create_time on wx_user_consume_log
 );
 
 /*==============================================================*/
+/* Table: wx_user_favorite                                      */
+/*==============================================================*/
+create table wx_user_favorite
+(
+   user_favorite_id     int unsigned not null auto_increment comment '用户收藏ID',
+   uid                  int unsigned comment '用户ID',
+   favorite_uid         int unsigned comment '被收藏用户ID',
+   favorite_uname       varchar(32) comment '被收藏用户名称',
+   ip                   char(16) comment '收藏IP',
+   create_time          datetime comment '收藏时间',
+   primary key (user_favorite_id)
+);
+
+alter table wx_user_favorite comment '用户收藏表';
+
+/*==============================================================*/
+/* Index: Index_favorite_uid                                    */
+/*==============================================================*/
+create index Index_favorite_uid on wx_user_favorite
+(
+   favorite_uid
+);
+
+/*==============================================================*/
 /* Table: wx_user_info                                          */
 /*==============================================================*/
 create table wx_user_info
@@ -1776,6 +1807,7 @@ create index index_uid on wx_user_login_log
 create table wx_user_message
 (
    message_id           int unsigned not null auto_increment comment '留言ID',
+   designer_id          int unsigned comment '设计师ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
    content              varchar(255) comment '内容',
@@ -1794,6 +1826,14 @@ alter table wx_user_message comment '用户留言表';
 create index Index_uid on wx_user_message
 (
    uid
+);
+
+/*==============================================================*/
+/* Index: Index_designer_id                                     */
+/*==============================================================*/
+create index Index_designer_id on wx_user_message
+(
+   designer_id
 );
 
 /*==============================================================*/
