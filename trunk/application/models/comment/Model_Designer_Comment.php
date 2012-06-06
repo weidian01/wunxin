@@ -9,22 +9,22 @@
 class Model_Designer_Comment extends MY_Model
 {
     /**
-     * @name 获取设计师评论 -- 通过设计师ID
+     * @name 获取设计师留言 -- 通过设计师ID
      *
-     * @param int $uid
+     * @param int $designerId
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getDesignerByUid($designerid, $limit = 20, $offset = 0)
+    public function getDesignerByUid($designerId, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('user_message', array('designer_id' => $designerid), $limit, $offset)->array_result();
+        return $this->db->get_where('user_message', array('designer_id' => $designerId), $limit, $offset)->array_result();
     }
 
     /**
-     * @name 获取用户评论 -- 通过产品ID
+     * @name 获取用户留言 -- 通过用户ID
      *
-     * @param int $pid
+     * @param int $uid
      * @param int $limit
      * @param int $offset
      * @return array
@@ -35,7 +35,7 @@ class Model_Designer_Comment extends MY_Model
     }
 
     /**
-     * @name 添加产品评论
+     * @name 添加产品留言
      *
      * @param array $cInfo
      * @return boolean
@@ -52,34 +52,19 @@ class Model_Designer_Comment extends MY_Model
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
-        $this->db->insert('product_comment', $data);
+        $this->db->insert('user_message', $data);
         return $this->db->insert_id();
     }
 
-    /**
-     * 评论是否有效
-     *
-     * @param $commentId
-     * @param bool $type true 有效， false 无效
-     * @return boolean
-     */
-    public function productCommentIsValid($commentId, $type = true)
-    {
-        $field = $type ? 'is_valid' : 'is_invalid';
-        $data = array($field => $field . '+1');
-
-        $this->db->where('comment_id', $commentId);
-        return $this->db->set($data, '', false)->update('product_comment');
-    }
 
     /**
-     * 删除产品评论 -- 通过评论ID
+     * 删除产品留言 -- 通过留言ID
      * @param $cId
      * @return bool
      */
     public function deleteProductCommentByCommentId($cId)
     {
-        $this->db->delete('product_reply', array('comment_id' => $cId));
+        $this->db->delete('user_message', array('comment_id' => $cId));
 
         $this->db->delete('product_comment', array('comment_id' => $cId));
 
@@ -87,7 +72,7 @@ class Model_Designer_Comment extends MY_Model
     }
 
     /**
-     * 更新评论回复数量
+     * 更新留言回复数量
      *
      * @param int $commentId
      * @return array
