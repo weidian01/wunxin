@@ -20,7 +20,8 @@
 <body>
 <form action="<?=url('administrator/product/model_save')?>" method="post">
     <div> 模型名称:<input name="model_name" type="text" value="<?=$model_name?>"/>
-        <input type="hidden" name="model_id" value="<?=$model_id?>"></div>
+        <input type="hidden" name="model_id" value="<?=$model_id?>"> <a href="javascript:;">添加属性</a></div>
+
     <table>
         <?php foreach ($attrs as $attr): ?>
         <tr>

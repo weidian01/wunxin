@@ -19,7 +19,8 @@
 </head>
 <body>
 <form action="<?=url('administrator/product/model_save')?>" method="post">
-    <div> 模型名称:<input name="model_name" type="text"/></div>
+    <div> 模型名称:<input name="model_name" type="text"/> <a href="javascript:;">添加属性</a></div>
+
     <table>
         <tr>
             <td>属性名:<input type="text" name="attr_name[]" value=""></td>
