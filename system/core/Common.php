@@ -625,5 +625,15 @@ function authcode($string, $operation = 'DECODE', $expiry = 0, $key = '')
 	}
 
 }
+
+function url($string, $base = true)
+{
+    $url = '';
+    if($base)
+    {
+        $url = config_item('base_url');
+    }
+    return $url . $string;
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
