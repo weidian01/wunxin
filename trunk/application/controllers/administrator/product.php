@@ -19,13 +19,19 @@ class product extends MY_Controller
         }
     }
 
+    /**
+     * 模型列表页面
+     */
     public function model_list()
     {
-
+        $page = $this->uri->segment(4,1);
+        $pagesize = 20;
+        $page = (abs($page) - 1) * $pagesize;
         $this->load->model('product/Model_Product_Model', 'mod');
-        $data = $this->mod->getModelList();
+        $data = $this->mod->getModelList($pagesize, $page);
         $this->load->view('administrator/product/model_list', array('models' => $data));
     }
+
 
     public function model_edit()
     {
@@ -39,11 +45,17 @@ class product extends MY_Controller
         echo '<pre>';print_r($data);
     }
 
+    /**
+     * 创建一个新模型页面
+     */
     public function model_create()
     {
         $this->load->view('administrator/product/model_create', array('username' => $this->amInfo['am_uname']));
     }
 
+    /**
+     * 创建一个新模型及其属性
+     */
     public function model_save()
     {
         $model_name = $this->input->post('model_name', true);
