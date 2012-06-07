@@ -42,7 +42,8 @@ class product extends MY_Controller
         }
         $this->load->model('product/Model_Product_Model', 'mod');
         $data = $this->mod->getModel($model_id);
-        echo '<pre>';print_r($data);
+        //echo '<pre>';print_r($data);
+        $this->load->view('administrator/product/model_edit',$data);
     }
 
     /**
@@ -50,7 +51,7 @@ class product extends MY_Controller
      */
     public function model_create()
     {
-        $this->load->view('administrator/product/model_create', array('username' => $this->amInfo['am_uname']));
+        $this->load->view('administrator/product/model_create');
     }
 
     /**
