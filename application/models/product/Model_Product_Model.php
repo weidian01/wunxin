@@ -13,8 +13,8 @@ class Model_Product_Model extends MY_Model
      * @param $model_name
      * @param array $attrs
      * array(
-    array('name'=>'属性1','value'=>'1,2,3,4,5','type'=>1,'sort'=>1),
-    array('name'=>'属性2','value'=>'1,2,3,4,5','type'=>2,'sort'=>2)
+            array('name'=>'属性1','value'=>'1,2,3,4,5','type'=>1,'sort'=>1),
+            array('name'=>'属性2','value'=>'1,2,3,4,5','type'=>2,'sort'=>2)
      * )
      * @return bool
      */
