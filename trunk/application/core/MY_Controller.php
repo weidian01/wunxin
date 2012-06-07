@@ -47,12 +47,12 @@ class MY_Controller extends CI_Controller
      */
     protected function isLogin()
     {
-        $userinfo = $this->getUserinfoForCookie();
-        if(! $userinfo)
+        $userInfo = $this->getUserinfoForCookie();
+        if(! $userInfo)
             return false;
 
-        $uid = $userinfo[0];
-        $password = $userinfo[2];
+        $uid = $userInfo[0];
+        $password = $userInfo[2];
 
         if (empty ($uid) || empty ($password)) {
             return false;
@@ -64,7 +64,7 @@ class MY_Controller extends CI_Controller
         if (! $uInfo || $uInfo['password'] != $password) {
             return false;
         }
-        $this->uInfo = $uinfo;
+        $this->uInfo = $uInfo;
         return true;
     }
 
