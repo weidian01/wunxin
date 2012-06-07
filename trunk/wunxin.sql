@@ -640,7 +640,9 @@ create table wx_design_comment_reply
    ip                   char(16) comment 'IP地址',
    create_time          datetime comment '创建时间',
    primary key (id)
-);
+)
+engine = MYISAM
+auto_increment = 1;
 
 alter table wx_design_comment_reply comment '设计师评论回复表';
 
@@ -973,6 +975,8 @@ auto_increment = 1;
 
 alter table wx_product comment '产品表';
 
+INSERT INTO `wx_product` VALUES (1,1,1,1,1,1,'hjpking@gmail.com','潮人必备',10,10,'1111',10,NULL,'testtest','fdssdsggregergdf',1,'a',1,1,1,1,1,'2012-06-07 13:58:23');
+
 /*==============================================================*/
 /* Index: Index_class_id                                        */
 /*==============================================================*/
@@ -1188,6 +1192,7 @@ create table wx_product_model_attr
    attr_name            varchar(32) comment '属性名称',
    attr_value           varchar(255) comment '属性值',
    sort                 smallint unsigned comment '排序',
+   type                 tinyint unsigned comment '类型，1单选，2复选，3下拉，4文本',
    primary key (attr_id)
 )
 engine = MYISAM
@@ -1211,6 +1216,9 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_product_photo comment '产品图片表';
+
+INSERT INTO `wx_product_photo` VALUES (1,1,'sd/dssd/sdsd/a.jpg',1,'2012-06-07 14:31:20');
+INSERT INTO `wx_product_photo` VALUES (2,1,'sd/dssd/sdsd/a.jpg',0,'2012-06-07 14:31:20');
 
 /*==============================================================*/
 /* Table: wx_product_qa                                         */
@@ -1545,12 +1553,15 @@ create index Index_share_id on wx_share_images
 create table wx_shopping_cart
 (
    cart_id              int unsigned not null auto_increment comment '购物车ID',
-   pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
+   pid                  int unsigned comment '产品ID',
    pname                varchar(120) comment '产品名称',
    product_price        int unsigned comment '产品价格，单位为分',
-   product_num          int unsigned comment '产品数量',
+   product_num          int unsigned default 1 comment '产品数量',
    product_img          varchar(128) comment '产品图片地址',
+   product_size         varchar(6) comment '产品尺寸',
+   additional_info      varchar(16) default '0' comment '附加信息',
+   status               tinyint unsigned default 1 comment '状态,0已删除，1正常',
    create_time          datetime comment '创建时间',
    primary key (cart_id)
 )
@@ -1559,8 +1570,8 @@ auto_increment = 1;
 
 alter table wx_shopping_cart comment '购物车表';
 
-INSERT INTO `wx_shopping_cart` (`cart_id`,`pid`,`uid`,`pname`,`product_price`,`product_num`,`product_img`,`create_time`) VALUES (1,1,1,'潮人必备个性T恤-红色',10,1,'/dd/a/ss.jpg','2012-06-01 23:57:37');
-INSERT INTO `wx_shopping_cart` (`cart_id`,`pid`,`uid`,`pname`,`product_price`,`product_num`,`product_img`,`create_time`) VALUES (2,2,1,'潮人必备个性T恤-白色',10,1,'/dd/a/ss.jpg','2012-06-01 23:57:37');
+INSERT INTO `wx_shopping_cart` VALUES (1,1,2,'潮人必备1',10,1,'sd/dssd/sdsd/a.jpg','M','0',1,'2012-06-07 15:23:01');
+INSERT INTO `wx_shopping_cart` VALUES (3,1,1,'潮人必备',10,1,'sd/dssd/sdsd/a.jpg','S','0',1,'2012-06-07 15:23:01');
 
 /*==============================================================*/
 /* Index: uid_pid_unqiue                                        */
@@ -1694,6 +1705,9 @@ auto_increment = 1;
 
 alter table wx_user comment '用户基本信息表';
 
+INSERT INTO `wx_user` VALUES (1,'hjpking@gmail.com','凌晨的风',1,'25f2261cd6924d96df4bf75227f3d5fa','1',0,0,1,'2012-06-07 13:19:23');
+INSERT INTO `wx_user` VALUES (2,'weidian01@gmail.com','哎哟喂',1,'4297f44b13955235245b2497399d7a93','1',0,0,1,'2012-06-07 13:20:23');
+
 /*==============================================================*/
 /* Index: index_uname                                           */
 /*==============================================================*/
@@ -1750,7 +1764,9 @@ create table wx_user_favorite
    ip                   char(16) comment '收藏IP',
    create_time          datetime comment '收藏时间',
    primary key (user_favorite_id)
-);
+)
+engine = MYISAM
+auto_increment = 1;
 
 alter table wx_user_favorite comment '用户收藏表';
 
