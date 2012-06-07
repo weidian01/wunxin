@@ -52,6 +52,9 @@ class product_qa extends MY_Controller
         $this->json_output($response);
     }
 
+    /**
+     * 疑难问答是否有效
+     */
     public function postProductQAIsValid()
     {
         $qaId = $this->input->get_post('qa_id');
