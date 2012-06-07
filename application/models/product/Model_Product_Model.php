@@ -84,7 +84,7 @@ class Model_Product_Model extends MY_Model
      * @param int $limit
      * @return array
      */
-    function getModelList($offset = 0, $limit = 20)
+    function getModelList($limit = 20, $offset = 0)
     {
         $data = $this->db
             ->select('model_id, model_name')
