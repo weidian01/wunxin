@@ -82,6 +82,9 @@ class product_qa extends MY_Controller
         $this->json_output($response);
     }
 
+    /**
+     * 添加产品疑难问答回复
+     */
     public function postProductQAReply()
     {
         $uid = $this->input->get_post('uid');

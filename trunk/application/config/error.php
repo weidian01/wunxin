@@ -13,22 +13,28 @@
  * 用户错误代码  --  用户相关错误代码以 10 开头
  */
 $error[10001] = array('error' => '10001', 'msg' => '用户名不合法', 'code' => 'username_illegal');
-
 $error[10002] = array('error' => '10002', 'msg' => '用户已存在', 'code' => 'user_already_exists');
-
 $error[10003] = array('error' => '10003', 'msg' => '两次输入密码不一致', 'code' => 'twice_input_password_inconsistent');
-
 $error[10004] = array('error' => '10004', 'msg' => '密码不合法', 'code' => 'password_illegal');
-
 $error[10005] = array('error' => '10005', 'msg' => '验证码错误', 'code' => 'verification_code_error');
-
 $error[10006] = array('error' => '10006', 'msg' => '用户不存在', 'code' => 'user_does_not_exist');
-
 $error[10007] = array('error' => '10007', 'msg' => '密码错误', 'code' => 'password_error');
-
 $error[10008] = array('error' => '10008', 'msg' => '注册用户失败', 'code' => 'register_user_failure');
-
 $error[10009] = array('error' => '10009', 'msg' => '用户未登陆', 'code' => 'User_not_logged');
+
+$error[10010] = array('error' => '10010', 'msg' => '评论设计师成功', 'code' => 'comment_designer_success');
+$error[10011] = array('error' => '10011', 'msg' => '评论设计师失败', 'code' => 'comment_designer_failure');
+$error[10012] = array('error' => '10012', 'msg' => '评论设计师参数不全', 'code' => 'comment_designer_parameter_failure');
+
+$error[10013] = array('error' => '10013', 'msg' => '评论设计师回复成功', 'code' => 'reply_comment_designer_success');
+$error[10014] = array('error' => '10014', 'msg' => '评论设计师回复失败', 'code' => 'reply_comment_designer_failure');
+$error[10015] = array('error' => '10015', 'msg' => '评论设计师回复参数不全', 'code' => 'reply_comment_designer_parameter_failure');
+
+$error[10016] = array('error' => '10016', 'msg' => '设计师评论不存在', 'code' => 'comment_designer_not_exist');
+
+$error[10017] = array('error' => '10017', 'msg' => '收藏设计师成功', 'code' => 'favorite_designer_success');
+$error[10018] = array('error' => '10018', 'msg' => '收藏设计师失败', 'code' => 'favorite_designer_failure');
+$error[10019] = array('error' => '10019', 'msg' => '收藏设计师参数不全', 'code' => 'favorite_designer_parameter_failure');
 
 
 
@@ -39,16 +45,28 @@ $error[20001] = array('error' => '20001', 'msg' => '产品不合法', 'code' => 
 
 $error[20002] = array('error' => '20002', 'msg' => '产品不存在', 'code' => 'product_does_not_exist');
 
-$error[20003] = array('error' => '20003', 'msg' => '产品收藏成功', 'code' => 'product_favorite_success');
-
 $error[20004] = array('error' => '20004', 'msg' => '产品晒单成功', 'code' => 'product_share_success');
 $error[20005] = array('error' => '20005', 'msg' => '产品晒单失败', 'code' => 'product_share_failure');
 $error[20006] = array('error' => '20006', 'msg' => '产品晒单参数不全', 'code' => 'product_share_parameter_failure');
+
 $error[20007] = array('error' => '20007', 'msg' => '喜欢晒单产品成功', 'code' => 'like_share_product_success');
 $error[20008] = array('error' => '20008', 'msg' => '喜欢晒单产品失败', 'code' => 'like_share_product_failure');
 $error[20009] = array('error' => '20009', 'msg' => '喜欢晒单产品参数不全', 'code' => 'like_share_product_parameter_failure');
 
+$error[20010] = array('error' => '20010', 'msg' => '产品收藏成功', 'code' => 'product_favorite_success');
+$error[20011] = array('error' => '20011', 'msg' => '产品收藏失败', 'code' => 'product_favorite_failure');
+$error[20012] = array('error' => '20012', 'msg' => '产品收藏参数不全', 'code' => 'product_favorite_parameter_failure');
 
+$error[20013] = array('error' => '20013', 'msg' => '删除收藏成功', 'code' => 'delete_favorite_success');
+$error[20014] = array('error' => '20014', 'msg' => '删除收藏失败', 'code' => 'delete_favorite_failure');
+$error[20015] = array('error' => '20015', 'msg' => '删除收藏参数不全', 'code' => 'delete_favorite_parameter_failure');
+
+$error[20016] = array('error' => '20016', 'msg' => '清空收藏夹成功', 'code' => 'empty_favorite_success');
+$error[20017] = array('error' => '20017', 'msg' => '清空收藏夹失败', 'code' => 'empty_favorite_failure');
+
+$error[20018] = array('error' => '20018', 'msg' => '产品晒单评论成功', 'code' => 'product_share_comment_success');
+$error[20019] = array('error' => '20019', 'msg' => '产品晒单评论失败', 'code' => 'product_share_comment_failure');
+$error[20020] = array('error' => '20020', 'msg' => '产品晒单评论参数不全', 'code' => 'product_share_comment_parameter_failure');
 
 /**
  * 订单错误代码  --  订单相关错误代码以 30 开头

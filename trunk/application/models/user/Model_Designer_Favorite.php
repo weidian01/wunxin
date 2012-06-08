@@ -6,7 +6,7 @@
  * Time: 上午8:51
  * wunxin E-commerce management system
  */
-class Model_User_Favorite extends MY_Model
+class Model_Designer_Favorite extends MY_Model
 {
     /**
      * @name 用户收藏产品
@@ -14,14 +14,14 @@ class Model_User_Favorite extends MY_Model
      * @param array $fInfo
      * @return boolean
      */
-    public function userFavoriteProduct(array $fInfo)
+    public function designerFavorite(array $fInfo)
     {
-        $tableName = 'user_favorite';
+        $tableName = 'designer_favorite';
         $checkStatus = $this->batchCheckTableField($tableName, $fInfo, true);
         if (!$checkStatus) return false;
 
         $data = array(
-            'uid' => $fInfo['pid'],
+            'uid' => $fInfo['uid'],
             'favorite_uid' => $fInfo['uid'],
             'favorite_uname' => $fInfo['favorite_ip'],
             'ip' => $fInfo['ip'],

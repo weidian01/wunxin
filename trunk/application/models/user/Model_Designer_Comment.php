@@ -43,17 +43,29 @@ class Model_Designer_Comment extends MY_Model
     public function addDesignerComment(array $cInfo)
     {
         $data = array(
-            'designer_id' => $cInfo['pid'],
+            'designer_id' => $cInfo['designer_id'],
             'uid' => $cInfo['uid'],
             'uname' => $cInfo['uname'],
             'content' => $cInfo['comment_title'],
             'ip' => $cInfo['ip'],
-            'rank' => $cInfo['rank'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
         $this->db->insert('user_message', $data);
         return $this->db->insert_id();
+    }
+
+    /**
+     * 评论信息是否存在
+     *
+     * @param $mId
+     * @return bool
+     */
+    public function designerCommentIsExist($mId)
+    {
+        $data = $this->db->get_where('user_message', array('message_id' => $mId))->row_result();
+
+        return empty ($data) ? false : true;
     }
 
 
