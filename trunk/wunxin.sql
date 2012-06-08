@@ -68,7 +68,7 @@ drop index index_uid on wx_invoice;
 
 drop table if exists wx_invoice;
 
-drop index Index_uid on wx_mail_subscription;
+drop index Index_email_addr on wx_mail_subscription;
 
 drop table if exists wx_mail_subscription;
 
@@ -232,9 +232,9 @@ drop index Index_message_id on wx_user_message_reply;
 
 drop table if exists wx_user_message_reply;
 
-drop index Index_uid on wx_user_recipient_address;
+drop index Index_uid on wx_user_recent_address;
 
-drop table if exists wx_user_recipient_address;
+drop table if exists wx_user_recent_address;
 
 drop index Index_create_time on wx_user_up_level_log;
 
@@ -713,9 +713,9 @@ create index Index_did on wx_design_vote
 create table wx_designer_favorite
 (
    designer_favorite_id int unsigned not null auto_increment comment '用户收藏ID',
-   uid                  int unsigned comment '用户ID',
-   favorite_uid         int unsigned comment '被收藏用户ID',
-   favorite_uname       varchar(32) comment '被收藏用户名称',
+   uid                  int unsigned comment '被收藏用户ID',
+   favorite_uid         int unsigned comment '用户ID',
+   favorite_uname       varchar(32) comment '用户名称',
    ip                   char(16) comment '收藏IP',
    create_time          datetime comment '收藏时间',
    primary key (designer_favorite_id)
@@ -819,11 +819,11 @@ auto_increment = 1;
 alter table wx_mail_subscription comment '邮件列表订阅表';
 
 /*==============================================================*/
-/* Index: Index_uid                                             */
+/* Index: Index_email_addr                                      */
 /*==============================================================*/
-create unique index Index_uid on wx_mail_subscription
+create unique index Index_email_addr on wx_mail_subscription
 (
-   uid
+   email_addr
 );
 
 /*==============================================================*/
@@ -1973,9 +1973,9 @@ create index Index_message_id on wx_user_message_reply
 );
 
 /*==============================================================*/
-/* Table: wx_user_recipient_address                             */
+/* Table: wx_user_recent_address                                */
 /*==============================================================*/
-create table wx_user_recipient_address
+create table wx_user_recent_address
 (
    address_id           int not null auto_increment comment '地址ID',
    uid                  int comment '用户ID',
@@ -1996,15 +1996,15 @@ create table wx_user_recipient_address
 engine = MYISAM
 auto_increment = 1;
 
-alter table wx_user_recipient_address comment '用户收件地址';
+alter table wx_user_recent_address comment '用户收件地址';
 
-INSERT INTO `wx_user_recipient_address` (`address_id`,`uid`,`uname`,`recent_name`,`country`,`province`,`city`,`area`,`detail_address`,`zipcode`,`phone_num`,`call_num`,`create_time`) VALUES (1,1,'weidian01@gmail.com','兰国宾','中国','北京','北京市','朝阳区','中国北京市朝阳区十六里桥','100010','13693573005','','2012-06-01 22:14:46');
-INSERT INTO `wx_user_recipient_address` (`address_id`,`uid`,`uname`,`recent_name`,`country`,`province`,`city`,`area`,`detail_address`,`zipcode`,`phone_num`,`call_num`,`create_time`) VALUES (2,2,'hjpking@gmail.com','侯积平','中国','北京','北京市','朝阳区','中国北京市朝阳区半壁店','100010','15101559313','','2012-06-01 22:13:06');
+INSERT INTO `wx_user_recent_address` (`address_id`,`uid`,`uname`,`recent_name`,`country`,`province`,`city`,`area`,`detail_address`,`zipcode`,`phone_num`,`call_num`,`create_time`) VALUES (1,1,'weidian01@gmail.com','兰国宾','中国','北京','北京市','朝阳区','中国北京市朝阳区十六里桥','100010','13693573005','','2012-06-01 22:14:46');
+INSERT INTO `wx_user_recent_address` (`address_id`,`uid`,`uname`,`recent_name`,`country`,`province`,`city`,`area`,`detail_address`,`zipcode`,`phone_num`,`call_num`,`create_time`) VALUES (2,2,'hjpking@gmail.com','侯积平','中国','北京','北京市','朝阳区','中国北京市朝阳区半壁店','100010','15101559313','','2012-06-01 22:13:06');
 
 /*==============================================================*/
 /* Index: Index_uid                                             */
 /*==============================================================*/
-create index Index_uid on wx_user_recipient_address
+create index Index_uid on wx_user_recent_address
 (
    uid
 );

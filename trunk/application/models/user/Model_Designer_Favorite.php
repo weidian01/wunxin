@@ -9,7 +9,7 @@
 class Model_Designer_Favorite extends MY_Model
 {
     /**
-     * @name 用户收藏产品
+     * @name 收藏设计师
      *
      * @param array $fInfo
      * @return boolean
@@ -33,7 +33,7 @@ class Model_Designer_Favorite extends MY_Model
     }
 
     /**
-     * 获取用户收藏的产品
+     * 获取用户收藏的设计师
      *
      * @param int $uId
      * @param int $limit
@@ -42,19 +42,21 @@ class Model_Designer_Favorite extends MY_Model
      */
     public function getUserProductFavorite($uId, $limit = 20, $offset = 0)
     {
-        return $this->db->select('*')->get_where('product_favorite', array('uid' => $uId), $limit, $offset);
+        return $this->db->select('*')->get_where('designer_favorite', array('favorite_uid' => $uId), $limit, $offset);
     }
 
     /**
      * 删除一个用户收藏的产品
      *
      * @param int $fId
+     * @param int $uid
      * @return boolean
      */
-    public function deleteUserProductFavorite($fId)
+    public function deleteUserProductFavorite($fId, $uid)
     {
         $this->db->where('id', $fId);
-        return $this->db->delete('product_favorite');
+        $this->db->where('favorite_uid', $uid);
+        return $this->db->delete('designer_favorite');
     }
 
     /**
@@ -66,7 +68,7 @@ class Model_Designer_Favorite extends MY_Model
     public function emptyUserProductFavorite($uId)
     {
         $this->db->where('uid', $uId);
-        return $this->db->delete('product_favorite');
+        return $this->db->delete('designer_favorite');
     }
 
 }

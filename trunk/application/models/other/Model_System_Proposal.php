@@ -31,14 +31,13 @@ class Model_System_Proposal extends MY_Model
     /**
      * 获取系统建议或意见
      *
-     * @param array $order
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getSystemProposal(array $order, $limit = 20, $offset = 0)
+    public function getSystemProposal($limit = 20, $offset = 0)
     {
-        return $this->db->get_where('system_proposal', '', $limit, $offset)->order_by($order)->array_result();
+        return $this->db->get_where('system_proposal', '', $limit, $offset)->array_result();
     }
 
 

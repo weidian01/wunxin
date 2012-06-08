@@ -42,8 +42,8 @@ class product_comment extends MY_Controller
 
             $data = array(
                 'pid' => $data['pid'],
-                'uid' => $data['uid'],
-                'uname' => $data['uname'],
+                'uid' => $this->uInfo['uid'],
+                'uname' => $this->uInfo['uname'],
                 'comment_title' => $title,
                 'comment_content' => $content,
                 'ip' => $ip,

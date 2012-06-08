@@ -5,13 +5,6 @@ class login extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-
-        if ($this->isLogin()) {
-            $referer = $this->input->server('HTTP_REFERER');
-            $referer = empty ($referer) ? config_item('base_url') : $referer;
-            $this->load->helper('url');
-            redirect($referer, 'refresh');
-        }
     }
 
     /**
@@ -19,6 +12,12 @@ class login extends MY_Controller
      */
     public function index()
     {
+        if ($this->isLogin()) {
+            $referer = $this->input->server('HTTP_REFERER');
+            $referer = empty ($referer) ? config_item('base_url') : $referer;
+            $this->load->helper('url');
+            redirect($referer, 'refresh');
+        }
         echo '123';
     }
 
@@ -27,6 +26,13 @@ class login extends MY_Controller
      */
     public function submit()
     {
+        if ($this->isLogin()) {
+            $referer = $this->input->server('HTTP_REFERER');
+            $referer = empty ($referer) ? config_item('base_url') : $referer;
+            $this->load->helper('url');
+            redirect($referer, 'refresh');
+        }
+
         $this->load->helper('validation');
         $this->load->helper('cookie');
 
@@ -34,8 +40,8 @@ class login extends MY_Controller
         $password = $this->input->get_post('password');
         $source = intval($this->input->get_post('source'));
         $redirect_url = $this->input->get_post('redirect_url');
-        $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url');  //跳转地址
-        $expire = $this->input->get_post('remember') ? (86400 * 360) : 0;                 //是否记录登录状态
+        $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url'); //跳转地址
+        $expire = $this->input->get_post('remember') ? (86400 * 360) : 0; //是否记录登录状态
 
         $response['code'] = '0';
         $response['msg'] = $redirect_url;
@@ -88,9 +94,9 @@ class login extends MY_Controller
         $this->load->helper('url');
         $this->load->helper('cookie');
         delete_cookie('auth');
-        //$this->delete_user_cookie();
 
-        redirect(config_item('base_url'), 'refresh');
+        unset ($this->uInfo);
+        //redirect(config_item('base_url'), 'refresh');
     }
 
     /**

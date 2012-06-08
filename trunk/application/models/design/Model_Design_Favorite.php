@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Administrator
@@ -42,18 +42,34 @@ class Model_Design_Favorite extends MY_Model
      */
     public function getUserFavoriteDesignByUid($uId, $limit = 20, $offset = 0)
     {
-        return $this->db->select('*')->get_where('design_favorite', array('uid' => $uId), $limit, $offset);
+        $data = $this->db->select('*')->get_where('design_favorite', array('uid' => $uId), $limit, $offset)->result_array();
+
+        return empty ($data) ? null : $data;
     }
 
     /**
-     * 删除一个用户收藏的设计图
+     * 删除设计图收藏
      *
      * @param int $dId
      * @return boolean
      */
-    public function deleteUserFavoriteDesignByDid($dId)
+    public function deleteDesignFavoriteByDid($dId)
     {
         $this->db->where('id', $dId);
+        return $this->db->delete('design_favorite');
+    }
+
+    /**
+     * 删除用户收藏的设计图
+     *
+     * @param $dId
+     * @param $uId
+     * @return boolean
+     */
+    public function deleteUserFavoriteDesignByDid($dId, $uId)
+    {
+        $this->db->where('id', $dId);
+        $this->db->where('uid', $uId);
         return $this->db->delete('design_favorite');
     }
 
