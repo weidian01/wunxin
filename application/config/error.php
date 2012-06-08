@@ -36,7 +36,24 @@ $error[10017] = array('error' => '10017', 'msg' => '收藏设计师成功', 'cod
 $error[10018] = array('error' => '10018', 'msg' => '收藏设计师失败', 'code' => 'favorite_designer_failure');
 $error[10019] = array('error' => '10019', 'msg' => '收藏设计师参数不全', 'code' => 'favorite_designer_parameter_failure');
 
+$error[10020] = array('error' => '10020', 'msg' => '删除收藏的设计师成功', 'code' => 'delete_favorite_designer_success');
+$error[10021] = array('error' => '10021', 'msg' => '删除收藏的设计师失败', 'code' => 'delete_favorite_designer_failure');
+$error[10022] = array('error' => '10022', 'msg' => '删除收藏的设计师参数不全', 'code' => 'delete_favorite_designer_parameter_failure');
 
+$error[10023] = array('error' => '10023', 'msg' => '清空收藏的设计师成功', 'code' => 'empty_favorite_designer_success');
+$error[10024] = array('error' => '10024', 'msg' => '清空收藏的设计师失败', 'code' => 'empty_favorite_designer_failure');
+
+$error[10025] = array('error' => '10025', 'msg' => '设置用户收货地址成功', 'code' => 'setting_user_recent_address_success');
+$error[10026] = array('error' => '10026', 'msg' => '设置用户收货地址失败', 'code' => 'setting_user_recent_address_failure');
+$error[10027] = array('error' => '10027', 'msg' => '设置用户收货地址参数不全', 'code' => 'setting_user_recent_address_parameter_failure');
+
+$error[10028] = array('error' => '10028', 'msg' => '编码用户收货地址参数不全', 'code' => 'edit_user_recent_address_parameter_failure');
+$error[10029] = array('error' => '10029', 'msg' => '获取用户收货地址成功', 'code' => 'get_user_recent_address_success');
+$error[10030] = array('error' => '10030', 'msg' => '编码用户收货地址失败', 'code' => 'edit_user_recent_address_failure');
+
+$error[10031] = array('error' => '10031', 'msg' => '删除用户收货地址失败', 'code' => 'delete_user_recent_address_failure');
+$error[10032] = array('error' => '10032', 'msg' => '删除用户收货地址成功', 'code' => 'delete_user_recent_address_success');
+$error[10033] = array('error' => '10033', 'msg' => '删除用户收货地址参数不全', 'code' => 'delete_user_recent_address_parameter_failure');
 
 /**
  * 产品错误代码  --  产品相关错误代码以 20 开头
@@ -73,12 +90,45 @@ $error[20020] = array('error' => '20020', 'msg' => '产品晒单评论参数不�
  */
 $error[30001] = array('error' => '30001', 'msg' => '订单不合法', 'code' => 'order_illegal');
 
+$error[30002] = array('error' => '30002', 'msg' => '添加发票成功', 'code' => 'add_invoice_success');
+$error[30003] = array('error' => '30003', 'msg' => '添加发票失败', 'code' => 'add_invoice_failure');
+$error[30004] = array('error' => '30004', 'msg' => '添加发票参数不会', 'code' => 'add_invoice_parameter_failure');
+
+$error[30005] = array('error' => '30005', 'msg' => '编码发票参数不全', 'code' => 'edit_invoice_parameter_failure');
+
+$error[30006] = array('error' => '30006', 'msg' => '删除发票成功', 'code' => 'delete_invoice_success');
+$error[30007] = array('error' => '30007', 'msg' => '删除发票失败', 'code' => 'delete_invoice_failure');
+$error[30008] = array('error' => '30008', 'msg' => '删除发票参数不全', 'code' => 'delete_invoice_parameter_failure');
+
 
 
 /**
  * 设计图错误代码  --  设计图相关错误代码以 40 开头
  */
 $error[40001] = array('error' => '40001', 'msg' => '设计图不合法', 'code' => 'artwork_illegal');
+
+$error[40002] = array('error' => '40002', 'msg' => '添加设计图评论成功', 'code' => 'add_design_comment_success');
+$error[40003] = array('error' => '40003', 'msg' => '添加设计图评论失败', 'code' => 'add_design_comment_failure');
+$error[40004] = array('error' => '40004', 'msg' => '添加设计图评论参数不全', 'code' => 'add_design_comment_parameter_failure');
+
+$error[40005] = array('error' => '40005', 'msg' => '设计图不存在', 'code' => 'design_not_exist');
+
+$error[40006] = array('error' => '40006', 'msg' => '评论不存在', 'code' => 'comment_not_exist');
+
+$error[40007] = array('error' => '40007', 'msg' => '添加设计图评论回复成功', 'code' => 'add_design_comment_reply_success');
+$error[40008] = array('error' => '40008', 'msg' => '添加设计图评论回复失败', 'code' => 'add_design_comment_reply_failure');
+$error[40009] = array('error' => '40009', 'msg' => '添加设计图评论回复参数不全', 'code' => 'add_design_comment_reply_parameter_failure');
+
+$error[40010] = array('error' => '40010', 'msg' => '添加设计图收藏成功', 'code' => 'add_design_favorite_success');
+$error[40011] = array('error' => '40011', 'msg' => '添加设计图收藏失败', 'code' => 'add_design_favorite_failure');
+$error[40012] = array('error' => '40012', 'msg' => '添加设计图收藏参数不全', 'code' => 'add_design_favorite_parameter_failure');
+
+$error[40013] = array('error' => '40013', 'msg' => '删除设计图收藏成功', 'code' => 'delete_design_favorite_success');
+$error[40014] = array('error' => '40014', 'msg' => '删除设计图收藏失败', 'code' => 'delete_design_favorite_failure');
+$error[40015] = array('error' => '40015', 'msg' => '删除设计图收藏参数不全', 'code' => 'delete_design_favorite_parameter_failure');
+
+$error[40016] = array('error' => '40016', 'msg' => '清空用户设计图收藏夹成功', 'code' => 'empty_user_design_favorite_success');
+$error[40017] = array('error' => '40017', 'msg' => '清空用户设计图收藏夹失败', 'code' => 'empty_user_design_favorite_failure');
 
 
 
@@ -132,11 +182,32 @@ $error[60015] = array('error' => '60015', 'msg' => '取出用户购物车中产�
 $error[60016] = array('error' => '60016', 'msg' => '取出用户购物车中产品参数不全', 'code' => 'remove_user_shopping_cart_product_parameter_failure');
 
 
+/**
+ * 业务错误代码 -- 相关业务错误代码以 70 开头
+ */
+$error[70001] = array('error' => '70001', 'msg' => '绑定卡成功', 'code' => 'banding_card_success');
+$error[70002] = array('error' => '70002', 'msg' => '绑定卡失败', 'code' => 'banding_card_failure');
+$error[70003] = array('error' => '70003', 'msg' => '绑定卡参数不全', 'code' => 'banding_card_parameter_failure');
+$error[70004] = array('error' => '70004', 'msg' => '卡已经绑定', 'code' => 'card_already_banding_success');
+
+$error[70005] = array('error' => '70005', 'msg' => '订阅邮件列表成功', 'code' => 'subscribe_mail_list_success');
+$error[70006] = array('error' => '70006', 'msg' => '订阅邮件列表失败', 'code' => 'subscribe_mail_list_failure');
+$error[70007] = array('error' => '70007', 'msg' => '订阅邮件列表参数不全', 'code' => 'subscribe_mail_list_parameter_failure');
+
+$error[70008] = array('error' => '70008', 'msg' => '退订邮件列表成功', 'code' => 'unSubscribe_mail_list_success');
+$error[70009] = array('error' => '70009', 'msg' => '退订邮件列表失败', 'code' => 'unSubscribe_mail_list_failure');
+$error[70010] = array('error' => '70010', 'msg' => '退订邮件列表参数不全', 'code' => 'unSubscribe_mail_list_parameter_failure');
 
 /**
  * 其他错误代码  --  其他相关错误代码以 70 开头
  */
+$error[99001] = array('error' => '99001', 'msg' => '添加系统建议与意见成功', 'code' => 'add_system_proposal_success');
+$error[99002] = array('error' => '99002', 'msg' => '添加系统建议与意见失败', 'code' => 'add_system_proposal_failure');
+$error[99003] = array('error' => '99003', 'msg' => '添加系统建议与意见参数不全', 'code' => 'add_system_proposal_parameter_failure');
+
 $error[99999] = array('error' => '99999', 'msg' => '未知错误', 'code' => 'unknown_error');
+
+
 
 
 

@@ -33,8 +33,8 @@ class Model_Mail_Subscription extends MY_Model
      * @param $uId
      * @return boolean
      */
-    public function unSubscribe($uId)
+    public function unSubscribe($mailAddr)
     {
-        return $this->db->delete('mail_subscription', array('uid' => $uId));
+        return $this->db->delete('mail_subscription', array('email_addr' => $mailAddr));
     }
 }

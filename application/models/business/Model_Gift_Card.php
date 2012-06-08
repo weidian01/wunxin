@@ -68,6 +68,60 @@ class Model_Gift_Card extends MY_Controller
     }
 
     /**
+     * 卡是否绑定
+     *
+     * @param $cardNo
+     * @return bool
+     */
+    public function cardIsBanding($cardNo)
+    {
+        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'status' => 1))->row_array();
+
+        return empty ($data) ? false : true;
+    }
+
+    /**
+     * 获取卡信息
+     *
+     * @param $cardNo
+     * @return bool | array
+     */
+    public function getCardInfoByCid($cardNo)
+    {
+        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'status' => 1))->row_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户卡信息
+     *
+     * @param $cardNo
+     * @param $uId
+     * @return null | array
+     */
+    public function getUserCardInfoByCardNoAndUid($cardNo, $uId)
+    {
+        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'uid' => $uId, 'status' => 1))->row_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取信息卡列表
+     *
+     * @param $cardNo
+     * @param $uId
+     * @return null | array
+     */
+    public function getUserCardInfo($cardNo, $uId)
+    {
+        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'uid' => $uId, 'status' => 1))->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
      * 删除卡
      *
      * @param $cardNo

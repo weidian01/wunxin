@@ -16,7 +16,9 @@ class Model_Design extends MY_Model
      */
     public function getDesignByDid($dId)
     {
-        return $this->db->select('*')->get_where('design', array('did' => $dId))->row_array();
+        $data = $this->db->select('*')->get_where('design', array('did' => $dId))->row_array();
+
+        return empty ($data) ? null : $data;
     }
 
     /**

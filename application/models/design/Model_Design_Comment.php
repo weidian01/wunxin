@@ -18,7 +18,9 @@ class Model_Design_Comment extends MY_Model
      */
     public function getCommentByUid($uid, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('design_comment', array('uid' => $uid), $limit, $offset)->array_result();
+        $data = $this->db->get_where('design_comment', array('uid' => $uid), $limit, $offset)->array_result();
+
+        return empty ($data) ? null : $data;
     }
 
     /**
@@ -29,9 +31,24 @@ class Model_Design_Comment extends MY_Model
      * @param int $offset
      * @return array
      */
-    public function getProductCommentByPid($did, $limit = 20, $offset = 0)
+    public function getDesignCommentByDid($did, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('design_comment', array('did' => $did), $limit, $offset)->array_result();
+        $data = $this->db->get_where('design_comment', array('did' => $did), $limit, $offset)->array_result();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取评论 -- 通过评论ID
+     *
+     * @param $cid
+     * @return null | array
+     */
+    public function getDesignCommentByCid($cid)
+    {
+        $data = $this->db->get_where('design_comment', array('comment_id' => $cid))->array_result();
+
+        return empty ($data) ? null : $data;
     }
 
     /**
@@ -43,11 +60,11 @@ class Model_Design_Comment extends MY_Model
     public function addDesignComment(array $cInfo)
     {
         $data = array(
-            'did' => $cInfo['pid'],
+            'did' => $cInfo['did'],
             'uid' => $cInfo['uid'],
             'uname' => $cInfo['uname'],
-            'title' => $cInfo['comment_title'],
-            'content' => $cInfo['comment_content'],
+            'title' => $cInfo['title'],
+            'content' => $cInfo['content'],
             'ip' => $cInfo['ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
@@ -93,9 +110,10 @@ class Model_Design_Comment extends MY_Model
      */
     public function getReplyByCommentId($cid, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('design_comment_reply', array('comment_id' => $cid), $limit, $offset)->array_result();
-    }
+        $data = $this->db->get_where('design_comment_reply', array('comment_id' => $cid), $limit, $offset)->array_result();
 
+        return empty ($data) ? null : $data;
+    }
 
     /**
      * @name 添加设计图评论回复

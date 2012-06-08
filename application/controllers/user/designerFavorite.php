@@ -8,6 +8,9 @@
  */
 class designerFavorite extends MY_Controller
 {
+    /**
+     * 添加设计收藏
+     */
     public function addDesignerFavorite()
     {
         $uid = $this->input->get_post('uid');
@@ -46,13 +49,50 @@ class designerFavorite extends MY_Controller
         $this->json_output($response);
     }
 
+    /**
+     * 删除收藏的设计师
+     */
     public function deleteDesignerFavorite()
     {
+        $fid = intval($this->input->get_post('fid'));
 
+        $response = error(10020);
+
+        do {
+            if (empty ($fid)) {
+                $response = error(10022);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('user/Model_Designer_Favorite', 'favorite');
+            $status = $this->favorite->deleteUserProductFavorite($fid, $this->uInfo['uid']);
+            if (!$status) {
+                $response = error(10021);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
     }
 
+    /**
+     * 清空设计师收藏夹
+     */
     public function emptyDesignerFavorite()
     {
+        if (!$this->isLogin()) {
+            $response = error(10009);
+        } else {
+            $this->load->model('user/Model_Designer_Favorite', 'favorite');
+            $status = $this->favorite->emptyUserProductFavorite($this->uInfo['uid']);
+            $response = $status ? error(10023) : error(10024);
+        }
 
+        $this->json_output($response);
     }
 }
