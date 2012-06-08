@@ -96,4 +96,17 @@ class Model_Product_Share extends MY_Model
 
     }
 
+    public function shareComment($sid, $sInfo)
+    {
+        $data = array(
+            'share_id' => $sid,
+            'uid' => $sInfo['uid'],
+            'uname' => $sInfo['uname'],
+            'content' => $sInfo['content'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
+        );
+
+        $this->db->insert('share_comment', $data);
+        return $this->db->insert_id();
+    }
 }

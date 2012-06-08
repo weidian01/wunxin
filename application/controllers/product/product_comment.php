@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Evan Hou
@@ -8,6 +8,9 @@
  */
 class product_comment extends MY_Controller
 {
+    /**
+     * 添加产品评论
+     */
     public function postProductComment()
     {
         $uid = $this->input->get_post('uid');
@@ -18,11 +21,18 @@ class product_comment extends MY_Controller
         $rank = $this->input->get_post('rank');
 
         $response = error(50004);
+
         do {
             if (empty ($uid) || empty ($pid) || empty ($title) || empty ($content) || empty ($rank)) {
                 $response = error(50008);
                 break;
             }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
             $this->load->model('order/Model_order', 'order');
             $data = $this->order->userIsBuyProduct(1, 1); //($uid, $pid);
             if (empty ($data)) {
@@ -99,10 +109,10 @@ class product_comment extends MY_Controller
                 break;
             }
 
-            $uInfo = $this->isLogin();
-            if (!$uInfo) {
-                $response = error(10009);
-                break;
+                $uInfo = $this->isLogin();
+                if (!$uInfo) {
+                    $response = error(10009);
+                    break;
             }
 
             $this->load->model('comment/Model_Product_comment', 'comment');

@@ -9,41 +9,19 @@
 class Product extends MY_Controller
 {
     /**
-     * 用户收藏产品
+     * 产品列表
      */
-    public function productFavorite()
+    public function productList()
     {
-        $pid = $this->input->get_post('pid');
-        $uid = $this->input->get_post('uid');
-        $ip = $this->input->ip_address();
 
-        $this->load->model('user/Model_User', 'user');
-        $this->load->model('product/Model_Product', 'product');
+    }
 
+    /**
+     * 产品详情
+     */
+    public function productInfo()
+    {
 
-        do {
-            $uInfo = $this->user->getUserById($uid);
-            if (empty ($uInfo)) {
-                $response = error(10006);
-            }
-
-            $pInfo = $this->product->productIsExist($pid);
-            if (!$pInfo) {
-                $response = error(20002);
-            }
-
-            $data = array(
-                'pid' => $pid,
-                'uid' => $uInfo['uid'],
-                'favorite_ip' => $ip
-            );
-
-            $this->product->productFavorite($data);
-
-            $response = error(20003);
-        } while (false);
-
-        echo json_encode($response);
     }
 
 

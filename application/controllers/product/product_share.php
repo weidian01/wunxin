@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /**
  * Created by JetBrains PhpStorm.
  * User: Evan Hou
@@ -29,8 +29,7 @@ class product_share extends MY_Controller
                 break;
             }
 
-            $uInfo = $this->isLogin();
-            if (!$uInfo) {
+            if (!$this->isLogin()) {
                 $response = error(10009);
                 break;
             }
@@ -44,7 +43,7 @@ class product_share extends MY_Controller
 
             $data = array(
                 'pid' => $pid,
-                'uid' => $uInfo['uid'],
+                'uid' => $this->uInfo['uid'],
                 'title' => $title,
                 'content' => $content,
                 'ip' => $ip
@@ -83,7 +82,7 @@ class product_share extends MY_Controller
                 break;
             }
 
-            $this->load->model('Model_Product_Share', 'share');
+            $this->load->model('product/Model_Product_Share', 'share');
             $status = $this->share->likeProductShareImage($imgId);
             if (!$status) {
                 $response = error(20008);
@@ -94,4 +93,40 @@ class product_share extends MY_Controller
         $this->json_output($response);
     }
 
+    /**
+     * 添加晒单评论
+     */
+    public function shareComment()
+    {
+        $sId = $this->input->get_post('sid');
+        $content = $this->input->get_post('content');
+
+        $response = error(20018);
+
+        do {
+            if (empty ($sId) || empty ($content)) {
+                $response = error(20020);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $data = array(
+                'uid' => $this->uInfo['uid'],
+                'uname' => $this->uInfo['uname'],
+                'content' => $content,
+            );
+            $this->load->model('product/Model_Product_Share', 'share');
+            $status = $this->share->shareComment($sId, $data);
+            if (!$status) {
+                $response = error(20019);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
+    }
 }

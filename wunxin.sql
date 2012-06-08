@@ -56,6 +56,10 @@ drop index Index_did on wx_design_vote;
 
 drop table if exists wx_design_vote;
 
+drop index Index_favorite_uid on wx_designer_favorite;
+
+drop table if exists wx_designer_favorite;
+
 drop table if exists wx_express_delivery_company;
 
 drop table if exists wx_integral_redemption_product;
@@ -201,10 +205,6 @@ drop index Index_create_time on wx_user_consume_log;
 drop index index_uid on wx_user_consume_log;
 
 drop table if exists wx_user_consume_log;
-
-drop index Index_favorite_uid on wx_user_favorite;
-
-drop table if exists wx_user_favorite;
 
 drop index uid_unique on wx_user_info;
 
@@ -708,6 +708,32 @@ create index Index_did on wx_design_vote
 );
 
 /*==============================================================*/
+/* Table: wx_designer_favorite                                  */
+/*==============================================================*/
+create table wx_designer_favorite
+(
+   designer_favorite_id int unsigned not null auto_increment comment '用户收藏ID',
+   uid                  int unsigned comment '用户ID',
+   favorite_uid         int unsigned comment '被收藏用户ID',
+   favorite_uname       varchar(32) comment '被收藏用户名称',
+   ip                   char(16) comment '收藏IP',
+   create_time          datetime comment '收藏时间',
+   primary key (designer_favorite_id)
+)
+engine = MYISAM
+auto_increment = 1;
+
+alter table wx_designer_favorite comment '设计师收藏表';
+
+/*==============================================================*/
+/* Index: Index_favorite_uid                                    */
+/*==============================================================*/
+create index Index_favorite_uid on wx_designer_favorite
+(
+   favorite_uid
+);
+
+/*==============================================================*/
 /* Table: wx_express_delivery_company                           */
 /*==============================================================*/
 create table wx_express_delivery_company
@@ -1140,7 +1166,7 @@ create index Index_uid on wx_product_comment
 /*==============================================================*/
 create table wx_product_favorite
 (
-   id                   int unsigned not null auto_increment comment '自增ID',
+   id                   int unsigned not null auto_increment comment '收藏ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
    ip                   char(16) comment '收藏IP地址',
@@ -1750,32 +1776,6 @@ create index index_uid on wx_user_consume_log
 create index Index_create_time on wx_user_consume_log
 (
    create_time
-);
-
-/*==============================================================*/
-/* Table: wx_user_favorite                                      */
-/*==============================================================*/
-create table wx_user_favorite
-(
-   user_favorite_id     int unsigned not null auto_increment comment '用户收藏ID',
-   uid                  int unsigned comment '用户ID',
-   favorite_uid         int unsigned comment '被收藏用户ID',
-   favorite_uname       varchar(32) comment '被收藏用户名称',
-   ip                   char(16) comment '收藏IP',
-   create_time          datetime comment '收藏时间',
-   primary key (user_favorite_id)
-)
-engine = MYISAM
-auto_increment = 1;
-
-alter table wx_user_favorite comment '用户收藏表';
-
-/*==============================================================*/
-/* Index: Index_favorite_uid                                    */
-/*==============================================================*/
-create index Index_favorite_uid on wx_user_favorite
-(
-   favorite_uid
 );
 
 /*==============================================================*/
