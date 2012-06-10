@@ -12,6 +12,8 @@ class Model_User_Log extends MY_Model
     * @name 记录登陆日志
     *
     * @param $uId 用户ID
+    * @param $ip 登陆IP地址
+    * @param $source 登陆来源
     * @return boolean
     */
    public function record_login_log($uId,$ip, $source = 1)

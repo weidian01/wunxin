@@ -35,6 +35,7 @@ class Model_Product_Model extends MY_Model
                 'sort' => $attr['sort'],
             ));
         }
+
         return true;
     }
 
