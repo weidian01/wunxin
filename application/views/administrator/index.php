@@ -26,7 +26,6 @@
         </div>
         <div class="logged">
             <p>你好, <a href="#" title=""><?php echo $username; ?></a>!</p>
-
             <p><a href="#">我的账号</a> | <a href="/administrator/admin_login/loginOut">退出</a></p>
             <!-- <p> <a href="#">12 unred messages</a>!</p> -->
         </div>
@@ -41,48 +40,66 @@
                     <div class="navhead"><span>产品管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
-                            <li><a href="/administrator/main/index" title="" target="content_iframe">产品添加</a></li>
-                            <li><a href="/administrator/product/category_list" title=""
-                                   target="content_iframe">产品分类列表</a></li>
-                            <li><a href="/administrator/product/category_add" title=""
-                                   target="content_iframe">产品分类添加</a></li>
-                            <li><a href="/administrator/product/model_list" title="" target="content_iframe">产品模型列表</a>
-                            </li>
-                            <li><a href="/administrator/product/model_create" title=""
-                                   target="content_iframe">产品模型添加</a></li>
+                            <li><a href="/administrator/main/index" target="content_iframe">产品管理</a></li>
+                            <li><a href="/administrator/product/category_list" target="content_iframe">产品分类管理</a></li>
+                            <li><a href="/administrator/product/model_list" target="content_iframe">产品模型管理</a> </li>
+                            <li><a href="/administrator/product/model_create" target="content_iframe">产品模型添加</a></li>
                         </ul>
                     </div>
                     <div class="navhead"><span>订单管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
-                            <li><a href="#" title="">Submenu Item 1</a></li>
-                            <li><a href="#" title="">Submenu Item 2</a></li>
-                            <li><a href="#" title="">Submenu Item 3</a></li>
-                        </ul>
-                    </div>
-                    <div class="navhead"><span>模型管理</span></div>
-                    <div class="subnav">
-                        <ul class="submenu">
-                            <li><a href="#" title="">Submenu Item 1</a></li>
-                            <li><a href="#" title="">Submenu Item 2</a></li>
-                            <li><a href="#" title="">Submenu Item 3</a></li>
-                            <li><a href="#" title="">Submenu Item 4</a></li>
+                            <li><a href="#" title="">订单列表</a></li>
+                            <li><a href="#" title="">收款单列表</a></li>
+
+                            <li><a href="#" title="">配货单列表</a></li>
                         </ul>
                     </div>
                     <div class="navhead"><span>用户管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
-                            <li><a href="#" title="">Submenu Item 1</a></li>
-                            <li><a href="#" title="">Submenu Item 2</a></li>
-                            <li><a href="#" title="">Submenu Item 3</a></li>
+                            <li><a href="#" title="">用户列表</a></li>
+                            <li><a href="#" title="">用户评论管理</a></li>
+                            <li><a href="#" title="">后台用户理员</a></li>
                         </ul>
                     </div>
                     <div class="navhead"><span>设计图管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
-                            <li><a href="#" title="">Submenu Item 1</a></li>
-                            <li><a href="#" title="">Submenu Item 2</a></li>
-                            <li><a href="#" title="">Submenu Item 3</a></li>
+                            <li><a href="#" title="">设计图管理</a></li>
+                            <li><a href="#" title="">设计图评论</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="navhead"><span>新闻管理</span></div>
+                    <div class="subnav">
+                        <ul class="submenu">
+                            <li><a href="#" title="">分类管理</a></li>
+                            <li><a href="#" title="">文章管理</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="navhead"><span>业务管理</span></div>
+                    <div class="subnav">
+                        <ul class="submenu">
+                            <li><a href="#" title="">广告管理</a></li>
+                            <li><a href="#" title="">广告位管理</a></li>
+                            <li><a href="#" title="">礼物卡管理</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="navhead"><span>活动管理</span></div>
+                    <div class="subnav">
+                        <ul class="submenu">
+                            <li><a href="#" title="">活动管理</a></li>
+                            <li><a href="#" title="">文章管理</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="navhead"><span>其他管理</span></div>
+                    <div class="subnav">
+                        <ul class="submenu">
+                            <li><a href="#" title="">建议与意见</a></li>
                         </ul>
                     </div>
                 </div>
