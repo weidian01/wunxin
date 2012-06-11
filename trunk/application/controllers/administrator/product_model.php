@@ -22,18 +22,18 @@ class product extends MY_Controller
     /**
      * 模型列表页面
      */
-    public function model_list()
+    public function lists()
     {
         $page = $this->uri->segment(4,1);
         $pagesize = 20;
         $page = (abs($page) - 1) * $pagesize;
         $this->load->model('product/Model_Product_Model', 'mod');
         $data = $this->mod->getModelList($pagesize, $page);
-        $this->load->view('administrator/product/model_list', array('models' => $data));
+        $this->load->view('administrator/product/model/lists', array('models' => $data));
     }
 
 
-    public function model_edit()
+    public function edit()
     {
         $model_id = $this->uri->segment(4,0);
         if(! $model_id)
@@ -43,21 +43,21 @@ class product extends MY_Controller
         $this->load->model('product/Model_Product_Model', 'mod');
         $data = $this->mod->getModel($model_id);
         //echo '<pre>';print_r($data);
-        $this->load->view('administrator/product/model_edit',$data);
+        $this->load->view('administrator/product/model/edit',$data);
     }
 
     /**
      * 创建一个新模型页面
      */
-    public function model_create()
+    public function create()
     {
-        $this->load->view('administrator/product/model_create');
+        $this->load->view('administrator/product/model/create');
     }
 
     /**
      * 创建一个新模型及其属性
      */
-    public function model_save()
+    public function save()
     {
         $model_name = $this->input->post('model_name', true);
         if(! $model_name)
