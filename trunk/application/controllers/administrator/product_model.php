@@ -7,7 +7,7 @@
  * Time: 下午4:32
  * To change this template use File | Settings | File Templates.
  */
-class product extends MY_Controller
+class product_model extends MY_Controller
 {
     public function __construct()
     {
