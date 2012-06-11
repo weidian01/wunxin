@@ -44,6 +44,8 @@
                             <li><a href="/administrator/product/category_list" target="content_iframe">产品分类管理</a></li>
                             <li><a href="/administrator/product/model_list" target="content_iframe">产品模型管理</a> </li>
                             <li><a href="/administrator/product/model_create" target="content_iframe">产品模型添加</a></li>
+
+                            <li><a href="/administrator/product/model_create" target="content_iframe">产品尺码管理</a></li>
                         </ul>
                     </div>
                     <div class="navhead"><span>订单管理</span></div>
@@ -59,8 +61,12 @@
                     <div class="subnav">
                         <ul class="submenu">
                             <li><a href="#" title="">用户列表</a></li>
+                            <li><a href="#" title="">用户等级管理</a></li>
+
                             <li><a href="#" title="">用户评论管理</a></li>
                             <li><a href="#" title="">后台用户理员</a></li>
+
+
                         </ul>
                     </div>
                     <div class="navhead"><span>设计图管理</span></div>
@@ -91,6 +97,7 @@
                     <div class="navhead"><span>活动管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
+                            <li><a href="/administrator/activity/am_activity/addActivity">活动添加</a></li>
                             <li><a href="#" title="">活动管理</a></li>
                             <li><a href="#" title="">文章管理</a></li>
                         </ul>
