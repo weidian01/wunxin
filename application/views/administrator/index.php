@@ -41,11 +41,11 @@
                     <div class="subnav">
                         <ul class="submenu">
                             <li><a href="/administrator/main/index" target="content_iframe">产品管理</a></li>
-                            <li><a href="/administrator/product/category/list" target="content_iframe">产品分类管理</a></li>
-                            <li><a href="/administrator/product/model/list" target="content_iframe">产品模型管理</a> </li>
-                            <li><a href="/administrator/product/model/create" target="content_iframe">产品模型添加</a></li>
+                            <li><a href="/administrator/product_category/index" target="content_iframe">产品分类管理</a></li>
+                            <li><a href="/administrator/product_model/index" target="content_iframe">产品模型管理</a> </li>
+                            <li><a href="/administrator/product_model/create" target="content_iframe">产品模型添加</a></li>
 
-                            <li><a href="/administrator/product/model/create" target="content_iframe">产品尺码管理</a></li>
+                            <li><a href="/administrator/product_model/create" target="content_iframe">产品尺码管理</a></li>
                         </ul>
                     </div>
                     <div class="navhead"><span>订单管理</span></div>

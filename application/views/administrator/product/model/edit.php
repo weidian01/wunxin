@@ -1,24 +1,6 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-    <title>万象电子商务后台管理系统</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <style type="text/css" media="all">
-        @import url(/css/style.css);
-
-        img {
-            behavior: url('/js/iepngfix.htc') !important;
-        }
-    </style>
-    <script src="/js/jquery.js" type="text/javascript"></script>
-    <script src="/js/jquery_ui.js" type="text/javascript"></script>
-    <script src="/js/wysiwyg.js" type="text/javascript"></script>
-    <script src="/js/functions.js" type="text/javascript"></script>
-
-</head>
+<?php require(dirname(__FILE__).'/../common.php');?>
 <body>
-<form action="<?=url('administrator/product/model_save')?>" method="post">
+<form action="<?=url('administrator/product_model/save')?>" method="post">
     <div> 模型名称:<input name="model_name" type="text" value="<?=$model_name?>"/>
         <input type="hidden" name="model_id" value="<?=$model_id?>"> <a href="javascript:;">添加属性</a></div>
 

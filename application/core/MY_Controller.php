@@ -27,6 +27,11 @@ class MY_Controller extends CI_Controller
         }
     }
 
+    protected function isPOST()
+    {
+        return $this->input->server('REQUEST_METHOD') === 'POST';
+    }
+
     /**
      * 从cookie中获取用户登录信息
      * @return array | NULL
