@@ -18,8 +18,8 @@
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="/administrator/design/addDesign"><span> <img src="/images/icons/pencil_48.png" alt="icon"/><br/> 添加设计图 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/create"><span> <img src="/images/icons/pencil_48.png" alt="icon"/><br/> 添加设计图分类 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/index"><span> <img src="/images/icons/pencil_48.png" alt="icon"/><br/> 设计图分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/pencil_48.png" alt="icon"/><br/> 添加设计图分类 </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/pencil_48.png" alt="icon"/><br/> 设计图分类 </span></a></li>
         <!--
         <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
         <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
