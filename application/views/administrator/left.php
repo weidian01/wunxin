@@ -45,26 +45,26 @@
                     <a href="#" class="nav-top-item current">
                         <!-- Add the class "no-submenu" to menu items with no sub menu --> 产品管理 </a>
                     <ul>
-                        <li><a href="/administrator/main/index" target="content_iframe">产品管理</a></li>
-                        <li><a href="/administrator/product_category/index" target="content_iframe">产品分类管理</a></li>
-                        <li><a href="/administrator/product_model/index" target="content_iframe">产品模型管理</a></li>
-                        <li><a href="/administrator/product_model/create" target="content_iframe">产品模型添加</a></li>
-                        <li><a href="/administrator/product_model/create" target="content_iframe">产品尺码管理</a></li>
+                        <li><a href="/administrator/main/index">产品管理</a></li>
+                        <li><a href="/administrator/product_category/index">产品分类管理</a></li>
+                        <li><a href="/administrator/product_model/index">产品模型管理</a></li>
+                        <li><a href="/administrator/product_model/create">产品模型添加</a></li>
+                        <li><a href="/administrator/product_model/create">产品尺码管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item no-submenu"> <!-- Add the class "current" to current menu item -->
                     订单列表 </a>
                     <ul>
-                        <li><a href="/administrator/order/orderList" target="content_iframe">订单列表</a></li>
-                        <li><a href="#" target="content_iframe">收款单列表</a></li>
-                        <li><a href="#" target="content_iframe">配货单列表</a></li>
+                        <li><a href="/administrator/order/orderList">订单列表</a></li>
+                        <li><a href="#">收款单列表</a></li>
+                        <li><a href="#">配货单列表</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item"> 设计图管理 </a>
                     <ul>
-                        <li><a href="/administrator/design/addDesign" target="content_iframe">添加设计图</a></li>
-                        <li><a href="/administrator/design/designList" target="content_iframe">设计图列表</a></li>
-                        <li><a href="/administrator/design/comment" target="content_iframe">设计图评论列表</a></li>
+                        <li><a href="/administrator/design/addDesign">添加设计图</a></li>
+                        <li><a href="/administrator/design/designList">设计图列表</a></li>
+                        <li><a href="/administrator/design/comment">设计图评论列表</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item"> 新闻管理 </a>
@@ -82,9 +82,9 @@
                 </li>
                 <li><a href="#" class="nav-top-item"> 活动管理 </a>
                     <ul>
-                        <li><a href="/administrator/am_activity/addActivity" target="content_iframe">活动添加</a></li>
-                        <li><a href="#" target="content_iframe">活动管理</a></li>
-                        <li><a href="#" target="content_iframe">文章管理</a></li>
+                        <li><a href="/administrator/am_activity/addActivity">活动添加</a></li>
+                        <li><a href="#">活动管理</a></li>
+                        <li><a href="#">文章管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item"> 其他管理 </a>
