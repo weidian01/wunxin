@@ -52,8 +52,7 @@
                             <select name="parent_id" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($category as $item): ?>
-                                <option
-                                    value="<?=$item['class_id']?>"><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option value="<?=$item['class_id']?>" <?php if(isset($info['parent_id']) && $info['parent_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
@@ -63,7 +62,7 @@
                             <select name="model_id" class="small-input">
                                 <option value="0">选择商品模型</option>
                                 <?php foreach ($model as $item): ?>
-                                <option value="<?=$item['model_id']?>"><?=$item['model_name']?></option>
+                                <option value="<?=$item['model_id']?>" <?php if(isset($info['model_id']) && $info['model_id']==$item['model_id'] ){echo 'selected="selected"';}?>><?=$item['model_name']?></option>
                                 <?php endforeach;?>
                             </select> <br>
                             <small>必须指定模型</small>
