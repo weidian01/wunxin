@@ -20,7 +20,7 @@ class design extends MY_Controller
 
     public function addDesign()
     {
-        $this->load->view('/administrator/design/design_list', array('username' => $this->amInfo['am_uname']));
+        $this->load->view('/administrator/design/design_add');
     }
 
     public function designList()
