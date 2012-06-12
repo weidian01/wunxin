@@ -626,14 +626,11 @@ function authcode($string, $operation = 'DECODE', $expiry = 0, $key = '')
 
 }
 
-function url($string, $base = true)
+function url($string, $prefix='base')
 {
-    $url = '';
-    if($base)
-    {
-        $url = config_item('base_url');
-    }
+    $url = config_item("{$prefix}_url");
     return $url . $string;
 }
+
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

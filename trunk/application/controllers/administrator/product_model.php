@@ -1,4 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
  * Created by JetBrains PhpStorm.
@@ -13,7 +13,7 @@ class product_model extends MY_Controller
     {
         parent::__construct();
 
-        if ( !$this->AdminIsLogin() ) {
+        if (!$this->AdminIsLogin()) {
             $this->load->helper('url');
             redirect('/administrator/admin_login/index');
         }
@@ -22,28 +22,27 @@ class product_model extends MY_Controller
     /**
      * 模型列表页面
      */
-    public function lists()
+    public function index()
     {
-        $page = $this->uri->segment(4,1);
+        $page = $this->uri->segment(4, 1);
         $pagesize = 20;
         $page = (abs($page) - 1) * $pagesize;
         $this->load->model('product/Model_Product_Model', 'mod');
         $data = $this->mod->getModelList($pagesize, $page);
-        $this->load->view('administrator/product/model/lists', array('models' => $data));
+        $this->load->view('administrator/product/model/index', array('models' => $data));
     }
 
 
     public function edit()
     {
-        $model_id = $this->uri->segment(4,0);
-        if(! $model_id)
-        {
+        $model_id = $this->uri->segment(4, 0);
+        if (!$model_id) {
             show_error('模型id为空');
         }
         $this->load->model('product/Model_Product_Model', 'mod');
         $data = $this->mod->getModel($model_id);
         //echo '<pre>';print_r($data);
-        $this->load->view('administrator/product/model/edit',$data);
+        $this->load->view('administrator/product/model/edit', $data);
     }
 
     /**
@@ -60,8 +59,7 @@ class product_model extends MY_Controller
     public function save()
     {
         $model_name = $this->input->post('model_name', true);
-        if(! $model_name)
-        {
+        if (!$model_name) {
             show_error('模型名为空'); //error();
         }
         $attr_name = $this->input->post('attr_name');
@@ -71,9 +69,8 @@ class product_model extends MY_Controller
         //echo '<pre>';print_r($this->input->post());
         $attrs = array();
 
-        foreach($attr_name as $key => $item)
-        {
-            if(! $attr_name[$key] || ! $attr_value[$key] || ! $attr_type[$key])
+        foreach ($attr_name as $key => $item) {
+            if (!$attr_name[$key] || !$attr_value[$key] || !$attr_type[$key])
                 continue;
             $attrs[$key]['name'] = $attr_name[$key];
             $attrs[$key]['type'] = (int)$attr_type[$key];
@@ -82,13 +79,34 @@ class product_model extends MY_Controller
 
         }
 
-        if(! $attrs)
-        {
-            show_error('模型属性为空');// error();
+        if (!$attrs) {
+            show_error('模型属性为空'); // error();
         }
 
         $this->load->model('product/Model_Product_Model', 'mod');
         $this->mod->Model_create($model_name, $attrs);
 
+    }
+
+    /**
+     *
+     * @param $model_id
+     */
+    function del()
+    {
+        $model_id = $this->uri->segment(4, 0);
+
+        if ($model_id) {
+            /**
+             * 还需要加入是些是否有产品使用此模型的判断,如果有使用则不可删除
+             */
+            $this->db->where('model_id', $model_id);
+            $this->db->delete('product_model');
+
+            $this->db->where('model_id', $model_id);
+            $this->db->delete('product_model_attr');
+        }
+        $this->load->helper('url');
+        redirect('/administrator/product_model/index');
     }
 }

@@ -16,6 +16,10 @@
 */
 $config['base_url']	= 'http://wunxin.com/';
 
+$config['img_url']	= 'http://wunxin.com/';
+
+$config['static_url']	= 'http://wunxin.com/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File
