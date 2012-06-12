@@ -35,7 +35,7 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?=url('administrator/product_category/create')?>" method="post">
+                <form action="<?=url('administrator/product_category/save')?>" method="post">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>

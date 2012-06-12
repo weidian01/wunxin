@@ -35,28 +35,10 @@ class product_category extends MY_Controller
     public function create()
     {
         $this->load->model('product/Model_Product_Category', 'category');
-        if ($this->isPOST()) {
-            $data['cname'] = $this->input->post('cname');
-            $data['parent_id'] = $this->input->post('parent_id');
-            $data['model_id'] = $this->input->post('model_id');
-            $data['sort'] = $this->input->post('sort');
-            $data['title'] = $this->input->post('title');
-            $data['keywords'] = $this->input->post('keywords');
-            $data['descr'] = $this->input->post('descr');
-            $class_id = $this->input->post('class_id');
-
-            if (!$data['cname'])
-                show_error('分类名称不能为空');
-            if (!$data['model_id'])
-                show_error('请选定模型');
-
-            $this->category->save($data, $class_id);
-        } else {
-            $category = $this->category->getCategroyList();
-            $this->load->model('product/Model_Product_Model', 'mod');
-            $model = $this->mod->getModelList(500);
-            $this->load->view('administrator/product/category/create', array('category' => $category, 'model' => $model));
-        }
+        $category = $this->category->getCategroyList();
+        $this->load->model('product/Model_Product_Model', 'mod');
+        $model = $this->mod->getModelList(500);
+        $this->load->view('administrator/product/category/create', array('category' => $category, 'model' => $model));
     }
 
     /**
@@ -78,6 +60,29 @@ class product_category extends MY_Controller
         $model = $this->mod->getModelList(500);
         $this->load->view('administrator/product/category/create', array('category' => $category, 'model' => $model, 'class_id' => $class_id, 'info' => $info));
     }
+
+    public function save()
+    {
+        $this->load->model('product/Model_Product_Category', 'category');
+        $data['cname'] = $this->input->post('cname');
+        $data['parent_id'] = $this->input->post('parent_id');
+        $data['model_id'] = $this->input->post('model_id');
+        $data['sort'] = $this->input->post('sort');
+        $data['title'] = $this->input->post('title');
+        $data['keywords'] = $this->input->post('keywords');
+        $data['descr'] = $this->input->post('descr');
+        $class_id = $this->input->post('class_id');
+
+        if (!$data['cname'])
+            show_error('分类名称不能为空');
+        if (!$data['model_id'])
+            show_error('请选定模型');
+
+        $this->category->save($data, $class_id);
+        $this->load->helper('url');
+        redirect('administrator/product_category/index');
+    }
+
 
     /**
      * 删除一个分类
