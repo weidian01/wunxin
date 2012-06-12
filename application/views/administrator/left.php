@@ -34,62 +34,62 @@
             <a href="#">万象电商管理系统<!--<img id="logo" src="/images/logo.png" alt="Simpla Admin logo"/>--></a>
             <br/><br/><br/><br/>
             <!-- Sidebar Profile links -->
-            <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?php echo $username;?></a>, you have <a
-                href="#messages" rel="modal" title="3 Messages">3 Messages</a><br/>
+            <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?php echo $username;?></a>, you have
+                <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br/>
                 <br/>
-                <a href="#" title="View the Site">View the Site</a> | <a href="/administrator/admin_login/loginOut" title="Sign Out">Sign Out</a></div>
+                <a href="#" title="View the Site">View the Site</a> |
+                <a href="/administrator/admin_login/loginOut" title="Sign Out">Sign Out</a></div>
             <ul id="main-nav">
                 <!-- Accordion Menu -->
                 <li>
-                    <a href="#" class="nav-top-item no-submenu">
+                    <a href="#" class="nav-top-item current">
                         <!-- Add the class "no-submenu" to menu items with no sub menu --> 产品管理 </a>
-
                     <ul>
-                        <li><a href="#">Write a new Article</a></li>
-                        <li><a class="current" href="#">Manage Articles</a></li>
-                        <!-- Add class "current" to sub menu items also -->
-                        <li><a href="#">Manage Comments</a></li>
-                        <li><a href="#">Manage Categories</a></li>
+                        <li><a href="/administrator/main/index" target="content_iframe">产品管理</a></li>
+                        <li><a href="/administrator/product_category/index" target="content_iframe">产品分类管理</a></li>
+                        <li><a href="/administrator/product_model/index" target="content_iframe">产品模型管理</a></li>
+                        <li><a href="/administrator/product_model/create" target="content_iframe">产品模型添加</a></li>
+                        <li><a href="/administrator/product_model/create" target="content_iframe">产品尺码管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item current">
-                    <!-- Add the class "current" to current menu item -->
-                    Articles </a>
+                <li><a href="#" class="nav-top-item no-submenu"> <!-- Add the class "current" to current menu item -->
+                    订单列表 </a>
                     <ul>
-                        <li><a href="#">Write a new Article</a></li>
-                        <li><a class="current" href="#">Manage Articles</a></li>
-                        <!-- Add class "current" to sub menu items also -->
-                        <li><a href="#">Manage Comments</a></li>
-                        <li><a href="#">Manage Categories</a></li>
+                        <li><a href="/administrator/order/orderList" target="content_iframe">订单列表</a></li>
+                        <li><a href="#" target="content_iframe">收款单列表</a></li>
+                        <li><a href="#" target="content_iframe">配货单列表</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item"> Pages </a>
+                <li><a href="#" class="nav-top-item"> 设计图管理 </a>
                     <ul>
-                        <li><a href="#">Create a new Page</a></li>
-                        <li><a href="#">Manage Pages</a></li>
+                        <li><a href="/administrator/design/addDesign" target="content_iframe">添加设计图</a></li>
+                        <li><a href="/administrator/design/designList" target="content_iframe">设计图列表</a></li>
+                        <li><a href="/administrator/design/comment" target="content_iframe">设计图评论列表</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item"> Image Gallery </a>
+                <li><a href="#" class="nav-top-item"> 新闻管理 </a>
                     <ul>
-                        <li><a href="#">Upload Images</a></li>
-                        <li><a href="#">Manage Galleries</a></li>
-                        <li><a href="#">Manage Albums</a></li>
-                        <li><a href="#">Gallery Settings</a></li>
+                        <li><a href="#" title="">分类管理</a></li>
+                        <li><a href="#" title="">文章管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item"> Events Calendar </a>
+                <li><a href="#" class="nav-top-item"> 业务管理 </a>
                     <ul>
-                        <li><a href="#">Calendar Overview</a></li>
-                        <li><a href="#">Add a new Event</a></li>
-                        <li><a href="#">Calendar Settings</a></li>
+                        <li><a href="#" title="">广告管理</a></li>
+                        <li><a href="#" title="">广告位管理</a></li>
+                        <li><a href="#" title="">礼物卡管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item"> Settings </a>
+                <li><a href="#" class="nav-top-item"> 活动管理 </a>
                     <ul>
-                        <li><a href="#">General</a></li>
-                        <li><a href="#">Design</a></li>
-                        <li><a href="#">Your Profile</a></li>
-                        <li><a href="#">Users and Permissions</a></li>
+                        <li><a href="/administrator/am_activity/addActivity" target="content_iframe">活动添加</a></li>
+                        <li><a href="#" target="content_iframe">活动管理</a></li>
+                        <li><a href="#" target="content_iframe">文章管理</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="nav-top-item"> 其他管理 </a>
+                    <ul>
+                        <li><a href="#" title="">建议与意见</a></li>
                     </ul>
                 </li>
             </ul>

@@ -1,5 +1,5 @@
 <?php require(dirname(__FILE__) . '/../common.php'); ?>
-<body>
+<?php require(dirname(__FILE__) . '/../../left.php');?>
 <a href="<?=url('administrator/product_category/create')?>">添加分类</a>
 
 <form method="post" action="<?=url('administrator/product_category/create')?>" novalidate="true">
