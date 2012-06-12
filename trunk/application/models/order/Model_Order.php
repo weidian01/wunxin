@@ -193,6 +193,20 @@ class Model_Order extends MY_Model
     }
 
     /**
+     * 获取订单列表
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getOrderList($limit = 20, $offset = 0)
+    {
+        $data = $this->db->get_where('order', array(), $limit, $offset)->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
      * @name 用户是否购买过此产品
      *
      * @param $uid

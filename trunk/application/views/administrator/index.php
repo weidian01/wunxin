@@ -51,10 +51,10 @@
                     <div class="navhead"><span>订单管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
-                            <li><a href="#" title="">订单列表</a></li>
-                            <li><a href="#" title="">收款单列表</a></li>
+                            <li><a href="/administrator/order/orderList" target="content_iframe">订单列表</a></li>
+                            <li><a href="#" target="content_iframe">收款单列表</a></li>
 
-                            <li><a href="#" title="">配货单列表</a></li>
+                            <li><a href="#" target="content_iframe">配货单列表</a></li>
                         </ul>
                     </div>
                     <div class="navhead"><span>用户管理</span></div>
@@ -72,8 +72,9 @@
                     <div class="navhead"><span>设计图管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
-                            <li><a href="#" title="">设计图管理</a></li>
-                            <li><a href="#" title="">设计图评论</a></li>
+                            <li><a href="/administrator/design/addDesign" target="content_iframe">添加设计图</a></li>
+                            <li><a href="/administrator/design/designList" target="content_iframe">设计图列表</a></li>
+                            <li><a href="/administrator/design/comment" target="content_iframe">设计图评论列表</a></li>
                         </ul>
                     </div>
 
@@ -97,9 +98,9 @@
                     <div class="navhead"><span>活动管理</span></div>
                     <div class="subnav">
                         <ul class="submenu">
-                            <li><a href="/administrator/activity/am_activity/addActivity">活动添加</a></li>
-                            <li><a href="#" title="">活动管理</a></li>
-                            <li><a href="#" title="">文章管理</a></li>
+                            <li><a href="/administrator/am_activity/addActivity" target="content_iframe">活动添加</a></li>
+                            <li><a href="#" target="content_iframe">活动管理</a></li>
+                            <li><a href="#" target="content_iframe">文章管理</a></li>
                         </ul>
                     </div>
 

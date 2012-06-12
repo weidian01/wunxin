@@ -30,7 +30,7 @@ class Model_Design extends MY_Model
      */
     public function getDesignList($limit = 20, $offset = 0)
     {
-        return $this->db->select('*')->get_where('design', '', $limit, $offset)->result_array();
+        return $this->db->select('*')->get_where('design', array('status' => 1), $limit, $offset)->result_array();
     }
 
 
