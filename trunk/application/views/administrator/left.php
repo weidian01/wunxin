@@ -48,7 +48,6 @@
                         <li><a href="/administrator/main/index">产品管理</a></li>
                         <li><a href="/administrator/product_category/index">产品分类管理</a></li>
                         <li><a href="/administrator/product_model/index">产品模型管理</a></li>
-                        <li><a href="/administrator/product_model/create">产品模型添加</a></li>
                         <li><a href="/administrator/product_model/create">产品尺码管理</a></li>
                     </ul>
                 </li>
