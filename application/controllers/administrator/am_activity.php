@@ -22,6 +22,20 @@ class am_activity extends MY_Controller
     public function addActivity()
     {
         echo 'a';
-        //$this->load->view('activity/add_activity');
+        $this->load->view('administrator/activity/add_activity');
+    }
+
+    /**
+     * 保存活动
+     */
+    public function saveActivity()
+    {
+        $this->input->get_post('subject');
+        $this->input->get_post('start_time');
+        $this->input->get_post('end_time');
+        $this->input->get_post('description');
+        $this->input->get_post('specification');
+
+
     }
 }
