@@ -42,10 +42,9 @@
                             <label>分类名称</label>
                             <input class="text-input small-input" type="text"
                                    value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
-                            <span class="input-notification success png_bg">Successful message</span>
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <br/>
-                            <small>A small description of the field</small>
+                            <small>分类名称不能为空</small>
                         </p>
 
                         <p>
@@ -66,23 +65,21 @@
                                 <?php foreach ($model as $item): ?>
                                 <option value="<?=$item['model_id']?>"><?=$item['model_name']?></option>
                                 <?php endforeach;?>
-                            </select>
+                            </select> <br>
+                            <small>必须指定模型</small>
                         </p>
 
                         <p>
                             <label>排序</label>
                             <input class="text-input small-input datepicker"
                                    type="text" <?php echo isset($info['sort']) ? $info['sort'] : ''?> name="sort"/>
-                            <span class="input-notification error png_bg">Error message</span></p>
 
                         <p>
                             <label>SEO标题</label>
                             <input class="text-input small-input" type="text"
                                    value="<?php echo isset($info['title']) ? $info['title'] : ''?>" name="title"/>
-                            <span class="input-notification success png_bg">Successful message</span>
-                            <!-- Classes for input-notification: success, error, information, attention -->
                             <br/>
-                            <small>A small description of the field</small>
+
                         </p>
 
                         <p>
@@ -90,16 +87,13 @@
                             <input class="text-input medium-input" type="text"
                                    value="<?php echo isset($info['keywords']) ? $info['keywords'] : ''?>"
                                    name="keywords"/>
-                            <span class="input-notification success png_bg">Successful message</span>
-                            <!-- Classes for input-notification: success, error, information, attention -->
-                            <br/>
-                            <small>A small description of the field</small>
                         </p>
 
                         <p>
                             <label>SEO描述</label>
-                            <textarea class="text-input textarea wysiwyg" name="descr" cols="79"
-                                      rows="15"><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="descr" cols="79" rows="15">
+                                <?php echo isset($info['descr']) ? $info['descr'] : ''?>
+                            </textarea>
                         </p>
 
                         <p>
