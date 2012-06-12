@@ -34,11 +34,11 @@
             <a href="#">万象电商管理系统<!--<img id="logo" src="/images/logo.png" alt="Simpla Admin logo"/>--></a>
             <br/><br/><br/><br/>
             <!-- Sidebar Profile links -->
-            <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?php echo $this->amInfo['am_uname'];?></a>, you have
-                <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br/>
-                <br/>
-                <a href="#" title="View the Site">View the Site</a> |
-                <a href="/administrator/admin_login/loginOut" title="Sign Out">Sign Out</a></div>
+            <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?php echo $this->amInfo['am_uname'];?></a>
+                <!--, you have <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br/>-->
+                <br/><br/>
+                <a href="http://wunxin.com" title="View the Site">查看网站首页</a> |
+                <a href="/administrator/admin_login/loginOut" title="Sign Out">退出</a></div>
             <ul id="main-nav">
                 <!-- Accordion Menu -->
                 <li>
@@ -62,8 +62,8 @@
                 </li>
                 <li><a href="#" class="nav-top-item"> 设计图管理 </a>
                     <ul>
-                        <li><a href="/administrator/design/addDesign">添加设计图</a></li>
-                        <li><a href="/administrator/design/designList">设计图列表</a></li>
+                        <li><a href="/administrator/design/designList">设计图管理</a></li>
+                        <!--<li><a href="/administrator/design/designList">设计图列表</a></li>-->
                         <li><a href="/administrator/design/comment">设计图评论列表</a></li>
                     </ul>
                 </li>
