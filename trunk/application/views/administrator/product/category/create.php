@@ -71,7 +71,7 @@
                         <p>
                             <label>排序</label>
                             <input class="text-input small-input datepicker"
-                                   type="text" <?php echo isset($info['sort']) ? $info['sort'] : ''?> name="sort"/>
+                                   type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort"/>
 
                         <p>
                             <label>SEO标题</label>
