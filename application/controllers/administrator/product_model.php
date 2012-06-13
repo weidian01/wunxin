@@ -78,9 +78,9 @@ class product_model extends MY_Controller
                 continue;
             if($attr_id)
                 $attrs[$key]['attr_id'] = $attr_id[$key];
-            $attrs[$key]['name'] = $attr_name[$key];
+            $attrs[$key]['attr_name'] = $attr_name[$key];
             $attrs[$key]['type'] = (int)$attr_type[$key];
-            $attrs[$key]['value'] = $attr_value[$key];
+            $attrs[$key]['attr_value'] = $attr_value[$key];
             $attrs[$key]['sort'] = (int)$attr_sort[$key];
 
         }
@@ -92,12 +92,13 @@ class product_model extends MY_Controller
         $this->load->model('product/Model_Product_Model', 'mod');
         if($model_id && $attr_id)
         {
-            echo 'update';
+            $this->mod->update($model_id, $model_name, $attrs);
         }
         else
         {
             $this->mod->create($model_name, $attrs);
         }
+        redirect('administrator/product_model/index');
     }
 
     /**
@@ -109,16 +110,16 @@ class product_model extends MY_Controller
         $model_id = $this->uri->segment(4, 0);
 
         if ($model_id) {
-            /**
-             * 还需要加入是些是否有产品使用此模型的判断,如果有使用则不可删除
-             */
-            $this->db->where('model_id', $model_id);
-            $this->db->delete('product_model');
-
-            $this->db->where('model_id', $model_id);
-            $this->db->delete('product_model_attr');
+            $this->load->model('product/Model_Product_Model', 'mod');
+            if($this->mod->isUse($model_id))
+            {
+                show_error('有产品正在使用该模型,无法删除'); // error();
+            }
+            else
+            {
+                $this->mod->delete($model_id);
+            }
         }
-        $this->load->helper('url');
         redirect('/administrator/product_model/index');
     }
 }

@@ -16,8 +16,8 @@
 <!--h2>分类列表</h2-->
 <!--p id="page-intro">产品分类管理</p-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="<?=url('administrator/product_category/create')?>"><span>添加分类</span></a></li>
-    <li><a class="shortcut-button" href="<?=url('administrator/product_category/index')?>"><span>分类列表</span></a></li>
+    <li><a class="shortcut-button" href="<?=site_url('administrator/product_category/create')?>"><span>添加分类</span></a></li>
+    <li><a class="shortcut-button" href="<?=site_url('administrator/product_category/index')?>"><span>分类列表</span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
 <div class="clear"></div>
@@ -57,9 +57,9 @@
 
                     <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['cname'];?></td>
                     <td><?=$item['floor']?></td>
-                    <td><a href="<?php echo url("administrator/product_category/edit/{$item['class_id']}")?>"><img
+                    <td><a href="<?php echo site_url("administrator/product_category/edit/{$item['class_id']}")?>"><img
                         src="/images/icons/pencil.png" alt="Edit"/></a> <a
-                        href="<?php echo url("administrator/product_category/del/{$item['class_id']}")?>"><img
+                        href="<?php echo site_url("administrator/product_category/del/{$item['class_id']}")?>"><img
                         src="/images/icons/cross.png" alt="Delete"/></a>
                     </td>
                 </tr>

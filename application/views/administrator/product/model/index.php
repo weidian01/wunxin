@@ -16,8 +16,8 @@
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=url('administrator/product_model/create')?>"><span>添加模型</span></a></li>
-        <li><a class="shortcut-button" href="<?=url('administrator/product_model/index')?>"><span>模型列表</span></a></li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_model/create')?>"><span>添加模型</span></a></li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_model/index')?>"><span>模型列表</span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -25,7 +25,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3>分类信息</h3>
+            <h3>模型列表</h3>
             <!--ul class="content-box-tabs">
 <li><a href="#tab1" class="default-tab">Table</a></li>
 <!-- href must be unique and match the id of target div -->
@@ -54,9 +54,9 @@
                             <input type="checkbox"/>
                         </td>
                         <td><?=$item['model_name']?></td>
-                        <td><a href="<?php echo url("administrator/product_model/edit/{$item['model_id']}")?>"><img
+                        <td><a href="<?php echo site_url("administrator/product_model/edit/{$item['model_id']}")?>"><img
                             src="/images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo url("administrator/product_model/del/{$item['model_id']}")?>"><img
+                            <a href="<?php echo site_url("administrator/product_model/del/{$item['model_id']}")?>"><img
                                 src="/images/icons/cross.png" alt="Delete"/></a></td>
                     </tr>
                         <?php endforeach;?>
