@@ -51,16 +51,41 @@ class Model_Product_Model extends MY_Model
         $this->db->where('model_id', $model_id);
         $this->db->update('product_model', array('model_name'=>$model_name));
 
-//        foreach ($attrs as $attr) {
-//            $this->db->where('attr_id', $attr['attr_id']);
-//            $this->db->update('product_model_attr', array(
-//                'type' => $attr['type'],
-//                'attr_name' => $attr['attr_name'],
-//                'attr_value' => $attr['attr_value'],
-//                'sort' => $attr['sort'],
-//            ));
-//        }
-        $this->db->update_batch('product_model_attr', $attrs, 'attr_id');
+        $attr_id = array();
+        foreach ($attrs as $attr)
+        {
+            if($attr['attr_id'])
+            {
+                $attr_id[] = (int)$attr['attr_id'];
+                $this->db->where('attr_id', $attr['attr_id']);
+                $this->db->update('product_model_attr', array(
+                    'type' => $attr['type'],
+                    'attr_name' => $attr['attr_name'],
+                    'attr_value' => $attr['attr_value'],
+                    'sort' => $attr['sort'],
+                ));
+            }
+            else
+            {
+                $this->db->insert('product_model_attr', array(
+                    'model_id' => $model_id,
+                    'type' => $attr['type'],
+                    'attr_name' => $attr['attr_name'],
+                    'attr_value' => $attr['attr_value'],
+                    'sort' => $attr['sort'],
+                ));
+                $attr_id[] = $this->db->insert_id();
+            }
+        }
+
+        if ($attr_id)
+        {
+            $this->db->where('model_id', $model_id);
+            $this->db->where_not_in('attr_id', $attr_id);
+            $this->db->delete('product_model_attr');
+        }
+        //DELETE FROM iwebshop_attribute WHERE model_id = 5  and id not in (16,14,17)
+        //$this->db->update_batch('product_model_attr', $attrs, 'attr_id');
     }
 
     /**
