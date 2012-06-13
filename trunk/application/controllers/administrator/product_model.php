@@ -42,7 +42,7 @@ class product_model extends MY_Controller
         $this->load->model('product/Model_Product_Model', 'mod');
         $data = $this->mod->getModel($model_id);
         //echo '<pre>';print_r($data);
-        $this->load->view('administrator/product/model/edit', $data);
+        $this->load->view('administrator/product/model/create', $data);
     }
 
     /**
@@ -62,16 +62,22 @@ class product_model extends MY_Controller
         if (!$model_name) {
             show_error('模型名为空'); //error();
         }
+
+        $model_id = $this->input->post('model_id');
+        $attr_id = $this->input->post('attr_id');
         $attr_name = $this->input->post('attr_name');
         $attr_type = $this->input->post('type');
         $attr_value = $this->input->post('attr_value');
         $attr_sort = $this->input->post('sort');
+
         //echo '<pre>';print_r($this->input->post());
         $attrs = array();
 
         foreach ($attr_name as $key => $item) {
             if (!$attr_name[$key] || !$attr_value[$key] || !$attr_type[$key])
                 continue;
+            if($attr_id)
+                $attrs[$key]['attr_id'] = $attr_id[$key];
             $attrs[$key]['name'] = $attr_name[$key];
             $attrs[$key]['type'] = (int)$attr_type[$key];
             $attrs[$key]['value'] = $attr_value[$key];
@@ -84,8 +90,14 @@ class product_model extends MY_Controller
         }
 
         $this->load->model('product/Model_Product_Model', 'mod');
-        $this->mod->Model_create($model_name, $attrs);
-
+        if($model_id && $attr_id)
+        {
+            echo 'update';
+        }
+        else
+        {
+            $this->mod->create($model_name, $attrs);
+        }
     }
 
     /**

@@ -42,6 +42,7 @@
                             <label>分类名称</label>
                             <input class="text-input small-input" type="text"
                                    value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
+                            <input type="hidden" name="class_id" value="<?php echo isset($info['class_id']) ? $info['class_id'] : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <br/>
                             <small>分类名称不能为空</small>
@@ -90,9 +91,7 @@
 
                         <p>
                             <label>SEO描述</label>
-                            <textarea class="text-input textarea" name="descr" cols="79" rows="15">
-                                <?php echo isset($info['descr']) ? $info['descr'] : ''?>
-                            </textarea>
+                            <textarea class="text-input textarea" name="descr" cols="79" rows="15"><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
                         </p>
 
                         <p>
