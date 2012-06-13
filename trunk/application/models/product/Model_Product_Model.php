@@ -26,16 +26,18 @@ class Model_Product_Model extends MY_Model
             return false;
         }
 
-        foreach ($attrs as $attr) {
-            $this->db->insert('product_model_attr', array(
-                'model_id' => $model_id,
-                'type' => $attr['type'],
-                'attr_name' => $attr['name'],
-                'attr_value' => $attr['value'],
-                'sort' => $attr['sort'],
-            ));
-        }
+        foreach ($attrs as $key => $attr) {
+//            $this->db->insert('product_model_attr', array(
+//                'model_id' => $model_id,
+//                'type' => $attr['type'],
+//                'attr_name' => $attr['attr_name'],
+//                'attr_value' => $attr['attr_value'],
+//                'sort' => $attr['sort'],
+//            ));
+            $attrs[$key]['model_id'] = $model_id;
 
+        }
+        $this->db->insert_batch('product_model_attr',$attrs);
         return true;
     }
 
@@ -44,18 +46,47 @@ class Model_Product_Model extends MY_Model
      * @param $model_name
      * @param array $attrs
      */
-    function model_update($model_name, array $attrs)
+    function update($model_id, $model_name, array $attrs)
     {
+        $this->db->where('model_id', $model_id);
+        $this->db->update('product_model', array('model_name'=>$model_name));
 
+//        foreach ($attrs as $attr) {
+//            $this->db->where('attr_id', $attr['attr_id']);
+//            $this->db->update('product_model_attr', array(
+//                'type' => $attr['type'],
+//                'attr_name' => $attr['attr_name'],
+//                'attr_value' => $attr['attr_value'],
+//                'sort' => $attr['sort'],
+//            ));
+//        }
+        $this->db->update_batch('product_model_attr', $attrs, 'attr_id');
     }
 
     /**
      * 根据模型id 删除模型
      * @param $model_id
      */
-    function model_delete($model_id)
+    function delete($model_id)
     {
+        $this->db->where('model_id', $model_id);
+        $this->db->delete('product_model');
 
+        $this->db->where('model_id', $model_id);
+        $this->db->delete('product_model_attr');
+    }
+
+    /**
+     * 查看是否有产品使用该模型
+     * @param $model_id
+     * @return int
+     */
+    function isUse($model_id)
+    {
+        $this->db->from('product_attr');
+        $this->db->where('model_id', $model_id);
+        $r = $this->db->count_all_results();
+        return $r ? true : false;
     }
 
     /**

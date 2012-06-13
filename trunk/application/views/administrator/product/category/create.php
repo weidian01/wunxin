@@ -16,9 +16,9 @@
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=url('administrator/product_category/create')?>"><span>添加分类</span></a>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_category/create')?>"><span>添加分类</span></a>
         </li>
-        <li><a class="shortcut-button" href="<?=url('administrator/product_category/index')?>"><span>分类列表</span></a>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_category/index')?>"><span>分类列表</span></a>
         </li>
     </ul>
     <!-- End .shortcut-buttons-set -->
@@ -35,7 +35,7 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?=url('administrator/product_category/save')?>" method="post">
+                <form action="<?=site_url('administrator/product_category/save')?>" method="post">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
