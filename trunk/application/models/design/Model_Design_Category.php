@@ -58,7 +58,7 @@ class Model_Design_Category extends MY_Model
      * @param $class_id
      * @return mixed
      */
-    public function getCategroyById($class_id)
+    public function getCategoryById($class_id)
     {
         return $categroy = $this->db
             ->select()

@@ -13,11 +13,11 @@
     </div>
 </noscript>
 <!-- Page Head -->
-<!--h2>分类列表</h2-->
+    <h2>设计图分类列表</h2>
 <!--p id="page-intro">产品分类管理</p-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="<?=url('administrator/product_category/create')?>"><span>添加分类</span></a></li>
-    <li><a class="shortcut-button" href="<?=url('administrator/product_category/index')?>"><span>分类列表</span></a></li>
+    <li><a class="shortcut-button" href="<?=url('administrator/design_category/create')?>"><span>添加分类</span></a></li>
+    <li><a class="shortcut-button" href="<?=url('administrator/design_category/index')?>"><span>分类列表</span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
 <div class="clear"></div>
@@ -54,13 +54,11 @@
                     <td>
                         <input type="checkbox"/>
                     </td>
-
                     <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['cname'];?></td>
                     <td><?=$item['floor']?></td>
-                    <td><a href="<?php echo url("administrator/product_category/edit/{$item['class_id']}")?>"><img
-                        src="/images/icons/pencil.png" alt="Edit"/></a> <a
-                        href="<?php echo url("administrator/product_category/del/{$item['class_id']}")?>"><img
-                        src="/images/icons/cross.png" alt="Delete"/></a>
+                    <td>
+                        <a href="<?php echo url("administrator/design_category/edit/{$item['class_id']}")?>"><img src="/images/icons/pencil.png" alt="Edit"/></a>
+                        <a href="<?php echo url("administrator/design_category/del/{$item['class_id']}")?>"><img src="/images/icons/cross.png" alt="Delete"/></a>
                     </td>
                 </tr>
                     <?php endforeach;?>
@@ -73,12 +71,7 @@
 </div>
 
 <div class="clear"></div>
-<div id="footer">
-    <small>
-        <!-- Remove this notice or replace it with whatever you want -->
-        &#169; Copyright 2010 Your Company | Powered by <a href="http://www.865171.cn">admin templates</a> | <a
-        href="#">Top</a></small>
-</div>
+    <?php require(dirname(__FILE__) . '/../../footer.php'); ?>
 <!-- End #footer -->
 </div>
 <!-- End #main-content -->
