@@ -24,12 +24,29 @@ class product_model extends MY_Controller
      */
     public function index()
     {
-        $page = $this->uri->segment(4, 1);
-        $pagesize = 20;
-        $page = (abs($page) - 1) * $pagesize;
         $this->load->model('product/Model_Product_Model', 'mod');
-        $data = $this->mod->getModelList($pagesize, $page);
-        $this->load->view('administrator/product/model/index', array('models' => $data));
+        $this->load->library('pagination');
+        $num = $this->mod->getModelNum();
+        $pagesize = 2;
+        $config['base_url'] = site_url('administrator/product_model/index');
+        $config['total_rows'] = $num;
+        $config['per_page'] = $pagesize;
+        $config['use_page_numbers'] = TRUE;
+        $config['uri_segment'] = 4;
+        $config['num_links'] = 10;
+        $config['anchor_class'] = 'class="number" ';
+        $this->pagination->initialize($config);
+
+        $page = $this->uri->segment(4, 1);
+        $data = array();
+        if ($num) {
+            $page = (abs($page) - 1) * $pagesize;
+            $data = $this->mod->getModelList($pagesize, $page);
+        }
+
+        $this->load->view('administrator/product/model/index', array('models' => $data, 'page' => $this->pagination->create_links()));
+
+
     }
 
 
@@ -76,7 +93,7 @@ class product_model extends MY_Controller
         foreach ($attr_name as $key => $item) {
             if (!$attr_name[$key] || !$attr_value[$key] || !$attr_type[$key])
                 continue;
-            if($attr_id)
+            if ($attr_id)
                 $attrs[$key]['attr_id'] = $attr_id[$key];
             $attrs[$key]['attr_name'] = $attr_name[$key];
             $attrs[$key]['type'] = (int)$attr_type[$key];
@@ -90,12 +107,9 @@ class product_model extends MY_Controller
         }
 
         $this->load->model('product/Model_Product_Model', 'mod');
-        if($model_id && $attr_id)
-        {
+        if ($model_id && $attr_id) {
             $this->mod->update($model_id, $model_name, $attrs);
-        }
-        else
-        {
+        } else {
             $this->mod->create($model_name, $attrs);
         }
         redirect('administrator/product_model/index');
@@ -111,12 +125,9 @@ class product_model extends MY_Controller
 
         if ($model_id) {
             $this->load->model('product/Model_Product_Model', 'mod');
-            if($this->mod->isUse($model_id))
-            {
+            if ($this->mod->isUse($model_id)) {
                 show_error('有产品正在使用该模型,无法删除'); // error();
-            }
-            else
-            {
+            } else {
                 $this->mod->delete($model_id);
             }
         }

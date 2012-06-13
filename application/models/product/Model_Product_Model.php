@@ -125,5 +125,15 @@ class Model_Product_Model extends MY_Model
         return $data;
     }
 
+    /**
+     * 获取模型数量
+     * @return mixed
+     */
+    function getModelNum()
+    {
+        $this->db->from('product_model');
+        return $this->db->count_all_results();
+    }
+
 
 }
