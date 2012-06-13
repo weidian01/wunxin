@@ -61,6 +61,17 @@
                     </tr>
                         <?php endforeach;?>
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="3">
+                          <div class="pagination">
+                              <?=$page?>
+                          </div>
+                          <!-- End .pagination -->
+                          <div class="clear"></div>
+                        </td>
+                      </tr>
+                    </tfoot>
                 </table>
             </div>
             <!-- End #tab1 -->
