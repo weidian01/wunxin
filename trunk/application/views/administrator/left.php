@@ -19,9 +19,11 @@
     <script type="text/javascript" src="/scripts/facebox.js"></script>
     <!-- jQuery WYSIWYG Plugin -->
     <script type="text/javascript" src="/scripts/jquery.wysiwyg.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/scripts/My97DatePicker/WdatePicker.js"></script>
     <!-- jQuery Datepicker Plugin -->
-    <script type="text/javascript" src="/scripts/jquery.datePicker.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.date.js"></script>
+    <!--<script type="text/javascript" src="/scripts/jquery.datePicker.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.date.js"></script>-->
 </head>
 <body>
 <div id="body-wrapper">

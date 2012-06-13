@@ -257,6 +257,7 @@ create table wx_activity
    initiator_desc       text comment '发起方介绍',
    specification        text comment '活动规范',
    create_time          datetime comment '创建时间',
+   status               tinyint comment '状态,0删除，1正常',
    primary key (activity_id)
 )
 engine = MYISAM
@@ -537,6 +538,7 @@ create table wx_design
    did                  int unsigned not null auto_increment comment '设计图ID',
    class_id             int unsigned comment '设计图分类',
    uid                  int comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    dname                varchar(16) comment '设计图名称',
    ddetail              varchar(32) comment '设计图介绍',
    design_img           varchar(128) comment '设计图片',
@@ -856,6 +858,7 @@ create table wx_order
    zipcode              char(7) comment '邮编',
    phone_num            char(11) comment '手机号码',
    call_num             char(11) comment '座机',
+   picking_status       tinyint comment '配货状态, 0未配货，1已配货',
    create_time          datetime comment '创建时间',
    primary key (order_sn)
 )
@@ -864,7 +867,7 @@ auto_increment = 1;
 
 alter table wx_order comment '订单表';
 
-INSERT INTO `wx_order` (`order_sn`,`address_id`,`uid`,`uname`,`after_discount_price`,`discount_rate`,`before_discount_price`,`pay_type`,`defray_type`,`is_pay`,`order_source`,`pay_time`,`delivert_time`,`annotated`,`invoice`,`paid`,`need_pay`,`ip`,`create_time`) VALUES (1,1,1,'hjpking@gmail.com',10,10,10,1,'0',0,1,'2012-06-01 19:16:15',1,'麻烦快点发货',0,10,0,'127.0.0.01','2012-06-01 19:16:15');
+INSERT INTO `wx_order` (`order_sn`,`address_id`,`uid`,`uname`,`after_discount_price`,`discount_rate`,`before_discount_price`,`pay_type`,`defray_type`,`is_pay`,`order_source`,`pay_time`,`delivert_time`,`annotated`,`invoice`,`paid`,`need_pay`,`ip`,`picking_status`,`create_time`) VALUES (1,1,1,'hjpking@gmail.com',10,10,10,1,'0',0,1,'2012-06-01 19:16:15',1,'麻烦快点发货',0,10,0,'127.0.0.01',0,'2012-06-01 19:16:15');
 
 /*==============================================================*/
 /* Index: Index_uid                                             */
@@ -1075,6 +1078,7 @@ create index Index_attr_value on wx_product_attr
 create table wx_product_category
 (
    class_id             int unsigned not null auto_increment comment '分类ID',
+   model_id             int unsigned not null comment '模型id',
    cname                varchar(64) comment '分类名称',
    parent_id            int unsigned comment '分类父ID',
    sort                 smallint comment '排序',
