@@ -27,7 +27,7 @@ class product_model extends MY_Controller
         $this->load->model('product/Model_Product_Model', 'mod');
         $this->load->library('pagination');
         $num = $this->mod->getModelNum();
-        $pagesize = 2;
+        $pagesize = 20;
         $config['base_url'] = site_url('administrator/product_model/index');
         $config['total_rows'] = $num;
         $config['per_page'] = $pagesize;
@@ -45,8 +45,6 @@ class product_model extends MY_Controller
         }
 
         $this->load->view('administrator/product/model/index', array('models' => $data, 'page' => $this->pagination->create_links()));
-
-
     }
 
 
