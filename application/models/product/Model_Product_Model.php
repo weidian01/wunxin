@@ -18,7 +18,7 @@ class Model_Product_Model extends MY_Model
      * )
      * @return bool
      */
-    function Model_create($model_name, array $attrs)
+    function create($model_name, array $attrs)
     {
         $this->db->insert('product_model', array('model_name' => $model_name));
         $model_id = $this->db->insert_id();

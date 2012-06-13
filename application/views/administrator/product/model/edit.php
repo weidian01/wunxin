@@ -7,7 +7,7 @@
     <table>
         <?php foreach ($attrs as $attr): ?>
         <tr>
-            <td>属性名:<input type="text" name="attr_name[]" value="<?=$attr['attr_name']?>"></td>
+            <td>属性名:<input type="text" name="attr_name[]" value="<?=$attr['attr_name']?>"><input type="text" name="attr_id[]" value="<?=$attr['attr_id']?>"></td>
             <td>类型:<select name="type[]" style="width:20px">
                 <option value="1" <?php if($attr['type']==1) echo 'selected="selected"';?>>单选</option>
                 <option value="2" <?php if($attr['type']==2) echo 'selected="selected"';?>>复选</option>
@@ -15,7 +15,7 @@
                 <option value="4" <?php if($attr['type']==4) echo 'selected="selected"';?>>文本</option>
             </select></td>
             <td>属性值:<input type="text" name="attr_value[]" value="<?=$attr['attr_value']?>">注释:多个参数使用半角逗号分割</td>
-            <td>排序:<input type="text" name="sort[]" size="2" value="<?=$attr['sort']?>"></td>
+            <td>排序:<input type="text" name="sort[]" size="2" value="<?=$attr['attr_sort']?>"></td>
         </tr>
         <?php endforeach;?>
     </table>
