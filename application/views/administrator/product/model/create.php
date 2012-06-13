@@ -44,6 +44,7 @@
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <small>模型名称不能为空</small>
                         </p>
+                        <label>扩展属性 <a href="javascript:add_attr();">+</a></label>
                         <?php if(isset($attrs)):foreach ($attrs as $attr): ?>
                         <p>
                             属性名:<input class="text-input" type="text" name="attr_name[]" value="<?=$attr['attr_name']?>"><input type="hidden" name="attr_id[]" value="<?=$attr['attr_id']?>">
@@ -119,3 +120,9 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
+<script>
+  function add_attr()
+  {
+      alert('add_attr');
+  }
+</script>
