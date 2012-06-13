@@ -13,9 +13,9 @@ class design_category extends MY_Controller
      */
     public function index()
     {
-        $this->load->model('product/Model_Design_Category', 'category');
-        $category = $this->category->getCategroyList();
-        $this->load->view('administrator/design/category/index', array('category' => $category));
+        $this->load->model('design/Model_Design_Category', 'category');
+        $category = $this->category->getCategoryList();
+        $this->load->view('administrator/design/category/category_index', array('category' => $category));
     }
 
     /**
