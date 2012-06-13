@@ -80,7 +80,7 @@ class product_model extends MY_Controller
 
         $model_id = $this->input->post('model_id');
         $attr_id = $this->input->post('attr_id');
-        $attr_name = $this->input->post('attr_name');
+        $attr_name = (array)$this->input->post('attr_name');
         $attr_type = $this->input->post('type');
         $attr_value = $this->input->post('attr_value');
         $attr_sort = $this->input->post('sort');
@@ -100,7 +100,7 @@ class product_model extends MY_Controller
 
         }
 
-        if (!$attrs) {
+        if (! $attrs) {
             show_error('模型属性为空'); // error();
         }
 
