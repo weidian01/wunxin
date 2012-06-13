@@ -16,8 +16,10 @@
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=site_url('administrator/product_model/create')?>"><span>添加模型</span></a></li>
-        <li><a class="shortcut-button" href="<?=site_url('administrator/product_model/index')?>"><span>模型列表</span></a></li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_model/create')?>"><span>添加模型</span></a>
+        </li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_model/index')?>"><span>模型列表</span></a>
+        </li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -44,53 +46,29 @@
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <small>模型名称不能为空</small>
                         </p>
-                        <label>扩展属性 <a href="javascript:add_attr();">+</a></label>
-                        <?php if(isset($attrs)):foreach ($attrs as $attr): ?>
-                        <p>
-                            属性名:<input class="text-input" type="text" name="attr_name[]" value="<?=$attr['attr_name']?>"><input type="hidden" name="attr_id[]" value="<?=$attr['attr_id']?>">
-                            类型:<select name="type[]">
-                            <option value="1" <?php if($attr['type']==1) echo 'selected="selected"';?>>单选</option>
-                            <option value="2" <?php if($attr['type']==2) echo 'selected="selected"';?>>复选</option>
-                            <option value="3" <?php if($attr['type']==3) echo 'selected="selected"';?>>下拉</option>
-                            <option value="4" <?php if($attr['type']==4) echo 'selected="selected"';?>>文本</option>
+                        <div id="attrs">
+                            <label>扩展属性 <a href="javascript:add_attr();">添加</a></label>
+                            <?php if (isset($attrs)):foreach ($attrs as $attr): ?>
+                            <p>
+                                属性名:<input class="text-input" type="text" name="attr_name[]" value="<?=$attr['attr_name']?>">
+                                <input type="hidden" name="attr_id[]" value="<?=$attr['attr_id']?>">
+                                类型:<select name="type[]">
+                                <option value="1" <?php if ($attr['type'] == 1) echo 'selected="selected"';?>>单选
+                                </option>
+                                <option value="2" <?php if ($attr['type'] == 2) echo 'selected="selected"';?>>复选
+                                </option>
+                                <option value="3" <?php if ($attr['type'] == 3) echo 'selected="selected"';?>>下拉
+                                </option>
+                                <option value="4" <?php if ($attr['type'] == 4) echo 'selected="selected"';?>>文本
+                                </option>
                             </select>
-                            属性值:<input class="text-input" type="text" name="attr_value[]" value="<?=$attr['attr_value']?>">
-                            排序:<input class="text-input" type="text" name="sort[]" value="<?=$attr['sort']?>">
-                        </p>
-                        <?php endforeach;endif;?>
-                        <p>
-                            属性名:<input class="text-input" type="text" name="attr_name[]" value="">
-                            类型:<select name="type[]">
-                                <option value="1">单选</option>
-                                <option value="2">复选</option>
-                                <option value="3">下拉</option>
-                                <option value="4">文本</option>
-                            </select>
-                            属性值:<input class="text-input" type="text" name="attr_value[]" value="">
-                            排序:<input class="text-input" type="text" name="sort[]" value="">
-                        </p>
-                        <p>
-                            属性名:<input class="text-input" type="text" name="attr_name[]" value="">
-                            类型:<select name="type[]">
-                                <option value="1">单选</option>
-                                <option value="2">复选</option>
-                                <option value="3">下拉</option>
-                                <option value="4">文本</option>
-                            </select>
-                            属性值:<input class="text-input" type="text" name="attr_value[]" value="">
-                            排序:<input class="text-input" type="text" name="sort[]" value="">
-                        </p>
-                        <p>
-                            属性名:<input class="text-input" type="text" name="attr_name[]" value="">
-                            类型:<select name="type[]">
-                                <option value="1">单选</option>
-                                <option value="2">复选</option>
-                                <option value="3">下拉</option>
-                                <option value="4">文本</option>
-                            </select>
-                            属性值:<input class="text-input" type="text" name="attr_value[]" value="">
-                            排序:<input class="text-input" type="text" name="sort[]" value="">
-                        </p>
+                                属性值:<input class="text-input" type="text" name="attr_value[]"
+                                           value="<?=$attr['attr_value']?>">
+                                排序:<input class="text-input" type="text" name="sort[]" value="<?=$attr['sort']?>">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" onclick="del_attr(this)" alt="Delete"/>
+                            </p>
+                            <?php endforeach;endif;?>
+                        </div>
                         <p>
                             <input class="button" type="submit" value="Submit"/>
                         </p>
@@ -121,8 +99,12 @@
 <!-- Download From www.exet.tk-->
 </html>
 <script>
-  function add_attr()
-  {
-      alert('add_attr');
-  }
+    function add_attr() {
+        $("#attrs").append('<p>属性名:<input class="text-input" type="text" name="attr_name[]" value=""><input type="hidden" name="attr_id[]" value=""> 类型:<select name="type[]"><option value="1">单选</option><option value="2">复选</option><option value="3">下拉</option><option value="4">文本</option></select> 属性值:<input class="text-input" type="text" name="attr_value[]" value=""> 排序:<input class="text-input" type="text" name="sort[]" value=""> <img src="<?=config_item('static_url')?>images/icons/cross.png" onclick="del_attr(this)" alt="Delete"/></p>');
+    }
+
+    function del_attr(obj)
+    {
+        $(obj).parent().remove();
+    }
 </script>
