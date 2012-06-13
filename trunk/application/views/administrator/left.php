@@ -62,7 +62,7 @@
                 <li><a href="#" class="nav-top-item"> 设计图管理 </a>
                     <ul>
                         <li><a href="/administrator/design/designList">设计图管理</a></li>
-                        <!--<li><a href="/administrator/design/designList">设计图列表</a></li>-->
+                        <li><a href="/administrator/design_category/index">设计图分类管理</a></li>
                         <li><a href="/administrator/design/comment">设计图评论列表</a></li>
                     </ul>
                 </li>
