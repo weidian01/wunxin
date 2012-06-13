@@ -72,7 +72,7 @@ if (!function_exists('')) {
     function generationDesignDirectory($dId)
     {
 
-        return BASEPATH.'/design/'.intval($dId / 1000000) . '/' . intval($dId / 10000) . '/' . intval($dId / 100) . '/';
+        return WEBROOT.DS.'design'.DS.intval($dId / 1000000) . DS . intval($dId / 10000) . DS . intval($dId / 100) . DS;
     }
 }
 /* End of file directory_helper.php */
