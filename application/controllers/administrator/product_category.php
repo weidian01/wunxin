@@ -48,7 +48,7 @@ class product_category extends MY_Controller
     {
         $class_id = $this->uri->segment(4, 0);
         if (!$class_id) {
-            show_error('模型id为空');
+            show_error('分类id为空');
         }
         $this->load->model('product/Model_Product_Category', 'category');
         $info = $this->category->getCategroyById($class_id);
@@ -83,7 +83,6 @@ class product_category extends MY_Controller
         redirect('administrator/product_category/index');
     }
 
-
     /**
      * 删除一个分类
      */
@@ -91,7 +90,7 @@ class product_category extends MY_Controller
     {
         $class_id = $this->uri->segment(4, 0);
         if (!$class_id) {
-            show_error('模型id为空');
+            show_error('分类id为空');
         }
         $this->load->model('product/Model_Product_Category', 'category');
 

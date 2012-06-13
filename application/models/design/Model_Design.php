@@ -9,6 +9,55 @@
 class Model_Design extends MY_Model
 {
     /**
+     * 编辑设计图
+     *
+     * @param array $dInfo
+     * @param int $dId
+     * @return boolean
+     */
+    public function editDesign(array $dInfo, $dId)
+    {
+        $data = array(
+            'class_id' => $dInfo['class_id'],
+            'dname' => $dInfo['dname'],
+            'ddetail' => $dInfo['ddetail'],
+            'design_img' => $dInfo['design_img'],
+            'source_expand' => $dInfo['source_expand'],
+            'status' => 1,
+            'vote_end_time' => $dInfo['vote_end_time'],
+        );
+
+        $this->db->where('did', $dId);
+        return $this->db->update('design', $data);
+    }
+
+    /**
+     * 添加设计图
+     *
+     * @param array $dInfo
+     * @return boolean
+     */
+    public function addDesign(array $dInfo)
+    {
+        $data = array(
+            'class_id' => $dInfo['class_id'],
+            'dname' => $dInfo['dname'],
+            'ddetail' => $dInfo['ddetail'],
+            'design_img' => $dInfo['design_img'],
+            'source_expand' => $dInfo['source_expand'],
+            'status' => 1,
+            'vote_end_time' => $dInfo['vote_end_time'],
+            'uid' => $dInfo['uid'],
+            'uname' => $dInfo['uname'],
+            'design_source' => $dInfo['design_source'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
+        );
+
+        $this->db->insert('design', $data);
+        return $this->db->insert_id();
+    }
+
+    /**
      * 获取设计图 -- 通过设计图ID
      *
      * @param $dId
@@ -31,6 +80,13 @@ class Model_Design extends MY_Model
     public function getDesignList($limit = 20, $offset = 0)
     {
         return $this->db->select('*')->get_where('design', array('status' => 1), $limit, $offset)->result_array();
+    }
+
+    public function getDesignCount()
+    {
+        $this->db->from('design');
+        $this->db->where('status', 1);
+        return $this->db->count_all_results();
     }
 
 

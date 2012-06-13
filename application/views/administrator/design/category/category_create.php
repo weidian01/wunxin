@@ -12,7 +12,7 @@
                 Download From <a href="http://www.exet.tk">exet.tk</a></div>
         </div>
     </noscript>
-    <h2>添加设计图分类</h2>
+    <h2><?php echo $h1Title?></h2>
     <!-- Page Head -->
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
@@ -36,13 +36,13 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?=url('administrator/product_category/save')?>" method="post">
+                <form action="<?=url('administrator/design_category/save')?>" method="post">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>分类名称</label>
-                            <input class="text-input small-input" type="text"
-                                   value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
+                            <input class="text-input small-input" type="text" value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
+                            <input type="hidden" name="class_id" value="<?php echo isset($info['class_id']) ? $info['class_id'] : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <br/>
                             <small>分类名称不能为空</small>
@@ -79,9 +79,7 @@
 
                         <p>
                             <label>SEO描述</label>
-                            <textarea class="text-input textarea" name="descr" cols="79" rows="15">
-                                <?php echo isset($info['descr']) ? $info['descr'] : ''?>
-                            </textarea>
+                            <textarea class="text-input textarea" name="descr" cols="79" rows="15"><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
                         </p>
 
                         <p>
