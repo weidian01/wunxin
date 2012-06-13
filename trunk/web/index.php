@@ -176,6 +176,12 @@ if (!is_dir($system_path)) {
  *  Now that we know the path, set the main path constants
  * -------------------------------------------------------------------
  */
+// web 目录常量
+define('WEBROOT', dirname(__FILE__));
+
+//文件分隔符
+define('DS', DIRECTORY_SEPARATOR);
+
 // The name of THIS file
 define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
