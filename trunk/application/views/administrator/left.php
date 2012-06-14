@@ -40,17 +40,17 @@
                 <!--, you have <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br/>-->
                 <br/><br/>
                 <a href="http://wunxin.com" title="View the Site">查看网站首页</a> |
-                <a href="/administrator/admin_login/loginOut" title="Sign Out">退出</a></div>
+                <a href="<?=site_url('administrator/admin_login/logout')?>" title="Sign Out">退出</a></div>
             <ul id="main-nav">
                 <!-- Accordion Menu -->
                 <li>
                     <a href="#" class="nav-top-item current">
                         <!-- Add the class "no-submenu" to menu items with no sub menu --> 产品管理 </a>
                     <ul>
-                        <li><a href="/administrator/main/index">产品管理</a></li>
-                        <li><a href="/administrator/product_category/index">产品分类管理</a></li>
-                        <li><a href="/administrator/product_model/index">产品模型管理</a></li>
-                        <li><a href="/administrator/product_model/create">产品尺码管理</a></li>
+                        <li><a href="<?=site_url('administrator/main/index')?>">产品管理</a></li>
+                        <li><a href="<?=site_url('administrator/product_category/index')?>">产品分类管理</a></li>
+                        <li><a href="<?=site_url('administrator/product_model/index')?>">产品模型管理</a></li>
+                        <li><a href="<?=site_url('administrator/product_size/index')?>">产品尺码管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item no-submenu"> <!-- Add the class "current" to current menu item -->
