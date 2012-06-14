@@ -17,10 +17,11 @@
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=url('administrator/design_category/create')?>"><span>添加分类</span></a>
-        </li>
-        <li><a class="shortcut-button" href="<?=url('administrator/design_category/index')?>"><span>分类列表</span></a>
-        </li>
+        <li><a class="shortcut-button" href="/administrator/design/addDesign"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/design/designList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/design_category/create"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/design_category/index"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/design_comment/commentList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -41,8 +42,10 @@
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>分类名称</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
-                            <input type="hidden" name="class_id" value="<?php echo isset($info['class_id']) ? $info['class_id'] : ''?>">
+                            <input class="text-input small-input" type="text"
+                                   value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
+                            <input type="hidden" name="class_id"
+                                   value="<?php echo isset($info['class_id']) ? $info['class_id'] : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <br/>
                             <small>分类名称不能为空</small>
@@ -53,14 +56,18 @@
                             <select name="parent_id" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($category as $item): ?>
-                                <option value="<?=$item['class_id']?>" <?php if(isset($info['parent_id']) && $info['parent_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option
+                                    value="<?=$item['class_id']?>" <?php if (isset($info['parent_id']) && $info['parent_id'] == $item['class_id']) {
+                                    echo 'selected="selected"';
+                                }?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
                         <p>
                             <label>排序</label>
                             <input class="text-input small-input datepicker"
-                                   type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort"/>
+                                   type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>"
+                                   name="sort"/>
 
                         <p>
                             <label>SEO标题</label>
@@ -79,7 +86,8 @@
 
                         <p>
                             <label>SEO描述</label>
-                            <textarea class="text-input textarea" name="descr" cols="79" rows="15"><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="descr" cols="79"
+                                      rows="15"><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
                         </p>
 
                         <p>

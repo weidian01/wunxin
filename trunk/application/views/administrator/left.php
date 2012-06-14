@@ -3,31 +3,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>万象电子商务管理系统</title>
-    <!--                       CSS                       -->
-    <!-- Reset Stylesheet -->
     <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen"/>
-    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen"/>
-    <!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
     <link rel="stylesheet" href="/css/invalid.css" type="text/css" media="screen"/>
-    <!--                       Javascripts                       -->
-    <!-- jQuery -->
     <script type="text/javascript" src="/scripts/jquery-1.3.2.min.js"></script>
-    <!-- jQuery Configuration -->
     <script type="text/javascript" src="/scripts/simpla.jquery.configuration.js"></script>
-    <!-- Facebox jQuery Plugin -->
     <script type="text/javascript" src="/scripts/facebox.js"></script>
-    <!-- jQuery WYSIWYG Plugin -->
     <script type="text/javascript" src="/scripts/jquery.wysiwyg.js"></script>
-
     <script language="javascript" type="text/javascript" src="/scripts/My97DatePicker/WdatePicker.js"></script>
-    <!-- jQuery Datepicker Plugin -->
-    <!--<script type="text/javascript" src="/scripts/jquery.datePicker.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.date.js"></script>-->
 </head>
 <body>
 <div id="body-wrapper">
-    <!-- Wrapper for the radial gradient background -->
     <div id="sidebar">
         <div id="sidebar-wrapper">
             <!-- Sidebar with logo and menu -->
@@ -65,7 +51,7 @@
                     <ul>
                         <li><a href="/administrator/design/designList">设计图管理</a></li>
                         <li><a href="/administrator/design_category/index">设计图分类管理</a></li>
-                        <li><a href="/administrator/design/comment">设计图评论列表</a></li>
+                        <li><a href="/administrator/design_comment/commentList">设计图评论列表</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item"> 新闻管理 </a>

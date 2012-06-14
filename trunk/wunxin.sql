@@ -522,6 +522,7 @@ create table wx_color
    china_name           varchar(16) comment '颜色中文名',
    english_name         varchar(16) comment '颜色英文名',
    code                 char(6) comment '颜色代码',
+   image                varchar(64) comment '颜色图片',
    descr                varchar(128) comment '颜色描述',
    primary key (color_id)
 )
@@ -544,10 +545,10 @@ create table wx_design
    design_img           varchar(128) comment '设计图片',
    design_source        tinyint unsigned default 1 comment '设计图来源,1系统，2活动，3用户，4其他',
    source_expand        char(10) comment '来源扩展字段,可存活动ID，其他一些标识性信息',
-   status               tinyint unsigned comment '状态，0未激活，1正常',
+   status               tinyint unsigned default 1 comment '状态，0未激活，1正常',
    vote_end_time        datetime comment '投票结束时间',
-   total_num            int unsigned comment '总投票人数',
-   total_fraction       int unsigned comment '总分数',
+   total_num            int unsigned default 0 comment '总投票人数',
+   total_fraction       int unsigned default 0 comment '总分数',
    create_time          datetime comment '创建时间',
    primary key (did)
 )
@@ -555,6 +556,10 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_design comment '设计图';
+
+INSERT INTO ``wx_design`` (`did`,`class_id`,`uid`,`uname`,`dname`,`ddetail`,`design_img`,`design_source`,`source_expand`,`status`,`vote_end_time`,`total_num`,`total_fraction`,`create_time`) VALUES (1,9,1,'admin','动漫12','动漫游戏1','design00011.jpg',1,'',1,'2011-02-16 00:00:00',10,50,'2012-06-11 14:08:56');
+INSERT INTO ``wx_design`` (`did`,`class_id`,`uid`,`uname`,`dname`,`ddetail`,`design_img`,`design_source`,`source_expand`,`status`,`vote_end_time`,`total_num`,`total_fraction`,`create_time`) VALUES (2,1,1,'hjpking@gmail.com','游戏','游戏','/images/2.jpg',1,'1',1,'2012-06-18 14:07:02',20,100,'2012-06-11 14:08:56');
+INSERT INTO ``wx_design`` (`did`,`class_id`,`uid`,`uname`,`dname`,`ddetail`,`design_img`,`design_source`,`source_expand`,`status`,`vote_end_time`,`total_num`,`total_fraction`,`create_time`) VALUES (43,9,1,'admin','测试','无可奈何厅厅厅在仍仍脸枯要我佳木斯要苛苛枯棒棒 枯枯苛欠欠','design000431.jpg',1,'',1,'2012-06-14 11:13:29',0,0,'2012-06-14 11:13:44');
 
 /*==============================================================*/
 /* Index: Index_uid                                             */
@@ -612,7 +617,7 @@ create table wx_design_comment
    title                varchar(32) comment '评论标题',
    content              varchar(255) comment '评论内容',
    ip                   char(16) comment 'IP地址',
-   reply_num            int comment '评论回复数量',
+   reply_num            int default 0 comment '评论回复数量',
    create_time          datetime comment '创建时间',
    primary key (comment_id)
 )

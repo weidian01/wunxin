@@ -17,6 +17,7 @@ class Model_Design extends MY_Model
      */
     public function editDesign(array $dInfo, $dId)
     {
+        /*
         $data = array(
             'class_id' => $dInfo['class_id'],
             'dname' => $dInfo['dname'],
@@ -26,9 +27,10 @@ class Model_Design extends MY_Model
             'status' => 1,
             'vote_end_time' => $dInfo['vote_end_time'],
         );
+        //*/
 
         $this->db->where('did', $dId);
-        return $this->db->update('design', $data);
+        return $this->db->update('design', $dInfo);
     }
 
     public function updateDesignImage($imgPath, $dId)
@@ -75,9 +77,32 @@ class Model_Design extends MY_Model
      */
     public function getDesignByDid($dId)
     {
-        $data = $this->db->select('*')->get_where('design', array('did' => $dId))->row_array();
+        $data = $this->db->select('*')->get_where('design', array('did' => $dId, 'status' => 1))->row_array();
 
         return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取设计图 -- 通过用户ID
+     *
+     * @param $uId
+     * @param $limit
+     * @param $offset
+     * @return null || array
+     */
+    public function getDesignByUid($uId, $limit = 20, $offset = 0)
+    {
+        $data = $this->db->select('*')->get_where('design', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    public function getUserDesignCount($uId)
+    {
+        $this->db->from('design');
+        $this->db->where('uid', $uId);
+        $this->db->where('status', 1);
+        return $this->db->count_all_results();
     }
 
     /**
@@ -92,6 +117,10 @@ class Model_Design extends MY_Model
         return $this->db->select('*')->get_where('design', array('status' => 1), $limit, $offset)->result_array();
     }
 
+    /**获取设计数量
+     *
+     * @return int
+     */
     public function getDesignCount()
     {
         $this->db->from('design');
@@ -99,15 +128,17 @@ class Model_Design extends MY_Model
         return $this->db->count_all_results();
     }
 
-
+    /**
+     * 删除设计图 -- 通过设计图ID
+     *
+     * @param $dId
+     * @return boolean
+     */
     public function deleteDesignByDid($dId)
     {
-
+        $this->db->where('did', $dId);
+        return $this->db->update('design', array('status' => 0));
     }
 
-    public function modifyDesignByDid($dId, $dInfo)
-    {
-
-    }
 
 }
