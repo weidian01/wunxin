@@ -25,12 +25,12 @@
   <div id="login-top">
     <h1>Simpla Admin</h1>
     <!-- Logo (221px width) -->
-    <a href="http://www.865171.cn"><img id="logo" src="/images/logo.png" alt="Simpla Admin logo" /></a> </div>
+    <a href="#"><img id="logo" src="/images/logo.png" alt="Simpla Admin logo" /></a> </div>
   <!-- End #logn-top -->
   <div id="login-content">
       <form action="/administrator/admin_login/login" method="post">
       <div class="notification information png_bg">
-        <div> Just click "Sign In". No password needed. </div>
+        <!--<div> Just click "Sign In". No password needed. </div>-->
       </div>
       <p>
         <label>Username</label>

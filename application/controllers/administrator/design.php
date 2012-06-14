@@ -93,21 +93,27 @@ class design extends MY_Controller
         }
         $this->load->helper('directory');
         $directory = generationDesignDirectory($lastId);
-        echo '<pre>';print_r($directory);exit;
-        $config['upload_path'] = $directory;
+
+        $config['upload_path'] = DESIGNPATH.$directory;
         $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '100';
-        $config['max_width'] = '1024';
-        $config['max_height'] = '768';
-        $config['file_name'] = $directory;
+        $config['max_size'] = '2000';
+        $config['remove_spaces'] = true;
+        $config['overwrite'] = false;
+        $config['max_width']  = '0';
+        $config['max_height']  = '0';
+        $config['file_name'] = $lastId;
 
         $this->load->library('upload', $config);
-
-        if (!$this->upload->do_upload('design_image')) {
-            show_error('文件上传失败!');
+        if ($this->upload->do_upload('design_image')) {
+            $uData = $this->upload->data();
+            $file = $directory.$uData['file_name'];
+            $this->design->updateDesignImage($file, $lastId);
+            $this->load->helper('url');
+            redirect('administrator/design/designList');
         } else {
-
+            show_error('文件上传失败!');
         }
-
     }
 }
+
+//echo '<pre>';print_r($config);exit;

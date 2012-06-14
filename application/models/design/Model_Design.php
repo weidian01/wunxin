@@ -31,6 +31,16 @@ class Model_Design extends MY_Model
         return $this->db->update('design', $data);
     }
 
+    public function updateDesignImage($imgPath, $dId)
+    {
+        $data = array(
+            'design_img' => $imgPath,
+        );
+
+        $this->db->where('did', $dId);
+        return $this->db->update('design', $data);
+    }
+
     /**
      * 添加设计图
      *
