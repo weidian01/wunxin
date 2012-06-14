@@ -68,11 +68,27 @@ if (!function_exists('directory_map')) {
     }
 }
 
-if (!function_exists('')) {
+if (!function_exists('generationDesignDirectory')) {
     function generationDesignDirectory($dId)
     {
+        $directory = intval($dId / 1000000) . DS . intval($dId / 10000) . DS . intval($dId / 100) . DS;
+        recursiveMkdirDirectory($directory);
+        return $directory;
+    }
+}
 
-        return WEBROOT.DS.'design'.DS.intval($dId / 1000000) . DS . intval($dId / 10000) . DS . intval($dId / 100) . DS;
+if (!function_exists('recursiveMkdirDirectory')) {
+    function recursiveMkdirDirectory($dir, $mode = 0777)
+    {
+        if (!is_dir($dir)) {
+            if (!recursiveMkdirDirectory(dirname($dir))) {
+                return false;
+            }
+            if (!mkdir($dir, 0777)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 /* End of file directory_helper.php */
