@@ -1,4 +1,4 @@
-<?php require(dirname(__FILE__) . '/../left.php'); ?>
+<?php require(dirname(__FILE__) . '/../../left.php'); ?>
 <div id="main-content">
     <!-- Main Content Section with everything -->
     <noscript>
@@ -13,15 +13,20 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2>设计图管理</h2>
+    <h2>设计图评论列表</h2>
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/design/addDesign"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design/designList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/create"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/index"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_comment/commentList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/design/addDesign"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a>
+        </li>
+        <li><a class="shortcut-button" href="/administrator/design/designList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a>
+        </li>
+        <li><a class="shortcut-button" href="/administrator/design_category/create"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a>
+        </li>
+        <li><a class="shortcut-button" href="/administrator/design_category/index"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a>
+        </li>
+        <li><a class="shortcut-button" href="/administrator/design_comment/commentList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a>
+        </li>
 
         <!--
         <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
@@ -32,13 +37,12 @@
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="<?=url('administrator/design/search');?>" method="post">
+        <form action="<?=url('administrator/design_comment/search');?>" method="post">
         <p>
             <label><b>输入关键字</b></label>
             <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
             <select name="s_type" class="small-input">
-                <?php if (!isset ($searchType)) {$searchType = array();}
-                foreach ($searchType as $sk=>$sv) {?>
+                <?php foreach ($searchType as $sk=>$sv) {?>
                 <?php if (!isset($sType)) $sType = '';
                 if ($sType == $sk) {?>
                 <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
@@ -55,7 +59,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3>Content box</h3>
+            <h3>设计图评论列表</h3>
             <!--
             <ul class="content-box-tabs">
                 <li><a href="#tab1" class="default-tab">Table</a></li>
@@ -71,16 +75,14 @@
                     <thead>
                     <tr>
                         <th><input class="check-all" type="checkbox"/></th>
-                        <th>ID</th>
-                        <th>分类ID</th>
+                        <th>评论ID</th>
+                        <th>设计图ID</th>
                         <th>用户ID</th>
                         <th>用户名称</th>
-                        <th>设计图图片</th>
-                        <th>设计图名称</th>
-                        <th>介绍</th>
-                        <th>投票人数</th>
-                        <th>总分数</th>
-                        <th>状态</th>
+                        <th>评论标题</th>
+                        <th>评论内容</th>
+                        <th>IP地址</th>
+                        <th>回复数量</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -98,46 +100,36 @@
                                 <a class="button" href="#">Apply to selected</a>
                             </div>
                             <div class="pagination">
-                            <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?php echo isset($page_html) ? $page_html : '';?>
                             </div>
-                            <!--
-
-                                <a href="#" title="First Page">&laquo; First</a>
-                                <a href="#" title="Previous Page">&laquo; Previous</a>
-                                <a href="#" class="number" title="1">1</a>
-                                <a href="#" class="number" title="2">2</a>
-                                <a href="#" class="number current" title="3">3</a>
-                                <a href="#" class="number" title="4">4</a>
-                                <a href="#" title="Next Page">Next &raquo;</a>
-                                <a href="#" title="Last Page">Last &raquo;</a>
-
-                            -->
                             <div class="clear"></div>
                         </td>
                     </tr>
                     </tfoot>
                     <tbody>
-                    <?php if (!isset ($data)) $data = array();
-                        foreach ($data as $v) { ?>
+                    <?php if (empty ($data)) {
+                        $data = array();
+                    }
+                    foreach ($data as $v) {
+                        ?>
                     <tr>
-                        <td> <input type="checkbox" /> </td>
-                        <td><?php echo $v['did'];?></td>
-                        <td><?php echo $v['class_id'];?></td>
-                        <td><a href="/administrator/design/userDesignList/<?php echo $v['uid'];?>" title="查看此用户设计图"> <?php echo $v['uid'];?></a></td>
+                        <td><input type="checkbox"/></td>
+                        <td><?php echo $v['comment_id'];?></td>
+                        <td><a href="/administrator/design_comment/designCommentList/<?php echo $v['did'];?>"
+                               title="查看设计图所有评论"><?php echo $v['did'];?></a></td>
+                        <td><a href="/administrator/design_comment/userCommentList/<?php echo $v['uid'];?>"
+                               title="查看用户所有评论"><?php echo $v['uid'];?></a></td>
                         <td><?php echo $v['uname'];?></td>
-                        <td><?php if (isset ($v['design_img'])) {?>
-                            <img title="设计图图片" src="<?php echo base_url().$v['design_img'];?>" alt="<?php echo $v['dname'];?> width="50" height="50"/>
-                            <?php }?>
-                        </td>
-                        <td><?php echo $v['dname'];?></td>
-                        <td><?php echo $v['ddetail'];?></td>
-                        <td><?php echo $v['total_num'];?></td>
-                        <td><?php echo $v['total_fraction'];?></td>
-                        <td><?php echo $v['status'] ? '正常' : '删除';?></td>
+                        <td><?php echo $v['title'];?></td>
+                        <td><?php echo $v['content'];?></td>
+                        <td><?php echo $v['ip'];?></td>
+                        <td><?php echo $v['reply_num'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/design/editDesign/<?php echo $v['did'];?>" title="编辑设计图"><img src="/images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="/administrator/design/deleteDesign/<?php echo $v['did'];?>" title="删除设计图"> <img src="/images/icons/cross.png" alt="Delete"/></a>
+                            <a href="/administrator/design_comment/viewComment/<?php echo $v['comment_id'];?>"
+                               title="查看评论图评论"><img src="/images/icons/view.png" alt="Edit"/></a>
+                            <a href="/administrator/design_comment/deleteComment/<?php echo $v['comment_id'];?>"
+                               title="删除评论图评论"> <img src="/images/icons/cross.png" alt="Delete"/></a>
                             <!--<a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>
@@ -149,7 +141,7 @@
             </div>
         </div>
     </div>
-    <?php require(dirname(__FILE__) . '/../footer.php'); ?>
+    <?php require(dirname(__FILE__) . '/../../footer.php'); ?>
 </div>
 </div>
 </body>

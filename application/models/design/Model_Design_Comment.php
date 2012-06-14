@@ -9,6 +9,34 @@
 class Model_Design_Comment extends MY_Model
 {
     /**
+     * 获取设计图评论列表
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getCommentList($limit = 20, $offset = 0)
+    {
+        $this->db->select('*');
+        $this->db->from('design_comment');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取评论数量
+     *
+     * @return int
+     */
+    public function getCommentCount()
+    {
+        $this->db->from('design_comment');
+        return $this->db->count_all_results();
+    }
+
+    /**
      * @name 获取设计图评论 -- 通过用户ID
      *
      * @param $uid
@@ -18,9 +46,22 @@ class Model_Design_Comment extends MY_Model
      */
     public function getCommentByUid($uid, $limit = 20, $offset = 0)
     {
-        $data = $this->db->get_where('design_comment', array('uid' => $uid), $limit, $offset)->array_result();
+        $data = $this->db->get_where('design_comment', array('uid' => $uid), $limit, $offset)->result_array();
 
         return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户评论数量 -- 通过用户ID
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserCommentCount($uId)
+    {
+        $this->db->from('design_comment');
+        $this->db->where('uid', $uId);
+        return $this->db->count_all_results();
     }
 
     /**
@@ -33,9 +74,22 @@ class Model_Design_Comment extends MY_Model
      */
     public function getDesignCommentByDid($did, $limit = 20, $offset = 0)
     {
-        $data = $this->db->get_where('design_comment', array('did' => $did), $limit, $offset)->array_result();
+        $data = $this->db->get_where('design_comment', array('did' => $did), $limit, $offset)->result_array();
 
         return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取设计图评论数量
+     *
+     * @param $dId
+     * @return int
+     */
+    public function getDesignCommentCount($dId)
+    {
+        $this->db->from('design_comment');
+        $this->db->where('did', $dId);
+        return $this->db->count_all_results();
     }
 
     /**
@@ -46,7 +100,7 @@ class Model_Design_Comment extends MY_Model
      */
     public function getDesignCommentByCid($cid)
     {
-        $data = $this->db->get_where('design_comment', array('comment_id' => $cid))->array_result();
+        $data = $this->db->get_where('design_comment', array('comment_id' => $cid))->row_array();
 
         return empty ($data) ? null : $data;
     }
@@ -110,9 +164,16 @@ class Model_Design_Comment extends MY_Model
      */
     public function getReplyByCommentId($cid, $limit = 20, $offset = 0)
     {
-        $data = $this->db->get_where('design_comment_reply', array('comment_id' => $cid), $limit, $offset)->array_result();
+        $data = $this->db->get_where('design_comment_reply', array('comment_id' => $cid), $limit, $offset)->result_array();
 
         return empty ($data) ? null : $data;
+    }
+
+    public function getReplyCommentCount($cId)
+    {
+        $this->db->from('design_comment_reply');
+        $this->db->where('comment_id', $cId);
+        return $this->db->count_all_results();
     }
 
     /**
