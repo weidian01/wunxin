@@ -9,85 +9,9 @@
 class Model_Product_Size extends MY_Model
 {
     /**
-     * 创建一个属性
-     * @param $model_name
-     * @param array $attrs
-     * array(
-            array('name'=>'属性1','value'=>'1,2,3,4,5','type'=>1,'sort'=>1),
-            array('name'=>'属性2','value'=>'1,2,3,4,5','type'=>2,'sort'=>2)
-     * )
-     * @return bool
+     * @param array $data
+     * @param int $size_id
      */
-    function create($model_name, array $attrs)
-    {
-        $this->db->insert('product_model', array('model_name' => $model_name));
-        $model_id = $this->db->insert_id();
-        if (!$model_id) {
-            return false;
-        }
-
-        foreach ($attrs as $key => $attr) {
-//            $this->db->insert('product_model_attr', array(
-//                'model_id' => $model_id,
-//                'type' => $attr['type'],
-//                'attr_name' => $attr['attr_name'],
-//                'attr_value' => $attr['attr_value'],
-//                'sort' => $attr['sort'],
-//            ));
-            $attrs[$key]['model_id'] = $model_id;
-
-        }
-        $this->db->insert_batch('product_model_attr',$attrs);
-        return true;
-    }
-
-    /**
-     * 更新模型内容
-     * @param $model_name
-     * @param array $attrs
-     */
-    function update($model_id, $model_name, array $attrs)
-    {
-        $this->db->where('model_id', $model_id);
-        $this->db->update('product_model', array('model_name'=>$model_name));
-
-        $attr_id = array();
-        foreach ($attrs as $attr)
-        {
-            if($attr['attr_id'])
-            {
-                $attr_id[] = (int)$attr['attr_id'];
-                $this->db->where('attr_id', $attr['attr_id']);
-                $this->db->update('product_model_attr', array(
-                    'type' => $attr['type'],
-                    'attr_name' => $attr['attr_name'],
-                    'attr_value' => $attr['attr_value'],
-                    'sort' => $attr['sort'],
-                ));
-            }
-            else
-            {
-                $this->db->insert('product_model_attr', array(
-                    'model_id' => $model_id,
-                    'type' => $attr['type'],
-                    'attr_name' => $attr['attr_name'],
-                    'attr_value' => $attr['attr_value'],
-                    'sort' => $attr['sort'],
-                ));
-                $attr_id[] = $this->db->insert_id();
-            }
-        }
-
-        if ($attr_id)
-        {
-            $this->db->where('model_id', $model_id);
-            $this->db->where_not_in('attr_id', $attr_id);
-            $this->db->delete('product_model_attr');
-        }
-        //DELETE FROM iwebshop_attribute WHERE model_id = 5  and id not in (16,14,17)
-        //$this->db->update_batch('product_model_attr', $attrs, 'attr_id');
-    }
-
     public function save(array $data, $size_id = 0)
     {
         if ($size_id) {
