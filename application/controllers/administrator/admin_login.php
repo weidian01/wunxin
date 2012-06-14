@@ -12,7 +12,7 @@ class Admin_login extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if($this->router->method !== 'loginOut')
+        if($this->router->method !== 'logout')
         {
             if ($this->AdminIsLogin())
             {
@@ -54,7 +54,7 @@ class Admin_login extends MY_Controller
         redirect($url);
     }
 
-    public function loginOut()
+    public function logout()
     {
         $this->load->helper('cookie');
         $this->load->helper('url');
