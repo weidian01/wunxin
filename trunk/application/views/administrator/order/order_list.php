@@ -1,77 +1,136 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fi" lang="fi">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>订单列表 -- 万象电子商务后台管理系统</title>
-    <style type="text/css">/*<![CDATA[*/
-    @import "/css/login.css";
+<?php require(dirname(__FILE__) . '/../left.php'); ?>
+<div id="main-content">
+    <!-- Main Content Section with everything -->
+    <noscript>
+        <!-- Show a notification if the user has disabled javascript -->
+        <div class="notification error png_bg">
+            <div> Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/"
+                                                                                        title="Upgrade to a better browser">upgrade</a>
+                your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852"
+                                   title="Enable Javascript in your browser">enable</a> Javascript to navigate the
+                interface properly.
+                Download From <a href="http://www.exet.tk">exet.tk</a></div>
+        </div>
+    </noscript>
+    <!-- Page Head -->
+    <h2>订单管理</h2>
 
-        /*]]>*/</style>
-</head>
-<body>
-<div class="operating">
-    <div class="search f_r">
-        <form name="serachuser" action="/iwebshop/index.php" method="get">
-            <input type="hidden" name="controller" value="order">
-            <input type="hidden" name="action" value="order_list">
-            用户名：<input class="small" name="name" type="text" value="">
-            订单号：<input class="small" name="order_no" type="text" value="">
-            <button class="btn" type="submit"><span class="sch">搜 索</span></button>
+    <!-- <p id="page-intro">What would you like to do?</p> -->
+    <ul class="shortcut-buttons-set">
+        <li><a class="shortcut-button" href="/administrator/order/orderList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 订单列表 </span></a></li>
+    </ul>
+    <!-- End .shortcut-buttons-set -->
+    <div class="clear">
+        <form action="<?=url('administrator/order/search');?>" method="post">
+        <p>
+            <label><b>输入关键字</b></label>
+            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+            <select name="s_type" class="small-input">
+                <?php if (!isset ($searchType)) {$searchType = array();}
+                foreach ($searchType as $sk=>$sv) {?>
+                <?php if (!isset($sType)) $sType = '';
+                if ($sType == $sk) {?>
+                <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                <?php } else {?>
+                    <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                <?php }?>
+                <?php }?>
+            </select>
+            <input type="submit" value="搜索">
+        </p>
         </form>
     </div>
-    <a href="javascript:void(0)">
-        <button class="operating_btn"
-                onclick="location.href='/iwebshop/index.php?controller=order&amp;action=order_add'" type="button"><span
-            class="addition">添加订单</span></button>
-    </a>
-    <a href="javascript:void(0)" onclick="selectAll('id[]')">
-        <button class="operating_btn" type="button"><span class="sel_all">全选</span></button>
-    </a>
-    <a href="javascript:void(0)" onclick="delModel({form:'orderForm'})">
-        <button class="operating_btn" type="button"><span class="delete">批量删除</span></button>
-    </a>
-    <a href="javascript:void(0)"
-       onclick="$('#orderForm').attr('action','/iwebshop/index.php?controller=order&amp;action=expresswaybill_template');$('#orderForm').submit();">
-        <button class="operating_btn"><span class="export">批量打印快递单</span></button>
-    </a>
-    <a href="javascript:void(0)">
-        <button class="operating_btn"
-                onclick="location.href='/iwebshop/index.php?controller=order&amp;action=print_template'"><span
-            class="export">打印模板</span></button>
-    </a>
-    <a href="javascript:void(0)">
-        <button class="operating_btn" type="button"
-                onclick="location.href='/iwebshop/index.php?controller=order&amp;action=order_recycle_list'"><span
-            class="recycle">回收站</span></button>
-    </a>
-</div>
+    <!-- End .clear -->
+    <div class="content-box">
+        <!-- Start Content Box -->
+        <div class="content-box-header">
+            <h3>订单列表</h3>
+            <!--
+            <ul class="content-box-tabs">
+                <li><a href="#tab1" class="default-tab">Table</a></li>
+                <li><a href="#tab2">Forms</a></li>
+            </ul>
+            -->
+            <div class="clear"></div>
+        </div>
+        <!-- End .content-box-header -->
+        <div class="content-box-content">
+            <div class="tab-content default-tab" id="tab1">
+                <table>
+                    <thead>
+                    <tr>
+                        <th><input class="check-all" type="checkbox"/></th>
+                        <th>订单号</th>
+                        <th>收货人信息</th>
+                        <th>支付状态</th>
+                        <th>配货状态</th>
+                        <th>用户ID</th>
+                        <th>用户名称</th>
+                        <th>金额</th>
+                        <th>状态</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
 
-<table border="1">
-    <tr>
-        <td>订单号</td>
-        <td>收货人信息</td>
-        <td>支付状态</td>
-        <td>配货状态</td>
-        <td>用户名称</td>
-        <td>金额</td>
-        <td>创建时间</td>
-        <td>操作</td>
-    </tr>
-    <?php foreach ($data as $v) { ?>
-    <tr>
-        <td><?php echo $v['order_sn'];?></td>
-        <td><?php echo $v['recent_name'];?></td>
-        <td><?php echo $v['is_pay'];?></td>
-        <td><?php echo $v['picking_status'];?></td>
-        <td><?php echo $v['uname'];?></td>
-        <td><?php echo $v['after_discount_price'];?></td>
-        <td><?php echo $v['create_time'];?></td>
-        <td>
-            <a href="/administrator/order/orderDetail">查看</a>
-            <a href="/administrator/order/orderEdit">编辑</a>
-        </td>
-    </tr>
-    <?php }?>
-</table>
+                    <tfoot>
+                    <tr>
+                        <td colspan="13">
+                            <div class="bulk-actions align-left">
+                                <select name="dropdown">
+                                    <option value="option1">Choose an action...</option>
+                                    <option value="option2">Edit</option>
+                                    <option value="option3">Delete</option>
+                                </select>
+                                <a class="button" href="#">Apply to selected</a>
+                            </div>
+                            <div class="pagination">
+                            <?php echo isset ($page_html) ? $page_html : '';?>
+                            </div>
+                            <div class="clear"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    <?php if (!isset ($data)) $data = array();
+                        foreach ($data as $v) { ?>
+                    <tr>
+                        <td> <input type="checkbox" /> </td>
+
+                        <td><?php echo $v['order_sn'];?></td>
+                        <td><?php echo $v['recent_name'];?></td>
+                        <td><?php
+                            switch ($v['is_pay']) {
+								case 1: $payStatus = '付款成功'; break;
+								case 2: $payStatus = '付款失败'; break;
+								case 3: $payStatus = '等待付款'; break;
+								default : $payStatus = '初始';
+							}
+                            echo $payStatus;?></td>
+                        <td><?php echo $v['picking_status'] ? '已配货' : '未配货';?></td>
+                        <td><?php echo $v['uid'];?></td>
+                        <td><?php echo $v['uname'];?></td>
+                        <td><?php echo $v['after_discount_price'];?></td>
+                        <td><?php echo $v['status'] ? '正常' : '取消';?></td>
+                        <td><?php echo $v['create_time'];?></td>
+                        <td>
+                            <a href="/administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"/></a>
+                            <!--<a href="/administrator/order/orderEdit/<?php echo $v['order_sn'];?>" title="编辑订单"> <img src="/images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
+                            &nbsp;
+                            <a href="/administrator/order/orderDelete/<?php echo $v['order_sn'];?>" title="删除订单"> <img src="/images/icons/cross.png" alt="删除订单"/></a>
+                            <!--<a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
+                        </td>
+                    </tr>
+                        <?php }?>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <?php require(dirname(__FILE__) . '/../footer.php'); ?>
+</div>
+</div>
 </body>
 </html>
