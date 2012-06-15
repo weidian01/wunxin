@@ -33,10 +33,11 @@
                     <a href="#" class="nav-top-item current">
                         <!-- Add the class "no-submenu" to menu items with no sub menu --> 产品管理 </a>
                     <ul>
-                        <li><a href="<?=site_url('administrator/main/index')?>">产品管理</a></li>
+                        <li><a href="<?=site_url('administrator/product/index')?>">产品管理</a></li>
                         <li><a href="<?=site_url('administrator/product_category/index')?>">产品分类管理</a></li>
                         <li><a href="<?=site_url('administrator/product_model/index')?>">产品模型管理</a></li>
                         <li><a href="<?=site_url('administrator/product_size/index')?>">产品尺码管理</a></li>
+                        <li><a href="<?=site_url('administrator/product_color/index')?>">产品颜色管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item no-submenu"> <!-- Add the class "current" to current menu item -->
