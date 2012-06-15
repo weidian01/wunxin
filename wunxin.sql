@@ -853,7 +853,7 @@ create table wx_order
    delivert_time        tinyint default 1 comment '送货时间,1工作日、双休日与假日均可送货，2只双休日、假日送货，3只工作日送货，4学校地址、白天没有。',
    annotated            varchar(128) comment '附加说明',
    invoice              tinyint unsigned default 0 comment '是否需要发票,0不需要，1需要',
-   paid                 int comment '已付款，用户已支付多少',
+   paid                 int comment '已付款，用户已支付多少0',
    need_pay             int comment '需要支付款',
    ip                   char(16) comment 'IP地址',
    invoice_payable      varchar(64) comment '发票抬头',
@@ -863,7 +863,8 @@ create table wx_order
    zipcode              char(7) comment '邮编',
    phone_num            char(11) comment '手机号码',
    call_num             char(11) comment '座机',
-   picking_status       tinyint comment '配货状态, 0未配货，1已配货',
+   picking_status       tinyint default 0 comment '配货状态, 0未配货，1已配货',
+   status               tinyint default 1 comment '订单状态,0已取消，1正常',
    create_time          datetime comment '创建时间',
    primary key (order_sn)
 )

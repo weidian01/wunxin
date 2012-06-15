@@ -106,6 +106,7 @@ class Model_Order extends MY_Model
     {
         $field = 'order_sn, address_id, uid, uname, after_discount_price, discount_rate, before_discount_price, pay_type,
             defray_type, is_pay, order_source, pay_time, delivert_time, annotated, invoice, paid, need_pay, ip, create_time';
+        $field = '*';
 
         return $this->db->select($field)->get_where('order', array('order_sn' => $orderSn))->row_array();
     }
@@ -201,9 +202,16 @@ class Model_Order extends MY_Model
      */
     public function getOrderList($limit = 20, $offset = 0)
     {
-        $data = $this->db->get_where('order', array(), $limit, $offset)->result_array();
+        $data = $this->db->select('*')->from('order')->order_by('order_sn', 'desc')->limit($limit, $offset)->get()->result_array();
 
         return empty ($data) ? null : $data;
+    }
+
+    public function getOrderCount()
+    {
+        $this->db->select('*')->from('order');
+
+        return $this->db->count_all_results();
     }
 
     /**
@@ -223,5 +231,20 @@ class Model_Order extends MY_Model
             ->where('order.is_pay', '1')->get()->row_array();
 
         return $data;
+    }
+
+    /**
+     * 删除订单
+     *
+     * @param $orderSn
+     * @return bool
+     */
+    public function deleteOrderByOrderSn($orderSn)
+    {
+        $this->db->delete('order', array('order_sn' => $orderSn));
+
+        $this->db->delete('order_product', array('order_sn' => $orderSn));
+
+        return true;
     }
 }
