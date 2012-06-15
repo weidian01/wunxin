@@ -92,6 +92,7 @@ class product_color extends MY_Controller
             $config['max_width'] = '1024';
             $config['max_height'] = '768';
             $config['encrypt_name'] = true;
+            $config['overwrite'] = true;
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('image')) {
@@ -106,7 +107,7 @@ class product_color extends MY_Controller
 
         $this->load->model('product/Model_Product_Color', 'color');
         $this->color->save($data, $color_id);
-        redirect('administrator/product_color/index');
+        //redirect('administrator/product_color/index');
     }
 
     /**
