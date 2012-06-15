@@ -1,0 +1,88 @@
+<?php
+/**
+ * Created by JetBrains PhpStorm.
+ * User: Administrator
+ * Date: 12-6-6
+ * Time: 下午9:31
+ * To change this template use File | Settings | File Templates.
+ */
+class Model_Product_Color extends MY_Model
+{
+    /**
+     * @param array $data
+     * @param int $size_id
+     */
+    public function save(array $data, $color_id = 0)
+    {
+        if ($color_id) {
+            $this->db->where('color_id', $color_id);
+            $this->db->update('color', $data);
+        } else {
+            $this->db->insert('color', $data);
+        }
+    }
+
+    /**
+     * 根据模型id 删除模型
+     * @param $model_id
+     */
+    function delete($color_id)
+    {
+        $this->db->where('color_id', $color_id);
+        $this->db->delete('color');
+    }
+
+    /**
+     * 查看是否有产品使用该模型
+     * @param $model_id
+     * @return int
+     */
+    function isUse($color_id)
+    {
+        $this->db->from('product');
+        $this->db->where('color_id', $color_id);
+        $r = $this->db->count_all_results();
+        return $r ? true : false;
+    }
+
+    /**
+     * 获取根据模型id一个模型的详细内容(模型名称和其属性值)
+     * @param $model_id
+     * @return array
+     */
+    function getColorById($color_id)
+    {
+        $info = $this->db
+            ->select()
+            ->get_where('color', array('color_id' => $color_id))
+            ->row_array();
+        return $info;
+    }
+
+    /**
+     * 获取模型列表
+     * @param int $offset
+     * @param int $limit
+     * @return array
+     */
+    function getList($limit = 20, $offset = 0)
+    {
+        $data = $this->db
+            ->select()
+            ->get_where('color', null, $limit, $offset)
+            ->result_array();
+        return $data;
+    }
+
+    /**
+     * 获取模型数量
+     * @return mixed
+     */
+    function getNum()
+    {
+        $this->db->from('color');
+        return $this->db->count_all_results();
+    }
+
+
+}

@@ -42,15 +42,27 @@ class Model_Product extends MY_Model
     }
 
     /**
+     * 获取产品数量
+     * @param null $where
+     * @return int
+     */
+    public function getProductCout($where = null)
+    {
+        $this->db->from('product');
+        $where && $this->db->where($where);
+        return $this->db->count_all_results();
+    }
+
+    /**
      * 获取产品列表
      *
      * @param int $limit
      * @param int $offset
      * @return null | array
      */
-    public function getProductList($limit = 20, $offset = 0)
+    public function getProductList($limit = 20, $offset = 0, $where = null)
     {
-        $data = $this->db->get_where('product', '', $limit, $offset);
+        $data = $this->db->get_where('product', $where, $limit, $offset);
 
         return empty ($data) ? null : $data;
     }
