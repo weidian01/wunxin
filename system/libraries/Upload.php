@@ -278,15 +278,15 @@ class CI_Upload {
 		 */
 		$this->orig_name = $this->file_name;
 
-		if ($this->overwrite == FALSE)
-		{
+		//if ($this->overwrite == FALSE)
+		//{
 			$this->file_name = $this->set_filename($this->upload_path, $this->file_name);
 
 			if ($this->file_name === FALSE)
 			{
 				return FALSE;
 			}
-		}
+		//}
 
 		/*
 		 * Run the file through the XSS hacking filter
@@ -391,11 +391,12 @@ class CI_Upload {
 	{
 		if ($this->encrypt_name == TRUE)
 		{
-			mt_srand();
-			$filename = md5(uniqid(mt_rand())).$this->file_ext;
+			//mt_srand();
+			//$filename = md5(uniqid(mt_rand())).$this->file_ext;
+            $filename = md5_file($this->file_temp).$this->file_ext;
 		}
 
-		if ( ! file_exists($path.$filename))
+		if ($this->overwrite === TRUE || ! file_exists($path.$filename))
 		{
 			return $filename;
 		}
