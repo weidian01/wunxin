@@ -107,7 +107,7 @@ class product_color extends MY_Controller
 
         $this->load->model('product/Model_Product_Color', 'color');
         $this->color->save($data, $color_id);
-        //redirect('administrator/product_color/index');
+        redirect('administrator/product_color/index');
     }
 
     /**
