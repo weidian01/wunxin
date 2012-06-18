@@ -179,11 +179,6 @@ if (!is_dir($system_path)) {
 // web 目录常量
 define('WEBROOT', dirname(__FILE__));
 
-define('DESIGNPATH', WEBROOT.'/design/');
-
-//文件分隔符
-define('DS', DIRECTORY_SEPARATOR);
-
 // The name of THIS file
 define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 

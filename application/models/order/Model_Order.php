@@ -135,10 +135,10 @@ class Model_Order extends MY_Model
     {
         $orderInfo = $this->getOrderByOrderSn($orderSn);
         $orderProductInfo = $this->getOrderAllProductByOrderSn($orderSn);
-        $orderInvoiceInfo = $this->getOrderInvoiceInfoByOrderSn($orderSn);
+        //$orderInvoiceInfo = $this->getOrderInvoiceInfoByOrderSn($orderSn);
 
         $orderInfo['product'] = $orderProductInfo;
-        $orderInfo['invoice'] = $orderInvoiceInfo;
+        //$orderInfo['invoice'] = $orderInvoiceInfo;
 
         return $orderInfo;
 

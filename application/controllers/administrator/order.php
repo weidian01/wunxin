@@ -80,6 +80,8 @@ class order extends MY_Controller
         $orderSn = $this->uri->segment(4, 0);
 
         $this->load->model('order/Model_Order', 'order');
+        $this->load->model('order/Model_Order_Invoice', 'invoice');
+
 
         $oInfo = $this->order->getOrderAllInfoByOrderSn($orderSn);
 
