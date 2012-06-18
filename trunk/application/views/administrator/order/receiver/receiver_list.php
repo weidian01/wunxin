@@ -1,4 +1,4 @@
-<?php require(dirname(__FILE__) . '/../left.php'); ?>
+<?php require(dirname(__FILE__) . '/../../left.php'); ?>
 <div id="main-content">
     <!-- Main Content Section with everything -->
     <noscript>
@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2>订单管理</h2>
+    <h2>收款单</h2>
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
@@ -25,7 +25,7 @@
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="<?=url('administrator/order/search');?>" method="post">
+        <form action="<?=url('administrator/order_receiver/search');?>" method="post">
         <p>
             <label><b>输入关键字</b></label>
             <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
@@ -64,17 +64,17 @@
                     <thead>
                     <tr>
                         <th><input class="check-all" type="checkbox"/></th>
-                        <th>订单号</th>
-                        <th>收货人信息</th>
-                        <th>支付状态</th>
-                        <th>配货状态</th>
+                        <th>收款单ID</th>
+                        <th>订单ID</th>
                         <th>用户ID</th>
                         <th>用户名称</th>
                         <th>金额</th>
-                        <th>支付方式</th>
+                        <th>汇款类型</th>
+                        <th>收款账号</th>
                         <th>状态</th>
+                        <th>收款备注</th>
+                        <th>管理员ID</th>
                         <th>创建时间</th>
-                        <th>操作</th>
                     </tr>
                     </thead>
 
@@ -98,34 +98,20 @@
                     </tfoot>
                     <tbody>
                     <?php if (!isset ($data)) $data = array();
-                        foreach ($data as $v) { ?>
+                        foreach ($data as $v) { if (empty ($v)) continue;?>
                     <tr>
                         <td> <input type="checkbox" /> </td>
-
-                        <td><?php echo $v['order_sn'];?></td>
-                        <td><?php echo $v['recent_name'];?></td>
-                        <td><?php
-                            switch ($v['is_pay']) {
-								case 1: $payStatus = '付款成功'; break;
-								case 2: $payStatus = '付款失败'; break;
-								case 3: $payStatus = '等待付款'; break;
-								default : $payStatus = '初始';
-							}
-                            echo $payStatus;?></td>
-                        <td><?php echo $v['picking_status'] ? '已配货' : '未配货';?></td>
-                        <td><?php echo $v['uid'];?></td>
+                        <td><?php echo $v['receiver_id'];?></td>
+                        <td><a href="/administrator/order_receiver/orderReceiverList/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
+                        <td><a href="/administrator/order_receiver/userReceiverList/<?php echo $v['uid'];?>"><?php echo $v['uid'];?></a></td>
                         <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['after_discount_price'];?></td>
-                        <td><?php echo $v['pay_type'].'--'.$v['defray_type'];?></td>
-                        <td><?php echo $v['status'] ? '正常' : '取消';?></td>
+                        <td><?php echo $v['amount'];?></td>
+                        <td><?php echo $v['pay_type'] == 1 ? '银行汇款' : '支付宝转账';?></td>
+                        <td><?php echo $v['pay_account'];?></td>
+                        <td><?php echo $v['pay_status'] ? '支付成功' : '支付失败';?></td>
+                        <td><?php echo $v['descr']?></td>
+                        <td><?php echo $v['manager_id'];?></td>
                         <td><?php echo $v['create_time'];?></td>
-                        <td>
-                            <a href="/administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"/></a>
-                            <!--<a href="/administrator/order/orderEdit/<?php echo $v['order_sn'];?>" title="编辑订单"> <img src="/images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
-                            &nbsp;
-                            <a href="/administrator/order/orderDelete/<?php echo $v['order_sn'];?>" title="删除订单"> <img src="/images/icons/cross.png" alt="删除订单"/></a>
-                            <!--<a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
-                        </td>
                     </tr>
                         <?php }?>
 
@@ -135,7 +121,7 @@
             </div>
         </div>
     </div>
-    <?php require(dirname(__FILE__) . '/../footer.php'); ?>
+    <?php require(dirname(__FILE__) . '/../../footer.php'); ?>
 </div>
 </div>
 </body>

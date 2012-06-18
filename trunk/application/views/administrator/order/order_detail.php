@@ -1,292 +1,346 @@
+<?php include('/../left.php'); ?>
+<div id="main-content">
+<!-- Main Content Section with everything -->
+<noscript>
+    <!-- Show a notification if the user has disabled javascript -->
+    <div class="notification error png_bg">
+        <div> Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/"
+                                                                                    title="Upgrade to a better browser">upgrade</a>
+            your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852"
+                               title="Enable Javascript in your browser">enable</a> Javascript to navigate the interface
+            properly.
+            Download From <a href="http://www.exet.tk">exet.tk</a></div>
+    </div>
+</noscript>
+<!-- Page Head -->
+<h2>订单管理</h2>
+<!--<p id="page-intro">What would you like to do?</p>-->
+<ul class="shortcut-buttons-set">
+    <li><a class="shortcut-button" href="/administrator/order/orderList"><span><br/> 订单列表 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span><br/> 收款单列表 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span><br/> 配货单列表 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span><br/> 添加快递公司 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span><br/> 快递公司列表 </span></a></li>
+</ul>
+<!-- End .shortcut-buttons-set -->
+<div class="clear"></div>
+<!-- End .clear -->
+<div class="content-box">
+    <!-- Start Content Box -->
+    <div class="content-box-header">
+        <h3>订单产品</h3>
+        <ul class="content-box-tabs">
+            <li><a href="#tab1" class="default-tab">发票信息</a></li>
+            <!-- href must be unique and match the id of target div -->
+            <li><a href="#tab2">收款单信息</a></li>
+            <li><a href="#tab3">退换货信息</a></li>
+            <li><a href="#tab4">订单留言</a></li>
+            <li><a href="#tab5">发票信息</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <!-- End .content-box-header -->
+    <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+            <table>
+                <thead>
+                <tr>
+                    <th><input class="check-all" type="checkbox"/></th>
+                    <th>订单ID</th>
+                    <th>产品ID</th>
+                    <th>产品图片</th>
+                    <th>产品名称</th>
+                    <th>市场价格</th>
+                    <th>销售价格</th>
+                    <th>数量</th>
+                    <th>尺码</th>
+                    <th>优惠</th>
+                </tr>
+                </thead>
 
-<?php include('/../left.php');?>
- <div id="main-content">
-   <!-- Main Content Section with everything -->
-   <noscript>
-   <!-- Show a notification if the user has disabled javascript -->
-   <div class="notification error png_bg">
-     <div> Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a> your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852" title="Enable Javascript in your browser">enable</a> Javascript to navigate the interface properly.
-       Download From <a href="http://www.exet.tk">exet.tk</a></div>
-   </div>
-   </noscript>
-   <!-- Page Head -->
-   <h2>订单管理</h2>
-   <!--<p id="page-intro">What would you like to do?</p>-->
-   <ul class="shortcut-buttons-set">
-       <li><a class="shortcut-button" href="/administrator/order/orderList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 订单列表 </span></a></li>
-   </ul>
-   <!-- End .shortcut-buttons-set -->
-   <div class="clear"></div>
-   <!-- End .clear -->
-   <div class="content-box">
-     <!-- Start Content Box -->
-     <div class="content-box-header">
-       <h3>订单产品</h3>
-       <ul class="content-box-tabs">
-         <li><a href="#tab1" class="default-tab">Table</a></li>
-         <!-- href must be unique and match the id of target div -->
-         <li><a href="#tab2">Forms</a></li>
-       </ul>
-       <div class="clear"></div>
-     </div>
-     <!-- End .content-box-header -->
-     <div class="content-box-content">
-       <div class="tab-content default-tab" id="tab1">
-         <table>
-           <thead>
-             <tr>
-               <th>
-                 <input class="check-all" type="checkbox" />
-               </th>
-               <th>产品ID</th>
-               <th>产品图片</th>
-               <th>产品名称</th>
-               <th>市场价格</th>
-               <th>销售价格</th>
-               <th>数量</th>
-               <th>尺码</th>
-               <th>优惠</th>
-             </tr>
-           </thead>
-           <tfoot>
-             <tr>
-               <td colspan="6">
-                 <div class="bulk-actions align-left">
-                   <select name="dropdown">
-                     <option value="option1">Choose an action...</option>
-                     <option value="option2">Edit</option>
-                     <option value="option3">Delete</option>
-                   </select>
-                   <a class="button" href="#">Apply to selected</a> </div>
-                 <div class="pagination"> <a href="#" title="First Page">&laquo; First</a><a href="#" title="Previous Page">&laquo; Previous</a>
-                     <a href="#" class="number" title="1">1</a> <a href="#" class="number" title="2">2</a> <a href="#" class="number current" title="3">3</a>
-                     <a href="#" class="number" title="4">4</a> <a href="#" title="Next Page">Next &raquo;</a><a href="#" title="Last Page">Last &raquo;</a> </div>
-                 <!-- End .pagination -->
-                 <div class="clear"></div>
-               </td>
-             </tr>
-           </tfoot>
-           <tbody>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete">
-                   <img src="/images/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                   <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                   <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                   <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                   <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                   <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                   <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                   <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                   <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                   <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                   <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-             <tr>
-               <td>
-                 <input type="checkbox" />
-               </td>
-               <td>Lorem ipsum dolor</td>
-               <td><a href="#" title="title">Sit amet</a></td>
-               <td>Consectetur adipiscing</td>
-               <td>Donec tortor diam</td>
-               <td>
-                 <!-- Icons -->
-                 <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                   <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                   <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
-             </tr>
-           </tbody>
-         </table>
-       </div>
-       <!-- End #tab1 -->
-       <div class="tab-content" id="tab2">
-         <form action="#" method="post">
-           <fieldset>
-           <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
-           <p>
-             <label>Small form input</label>
-             <input class="text-input small-input" type="text" id="small-input" name="small-input" />
-             <span class="input-notification success png_bg">Successful message</span>
-             <!-- Classes for input-notification: success, error, information, attention -->
-             <br />
-             <small>A small description of the field</small> </p>
-           <p>
-             <label>Medium form input</label>
-             <input class="text-input medium-input datepicker" type="text" id="medium-input" name="medium-input" />
-             <span class="input-notification error png_bg">Error message</span> </p>
-           <p>
-             <label>Large form input</label>
-             <input class="text-input large-input" type="text" id="large-input" name="large-input" />
-           </p>
-           <p>
-             <label>Checkboxes</label>
-             <input type="checkbox" name="checkbox1" />
-             This is a checkbox
-             <input type="checkbox" name="checkbox2" />
-             And this is another checkbox </p>
-           <p>
-             <label>Radio buttons</label>
-             <input type="radio" name="radio1" />
-             This is a radio button<br />
-             <input type="radio" name="radio2" />
-             This is another radio button </p>
-           <p>
-             <label>This is a drop down list</label>
-             <select name="dropdown" class="small-input">
-               <option value="option1">Option 1</option>
-               <option value="option2">Option 2</option>
-               <option value="option3">Option 3</option>
-               <option value="option4">Option 4</option>
-             </select>
-           </p>
-           <p>
-             <label>Textarea with WYSIWYG</label>
-             <textarea class="text-input textarea wysiwyg" id="textarea" name="textfield" cols="79" rows="15"></textarea>
-           </p>
-           <p>
-             <input class="button" type="submit" value="Submit" />
-           </p>
-           </fieldset>
-           <div class="clear"></div>
-           <!-- End .clear -->
-         </form>
-       </div>
-       <!-- End #tab2 -->
-     </div>
-     <!-- End .content-box-content -->
-   </div>
-   <!-- End .content-box -->
-   <div class="content-box column-left">
-     <div class="content-box-header">
-       <h3>Content box left</h3>
-     </div>
-     <!-- End .content-box-header -->
-     <div class="content-box-content">
-       <div class="tab-content default-tab">
-         <h4>Maecenas dignissim</h4>
-         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo. </p>
-       </div>
-       <!-- End #tab3 -->
-     </div>
-     <!-- End .content-box-content -->
-   </div>
-   <!-- End .content-box -->
-   <div class="content-box column-right closed-box">
-     <div class="content-box-header">
-       <!-- Add the class "closed" to the Content box header to have it closed by default -->
-       <h3>Content box right</h3>
-     </div>
-     <!-- End .content-box-header -->
-     <div class="content-box-content">
-       <div class="tab-content default-tab">
-         <h4>This box is closed by default</h4>
-         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in porta lectus. Maecenas dignissim enim quis ipsum mattis aliquet. Maecenas id velit et elit gravida bibendum. Duis nec rutrum lorem. Donec egestas metus a risus euismod ultricies. Maecenas lacinia orci at neque commodo commodo. </p>
-       </div>
-       <!-- End #tab3 -->
-     </div>
-     <!-- End .content-box-content -->
-   </div>
-   <!-- End .content-box -->
-   <div class="clear"></div>
-   <!-- Start Notifications -->
-   <div class="notification attention png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-     <div> Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-   </div>
-   <div class="notification information png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-     <div> Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-   </div>
-   <div class="notification success png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-     <div> Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-   </div>
-   <div class="notification error png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
-     <div> Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
-   </div>
-   <!-- End Notifications -->
-   <?php require(dirname(__FILE__) . '/../footer.php'); ?>
-   <!-- End #footer -->
- </div>
- <!-- End #main-content -->
+                <tbody>
+                <?php if (empty($data['product'])) {
+                    $data['product'] = array();
+                } //echo '<pre>';print_r($data['product']);exit;
+                foreach ($data['product'] as $pv) {
+                    ?>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                    </td>
+                    <td><?php echo $pv['order_sn'];?></td>
+                    <td><?php echo $pv['pid'];?></td>
+                    <td><?php echo '图片';?></td>
+                    <td><?php echo $pv['pname'];?></td>
+                    <td><?php echo $pv['market_price'];?></td>
+                    <td><?php echo $pv['sall_price'];?></td>
+                    <td><?php echo $pv['product_num'];?></td>
+                    <td><?php echo $pv['product_size'];?></td>
+                    <td><?php echo $pv['preferential'];?></td>
+                </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+        </div>
+        <!-- End #tab1 -->
+        <div class="tab-content" id="tab2">
+            <table>
+                <thead>
+                <tr>
+                    <th><input class="check-all" type="checkbox"/></th>
+                    <th>收款单ID</th>
+                    <th>用户ID</th>
+                    <th>用户名称</th>
+                    <th>金额</th>
+                    <th>汇款类型</th>
+                    <th>状态</th>
+                    <th>收款备注</th>
+                    <th>收款账号</th>
+                    <th>汇款时间</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php if (empty($receivable)) {
+                    $receivable = array();
+                } //echo '<pre>';print_r($receivable);exit;
+                foreach ($receivable as $rv) {
+                    ?>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td><?php echo $rv['receiver_id'];?></td>
+                    <td><?php echo $rv['uid'];?></td>
+                    <td><?php echo $rv['uname'];?></td>
+                    <td><?php echo $rv['amount'];?></td>
+                    <td><?php echo $rv['pay_type'] == 1 ? '银行汇款' : '支付宝转账';?></td>
+                    <td><?php echo $rv['pay_status'] ? '支付成功' : '支付失败';?></td>
+                    <td><?php echo $rv['descr'];?></td>
+                    <td><?php echo $rv['pay_account'];?></td>
+                    <td><?php echo $rv['pay_time'];?></td>
+                </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+            <div class="clear"></div>
+        </div>
+
+        <div class="tab-content" id="tab3">
+            <table>
+                <thead>
+                <tr>
+                    <th><input class="check-all" type="checkbox"/></th>
+                    <th>退换货ID</th>
+                    <th>拍照图片</th>
+                    <th>用户ID</th>
+                    <th>订单ID</th>
+                    <th>类型</th>
+                    <th>原因</th>
+                    <th>描述</th>
+                    <th>物流单号</th>
+                    <th>状态</th>
+                    <th>创建时间</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php if (empty($return)) {
+                    $return = array();
+                } //echo '<pre>';print_r($receivable);exit;
+                foreach ($return as $rev) {
+                    ?>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td><?php echo $rev['return_id'];?></td>
+                    <td><?php echo $rev['img_one'];?></td>
+                    <td><?php echo $rev['uid'];?></td>
+                    <td><?php echo $rev['order_sn'];?></td>
+                    <td><?php echo $rev['type'] == 1 ? '退货' : '换货';?></td>
+                    <td><?php switch ($rev['reason']) {
+                        case 1:
+                            $r = '尺寸不对';
+                            break;
+                        case 1:
+                            $r = '货品质量问题';
+                            break;
+                        default:
+                            $r = '其他';
+                    }
+                        echo $r;
+                        ?></td>
+                    <td><?php echo $rev['descr'];?></td>
+                    <td><?php echo $rev['logistic_num'];?></td>
+                    <td><?php
+                        switch ($rev['status']) {
+                            case 1:
+                                $s = '处理成功';
+                                break;
+                            case 1:
+                                $s = '取消';
+                                break;
+                            default:
+                                $s = '初始';
+                        }
+                        ?></td>
+                    <td><?php echo $rev['create_time'];?></td>
+                </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+            <div class="clear"></div>
+        </div>
+
+        <div class="tab-content" id="tab4">
+            <form action="#" method="post">
+                <fieldset>
+                    <?php echo $data['annotated'];?>
+                </fieldset>
+                <div class="clear"></div>
+                <!-- End .clear -->
+            </form>
+        </div>
+
+        <div class="tab-content" id="tab5">
+            <form action="#" method="post">
+                <fieldset>
+                    <?php
+                    echo '发票抬头：'.$data['invoice_payable'].'<br>';
+                    switch ($data['invoice_content']){
+                        case 1: $ic = '服装'; break;
+                        case 2: $ic = '其他'; break;
+                        default:$ic = $ic = $data['invoice_payable'];
+                    }
+                    echo '发票内容:'.$ic;
+                    ?>
+
+                </fieldset>
+                <div class="clear"></div>
+                <!-- End .clear -->
+            </form>
+        </div>
+        <!-- End #tab2 -->
+    </div>
+    <!-- End .content-box-content -->
+</div>
+<!-- End .content-box -->
+<div class="content-box column-left">
+    <div class="content-box-header">
+        <h3>收货人信息</h3>
+    </div>
+    <!-- End .content-box-header -->
+    <div class="content-box-content">
+        <div class="tab-content default-tab">
+            <table>
+                <tr>
+                    <td><b>收货人：</b></td>
+                    <td><?php echo $data['recent_name'];?></td>
+
+                    <td><b>手机号码：</b></td>
+                    <td><?php echo $data['phone_num'];?></td>
+                </tr>
+                <tr>
+                    <td><b>座机：</b></td>
+                    <td><?php echo $data['call_num'];?></td>
+                    <td><b>邮政编码：</b></td>
+                    <td><?php echo $data['zipcode'];?></td>
+                </tr>
+                <tr>
+                    <td><b>收货地址：</b></td>
+                    <td><?php echo $data['recent_address'];?></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <!-- End #tab3 -->
+    </div>
+    <!-- End .content-box-content -->
+</div>
+
+<!-- End .content-box -->
+<div class="content-box column-right">
+    <div class="content-box-header">
+        <!-- Add the class "closed" to the Content box header to have it closed by default -->
+        <h3>订单用户信息</h3>
+    </div>
+    <!-- End .content-box-header -->
+    <div class="content-box-content">
+        <div class="tab-content default-tab">
+            <table>
+                <tr>
+                    <td><b>用户ID：</b></td>
+                    <td><?php echo $userInfo['uid'];?></td>
+                    <td><b>用户账号：</b></td>
+                    <td><?php echo $userInfo['uname'];?></td>
+                </tr>
+                <tr>
+                    <td><b>用户昵称：</b></td>
+                    <td><?php echo $userInfo['nickname'];?></td>
+                    <td><b>用户等级：</b></td>
+                    <td><?php echo $userInfo['lid'];?></td>
+                </tr>
+                <tr>
+                    <td><b>用户积分：</b></td>
+                    <td><?php echo $userInfo['integral'];?></td>
+                    <td><b>用户金额：</b></td>
+                    <td><?php echo $userInfo['amount'];?></td>
+                </tr>
+            </table>
+        </div>
+        <!-- End #tab3 -->
+    </div>
+    <!-- End .content-box-content -->
+</div>
+
+<div class="content-box column-left">
+    <div class="content-box-header">
+        <h3>配货信息</h3>
+    </div>
+    <!-- End .content-box-header -->
+    <div class="content-box-content">
+        <div class="tab-content default-tab">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>快递公司</th>
+                    <th>收货人</th>
+                    <th>收货地址</th>
+                    <th>物流单号</th>
+                    <th>备注</th>
+                    <th>运费</th>
+                    <th>创建时间</th>
+                </tr>
+                </thead>
+                <?php if (empty ($picking)) {
+                $picking = array();
+            }
+                foreach ($picking as $pv) {
+                    ?>
+                    <tr>
+                        <td><?php echo $pv['picking_id'];?></td>
+                        <td><?php echo $pv['name'];?></td>
+                        <td><?php echo $data['recent_name'];?></td>
+                        <td><?php echo $data['recent_address'];?></td>
+                        <td><?php echo $pv['logistics_orders_sn'];?></td>
+                        <td><?php echo $pv['descr'];?></td>
+                        <td><?php echo $pv['freight'];?></td>
+                        <td><?php echo $pv['create_time'];?></td>
+                    </tr>
+                    <?php }?>
+            </table>
+        </div>
+        <!-- End #tab3 -->
+    </div>
+    <!-- End .content-box-content -->
+</div>
+
+<!-- End .content-box -->
+<div class="clear"></div>
+
+<?php require(dirname(__FILE__) . '/../footer.php'); ?>
+<!-- End #footer -->
+</div>
+<!-- End #main-content -->
 </div>
 </body>
 <!-- Download From www.exet.tk-->
