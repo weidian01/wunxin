@@ -51,11 +51,11 @@ class product_size extends MY_Controller
      */
     public function create()
     {
-        $this->load->model('product/Model_Product_Category', 'category');
-        $category = $this->category->getCategroyList();
-        $this->load->model('product/Model_Product_Model', 'mod');
-        $model = $this->mod->getModelList(500);
-        $this->load->view('administrator/product/size/create', array('category' => $category, 'model' => $model));
+        //$this->load->model('product/Model_Product_Category', 'category');
+        //$category = $this->category->getCategroyList();
+        //$this->load->model('product/Model_Product_Model', 'mod');
+        //$model = $this->mod->getModelList(500);
+        $this->load->view('administrator/product/size/create');
     }
 
     /**
@@ -79,11 +79,12 @@ class product_size extends MY_Controller
     {
         $this->load->model('product/Model_Product_Size', 'size');
         $data['name'] = $this->input->post('name');
+        $data['type'] = $this->input->post('type');
         $data['abbreviation'] = $this->input->post('abbreviation');
         $data['descr'] = $this->input->post('descr');
         $size_id = $this->input->post('size_id');
 
-        if (!$data['name'] || !$data['abbreviation'] || !$data['descr'])
+        if (!$data['name'] || !$data['abbreviation'] || !$data['descr'] || !$data['type'])
             show_error('录入信息不全');
 
         $this->size->save($data, $size_id);

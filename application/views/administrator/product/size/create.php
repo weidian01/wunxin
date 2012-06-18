@@ -59,6 +59,15 @@
                             <small>描述不能为空</small>
                         </p>
                         <p>
+                            <label>类型</label>
+                            <select name="type">
+                            <?php foreach(array(0=>'请选择',1=>'T恤',2=>'卫衣',3=>'裤子',) as $k => $v):?>
+                            <option value="<?=$k?>" <?php if(isset($type) && $type==$k) echo 'selected="selected"'?>><?=$v?></option>
+                            <?php endforeach;?>
+                            </select>
+                            <small>必须选择类型</small>
+                        </p>
+                        <p>
                             <input class="button" type="submit" value="Submit"/>
                         </p>
                     </fieldset>

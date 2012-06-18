@@ -46,6 +46,7 @@
                         <th>号码名称</th>
                         <th>简介</th>
                         <th>描述</th>
+                        <th>类型</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -61,6 +62,9 @@
                         </td>
                         <td>
                             <?=$item['descr']?>
+                        </td>
+                        <td>
+                            <?php if($item['type'] == 1):?>T恤<?php elseif($item['type'] == 2):?>卫衣<?php else:?>裤子<?php endif;?>
                         </td>
                         <td><a href="<?php echo site_url("administrator/product_size/edit/{$item['size_id']}")?>"><img
                             src="/images/icons/pencil.png" alt="Edit"/></a>
