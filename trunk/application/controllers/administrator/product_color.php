@@ -86,7 +86,7 @@ class product_color extends MY_Controller
 
         if ($_FILES['image']['size'] > 0) {
 
-            $config['upload_path'] = WEBROOT.'/images/color';
+            $config['upload_path'] = UPLOAD.'color';
             $config['allowed_types'] = 'gif|jpg|png|jepg';
             $config['max_size'] = '100';
             $config['max_width'] = '1024';

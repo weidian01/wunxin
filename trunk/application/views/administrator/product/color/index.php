@@ -65,7 +65,7 @@
                             <?=$item['code']?>
                         </td>
                         <td>
-                            <?php if($item['image']):?><img width="20" height="20" src="<?=config_item('static_url'),'images/color/',$item['image']?>"><?php endif;?>
+                            <?php if($item['image']):?><img width="20" height="20" src="<?=config_item('static_url'),'upload/color/',$item['image']?>"><?php endif;?>
                         </td>
                         <td>
                             <?=$item['descr']?>

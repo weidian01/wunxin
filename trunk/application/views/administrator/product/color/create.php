@@ -67,7 +67,7 @@
                         </p>
                         <p>
                             <label>图片</label>
-                            <?php if(isset($image)):?><img width="50" height="50" src="<?=config_item('static_url'),'images/color/',$image?>"><?php endif;?>
+                            <?php if(isset($image)):?><img width="50" height="50" src="<?=config_item('static_url'),'upload/color/',$image?>"><?php endif;?>
                             <input class="" type="file" value="" name="image"/>
                         </p>
                         <p>
