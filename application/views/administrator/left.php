@@ -77,6 +77,11 @@
                         <li><a href="#">文章管理</a></li>
                     </ul>
                 </li>
+                <li><a href="#" class="nav-top-item"> 推荐管理 </a>
+                    <ul>
+                        <li><a href="#" title="">推荐列表</a></li>
+                    </ul>
+                </li>
                 <li><a href="#" class="nav-top-item"> 其他管理 </a>
                     <ul>
                         <li><a href="#" title="">建议与意见</a></li>
