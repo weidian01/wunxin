@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Simpla Admin | Sign In by www.865171.cn</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台登陆 -- 万象电子商务管理系统</title>
 <!--                       CSS                       -->
 <!-- Reset Stylesheet -->
 <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen" />

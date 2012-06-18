@@ -36,6 +36,12 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+//文件分隔符
+define('DS', DIRECTORY_SEPARATOR);
+
+//上传文件目录
+define('UPLOAD', WEBROOT.DS.'upload');
+
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
