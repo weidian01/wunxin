@@ -44,8 +44,10 @@
                     订单列表 </a>
                     <ul>
                         <li><a href="/administrator/order/orderList">订单列表</a></li>
-                        <li><a href="#">收款单列表</a></li>
-                        <li><a href="#">配货单列表</a></li>
+                        <li><a href="/administrator/order_receiver/receivableList">收款单列表</a></li>
+                        <li><a href="/administrator/order_picking/pickingList">配货单列表</a></li>
+                        <li><a href="/administrator/order_express/expressList">快递公司列表</a></li>
+
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item"> 设计图管理 </a>

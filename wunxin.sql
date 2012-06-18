@@ -557,10 +557,6 @@ auto_increment = 1;
 
 alter table wx_design comment '设计图';
 
-INSERT INTO ``wx_design`` (`did`,`class_id`,`uid`,`uname`,`dname`,`ddetail`,`design_img`,`design_source`,`source_expand`,`status`,`vote_end_time`,`total_num`,`total_fraction`,`create_time`) VALUES (1,9,1,'admin','动漫12','动漫游戏1','design00011.jpg',1,'',1,'2011-02-16 00:00:00',10,50,'2012-06-11 14:08:56');
-INSERT INTO ``wx_design`` (`did`,`class_id`,`uid`,`uname`,`dname`,`ddetail`,`design_img`,`design_source`,`source_expand`,`status`,`vote_end_time`,`total_num`,`total_fraction`,`create_time`) VALUES (2,1,1,'hjpking@gmail.com','游戏','游戏','/images/2.jpg',1,'1',1,'2012-06-18 14:07:02',20,100,'2012-06-11 14:08:56');
-INSERT INTO ``wx_design`` (`did`,`class_id`,`uid`,`uname`,`dname`,`ddetail`,`design_img`,`design_source`,`source_expand`,`status`,`vote_end_time`,`total_num`,`total_fraction`,`create_time`) VALUES (43,9,1,'admin','测试','无可奈何厅厅厅在仍仍脸枯要我佳木斯要苛苛枯棒棒 枯枯苛欠欠','design000431.jpg',1,'',1,'2012-06-14 11:13:29',0,0,'2012-06-14 11:13:44');
-
 /*==============================================================*/
 /* Index: Index_uid                                             */
 /*==============================================================*/
@@ -896,7 +892,7 @@ create table wx_order_product
    pname                varchar(120) comment '产品名称',
    market_price         int comment '市场价格',
    sall_price           int comment '销售价格',
-   product_num          int comment '产品数量',
+   product_num          int default 1 comment '产品数量',
    comment_status       tinyint default 0 comment '是否评论，0未评论，1已评论',
    share_status         tinyint default 0 comment '是否晒单，0未晒单，1已晒单',
    product_size         int comment '产品尺码ID',
@@ -1635,6 +1631,7 @@ create table wx_size
    name                 varchar(32) comment '尺码名称',
    abbreviation         char(6) comment '尺码简称',
    descr                varchar(128) comment '尺码描述',
+   type                 tinyint comment '类别,1,T恤，2卫衣，3裤子',
    create_time          datetime comment '创建时间',
    primary key (size_id)
 )
