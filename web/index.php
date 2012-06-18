@@ -177,7 +177,7 @@ if (!is_dir($system_path)) {
  * -------------------------------------------------------------------
  */
 // web 目录常量
-define('WEBROOT', dirname(__FILE__));
+define('WEBROOT', dirname(__FILE__).'/');
 
 // The name of THIS file
 define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));

@@ -40,7 +40,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('DS', DIRECTORY_SEPARATOR);
 
 //上传文件目录
-define('UPLOAD', WEBROOT.DS.'upload');
+define('UPLOAD', WEBROOT.DS.'upload'.DS);
 
 
 /* End of file constants.php */
