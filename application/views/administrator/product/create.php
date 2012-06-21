@@ -88,8 +88,8 @@
 
                         <p>
                             <label>是否上架</label>
-                            上架<input type="radio" value="1" <?php if(isset($info['status']) && $info['status']==1)echo 'checked';?> name="status"/>
-                            下架<input type="radio" value="0" checked name="status"/>
+                            上架<input type="radio" value="1" checked name="status"/>
+                            下架<input type="radio" value="0"  <?php if(isset($info['status']) && $info['status']==0)echo 'checked';?> name="status"/>
                         <p>
 
                         <p>

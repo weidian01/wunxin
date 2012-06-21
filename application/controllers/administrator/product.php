@@ -69,15 +69,23 @@ class product extends MY_Controller
     {
         $id = $this->uri->segment(4, 0);
         if (!$id) {
-            show_error('号码id为空');
+            show_error('产品id为空');
         }
-        $this->load->model('product/Model_Product_Color', 'color');
-        $info = $this->color->getColorById($id);
-        if (!$info) {
-            show_error('号码信息不存在');
+
+        $this->load->model('product/Model_Product', 'product');
+        $info = $this->product->getProductById($id);
+        if(! $info)
+        {
+             show_error('该产品不存在');
         }
         $this->load->helper('form');
-        $this->load->view('administrator/product/create', $info);
+        $this->load->model('product/Model_Product_Category', 'category');
+        $category = $this->category->getCategroyList();
+        $this->load->model('product/Model_Product_Model', 'mod');
+        $model = $this->mod->getModelList(500);
+        $this->load->model('product/Model_Product_Color', 'color');
+        $color = $this->color->getList(500);
+        $this->load->view('administrator/product/create', array('info'=>$info, 'category' => $category, 'model' => $model, 'color'=>$color));
     }
 
     public function save()

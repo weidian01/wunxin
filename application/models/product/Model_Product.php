@@ -16,7 +16,7 @@ class Model_Product extends MY_Model
      */
     public function getProductById($pid)
     {
-        $data = $this->db->select('*')->get_where('product', array('pid' => $pid, 'status' => 1, 'check_status' => 1, 'shelves' => 1))->row_array();
+        $data = $this->db->select('*')->get_where('product', array('pid' => $pid,))->row_array();
 
         return empty ($data) ? null : $data;
     }
