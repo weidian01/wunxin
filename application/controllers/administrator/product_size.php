@@ -91,6 +91,14 @@ class product_size extends MY_Controller
         redirect('administrator/product_size/index');
     }
 
+    public function sizeinfo()
+    {
+        $type =  $this->input->get_post('type');
+        $this->load->model('product/Model_Product_Size', 'size');
+        $data = $this->size->getSizeByType($type,'size_id, name');
+        echo self::json_output($data);
+    }
+
     /**
      * 删除一个分类
      */

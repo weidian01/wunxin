@@ -98,12 +98,57 @@ class Model_Product extends MY_Model
 
     public function addProduct(array $pInfo)
     {
+        $this->db->insert('product', $pInfo);
+        return $this->db->insert_id();
+    }
 
+    public function addProductSize(array $size, $pid)
+    {
+        $data = array();
+        foreach ($size as $k => $v) {
+            $data[$k]['pid'] = $pid;
+            $data[$k]['size_id'] = $v;
+        }
+        if ($data) {
+            $this->db->insert_batch('product_size', $data);
+        }
+        return;
+    }
+
+    public function upProductSize($data, $pid)
+    {
+        $this->db->where('pid', $pid);
+        $this->db->delete('product_size');
+        $this->db->insert('product_size', $data);
     }
 
     public function editProduct($pId, array $pInfo)
     {
 
+    }
+
+    public function addProductPhoto(array $photo, $pid)
+    {
+        $data = array();
+        $date = date('Y-m-d H:i:s', TIMESTAMP);
+        foreach ($photo as $k => $v) {
+            $data[$k]['is_default'] = $data ? 0:1;
+            $data[$k]['pid'] = $pid;
+            $data[$k]['img_addr'] = $v;
+            $data[$k]['create_time'] = $date;
+        }
+        if ($data) {
+            $this->db->insert_batch('product_photo', $data);
+        }
+        return ;
+    }
+
+    public function addProductAttr($attr)
+    {
+        if ($attr) {
+            $this->db->insert_batch('product_attr', $attr);
+        }
+        return ;
     }
 
     public function deleteProduct($pId)
