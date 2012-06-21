@@ -59,8 +59,8 @@
                 </li>
                 <li><a href="#" class="nav-top-item"> 新闻管理 </a>
                     <ul>
-                        <li><a href="#" title="">分类管理</a></li>
-                        <li><a href="#" title="">文章管理</a></li>
+                        <li><a href="/administrator/article_category/categoryList" title="分类管理">分类管理</a></li>
+                        <li><a href="/administrator/article/articleList" title="文章管理">文章管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item"> 业务管理 </a>
