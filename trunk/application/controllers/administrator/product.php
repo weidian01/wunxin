@@ -124,6 +124,7 @@ class product extends MY_Controller
         $data['sell_price'] = $this->input->post('sell_price');
         $data['cost_price'] = $this->input->post('cost_price');
         $data['stock'] = $this->input->post('stock');
+        $data['status'] = $this->input->post('status');
         $data['descr'] = $this->input->post('descr');
         $size = $this->input->post('size');
         //print_r($data);
