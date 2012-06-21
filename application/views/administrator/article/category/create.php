@@ -16,6 +16,8 @@
     <h2><?php echo $type == 'edit' ? '编辑分类' : '添加分类'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
+        <li><a class="shortcut-button" href="/administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/article/articleList"><span><br/> 文章列表 </span></a></li>
         <li><a class="shortcut-button" href="/administrator/article_category/categoryAdd"><span><br/> 添加分类 </span></a></li>
         <li><a class="shortcut-button" href="/administrator/article_category/categoryList"><span><br/> 分类列表 </span></a></li>
     </ul>
@@ -76,14 +78,8 @@
     </div>
     <!-- End .content-box -->
 
-    <div class="clear"></div>
-
-    <div id="footer">
-        <small>
-            <!-- Remove this notice or replace it with whatever you want -->
-            &#169; Copyright 2010 Your Company | Powered by <a href="http://www.865171.cn">admin templates</a> | <a
-            href="#">Top</a></small>
-    </div>
+    <!-- <div class="clear"></div> -->
+    <?php require(dirname(__FILE__) . '/../../footer.php'); ?>
     <!-- End #footer -->
 </div>
 <!-- End #main-content -->

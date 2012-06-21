@@ -17,6 +17,8 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
+        <li><a class="shortcut-button" href="/administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/article/articleList"><span><br/> 文章列表 </span></a></li>
         <li><a class="shortcut-button" href="/administrator/article_category/categoryAdd"><span><br/> 添加分类 </span></a></li>
         <li><a class="shortcut-button" href="/administrator/article_category/categoryList"><span><br/> 分类列表 </span></a></li>
     </ul>
