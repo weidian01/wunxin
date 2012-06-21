@@ -135,22 +135,17 @@ class product extends MY_Controller
 
 
         $this->load->model('product/Model_Product', 'product');
-        if($pid)
-        {
+        if ($pid) {
             show_error('更新');
-        }
-        else
-        {
+        } else {
             $pid = $this->product->addProduct($data);
             $size && $this->product->addProductSize($size, $pid);
             $product_photo && $this->product->addProductPhoto($product_photo, $pid);
             $attr = array();
-            $i=0;
-            foreach($attr_value as $attr_id => $item)
-            {
-                foreach($item as $v)
-                {
-                    if($v){
+            $i = 0;
+            foreach ($attr_value as $attr_id => $item) {
+                foreach ($item as $v) {
+                    if ($v) {
                         $attr[$i]['pid'] = $pid;
                         $attr[$i]['attr_id'] = $attr_id;
                         $attr[$i]['model_id'] = $data['model_id'];
@@ -171,16 +166,11 @@ class product extends MY_Controller
     {
         $id = $this->uri->segment(4, 0);
         if (!$id) {
-            show_error('尺码id为空');
+            show_error('产品id为空');
         }
-        $this->load->model('product/Model_Product_Color', 'color');
+        $this->load->model('product/Model_Product', 'product');
 
-        if ($this->color->isUse($id)) {
-            show_error('有产品正在使用该颜色,不可删除');
-        } else {
-            $this->color->delete($id);
-            redirect('/administrator/product/index');
-        }
-
+        $this->product->deleteProduct($id);
+        redirect('/administrator/product/index');
     }
 }
