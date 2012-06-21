@@ -61,6 +61,20 @@ class Model_Product_Size extends MY_Model
     }
 
     /**
+     * 根据类型或的该类型下所有号码
+     * @param $type
+     * @return mixed
+     */
+    function getSizeByType($type, $field = '*')
+    {
+        $info = $this->db
+            ->select($field)
+            ->get_where('size', array('type' => $type))
+            ->result_array();
+        return $info;
+    }
+
+    /**
      * 获取模型列表
      * @param int $offset
      * @param int $limit
