@@ -87,6 +87,12 @@
                         </p>
 
                         <p>
+                            <label>是否上架</label>
+                            上架<input type="radio" value="1" <?php if(isset($info['status']) && $info['status']==1)echo 'checked';?> name="status"/>
+                            下架<input type="radio" value="0" checked name="status"/>
+                        <p>
+
+                        <p>
                             <label>市场价格</label>
                             <input class="text-input datepicker"
                                    type="text" value="<?php echo isset($info['market_price']) ? $info['market_price'] : ''?>" name="market_price"/> 分

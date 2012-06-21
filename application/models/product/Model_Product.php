@@ -153,6 +153,9 @@ class Model_Product extends MY_Model
 
     public function deleteProduct($pId)
     {
-
+        $this->db->where('pid', $pId);
+        $this->db->where('status', 1);
+        $this->db->update('product', array('status'=>0));
+        return ;
     }
 }

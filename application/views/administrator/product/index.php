@@ -43,23 +43,30 @@
                     <th>
                         <input class="check-all" type="checkbox"/>
                     </th>
-                    <th>分类名称</th>
-                    <th>分类级别</th>
+                    <th>商品名称</th>
+                    <th>售价</th>
+                    <th>市场价</th>
+                    <th>成本</th>
+                    <th>上架</th>
+                    <th>库存</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($category as $item): ?>
+                <?php foreach ($list as $item): ?>
                 <tr>
                     <td>
                         <input type="checkbox"/>
                     </td>
-
-                    <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['cname'];?></td>
-                    <td><?=$item['floor']?></td>
-                    <td><a href="<?php echo site_url("administrator/product_category/edit/{$item['class_id']}")?>"><img
+                    <td><?=$item['pname']?></td>
+                    <td><?=$item['sell_price']?></td>
+                    <td><?=$item['market_price']?></td>
+                    <td><?=$item['cost_price']?></td>
+                    <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
+                    <td><?=$item['stock']?></td>
+                    <td><a href="<?php echo site_url("administrator/product/edit/{$item['pid']}")?>"><img
                         src="/images/icons/pencil.png" alt="Edit"/></a> <a
-                        href="<?php echo site_url("administrator/product_category/del/{$item['class_id']}")?>"><img
+                        href="<?php echo site_url("administrator/product/del/{$item['pid']}")?>"><img
                         src="/images/icons/cross.png" alt="Delete"/></a>
                     </td>
                 </tr>
