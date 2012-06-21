@@ -6,7 +6,7 @@
  * Time: 下午2:30
  * To change this template use File | Settings | File Templates.
  */
-class Model_Home_Recommend extends MY_Controller
+class Model_Home_Recommend extends MY_Model
 {
     /**
      * 获取推荐列表
