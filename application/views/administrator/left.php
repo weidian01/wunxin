@@ -79,7 +79,7 @@
                 </li>
                 <li><a href="#" class="nav-top-item"> 推荐管理 </a>
                     <ul>
-                        <li><a href="#" title="">推荐列表</a></li>
+                        <li><a href="/administrator/home_recommend/recommendList" title="">推荐列表</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item"> 其他管理 </a>

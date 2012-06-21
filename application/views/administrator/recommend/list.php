@@ -42,17 +42,14 @@
                     <thead>
                     <tr>
                         <th><input class="check-all" type="checkbox"/></th>
-                        <th>文章ID</th>
+                        <th>ID</th>
                         <th>分类</th>
                         <th>标题</th>
-                        <th>关键字</th>
-                        <th>描述</th>
-                        <th>内容</th>
-                        <th>是否显示</th>
-                        <th>是否置顶</th>
+                        <th>链接</th>
+                        <th>图片</th>
+                        <th>产品ID</th>
                         <th>排序</th>
-                        <th>有效</th>
-                        <th>无效</th>
+                        <th>排放</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -71,20 +68,17 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?php echo $v['id'];?></td>
-                        <td><a href="/administrator/article/articleCLass/<?php echo $v['cid'];?>"><?php echo $class_data[$v['cid']]['cname'];?></a></td>
+                        <td><a href="/administrator/home_recommend/recommendList/<?php echo $v['cid'];?>"><?php echo $class_data[$v['cid']]['cname'];?></a></td>
                         <td><?php echo $v['title'];?></td>
-                        <td><?php echo mb_substr($v['keywords'], 0, 20, 'utf-8');?></td>
-                        <td><?php echo mb_substr($v['descr'], 0, 20, 'utf-8');?></td>
-                        <td><?php echo mb_substr($v['content'], 0, 20, 'utf-8');?></td>
-                        <td><?php echo $v['visiblity'] ? '显示' : '不显示';?></td>
-                        <td><?php echo $v['top'] ? '置顶' : '不置顶';?></td>
+                        <td><?php echo $v['link'];?></td>
+                        <td><?php echo $v['img_addr'];?></td>
+                        <td><?php echo $v['pid'];?></td>
                         <td><?php echo $v['sort'];?></td>
-                        <td><?php echo $v['is_valid'];?></td>
-                        <td><?php echo $v['is_invalid'];?></td>
+                        <td><?php echo $v['emission'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/article/articleEdit/<?php echo $v['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>
-                            <a href="/administrator/article/articleDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除文章"><img src="/images/icons/cross.png" alt="删除文章"/></a>
+                            <a href="/administrator/home_recommend/recommendEdit/<?php echo $v['id'];?>" title="编辑推荐"><img src="/images/icons/pencil.png" alt="编辑推荐"/></a>
+                            <a href="/administrator/home_recommend/recommendDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
                         </td>
                     </tr>
                         <?php }?>
