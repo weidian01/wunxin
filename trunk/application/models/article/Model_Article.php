@@ -24,7 +24,6 @@ class Model_Article extends MY_Model
             'descr' => $data['descr'],
             'visiblity' => $data['visiblity'],
             'top' => $data['top'],
-            'sort' => $data['sort'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
@@ -43,13 +42,12 @@ class Model_Article extends MY_Model
     {
         $data = array(
             'cid' => $data['cid'],
-            'title' => $data['title'],
-            'content' => $data['content'],
-            'keywords' => $data['keywords'],
-            'descr' => $data['descr'],
+            'title' => '"'.$data['title'].'"',
+            'content' => '"'.$data['content'].'"',
+            'keywords' => '"'.$data['keywords'].'"',
+            'descr' => '"'.$data['descr'].'"',
             'visiblity' => $data['visiblity'],
             'top' => $data['top'],
-            'sort' => $data['sort'],
         );
 
         $this->db->where('id', $newsId);
