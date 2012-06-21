@@ -100,6 +100,7 @@ class Model_Order_Express extends MY_Model
             'website' => "'".$eData['website']."'",
             'sort' => $eData['sort'],
         );
+
         $this->db->where('ed_id', $eId);
         return $this->db->set($data, '', false)->update('express_delivery_company');
     }
