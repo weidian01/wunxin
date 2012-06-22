@@ -78,6 +78,29 @@ class Model_Home_Recommend extends MY_Model
     }
 
     /**
+     * 推荐添加
+     *
+     * @param array $data
+     * @return boolean
+     */
+    public function recommendAdd(array $data)
+    {
+        $info = array(
+            'cid' => $data['cid'],
+            'title' => $data['title'],
+            'link' => $data['link'],
+            'img_addr' => $data['img_addr'],
+            'pid' => $data['pid'],
+            'sort' => $data['sort'],
+            'emission' => $data['emission'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
+        );
+
+        $this->db->insert('recommend', $data);
+        return $this->db->insert_id();
+    }
+
+    /**
      * 删除推荐
      *
      * @param $rId
