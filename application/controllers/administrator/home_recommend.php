@@ -35,36 +35,30 @@ class home_recommend extends MY_Controller
      */
     public function recommendList()
     {
-        $Limit = 20;
-        $currentPage = $this->uri->segment(4, 1);
-        $offset = ($currentPage - 1) * $Limit;
-
         $this->load->model('recommend/Model_Home_Recommend', 'recommend');
-        $totalNum = $this->recommend->getRecommendListCount();
-        $data = $this->recommend->getRecommendList($Limit, $offset);
+        $day_recommend = $this->recommend->getRecommendCategoryList(1, 1000);
+        $design_recommend = $this->recommend->getRecommendCategoryList(2, 1000);
+        $AD_recommend = $this->recommend->getRecommendCategoryList(3, 1000);
+        $man_recommend = $this->recommend->getRecommendCategoryList(4, 1000);
+        $woman_recommend = $this->recommend->getRecommendCategoryList(5, 1000);
+        $lover_recommend = $this->recommend->getRecommendCategoryList(6, 1000);
+        $family_recommend = $this->recommend->getRecommendCategoryList(7, 1000);
+        $designer_recommend = $this->recommend->getRecommendCategoryList(8, 1000);
+        $broadcast_recommend = $this->recommend->getRecommendCategoryList(9, 1000);
 
-        /*
-        if ($cId) {
-            $totalNum = $this->recommend->getRecommendCategoryCount($cId);
-            $data = $this->recommend->getRecommendCategoryList($cId, $Limit, $offset);
-        } else {
-            $totalNum = $this->recommend->getRecommendListCount();
-            $data = $this->recommend->getRecommendList($Limit, $offset);
-        }
-        //*/
+        $data = array(
+            'day_recommend' => $day_recommend,
+            'design_recommend' => $design_recommend,
+            'AD_recommend' => $AD_recommend,
+            'man_recommend' => $man_recommend,
+            'woman_recommend' => $woman_recommend,
+            'lover_recommend' => $lover_recommend,
+            'family_recommend' => $family_recommend,
+            'designer_recommend' => $designer_recommend,
+            'broadcast_recommend' => $broadcast_recommend,
+        );
 
-        $this->load->library('pagination');
-        $config['base_url'] = site_url() . '/administrator/home_recommend/recommendList/';
-        $config['total_rows'] = $totalNum;
-        $config['per_page'] = $Limit;
-        $config['num_links'] = 10;
-        $config['uri_segment'] = 4;
-        $config['use_page_numbers'] = TRUE;
-        $config['anchor_class'] = 'class="number"';
-        $this->pagination->initialize($config);
-        $pageHtml = $this->pagination->create_links();
-
-        $this->load->view('/administrator/recommend/list', array('data' => $data, 'class_data' => $this->position, 'page_html' => $pageHtml, 'current_page' => $currentPage));
+        $this->load->view('/administrator/recommend/list', $data);
     }
 
     /**
