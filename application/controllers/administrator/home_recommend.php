@@ -70,7 +70,18 @@ class home_recommend extends MY_Controller
         $this->load->view('/administrator/recommend/create', array('class_data' => $this->position, 'type' => 'add'));
     }
 
-    public function recommendSave()
+    /**
+     * 首页转播图保存
+     */
+    public function broadcastRecommendSave()
+    {
+
+    }
+
+    /**
+     * 今日推荐保存
+     */
+    public function dayRecommendSave()
     {
 
     }
