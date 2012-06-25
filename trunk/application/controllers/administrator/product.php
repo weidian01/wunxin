@@ -74,18 +74,39 @@ class product extends MY_Controller
 
         $this->load->model('product/Model_Product', 'product');
         $info = $this->product->getProductById($id);
+
         if(! $info)
         {
              show_error('该产品不存在');
         }
+        $tmp = $this->product->getProductAttr($id);
+        $pattr = array();
+        foreach($tmp as $v)
+        {
+            $pattr[$v['attr_id']][] = $v['attr_value'];
+        }
+        //print_r($pattr);
+
+        $psize = $this->product->getProductSize($id);
+        //print_r($psize);
+        $photo = $this->product->getProductPhoto($id);
+        //print_r($photo);
+
         $this->load->helper('form');
         $this->load->model('product/Model_Product_Category', 'category');
         $category = $this->category->getCategroyList();
         $this->load->model('product/Model_Product_Model', 'mod');
         $model = $this->mod->getModelList(500);
+        $attr = $this->mod->getModel($info['model_id']);
+        foreach($attr['attrs'] as $key=>$item)
+        {
+            $attr['attrs'][$key]['attr_value'] = explode(',', $item['attr_value']);
+        }
+        //print_r($attr);
+
         $this->load->model('product/Model_Product_Color', 'color');
         $color = $this->color->getList(500);
-        $this->load->view('administrator/product/create', array('info'=>$info, 'category' => $category, 'model' => $model, 'color'=>$color));
+        $this->load->view('administrator/product/create', array('info'=>$info, 'category' => $category, 'model' => $model, 'color'=>$color, 'attrs'=>$attr['attrs'], 'pattr'=>$pattr, 'photo'=>$photo));
     }
 
     public function save()
@@ -135,35 +156,36 @@ class product extends MY_Controller
         $data['status'] = $this->input->post('status');
         $data['descr'] = $this->input->post('descr');
         $size = $this->input->post('size');
-        //print_r($data);
+        //var_dump($size);
         $pid = $this->input->post('pid');
 
         if (!$size || !$attr_value || !$data['pname'] || !$data['color_id'] || !$data['model_id'])
             show_error('录入信息不全');
 
-
-
         $this->load->model('product/Model_Product', 'product');
         if ($pid) {
-            show_error('更新');
+            $this->product->editProduct($pid, $data);
+            $delphoto = $this->input->post('delphoto');
+            $delphoto && $this->product->delProductPhotoById($delphoto);
+            $this->product->delProductAttrById($pid);
         } else {
             $pid = $this->product->addProduct($data);
             $size && $this->product->addProductSize($size, $pid);
-            $product_photo && $this->product->addProductPhoto($product_photo, $pid);
-            $attr = array();
-            $i = 0;
-            foreach ($attr_value as $attr_id => $item) {
-                foreach ($item as $v) {
-                    if ($v) {
-                        $attr[$i]['pid'] = $pid;
-                        $attr[$i]['attr_id'] = $attr_id;
-                        $attr[$i]['model_id'] = $data['model_id'];
-                        $attr[$i]['attr_value'] = $v;
-                        $i++;
-                    }
+        }
+        $attr = array();
+        $i = 0;
+        foreach ($attr_value as $attr_id => $item) {
+            foreach ($item as $v) {
+                if ($v) {
+                    $attr[$i]['pid'] = $pid;
+                    $attr[$i]['attr_id'] = $attr_id;
+                    $attr[$i]['model_id'] = $data['model_id'];
+                    $attr[$i]['attr_value'] = $v;
+                    $i++;
                 }
             }
         }
+        $product_photo && $this->product->addProductPhoto($product_photo, $pid);
         $attr && $this->product->addProductAttr($attr);
         redirect('administrator/product/index');
     }

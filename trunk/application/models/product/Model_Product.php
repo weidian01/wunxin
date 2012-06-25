@@ -102,6 +102,14 @@ class Model_Product extends MY_Model
         return $this->db->insert_id();
     }
 
+    public function editProduct($pId, array $pInfo)
+    {
+        $this->db->where('pid', $pId);
+        $this->db->update('product', $pInfo);
+        return ;
+
+    }
+
     public function addProductSize(array $size, $pid)
     {
         $data = array();
@@ -115,16 +123,16 @@ class Model_Product extends MY_Model
         return;
     }
 
+    public function getProductSize($pid)
+    {
+        return $this->db->get_where('product_size',array('pid'=>$pid))->result_array();
+    }
+
     public function upProductSize($data, $pid)
     {
         $this->db->where('pid', $pid);
         $this->db->delete('product_size');
         $this->db->insert('product_size', $data);
-    }
-
-    public function editProduct($pId, array $pInfo)
-    {
-
     }
 
     public function addProductPhoto(array $photo, $pid)
@@ -143,11 +151,42 @@ class Model_Product extends MY_Model
         return ;
     }
 
+    public function getProductPhoto($pid)
+    {
+        return $this->db->get_where('product_photo',array('pid'=>$pid))->result_array();
+    }
+
+    public function delProductPhotoById($id)
+    {
+        if(is_array($id))
+        {
+            $this->db->where_in('id', $id);
+        }
+        else
+        {
+            $this->db->where('id', $id);
+        }
+        $this->db->delete('product_photo');
+        return ;
+    }
+
     public function addProductAttr($attr)
     {
         if ($attr) {
             $this->db->insert_batch('product_attr', $attr);
         }
+        return ;
+    }
+
+    public function getProductAttr($pid)
+    {
+        return $this->db->get_where('product_attr',array('pid'=>$pid))->result_array();
+    }
+
+    public function delProductAttrById($pId)
+    {
+        $this->db->where('pid', $pId);
+        $this->db->delete('product_attr');
         return ;
     }
 
