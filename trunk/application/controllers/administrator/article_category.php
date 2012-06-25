@@ -67,7 +67,7 @@ class article_category extends MY_Controller
         $sort = $this->input->get_post('sort');
         $path = $this->input->get_post('path');
 
-        if (empty ($cName) || empty ($sort) || empty ($path)) {
+        if (empty ($cName) || empty ($path)) {
             show_error('参数不全');
         }
 

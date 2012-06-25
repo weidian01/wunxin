@@ -68,12 +68,12 @@
             <td><?php echo $brv['id'];?></td>
             <td><?php echo $brv['title'];?></td>
             <td><?php echo $brv['link'];?></td>
-            <td><?php echo $brv['img_addr'];?></td>
+            <td><img src="<?php echo base_url().$brv['img_addr'];?>" alt="<?php echo $brv['title'];?>" width="50" height="50"/></td>
             <td><?php echo $brv['sort'];?></td>
             <td><?php echo $brv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $brv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $brv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $brv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -104,12 +104,12 @@
             <td><?php echo $drv['id'];?></td>
             <td><?php echo $drv['title'];?></td>
             <td><?php echo $drv['link'];?></td>
-            <td><?php echo $drv['img_addr'];?></td>
+            <td><img src="<?php echo base_url().$drv['img_addr'];?>" alt="<?php echo $brv['title'];?>" width="50" height="50"/></td>
             <td><?php echo $drv['sort'];?></td>
             <td><?php echo $drv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $drv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $drv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $drv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -126,6 +126,7 @@
             <th><input class="check-all" type="checkbox"/></th>
             <th>ID</th>
             <th>产品ID</th>
+            <th>排序</th>
             <th>创建时间</th>
             <th>操作</th>
         </tr>
@@ -137,10 +138,11 @@
             <td><input type="checkbox"/></td>
             <td><?php echo $derv['id'];?></td>
             <td><?php echo $derv['pid'];?></td>
+            <td><?php echo $derv['sort'];?></td>
             <td><?php echo $derv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $derv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $derv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $derv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -173,12 +175,12 @@
             <td><?php echo $adrv['id'];?></td>
             <td><?php echo $adrv['title'];?></td>
             <td><?php echo $adrv['link'];?></td>
-            <td><?php echo $adrv['img_addr'];?></td>
+            <td><img src="<?php echo base_url().$adrv['img_addr'];?>" alt="<?php echo $brv['title'];?>" width="50" height="50"/></td>
             <td><?php echo $adrv['sort'];?></td>
             <td><?php echo $adrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $adrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $adrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $adrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -214,14 +216,14 @@
             <td><?php echo $mrv['id'];?></td>
             <td><?php echo $mrv['title'];?></td>
             <td><?php echo $mrv['link'];?></td>
-            <td><?php echo $mrv['img_addr'];?></td>
+            <td><?php echo $mrv['img_addr'] ? '<img src="'.base_url().$mrv['img_addr'].'" alt="'.$mrv['title'].'" width="50" height="50">' : '';?></td>
             <td><?php echo $mrv['pid'];?></td>
             <td><?php echo $mrv['sort'];?></td>
             <td><?php echo $mrv['emission'];?></td>
             <td><?php echo $mrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $mrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $mrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $mrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -256,14 +258,14 @@
             <td><?php echo $wrv['id'];?></td>
             <td><?php echo $wrv['title'];?></td>
             <td><?php echo $wrv['link'];?></td>
-            <td><?php echo $wrv['img_addr'];?></td>
+            <td><?php echo $wrv['img_addr'] ? '<img src="'.base_url(). $wrv['img_addr'].'" alt="'.$wrv['title'].'" width="50" height="50">' : '';?></td>
             <td><?php echo $wrv['pid'];?></td>
             <td><?php echo $wrv['sort'];?></td>
             <td><?php echo $wrv['emission'];?></td>
             <td><?php echo $wrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $wrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $wrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $wrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -305,7 +307,7 @@
             <td><?php echo $lrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $lrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $lrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $lrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -348,7 +350,7 @@
             <td><?php echo $frv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $frv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $frv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $frv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -380,7 +382,7 @@
             <td><?php echo $derrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $derrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/article/articleDelete/<?php echo $derrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/home_recommend/recommendDelete/<?php echo $derrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
