@@ -80,7 +80,7 @@ class home_recommend extends MY_Controller
         $link = $this->input->get_post('link');
         $sort = intval($this->input->get_post('sort'));
 
-        if (empty ($name) || empty ($link) || empty ($sort)) {
+        if (empty ($name) || empty ($link)) {
             show_error('参数错误');
         }
 
@@ -136,7 +136,7 @@ class home_recommend extends MY_Controller
         $link = $this->input->get_post('link');
         $sort = intval($this->input->get_post('sort'));
 
-        if (empty ($name) || empty ($link) || empty ($sort)) {
+        if (empty ($name) || empty ($link)) {
             show_error('参数错误');
         }
 
@@ -222,7 +222,7 @@ class home_recommend extends MY_Controller
         $link = $this->input->get_post('link');
         $sort = intval($this->input->get_post('sort'));
 
-        if (empty ($name) || empty ($link) || empty ($sort)) {
+        if (empty ($name) || empty ($link)) {
             show_error('参数错误');
         }
 

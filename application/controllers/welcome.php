@@ -19,7 +19,8 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+        $this->load->model('');
+		$this->load->view('welcome_message', array('title' => '万象网首页'));
 	}
 }
 

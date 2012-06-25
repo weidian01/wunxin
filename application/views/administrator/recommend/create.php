@@ -152,7 +152,7 @@
 
             <p>
                 <label>图片</label>
-                <input class="text-input small-input" type="file" value="" name="img_addr">
+                <input class="text-input small-input" type="file" value="" name="img_addr"> 尺寸：978*200
                 <br>
             </p>
 
