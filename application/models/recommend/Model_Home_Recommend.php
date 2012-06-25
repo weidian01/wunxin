@@ -96,8 +96,18 @@ class Model_Home_Recommend extends MY_Model
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
-        $this->db->insert('recommend', $data);
+        $this->db->insert('recommend', $info);
         return $this->db->insert_id();
+    }
+
+    public function updateRecommend($imgPath, $rId)
+    {
+        $data = array(
+            'img_addr' => $imgPath,
+        );
+
+        $this->db->where('id', $rId);
+        return $this->db->update('recommend', $data);
     }
 
     /**

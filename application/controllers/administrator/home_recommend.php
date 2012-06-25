@@ -9,7 +9,7 @@
 class home_recommend extends MY_Controller
 {
     public $position = array(
-        1 => array('cname' => '今日推荐','cid' => 1),
+        1 => array('cname' => '今日推荐', 'cid' => 1),
         2 => array('cname' => '设计图推荐', 'cid' => 2),
         3 => array('cname' => '广告推荐', 'cid' => 3),
         4 => array('cname' => '男款T恤推荐', 'cid' => 4),
@@ -75,7 +75,56 @@ class home_recommend extends MY_Controller
      */
     public function broadcastRecommendSave()
     {
+        $name = $this->input->get_post('name');
+        $imgAddr = $this->input->get_post('img_addr');
+        $link = $this->input->get_post('link');
+        $sort = intval($this->input->get_post('sort'));
 
+        if (empty ($name) || empty ($link) || empty ($sort)) {
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 9,
+            'title' => $name,
+            'link' => $link,
+            'img_addr' => '',
+            'pid' => '',
+            'sort' => $sort,
+            'emission' => '',
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加首页转播图失败');
+        }
+
+        $this->load->helper('directory');
+        $directory = 'upload' . DS . 'recommend' . DS . 'broadcast' . DS . date('Ymd') . DS;
+        recursiveMkdirDirectory($directory);
+
+        $config['upload_path'] = WEBROOT . $directory;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2000';
+        $config['remove_spaces'] = true;
+        $config['overwrite'] = false;
+        $config['max_width'] = '0';
+        $config['max_height'] = '0';
+        $config['file_name'] = $lastId;
+
+        $this->load->library('upload', $config);
+//echo '<pre>';print_r($_FILES);exit;
+        if ($this->upload->do_upload('img_addr')) {
+            $uData = $this->upload->data();
+
+            $file = $directory . $uData['file_name'];
+            $this->recommend->updateRecommend($file, $lastId);
+        } else {
+            show_error('文件上传失败!');
+        }
+
+        redirect('/administrator/home_recommend/recommendList');
     }
 
     /**
@@ -83,13 +132,428 @@ class home_recommend extends MY_Controller
      */
     public function dayRecommendSave()
     {
+        $name = $this->input->get_post('name');
+        $link = $this->input->get_post('link');
+        $sort = intval($this->input->get_post('sort'));
 
+        if (empty ($name) || empty ($link) || empty ($sort)) {
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 1,
+            'title' => $name,
+            'link' => $link,
+            'img_addr' => '',
+            'pid' => '',
+            'sort' => $sort,
+            'emission' => '',
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加今日失败');
+        }
+
+        $this->load->helper('directory');
+        $directory = 'upload' . DS . 'recommend' . DS . 'day' . DS . date('Ymd') . DS;
+        recursiveMkdirDirectory($directory);
+
+        $config['upload_path'] = WEBROOT . $directory;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2000';
+        $config['remove_spaces'] = true;
+        $config['overwrite'] = false;
+        $config['max_width'] = '0';
+        $config['max_height'] = '0';
+        $config['file_name'] = $lastId;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('img_addr')) {
+            $uData = $this->upload->data();
+
+            $file = $directory . $uData['file_name'];
+            $this->recommend->updateRecommend($file, $lastId);
+        } else {
+            show_error('文件上传失败!');
+        }
+
+        redirect('/administrator/home_recommend/recommendList');
+    }
+
+    /**
+     * 设计图推荐保存
+     */
+    public function designRecommendSave()
+    {
+        $pid = $this->input->get_post('pid');
+        $sort = $this->input->get_post('sort');
+        if (empty ($pid) || empty ($sort)) {
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 2,
+            'title' => '',
+            'link' => '',
+            'img_addr' => '',
+            'pid' => $pid,
+            'sort' => $sort,
+            'emission' => '',
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加今日失败');
+        }
+
+        redirect('/administrator/home_recommend/recommendList');
+    }
+
+    /**
+     * 广告推荐保存
+     */
+    public function adRecommendSave()
+    {
+        $name = $this->input->get_post('name');
+        $link = $this->input->get_post('link');
+        $sort = intval($this->input->get_post('sort'));
+
+        if (empty ($name) || empty ($link) || empty ($sort)) {
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 3,
+            'title' => $name,
+            'link' => $link,
+            'img_addr' => '',
+            'pid' => '',
+            'sort' => $sort,
+            'emission' => '',
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加广告推荐失败');
+        }
+
+        $this->load->helper('directory');
+        $directory = 'upload' . DS . 'recommend' . DS . 'ad' . DS . date('Ymd') . DS;
+        recursiveMkdirDirectory($directory);
+
+        $config['upload_path'] = WEBROOT . $directory;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '2000';
+        $config['remove_spaces'] = true;
+        $config['overwrite'] = false;
+        $config['max_width'] = '0';
+        $config['max_height'] = '0';
+        $config['file_name'] = $lastId;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('img_addr')) {
+            $uData = $this->upload->data();
+
+            $file = $directory . $uData['file_name'];
+            $this->recommend->updateRecommend($file, $lastId);
+        } else {
+            show_error('文件上传失败!');
+        }
+
+        redirect('/administrator/home_recommend/recommendList');
+    }
+
+    /**
+     * 男款推荐保存
+     */
+    public function manRecommendSave()
+    {
+        $name = $this->input->get_post('name');
+        $link = $this->input->get_post('link');
+        $sort = intval($this->input->get_post('sort'));
+        $emission = intval($this->input->get_post('emission'));
+        $pId = $this->input->get_post('pid');
+
+        if (in_array($emission, array('1', '4')) && empty ($pId)) {
+            show_error('参数错误');
+        }
+
+        if (in_array($emission, array('2', '3')) && (empty ($name) || empty ($link) || empty ($sort))) {
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 4,
+            'title' => $name,
+            'link' => $link,
+            'img_addr' => '',
+            'pid' => $pId,
+            'sort' => $sort,
+            'emission' => $emission,
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加男款推荐失败');
+        }
+        if (in_array($emission, array('2', '3'))) {
+            $this->load->helper('directory');
+            $directory = 'upload' . DS . 'recommend' . DS . 'man' . DS . date('Ymd') . DS;
+            recursiveMkdirDirectory($directory);
+
+            $config['upload_path'] = WEBROOT . $directory;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2000';
+            $config['remove_spaces'] = true;
+            $config['overwrite'] = false;
+            $config['max_width'] = '0';
+            $config['max_height'] = '0';
+            $config['file_name'] = $lastId;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('img_addr')) {
+                $uData = $this->upload->data();
+
+                $file = $directory . $uData['file_name'];
+                $this->recommend->updateRecommend($file, $lastId);
+            } else {
+                show_error('文件上传失败!');
+            }
+        }
+        redirect('/administrator/home_recommend/recommendList');
+    }
+
+    /**
+     * 女款推荐保存
+     */
+    public function womanRecommendSave()
+    {
+        $name = $this->input->get_post('name');
+        $link = $this->input->get_post('link');
+        $sort = intval($this->input->get_post('sort'));
+        $emission = intval($this->input->get_post('emission'));
+        $pId = $this->input->get_post('pid');
+
+        if ($emission == '5' && empty ($pId)) {
+            echo '1';
+            show_error('参数错误');
+        }
+
+        if (in_array($emission, array('1', '2', '3', '4')) && (empty ($name) || empty ($link))) {
+            echo '2';
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 5,
+            'title' => $name,
+            'link' => $link,
+            'img_addr' => '',
+            'pid' => $pId,
+            'sort' => $sort,
+            'emission' => $emission,
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加男款推荐失败');
+        }
+        if (in_array($emission, array('1', '2', '3', '4'))) {
+            $this->load->helper('directory');
+            $directory = 'upload' . DS . 'recommend' . DS . 'woman' . DS . date('Ymd') . DS;
+            recursiveMkdirDirectory($directory);
+
+            $config['upload_path'] = WEBROOT . $directory;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2000';
+            $config['remove_spaces'] = true;
+            $config['overwrite'] = false;
+            $config['max_width'] = '0';
+            $config['max_height'] = '0';
+            $config['file_name'] = $lastId;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('img_addr')) {
+                $uData = $this->upload->data();
+
+                $file = $directory . $uData['file_name'];
+                $this->recommend->updateRecommend($file, $lastId);
+            } else {
+                show_error('文件上传失败!');
+            }
+        }
+        redirect('/administrator/home_recommend/recommendList');
+    }
+
+    /**
+     * 情侣推荐保存
+     */
+    public function loverRecommendSave()
+    {
+        $name = $this->input->get_post('name');
+        $link = $this->input->get_post('link');
+        $sort = intval($this->input->get_post('sort'));
+        $emission = intval($this->input->get_post('emission'));
+        $pId = $this->input->get_post('pid');
+
+        if ($emission == '2' && empty ($pId)) {
+            echo '1';
+            show_error('参数错误');
+        }
+
+        if (in_array($emission, array('1')) && (empty ($name) || empty ($link))) {
+            echo '2';
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 6,
+            'title' => $name,
+            'link' => $link,
+            'img_addr' => '',
+            'pid' => $pId,
+            'sort' => $sort,
+            'emission' => $emission,
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加男款推荐失败');
+        }
+        if (in_array($emission, array('1'))) {
+            $this->load->helper('directory');
+            $directory = 'upload' . DS . 'recommend' . DS . 'lover' . DS . date('Ymd') . DS;
+            recursiveMkdirDirectory($directory);
+
+            $config['upload_path'] = WEBROOT . $directory;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2000';
+            $config['remove_spaces'] = true;
+            $config['overwrite'] = false;
+            $config['max_width'] = '0';
+            $config['max_height'] = '0';
+            $config['file_name'] = $lastId;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('img_addr')) {
+                $uData = $this->upload->data();
+
+                $file = $directory . $uData['file_name'];
+                $this->recommend->updateRecommend($file, $lastId);
+            } else {
+                show_error('文件上传失败!');
+            }
+        }
+        redirect('/administrator/home_recommend/recommendList');
+    }
+
+    /**
+     * 亲子推荐
+     */
+    public function familyRecommendSave()
+    {
+        $name = $this->input->get_post('name');
+        $link = $this->input->get_post('link');
+        $sort = intval($this->input->get_post('sort'));
+        $emission = intval($this->input->get_post('emission'));
+        $pId = $this->input->get_post('pid');
+
+        if ($emission == '8' && empty ($pId)) {
+            echo '1';
+            show_error('参数错误');
+        }
+
+        if (in_array($emission, array('1','2','3','4','5','6','7')) && (empty ($name) || empty ($link))) {
+            echo '2';
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 7,
+            'title' => $name,
+            'link' => $link,
+            'img_addr' => '',
+            'pid' => $pId,
+            'sort' => $sort,
+            'emission' => $emission,
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加男款推荐失败');
+        }
+        if (in_array($emission, array('1','2','3','4','5','6','7'))) {
+            $this->load->helper('directory');
+            $directory = 'upload' . DS . 'recommend' . DS . 'family' . DS . date('Ymd') . DS;
+            recursiveMkdirDirectory($directory);
+
+            $config['upload_path'] = WEBROOT . $directory;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2000';
+            $config['remove_spaces'] = true;
+            $config['overwrite'] = false;
+            $config['max_width'] = '0';
+            $config['max_height'] = '0';
+            $config['file_name'] = $lastId;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('img_addr')) {
+                $uData = $this->upload->data();
+
+                $file = $directory . $uData['file_name'];
+                $this->recommend->updateRecommend($file, $lastId);
+            } else {
+                show_error('文件上传失败!');
+            }
+        }
+        redirect('/administrator/home_recommend/recommendList');
+    }
+
+    public function designerRecommendSave()
+    {
+        $pid = $this->input->get_post('pid');
+        $sort = $this->input->get_post('sort');
+        if (empty ($pid)) {
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 8,
+            'title' => '',
+            'link' => '',
+            'img_addr' => '',
+            'pid' => $pid,
+            'sort' => $sort,
+            'emission' => '',
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加设计推荐失败');
+        }
+
+        redirect('/administrator/home_recommend/recommendList');
     }
 
     public function recommendDelete()
     {
         $id = $this->uri->segment(4, 1);
-        $currentPage = $this->uri->segment(5, 1);
+        //$currentPage = $this->uri->segment(5, 1);
         if (!$id) {
             show_error('推荐ID为空');
         }
@@ -97,9 +561,9 @@ class home_recommend extends MY_Controller
         $this->load->model('recommend/Model_Home_Recommend', 'recommend');
         $status = $this->recommend->deleteRecommend($id);
         if (!$status) {
-            show_error('删除推荐失败');
+            show_error('删除今日推荐失败');
         }
 
-        redirect('/administrator/home_recommend/recommendList/'.$currentPage);
+        redirect('/administrator/home_recommend/recommendList/');
     }
 }
