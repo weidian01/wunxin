@@ -43,11 +43,17 @@ class Model_Home_Recommend extends MY_Model
      * @param $cId
      * @param int $limit
      * @param int $offset
+     * @param string $sort
      * @return null || array
      */
-    public function getRecommendCategoryList($cId, $limit = 20, $offset = 0)
+    public function getRecommendCategoryList($cId, $limit = 20, $offset = 0, $sort = 'desc')
     {
-        $data = $this->db->get_where('recommend', array('cid' => $cId), $limit, $offset)->result_array();
+        $this->db->select('*');
+        $this->db->from('recommend');
+        $this->db->where('cid', $cId);
+        $this->db->limit($limit, $offset);
+        $data = $this->db->order_by('sort', $sort)->get()->result_array();
+        //$data = $this->db->get_where('recommend', array('cid' => $cId), $limit, $offset)->order_by('sort', $sort)->result_array();
 
         return empty ($data) ? null : $data;
     }
