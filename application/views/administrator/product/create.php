@@ -51,7 +51,7 @@
                             <select name="class_id" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($category as $item): ?>
-                                <option value="<?=$item['class_id']?>" <?php if(isset($info['parent_id']) && $info['parent_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option value="<?=$item['class_id']?>" <?php if(isset($info['class_id']) && $info['class_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
@@ -73,6 +73,23 @@
                         </p>
 
                         <p id="model">
+                            <?php if(isset($attrs)):?>
+                                <?php foreach($attrs as $attr):?>
+                                    <?=$attr['attr_name']?> : <?php if ($attr['type'] == 3):?><select name="attr_value[<?=$attr['attr_id']?>][]"><option value="">请选择</option><?php endif;?>
+                                    <?php foreach($attr['attr_value'] as $v):?>
+                                        <?php if ($attr['type'] == 1): ?>
+                                        <input type="radio" name="attr_value[<?=$attr['attr_id']?>][]"  value="<?=$v?>" <?php if(in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
+                                        <?php elseif ($attr['type'] == 2): ?>
+                                        <input type="checkbox" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$v?>" <?php if(in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
+                                        <?php elseif ($attr['type'] == 3): ?>
+                                        <option value="<?=$v?>" <?php if(in_array($v, $pattr[$attr['attr_id']])):?>selected="selected"<?php endif;?>><?=$v?></option>
+                                        <?php elseif ($attr['type'] == 4): ?>
+                                        <input class="text-input" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$v?>" type="text">
+                                        <?php endif;?>
+                                    <?php endforeach;?>
+                                <?php if ($attr['type'] == 3):?></select><?php endif;?><br />
+                                <?php endforeach;?>
+                            <?php endif;?>
                         </p>
 
                         <p>
@@ -138,7 +155,13 @@
                             <input class="" multiple="" type="file" value="" name="images[]"/>
                         </p>
 
-                        <p>
+                        <?php if(isset($photo)):?>
+                        <?php foreach($photo as $v):?>
+                        <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url'),'upload/product/',$v['img_addr']?>" width="120" height="80" /> <a href="javascript:void(null);" onclick="delphoto(<?=$v['id']?>)">删除</a></div>
+                        <?php endforeach;?>
+                        <?php endif;?>
+
+                        <p id="hidden">
                             <input class="button" type="submit" value="Submit"/>
                         </p>
                     </fieldset>
@@ -241,5 +264,11 @@ function create_element(json) {
         html = ' <select name="attr_value[' + json.attr_id + '][]"><option value="">请选择</option>'+html+'</select>';
     }
     $("#model").append(html+'<br />')
+}
+
+function delphoto(id)
+{
+    $("#hidden").append('<input type="hidden" name="delphoto[]" value="'+id+'" />');
+    $("#photo_"+id).remove();
 }
 </script>
