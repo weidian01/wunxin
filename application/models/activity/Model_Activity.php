@@ -25,6 +25,7 @@ class Model_Activity extends MY_Model
             'initiator_name' => $aInfo['initiator_name'],
             'initiator_desc' => $aInfo['initiator_desc'],
             'specification' => $aInfo['specification'],
+            'status' => $aInfo['status'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
@@ -38,18 +39,22 @@ class Model_Activity extends MY_Model
      * @param $aId
      * @param array $aInfo
      */
-    public function editActivity($aId, array $aInfo)
+    public function editActivity(array $aInfo, $aId)
     {
         $data = array(
             'subject' => $aInfo['subject'],
             'start_time' => $aInfo['start_time'],
             'end_time' => $aInfo['end_time'],
             'descr' => $aInfo['descr'],
+            'event_initiator' => $aInfo['event_initiator'],
+            'initiator_name' => $aInfo['initiator_name'],
+            'initiator_desc' => $aInfo['initiator_desc'],
             'specification' => $aInfo['specification'],
+            'status' => $aInfo['status'],
         );
 
         $this->db->where('activity_id', $aId);
-        $this->db->update('activity', $data);
+        return $this->db->update('activity', $data);
     }
 
     /**
@@ -76,34 +81,38 @@ class Model_Activity extends MY_Model
      */
     public function getActivityById($aId)
     {
-        $data = $this->db->select('*')->get_where('activity', array('activity_id' => $aId, 'status' => 1))->row_array();
+        $data = $this->db->select('*')->get_where('activity', array('activity_id' => $aId))->row_array();
 
-        return empty ($data) ? false : true;
+        return empty ($data) ? null : $data;
     }
 
     /**
-     * 获取活动奖品 -- 通过活动ID
+     * 获取活动列表
      *
-     * @param $aId
-     * @return bool | array
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
      */
-    public function getActivityPrizeByActivityId($aId)
+    public function getActivityList($limit = 20, $offset = 0)
     {
-        $data = $this->db->select('*')->get_where('activity_prize', array('activity_id' => $aId))->result_array();
+        $this->db->select('*');
+        $this->db->from('activity');
+        $this->db->limit($limit, $offset);
+        //$this->db->where('status', '1');
+        $data = $this->db->get()->result_array();
 
-        return empty ($data) ? false : true;
+        return empty ($data) ? null : $data;
     }
 
     /**
-     * 获取活动评论
+     * 获取活动数量
      *
-     * @param $aId
-     * @return bool  | array
+     * @return int
      */
-    public function getActivityCommentByActivityId($aId)
+    public function getActivityCount()
     {
-        $data = $this->db->select('*')->get_where('activity_comment', array('activity_id' => $aId))->result_array();
+        $this->db->select('*')->from('activity');//->where('status', '1');
 
-        return empty ($data) ? false : true;
+        return $this->db->count_all_results();
     }
 }

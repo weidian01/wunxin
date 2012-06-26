@@ -29,16 +29,42 @@ class Model_System_Proposal extends MY_Model
     }
 
     /**
-     * 获取系统建议或意见
+     * 获取系统建议或意见列表
      *
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getSystemProposal($limit = 20, $offset = 0)
+    public function getSystemProposalList($limit = 20, $offset = 0)
     {
-        return $this->db->get_where('system_proposal', '', $limit, $offset)->array_result();
+        $this->db->select('*');
+        $this->db->from('system_proposal');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
     }
 
+    /**
+     * 获取系统建议或意见数量
+     *
+     * @return int
+     */
+    public function getSystemProposalCount()
+    {
+        $this->db->select('*')->from('system_proposal');
 
+        return $this->db->count_all_results();
+    }
+
+    /**
+     * 删除系统建议与意见
+     *
+     * @param $sId
+     * @return boolean
+     */
+    public function deleteSystemProposal($sId)
+    {
+        return $this->db->delete('system_proposal', array('id' => $sId));
+    }
 }

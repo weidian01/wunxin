@@ -59,6 +59,17 @@ class Model_Home_Recommend extends MY_Model
     }
 
     /**
+     * 原生SQL语句查询
+     *
+     * @param $sql
+     * @return array
+     */
+    public function query($sql)
+    {
+        return $this->db->query($sql)->result_array();
+    }
+
+    /**
      * 获取推荐分类列表数量
      *
      * @param $cId
