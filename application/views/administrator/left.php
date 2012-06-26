@@ -50,10 +50,7 @@
                 </li>
                 <li><a href="#" class="nav-top-item no-submenu">用户管理</a>
                     <ul>
-                        <li><a href="/administrator/order/orderList">用户列表</a></li>
-                        <li><a href="/administrator/order_receiver/receivableList">用户组管理</a></li>
-                        <li><a href="/administrator/order_picking/pickingList">配货单列表</a></li>
-                        <li><a href="/administrator/order_express/expressList">快递公司列表</a></li>
+                        <li><a href="/administrator/user/userList">用户列表</a></li>
 
                     </ul>
                 </li>

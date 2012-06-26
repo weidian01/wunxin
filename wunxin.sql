@@ -154,6 +154,8 @@ drop index Index_order_sn on wx_receivable;
 
 drop table if exists wx_receivable;
 
+drop table if exists wx_recommend;
+
 drop index Index_uname_code on wx_retrieve_password_log;
 
 drop table if exists wx_retrieve_password_log;
@@ -256,8 +258,8 @@ create table wx_activity
    initiator_name       varchar(128) comment '发起方名称',
    initiator_desc       text comment '发起方介绍',
    specification        text comment '活动规范',
-   create_time          datetime comment '创建时间',
    status               tinyint comment '状态,0删除，1正常',
+   create_time          datetime comment '创建时间',
    primary key (activity_id)
 )
 engine = MYISAM
@@ -330,12 +332,12 @@ create table wx_advert
 (
    ad_id                int unsigned not null auto_increment comment '广告ID',
    position_id          int unsigned comment '位置ID',
-   ad_name              int comment '广告名称',
+   ad_name              varchar(32) comment '广告名称',
    ad_type              tinyint unsigned comment '广告类型，1:图片 2:flash 3:代码 4:文字',
-   ad_content           int comment '广告内容',
+   ad_content           text comment '广告内容',
    click_num            int unsigned comment '点击数量',
    status               tinyint unsigned comment '状态,0不显示，1显示',
-   ad_link              int comment '广告链接',
+   ad_link              varchar(128) comment '广告链接',
    sort                 smallint unsigned comment '广告排序',
    descr                varchar(128) comment '广告描述',
    start_time           datetime comment '开始时间',
@@ -423,11 +425,11 @@ create table wx_article
    content              text comment '内容',
    keywords             varchar(128) comment '关键字',
    descr                varchar(128) comment '描述',
-   visiblity            tinyint unsigned comment '是否显示,0不显示，1显示',
-   top                  tinyint unsigned comment '置顶，0不置顶，1置顶',
-   sort                 smallint comment '排序',
-   is_valid             int unsigned comment '是否有效',
-   is_invalid           int unsigned comment '是否无效',
+   visiblity            tinyint unsigned default 1 comment '是否显示,0不显示，1显示',
+   top                  tinyint unsigned default 0 comment '置顶，0不置顶，1置顶',
+   sort                 smallint default 0 comment '排序',
+   is_valid             int unsigned default 0 comment '是否有效',
+   is_invalid           int unsigned default 0 comment '是否无效',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
@@ -989,14 +991,15 @@ create table wx_product
    style_no             char(32) comment '用于统一同一款式不同颜色的衣服',
    stock                int unsigned comment '库存数量',
    product_taobao_addr  varchar(255) comment '产品淘宝地址',
-   descr                varchar(128) comment '产品描述',
+   descr                text comment '产品描述',
    pcontent             text comment '产品内容',
    source               tinyint unsigned default 1 comment '产品来源,1系统，2活动，3用户，4其他',
    expand               char(10) comment '来源扩展字段,可存活动ID，其他一些标识性信息',
    gender               tinyint unsigned comment '产品属性，0中性，1男，2女，3 男童，4女童',
+   尺寸类型                 int comment 'size_type',
    status               tinyint unsigned comment '状态,0已删除，1正常',
    check_status         tinyint unsigned comment '审核，0未通过，1已通过',
-   shelves              tinyint unsigned comment '上架，0下架，1上架',
+   shelves              varchar(32) unsigned comment '上架，0下架，1上架',
    cost_price           int unsigned comment '成本价格，单位为分',
    create_time          datetime comment '创建时间',
    primary key (pid)
@@ -1050,7 +1053,6 @@ create table wx_product_attr
    attr_id              int unsigned comment '属性id',
    model_id             int unsigned comment '模型id',
    attr_value           char(32) comment '属性值',
-   sort                 smallint unsigned comment '排序',
    primary key (id)
 )
 engine = MYISAM
@@ -1411,6 +1413,25 @@ create index Index_uid on wx_receivable
 (
    uid
 );
+
+/*==============================================================*/
+/* Table: wx_recommend                                          */
+/*==============================================================*/
+create table wx_recommend
+(
+   id                   int unsigned not null auto_increment comment '自增ID',
+   cid                  smallint unsigned comment '分类',
+   title                varchar(32) comment '标题',
+   link                 varchar(128) comment '链接',
+   img_addr             varchar(64) comment '图片地址',
+   pid                  varchar(64) comment '产品ID',
+   sort                 smallint unsigned comment '排序',
+   emission             int comment '排放',
+   create_time          datetime comment '创建时间',
+   primary key (id)
+);
+
+alter table wx_recommend comment '推荐表--首页';
 
 /*==============================================================*/
 /* Table: wx_retrieve_password_log                              */
