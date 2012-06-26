@@ -243,6 +243,8 @@
                     <option value="3">排放ID3</option>
                     <option value="4">排放ID4</option>
                     <option value="5">排放ID5</option>
+                    <option value="6">排放ID6</option>
+                    <option value="7">排放ID7</option>
                 </select>
                 <br>
             </p>
@@ -307,7 +309,7 @@
 
             <p>
                 <label>图片</label>
-                <input class="text-input small-input" type="file" value="" name="img_addr" id="lover_img_addr_id">
+                <input class="text-input small-input" type="file" value="" name="img_addr" id="lover_img_addr_id"> 尺寸：948*299
                 <br>
             </p>
 
@@ -508,7 +510,7 @@
             return
         }
 
-        if (v.value == '5') {
+        if (v.value == '7') {
             wmName.setAttribute('disabled', 'disabled');
             wmImgAddr.setAttribute('disabled', 'disabled');
             wmLink.setAttribute('disabled', 'disabled');

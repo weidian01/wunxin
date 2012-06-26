@@ -300,7 +300,7 @@
             <td><?php echo $lrv['id'];?></td>
             <td><?php echo $lrv['title'];?></td>
             <td><?php echo $lrv['link'];?></td>
-            <td><?php echo $lrv['img_addr'];?></td>
+            <td><img src="<?php echo base_url().$lrv['img_addr'];?>" alt="<?php echo $lrv['title'];?>" width="50" height="50"></td>
             <td><?php echo $lrv['pid'];?></td>
             <td><?php echo $lrv['sort'];?></td>
             <td><?php echo $lrv['emission'];?></td>
@@ -343,7 +343,7 @@
             <td><?php echo $frv['cid'];?></td>
             <td><?php echo $frv['title'];?></td>
             <td><?php echo $frv['link'];?></td>
-            <td><?php echo $frv['img_addr'];?></td>
+            <td><img src="<?php echo base_url().$frv['img_addr'];?>" alt="<?php echo $frv['title'];?>" width="50" height="50"></td>
             <td><?php echo $frv['pid'];?></td>
             <td><?php echo $frv['sort'];?></td>
             <td><?php echo $frv['emission'];?></td>

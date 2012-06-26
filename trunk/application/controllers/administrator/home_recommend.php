@@ -284,7 +284,7 @@ class home_recommend extends MY_Controller
             show_error('参数错误');
         }
 
-        if (in_array($emission, array('2', '3')) && (empty ($name) || empty ($link) || empty ($sort))) {
+        if (in_array($emission, array('2', '3')) && (empty ($name) || empty ($link))) {
             show_error('参数错误');
         }
 
@@ -342,12 +342,12 @@ class home_recommend extends MY_Controller
         $emission = intval($this->input->get_post('emission'));
         $pId = $this->input->get_post('pid');
 
-        if ($emission == '5' && empty ($pId)) {
+        if ($emission == '7' && empty ($pId)) {
             echo '1';
             show_error('参数错误');
         }
 
-        if (in_array($emission, array('1', '2', '3', '4')) && (empty ($name) || empty ($link))) {
+        if (in_array($emission, array('1', '2', '3', '4', '5', '6')) && (empty ($name) || empty ($link))) {
             echo '2';
             show_error('参数错误');
         }
@@ -367,7 +367,7 @@ class home_recommend extends MY_Controller
         if (!$lastId) {
             show_error('添加男款推荐失败');
         }
-        if (in_array($emission, array('1', '2', '3', '4'))) {
+        if (in_array($emission, array('1', '2', '3', '4', '5', '6'))) {
             $this->load->helper('directory');
             $directory = 'upload' . DS . 'recommend' . DS . 'woman' . DS . date('Ymd') . DS;
             recursiveMkdirDirectory($directory);

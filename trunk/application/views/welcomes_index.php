@@ -196,8 +196,22 @@
             <div class="men-cont"><span class="font2">CDSB567890</span><br/> Justyle 素色经典短袖T恤<br/> <span class="font3">￥49,000</span></div>
         </div>
     </div>
-    <div class="prod-ct"><img src="images/m4.jpg" alt="t恤" width="186" height="280"/></div>
-    <div class="prod-ct"><img src="images/m5.jpg" width="186" height="280" alt="T恤"/></div>
+    <div class="prod-ct">
+        <?php foreach ($man_recommend_2_3 as $mr23) {?>
+        <?php if ($mr23['emission'] == '2') { ?>
+        <img src="<?php echo base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?php echo $mr23['title'];?>" width="186" height="280"/>
+        <?php }?>
+        <?php }?>
+    </div>
+    <div class="prod-ct">
+
+        <?php foreach ($man_recommend_2_3 as $mr23) {?>
+        <?php if ($mr23['emission'] == '3') { ?>
+        <img src="<?php echo base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?php echo $mr23['title'];?>" width="186" height="280"/>
+        <?php }?>
+        <?php }?>
+
+    </div>
     <div class="clear"></div>
     <div class="men-bd">
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
@@ -256,57 +270,77 @@
 </div>
 <div class="prod-bd pad">
     <div class="toplady">
-        <div class="floorMain" onmouseout="disshowmask('picmt')"><a href="#" class="item1"><img id="picmt1"
-                                                                                                onmouseover="showmask('1','picmt')"
-                                                                                                src="images/y1.jpg"
-                                                                                                alt="万象网" width="237"
-                                                                                                height="300"> </a>
-            <a href="#" class="item2"><img id="picmt2" onmouseover="showmask('2','picmt')" src="images/y2_01.jpg"
-                                           alt="万象网" width="237" height="150"></a>
-            <a href="#" class="item3"><img id="picmt3" onmouseover="showmask('3','picmt')" src="images/y2_02.jpg"
-                                           alt="万象网" width="237" height="150"></a>
-            <a href="#" class="item4"><img id="picmt4" onmouseover="showmask('4','picmt')" src="images/y3.jpg" alt="万象网"
-                                           width="237" height="300"></a>
-            <a href="#" class="item5"><img id="picmt5" onmouseover="showmask('5','picmt')" src="images/y4_01.jpg"
-                                           alt="万象网" width="237" height="150"></a>
-            <a href="#" class="item6"><img id="picmt6" onmouseover="showmask('6','picmt')" src="images/y4_02.jpg"
-                                           alt="万象网" width="237" height="150"></a></div>
+        <div class="floorMain" onmouseout="disshowmask('picmt')">
+            <?php foreach ($woman_recommend_1_2_3_4_5_6 as $wr123456) {?>
+            <?php if ($wr123456['emission'] == '1') {?>
+            <a href="<?php echo $wr123456['link'];?>" class="item1">
+                <img id="picmt1" onmouseover="showmask('1','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
+            </a>
+            <?php }?>
+
+            <?php if ($wr123456['emission'] == '2') {?>
+            <a href="<?php echo $wr123456['link'];?>" class="item2">
+                <img id="picmt2" onmouseover="showmask('2','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+            </a>
+            <?php }?>
+
+            <?php if ($wr123456['emission'] == '3') {?>
+            <a href="<?php echo $wr123456['link'];?>" class="item3">
+                <img id="picmt3" onmouseover="showmask('3','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+            </a>
+            <?php }?>
+
+            <?php if ($wr123456['emission'] == '4') {?>
+            <a href="<?php echo $wr123456['link'];?>" class="item4">
+                <img id="picmt4" onmouseover="showmask('4','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
+            </a>
+            <?php }?>
+
+            <?php if ($wr123456['emission'] == '5') {?>
+            <a href="<?php echo $wr123456['link'];?>" class="item5">
+                <img id="picmt5" onmouseover="showmask('5','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+            </a>
+            <?php }?>
+
+            <?php if ($wr123456['emission'] == '6') {?>
+            <a href="<?php echo $wr123456['link'];?>" class="item6">
+                <img id="picmt6" onmouseover="showmask('6','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+            </a>
+            <?php }?>
+            <?php }?>
+        </div>
     </div>
     <div class="men-bd pad7">
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"
-                                                                  alt="闲短袖T恤"/></a>
-
+        <div class="men-bd-b"><a class="productimg" href="#"> <img src="images/d1.jpg" width="163" height="163" alt="闲短袖T恤"/></a>
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
     </div>
 </div>
 <!--女款T恤end-->
+
+<!-- 情侣推荐 开始 -->
 <div class="prod-tit titbg3">
     <div class="prod-t-h h-bg2"></div>
     <div class="prod-n-more">
@@ -324,45 +358,44 @@
             <li><a href="#" target="_blank">裤子</a></li>
             <li><a href="#" target="_blank">薄针织</a></li>
             <li style="background:none;"><a href="#" target="_blank">牛仔裤</a></li>
-
         </ul>
     </div>
 </div>
 <div class="prod-bd pad5">
-    <div class="sweet"><img src="images/bigimg.jpg" width="948" height="299" alt="情侣T恤"/></div>
+    <div class="sweet">
+        <a href="<?php echo $lover_recommend[0]['link']; ?>"><img src="<?php echo $lover_recommend[0]['img_addr'];?>" width="948" height="299" alt="<?php echo $lover_recommend[0]['title'];?>"/></a>
+    </div>
     <div class="men-bd pad7">
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
+            </div>
         </div>
     </div>
 </div>
+<!-- 情侣推荐 结束 -->
+
+<!-- 亲子推荐 开始 -->
 <div class="prod-tit titbg4">
     <div class="prod-t-h h-bg3"></div>
     <div class="prod-n-more">
@@ -386,84 +419,99 @@
 </div>
 <div class="prod-bd pad6">
     <div class="toplady">
-        <div class="floorMain" onmouseout="disshowqz('qz')"><a href="#" class="qv1"><img id="qz1"
-                                                                                         onmouseover="showqz('1','qz')"
-                                                                                         src="images/q2.jpg" alt="万象网"
-                                                                                         width="264" height="300"></a>
-            <a href="#" class="qv2"><img id="qz2" onmouseover="showqz('2','qz')" src="images/q1.jpg" alt="万象网"
-                                         width="447" height="220"></a>
-            <a href="#" class="qv3"><img id="qz3" onmouseover="showqz('3','qz')" src="images/q3_01.jpg" alt="万象网"
-                                         width="149" height="80"></a>
-            <a href="#" class="qv4"><img id="qz4" onmouseover="showqz('4','qz')" src="images/q3_02.jpg" alt="万象网"
-                                         width="149" height="80"></a>
-            <a href="#" class="qv5"><img id="qz5" onmouseover="showqz('5','qz')" src="images/q3_03.jpg" alt="万象网"
-                                         width="149" height="80"></a>
-            <a href="#" class="qv6"><img id="qz6" onmouseover="showqz('6','qz')" src="images/q4.jpg" alt="万象网"
-                                         width="237" height="220"></a>
-            <a href="#" class="qv7"><img id="qz7" onmouseover="showqz('7','qz')" src="images/q5.jpg" alt="万象网"
-                                         width="237" height="80"></a></div>
+        <div class="floorMain" onmouseout="disshowqz('qz')">
+            <?php foreach ($family_recommend as $fr) {?>
+            <?php if ($fr['emission'] == '1') {?>
+            <a href="<?php echo $fr['link'];?>" class="qv1">
+                <img id="qz1" onmouseover="showqz('1','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="264" height="300">
+            </a>
+            <?php }?>
+
+            <?php if ($fr['emission'] == '2') {?>
+            <a href="<?php echo $fr['link'];?>" class="qv2">
+                <img id="qz2" onmouseover="showqz('2','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="447" height="220">
+            </a>
+            <?php }?>
+
+            <?php if ($fr['emission'] == '3') {?>
+            <a href="<?php echo $fr['link'];?>" class="qv3">
+                <img id="qz3" onmouseover="showqz('3','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+            </a>
+            <?php }?>
+
+            <?php if ($fr['emission'] == '4') {?>
+            <a href="<?php echo $fr['link'];?>" class="qv4">
+                <img id="qz4" onmouseover="showqz('4','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+            </a>
+            <?php }?>
+
+            <?php if ($fr['emission'] == '5') {?>
+            <a href="<?php echo $fr['link'];?>" class="qv5">
+                <img id="qz5" onmouseover="showqz('5','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+            </a>
+            <?php }?>
+
+            <?php if ($fr['emission'] == '6') {?>
+            <a href="<?php echo $fr['link'];?>" class="qv6">
+                <img id="qz6" onmouseover="showqz('6','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="220">
+            </a>
+            <?php }?>
+
+            <?php if ($fr['emission'] == '7') {?>
+            <a href="<?php echo $fr['link'];?>" class="qv7">
+                <img id="qz7" onmouseover="showqz('7','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="80">
+            </a>
+            <?php }?>
+
+            <?php }?>
+        </div>
     </div>
     <div class="men-bd pad7">
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
-
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+            </div>
         </div>
     </div>
 </div>
-<!--亲子装end-->
+<!-- 亲子推荐 结束 -->
+
+<!-- 设计师推荐 开始 -->
 <div class="brand">
     <div class="left-brand" onmouseout="disshowbrandpic('bdimg')">
         <ul>
-            <li><img id="bdimg1" onmouseover="showbrandpic('1','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg2" onmouseover="showbrandpic('2','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg3" onmouseover="showbrandpic('3','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg4" onmouseover="showbrandpic('4','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg5" onmouseover="showbrandpic('5','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg6" onmouseover="showbrandpic('6','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg7" onmouseover="showbrandpic('7','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg8" onmouseover="showbrandpic('8','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg9" onmouseover="showbrandpic('9','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg10" onmouseover="showbrandpic('10','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg11" onmouseover="showbrandpic('11','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
-            <li><img id="bdimg12" onmouseover="showbrandpic('12','bdimg')" src="images/br1.jpg" width="90" height="90"
-                     alt="brand1"/></li>
+            <li><img id="bdimg1" onmouseover="showbrandpic('1','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg2" onmouseover="showbrandpic('2','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg3" onmouseover="showbrandpic('3','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg4" onmouseover="showbrandpic('4','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg5" onmouseover="showbrandpic('5','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg6" onmouseover="showbrandpic('6','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg7" onmouseover="showbrandpic('7','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg8" onmouseover="showbrandpic('8','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg9" onmouseover="showbrandpic('9','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg10" onmouseover="showbrandpic('10','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg11" onmouseover="showbrandpic('11','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg12" onmouseover="showbrandpic('12','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
         </ul>
     </div>
     <div class="rgt-p">
@@ -478,6 +526,7 @@
         <div class="brand-ad"><img src="images/n5.gif" width="169" height="288" alt="广告"/></div>
     </div>
 </div>
+<!-- 设计师推荐 结束 -->
 </div>
 </div>
 </div>
