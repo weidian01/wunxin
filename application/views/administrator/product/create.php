@@ -166,7 +166,10 @@
                         <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url'),'upload/product/',$v['img_addr']?>" width="120" height="80" /> <a href="javascript:void(null);" onclick="delphoto(<?=$v['id']?>)">删除</a></div>
                         <?php endforeach;?>
                         <?php endif;?>
-
+                        <p>
+                            <label>货物淘宝地址</label>
+                            <input class="text-input large-input" id="large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
+                         </p>
                         <p id="hidden">
                             <input class="button" type="submit" value="Submit"/>
                         </p>
