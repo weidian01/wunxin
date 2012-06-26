@@ -87,8 +87,16 @@ class product extends MY_Controller
         }
         //print_r($pattr);
 
-        $psize = $this->product->getProductSize($id);
+        $tmp = $this->product->getProductSize($id);
+
+        $psize = array();
+        foreach($tmp as $v)
+        {
+            echo $v['size_id'];
+            $psize[] = $v['size_id'];
+        }
         //print_r($psize);
+
         $photo = $this->product->getProductPhoto($id);
         //print_r($photo);
 
@@ -104,9 +112,21 @@ class product extends MY_Controller
         }
         //print_r($attr);
 
+        $this->load->model('product/Model_Product_Size', 'size');
+        //print_r($size);
         $this->load->model('product/Model_Product_Color', 'color');
         $color = $this->color->getList(500);
-        $this->load->view('administrator/product/create', array('info'=>$info, 'category' => $category, 'model' => $model, 'color'=>$color, 'attrs'=>$attr['attrs'], 'pattr'=>$pattr, 'photo'=>$photo));
+        $this->load->view('administrator/product/create', array(
+            'info' => $info,
+            'category' => $category,
+            'model' => $model,
+            'color' => $color,
+            'attrs' => $attr['attrs'],
+            'pattr' => $pattr,
+            'photo' => $photo,
+            'size' => $this->size->getSizeByType($info['size_type'], 'size_id,name'),
+            'psize' => $psize,
+        ));
     }
 
     public function save()
@@ -155,7 +175,9 @@ class product extends MY_Controller
         $data['stock'] = $this->input->post('stock');
         $data['status'] = $this->input->post('status');
         $data['descr'] = $this->input->post('descr');
+        $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
+
         //var_dump($size);
         $pid = $this->input->post('pid');
 

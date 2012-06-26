@@ -25,7 +25,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3>添加新分类</h3>
+            <h3>添加新产品</h3>
 
             <div class="clear"></div>
         </div>
@@ -136,12 +136,18 @@
 
                         <p>
                             <label>尺码</label>
-                            <select name="type" onchange="setSize(this.value)">
+                            <select name="size_type" onchange="setSize(this.value)">
                                 <?php foreach(array(0=>'请选择',1=>'T恤',2=>'卫衣',3=>'裤子',) as $k => $v):?>
                                 <option value="<?=$k?>"><?=$v?></option>
                                 <?php endforeach;?>
                             </select>
-                            <span id="size"></span>
+                            <span id="size">
+                                <?php if(isset($size)):?>
+                                <?php foreach($size as $v):?>
+                                <input type="checkbox" name="size[]" value="<?=$v['size_id']?>" <?php if(in_array($v['size_id'], $psize)):?>checked<?php endif;?>/><?=$v['name']?>
+                                <?php endforeach;?>
+                                <?php endif;?>
+                            </span>
                         </p>
 
                         <p>

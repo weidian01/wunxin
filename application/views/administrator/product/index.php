@@ -25,7 +25,7 @@
 <div class="content-box">
     <!-- Start Content Box -->
     <div class="content-box-header">
-        <h3>分类信息</h3>
+        <h3>产品列表</h3>
         <!--ul class="content-box-tabs">
             <li><a href="#tab1" class="default-tab">Table</a></li>
             <!-- href must be unique and match the id of target div -->
