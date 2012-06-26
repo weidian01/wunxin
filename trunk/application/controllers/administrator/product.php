@@ -92,7 +92,6 @@ class product extends MY_Controller
         $psize = array();
         foreach($tmp as $v)
         {
-            echo $v['size_id'];
             $psize[] = $v['size_id'];
         }
         //print_r($psize);
@@ -190,10 +189,11 @@ class product extends MY_Controller
             $delphoto = $this->input->post('delphoto');
             $delphoto && $this->product->delProductPhotoById($delphoto);
             $this->product->delProductAttrById($pid);
+            $this->product->delProductSize($pid);
         } else {
             $pid = $this->product->addProduct($data);
-            $size && $this->product->addProductSize($size, $pid);
         }
+        $size && $this->product->addProductSize($size, $pid);
         $attr = array();
         $i = 0;
         foreach ($attr_value as $attr_id => $item) {

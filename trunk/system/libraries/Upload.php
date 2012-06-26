@@ -607,7 +607,7 @@ class CI_Upload {
 
 		if (in_array($ext, $image_types))
 		{
-			if (getimagesize($this->file_temp) === FALSE)
+			if (@getimagesize($this->file_temp) === FALSE)
 			{
 				return FALSE;
 			}
@@ -919,7 +919,7 @@ class CI_Upload {
 	 * @param	string
 	 * @return	string
 	 */
-	public function display_errors($open = '<p>', $close = '</p>')
+	public function display_errors($open = '', $close = '')
 	{
 		$str = '';
 		foreach ($this->error_msg as $val)
