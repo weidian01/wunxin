@@ -58,7 +58,7 @@ class Model_User extends MY_Model
      */
     public function getUserById($uId)
     {
-        return $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
+        return $this->db->select('uid, nickname, password, lid, source, uname, integral, amount, status, create_time')->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
     }
 
     /**
@@ -69,7 +69,7 @@ class Model_User extends MY_Model
      */
     public function getUserByName($uName)
     {
-        return $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
+        return $this->db->select('uid, nickname, password, lid, source, uname, integral, amount, status, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
     }
 
     /**
@@ -222,5 +222,34 @@ class Model_User extends MY_Model
     {
         $data = array('nickname' => $nickName);
         return $this->db->where('uid', $uId)->update('user', $data);
+    }
+
+    /**
+     * 获取用户列表
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserList($limit = 20, $offset = 0)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户数量
+     *
+     * @return int
+     */
+    public function getUserCount()
+    {
+        $this->db->select('*')->from('user');
+
+        return $this->db->count_all_results();
     }
 }
