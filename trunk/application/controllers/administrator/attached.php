@@ -43,7 +43,7 @@ class attached extends MY_Controller
         }
         else
         {
-            self::json_output(array('error' => 1, 'message' => 'file size is zero'));
+            self::json_output(array('error' => 1, 'message' => 'This is empty file!'));
         }
     }
 
