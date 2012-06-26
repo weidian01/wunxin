@@ -176,7 +176,7 @@ class product extends MY_Controller
         $data['descr'] = $this->input->post('descr');
         $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
-
+        $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
         //var_dump($size);
         $pid = $this->input->post('pid');
 
