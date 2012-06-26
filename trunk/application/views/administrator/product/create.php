@@ -138,7 +138,7 @@
                             <label>尺码</label>
                             <select name="size_type" onchange="setSize(this.value)">
                                 <?php foreach(array(0=>'请选择',1=>'T恤',2=>'卫衣',3=>'裤子',) as $k => $v):?>
-                                <option value="<?=$k?>" <?php if($info['size_type'] == $k):?>selected="selected"<?php endif;?>><?=$v?></option>
+                                <option value="<?=$k?>" <?php if(isset($info['size_type']) && $info['size_type'] == $k):?>selected="selected"<?php endif;?>><?=$v?></option>
                                 <?php endforeach;?>
                             </select>
                             <span id="size">
