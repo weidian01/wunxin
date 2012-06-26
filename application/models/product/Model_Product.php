@@ -128,11 +128,11 @@ class Model_Product extends MY_Model
         return $this->db->get_where('product_size',array('pid'=>$pid))->result_array();
     }
 
-    public function upProductSize($data, $pid)
+    public function delProductSize($pid)
     {
         $this->db->where('pid', $pid);
         $this->db->delete('product_size');
-        $this->db->insert('product_size', $data);
+        return ;
     }
 
     public function addProductPhoto(array $photo, $pid)

@@ -138,7 +138,7 @@
                             <label>尺码</label>
                             <select name="size_type" onchange="setSize(this.value)">
                                 <?php foreach(array(0=>'请选择',1=>'T恤',2=>'卫衣',3=>'裤子',) as $k => $v):?>
-                                <option value="<?=$k?>"><?=$v?></option>
+                                <option value="<?=$k?>" <?php if($info['size_type'] == $k):?>selected="selected"<?php endif;?>><?=$v?></option>
                                 <?php endforeach;?>
                             </select>
                             <span id="size">
@@ -196,6 +196,8 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
+<script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
 <script>
 function setSize(val)
 {
@@ -277,4 +279,23 @@ function delphoto(id)
     $("#hidden").append('<input type="hidden" name="delphoto[]" value="'+id+'" />');
     $("#photo_"+id).remove();
 }
+
+
+$(function () {
+    var editor = KindEditor.create('textarea[name="descr"]', {
+        //uploadJson:'/plug/kindeditor-4.1.1/php/upload_json.php',
+        uploadJson:'/administrator/attached/upload',
+        //fileManagerJson:'/plug/kindeditor-4.1.1/php/file_manager_json.php',
+        fileManagerJson:'/administrator/attached/manager',
+        resizeType:1,
+        allowPreviewEmoticons:false,
+        allowFileManager:true,
+        allowImageUpload:true,
+        items:[
+            'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+            'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+            'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'unlink']
+    });
+});
+
 </script>
