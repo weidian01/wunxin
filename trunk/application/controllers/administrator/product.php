@@ -191,6 +191,7 @@ class product extends MY_Controller
             $this->product->delProductAttrById($pid);
             $this->product->delProductSize($pid);
         } else {
+            $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
             $pid = $this->product->addProduct($data);
         }
         $size && $this->product->addProductSize($size, $pid);
