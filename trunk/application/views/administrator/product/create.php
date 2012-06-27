@@ -184,7 +184,8 @@
                         <?php endif;?>
                         <p>
                             <label>货物淘宝店铺域名</label>
-                            http://<input class="text-input" id="large-input" name="taobao_shop" type="text" value="<?php echo isset($info['taobao_shop']) ? $info['taobao_shop'] : ''?>">
+                            <input class="text-input" id="large-input" name="taobao_shop" type="text" value="<?php echo isset($info['taobao_shop']) ? $info['taobao_shop'] : ''?>">
+                            <small style="color:red;">不包含http:// 例 : jsbike.taobao.com</small>
                         </p>
                         <p>
                             <label>货物淘宝地址</label>
