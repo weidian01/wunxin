@@ -49,7 +49,7 @@ class activity_prize extends MY_Controller
         }
 
         //echo '<pre>';print_r($_FILES);exit;
-        if ($_FILES['img_addr']['error'] == '0') {echo 'f';
+        if ($_FILES['img_addr']['error'] == '0') {
             $this->load->helper('directory');
             $directory = 'upload' . DS . 'activity' . DS . 'prize' . DS . date('Ymd') . DS;
             recursiveMkdirDirectory($directory);

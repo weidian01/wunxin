@@ -72,6 +72,7 @@
                         <li><a href="/administrator/business_ad_position/positionList" title="">广告管理</a></li>
                         <li><a href="/administrator/business_ad/adList" title="">广告管理</a></li>
                         <li><a href="/administrator/business_card_model/cardModelList" title="">礼物卡管理</a></li>
+                        <li><a href="/administrator/business_tuan/tuanList" title="">团购管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'activity') === 0):?>current<?php endif;?>">活动管理</a>
