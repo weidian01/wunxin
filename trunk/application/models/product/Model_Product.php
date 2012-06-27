@@ -157,6 +157,19 @@ class Model_Product extends MY_Model
         return ;
     }
 
+    public function upProductDefaultPhoto($product_id, $photo_id)
+    {
+        $this->db->update('product_photo', array('is_default' => 1), array('id' => $photo_id, 'is_default' => 0));
+        if($this->db->affected_rows() !== 0)
+        {
+            $this->db->where('id !=', $photo_id);
+            $this->db->update('product_photo',
+                array('is_default' => 0),
+                array('pid' => $product_id, 'id !=' => $photo_id, 'is_default' => 1)
+            );
+        }
+    }
+
     public function getProductPhoto($pid)
     {
         return $this->db->get_where('product_photo',array('pid'=>$pid))->result_array();
