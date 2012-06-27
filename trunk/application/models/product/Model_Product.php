@@ -146,7 +146,7 @@ class Model_Product extends MY_Model
         $data = array();
         $date = date('Y-m-d H:i:s', TIMESTAMP);
         foreach ($photo as $k => $v) {
-            $data[$k]['is_default'] = !$default_photo && $data ? 0:1;
+            $data[$k]['is_default'] = !$data && !$default_photo ? 1:0;
             $data[$k]['pid'] = $pid;
             $data[$k]['img_addr'] = $v;
             $data[$k]['create_time'] = $date;
