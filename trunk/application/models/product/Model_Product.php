@@ -135,12 +135,18 @@ class Model_Product extends MY_Model
         return ;
     }
 
-    public function addProductPhoto(array $photo, $pid)
+    /**
+     * @param array $photo 图片
+     * @param $pid 所属产品id
+     * @param $default_photo 是否存在默认图片 ,如条件为 假 则设置会首张图片为默认
+     * @return mixed
+     */
+    public function addProductPhoto(array $photo, $pid, $default_photo)
     {
         $data = array();
         $date = date('Y-m-d H:i:s', TIMESTAMP);
         foreach ($photo as $k => $v) {
-            $data[$k]['is_default'] = $data ? 0:1;
+            $data[$k]['is_default'] = !$default_photo && $data ? 0:1;
             $data[$k]['pid'] = $pid;
             $data[$k]['img_addr'] = $v;
             $data[$k]['create_time'] = $date;

@@ -183,7 +183,8 @@ class product extends MY_Controller
         $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
-        var_dump($size);
+
+        //var_dump($size);
         $pid = $this->input->post('pid');
 
         if (!$size || !$attr_value || !$data['pname'] || !$data['color_id'] || !$data['model_id'])
@@ -214,7 +215,8 @@ class product extends MY_Controller
                 }
             }
         }
-        $product_photo && $this->product->addProductPhoto($product_photo, $pid);
+        $default_photo = $this->input->post('default_photo');
+        $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
         $attr && $this->product->addProductAttr($attr);
         redirect('administrator/product/index');
     }
