@@ -128,7 +128,7 @@ class Model_Product extends MY_Model
         return $this->db->get_where('product_size',array('pid'=>$pid))->result_array();
     }
 
-    public function delProductSize($pid)
+    public function delProductSizeById($pid)
     {
         $this->db->where('pid', $pid);
         $this->db->delete('product_size');

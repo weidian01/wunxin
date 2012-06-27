@@ -192,13 +192,13 @@ class product extends MY_Controller
             show_error('录入信息不全');
 
         $this->load->model('product/Model_Product', 'product');
-        if ($pid) {
+        if ($pid) { //更新产品信息需要的操作
             $this->product->editProduct($pid, $data);
             $delphoto = $this->input->post('delphoto');
             $delphoto && $this->product->delProductPhotoById($delphoto);
             $this->product->delProductAttrById($pid);
-            $this->product->delProductSize($pid);
-        } else {
+            $this->product->delProductSizeById($pid);
+        } else {  //添加产品信息需要的操作
             $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
             $pid = $this->product->addProduct($data);
         }
