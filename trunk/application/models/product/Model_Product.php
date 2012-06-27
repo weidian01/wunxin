@@ -157,7 +157,7 @@ class Model_Product extends MY_Model
         return ;
     }
 
-    public function upProductDefaultPhoto($product_id, $photo_id)
+    public function setProductDefaultPhoto($product_id, $photo_id)
     {
         $this->db->update('product_photo', array('is_default' => 1), array('id' => $photo_id, 'is_default' => 0));
         if($this->db->affected_rows() !== 0)
