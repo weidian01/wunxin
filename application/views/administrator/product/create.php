@@ -84,7 +84,7 @@
                                         <?php elseif ($attr['type'] == 3): ?>
                                         <option value="<?=$v?>" <?php if(in_array($v, $pattr[$attr['attr_id']])):?>selected="selected"<?php endif;?>><?=$v?></option>
                                         <?php elseif ($attr['type'] == 4): ?>
-                                        <input class="text-input" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$v?>" type="text">
+                                        <input class="text-input" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$pattr[$attr['attr_id']][0]?>" type="text">
                                         <?php endif;?>
                                     <?php endforeach;?>
                                 <?php if ($attr['type'] == 3):?></select><?php endif;?><br />
@@ -151,8 +151,20 @@
                         </p>
 
                         <p>
-                            <label>描述</label>
-                            <textarea class="text-input textarea" name="descr" cols="50" rows="15"><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
+                            <label>SEO关键字</label>
+                            <input class="text-input medium-input"
+                                   type="text" value="<?php echo isset($info['keyword']) ? $info['keyword'] : ''?>" name="keyword"/>
+                        <p>
+
+                        <p>
+                            <label>SEO描述</label>
+                            <input class="text-input large-input"
+                                   type="text" value="<?php echo isset($info['descr']) ? $info['descr'] : ''?>" name="descr"/>
+                        <p>
+
+                        <p>
+                            <label>产品描述</label>
+                            <textarea class="text-input textarea" name="pcontent" cols="50" rows="15"><?php echo isset($info['pcontent']) ? $info['pcontent'] : ''?></textarea>
                         </p>
 
                         <p>
@@ -162,9 +174,13 @@
                         </p>
 
                         <?php if(isset($photo)):?>
+                        <style>.default_photo{border:3px solid #ff4500;}</style>
+                        <div id="product_photo">
                         <?php foreach($photo as $v):?>
-                        <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url'),'upload/product/',$v['img_addr']?>" width="120" height="80" /> <a href="javascript:void(null);" onclick="delphoto(<?=$v['id']?>)">删除</a></div>
+                            <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url'),'upload/product/',$v['img_addr']?>" width="120" height="80" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="set_default_photo(<?=$v['id']?>)"/> <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
+                            <?php if($v['is_default']==1):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id']?>"/><?php endif;?>
                         <?php endforeach;?>
+                        </div>
                         <?php endif;?>
                         <p>
                             <label>货物淘宝地址</label>
@@ -277,15 +293,35 @@ function create_element(json) {
     $("#model").append(html+'<br />')
 }
 
-function delphoto(id)
+function del_photo(id)
 {
     $("#hidden").append('<input type="hidden" name="delphoto[]" value="'+id+'" />');
+    var tmp = $("#photo_"+id).children(".default_photo").attr('class');
+
     $("#photo_"+id).remove();
+    if (typeof tmp !== 'undefined') {
+        $('#product_photo > div:first > img').addClass("default_photo");
+    }
+
 }
 
+function set_default_photo(id)
+{
+    $('#product_photo > div').each(
+        function(){
+            if('photo_'+id == $(this).attr('id'))
+            {
+                $('img', this).addClass("default_photo");
+                $('#default_photo').val(id);
+            }else{
+                $('img', this).removeClass("default_photo");
+            }
+        }
+    );
+}
 
 $(function () {
-    var editor = KindEditor.create('textarea[name="descr"]', {
+    var editor = KindEditor.create('textarea[name="pcontent"]', {
         //uploadJson:'/plug/kindeditor-4.1.1/php/upload_json.php',
         uploadJson:'/administrator/attached/upload',
         //fileManagerJson:'/plug/kindeditor-4.1.1/php/file_manager_json.php',
@@ -295,10 +331,9 @@ $(function () {
         allowFileManager:true,
         allowImageUpload:true,
         items:[
-            'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+            'source','|','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
             'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
             'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'unlink']
     });
 });
-
 </script>
