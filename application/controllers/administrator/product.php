@@ -216,6 +216,7 @@ class product extends MY_Controller
             }
         }
         $default_photo = $this->input->post('default_photo');
+        $default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
         $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
         $attr && $this->product->addProductAttr($attr);
         redirect('administrator/product/index');
