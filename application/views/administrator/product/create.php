@@ -136,7 +136,7 @@
 
                         <p>
                             <label>尺码</label>
-                            <select name="size_type" onchange="setSize(this.value)">
+                            <select name="size_type" onchange="load_size(this.value)">
                                 <?php foreach(array(0=>'请选择',1=>'T恤',2=>'卫衣',3=>'裤子',) as $k => $v):?>
                                 <option value="<?=$k?>" <?php if(isset($info['size_type']) && $info['size_type'] == $k):?>selected="selected"<?php endif;?>><?=$v?></option>
                                 <?php endforeach;?>
@@ -177,7 +177,7 @@
                         <style>.default_photo{border:3px solid #ff4500;}</style>
                         <div id="product_photo">
                         <?php foreach($photo as $v):?>
-                            <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url'),'upload/product/',$v['img_addr']?>" width="120" height="80" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="set_default_photo(<?=$v['id']?>)"/> <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
+                            <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url'),'upload/product/',$v['img_addr']?>" width="120" height="80" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="select_photo(<?=$v['id']?>)"/> <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
                             <?php if($v['is_default']==1):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id']?>"/><?php endif;?>
                         <?php endforeach;?>
                         </div>
@@ -218,7 +218,7 @@
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
 <script>
-function setSize(val)
+function load_size(val)
 {
     $("#size").empty()
     if(val == 0)
@@ -300,24 +300,37 @@ function del_photo(id)
 
     $("#photo_"+id).remove();
     if (typeof tmp !== 'undefined') {
-        $('#product_photo > div:first > img').addClass("default_photo");
+        var img_obj = $('#product_photo > div:first > img:first').addClass("default_photo");
+        var div_id = img_obj.parent().attr('id');
+        if(typeof div_id !== 'undefined')
+        {
+            set_default_photo(0);
+        }
+        else
+        {
+            set_default_photo(div_id.substr(6));
+        }
     }
-
 }
 
-function set_default_photo(id)
+function select_photo(id)
 {
     $('#product_photo > div').each(
         function(){
             if('photo_'+id == $(this).attr('id'))
             {
                 $('img', this).addClass("default_photo");
-                $('#default_photo').val(id);
+                set_default_photo(id);
             }else{
                 $('img', this).removeClass("default_photo");
             }
         }
     );
+}
+
+function set_default_photo(id)
+{
+    $('#default_photo').val(id);
 }
 
 $(function () {
