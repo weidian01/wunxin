@@ -73,7 +73,7 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?php echo $v['id'];?></td>
-                        <td><a href="/administrator/article/articleCLass/<?php echo $v['cid'];?>"><?php echo $class_data[$v['cid']]['cname'];?></a></td>
+                        <td><a href="/administrator/article/articleCLass/<?php echo $v['cid'];?>"><?php echo isset($class_data[$v['cid']]['cname']) ? $class_data[$v['cid']]['cname']:'NULL';?></a></td>
                         <td><?php echo $v['title'];?></td>
                         <td><?php echo mb_substr($v['keywords'], 0, 20, 'utf-8');?></td>
                         <td><?php echo mb_substr($v['descr'], 0, 20, 'utf-8');?></td>
