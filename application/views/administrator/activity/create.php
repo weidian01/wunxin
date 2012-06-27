@@ -62,8 +62,8 @@
                         </p>
                         <p>
                             <label>活动状态</label>
-                            <input class="text-input " type="radio" value="1" name="status" <?php echo isset($info['status']) ? ( ($info['status']=='1') ? 'checked="checked"': '') : '';?>/>进行中
-                            <input class="text-input " type="radio" value="0" name="status" <?php echo isset($info['status']) ? ($info['status']=='0' ? 'checked="checked"' : '') : '';?>/>终止
+                            <input class="text-input " type="radio" value="1" name="status" <?php echo isset($info['status']) && $info['status']=='1'  ? 'checked="checked"': '';?>/>进行中
+                            <input class="text-input " type="radio" value="0" name="status" <?php echo isset($info['status']) && $info['status']=='0'  ? 'checked="checked"': '';?>/>终止
                             <br/>
                         </p>
                         <p>

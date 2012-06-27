@@ -63,14 +63,14 @@
                         </p>
                         <p>
                             <label>是否显示</label>
-                            <input type="radio" value="1" <?php echo $info['visiblity'] ? 'checked="checked"' : '';?> name="visiblity"/> 显示
-                            <input type="radio" value="0" <?php echo $info['visiblity'] ? '' : 'checked="checked"';?> name="visiblity"/> 不显示
+                            <input type="radio" value="1" <?php echo isset($info['visiblity']) && $info['visiblity'] === '1' ? 'checked="checked"' : '';?> name="visiblity"/> 显示
+                            <input type="radio" value="0" <?php echo isset($info['visiblity']) && $info['visiblity'] === '0' ? 'checked="checked"' : '';?> name="visiblity"/> 不显示
                             <br/>
                         </p>
                         <p>
                             <label>是否置顶</label>
-                            <input type="radio" value="1" <?php echo $info['top'] ? 'checked="checked"' : '';?> name="top"/> 置顶
-                            <input type="radio" value="0" <?php echo $info['top'] ? '' : 'checked="checked"';?> name="top"/> 不置顶
+                            <input type="radio" value="1" <?php echo isset($info['top']) && $info['top'] === '1' ? 'checked="checked"' : '';?> name="top"/> 置顶
+                            <input type="radio" value="0" <?php echo isset($info['top']) && $info['top'] === '1' ? 'checked="checked"' : '';?> name="top"/> 不置顶
                             <br/>
                         </p>
                         <p>
@@ -103,3 +103,21 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
+<script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
+<script>
+    $(function () {
+        var editor = KindEditor.create('textarea[name="content"]', {
+            uploadJson:'/administrator/attached/upload',
+            fileManagerJson:'/administrator/attached/manager',
+            resizeType:1,
+            allowPreviewEmoticons:false,
+            allowFileManager:true,
+            allowImageUpload:true,
+            items:[
+                'source','|','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'unlink']
+        });
+    });
+</script>
