@@ -130,6 +130,14 @@ $error[40015] = array('error' => '40015', 'msg' => '删除设计图收藏参数�
 $error[40016] = array('error' => '40016', 'msg' => '清空用户设计图收藏夹成功', 'code' => 'empty_user_design_favorite_success');
 $error[40017] = array('error' => '40017', 'msg' => '清空用户设计图收藏夹失败', 'code' => 'empty_user_design_favorite_failure');
 
+$error[40018] = array('error' => '40018', 'msg' => '设计图投票成功', 'code' => 'design_vote_success');
+$error[40019] = array('error' => '40019', 'msg' => '设计图投票失败', 'code' => 'design_vote_failure');
+$error[40020] = array('error' => '40020', 'msg' => '设计图投票参数不全', 'code' => 'design_vote_parameter_failure');
+
+$error[40021] = array('error' => '40021', 'msg' => '删除设计图投票成功', 'code' => 'delete_design_vote_success');
+$error[40022] = array('error' => '40022', 'msg' => '删除设计图投票失败', 'code' => 'delete_design_vote_failure');
+$error[40023] = array('error' => '40023', 'msg' => '删除设计图投票参数不全', 'code' => 'delete_design_vote_parameter_failure');
+$error[40024] = array('error' => '40024', 'msg' => '无权限删除此设计图投票', 'code' => 'no_permission_remove_the_vote_of_this_design');
 
 
 /**
