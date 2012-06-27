@@ -105,9 +105,13 @@ class product extends MY_Controller
         $this->load->model('product/Model_Product_Model', 'mod');
         $model = $this->mod->getModelList(500);
         $attr = $this->mod->getModel($info['model_id']);
-        foreach($attr['attrs'] as $key=>$item)
-        {
-            $attr['attrs'][$key]['attr_value'] = explode(',', $item['attr_value']);
+
+        if (isset($attr['attrs'])) {
+            foreach ($attr['attrs'] as $key => $item) {
+                $attr['attrs'][$key]['attr_value'] = explode(',', $item['attr_value']);
+            }
+        } else {
+            $attr['attrs'] = array();
         }
         //print_r($attr);
 
@@ -173,11 +177,13 @@ class product extends MY_Controller
         $data['cost_price'] = $this->input->post('cost_price');
         $data['stock'] = $this->input->post('stock');
         $data['status'] = $this->input->post('status');
+        $data['keyword'] = $this->input->post('keyword');
         $data['descr'] = $this->input->post('descr');
+        $data['pcontent'] = $this->input->post('pcontent');
         $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
-        //var_dump($size);
+        var_dump($size);
         $pid = $this->input->post('pid');
 
         if (!$size || !$attr_value || !$data['pname'] || !$data['color_id'] || !$data['model_id'])
