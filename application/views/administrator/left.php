@@ -30,7 +30,7 @@
             <ul id="main-nav">
                 <!-- Accordion Menu -->
                 <li>
-                    <a href="#" class="nav-top-item current">产品管理</a>
+                    <a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'product') === 0):?>current<?php endif;?>">产品管理</a>
                     <ul>
                         <li><a href="<?=site_url('administrator/product/index')?>">产品管理</a></li>
                         <li><a href="<?=site_url('administrator/product_category/index')?>">产品分类管理</a></li>
@@ -39,7 +39,7 @@
                         <li><a href="<?=site_url('administrator/product_color/index')?>">产品颜色管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item no-submenu">订单列表</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'order') === 0):?>current<?php endif;?>">订单列表</a>
                     <ul>
                         <li><a href="/administrator/order/orderList">订单列表</a></li>
                         <li><a href="/administrator/order_receiver/receivableList">收款单列表</a></li>
@@ -48,43 +48,43 @@
 
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item no-submenu">用户管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'user') === 0):?>current<?php endif;?>">用户管理</a>
                     <ul>
                         <li><a href="/administrator/user/userList">用户列表</a></li>
 
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item">设计图管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'design') === 0):?>current<?php endif;?>">设计图管理</a>
                     <ul>
                         <li><a href="/administrator/design/designList">设计图管理</a></li>
                         <li><a href="/administrator/design_category/index">设计图分类管理</a></li>
                         <li><a href="/administrator/design_comment/commentList">设计图评论列表</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item">新闻管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'article') === 0):?>current<?php endif;?>">新闻管理</a>
                     <ul>
                         <li><a href="/administrator/article_category/categoryList" title="分类管理">分类管理</a></li>
                         <li><a href="/administrator/article/articleList" title="文章管理">文章管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item">业务管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'business') === 0):?>current<?php endif;?>">业务管理</a>
                     <ul>
                         <li><a href="/administrator/business_ad_position/positionList" title="">广告管理</a></li>
                         <li><a href="/administrator/business_ad/adList" title="">广告管理</a></li>
                         <li><a href="/administrator/business_card_model/cardModelList" title="">礼物卡管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item">活动管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'activity') === 0):?>current<?php endif;?>">活动管理</a>
                     <ul>
                         <li><a href="/administrator/activity/activityList/">活动管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item">推荐管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'business') === 0):?>current<?php endif;?>">推荐管理</a>
                     <ul>
                         <li><a href="/administrator/home_recommend/recommendList" title="">推荐列表</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item">其他管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'other') === 0):?>current<?php endif;?>">其他管理</a>
                     <ul>
                         <li><a href="/administrator/other_system_proposal/systemProposalList" title="">建议与意见</a></li>
                     </ul>
