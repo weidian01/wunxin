@@ -79,12 +79,12 @@
 
                         <p>
                             <label>活动规范</label>
-                            <textarea class="text-input textarea wysiwyg" id="textarea" name="specification" cols="79" rows="15" style="display: none; "><?php echo isset($info['specification']) ? $info['specification'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="specification" cols="79" rows="15" ><?php echo isset($info['specification']) ? $info['specification'] : ''?></textarea>
                             <br/>
                         </p>
                         <p>
                             <label>活动介绍</label>
-                            <textarea class="text-input textarea wysiwyg" id="textarea" name="descr" cols="79" rows="15" style="display: none; "><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="descr" cols="79" rows="15" ><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
                             <br/>
                         </p>
                         <p>
@@ -110,3 +110,34 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
+<script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
+<script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
+<script>
+    $(function () {
+        var editor0 = KindEditor.create('textarea[name="specification"]', {
+            uploadJson:'/administrator/attached/upload',
+            fileManagerJson:'/administrator/attached/manager',
+            resizeType:1,
+            allowPreviewEmoticons:false,
+            allowFileManager:true,
+            allowImageUpload:true,
+            items:[
+                'source','|','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'unlink']
+        });
+
+        var editor1 = KindEditor.create('textarea[name="descr"]', {
+            uploadJson:'/administrator/attached/upload',
+            fileManagerJson:'/administrator/attached/manager',
+            resizeType:1,
+            allowPreviewEmoticons:false,
+            allowFileManager:true,
+            allowImageUpload:true,
+            items:[
+                'source','|','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'unlink']
+        });
+    });
+</script>

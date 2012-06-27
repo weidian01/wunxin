@@ -183,9 +183,13 @@
                         </div>
                         <?php endif;?>
                         <p>
+                            <label>货物淘宝店铺域名</label>
+                            http://<input class="text-input" id="large-input" name="taobao_shop" type="text" value="<?php echo isset($info['taobao_shop']) ? $info['taobao_shop'] : ''?>">
+                        </p>
+                        <p>
                             <label>货物淘宝地址</label>
                             <input class="text-input large-input" id="large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
-                         </p>
+                        </p>
                         <p id="hidden">
                             <input class="button" type="submit" value="Submit"/>
                         </p>
