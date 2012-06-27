@@ -6,7 +6,7 @@
  * Time: 下午1:42
  * To change this template use File | Settings | File Templates.
  */
-class home_recommend extends MY_Controller
+class recommend_home extends MY_Controller
 {
     public $position = array(
         1 => array('cname' => '今日推荐', 'cid' => 1),

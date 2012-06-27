@@ -79,9 +79,9 @@
                         <li><a href="/administrator/activity/activityList/">活动管理</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'business') === 0):?>current<?php endif;?>">推荐管理</a>
+                <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'recommend') === 0):?>current<?php endif;?>">推荐管理</a>
                     <ul>
-                        <li><a href="/administrator/home_recommend/recommendList" title="">推荐列表</a></li>
+                        <li><a href="/administrator/recommend_home/recommendList" title="">推荐列表</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'other') === 0):?>current<?php endif;?>">其他管理</a>
