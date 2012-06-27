@@ -33,10 +33,10 @@
                     <a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'product') === 0):?>current<?php endif;?>">产品管理</a>
                     <ul>
                         <li><a href="<?=site_url('administrator/product/index')?>">产品管理</a></li>
-                        <li><a href="<?=site_url('administrator/product_category/index')?>">产品分类管理</a></li>
-                        <li><a href="<?=site_url('administrator/product_model/index')?>">产品模型管理</a></li>
-                        <li><a href="<?=site_url('administrator/product_size/index')?>">产品尺码管理</a></li>
-                        <li><a href="<?=site_url('administrator/product_color/index')?>">产品颜色管理</a></li>
+                        <li><a href="<?=site_url('administrator/product_category/index')?>">产品分类</a></li>
+                        <li><a href="<?=site_url('administrator/product_model/index')?>">产品模型</a></li>
+                        <li><a href="<?=site_url('administrator/product_size/index')?>">产品尺码</a></li>
+                        <li><a href="<?=site_url('administrator/product_color/index')?>">产品颜色</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'order') === 0):?>current<?php endif;?>">订单列表</a>
