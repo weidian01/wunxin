@@ -811,7 +811,7 @@ create table wx_mail_subscription
 (
    id                   int unsigned not null auto_increment comment '自增ID',
    uid                  int unsigned comment '用户ID',
-   email_addr           varchar(16) comment '邮件地址',
+   email_addr           varchar(64) comment '邮件地址',
    get_info_type        tinyint unsigned comment '需要得到那类信息,1特价优惠,2时尚搭配,3新品咨询',
    create_time          datetime comment '创建时间',
    primary key (id)
@@ -1111,6 +1111,7 @@ create table wx_product_collocation
    id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '主产品ID',
    spid                 int unsigned comment '搭配产品ID',
+   sort                 tinyint unsigned comment '排序',
    create_time          datetime comment '创建时间',
    primary key (id)
 )

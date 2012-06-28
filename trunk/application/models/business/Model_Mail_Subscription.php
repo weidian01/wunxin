@@ -28,13 +28,85 @@ class Model_Mail_Subscription extends MY_Model
     }
 
     /**
+     * 修改
+     *
+     * @param array $data
+     * @param $mId
+     * @return boolean
+     */
+    public function editSubscribe(array $data, $mId)
+    {
+        $info = array(
+            'uid' => $data['uid'],
+            'email_addr' => $data['email_addr'],
+            'get_info_type' => $data['get_info_type'],
+        );
+
+        $this->db->where('id', $mId);
+        return $this->db->update('mail_subscription', $info);
+    }
+
+    /**
+     * 获取一条
+     *
+     * @param $mId
+     * @return null | array
+     */
+    public function getSubscribeBymId($mId)
+    {
+        $data = $this->db->select('*')->from('mail_subscription')->where('id', $mId)->get()->row_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取列表
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getSubscribeList($limit = 20, $offset = 0)
+    {
+        $this->db->select('*');
+        $this->db->from('mail_subscription');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取数量
+     *
+     * @return int
+     */
+    public function getSubscribeCount()
+    {
+        $this->db->select('*')->from('mail_subscription');
+
+        return $this->db->count_all_results();
+    }
+
+    /**
      * 退订促销信息
      *
-     * @param $uId
+     * @param $mailAddr
      * @return boolean
      */
     public function unSubscribe($mailAddr)
     {
         return $this->db->delete('mail_subscription', array('email_addr' => $mailAddr));
+    }
+
+    /**
+     * 删除
+     *
+     * @param $mId
+     * @return boolean
+     */
+    public function deleteSubscribe($mId)
+    {
+        return $this->db->delete('mail_subscription', array('id' => $mId));
     }
 }

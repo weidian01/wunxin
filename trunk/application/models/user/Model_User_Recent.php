@@ -116,14 +116,31 @@ class Model_User_Recent extends MY_Model
 
 
     /**
-     * @name 获取用户收货地址
+     * 获取用户收货地址列表
      *
-     * @param int $uid 用户ID
-     * @return array
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return mixed
      */
-    public function getUserRecentAddressByUid($uid)
+    public function getUserRecentAddressByUid($uId, $limit = 20, $offset = 0)
     {
-        return $this->db->select('*')->get_where('user_recent_address', array('uid' => $uid))->result_array();
+        $data = $this->db->select('*')->get_where('user_recent_address', array('uid' => $uId), $limit, $offset)->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户收货地址数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserRecentAddressCount($uId)
+    {
+        $this->db->select('*')->from('user_recent_address')->where('uid', $uId);
+
+        return $this->db->count_all_results();
     }
 
     /**

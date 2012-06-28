@@ -25,7 +25,7 @@ class Model_Product_Size extends MY_Model
 
     /**
      * 根据模型id 删除模型
-     * @param $model_id
+     * @param $size_id
      */
     function delete($size_id)
     {
@@ -35,7 +35,7 @@ class Model_Product_Size extends MY_Model
 
     /**
      * 查看是否有产品使用该模型
-     * @param $model_id
+     * @param $size_id
      * @return int
      */
     function isUse($size_id)
@@ -48,7 +48,7 @@ class Model_Product_Size extends MY_Model
 
     /**
      * 获取根据模型id一个模型的详细内容(模型名称和其属性值)
-     * @param $model_id
+     * @param $size_id
      * @return array
      */
     function getSizeById($size_id)
@@ -63,6 +63,7 @@ class Model_Product_Size extends MY_Model
     /**
      * 根据类型或的该类型下所有号码
      * @param $type
+     * @param $field
      * @return mixed
      */
     function getSizeByType($type, $field = '*')

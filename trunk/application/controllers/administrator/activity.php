@@ -14,6 +14,7 @@ class activity extends MY_Controller
         '3' => array('id' => '3', 'name' => '企业'),
         '4' => array('id' => '4', 'name' => '其他'),
     );
+
     public function __construct()
     {
         parent::__construct();

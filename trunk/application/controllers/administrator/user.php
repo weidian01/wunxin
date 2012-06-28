@@ -95,6 +95,14 @@ class user extends MY_Controller
         $this->load->model('user/Model_User', 'user');
         $userBasicInfo = $this->user->getUserAllInfoById($uid);
 
+        //收货地址
+        $this->load->model('user/Model_User_Recent', 'recent');
+        $recentData = $this->recent->getUserRecentAddressByUid($uid, 1000);
+
+        //用户发票
+        $this->load->model('order/Model_Order_Invoice', 'invoice');
+        $invoiceData = $this->invoice->getUserInvoiceByuId($uid, 1000);
+
         //升级日志
         $this->load->model('user/Model_User_Level', 'level');
         $levelData = $this->level->getUserLevelList($uid, 1000);
@@ -120,6 +128,8 @@ class user extends MY_Controller
             'page_html' => $pageHtml,
             'login_log_data' => $loginLogData,
             'user_info' => $userBasicInfo,
+            'recent_data' => $recentData,
+            'invoice_data' => $invoiceData,
             'level_up_data' => $levelData,
             'consume_data' => $consumeData,
             'retrieve_data' => $retrieveData,
