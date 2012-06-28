@@ -71,13 +71,42 @@ class Model_Order_Invoice extends MY_Model
     }
 
     /**
-     * @name 获取用户所有发票信息 -- 通过用户ID
-     *
-     * @param $uId 用户ID
-     * @return array
+     * 获取发票信息 -- 通过发票ID
+     * @param $iId
+     * @return null | array
      */
-    public function getUserAllInvoiceInfoByUid($uId)
+    public function getInvoiceByiId($iId)
     {
-        return $this->db->select('*')->get_where('invoice', array('uid' => $uId))->result_array();
+        $data = $this->db->select('*')->get_where('invoice', array('invoice_id' => $iId))->row_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户发票信息列表
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserInvoiceByuId($uId, $limit = 20, $offset = 0)
+    {
+        $data = $this->db->select('*')->get_where('invoice', array('uid' => $uId), $limit, $offset)->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户发票信息数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserInvoiceCount($uId)
+    {
+        $this->db->select('*')->from('invoice')->where('uid', $uId);
+
+        return $this->db->count_all_results();
     }
 }

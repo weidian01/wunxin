@@ -27,11 +27,13 @@
         <h3>用户信息</h3>
         <ul class="content-box-tabs">
             <li><a href="#tab1" class="default-tab">基本信息</a></li>
-            <li><a href="#tab2">升级日志</a></li>
-            <li><a href="#tab3">消费日志</a></li>
-            <li><a href="#tab4">找回密码日志</a></li>
-            <li><a href="#tab5">积分日志</a></li>
-            <li><a href="#tab6">申请返现日志</a></li>
+            <li><a href="#tab2">收货地址</a></li>
+            <li><a href="#tab3">用户发票</a></li>
+            <li><a href="#tab4">升级日志</a></li>
+            <li><a href="#tab5">消费日志</a></li>
+            <li><a href="#tab6">找回密码日志</a></li>
+            <li><a href="#tab7">积分日志</a></li>
+            <li><a href="#tab8">申请返现日志</a></li>
         </ul>
         <div class="clear"></div>
     </div>
@@ -83,6 +85,97 @@
                     <th><input class="check-all" type="checkbox"/></th>
                     <th>ID</th>
                     <th>用户ID</th>
+                    <th>用户名称</th>
+                    <th>收货人</th>
+                    <th>国家</th>
+                    <th>省份</th>
+                    <th>城市</th>
+                    <th>区域</th>
+                    <th>详细地址</th>
+                    <th>邮政编码</th>
+                    <th>手机号码</th>
+                    <th>座机</th>
+                    <th>默认地址</th>
+                    <th>创建时间</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php if (empty($recent_data)) {
+                    $recent_data = array();
+                } //echo '<pre>';print_r($receivable);exit;
+                foreach ($recent_data as $rv) {
+                    ?>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td><?php echo $rv['address_id'];?></td>
+                    <td><?php echo $rv['uid'];?></td>
+                    <td><?php echo $rv['uname'];?></td>
+                    <td><?php echo $rv['recent_name'];?></td>
+                    <td><?php echo $rv['country'];?></td>
+                    <td><?php echo $rv['province'];?></td>
+                    <td><?php echo $rv['city'];?></td>
+                    <td><?php echo $rv['area'];?></td>
+                    <td><?php echo $rv['detail_address'];?></td>
+                    <td><?php echo $rv['zipcode'];?></td>
+                    <td><?php echo $rv['phone_num'];?></td>
+                    <td><?php echo $rv['call_num'];?></td>
+                    <td><?php echo $rv['default_address'] ? '是' : '否';?></td>
+                    <td><?php echo $rv['create_time'];?></td>
+                </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+            <div class="clear"></div>
+        </div>
+        <!-- End #tab1 -->
+        <div class="tab-content" id="tab3">
+            <table>
+                <thead>
+                <tr>
+                    <th><input class="check-all" type="checkbox"/></th>
+                    <th>ID</th>
+                    <th>用户ID</th>
+                    <th>发票抬头</th>
+                    <th>发票内容</th>
+                    <th>默认发票</th>
+                    <th>创建时间</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <?php if (empty($invoice_data)) {
+                    $invoice_data = array();
+                } //echo '<pre>';print_r($receivable);exit;
+                foreach ($invoice_data as $iv) {
+                    ?>
+                <tr>
+                    <td><input type="checkbox"/></td>
+                    <td><?php echo $iv['invoice_id'];?></td>
+                    <td><?php echo $iv['uid'];?></td>
+                    <td><?php echo $iv['invoice_payable'];?></td>
+                    <td><?php switch ($iv['invoice_content']) {
+                    	case '1': $s = '服装';break;
+                    	case '2': $s = '其他';break;
+                    	default: $s = $iv['invoice_content'];
+                    } echo empty ($s) ? '' : $s;?></td>
+                    <td><?php echo $iv['default'] ? '是' : '否';?></td>
+                    <td><?php echo $iv['create_time'];?></td>
+                </tr>
+                    <?php }?>
+                </tbody>
+            </table>
+            <div class="clear"></div>
+        </div>
+
+        <!-- End #tab1 -->
+        <div class="tab-content" id="tab4">
+            <table>
+                <thead>
+                <tr>
+                    <th><input class="check-all" type="checkbox"/></th>
+                    <th>ID</th>
+                    <th>用户ID</th>
                     <th>升级事件</th>
                     <th>原等级</th>
                     <th>现等级</th>
@@ -111,7 +204,7 @@
             <div class="clear"></div>
         </div>
 
-        <div class="tab-content" id="tab3">
+        <div class="tab-content" id="tab5">
             <table>
                 <thead>
                 <tr>
@@ -150,7 +243,7 @@
             <div class="clear"></div>
         </div>
 
-        <div class="tab-content" id="tab4">
+        <div class="tab-content" id="tab6">
             <table>
                 <thead>
                 <tr>
@@ -183,7 +276,7 @@
             <div class="clear"></div>
         </div>
 
-        <div class="tab-content" id="tab5">
+        <div class="tab-content" id="tab7">
             <table>
                 <thead>
                 <tr>
@@ -221,7 +314,7 @@
             </table>
             <div class="clear"></div>
     </div>
-    <div class="tab-content" id="tab6">
+    <div class="tab-content" id="tab8">
         <table>
             <thead>
             <tr>

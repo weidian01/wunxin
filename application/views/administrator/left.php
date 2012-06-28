@@ -37,6 +37,7 @@
                         <li><a href="<?=site_url('administrator/product_model/index')?>">产品模型</a></li>
                         <li><a href="<?=site_url('administrator/product_size/index')?>">产品尺码</a></li>
                         <li><a href="<?=site_url('administrator/product_color/index')?>">产品颜色</a></li>
+                        <li><a href="/administrator/product_collocation/pcList/" title="">产品搭配管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'order') === 0):?>current<?php endif;?>">订单列表</a>
@@ -73,6 +74,8 @@
                         <li><a href="/administrator/business_ad/adList" title="">广告管理</a></li>
                         <li><a href="/administrator/business_card_model/cardModelList" title="">礼物卡管理</a></li>
                         <li><a href="/administrator/business_tuan/tuanList" title="">团购管理</a></li>
+                        <li><a href="/administrator/business_integral_redemption/redemptionList" title="">积分换购产品管理</a></li>
+                        <li><a href="/administrator/business_mail_subscribe/mailSubscribeList" title="">邮件订阅管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'activity') === 0):?>current<?php endif;?>">活动管理</a>
