@@ -10,7 +10,7 @@ drop table if exists wx_advert;
 
 drop table if exists wx_advert_position;
 
-drop table if exists wx_apply_cach_back_log;
+drop table if exists wx_apply_cash_back_log;
 
 drop index Index_parent_id on wx_area;
 
@@ -224,8 +224,6 @@ drop index index_uid on wx_user_login_log;
 
 drop table if exists wx_user_login_log;
 
-drop index Index_designer_id on wx_user_message;
-
 drop index Index_uid on wx_user_message;
 
 drop table if exists wx_user_message;
@@ -253,7 +251,7 @@ create table wx_activity
    subject              varchar(128) comment '活动主题',
    start_time           datetime comment '开始时间',
    end_time             datetime comment '结束时间',
-   descr                varchar(128) comment '活动介绍',
+   descr                varchar(256) comment '活动介绍',
    event_initiator      tinyint unsigned comment '活动发起方，1系统，2用户，3企业，4其他',
    initiator_name       varchar(128) comment '发起方名称',
    initiator_desc       text comment '发起方介绍',
@@ -296,7 +294,7 @@ create table wx_activity_prize
    prize_name           varchar(64) comment '奖品名称',
    img_addr             varchar(128) comment '图片地址',
    number               smallint unsigned comment '数量',
-   descr                varchar(128) comment '奖品说明',
+   descr                varchar(256) comment '奖品说明',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
@@ -339,7 +337,7 @@ create table wx_advert
    status               tinyint unsigned comment '状态,0不显示，1显示',
    ad_link              varchar(128) comment '广告链接',
    sort                 smallint unsigned comment '广告排序',
-   descr                varchar(128) comment '广告描述',
+   descr                varchar(256) comment '广告描述',
    start_time           datetime comment '开始时间',
    end_time             datetime comment '结束时间',
    create_time          datetime comment '创建时间',
@@ -361,7 +359,7 @@ create table wx_advert_position
    height               int unsigned comment '高度',
    status               tinyint unsigned comment '状态，0不显示，1显示',
    view_num             tinyint unsigned comment '显示数量',
-   descr                varchar(128) comment '描述',
+   descr                varchar(256) comment '描述',
    create_time          datetime comment '创建时间',
    primary key (position_id)
 )
@@ -371,15 +369,15 @@ auto_increment = 1;
 alter table wx_advert_position comment '广告位置表';
 
 /*==============================================================*/
-/* Table: wx_apply_cach_back_log                                */
+/* Table: wx_apply_cash_back_log                                */
 /*==============================================================*/
-create table wx_apply_cach_back_log
+create table wx_apply_cash_back_log
 (
    acb_id               int unsigned not null auto_increment comment '返现记录ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
    amount               int unsigned comment '金额,单位为分',
-   descr                varchar(128) comment '描述',
+   descr                varchar(256) comment '描述',
    ip                   char(16) comment 'IP地址',
    status               tinyint unsigned comment '状态,0提交申请，1已打款，2取消',
    create_time          datetime comment '创建时间',
@@ -388,7 +386,7 @@ create table wx_apply_cach_back_log
 engine = MYISAM
 auto_increment = 1;
 
-alter table wx_apply_cach_back_log comment '申请返现记录';
+alter table wx_apply_cash_back_log comment '申请返现记录';
 
 /*==============================================================*/
 /* Table: wx_area                                               */
@@ -424,7 +422,7 @@ create table wx_article
    title                varchar(32) comment '文章标题',
    content              text comment '内容',
    keywords             varchar(128) comment '关键字',
-   descr                varchar(128) comment '描述',
+   descr                varchar(256) comment '描述',
    visiblity            tinyint unsigned default 1 comment '是否显示,0不显示，1显示',
    top                  tinyint unsigned default 0 comment '置顶，0不置顶，1置顶',
    sort                 smallint default 0 comment '排序',
@@ -525,7 +523,7 @@ create table wx_color
    english_name         varchar(16) comment '颜色英文名',
    code                 char(6) comment '颜色代码',
    image                varchar(64) comment '颜色图片',
-   descr                varchar(128) comment '颜色描述',
+   descr                varchar(256) comment '颜色描述',
    primary key (color_id)
 )
 engine = MYISAM
@@ -585,7 +583,7 @@ create table wx_design_category
    parent_id            int unsigned comment '分类父ID',
    sort                 smallint unsigned comment '排序',
    keywords             varchar(128) comment '关键字',
-   descr                varchar(128) comment '描述',
+   descr                varchar(256) comment '描述',
    title                varchar(32) comment '标题',
    create_time          datetime comment '创建时间',
    primary key (class_id)
@@ -745,7 +743,7 @@ create table wx_express_delivery_company
 (
    ed_id                int unsigned not null auto_increment comment '自增ID',
    name                 varchar(32) comment '快递名称',
-   descr                varchar(128) comment '快递描述',
+   descr                varchar(256) comment '快递描述',
    website              varchar(64) comment '网址',
    sort                 smallint unsigned comment '排序',
    status               tinyint unsigned comment '状态,0删除，1正常',
@@ -930,7 +928,7 @@ create table wx_picking
    address_id           int unsigned comment '地址ID',
    logistics_orders_sn  char(32) comment '物流订单号',
    uid                  int unsigned comment '管理员ID',
-   descr                varchar(128) comment '管理员备注',
+   descr                varchar(256) comment '管理员备注',
    freight              int unsigned comment '运费,单位为分',
    create_time          datetime comment '创建时间',
    primary key (picking_id)
@@ -990,17 +988,19 @@ create table wx_product
    sell_price           int unsigned comment '销售价格，单位为分',
    style_no             char(32) comment '用于统一同一款式不同颜色的衣服',
    stock                int unsigned comment '库存数量',
+   taobao_shop          varchar(64) comment '淘宝店铺地址',
    product_taobao_addr  varchar(255) comment '产品淘宝地址',
-   descr                text comment '产品描述',
+   keyword              varchar(128) comment '关键字',
+   descr                varchar(256) comment '产品描述',
    pcontent             text comment '产品内容',
    source               tinyint unsigned default 1 comment '产品来源,1系统，2活动，3用户，4其他',
    expand               char(10) comment '来源扩展字段,可存活动ID，其他一些标识性信息',
    gender               tinyint unsigned comment '产品属性，0中性，1男，2女，3 男童，4女童',
-   尺寸类型                 int comment 'size_type',
-   status               tinyint unsigned comment '状态,0已删除，1正常',
-   check_status         tinyint unsigned comment '审核，0未通过，1已通过',
-   shelves              varchar(32) unsigned comment '上架，0下架，1上架',
-   cost_price           int unsigned comment '成本价格，单位为分',
+   size_type            int comment '尺寸类型',
+   status               tinyint unsigned default 1 comment '状态,0已删除，1正常',
+   check_status         tinyint unsigned default 1 comment '审核，0未通过，1已通过',
+   shelves              varchar(32) default '1' comment '上架，0下架，1上架',
+   cost_price           int unsigned default 0 comment '成本价格，单位为分',
    create_time          datetime comment '创建时间',
    primary key (pid)
 )
@@ -1008,8 +1008,6 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_product comment '产品表';
-
-INSERT INTO `wx_product` VALUES (1,1,1,1,1,1,'hjpking@gmail.com','潮人必备',10,10,'1111',10,NULL,'testtest','fdssdsggregergdf',1,'a',1,1,1,1,1,'2012-06-07 13:58:23');
 
 /*==============================================================*/
 /* Index: Index_class_id                                        */
@@ -1087,7 +1085,7 @@ create table wx_product_category
    parent_id            int unsigned comment '分类父ID',
    sort                 smallint comment '排序',
    keywords             varchar(128) comment '关键字',
-   descr                varchar(128) comment '描述',
+   descr                varchar(256) comment '描述',
    title                varchar(32) comment '标题',
    create_time          datetime comment '创建时间',
    primary key (class_id)
@@ -1177,6 +1175,7 @@ create table wx_product_favorite
    id                   int unsigned not null auto_increment comment '收藏ID',
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
    ip                   char(16) comment '收藏IP地址',
    create_time          datetime comment '收藏时间',
    primary key (id)
@@ -1388,7 +1387,7 @@ create table wx_receivable
    pay_type             tinyint unsigned comment '汇款类型，1银行汇款，2支付宝转账',
    pay_account          varchar(20) comment '收款账户',
    pay_status           tinyint unsigned comment '支付状态,0未支付，1支付成功',
-   descr                varchar(128) comment '收款备注',
+   descr                varchar(256) comment '收款备注',
    manager_id           int unsigned comment '管理员ID',
    create_time          datetime comment '创建时间',
    primary key (receiver_id)
@@ -1441,7 +1440,7 @@ create table wx_retrieve_password_log
    id                   int unsigned not null auto_increment comment '自增ID',
    uid                  int comment '用户ID',
    passwd_code          char(32) comment '校验串',
-   end_time             tinyint unsigned comment '过期时间',
+   end_time             datetime comment '过期时间',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
@@ -1469,7 +1468,7 @@ create table wx_returns
    pid                  int comment '产品ID',
    type                 tinyint comment '类型1，退货，2换货',
    reason               tinyint comment '原因,1尺寸不对，2货品有问题，3其他',
-   descr                varchar(128) comment '描述',
+   descr                varchar(256) comment '描述',
    logistic_num         char(16) comment '退换货物流单号',
    cs_operations        tinyint default 0 comment '客服操作，0初始，1协商成功，2协商失败',
    store_operations     tinyint default 0 comment '仓库操作，0初始，退货的货物 物流配送中，1货物确认成功，2货物确认失败，',
@@ -1580,7 +1579,7 @@ create table wx_share_images
    id                   int unsigned not null auto_increment comment '自增ID',
    share_id             int unsigned comment '晒单ID',
    img_addr             varchar(128) comment '图片地址',
-   descr                varchar(128) comment '图片说明',
+   descr                varchar(256) comment '图片说明',
    is_cover             tinyint unsigned default 0 comment '是否为封面，0否，1是',
    status               tinyint unsigned default 1 comment '状态，0已删除，1正常',
    is_like              int unsigned comment '是否喜欢，记录喜欢的人数',
@@ -1651,7 +1650,7 @@ create table wx_size
    size_id              int unsigned not null auto_increment comment '尺码ID',
    name                 varchar(32) comment '尺码名称',
    abbreviation         char(6) comment '尺码简称',
-   descr                varchar(128) comment '尺码描述',
+   descr                varchar(256) comment '尺码描述',
    type                 tinyint comment '类别,1,T恤，2卫衣，3裤子',
    create_time          datetime comment '创建时间',
    primary key (size_id)
@@ -1718,6 +1717,7 @@ create table wx_tuan_product
    pid                  int unsigned comment '产品ID',
    pname                varchar(120) comment '产品名称',
    product_images       varchar(64) comment '产品图片',
+   market_price         int comment '市场价格',
    sell_price           int unsigned comment '销售价格，单位为分',
    tuan_price           int unsigned comment '团购价格，单位为分',
    status               tinyint unsigned comment '状态，1正常团购，2已结束团购',
@@ -1728,7 +1728,7 @@ create table wx_tuan_product
    end_time             datetime comment '团购结束时间',
    discount_rate        int unsigned comment '折扣率,存储百分比',
    save                 int unsigned comment '节省金额，单位为分',
-   descr                varchar(128) comment '描述',
+   descr                varchar(256) comment '描述',
    create_time          datetime comment '创建时间',
    primary key (tuan_id)
 )
@@ -1780,7 +1780,7 @@ create table wx_user_consume_log
    operat_type          tinyint unsigned comment '操作类型，1消费，2充值，3退款，4返现，5其他',
    before_amount        int unsigned comment '操作前金额，单位为分',
    after_amount         int unsigned comment '操作后金额，单位为分',
-   descr                varchar(128) comment '操作描述',
+   descr                varchar(256) comment '操作描述',
    consume_amount       int comment '消费金额',
    create_time          datetime comment '创建时间',
    primary key (consume_id)
@@ -1823,12 +1823,12 @@ create table wx_user_info
    detail_address       varchar(128) comment '详细地址',
    phone                char(11) comment '手机',
    company_call         char(11) comment '公司电话',
-   family_call          char(11) comment '家庭电话',
+   family_call          char(12) comment '家庭电话',
    height               tinyint unsigned comment '身高，单位为厘米',
    weight               smallint comment '体重，单位公斤（KG）',
    body_type            char(8) comment '体型',
    marital_status       int unsigned comment '婚姻状况,0保密，1已婚，2未婚',
-   education_level      tinyint unsigned comment '教育程度',
+   education_level      tinyint unsigned comment '教育程度, 1高中及以下,2大学专科,3大学本科,4硕士,5博士及以上',
    job                  tinyint unsigned comment '从事职业',
    industry             tinyint unsigned comment '工作所属行业',
    income               int unsigned comment '月均收入,0:无收入1:2000 元以下,2:2000～3999 元,3:4000～5999 元,4:6000～7999 元,5:8000～9999 元,6:10000～15000 元,7:15000 元以上',
@@ -1860,10 +1860,10 @@ create table wx_user_integral_log
    integral_id          int unsigned not null auto_increment,
    uid                  int unsigned,
    operat_type          tinyint unsigned comment '操作类型，0消耗，1增加',
-   consume_amount       int unsigned comment '消费金额',
-   before_amount        int unsigned comment '操作前金额，单位为分',
-   after_amount         int unsigned comment '操作后金额，单位为分',
-   descr                varchar(128) comment '操作描述',
+   consume_amount       int unsigned comment '消费积分',
+   before_amount        int unsigned comment '操作前积分，单位为分',
+   after_amount         int unsigned comment '操作后积分，单位为分',
+   descr                varchar(256) comment '操作描述',
    create_time          datetime comment '创建时间',
    primary key (integral_id)
 )
@@ -1896,7 +1896,7 @@ create table wx_user_level
    lid                  int unsigned not null auto_increment comment '等级ID',
    name                 varchar(16) comment '等级名称',
    type                 tinyint unsigned comment '组类别',
-   descr                varchar(128) comment '等级描述',
+   descr                varchar(256) comment '等级描述',
    discount             tinyint unsigned comment '打折比例',
    create_time          datetime comment '创建时间',
    primary key (lid)
@@ -1943,9 +1943,9 @@ create index index_uid on wx_user_login_log
 create table wx_user_message
 (
    message_id           int unsigned not null auto_increment comment '留言ID',
-   designer_id          int unsigned comment '设计师ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
+   title                varchar(32) comment '标题',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
    reply_num            int unsigned comment '留言回复数量',
@@ -1963,14 +1963,6 @@ alter table wx_user_message comment '用户留言表';
 create index Index_uid on wx_user_message
 (
    uid
-);
-
-/*==============================================================*/
-/* Index: Index_designer_id                                     */
-/*==============================================================*/
-create index Index_designer_id on wx_user_message
-(
-   designer_id
 );
 
 /*==============================================================*/
