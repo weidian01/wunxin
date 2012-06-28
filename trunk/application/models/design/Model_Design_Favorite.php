@@ -48,6 +48,19 @@ class Model_Design_Favorite extends MY_Model
     }
 
     /**
+     * 获取用户收藏的设计图数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserFavoriteDesignCount($uId)
+    {
+        $this->db->select('*')->from('design_favorite')->where('uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
      * 删除设计图收藏
      *
      * @param int $dId

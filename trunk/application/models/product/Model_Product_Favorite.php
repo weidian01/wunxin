@@ -41,7 +41,20 @@ class Model_Product_Favorite extends MY_Model
      */
     public function getUserProductFavorite($uId, $limit = 20, $offset = 0)
     {
-        return $this->db->select('*')->get_where('product_favorite', array('uid' => $uId), $limit, $offset);
+        return $this->db->select('*')->get_where('product_favorite', array('uid' => $uId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取用户产品收藏数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserProductFavoriteCount($uId)
+    {
+        $this->db->select('*')->from('product_favorite')->where('uid', $uId);
+
+        return $this->db->count_all_results();
     }
 
     /**

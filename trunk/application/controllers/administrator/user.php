@@ -62,4 +62,71 @@ class user extends MY_Controller
 
         $this->load->view('/administrator/user/list', array('data' => $data));
     }
+
+    public function userDetail()
+    {
+        $uid = $this->uri->segment(4, 1);
+        if (!$uid) {
+            show_error('用户ID为空');
+        }
+
+        //登陆日志 开始
+        $Limit = 20;
+        $currentPage = $this->uri->segment(5, 1);
+        $offset = ($currentPage - 1) * $Limit;
+
+        $this->load->model('user/Model_User_Log', 'log');
+        $totalNum = $this->log->getUserLoginLogCount($uid);
+        $loginLogData = $this->log->getUserLoginLogList($uid, $Limit, $offset);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/administrator/user/userDetail/'.$uid;
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 10;
+        $config['uri_segment'] = 5;
+        $config['use_page_numbers'] = TRUE;
+        $config['anchor_class'] = 'class="number"';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+        //登陆日志 结束
+
+        //用户信息
+        $this->load->model('user/Model_User', 'user');
+        $userBasicInfo = $this->user->getUserAllInfoById($uid);
+
+        //升级日志
+        $this->load->model('user/Model_User_Level', 'level');
+        $levelData = $this->level->getUserLevelList($uid, 1000);
+
+        //消费日志
+        $this->load->model('user/Model_User_Consume', 'consume');
+        $consumeData = $this->consume->getUserConsumeList($uid, 1000);
+
+        //找回密码日志
+        $this->load->model('user/Model_User_Retrieve', 'retrieve');
+        $retrieveData = $this->retrieve->getUserRetrieveList($uid, 1000);
+
+        //积分日志
+        $this->load->model('user/Model_User_Integral', 'integral');
+        $integralData = $this->integral->getUserIntegralList($uid, 1000);
+
+        //申请返现日志
+        $this->load->model('user/Model_User_Apply_Cash_Back', 'acb');
+        $acbData = $this->acb->getUserAcbList($uid, 1000);
+
+        //echo '<pre>';print_r($userBasicInfo);exit;
+        $data = array(
+            'page_html' => $pageHtml,
+            'login_log_data' => $loginLogData,
+            'user_info' => $userBasicInfo,
+            'level_up_data' => $levelData,
+            'consume_data' => $consumeData,
+            'retrieve_data' => $retrieveData,
+            'integral_data' => $integralData,
+            'acb_data' => $acbData,
+
+        );
+        $this->load->view('/administrator/user/detail', $data);
+    }
 }
