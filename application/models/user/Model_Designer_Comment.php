@@ -18,7 +18,7 @@ class Model_Designer_Comment extends MY_Model
      */
     public function getDesignerByUid($designerId, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('user_message', array('designer_id' => $designerId), $limit, $offset)->array_result();
+        return $this->db->get_where('user_message', array('designer_id' => $designerId), $limit, $offset)->result_array();
     }
 
     /**
@@ -31,11 +31,35 @@ class Model_Designer_Comment extends MY_Model
      */
     public function getDesignerCommentByUid($uid, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('user_message', array('uid' => $uid), $limit, $offset)->array_result();
+        return $this->db->get_where('user_message', array('uid' => $uid), $limit, $offset)->result_array();
     }
 
     /**
-     * @name 添加产品留言
+     * 获取设计师评论数量
+     *
+     * @param $uid
+     * @return int
+     */
+    public function getDesignerCommentByUidCount($uId)
+    {
+        $this->db->select('*')->from('user_message')->where('uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
+     * 获取设计师留言 -- 通过留言ID
+     *
+     * @param $mId
+     * @return array
+     */
+    public function getDesignerCommentByCommentId($mId)
+    {
+        return $this->db->get_where('user_message', array('message_id' => $mId))->row_array();
+    }
+
+    /**
+     * @name 添加设计师留言
      *
      * @param array $cInfo
      * @return boolean
@@ -71,6 +95,7 @@ class Model_Designer_Comment extends MY_Model
 
     /**
      * 删除产品留言 -- 通过留言ID
+     *
      * @param $cId
      * @return bool
      */
@@ -97,16 +122,29 @@ class Model_Designer_Comment extends MY_Model
     }
 
     /**
-     * @name 获取设计师留言回复
+     * @name 获取设计师留言回复列表
      *
-     * @param $cid
+     * @param $mId
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getReplyByCommentId($cid, $limit = 20, $offset = 0)
+    public function getReplyByCommentId($mId, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('user_message_reply', array('message_id' => $cid), $limit, $offset)->array_result();
+        return $this->db->get_where('user_message_reply', array('message_id' => $mId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取评论回复数量
+     *
+     * @param $mId
+     * @return int
+     */
+    public function getReplyByCommentIdCount($mId)
+    {
+        $this->db->select('*')->from('user_message_reply')->where('message_id', $mId);
+
+        return $this->db->count_all_results();
     }
 
 
@@ -129,7 +167,7 @@ class Model_Designer_Comment extends MY_Model
 
         $this->updateCommentReplyNum($rInfo['message_id']);
 
-        $this->db->insert('product_reply', $data);
+        $this->db->insert('user_message_reply', $data);
         return $this->db->insert_id();
     }
 
@@ -141,8 +179,6 @@ class Model_Designer_Comment extends MY_Model
      */
     public function deleteProductCommentReplyByReplyId($rId)
     {
-        $this->db->delete('product_reply', array('id' => $rId));
-
-        return true;
+        return $this->db->delete('user_message_reply', array('id' => $rId));
     }
 }

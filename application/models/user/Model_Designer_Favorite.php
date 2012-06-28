@@ -33,16 +33,29 @@ class Model_Designer_Favorite extends MY_Model
     }
 
     /**
-     * 获取用户收藏的设计师
+     * 获取用户收藏的设计师列表
      *
      * @param int $uId
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getUserProductFavorite($uId, $limit = 20, $offset = 0)
+    public function getUserDesignerFavorite($uId, $limit = 20, $offset = 0)
     {
-        return $this->db->select('*')->get_where('designer_favorite', array('favorite_uid' => $uId), $limit, $offset);
+        return $this->db->select('*')->get_where('designer_favorite', array('favorite_uid' => $uId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取用户收藏的设计师数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserDesignerFavoriteCount($uId)
+    {
+        $this->db->select('*')->from('designer_favorite')->where('favorite_uid', $uId);
+
+        return $this->db->count_all_results();
     }
 
     /**
@@ -52,7 +65,7 @@ class Model_Designer_Favorite extends MY_Model
      * @param int $uid
      * @return boolean
      */
-    public function deleteUserProductFavorite($fId, $uid)
+    public function deleteUserFavoriteFavorite($fId, $uid)
     {
         $this->db->where('id', $fId);
         $this->db->where('favorite_uid', $uid);
@@ -60,12 +73,24 @@ class Model_Designer_Favorite extends MY_Model
     }
 
     /**
-     * 清空用户收藏的产品
+     * 删除用户收藏的设计师
+     *
+     * @param $fId
+     * @return boolean
+     */
+    public function deleteUserFavoriteDesignerByfId($fId)
+    {
+        $this->db->where('designer_favorite_id', $fId);
+        return $this->db->delete('designer_favorite');
+    }
+
+    /**
+     * 清空用户收藏的设计师
      *
      * @param int $uId
      * @return boolean
      */
-    public function emptyUserProductFavorite($uId)
+    public function emptyUserFavoriteFavorite($uId)
     {
         $this->db->where('uid', $uId);
         return $this->db->delete('designer_favorite');

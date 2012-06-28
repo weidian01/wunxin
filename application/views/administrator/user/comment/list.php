@@ -1,4 +1,4 @@
-<?php require(dirname(__FILE__) . '/../left.php'); ?>
+<?php require(dirname(__FILE__) . '/../../left.php'); ?>
 <div id="main-content">
     <!-- Main Content Section with everything -->
     <noscript>
@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2>用户列表</h2>
+    <h2>用户留言列表</h2>
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
@@ -21,23 +21,12 @@
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="/administrator/user/search" method="post">
-            <p>
-                <label><b>输入关键字</b></label>
-                <input class="text-input small-input" type="text" id="small-input" name="keyword" value="">
-                <select name="s_type" class="small-input">
-                    <option value="1">用户ID</option>
-                    <option value="2">用户名称</option>
-                </select>
-                <input type="submit" value="搜索">
-            </p>
-            </form>
     </div>
     <!-- End .clear -->
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3>用户列表</h3>
+            <h3>用户留言列表</h3>
             <!--
             <ul class="content-box-tabs">
                 <li><a href="#tab1" class="default-tab">Table</a></li>
@@ -53,14 +42,13 @@
                     <thead>
                     <tr>
                         <th><input class="check-all" type="checkbox"/></th>
+                        <th>ID</th>
                         <th>用户ID</th>
                         <th>用户名称</th>
-                        <th>昵称</th>
-                        <th>等级</th>
-                        <th>用户来源</th>
-                        <th>用户积分</th>
-                        <th>用户金额</th>
-                        <th>状态</th>
+                        <th>标题</th>
+                        <th>内容</th>
+                        <th>IP地址</th>
+                        <th>回复数量</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -83,22 +71,17 @@
 
                     <tr>
                         <td><input type="checkbox"/></td>
+                        <td><?php echo $v['message_id'];?></td>
                         <td><?php echo $v['uid'];?></td>
                         <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['nickname'];?></td>
-                        <td><?php echo $v['lid'];?></td>
-                        <td><?php echo $v['source'];?></td>
-                        <td><?php echo $v['integral'];?></td>
-                        <td><?php echo $v['amount'];?></td>
-                        <td><?php echo $v['status'] ? '正常' : '已删除';?></td>
+                        <td><?php echo $v['title'];?></td>
+                        <td><?php echo $v['content'];?></td>
+                        <td><?php echo $v['ip'];?></td>
+                        <td><?php echo $v['reply_num'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/user/userDetail/<?php echo $v['uid']?>" title="查看用户"><img src="/images/icons/view.png" alt="查看用户"></a>
-                            <a href="/administrator/user/userEdit/<?php echo $v['uid']?>" title="修改用户"><img src="/images/icons/pencil.png" alt="修改用户"></a>
-                            <a href="/administrator/user_comment/userCommentList/<?php echo $v['uid']?>" title="查看留言">查看留言</a>
-                            <a href="/administrator/user_favorite/favoriteList/<?php echo $v['uid']?>" title="查看收藏">查看收藏</a>
-
-
+                            <a href="/administrator/user_comment/commentDetail/<?php echo $v['message_id']?>" title="查看回复"><img src="/images/icons/view.png" alt="查看回复"></a>
+                            <a href="/administrator/user_comment/commentDelete/<?php echo $v['message_id'].'/'.$v['uid'].'/'.$current_page?>" title="删除留言"><img src="/images/icons/cross.png" alt="删除留言"></a>
                         </td>
                     </tr>
                         <?php }?>
@@ -107,7 +90,7 @@
             </div>
         </div>
     </div>
-    <?php require(dirname(__FILE__) . '/../footer.php'); ?>
+    <?php require(dirname(__FILE__) . '/../../footer.php'); ?>
 </div>
 </div>
 </body>
