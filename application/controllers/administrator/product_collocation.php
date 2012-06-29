@@ -145,6 +145,29 @@ class product_collocation extends MY_Controller
     }
 
     /**
+     * 搜索产品搭配
+     */
+    public function search()
+    {
+        $sType = intval($this->input->get_post('s_type'));
+        $keyword = $this->input->get_post('keyword');
+
+        if (!$keyword) {
+            show_error('搭配产品ID为空');
+        }
+
+        $this->load->model('product/Model_Product_Collocation', 'pc');
+        switch ($sType)
+        {
+            case '1': $data[] = $this->pc->getPcByPcId($keyword, 1000);break;
+            case '2': $data = $this->pc->getProductPcList($keyword, 1000);break;
+            default:$data[] = $this->pc->getPcByPcId($keyword);
+        }
+
+        $this->load->view('/administrator/product/product_collocation/list', array('data' => $data, 's_type' => $sType, 'keyword' => $keyword));
+    }
+
+    /**
      * 删除产品搭配
      */
     public function pcDelete()
