@@ -18,7 +18,19 @@
         <li><a class="shortcut-button" href="/administrator/product_collocation/pcList/"><span><br/> 产品搭配列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
-    <div class="clear"></div>
+    <div class="clear">
+        <form action="http://wunxin.com/administrator/product_collocation/search" method="post">
+            <p>
+                <label><b>输入关键字</b></label>
+                <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset ($keyword) ? $keyword : '';?>">
+                <select name="s_type" class="small-input">
+                    <option value="1" <?php echo (isset ($s_type) && $s_type == 1) ? 'selected="selected"' : ''; ?>>搭配ID</option>
+                    <option value="2" <?php echo (isset ($s_type) && $s_type == 2) ? 'selected="selected"' : ''; ?>>产品ID</option>
+                </select>
+                <input type="submit" value="搜索">
+            </p>
+        </form>
+    </div>
     <!-- End .clear -->
     <div class="content-box">
         <!-- Start Content Box -->
@@ -64,13 +76,13 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?php echo $v['id'];?></td>
-                        <td><a href="/administrator/product_collocation/pcList/<?php echo $current_page.'/'.$v['pid'];?>"><?php echo $v['pid'];?></a></td>
+                        <td><a href="/administrator/product_collocation/pcList/<?php echo isset ($current_page) ? $current_page : ''.'/'.$v['pid'];?>"><?php echo $v['pid'];?></a></td>
                         <td><?php echo $v['spid'];?></td>
                         <td><?php echo $v['sort'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
                             <a href="/administrator/product_collocation/pcEdit/<?php echo $v['id'];?>" title="编辑产品搭配"><img src="/images/icons/pencil.png" alt="编辑产品搭配"/></a>
-                            <a href="/administrator/product_collocation/pcDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除产品搭配"><img src="/images/icons/cross.png" alt="删除产品搭配"/></a>
+                            <a href="/administrator/product_collocation/pcDelete/<?php echo $v['id'].'/'.(isset ($current_page) ? $current_page : '');?>" title="删除产品搭配"><img src="/images/icons/cross.png" alt="删除产品搭配"/></a>
                         </td>
                     </tr>
                         <?php }?>
