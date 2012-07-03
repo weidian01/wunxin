@@ -148,7 +148,7 @@ class product extends MY_Controller
             $config['upload_path'] = UPLOAD . 'product' . DS . $date;
             recursiveMkdirDirectory($config['upload_path']);
             $config['allowed_types'] = 'gif|jpg|png|jepg';
-            $config['max_size'] = '100';
+            $config['max_size'] = '1000';
             $config['max_width'] = '1024';
             $config['max_height'] = '768';
             $config['encrypt_name'] = true;
