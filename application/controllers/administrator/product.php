@@ -182,7 +182,7 @@ class product extends MY_Controller
         $data['pcontent'] = $this->input->post('pcontent');
         $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
-        $data['taobao_shop'] = trim($this->input->post('taobao_shop'), '/');
+        $data['warehouse'] = $this->input->post('warehouse');
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
 
         //var_dump($size);
