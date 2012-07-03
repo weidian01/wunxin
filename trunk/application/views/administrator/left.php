@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="/css/invalid.css" type="text/css" media="screen"/>
-    <script type="text/javascript" src="/scripts/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="/scripts/simpla.jquery.configuration.js"></script>
     <script type="text/javascript" src="/scripts/facebox.js"></script>
     <script type="text/javascript" src="/scripts/jquery.wysiwyg.js"></script>
