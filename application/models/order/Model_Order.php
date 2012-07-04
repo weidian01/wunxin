@@ -17,6 +17,8 @@ class Model_Order extends MY_Model
     public function addOrder(array $orderInfo)
     {
         $data = array(
+            'parent_id' => isset($orderInfo['address_id']) ? $orderInfo['address_id']:0,
+            'status' => isset($orderInfo['status']) ? $orderInfo['status']:1,
             'address_id' => $orderInfo['address_id'],
             'uid' => $orderInfo['uid'],
             'uname' => $orderInfo['uname'],
@@ -71,6 +73,7 @@ class Model_Order extends MY_Model
                 'product_size' => $v['product_size'],
                 'presentation_integral' => $v['presentation_integral'],
                 'preferential' => $v['preferential'],
+                'warehouse'=> $v['warehouse'],
                 'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
             );
         }
@@ -102,11 +105,9 @@ class Model_Order extends MY_Model
      * @param $orderSn 订单ID
      * @return array
      */
-    public function getOrderByOrderSn($orderSn)
+    public function getOrderByOrderSn($orderSn, $field = '*')
     {
-        $field = 'order_sn, address_id, uid, uname, after_discount_price, discount_rate, before_discount_price, pay_type,
-            defray_type, is_pay, order_source, pay_time, delivert_time, annotated, invoice, paid, need_pay, ip, create_time';
-        $field = '*';
+        $field = $field === '*' ? '*' : $field;
 
         return $this->db->select($field)->get_where('order', array('order_sn' => $orderSn))->row_array();
     }
@@ -117,10 +118,9 @@ class Model_Order extends MY_Model
      * @param $orderSn 订单ID
      * @return array
      */
-    public function getOrderAllProductByOrderSn($orderSn)
+    public function getOrderAllProductByOrderSn($orderSn, $field = '*')
     {
-        $field = 'id, order_sn, pid, uid, uname, pname, market_price, sall_price, product_num, create_time, comment_status,
-            share_status, product_size, presentation_integral, preferential';
+        $field = $field === '*' ? '*' : $field;
 
         return $this->db->select($field)->get_where('order_product', array('order_sn' => $orderSn))->result_array();
     }

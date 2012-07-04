@@ -22,6 +22,30 @@
     <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span><br/> 添加快递公司 </span></a></li>
     <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span><br/> 快递公司列表 </span></a></li>
 </ul>
+<div class="clear"></div>
+操作流程
+<ol id="process">
+    <li>
+    <?php if($data['is_pay']==0):?>未支付
+    <?php elseif($data['is_pay']==1):?>已支付
+    <?php elseif($data['is_pay']==2):?>支付失败
+    <?php endif;?>
+    </li>
+    <li><?php if($data['status']==1):?>
+        <a class="button" onclick="order_locking(<?=$data['order_sn']?>)" href="javascript:;" >确认订单</a>
+        <?php elseif($data['status']==0):?>已取消
+        <?php elseif($data['status']==2):?>已确认
+        <?php endif;?>
+    </li>
+    <li>
+        <?php if($data['parent_id']==0):?>
+        <a class="button" onclick="order_split(<?=$data['order_sn']?>)" href="javascript:;">拆分订单</a>
+        <?php else: ?>不可拆分
+        <?php endif;?>
+    </li>
+    <li><a class="button" href="#">配货</a></li>
+    <li><a class="button" href="#">发货</a></li>
+</ol><br><br>
 <!-- End .shortcut-buttons-set -->
 <div class="clear"></div>
 <!-- End .clear -->
@@ -345,3 +369,46 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
+<script>
+    function order_locking(order_sn)
+    {
+        $.ajax({
+            type:"POST",
+            url:"<?=site_url('administrator/order/locking')?>",
+            data:"order_sn="+order_sn,
+            async:false,
+            dataType:'json',
+            success:function (data) {
+                if(data.error==1)
+                {
+                    $("#process > li:eq(1)").html('已确认');
+                }
+                else
+                {
+                    alert('订单可能尚未付款,无法确认')
+                }
+            }
+        });
+    }
+
+    function order_split(order_sn)
+    {
+        $.ajax({
+            type:"POST",
+            url:"<?=site_url('administrator/order/split')?>",
+            data:"order_sn="+order_sn,
+            async:false,
+            dataType:'json',
+            success:function (data) {
+                if(data.error==0)
+                {
+                    $("#process > li:eq(2)").html('已拆分');
+                }
+                else
+                {
+                    alert(data.error)
+                }
+            }
+        });
+    }
+</script>

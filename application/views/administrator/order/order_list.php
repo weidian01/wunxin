@@ -65,15 +65,16 @@
                     <tr>
                         <th><input class="check-all" type="checkbox"/></th>
                         <th>订单号</th>
-                        <th>收货人信息</th>
+                        <th>收货人</th>
                         <th>支付状态</th>
-                        <th>配货状态</th>
-                        <th>用户ID</th>
-                        <th>用户名称</th>
+                        <th>userid</th>
+                        <th>username</th>
                         <th>金额</th>
                         <th>支付方式</th>
                         <th>状态</th>
                         <th>创建时间</th>
+                        <th>流程</th>
+                        <th>配货</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -106,19 +107,40 @@
                         <td><?php echo $v['recent_name'];?></td>
                         <td><?php
                             switch ($v['is_pay']) {
-								case 1: $payStatus = '付款成功'; break;
-								case 2: $payStatus = '付款失败'; break;
-								case 3: $payStatus = '等待付款'; break;
-								default : $payStatus = '初始';
-							}
+                                case 1:
+                                    $payStatus = '付款成功';
+                                    break;
+                                case 2:
+                                    $payStatus = '付款失败';
+                                    break;
+                                case 3:
+                                    $payStatus = '等待付款';
+                                    break;
+                                default :
+                                    $payStatus = '初始';
+                            }
                             echo $payStatus;?></td>
-                        <td><?php echo $v['picking_status'] ? '已配货' : '未配货';?></td>
                         <td><?php echo $v['uid'];?></td>
                         <td><?php echo $v['uname'];?></td>
                         <td><?php echo $v['after_discount_price'];?></td>
                         <td><?php echo $v['pay_type'].'--'.$v['defray_type'];?></td>
                         <td><?php echo $v['status'] ? '正常' : '取消';?></td>
                         <td><?php echo $v['create_time'];?></td>
+                        <td>
+                            <?php if ($v['status'] == 1): ?>
+                            未确认
+                            <?php elseif ($v['status'] == 0): ?>
+                            已取消
+                            <?php else: ?>
+                            已确认
+                            <?php endif;?>,
+                            <?php if ($v['parent_id'] == 0): ?>
+                            未拆单
+                            <?php else: ?>
+                            已拆单
+                            <?php endif;?>
+                        </td>
+                        <td><?php echo $v['picking_status'] ? '已配货' : '未配货';?></td>
                         <td>
                             <a href="/administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"/></a>
                             <!--<a href="/administrator/order/orderEdit/<?php echo $v['order_sn'];?>" title="编辑订单"> <img src="/images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->

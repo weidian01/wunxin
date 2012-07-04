@@ -217,6 +217,7 @@ if (is_dir($application_folder)) {
  * And away we go...
  *
  */
+header('Content-Type:text/html;charset=utf-8');
 require_once BASEPATH . 'core/CodeIgniter.php';
 
 /* End of file index.php */
