@@ -16,7 +16,7 @@ class Model_Cart extends MY_Model
      */
     public function getUserCartProductByUid($uid)
     {
-        $data = $this->db->select('*')->get_where('shopping_cart', array('uid' => $uid, 'status' => 1))->row_array();
+        $data = $this->db->select('*')->get_where('shopping_cart', array('uid' => $uid, 'status' => 1))->result_array();
 
         return empty ($data) ? null : $data;
     }

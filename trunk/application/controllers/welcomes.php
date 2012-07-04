@@ -18,6 +18,13 @@ class welcomes extends MY_Controller
         $woman_recommend_1_2_3_4_5_6 = $this->recommend->query('select * from wx_recommend where cid=5 and emission in(1,2, 3,4,5,6) order by sort desc limit 6');
         $lover_recommend = $this->recommend->getRecommendCategoryList(6, 1);
         $family_recommend = $this->recommend->query('select * from wx_recommend where cid=7 and emission in(1,2,3,4,5,6,7) order by sort desc limit 7;');
+
+        $this->load->model('article/Model_Article', 'article');
+        $bulletin = $this->article->getNewsCategoryList(17, 6);
+        $news = $this->article->getNewsCategoryList(16, 6);
+
+
+
         $data = array(
             'title' => '万象网首页',
             'broadcast_recommend' => $broadcast_recommend,
@@ -27,6 +34,8 @@ class welcomes extends MY_Controller
             'woman_recommend_1_2_3_4_5_6' => $woman_recommend_1_2_3_4_5_6,
             'lover_recommend' => $lover_recommend,
             'family_recommend' => $family_recommend,
+            'bulletin' => $bulletin,
+            'news' => $news
         );
         $this->load->view('welcomes_index', $data);
     }
