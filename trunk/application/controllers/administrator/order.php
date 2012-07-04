@@ -133,4 +133,76 @@ class order extends MY_Controller
 
         $this->load->view('/administrator/order/order_list', array('data' => $data, 'page_html' => $pageHtml, 'searchType' => $this->searchType));
     }
+
+    public function locking()
+    {
+        $order_sn = $this->input->get_post('order_sn');
+        $this->db->update('order', array('status'=>2), array('order_sn' => $order_sn, 'is_pay'=>1, 'status'=>1));
+        $flag = $this->db->affected_rows();
+        self::json_output(array('error'=>$flag));
+    }
+
+    public function split()
+    {
+        $order_sn = $this->input->get_post('order_sn');
+        $this->load->model('order/Model_Order', 'order');
+        $field = "pid,uid,uname,pname,market_price,sall_price,product_num,comment_status,share_status,product_size,presentation_integral,preferential,warehouse";
+        $order_product = $this->order->getOrderAllProductByOrderSn($order_sn, $field);
+        if(!$order_product)
+        {
+            self::json_output(array('error'=>'订单下无产品'));//订单下无产品
+            die;
+        }
+
+        $field = "parent_id,address_id,uid,uname,after_discount_price,discount_rate,before_discount_price,pay_type,defray_type,is_pay,order_source,pay_time,delivert_time,annotated,invoice,paid,need_pay,ip,invoice_payable,invoice_content,recent_name,recent_address,zipcode,phone_num,call_num,picking_status,status";
+        $order_info = $this->order->getOrderByOrderSn($order_sn, $field);
+        if($order_info['parent_id'] != 0)
+        {
+            self::json_output(array('error'=>'不可拆单'));//无法再次拆分订单
+            die;
+        }
+        if($order_info['is_pay'] != 1)
+        {
+            self::json_output(array('error'=>'订单未支付'));//未支付无法拆单
+            die;
+        }
+        if($order_info['status'] != 2)
+        {
+            self::json_output(array('error'=>'订单未确认'));//未确认无法支付
+            die;
+        }
+
+        //echo '<pre>';print_r($order_info);
+        $split_order_product = array();
+        foreach($order_product as $item)
+        {
+            if(isset($split_order_product[$item['warehouse']]['price']))
+            {
+                $split_order_product[$item['warehouse']]['price'] += $item['sall_price'];
+            }
+            else
+            {
+                $split_order_product[$item['warehouse']]['price'] = $item['sall_price'];
+            }
+            $split_order_product[$item['warehouse']]['products'][] = $item;
+        }
+
+        if(count($split_order_product) === 1)//如果产品只出自一个仓库则步用拆分订单
+        {
+            $this->db->update('order', array('parent_id'=>$order_sn), array('order_sn' => $order_sn, 'parent_id'=>0, 'is_pay'=>1, 'status'=>2));
+        }
+        else
+        {
+            $this->db->update('order', array('parent_id'=>-1), array('order_sn' => $order_sn, 'parent_id'=>0,'is_pay'=>1, 'status'=>2));
+            foreach($split_order_product as $item)
+            {
+                $order_info['parent_id'] = $order_sn;
+                $order_info['before_discount_price'] = $item['price'];
+                //print_r($order_info);
+                $this->order->addOrderAndProduct($order_info, $item['products']);
+            }
+        }
+        self::json_output(array('error'=>0));//未确认无法支付
+        die;
+    }
 }

@@ -42,6 +42,18 @@ define('DS', DIRECTORY_SEPARATOR);
 //上传文件目录
 define('UPLOAD', WEBROOT.DS.'upload'.DS);
 
+define('ORDER_INVALID', 0); //订单已取消
+define('ORDER_NORMAL', 1);  //订单默认状态
+define('ORDER_CONFIRM', 2); //订单乙确认
+
+define('ORDER_PAY_INIT', 0); //未支付
+define('ORDER_PAY_SUCC', 1); //支付成功
+define('ORDER_PAY_FAIL', 2);  //支付失败
+define('ORDER_PAY_DEFECT', 3);  //支付部分
+
+define('PICKING_NOT', 0); //未配货
+define('PICKING_CONDUCT', 1); //配货中
+define('PICKING_COMPLETED', 2);  //配货完成
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
