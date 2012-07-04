@@ -1,3 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><?php echo $title;?></title>
+    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
+    <SCRIPT type=text/javascript src="/scripts/jquery-1.4.2.min.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="/scripts/focus.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>
+    <script type="text/javascript" charset=utf-8 src="/scripts/lrscroll.js"></script>
+    <!--[if lt IE 7]>
+    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript">
+        EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
+    </script>
+    <![endif]-->
+</head>
+<body>
 <?php include 'header.php';?>
 <div class="box2">
     <div class="container">
@@ -8,12 +26,7 @@
                     <?php foreach ($broadcast_recommend as $brv) {?>
                     <td class="td_f"><a href="<?php echo $brv['link'];?>" target="_blank"><img src="<?php echo base_url().str_replace('\\', '/', $brv['img_addr']);?>" alt="<?php echo $brv['title'];?>"></a></td>
                     <?php }?>
-                    <!--
-                    <td class="td_f"><a href="#" target="_blank"><IMG src="images/f2.jpg"></a></td>
-                    <td class="td_f"><a href="#" target="_blank"><IMG src="images/f3.jpg"></a></td>
-                    <td class="td_f"><a href="#" target="_blank"><IMG src="images/f4.jpg"></a></td>
-                    -->
-                </TR>
+                </tr>
                 </tbody>
             </table>
             <ul id="idNum" class="num"></ul>
@@ -30,11 +43,10 @@
             }
 
             var st = new SlideTrans("idContainer2", "idSlider2", <?php echo count($broadcast_recommend);?>, { Vertical:false });
-
             var nums = [];
             //插入数字
             for (var i = 0, n = st._count - 1; i <= n;) {
-                (nums[i] = $("idNum").appendChild(document.createElement("li"))).innerHTML = ++i;
+                (nums[i] = get('idNum').appendChild(document.createElement("li"))).innerHTML = ++i;
             }
 
             forEach(nums, function (o, i) {
@@ -77,11 +89,6 @@
                                     <a target="_blank" title="" href="<?php echo $drv['link'];?>"><img alt="<?php echo $drv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120"></a>
                                 </li>
                                 <?php }?>
-                                <!--
-                                <li style="display: block; float: left; ">
-                                    <a target="_blank" title="Euromoda 童趣 2012 春号" href="#"><img alt="Euromoda 童趣 2012 春号" src="images/s2.jpg" width="95" height="120"></a>
-                                </li>
-                                -->
                             </ul>
                         </div>
                     </div>
@@ -89,26 +96,19 @@
             </div>
             <!--今日推荐end-->
             <div class="bulletin">
-                <div class="blt-h"><span id="bullt1" class="curr" onclick="showbox('blt1')">最新公告</span> <span
-                    id="bullt2" onclick="showbox('blt2')">最新动态</span></div>
+                <div class="blt-h"><span id="bullt1" class="curr" onclick="showbox('blt1')">最新公告</span> <span id="bullt2" onclick="showbox('blt2')">最新动态</span></div>
                 <div class="blt-cont" id="blt1">
                     <ul>
-                        <li><a href="#">BERNINI 姐妹花时装玩家</a></li>
-                        <li><a href="#">抓住三大要素 打造日系美人</a></li>
-                        <li><a href="#">Chanel秀后派对 香粉靓过超模</a></li>
-                        <li><a href="#">揭秘《甄嬛传》中珠宝造型</a></li>
-                        <li><a href="#">范冰冰"真假"男友逐个数</a></li>
-                        <li><a href="#">不同星座女星离婚表现大不同</a></li>
+                        <?php foreach ($bulletin as $bv) {?>
+                        <li><a href="#"><?php echo $bv['title'];?></a></li>
+                        <?php }?>
                     </ul>
                 </div>
                 <div class="blt-cont" id="blt2" style="display:none;">
                     <ul>
-                        <li><a href="#">网友节完美闭幕感谢网友</a></li>
-                        <li><a href="#">从农村走出来的女孩的悲哀</a></li>
-                        <li><a href="#">旅人实拍丰都名山幽幂鬼城</a></li>
-                        <li><a href="#">揭秘《甄嬛传》中珠宝造型</a></li>
-                        <li><a href="#">剩女博士相亲连遭老男青眼</a></li>
-                        <li><a href="#">不同星座女星离婚表现大不同</a></li>
+                        <?php foreach ($news as $nv) {?>
+                        <li><a href="#"><?php echo $nv['title'];?></a></li>
+                        <?php }?>
                     </ul>
                 </div>
             </div>
@@ -118,18 +118,81 @@
 </div>
 <div class="box2">
     <div class="container tp">
-        <div class="slide">
+        <div class="slide" id="tktktkt">
             <ul>
-                <li class="norm"><img alt="五色上下装搭配" src="images/sd1.jpg" width="164" height="210"/></li>
-                <li class="norm"><img alt="五色上下装搭配" src="images/sd2.jpg" width="164" height="210"/></li>
-                <li class="curr"><img alt="五色上下装搭配" src="images/sd5.jpg" width="204" height="269"/></li>
-                <li class="norm"><img alt="五色上下装搭配" src="images/sd3.jpg" width="164" height="210"/></li>
-                <li class="norm"><img alt="五色上下装搭配" src="images/sd4.jpg" width="164" height="210"/></li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd1.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd5.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd3.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd2.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd5.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd3.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd4.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd1.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd2.jpg" width="180" height="226"/></a>
+                </li>
+                <li class="norm">
+                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd4.jpg" width="180" height="226"/></a>
+                </li>
             </ul>
-            <div class="slide-pre"><a href="#"></a></div>
-            <div class="slide-next"><a href="#"></a></div>
+            <div class="slide-pre"><a href="javascript:void(0);"></a></div>
+            <div class="slide-next"><a href="javascript:void(0);"></a></div>
         </div>
     </div>
+    <script type="text/javascript">
+//*
+        $(function(){
+            $("#tktktkt").jCarouselLite({
+                btnNext:".slide-next",
+                btnPrev:".slide-pre"
+            });
+        });
+
+        $(function () {
+            $('#top-menu li').hover(
+                    function () {
+                        $('ul', this).slideDown(200);
+                    },
+                    function () {
+                        $('ul', this).slideUp(200);
+                    });
+        });
+
+        $(function () {
+            $(".click").click(function () {
+                $("#panel").slideToggle("slow");
+                $(this).toggleClass("active");
+                return false;
+            });
+        });
+
+        $(function () {
+            $('.fade').hover(
+                    function () {
+                        $(this).fadeTo("slow", 0.5);
+                    },
+                    function () {
+                        $(this).fadeTo("slow", 5);
+                    });
+        });
+        //*/
+    </script>
 </div>
 <div class="box2 pad3">
 <div class="container tp">
@@ -204,7 +267,6 @@
         <?php }?>
     </div>
     <div class="prod-ct">
-
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '3') { ?>
         <img src="<?php echo base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?php echo $mr23['title'];?>" width="186" height="280"/>
@@ -215,34 +277,19 @@
     <div class="clear"></div>
     <div class="men-bd">
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
-
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
-
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
-
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥82.00</span></div>
+            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
         <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
-
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p>
-                <span class="font4">￥802.00</span></div>
+            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥802.00</span></div>
         </div>
     </div>
 </div>
@@ -531,3 +578,5 @@
 </div>
 </div>
 <?php include 'footer.php';?>
+</body>
+</html>

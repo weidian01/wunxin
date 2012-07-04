@@ -1,7 +1,9 @@
 // JavaScript Document
-var $ = function (id) {
+//*
+var get = function (id) {
 	return "string" == typeof id ? document.getElementById(id) : id;
 };
+//*/
 
 var Extend = function(destination, source) {
 	for (var property in source) {
@@ -51,8 +53,8 @@ var Tween = {
 
 //容器对象,滑动对象,切换数量
 var SlideTrans = function(container, slider, count, options) {
-	this._slider = $(slider);
-	this._container = $(container);//容器对象
+	this._slider = get(slider);
+	this._container = get(container);//容器对象
 	this._timer = null;//定时器
 	this._count = Math.abs(count);//切换数量
 	this._target = 0;//目标值

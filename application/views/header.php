@@ -1,27 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?php echo $title;?></title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <SCRIPT type=text/javascript src="/scripts/focus.js"></SCRIPT>
-    <SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>
-    <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
-    <script type="text/javascript">
-        EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
-    </script>
-    <![endif]-->
-</head>
-<body>
 <div class="hd">
     <div class="hd-cont">
         <div class="hd-wel">您好！欢迎光临万象网</div>
         <div class="cart">
             <div class="cart-num" onmouseover="showcart('cartbox')" onmouseout="disshowcart('cartbox')">购物车有<span
                 class="font1">5</span> 件
-                <div id="cartbox" class="cart-form" onmouseover="showcart('cartbox')" onmouseout="disshowcart('cartbox')" style=" display:none;">
+                <div id="cartbox" class="cart-form" onmouseover="showcart('cartbox')"
+                     onmouseout="disshowcart('cartbox')" style=" display:none;">
                     <div class="cart-bx">
                         <div class="cart-goodsimg"><img src="/images/sdg3.jpg" width="50" height="50" alt="连衣裙"/></div>
                         <div class="cart-goodsname">时尚帅气军旅风男士休闲短袖T恤<br/><span class="font5">￥356.00</span></div>
@@ -66,7 +50,8 @@
                 <div class="sch">
                     <input name="" type="text"/>
                 </div>
-                <div class="sbtn"><a href="#"> <img src="/images/wx_09.jpg" width="36" height="28"/></div> </a>
+                <div class="sbtn"><a href="#"> <img src="/images/wx_09.jpg" width="36" height="28"/></div>
+                </a>
             </div>
             <div class="hot-keyword">
                 <ul>
@@ -93,7 +78,11 @@
 <div class="nav">
     <div class="navbox">
         <div class="mainnav">
-            <a class="curr" href="#">首页</a><a href="#">男装款</a><a href="#">女装款</a><a href="#">情侣装款</a><a class="last" href="#">亲子装款</a>
+            <a class="curr" href="#">首页</a>
+            <a href="#">男装款</a>
+            <a href="#">女装款</a>
+            <a href="#">情侣装款</a>
+            <a class="last" href="#">亲子装款</a>
         </div>
 
         <div class="other">
