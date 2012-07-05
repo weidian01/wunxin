@@ -835,8 +835,9 @@ create unique index Index_email_addr on wx_mail_subscription
 create table wx_order
 (
    order_sn             int unsigned not null auto_increment comment '订单ID',
+   parent_id            int default 0 comment '父订单号, -1已拆过单的父订单，等于0未拆单，大于0已拆单的子订单',
    address_id           int unsigned comment '收货地址',
-   uid                  int comment '用户ID',
+   uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
    after_discount_price int unsigned comment '打折后金额',
    discount_rate        int unsigned comment '折扣率',
@@ -859,8 +860,8 @@ create table wx_order
    zipcode              char(7) comment '邮编',
    phone_num            char(11) comment '手机号码',
    call_num             char(11) comment '座机',
-   picking_status       tinyint default 0 comment '配货状态, 0未配货，1已配货',
-   status               tinyint default 1 comment '订单状态,0已取消，1正常',
+   picking_status       tinyint default 0 comment '配货状态, 0未配货，1配货中，2发货完成',
+   status               tinyint default 1 comment '订单状态,0已取消，1正常，2已确认',
    create_time          datetime comment '创建时间',
    primary key (order_sn)
 )
@@ -953,6 +954,7 @@ create table wx_picking_product
 (
    id                   int unsigned not null auto_increment comment '自增ID',
    pid                  int unsigned comment '产品ID',
+   pname                varchar(120) comment '产品名称',
    picking_id           int unsigned comment '配货ID',
    product_num          int unsigned comment '产品数量',
    create_time          datetime comment '创建时间',
@@ -988,7 +990,7 @@ create table wx_product
    sell_price           int unsigned comment '销售价格，单位为分',
    style_no             char(32) comment '用于统一同一款式不同颜色的衣服',
    stock                int unsigned comment '库存数量',
-   taobao_shop          varchar(64) comment '淘宝店铺地址',
+   warehouse            varchar(64) comment '仓库',
    product_taobao_addr  varchar(255) comment '产品淘宝地址',
    keyword              varchar(128) comment '关键字',
    descr                varchar(256) comment '产品描述',
@@ -1906,6 +1908,10 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_user_level comment '用户等级表';
+
+INSERT INTO `wx_user_level` VALUES (1,'普通用户',1,'普通注册用户',100,'2012-06-29 11:37:37');
+INSERT INTO `wx_user_level` VALUES (2,'VIP用户',1,'VIP用户',98,'2012-06-29 11:37:37');
+INSERT INTO `wx_user_level` VALUES (3,'高级VIP用户',1,'高级VIP用户',95,'2012-06-29 11:37:37');
 
 /*==============================================================*/
 /* Table: wx_user_login_log                                     */

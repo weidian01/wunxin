@@ -2,8 +2,7 @@
     <div class="hd-cont">
         <div class="hd-wel">您好！欢迎光临万象网</div>
         <div class="cart">
-            <div class="cart-num" onmouseover="showcart('cartbox')" onmouseout="disshowcart('cartbox')">购物车有<span
-                class="font1">5</span> 件
+            <div class="cart-num" onmouseover="showcart('cartbox')" onmouseout="disshowcart('cartbox')">购物车有<span class="font1">5</span> 件
                 <div id="cartbox" class="cart-form" onmouseover="showcart('cartbox')"
                      onmouseout="disshowcart('cartbox')" style=" display:none;">
                     <div class="cart-bx">
@@ -35,8 +34,8 @@
                 <li><a href="#">浏览记录</a></li>
                 <li><a href="#">我的万象</a></li>
                 <li><a href="#">我的订单</a></li>
-                <li><a style="color:#000;" href="#">注册</a></li>
-                <li><a href="#">登录</a></li>
+                <li><a style="color:#000;" href="/user/register/">注册</a></li>
+                <li><a href="/user/login/">登录</a></li>
             </ul>
         </div>
     </div>

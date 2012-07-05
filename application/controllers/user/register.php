@@ -2,29 +2,15 @@
 
 class register extends MY_Controller
 {
-
-    /**
-     * Index Page for this controller.
-     *
-     * Maps to the following URL
-     *         http://example.com/index.php/welcome
-     *    - or -
-     *         http://example.com/index.php/welcome/index
-     *    - or -
-     * Since this controller is set as the default controller in
-     * config/routes.php, it's displayed at http://example.com/
-     *
-     * So any other public methods not prefixed with an underscore will
-     * map to /index.php/welcome/<method_name>
-     * @see http://codeigniter.com/user_guide/general/urls.html
-     */
-
     /**
      * 显示注册页面
      */
     public function index()
     {
-        $this->load->view('user/reg');
+        $redirect_url = $this->input->get_post('redirect_url');
+        $source = $this->input->get_post('source');
+
+        $this->load->view('user/register', array('redirect_url' => $redirect_url, 'source' => $source));
     }
 
     /**
@@ -43,8 +29,8 @@ class register extends MY_Controller
         $source = $this->input->get_post('source');
         $source = $source ? $source : 1;
 
-        $response['code'] = '0';
-        $response['msg'] = $redirect_url;
+        $response = error(10034);
+        $response['redirect_url'] = $redirect_url;
         do {
             if (!is_username($username)) {
                 $response = error(10001);
@@ -55,7 +41,7 @@ class register extends MY_Controller
                 break;
             }
 
-            if (!length_limit($password, 8, 16)) {
+            if (!length_limit($password, 6, 32)) {
                 $response = error(10004);
                 break;
             }
@@ -70,11 +56,9 @@ class register extends MY_Controller
                 $response = error(10002);
                 break;
             }
-        } while (false);
 
-        $this->usetVerifyCode();
+            $this->usetVerifyCode();
 
-        if (! isset($response['error'])) {
             $data = array(
                 'uname' => $username,
                 'password' => $password,
@@ -84,8 +68,10 @@ class register extends MY_Controller
             $uid = $this->user->registerUser($data);
             if (!$uid) {
                 $response = error(10008);
+                break;
             }
-        }
+        } while (false);
+
         echo self::json_output($response);
     }
 
@@ -98,8 +84,7 @@ class register extends MY_Controller
 
         $this->load->helper('validation');
 
-        $response['code'] = '0';
-        $response['msg'] = '用户名可用';
+        $response = error(10035);
 
         if (!is_username($username)) {
             $response = error(10001);
@@ -121,6 +106,7 @@ class register extends MY_Controller
     public function verifyCode()
     {
         $code = $this->setVerifyCode();
+        $this->input->set_cookie('verify_code', $code, 60);
         $this->lib('codeimg', array('code'=>$code));
         $this->codeimg->display();
     }

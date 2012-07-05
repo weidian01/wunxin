@@ -16,13 +16,15 @@ class Model_Cart extends MY_Model
      */
     public function getUserCartProductByUid($uid)
     {
-        $data = $this->db->select('*')->get_where('shopping_cart', array('uid' => $uid, 'status' => 1))->result_array();
+        $field = 'uid, pid, pname, product_price, product_num, product_img, product_size, additional_info';
+        $data = $this->db->select($field)->get_where('shopping_cart', array('uid' => $uid, 'status' => 1))->result_array();
 
         return empty ($data) ? null : $data;
     }
 
     public function addProductToCart($uid, array $pInfo)
     {
+        /*
         $data = array(
             'uid' => $uid,
             'pid' => $pInfo['pid'],
@@ -34,8 +36,17 @@ class Model_Cart extends MY_Model
             'additional_info' => $pInfo['additional_info'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
-        $this->db->insert('shopping_cart', $data);
+        //*/
+
+        $sql = "INSERT IGNORE INTO wx_shopping_cart(uid, pid, pname, product_price, product_num, product_img, product_size, additional_info, create_time) values ";
+        $sql .= "($uid, {$pInfo['pid']}, '{$pInfo['pname']}', {$pInfo['product_price']}, {$pInfo['product_num']}, '{$pInfo['product_img']}',
+        '{$pInfo['product_size']}', '{$pInfo['additional_info']}', '".date('Y-m-d H:i:s', TIMESTAMP)."')";
+
+        $this->db->query($sql);
         return $this->db->insert_id();
+
+        //$this->db->insert('shopping_cart', $data);
+        //return $this->db->insert_id();
     }
 
     /**
