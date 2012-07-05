@@ -12,13 +12,18 @@ class login extends MY_Controller
      */
     public function index()
     {
+        /*
         if ($this->isLogin()) {
             $referer = $this->input->server('HTTP_REFERER');
             $referer = empty ($referer) ? config_item('base_url') : $referer;
             $this->load->helper('url');
-            redirect($referer, 'refresh');
+            redirect($referer);
         }
-        echo '123';
+        //*/
+        $redirect_url = $this->input->get_post('redirect_url');
+        $source = $this->input->get_post('source');
+
+        $this->load->view('user/login', array('redirect_url' => $redirect_url, 'source' => $source));
     }
 
     /**
@@ -26,12 +31,14 @@ class login extends MY_Controller
      */
     public function submit()
     {
+        /*
         if ($this->isLogin()) {
             $referer = $this->input->server('HTTP_REFERER');
             $referer = empty ($referer) ? config_item('base_url') : $referer;
             $this->load->helper('url');
             redirect($referer, 'refresh');
         }
+        //*/
 
         $this->load->helper('validation');
         $this->load->helper('cookie');
@@ -43,8 +50,8 @@ class login extends MY_Controller
         $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url'); //跳转地址
         $expire = $this->input->get_post('remember') ? (86400 * 360) : 0; //是否记录登录状态
 
-        $response['code'] = '0';
-        $response['msg'] = $redirect_url;
+        $response = error(10000);
+        $response['redirect_url'] = $redirect_url;
 
         do {
             if ($this->isLogin()) {
@@ -56,7 +63,7 @@ class login extends MY_Controller
                 break;
             }
 
-            if (!length_limit($password, 8, 16)) {
+            if (!length_limit($password, 6, 32)) {
                 $response = error(10004);
                 break;
             }

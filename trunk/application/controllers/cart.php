@@ -3,47 +3,60 @@
 class cart extends MY_Controller
 {
     /**
-     * 添加产品到购物车
+     * 购物车首页
      */
-    public function addToCart()
+    public function index()
     {
-        $uId = intval($this->input->get_post('uid'));
+        $this->load->view('cart/index');
+    }
+
+    /**
+     * 初始化购物车
+     */
+    public function getCart()
+    {
+        $cData = $this->getCartToCookie();
+
+        $this->json_output($cData);
+    }
+
+    /**
+     * 添加产品到购物中 -- cookie
+     */
+    public function addToCart ()
+    {
         $pId = intval($this->input->get_post('pid'));
-        $pNum = intval($this->input->get_post('p_num'));
+        $pNum = intval($this->input->get_post('p_num')) ? intval($this->input->get_post('p_num')) : 1;
         $pSize = $this->input->get_post('p_size');
-        $pAdditionalInfo = $this->input->get_post('p_additional_info');
+        $pAdditionalInfo = $this->input->get_post('additional_info');
 
         $response = error(60001);
 
         do {
-            if (empty ($uId) || empty ($pId)) {
+            if (empty ($pId) || empty ($pSize)) {
                 $response = error(60003);
-                break;
-            }
-
-            if (!$this->isLogin()) {
-                $response = error(10009);
                 break;
             }
 
             $this->load->model('product/Model_Product', 'product');
             $pInfo = $this->product->getProductAndPhotoByPid($pId);
-            if (!$pInfo) {
+
+            if (empty ($pInfo)) {
                 $response = error(20002);
                 break;
             }
-
+            //echo '<pre>';print_r($pInfo);exit;
             $cInfo = array(
                 'pid' => $pInfo['pid'],
                 'pname' => $pInfo['pname'],
-                'product_price' => $pInfo['sell_price'],
+                'product_price' => $pInfo['sell_price'] / 100,
                 'product_num' => $pNum,
                 'product_img' => $pInfo['img_addr'],
                 'product_size' => $pSize,
                 'additional_info' => $pAdditionalInfo,
             );
-            $this->load->model('Model_Cart', 'cart');
-            $status = $this->cart->addProductToCart($this->uInfo['uid'], $cInfo);
+            //echo '<pre>';print_r($cInfo);exit;
+            $status = $this->setCartToCookie($cInfo);
             if (!$status) {
                 $response = error(60002);
                 break;
@@ -54,37 +67,117 @@ class cart extends MY_Controller
     }
 
     /**
+     * 删除购物车中产品
+     */
+    public function deleteCartProduct()
+    {
+        $id = intval($this->input->get_post('id'));
+
+        $response = error(60008);
+
+        do {
+            if ($id < 0) {
+                $response = error(60010);
+                break;
+            }
+
+            /*
+            $this->load->model('Model_Cart', 'cart');
+            $status = $this->cart->deleteAndReAddCartProduct($this->uInfo['uid'], $cId, $oType);
+            if (!$status) {
+                $response = error(60009);
+                break;
+            }
+            //*/
+            $cData = $this->getCartToCookie();
+
+            if (!empty ($cData[$id])) {
+                unset ($cData[$id]);
+            }
+            //echo '<pre>';print_r($cData);exit;
+            $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), 10000000);
+
+            //$response = error(60009);
+        } while (false);
+
+        $this->json_output($response);
+    }
+
+    /**
+     *
      * 更改购物车产品数量
      */
     public function changeQuantity()
     {
-        $uId = intval($this->input->get_post('uid'));
-        $cId = intval($this->input->get_post('cid'));
+        $id = intval($this->input->get_post('id'));
         $num = intval($this->input->get_post('num'));
 
         $response = error(60004);
 
         do {
-            if ($num === 0) {
+            if ($num === 0 || $num < 0) {
                 $response = error(60007);
                 break;
             }
 
-            if (empty ($uId) || empty ($cId)) {
-                $response = error(60006);
+            $cData = $this->getCartToCookie();
+            if (!$cData) {
+                $response = error(60018);
                 break;
             }
+
+            if (!empty ($cData[$id])) {
+                $cData[$id]['product_num'] = $num;
+            }
+
+            $status = $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), 10000000);
+            /*/
+            if (!false) {
+                $response = error(60005);
+                break;
+            }
+            //*/
+        } while (false);
+
+        $this->json_output($response);
+    }
+
+    /**
+     * 购物车产品存储到数据库
+     */
+    public function cartStorageToDatabase()
+    {
+        $response = error(60017);
+
+        do {
+            $cData = $this->getCartToCookie();
 
             if (!$this->isLogin()) {
                 $response = error(10009);
                 break;
             }
 
-            $this->load->model('Model_Cart', 'cart');
-            $status = $this->cart->modifyProductNum($this->uInfo['uid'], $cId, $num);
-            if (!$status) {
-                $response = error(60005);
-                break;
+            $this->load->model('product/Model_Product', 'product');
+            foreach ($cData as $cv) {
+                $pInfo = $this->product->getProductAndPhotoByPid($cv['pid']);
+
+                $sInfo = array(
+                    'pid' => $pInfo['pid'],
+                    'pname' => $pInfo['pname'],
+                    'product_price' => $pInfo['sell_price'],
+                    'product_img' => $pInfo['img_addr'],
+                    'product_num' => $cv['product_num'],
+                    'product_size' => $cv['product_size'],
+                    'additional_info' => $cv['additional_info'],
+                );
+                $this->load->model('Model_Cart', 'cart');
+                $status = $this->cart->addProductToCart($this->uInfo['uid'], $sInfo);
+                /*
+                if (!$status) {
+                    $response = error(60019);
+                    break;
+                }
+                //*/
             }
         } while (false);
 
@@ -92,34 +185,39 @@ class cart extends MY_Controller
     }
 
     /**
-     * 删除/重新添加产品至购物车中
+     * 取出用户购物中所有产品
      */
-    public function deleteProduct()
+    public function removeCartProduct()
     {
-        $uId = intval($this->input->get_post('uid'));
-        $cId = intval($this->input->get_post('cid'));
-        $oType = intval($this->input->get_post('o_type'));
-        $oType = $oType == 1 ? 1 : 0;
-
-        $response = error(60008);
+        $response = error(60014);
 
         do {
-            if (empty ($uId) || empty ($cId)) {
-                $response = error(60010);
-                break;
-            }
-
             if (!$this->isLogin()) {
                 $response = error(10009);
                 break;
             }
 
             $this->load->model('Model_Cart', 'cart');
-            $status = $this->cart->deleteAndReAddCartProduct($this->uInfo['uid'], $cId, $oType);
-            if (!$status) {
-                $response = error(60009);
-                break;
+            $cInfo = $this->cart->getUserCartProductByUid($this->uInfo['uid']);
+            $this->cart->emptyUserCart($this->uInfo['uid']);
+
+            $cData = $this->getCartToCookie();
+
+            //将cookie与数据库中的数据合并
+            $data = $cInfo;
+            if (!empty ($cData) && !empty ($cInfo)) {
+                foreach ($cData as $v) {
+                    foreach ($cInfo as $cv) {
+                        if ($v['pid'] != $cv['pid']) {
+                            $data[] = $v;
+                        }
+                    }
+                }
             }
+
+            $jData = empty ($data) ? '' : json_encode($data);
+
+            $this->input->set_cookie('cart_info', $jData, 10000000);
         } while (false);
 
         $this->json_output($response);
@@ -130,69 +228,70 @@ class cart extends MY_Controller
      */
     public function emptyCart()
     {
-        $uId = intval($this->input->get_post('uid'));
+        //$uId = intval($this->input->get_post('uid'));
 
         $response = error(60011);
 
-        do {
-            if (empty ($uId) || empty ($cId)) {
-                $response = error(60013);
-                break;
-            }
-
-            if (!$this->isLogin()) {
-                $response = error(10009);
-                break;
-            }
-
-            $this->load->model('Model_Cart', 'cart');
-            $status = $this->cart->emptyUserCart($this->uInfo['uid']);
-            if (!$status) {
-                $response = error(60009);
-                break;
-            }
-        } while (false);
+        $this->input->set_cookie('cart_info', '', -100);
 
         $this->json_output($response);
     }
 
     /**
-     * 转存入数据库
+     * 获取cookie中的购物车产品
+     *
+     * @return array
      */
-    public function storageCartProduct()
+    private function getCartToCookie()
     {
+        $this->load->helper('cookie');
+        $cData = $this->input->cookie(config_item('cookie_prefix').'cart_info');
 
+        $cData = empty ($cData) ? '' : json_decode($cData, true);
+        //echo '<pre>1111';print_r($cData);exit;
+        return $cData;
     }
 
     /**
-     * 取出用户购物中所有产品
+     * 设置购物车产品到cookie
+     *
+     * @param array $pInfo
+     * @return array | bool | void
      */
-    public function removeCartProduct()
+    private function setCartToCookie($pInfo)
     {
-        $uId = intval($this->input->get_post('uid'));
+        $this->load->helper('cookie');
+        $cInfo = array(
+            'pid' => $pInfo['pid'],
+            'pname' => $pInfo['pname'],
+            'product_price' => $pInfo['product_price'],
+            'product_num' => $pInfo['product_num'],
+            'product_img' => $pInfo['product_img'],
+            'product_size' => $pInfo['product_size'],
+            'additional_info' => $pInfo['additional_info'],
+        );
 
-        $response = error(60014);
+        if (empty ($cInfo['pid'])) {
+            return false;
+        }
 
-        do {
-            if (empty ($uId) || empty ($cId)) {
-                $response = error(60016);
-                break;
+        $cData = $this->getCartToCookie();
+        //echo '<pre>';print_r($cData);exit;
+        $isExist = false;
+        if (!empty ($cData)) {
+            foreach ($cData as &$cv) {
+                if ($cv['pid'] == $cInfo['pid']) {
+                    $cv['product_num'] += 1;
+                    $isExist = true;
+                }
             }
+        }
+        if (!$isExist) {
+            $cData[] = $cInfo;
+        }
 
-            if (!$this->isLogin()) {
-                $response = error(10009);
-                break;
-            }
+        $this->input->set_cookie('cart_info', json_encode($cData), 10000000);
 
-            $this->load->model('Model_Cart', 'cart');
-            $cInfo = $this->cart->getUserCartProductByUid($this->uInfo['uid']);
-            if (!$cInfo) {
-                $response = error(60015);
-                break;
-            }
-            $response['user_cart_product'] = $cInfo;
-        } while (false);
-
-        $this->json_output($response);
+        return $cData;
     }
 }

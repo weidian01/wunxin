@@ -2,7 +2,7 @@
   <div class="help-center-box">
     <div class="w980">
       <div class="help-info">
-        <div class="help-tit"><img src="images/help_02.gif" width="72" height="18" alt="关于麦考林" /></div>
+        <div class="help-tit"><img src="/images/help_02.gif" width="72" height="18" alt="关于麦考林" /></div>
         <ul>
           <li><a href="http://ir.m18.com/" target="_blank">Investor Relations</a></li>
           <li><a href="http://static.m18.com/help/guanyu.shtml" target="_blank">麦考林介绍</a></li>
@@ -13,7 +13,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="images/help_05.gif" width="71" height="18" alt="新手上路" /></div>
+        <div class="help-tit"><img src="/images/help_05.gif" width="71" height="18" alt="新手上路" /></div>
         <ul>
           <li><a target="_blank" href="http://static.m18.com/help/buyshow/help1_1.shtml">新用户注册</a></li>
           <li><a target="_blank" href="http://static.m18.com/help/buyshow/help2_1.shtml">购物演示</a></li>
@@ -24,7 +24,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="images/help_08.gif" width="70" height="18" alt="支付方式" /></div>
+        <div class="help-tit"><img src="/images/help_08.gif" width="70" height="18" alt="支付方式" /></div>
         <ul>
           <li><a target="_blank" href="http://static.m18.com/help/help-bank.shtml">网上支付</a></li>
           <li><a target="_blank" href="http://static.m18.com/help/zhifu_kq.shtml">信用卡委托支付</a></li>
@@ -34,7 +34,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="images/help_11.gif" width="68" height="18" alt="配送方式" /></div>
+        <div class="help-tit"><img src="/images/help_11.gif" width="68" height="18" alt="配送方式" /></div>
         <ul>
           <li><a href="http://static.m18.com/help/help-psfs.shtml" target="_blank">麦网配送方式</a></li>
           <li><a href="http://static.m18.com/help/help-transTime.shtml" target="_blank">配送时间及配送范围</a></li>
@@ -44,7 +44,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="images/help_14.gif" width="69" height="18" alt="售后服务" /></div>
+        <div class="help-tit"><img src="/images/help_14.gif" width="69" height="18" alt="售后服务" /></div>
         <ul>
           <li><a target="_blank" href="http://static.m18.com/help/help_cb.shtml">退换货须知</a></li>
           <li><a target="_blank" href="http://static.m18.com/help/help_aq.shtml">安全与保密</a></li>

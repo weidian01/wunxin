@@ -117,8 +117,6 @@ class Codeimg
 
     public function display()
     {
-
-
         // 3dcha parameters
         $fontsize = 24;
         $fontfile = dirname(__FILE__).'\\3DCaptcha.ttf';
@@ -166,7 +164,7 @@ class Codeimg
         }
 
         // Create 3d image
-        $image3d_x = 256;
+        $image3d_x = 200;
         //$image3d_y = $image3d_x / 1.618;
         $image3d_y = $image3d_x * 9 / 32;
         $image3d = imagecreatetruecolor($image3d_x, $image3d_y);
