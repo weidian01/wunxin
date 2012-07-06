@@ -200,17 +200,18 @@ class Model_Order extends MY_Model
      * @param int $offset
      * @return null | array
      */
-    public function getOrderList($limit = 20, $offset = 0)
+    public function getOrderList($limit = 20, $offset = 0,$where = array())
     {
-        $data = $this->db->select('*')->from('order')->order_by('order_sn', 'desc')->limit($limit, $offset)->get()->result_array();
-
+        $this->db->where($where);
+        $this->db->select('*')->from('order')->order_by('order_sn', 'desc')->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
         return empty ($data) ? null : $data;
     }
 
-    public function getOrderCount()
+    public function getOrderCount($where = array())
     {
         $this->db->select('*')->from('order');
-
+        $this->db->where($where);
         return $this->db->count_all_results();
     }
 

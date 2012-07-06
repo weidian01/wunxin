@@ -27,14 +27,6 @@
 class CI_Model
 {
     /**
-     * 对象实例计数器
-     * @var int
-     */
-    static $obj_num = 0;
-
-    protected $debug = true;
-
-    /**
      * Constructor
      *
      * @access public
@@ -42,7 +34,6 @@ class CI_Model
     function __construct()
     {
         $this->load->database();
-        ++self::$obj_num;
         log_message('debug', "Model Class Initialized");
     }
 
@@ -60,36 +51,6 @@ class CI_Model
         $CI =& get_instance();
         return $CI->$key;
     }
-
-
-//    function __destruct()
-//    {
-//        //*
-//        if (ENVIRONMENT === 'development' && get_called_class() !== 'CI_Model') {
-//            echo '<pre>';
-//            echo 'queries : ', $this->db->query_count;
-//            echo '<br>';
-//            print_r($this->db->queries);
-//            echo '</pre>';
-//        }
-//        //*/
-//    }
-
-
-    function __destruct()
-    {
-        --self::$obj_num;
-        /*
-        if ($this->debug && ENVIRONMENT === 'development' && self::$obj_num === 0) {
-            echo '<div  style="margin: 12px 15px 12px 15px;float: right;border: 1px solid #D0D0D0;">';
-            foreach ($this->db->queries as $k => $v) {
-                echo '<b style="color:red;font-size:20px;">SQL:</b>' , str_replace("\n", '', $v) , ' ------ <b style="color:red;font-size:20px;">TIME:</b>' , $this->db->query_times[$k],"<br>";
-            }
-            echo '</div>';
-        }
-        //*/
-    }
-
 }
 // END Model Class
 

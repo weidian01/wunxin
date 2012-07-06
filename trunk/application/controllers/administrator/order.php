@@ -31,23 +31,58 @@ class order extends MY_Controller
         $Limit = 20;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
+        $where = array();
+        $tmp = $this->input->get('status');
+        if(is_numeric($tmp))
+            $where['status'] = $tmp;
+
+        $tmp = $this->input->get('picking_status');
+        if(is_numeric($tmp))
+            $where['picking_status'] = $tmp;
+
+        $tmp = $this->input->get('is_pay');
+        if(is_numeric($tmp))
+            $where['is_pay'] = $tmp;
+
+        $tmp = $this->input->get('parent_id');
+        if ($tmp !== false && $tmp !== '') {
+            if ($tmp == 'child') {
+                $where['parent_id >'] = 0;
+            } else {
+                $where['parent_id'] = $tmp;
+            }
+        }
 
         $this->load->model('order/Model_Order', 'order');
-        $totalNum = $this->order->getOrderCount();
-        $data = $this->order->getOrderList($Limit, $offset);
+        $totalNum = $this->order->getOrderCount($where);
+        $data = $this->order->getOrderList($Limit, $offset, $where);
+        $pageHtml = '';
+        if (isset($where['parent_id >'])) {
+            $where['parent_id'] = $tmp;
+            unset($where['parent_id >']);
+        }
+        if ($totalNum > $Limit) { //页数不足一页
+            $this->load->library('pagination');
+            $config['base_url'] = site_url('/administrator/order/orderList/');
+            $where && $config['suffix'] = ('?' . http_build_query($where));
+            $config['total_rows'] = $totalNum;
+            $config['per_page'] = $Limit;
+            $config['num_links'] = 10;
+            $config['uri_segment'] = 4;
+            $config['use_page_numbers'] = TRUE;
+            $config['anchor_class'] = 'class="number"';
+            $this->pagination->initialize($config);
+            $pageHtml = $this->pagination->create_links();
+        }
 
-        $this->load->library('pagination');
-        $config['base_url'] = site_url() . '/administrator/order/orderList/';
-        $config['total_rows'] = $totalNum;
-        $config['per_page'] = $Limit;
-        $config['num_links'] = 10;
-        $config['uri_segment'] = 4;
-        $config['use_page_numbers'] = TRUE;
-        $config['anchor_class'] = 'class="number"';
-        $this->pagination->initialize($config);
-        $pageHtml = $this->pagination->create_links();
+        $this->load->view('/administrator/order/order_list',
+            array('data' => $data,
+                'page_html' => $pageHtml,
+                'searchType' => $this->searchType,
+                'where' => $where
+            )
+        );
 
-        $this->load->view('/administrator/order/order_list', array('data' => $data, 'page_html' => $pageHtml, 'searchType' => $this->searchType));
     }
 
     public function search()
@@ -56,19 +91,15 @@ class order extends MY_Controller
         $sType = $this->input->get_post('s_type');
 
         $this->load->model('order/Model_Order', 'order');
+        $orderData = array();
         switch ($sType) {
-            case 1:
-                $data = $this->order->getOrderByOrderSn($keyword);
-                $orderData[] = $data;
-                break;
             case 2:
-                $orderData = $this->order->getOrderByUid($keyword);
+                $keyword && $orderData = $this->order->getOrderByUid($keyword);
                 break;
+            case 1:
             default:
-                $data = $this->order->getOrderByOrderSn($keyword);
-                $orderData[] = $data;
+                $keyword && $orderData[] = $this->order->getOrderByOrderSn($keyword);
         }
-
         $this->load->view('/administrator/order/order_list', array('data' => $orderData, 'searchType' => $this->searchType, 'keyword' => $keyword, 'sType' => $sType));
     }
 
@@ -134,14 +165,20 @@ class order extends MY_Controller
         $this->load->view('/administrator/order/order_list', array('data' => $data, 'page_html' => $pageHtml, 'searchType' => $this->searchType));
     }
 
+    /**
+     * 系统确认订单,锁定该订单,用户不可取消
+     */
     public function locking()
     {
         $order_sn = $this->input->get_post('order_sn');
-        $this->db->update('order', array('status'=>2), array('order_sn' => $order_sn, 'is_pay'=>1, 'status'=>1));
+        $this->db->update('order', array('status'=>ORDER_CONFIRM/*确认订单*/), array('order_sn' => $order_sn, 'is_pay'=>ORDER_PAY_SUCC/*支付成功*/, 'status'=>ORDER_NORMAL/*未确认订单*/));
         $flag = $this->db->affected_rows();
         self::json_output(array('error'=>$flag));
     }
 
+    /**
+     * 拆分订单,根据订单产品所在不同来源拆分成多个订单
+     */
     public function split()
     {
         $order_sn = $this->input->get_post('order_sn');
@@ -161,14 +198,14 @@ class order extends MY_Controller
             self::json_output(array('error'=>'不可拆单'));//无法再次拆分订单
             die;
         }
-        if($order_info['is_pay'] != 1)
+        if($order_info['is_pay'] != ORDER_PAY_SUCC)
         {
             self::json_output(array('error'=>'订单未支付'));//未支付无法拆单
             die;
         }
-        if($order_info['status'] != 2)
+        if($order_info['status'] != ORDER_CONFIRM)
         {
-            self::json_output(array('error'=>'订单未确认'));//未确认无法支付
+            self::json_output(array('error'=>'订单未确认'));//未确认无法拆单
             die;
         }
 
@@ -189,11 +226,11 @@ class order extends MY_Controller
 
         if(count($split_order_product) === 1)//如果产品只出自一个仓库则步用拆分订单
         {
-            $this->db->update('order', array('parent_id'=>$order_sn), array('order_sn' => $order_sn, 'parent_id'=>0, 'is_pay'=>1, 'status'=>2));
+            $this->db->update('order', array('parent_id'=>$order_sn), array('order_sn' => $order_sn, 'parent_id'=>0, 'is_pay'=>ORDER_PAY_SUCC, 'status'=>ORDER_CONFIRM));
         }
         else
         {
-            $this->db->update('order', array('parent_id'=>-1), array('order_sn' => $order_sn, 'parent_id'=>0,'is_pay'=>1, 'status'=>2));
+            $this->db->update('order', array('parent_id'=>-1), array('order_sn' => $order_sn, 'parent_id'=>0,'is_pay'=>ORDER_PAY_SUCC, 'status'=>ORDER_CONFIRM));
             foreach($split_order_product as $item)
             {
                 $order_info['parent_id'] = $order_sn;
@@ -205,4 +242,6 @@ class order extends MY_Controller
         self::json_output(array('error'=>0));//未确认无法支付
         die;
     }
+
+
 }

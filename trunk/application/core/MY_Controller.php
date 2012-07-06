@@ -11,6 +11,9 @@ class MY_Controller extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if (ENVIRONMENT === 'development') {
+            log_message('LOG', $this->input->server('SERVER_NAME') . $this->input->server('REQUEST_URI'));
+        }
     }
 
     /**
@@ -97,6 +100,4 @@ class MY_Controller extends CI_Controller
     {
         die(json_encode($data));
     }
-
-
 }

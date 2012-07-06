@@ -40,11 +40,14 @@
     <li>
         <?php if($data['parent_id']==0):?>
         <a class="button" onclick="order_split(<?=$data['order_sn']?>)" href="javascript:;">拆分订单</a>
-        <?php else: ?>不可拆分
-        <?php endif;?>
+        <?php elseif($data['parent_id']==-1): ?>已拆分(父)
+        <?php else: ?>已拆分(子)
+        <?php endif;?> / <a href="<?=site_url('administrator/order/orderList')."?parent_id={$data['order_sn']}"?>">查看子订单</a>
     </li>
-    <li><a class="button" href="#">配货</a></li>
-    <li><a class="button" href="#">发货</a></li>
+    <?php if($data['parent_id'] > 0):?>
+    <li><a class="button" href="#">配货</a> / <a href="#">查看</a></li>
+    <li><a class="button" href="#">发货</a> / <a href="#">查看</a></li>
+        <?php endif;?>
 </ol><br><br>
 <!-- End .shortcut-buttons-set -->
 <div class="clear"></div>
@@ -402,7 +405,7 @@
             success:function (data) {
                 if(data.error==0)
                 {
-                    $("#process > li:eq(2)").html('已拆分');
+                    $("#process > li:eq(2) > a:eq(0)").replaceWith('已拆分');
                 }
                 else
                 {
