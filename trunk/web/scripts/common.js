@@ -202,6 +202,125 @@ wx.limit_length = function (str, minLength, maxLength)
     return true;
 }
 
+//是否显示全局购物车
+function cartView(elementId, type)
+{
+    var display = type ? '' : 'none';
+
+    return document.getElementById(elementId).style.display = display;
+}
+
+//购物车全局初始化
+wx.cartGlobalInit = function ()
+{
+    var html = '';
+    var totalNum = 0;;
+    var totalPrice = 0;
+
+    var url = 'cart/getCart';
+    var param = '';
+    var data = wx.ajax(url, param);
+
+    if (!wx.isEmpty (data)) {
+        $('#cart_product_num').html(' '+totalNum+' ');
+        $('#cartbox').html('<h4>购物车中还没有商品，赶紧去选购吧！</h4>');
+        return false;
+    }
+
+    for (var i in data) {
+        html += '<div class="cart-bx">';
+        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'upload/product/'+data[i].product_img+'" width="50" height="50" alt="连衣裙"/></div>';
+        html += '<div class="cart-goodsname">'+data[i].pname+'<br/><span class="font5">￥'+data[i].product_price+'</span></div>';
+        html += '<div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
+        html += '</div>';
+        totalPrice += (data[i].product_price * data[i].product_num);
+        totalNum += data[i].product_num;
+    }
+
+    html += '<div class="cart-hj">';
+    html += '<div class="sum">合计：<span class="font3">￥'+totalPrice+'</span></div>';
+    html += '<div class="cart-to-js"><a href="/cart/">我要结算</a></div>';
+    html += '</div>';
+//console.log(html);
+    $('#cart_product_num').html(' '+totalNum+' ');
+    $('#cartbox').html(html);
+
+    return true;
+}
+
+//判断是否为正确的URL
+wx.isUrl = function (url)
+{
+    if (! wx.isEmpty(url)) {
+        return false;
+    }
+
+    var strRegex = "^((https|http|ftp|rtsp|mms)?://)" + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
+    + "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
+    + "|" // 允许IP和DOMAIN（域名）
+    + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
+    + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名
+    + "[a-z]{2,6})" // first level domain- .com or .museum
+    + "(:[0-9]{1,4})?" // 端口- :80
+    + "((/?)|" // a slash isn't required if there is no file name
+    + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
+    var re=new RegExp(strRegex);
+    if (re.test(url)){
+        return true;
+     }else{
+        return false;
+     }
+}
+
+//获取来源(referer)地址
+wx.getReferer = function ()
+{
+    var referer = document.referrer;
+
+    return wx.isEmpty(referer) ? referer : wx.base_url;
+}
+
+//跳转到上一个页面
+wx.goToBack = function ()
+{
+    var url = wx.getReferer();
+
+    if (wx.isEmpty(url) && wx.isUrl(url)) {
+        window.location.href = url;
+    }
+
+    return false;
+}
+
+//收藏
+wx.addFavorite = function (){
+	var title = "万象网,中国最专业的个性化服装电子商务网站, www.wunxin.com";
+	var url = "http://www.wunxin.com/?fav";
+	if(window.sidebar){
+		window.sidebar.addPanel(title,url,'');
+	}else{
+		try{
+			window.external.AddFavorite(url,title);
+		}catch(e){
+			alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
+		}
+	}
+}
+/*
+function addToFavorite() {
+    var d = "http://www.360buy.com/";
+    var c = "京东商城-网购上京东，省钱又放心";
+    if (document.all) {
+        window.external.AddFavorite(d, c);
+    } else {
+        if (window.sidebar) {
+            window.sidebar.addPanel(c, d, "");
+        } else {
+            alert("对不起，您的浏览器不支持此操作!\n请您使用菜单栏或Ctrl+D收藏本站。");
+        }
+    }
+}
+//*/
 
 
 
@@ -224,9 +343,4 @@ wx.limit_length = function (str, minLength, maxLength)
 
 
 
-
-
-
-
-
-
+wx.cartGlobalInit();
