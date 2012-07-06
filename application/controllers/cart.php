@@ -198,21 +198,30 @@ class cart extends MY_Controller
             }
 
             $this->load->model('Model_Cart', 'cart');
-            $cInfo = $this->cart->getUserCartProductByUid($this->uInfo['uid']);
+            $cartDatabaseInfo = $this->cart->getUserCartProductByUid($this->uInfo['uid']);
             $this->cart->emptyUserCart($this->uInfo['uid']);
 
-            $cData = $this->getCartToCookie();
+            $cartCookieInfo = $this->getCartToCookie();
 
-            //将cookie与数据库中的数据合并
-            $data = $cInfo;
-            if (!empty ($cData) && !empty ($cInfo)) {
-                foreach ($cData as $v) {
-                    foreach ($cInfo as $cv) {
-                        if ($v['pid'] != $cv['pid']) {
-                            $data[] = $v;
+            //将cookie与数据库中的数据合并, 以cookie中数据为主
+            $data = empty ($cartCookieInfo) ? $cartDatabaseInfo : $cartCookieInfo;
+
+            if (!empty ($cartCookieInfo) && !empty ($cartDatabaseInfo)) {
+
+                foreach ($cartCookieInfo as $cv)
+                {
+                    foreach ($cartDatabaseInfo as $k=>$dv)
+                    {
+                        if ($dv['pid'] == $cv['pid'])
+                        {
+                            unset ($cartDatabaseInfo[$k]);
                         }
                     }
                 }
+            }
+
+            if (! empty ($cartDatabaseInfo)) {
+                $data = array_merge($data, $cartDatabaseInfo);
             }
 
             $jData = empty ($data) ? '' : json_encode($data);
@@ -248,7 +257,7 @@ class cart extends MY_Controller
         $cData = $this->input->cookie(config_item('cookie_prefix').'cart_info');
 
         $cData = empty ($cData) ? '' : json_decode($cData, true);
-        //echo '<pre>1111';print_r($cData);exit;
+
         return $cData;
     }
 
@@ -276,7 +285,7 @@ class cart extends MY_Controller
         }
 
         $cData = $this->getCartToCookie();
-        //echo '<pre>';print_r($cData);exit;
+
         $isExist = false;
         if (!empty ($cData)) {
             foreach ($cData as &$cv) {

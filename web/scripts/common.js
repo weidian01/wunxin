@@ -293,15 +293,17 @@ wx.goToBack = function ()
 }
 
 //收藏
-wx.addFavorite = function (){
-	var title = "万象网,中国最专业的个性化服装电子商务网站, www.wunxin.com";
-	var url = "http://www.wunxin.com/?fav";
-	if(window.sidebar){
+wx.addFavorite = function (title, url)
+{
+    title = wx.isEmpty(title) ? title : "万象网,中国最专业的个性化服装电子商务网站, www.wunxin.com";
+    url = wx.isEmpty(url) ? url : wx.base_url+"?fav";
+
+	if(window.sidebar) {
 		window.sidebar.addPanel(title,url,'');
-	}else{
+	} else {
 		try{
 			window.external.AddFavorite(url,title);
-		}catch(e){
+		} catch(e) {
 			alert("您的浏览器不支持该功能,请使用Ctrl+D收藏本页");
 		}
 	}
