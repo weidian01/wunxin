@@ -12,8 +12,7 @@ class Codeimg
 
     function __construct($params = NULL)
     {
-        if(isset($params['code']))
-        {
+        if (isset($params['code'])) {
             $this->captchaText = $params['code'];
         }
     }
@@ -119,7 +118,7 @@ class Codeimg
     {
         // 3dcha parameters
         $fontsize = 24;
-        $fontfile = dirname(__FILE__).'\\3DCaptcha.ttf';
+        $fontfile = dirname(__FILE__) . '\\3DCaptcha.ttf';
 
         $details = imagettfbbox($fontsize, 0, $fontfile, $this->captchaText);
         $image2d_x = $details[4] + 4;
@@ -138,7 +137,7 @@ class Codeimg
 
         // Calculate projection matrix
         $T = $this->cameraTransform(
-            array(rand(-15,15), -200, 200),
+            array(rand(-15, 15), -200, 200),
             array(0, 0, 0)
         );
         $T = $this->matrixProduct(
@@ -164,9 +163,9 @@ class Codeimg
         }
 
         // Create 3d image
-        $image3d_x = 200;
+        $image3d_x = 190;
         //$image3d_y = $image3d_x / 1.618;
-        $image3d_y = $image3d_x * 9 / 32;
+        $image3d_y = $image3d_x * 10 / 32;
         $image3d = imagecreatetruecolor($image3d_x, $image3d_y);
         $fgcolor = imagecolorallocate($image3d, 255, 255, 255);
         $bgcolor = imagecolorallocate($image3d, 0, 0, 0);

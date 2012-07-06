@@ -5,8 +5,7 @@
     <title><?php echo $title;?></title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <SCRIPT type=text/javascript src="/scripts/jquery-1.4.2.min.js"></SCRIPT>
-    <SCRIPT type=text/javascript src="/scripts/focus.js"></SCRIPT>
-    <SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="/scripts/index.js"></SCRIPT>
     <script type="text/javascript" charset=utf-8 src="/scripts/lrscroll.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="/scripts/iepng.js"></script>
@@ -32,43 +31,7 @@
             <ul id="idNum" class="num"></ul>
         </div>
         <SCRIPT>
-            var forEach = function (array, callback, thisObject) {
-                if (array.forEach) {
-                    array.forEach(callback, thisObject);
-                } else {
-                    for (var i = 0, len = array.length; i < len; i++) {
-                        callback.call(thisObject, array[i], i, array);
-                    }
-                }
-            }
 
-            var st = new SlideTrans("idContainer2", "idSlider2", <?php echo count($broadcast_recommend);?>, { Vertical:false });
-            var nums = [];
-            //插入数字
-            for (var i = 0, n = st._count - 1; i <= n;) {
-                (nums[i] = get('idNum').appendChild(document.createElement("li"))).innerHTML = ++i;
-            }
-
-            forEach(nums, function (o, i) {
-                o.onmouseover = function () {
-                    o.className = "on";
-                    st.Auto = false;
-                    st.Run(i);
-                }
-                o.onmouseout = function () {
-                    o.className = "";
-                    st.Auto = true;
-                    st.Run();
-                }
-            })
-
-            //设置按钮样式
-            st.onStart = function () {
-                forEach(nums, function (o, i) {
-                    o.className = st.Index == i ? "on" : "";
-                })
-            }
-            st.Run();
         </SCRIPT>
         <div class="tod-act">
             <div class="today">
@@ -155,52 +118,14 @@
             <div class="slide-next"><a href="javascript:void(0);"></a></div>
         </div>
     </div>
-    <script type="text/javascript">
-//*
-        $(function(){
-            $("#tktktkt").jCarouselLite({
-                btnNext:".slide-next",
-                btnPrev:".slide-pre"
-            });
-        });
-
-        $(function () {
-            $('#top-menu li').hover(
-                    function () {
-                        $('ul', this).slideDown(200);
-                    },
-                    function () {
-                        $('ul', this).slideUp(200);
-                    });
-        });
-
-        $(function () {
-            $(".click").click(function () {
-                $("#panel").slideToggle("slow");
-                $(this).toggleClass("active");
-                return false;
-            });
-        });
-
-        $(function () {
-            $('.fade').hover(
-                    function () {
-                        $(this).fadeTo("slow", 0.5);
-                    },
-                    function () {
-                        $(this).fadeTo("slow", 5);
-                    });
-        });
-        //*/
-    </script>
 </div>
 <div class="box2 pad3">
 <div class="container tp">
 <div class="slide-ad">
     <div class="ad-btn">
-        <span class="ad-btn1" onmouseover="showAD('ad','1')"><a href="#">PROMOTION SITE</a></span>
-        <span class="ad-btn2" onmouseover="showAD('ad','2')"><a href="#">SHOP SITE</a></span>
-        <span class="ad-btn3" onmouseover="showAD('ad','3')"><a href="#">PROMOTION SITE</a></span>
+        <span class="ad-btn1" onmouseover="showAdvert('ad','1')"><a href="#">PROMOTION SITE</a></span>
+        <span class="ad-btn2" onmouseover="showAdvert('ad','2')"><a href="#">SHOP SITE</a></span>
+        <span class="ad-btn3" onmouseover="showAdvert('ad','3')"><a href="#">PROMOTION SITE</a></span>
     </div>
     <ul>
         <?php $i = 1;foreach ($AD_recommend as $arv) {?>
@@ -211,8 +136,8 @@
         </li>
         <?php $i++;}?>
         <!--
-        <li id="ad2" style="display:none;"><img alt="广告一" src="images/ad2.jpg" width="978" height="200"/></li>
-        <li id="ad3" style="display:none;"><img alt="广告一" src="images/ad3.jpg" width="978" height="200"/></li>
+        <li id="ad2" style="display:none;"><img alt="广告一" src="/images/ad2.jpg" width="978" height="200"/></li>
+        <li id="ad3" style="display:none;"><img alt="广告一" src="/images/ad3.jpg" width="978" height="200"/></li>
         -->
     </ul>
 </div>
@@ -242,20 +167,20 @@
     <div class="men-l">
         <div class="men-p">
             <div class="pro-pic">
-                <a href="#"><img src="images/m1.jpg" width="120" height="120" alt="T恤"/></a>
+                <a href="#"><img src="/images/m1.jpg" width="120" height="120" alt="T恤"/></a>
             </div>
             <div class="men-cont"><span class="font2">CDSB567890</span><br/> Justyle 素色经典短袖T恤<br/> <span class="font3">￥49,000</span></div>
         </div>
         <div class="men-p">
-            <div class="pro-pic"><a href="#"><img src="images/m2.jpg" width="120" height="120" alt="T恤"/></a></div>
+            <div class="pro-pic"><a href="#"><img src="/images/m2.jpg" width="120" height="120" alt="T恤"/></a></div>
             <div class="men-cont"><span class="font2">CDSB567890</span><br/> 诠渡良品英伦休闲纯色polo衫<br/> <span class="font3">￥49,000</span></div>
         </div>
         <div class="men-p">
-            <div class="pro-pic"><a href="#"><img src="images/m3.jpg" width="120" height="120" alt="T恤"/></a></div>
+            <div class="pro-pic"><a href="#"><img src="/images/m3.jpg" width="120" height="120" alt="T恤"/></a></div>
             <div class="men-cont"><span class="font2">CDSB567890</span><br/> Justyle 素色经典短袖T恤<br/> <span class="font3">￥49,000</span></div>
         </div>
         <div class="men-p">
-            <div class="pro-pic"><a href="#"><img src="images/m1.jpg" width="120" height="120" alt="T恤"/></a></div>
+            <div class="pro-pic"><a href="#"><img src="/images/m1.jpg" width="120" height="120" alt="T恤"/></a></div>
             <div class="men-cont"><span class="font2">CDSB567890</span><br/> Justyle 素色经典短袖T恤<br/> <span class="font3">￥49,000</span></div>
         </div>
     </div>
@@ -276,19 +201,19 @@
     </div>
     <div class="clear"></div>
     <div class="men-bd">
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
             <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
             <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
             <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥802.00</span></div>
         </div>
     </div>
@@ -317,68 +242,68 @@
 </div>
 <div class="prod-bd pad">
     <div class="toplady">
-        <div class="floorMain" onmouseout="disshowmask('picmt')">
+        <div class="floorMain" onmouseout="hideLayer('picmt', 7)">
             <?php foreach ($woman_recommend_1_2_3_4_5_6 as $wr123456) {?>
             <?php if ($wr123456['emission'] == '1') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item1">
-                <img id="picmt1" onmouseover="showmask('1','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
+                <img id="picmt1" onmouseover="showLayer('1','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '2') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item2">
-                <img id="picmt2" onmouseover="showmask('2','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt2" onmouseover="showLayer('2','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '3') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item3">
-                <img id="picmt3" onmouseover="showmask('3','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt3" onmouseover="showLayer('3','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '4') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item4">
-                <img id="picmt4" onmouseover="showmask('4','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
+                <img id="picmt4" onmouseover="showLayer('4','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '5') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item5">
-                <img id="picmt5" onmouseover="showmask('5','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt5" onmouseover="showLayer('5','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '6') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item6">
-                <img id="picmt6" onmouseover="showmask('6','picmt')" src="<?php echo base_url(). $wr123456['img_addr'];?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt6" onmouseover="showLayer('6','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
             <?php }?>
         </div>
     </div>
     <div class="men-bd pad7">
-        <div class="men-bd-b"><a class="productimg" href="#"> <img src="images/d1.jpg" width="163" height="163" alt="闲短袖T恤"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"> <img src="/images/d1.jpg" width="163" height="163" alt="闲短袖T恤"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
@@ -410,30 +335,30 @@
 </div>
 <div class="prod-bd pad5">
     <div class="sweet">
-        <a href="<?php echo $lover_recommend[0]['link']; ?>"><img src="<?php echo $lover_recommend[0]['img_addr'];?>" width="948" height="299" alt="<?php echo $lover_recommend[0]['title'];?>"/></a>
+        <a href="<?php echo $lover_recommend[0]['link']; ?>"><img src="<?php echo str_replace('\\', '/', $lover_recommend[0]['img_addr']);?>" width="948" height="299" alt="<?php echo $lover_recommend[0]['title'];?>"/></a>
     </div>
     <div class="men-bd pad7">
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
             </div>
@@ -466,47 +391,47 @@
 </div>
 <div class="prod-bd pad6">
     <div class="toplady">
-        <div class="floorMain" onmouseout="disshowqz('qz')">
+        <div class="floorMain" onmouseout="hideLayer('qz', 8)">
             <?php foreach ($family_recommend as $fr) {?>
             <?php if ($fr['emission'] == '1') {?>
             <a href="<?php echo $fr['link'];?>" class="qv1">
-                <img id="qz1" onmouseover="showqz('1','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="264" height="300">
+                <img id="qz1" onmouseover="showLayer('1','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="264" height="300">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '2') {?>
             <a href="<?php echo $fr['link'];?>" class="qv2">
-                <img id="qz2" onmouseover="showqz('2','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="447" height="220">
+                <img id="qz2" onmouseover="showLayer('2','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="447" height="220">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '3') {?>
             <a href="<?php echo $fr['link'];?>" class="qv3">
-                <img id="qz3" onmouseover="showqz('3','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+                <img id="qz3" onmouseover="showLayer('3','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '4') {?>
             <a href="<?php echo $fr['link'];?>" class="qv4">
-                <img id="qz4" onmouseover="showqz('4','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+                <img id="qz4" onmouseover="showLayer('4','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '5') {?>
             <a href="<?php echo $fr['link'];?>" class="qv5">
-                <img id="qz5" onmouseover="showqz('5','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+                <img id="qz5" onmouseover="showLayer('5','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '6') {?>
             <a href="<?php echo $fr['link'];?>" class="qv6">
-                <img id="qz6" onmouseover="showqz('6','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="220">
+                <img id="qz6" onmouseover="showLayer('6','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="220">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '7') {?>
             <a href="<?php echo $fr['link'];?>" class="qv7">
-                <img id="qz7" onmouseover="showqz('7','qz')" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="80">
+                <img id="qz7" onmouseover="showLayer('7','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="80">
             </a>
             <?php }?>
 
@@ -514,27 +439,27 @@
         </div>
     </div>
     <div class="men-bd pad7">
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d3.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d2.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="images/d1.jpg" width="163" height="163"/></a>
+        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
             <div class="pro-n">
                 <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
             </div>
@@ -545,32 +470,32 @@
 
 <!-- 设计师推荐 开始 -->
 <div class="brand">
-    <div class="left-brand" onmouseout="disshowbrandpic('bdimg')">
+    <div class="left-brand" onmouseout="hideLayer('bdimg', 13)">
         <ul>
-            <li><img id="bdimg1" onmouseover="showbrandpic('1','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg2" onmouseover="showbrandpic('2','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg3" onmouseover="showbrandpic('3','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg4" onmouseover="showbrandpic('4','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg5" onmouseover="showbrandpic('5','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg6" onmouseover="showbrandpic('6','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg7" onmouseover="showbrandpic('7','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg8" onmouseover="showbrandpic('8','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg9" onmouseover="showbrandpic('9','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg10" onmouseover="showbrandpic('10','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg11" onmouseover="showbrandpic('11','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg12" onmouseover="showbrandpic('12','bdimg')" src="images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg1" onmouseover="showLayer('1','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg2" onmouseover="showLayer('2','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg3" onmouseover="showLayer('3','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg4" onmouseover="showLayer('4','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg5" onmouseover="showLayer('5','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg6" onmouseover="showLayer('6','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg7" onmouseover="showLayer('7','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg8" onmouseover="showLayer('8','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg9" onmouseover="showLayer('9','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg10" onmouseover="showLayer('10','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg11" onmouseover="showLayer('11','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <li><img id="bdimg12" onmouseover="showLayer('12','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
         </ul>
     </div>
     <div class="rgt-p">
         <div class="brand-pro">
-            <div class="brand-proimg"><a href="#"><img src="images/n1.gif" width="180" height="206"/></a></div>
+            <div class="brand-proimg"><a href="#"><img src="/images/n1.gif" width="180" height="206"/></a></div>
             <p>Bessie 梦幻镂空网纱大荷叶领</p>
             <span class="font4">￥135.90</span></div>
         <div class="brand-pro">
-            <div class="brand-proimg"><a href="#"><img src="images/n1.gif" width="180" height="206"/></a></div>
+            <div class="brand-proimg"><a href="#"><img src="/images/n1.gif" width="180" height="206"/></a></div>
             <p>Bessie 梦幻镂空网纱大荷叶领</p>
             <span class="font4">￥135.90</span></div>
-        <div class="brand-ad"><img src="images/n5.gif" width="169" height="288" alt="广告"/></div>
+        <div class="brand-ad"><img src="/images/n5.gif" width="169" height="288" alt="广告"/></div>
     </div>
 </div>
 <!-- 设计师推荐 结束 -->
@@ -578,5 +503,37 @@
 </div>
 </div>
 <?php include 'footer.php';?>
+<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<script type="text/javascript">
+    //转播图 代码开始
+    var st = new SlideTrans("idContainer2", "idSlider2", <?php echo count($broadcast_recommend);?>, { Vertical:false });
+    var nums = [];
+    //插入数字
+    for (var i = 0, n = st._count - 1; i <= n;) {
+        (nums[i] = get('idNum').appendChild(document.createElement("li"))).innerHTML = ++i;
+    }
+
+    forEach(nums, function (o, i) {
+        o.onmouseover = function () {
+            o.className = "on";
+            st.Auto = false;
+            st.Run(i);
+        }
+        o.onmouseout = function () {
+            o.className = "";
+            st.Auto = true;
+            st.Run();
+        }
+    })
+
+    //设置按钮样式
+    st.onStart = function () {
+        forEach(nums, function (o, i) {
+            o.className = st.Index == i ? "on" : "";
+        })
+    }
+    st.Run();
+    //转播图 代码结束
+</script>
 </body>
 </html>

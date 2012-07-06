@@ -2,9 +2,12 @@
     <div class="hd-cont">
         <div class="hd-wel">您好！欢迎光临万象网</div>
         <div class="cart">
-            <div class="cart-num" onmouseover="showcart('cartbox')" onmouseout="disshowcart('cartbox')">购物车有<span class="font1">5</span> 件
-                <div id="cartbox" class="cart-form" onmouseover="showcart('cartbox')"
-                     onmouseout="disshowcart('cartbox')" style=" display:none;">
+            <div class="cart-num" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)">
+                购物车有<span class="font1" id="cart_product_num">
+                <img src="/images/small_loading.gif" alt=""/>
+                </span> 件
+                <div id="cartbox" class="cart-form" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)" style=" display:none;">
+                    <!--
                     <div class="cart-bx">
                         <div class="cart-goodsimg"><img src="/images/sdg3.jpg" width="50" height="50" alt="连衣裙"/></div>
                         <div class="cart-goodsname">时尚帅气军旅风男士休闲短袖T恤<br/><span class="font5">￥356.00</span></div>
@@ -24,13 +27,15 @@
                         <div class="sum">合计：<span class="font3">￥530.60</span></div>
                         <div class="cart-to-js"><a href="#">我要结算</a></div>
                     </div>
+                    -->
+                    <h4>购物车中还没有商品，赶紧去选购吧！</h4>
                 </div>
             </div>
-            <div class="cart-btn"><img src="/images/cart_31.jpg" width="60" height="24"/></div>
+            <div class="cart-btn"><a href="/cart/" ><img src="/images/cart_31.jpg" width="60" height="24"/></a></div>
         </div>
         <div class="hd-login">
             <ul>
-                <li><a href="#">收藏本站</a></li>
+                <li><a href="javascript:void (0);" onclick="wx.addFavorite()">收藏本站</a></li>
                 <li><a href="#">浏览记录</a></li>
                 <li><a href="#">我的万象</a></li>
                 <li><a href="#">我的订单</a></li>
@@ -77,7 +82,7 @@
 <div class="nav">
     <div class="navbox">
         <div class="mainnav">
-            <a class="curr" href="#">首页</a>
+            <a class="curr" href="/">首页</a>
             <a href="#">男装款</a>
             <a href="#">女装款</a>
             <a href="#">情侣装款</a>

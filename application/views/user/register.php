@@ -6,7 +6,6 @@
     <title>万象网 -- 会员免费注册</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/member.css" rel="stylesheet" type="text/css"/>
-    <SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>
     <SCRIPT type=text/javascript src="/scripts/jquery-1.4.2.min.js"></SCRIPT>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="/scripts/iepng.js"></script>
@@ -76,7 +75,7 @@
                                         <img src="/user/register/verifyCode" id="verify_code"/>
                                         <!-- <img src="/user/register/verifyCode" width="146" height="53"/> -->
                                     </td>
-                                    <td width="62%">看不清楚？<a href="javascript:void(0);" onclick="user.refreshVerifyCode()">换一张</a></td>
+                                    <td width="62%">&nbsp;&nbsp;看不清楚？<a href="javascript:void(0);" onclick="user.refreshVerifyCode()">换一张</a></td>
                                 </tr>
                             </table>
                         </td>
