@@ -106,6 +106,18 @@ class login extends MY_Controller
         //redirect(config_item('base_url'), 'refresh');
     }
 
+    public function getUserInfo ()
+    {
+        $response = error(10000);
+
+        if ($this->isLogin()) {
+            $response = error(10009);
+            $response['user_info'] = $this->uInfo;
+        }
+
+        self::json_output($response);
+    }
+
     /**
      * 设置用户登陆cookie
      *

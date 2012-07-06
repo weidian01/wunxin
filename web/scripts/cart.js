@@ -18,10 +18,9 @@ cart.init = function ()
     var data = wx.ajax(url, param);
 
     if (data == '' || data == undefined) {
-        html = '<br /><h1 style="text-align: center;">您的购物车中没有商品，请您去 <a href="http://wunxin.com/" style="color: #b5161c;">选购商品</a> 或 ' +
+        html = '<br /><h1 style="text-align: center;">您的购物车中没有商品，请您去 <a href="javascript:void(0);" onclick="wx.goToBack()" style="color: #b5161c;">选购商品</a> 或 ' +
             '<a style="color: #b5161c;" href="javascript:void(0);" onclick="cart.removeCart()">取出寄存的产品</a>&nbsp;&nbsp;» </h1><br /><br /><br /><br />';
         $('#shopping_cart').html(html);
-        //$('#empty_cart').show();
         return ;
     }
 
@@ -41,7 +40,7 @@ cart.init = function ()
     for (var i in data) {
         html += '<tr>';
         html += '<td width="7%"><img src="'+wx.img_url+'upload/product/'+data[i].product_img+'" width="52" height="66"/></td>';
-        html += '<td width="49%">';
+        html += '<td width="40%">';
         html += '<a class="gn" href="#">'+data[i].pname+'</a><br/>';
         html += '<a href="'+data[i].pid+'">收藏</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a>';
         html += '</td>';
@@ -78,7 +77,7 @@ cart.init = function ()
         '<div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div>' ;
     html += '<div class="post-btn">';
     html += '<a href="javascript:void(0);" onclick="wx.goToBack()";><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
-    html += '<a href="#"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
+    html += '<a href="javascript:void(0);" onclick="wx.isLogin()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
     html += '</div>';
     html += '</td>';
     html += '</tr></table>';
