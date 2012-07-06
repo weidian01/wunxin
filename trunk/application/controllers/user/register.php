@@ -121,7 +121,7 @@ class register extends MY_Controller
      * @param int $lenght
      * @return mixed
      */
-    private function setVerifyCode($lenght = 6)
+    private function setVerifyCode($lenght = 4)
     {
 
         $this->load->helper('string');
