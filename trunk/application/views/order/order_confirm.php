@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>填写订单核对信息</title>
+<link href="/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/css/shopping.css" rel="stylesheet" type="text/css" />
+<SCRIPT type=text/javascript src="/scripts/jquery-1.4.2.min.js"></SCRIPT>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="/scripts/iepng.js"></script>
+<script type="text/javascript">
+EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
+</script>
+<![endif]-->
+<script type="text/javascript">
+$(document).ready(function(){
+  $(".bankpic").click(function(){
+    $(".bankpic").css("border","1px solid #eee");
+	$(this).css("border","1px solid #a10000");
+  });
+});
+</script>
+</head>
+<body>
+<?php include '/../header.php';?>
+<div class="box pad8" style="overflow:hidden;">
+  <div class="process">
+    <ul>
+      <li class="bgcart">我的购物车</li>
+      <li class="curr2">填写订单核对信息</li>
+      <li class="last2">成功提交订单</li>
+    </ul>
+  </div>
+  <div class="other-shopping">
+    <div class="tit">收获人信息：&nbsp;&nbsp;<span onclick="editorder('edit-cong','cong')">[修改]</span></div>
+    <div class="consignee" id="cong">陈小妮<span style="padding-left:20px;"></span>北京,北京市,海淀区,中关村东路18号财智C1806<span style="padding-left:20px;"></span>100083<br/>
+      15100000000，    010-62000000</div>
+    <div class="consignee" id="edit-cong" style="display:none;">
+      <div class="consigneeList"> <a href="javascript:void(0);"><span class="xzradio">
+        <input name="" type="radio" value="" />
+        </span><span>陈小妮</span><span>北京,北京市,海淀区,中关村东路18号财智c1806</span><span>15100000000</span><span>010-62222000000</span></a> <a href="javascript:void(0);"><span class="xzradio">
+        <input name="" type="radio" value="" />
+        </span><span>陈小妮</span><span>北京,北京市,海淀区,中关村东路18号财智c1806</span><span>15100000000</span><span>010-62222000000</span></a> </div>
+      <div class="address">
+        <input name="" type="radio" value="" checked="checked"/>
+        添加新地址</div>
+      <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="10%" align="right"><span class="font10">*</span> 收货人姓名：</td>
+          <td width="90%"><input name="textfield" type="text" class="input4" id="textfield" />
+            <span class="font2">请填写您的真实姓名</span></td>
+        </tr>
+        <tr>
+          <td width="10%" align="right"><span class="font10">*</span> 省市：</td>
+          <td width="90%"><select name="select" id="select">
+              <option>河北省</option>
+            </select>
+            &nbsp;&nbsp;
+            <select name="">
+              <option>石家庄市</option>
+            </select>
+            &nbsp;&nbsp;
+            <select name="">
+              <option>平山区</option>
+            </select>
+            &nbsp;&nbsp; <span class="font2">
+            <input name="textfield7" type="text" class="input1" id="textfield7" value="风飞路人民大厦15楼1502" />
+            请填写您的真实姓名</span></td>
+        </tr>
+        <tr>
+          <td align="right"><span class="font10">*</span>手机号码：</td>
+          <td><input name="textfield2" type="text" class="input4" id="textfield2" value="13500250000" />
+            <span class="font2">请填写正确手机号码，便于接收发货和收货通知</span></td>
+        </tr>
+        <tr>
+          <td align="right">固定电话：</td>
+          <td><input name="textfield3" type="text" class="input2" id="textfield3" value="0532" />
+            -
+            <input name="textfield4" type="text" class="input3" id="textfield4" value="88562344" />
+            <span class="font2">如010-12345678，固定电话和手机号码请至少填写一项</span></td>
+        </tr>
+        <tr>
+          <td align="right"><span class="font10">*</span> 电子邮件：</td>
+          <td><input name="textfield5" type="text" class="input4" id="textfield5" />
+            <span class="font2">用于接收订单提醒邮件，便于您及时了解订单状态</span></td>
+        </tr>
+        <tr>
+          <td align="right"><span class="font10">*</span> 邮编：</td>
+          <td><input name="textfield6" type="text" class="input4" id="textfield6" />
+            <span class="font2">请填写准确的邮编，以便商品能尽快送达</span></td>
+        </tr>
+        <tr>
+          <td height="50" align="right">&nbsp;</td>
+          <td><a class="btn-save" href="#">保存并送到此地址</a></td>
+        </tr>
+      </table>
+    </div>
+    <div class="tit borders">支付及配送方式：&nbsp;&nbsp;<span onclick="editorder('pay-delivery2','pay-delivery1')">[修改]</span></div>
+    <div class="consignee" id="pay-delivery1">
+      <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="9%" align="right">支付方式：</td>
+          <td width="91%">货到付款</td>
+        </tr>
+        <tr>
+          <td align="right">配送方式：</td>
+          <td>快递</td>
+        </tr>
+        <tr>
+          <td align="right">运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：</td>
+          <td>0.00（免运费）</td>
+        </tr>
+        <tr>
+          <td align="right">送货日期：</td>
+          <td>非大件物品只工作日送货（节假日、双休日不送）</td>
+        </tr>
+      </table>
+    </div>
+    <div class="paybox" id="pay-delivery2" style="display:none;">
+      <table class="tab4" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td colspan="2"><strong>支付方式</strong></td>
+          <td width="72%"><strong>备注</strong></td>
+        </tr>
+        <tr>
+          <td width="4%" align="center"><input name="radio" type="radio" id="radio" value="radio" checked="checked" /></td>
+          <td width="24%">在线支付</td>
+          <td> 即时到帐，支持绝大数银行借记卡及部分银行信用卡 查看银行及限额</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>银行或机构支付</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="2">
+          <div class="payment-c">
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="onlinepay-b" value="" name="bank"/>
+          </div>
+          <div class="bankpic"><label for="onlinepay-b"><span class="bankimg" id="onlinepay">在线支付</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" value="" id="icbc-b" name="bank" />
+          </div>
+          <div class="bankpic"><label for="icbc-b"><span class="bankimg" id="icbc">中国工商银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="cmb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="cmb-b"><span class="bankimg" id="cmb">招商银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" value="" id="boc-b" name="bank" />
+          </div>
+          <div class="bankpic"><label for="boc-b"><span class="bankimg" id="boc">中国银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="ccb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="ccb-b"><span class="bankimg" id="ccb">中国建设银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="abc-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="abc-b"><span class="bankimg" id="abc">中国农业银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="cgb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="cgb-b"><span class="bankimg" id="cgb">广发银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="cmbc-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="cmbc-b"><span class="bankimg" id="cmbc">中国民生银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="cib-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="cib-b"><span class="bankimg" id="cib">兴业银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="bob-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="bob-b"><span class="bankimg" id="bob">北京银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="bjrcb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="bjrcb-b"><span class="bankimg" id="bjrcb">北京农村商业银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="psbc-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="psbc-b"><span class="bankimg" id="psbc">中国邮政储蓄银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="bcomm-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="bcomm-b"><span class="bankimg" id="bcomm">交通银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="spdb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="spdb-b"><span class="bankimg" id="spdb">浦发银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="sdb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="sdb-b"><span class="bankimg" id="sdb">深圳发展银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="cebb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="cebb-b"><span class="bankimg" id="cebb">中国光大银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="pingan-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="pingan-b"><span class="bankimg" id="pingan">平安银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="ecitic-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="ecitic-b"><span class="bankimg" id="ecitic">中信银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="hzb-b" value="" name="bank" />
+          </div>
+          <div class="bankpic"><label for="hzb-b"><span class="bankimg" id="hzb">杭州银行</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input type="radio" id="" value="nbcb-b" name="bank" />
+          </div>
+          <div class="bankpic"><label for="nbcb-b"><span class="bankimg" id="nbcb">宁波银行</span></label></div>
+        </div>
+      </div>
+            <p>择支付平台</p>
+            <div class="payment-c">
+        <div class="payment-b">
+          <div class="pradio">
+            <input name="bank" id="alipay-b" type="radio" value=""/>
+          </div>
+          <div class="bankpic"><label for="alipay-b"><span class="bankimg" id="alipay">支付宝</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input name="bank" id="cmpay-b" type="radio" value="" />
+          </div>
+          <div class="bankpic"><label for="cmpay-b"><span class="bankimg" id="cmpay">手机支付</span></label></div>
+        </div>
+        <div class="payment-b">
+          <div class="pradio">
+            <input name="bank" id="tenpay-b" type="radio" value="" />
+          </div>
+          <div class="bankpic"><label for="tenpay-b"><span class="bankimg" id="tenpay">财付通</span></label></div>
+        </div>
+      </div>
+            </td>
+        </tr>
+        <tr>
+          <td align="center"><input type="radio" name="radio2" id="radio2" value="radio2" /></td>
+          <td>邮政汇款</td>
+          <td>通过快钱平台收款 汇款后1-3个工作日到账 查看帮助</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td colspan="2"><div class="postal">选择邮局汇款的麦网订单，订单提交后将保留将保留5天，请您及时汇款，谢谢！<br />
+              在填写邮局汇款单时请务必填写以下内容：<br />
+              1、收款人姓名：上海麦考林国际邮购有限公司<br />
+              2、收款人地址：上海邮政信箱615-58信箱<br />
+              3、收款人邮编：201615<br />
+              4、商务汇款：商户客户号310726001<br />
+              5、请填写您的姓名、地址、邮编；<br />
+              6、在附言栏注明订单号（您成功提交订单后会收到订单号，也可以在我的麦
+              网中查询到）、联系电话、客户编号（老客户）；<br />
+              我们将在收到您的汇款后为您寄发包裹。</div></td>
+        </tr>
+      </table>
+      <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
+        <tr>
+          <td colspan="2"><strong>配送方式</strong></td>
+        </tr>
+        <tr>
+          <td width="4%" align="center"><input type="radio" name="radio3" id="radio3" value="radio3" /></td>
+          <td width="96%"> 只工作日送货（双休日、节假日不送）</td>
+        </tr>
+        <tr>
+          <td align="center"><input type="radio" name="radio3" id="radio4" value="radio3" /></td>
+          <td>工作日、双休日和节假日均送货</td>
+        </tr>
+        <tr>
+          <td align="center" valign="top"><input type="radio" name="radio3" id="radio5" value="radio3" /></td>
+          <td> 只双休日、节假日送货（工作时间不送货）<br />
+            声明：我们会努力按照您指定的时间配送，但因为天气、交通等各类因素影响，您的订单有可能会有延误现象，敬请谅解！<br />
+            送货前是否联系：是 否（您需要特定时间配送可以选择哦！）</td>
+        </tr>
+        <tr>
+          <td height="50" align="center">&nbsp;</td>
+          <td><a class="btn-save" href="#">保存并送到此地址</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="other-shopping">
+    <div class="tit">产品清单</div>
+    <div class="cartlist">
+      <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center">&nbsp;</td>
+          <td align="left"><span class="font11">产品名称</span></td>
+          <td width="9%" align="center"><span class="font11">单价</span></td>
+          <td width="13%" align="center"><span class="font11">数量</span></td>
+          <td width="10%" align="center"><span class="font11">赠送积分</span></td>
+          <td width="12%" align="center"><span class="font11">小计</span></td>
+        </tr>
+        <tr>
+          <td width="7%"><img src="/images/pic_07.jpg" width="52" height="66" /></td>
+          <td width="49%"><a class="gn2" href="#">Bessie OL气质荷叶边条纹短裙 </a><br/>
+            <span class="font2">GZ26052909-S</span></td>
+          <td align="center">39.00</td>
+          <td align="center">1件</td>
+          <td align="center">--</td>
+          <td align="center"><span class="font6">39.00</span></td>
+        </tr>
+        <tr>
+          <td><img src="/images/pic_10.jpg" width="52" height="67" /></td>
+          <td><a class="gn2" href="#">Bessie OL气质荷叶边条纹短裙 </a><br/>
+            <span class="font2">GZ26052909-S</span></td>
+          <td align="center">129.00</td>
+          <td align="center">1件</td>
+          <td align="center">--</td>
+          <td align="center"><span class="font6">129.00</span></td>
+        </tr>
+        <tr>
+          <td><img src="/images/pic_13.jpg" alt="" width="53" height="69" /></td>
+          <td><a class="gn2" href="#">Bessie OL气质荷叶边条纹短裙 </a><br/>
+            <span class="font2">GZ26052909-S</span></td>
+          <td align="center">256.00</td>
+          <td align="center">1件</td>
+          <td align="center">--</td>
+          <td align="center"><span class="font6">256.00</span></td>
+        </tr>
+      </table>
+      <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
+        <tr>
+          <td width="21%"><div class="sy"><span class="invo" id="invos" onclick="syinfo('syinv','invos')"></span></div></td>
+          <td width="79%" align="right">产品数量总计：3&nbsp;&nbsp;&nbsp;&nbsp;赠送积分总计：147&nbsp;&nbsp;&nbsp;&nbsp;花费积分总计：0&nbsp;&nbsp;&nbsp;&nbsp;商品金额总计：￥422.00</td>
+        </tr>
+      </table>
+      <div class="order-info">
+        <div class="order-fj">
+          <div class="sybox" id="syinv" style="display:none;">
+            <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="19%" align="right">发票抬头：</td>
+                <td width="81%"><input class="input1" type="text" name="textfield8" id="textfield8" /></td>
+              </tr>
+              <tr>
+                <td align="right">发票类型：</td>
+                <td><select name="select2" id="select2">
+                    <option>发票类型一</option>
+                    <option>发票类型二</option>
+                  </select></td>
+              </tr>
+            </table>
+          </div>
+          <div class="sy2"><span class="ordermark" id="omk" onclick="marksinfo('syinv2','omk')"></span></div>
+          <div class="sybox" id="syinv2" style="display:none;">
+            <textarea class="tta" name="" rows="6"></textarea>
+            <p style="padding-top:8px;"><span class="font2">声明：备注中的有关收货人信息、支付方式、配送方式、发票信息等购买要求一律以上面的选择为准，备注无效。</span><br/>
+              是否打印价格：
+              <input name="" type="radio" value="" />
+              是
+              <input name="" type="radio" value="" />
+              否 （如送朋友的商品可不打印价格哦）</p>
+          </div>
+        </div>
+        <div class="order-sum">运费：￥0.00<br/>
+          礼品卡冲抵：￥0.00<br/>
+          虚拟账户余额冲抵：￥0.00
+          <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥422.00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="topost"><a href="#"><img src="/images/post-order.gif" width="150" height="41" alt="提交订单" /></a></div>
+</div>
+<?php include '/../footer.php';?>
+<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<script type="text/javascript">
+function syinfo(a, b)
+{
+    var dsy = document.getElementById(a);
+    var dsc = document.getElementById(b);
+    if (dsy.style.display == "none") {
+        dsy.style.display = "";
+        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.backgroundPosition = "0px -179px";
+
+    }
+    else {
+        dsy.style.display = "none";
+        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.backgroundPosition = "0px -144px";
+    }
+}
+
+function marksinfo(a, b)
+{
+    var dsy = document.getElementById(a);
+    var dsc = document.getElementById(b);
+    if (dsy.style.display == "none") {
+        dsy.style.display = "";
+        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.backgroundPosition = "0px -217px";
+
+    }
+    else {
+        dsy.style.display = "none";
+        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.backgroundPosition = "0px -108px";
+    }
+}
+
+function editorder(a, b)
+{
+    var ey = document.getElementById(a);
+    var et = document.getElementById(b);
+    if (ey.style.display == "none") {
+        ey.style.display = "";
+        et.style.display = "none";
+    }
+    else {
+        ey.style.display = "none";
+        et.style.display = "";
+    }
+}
+</script>
+</body>
+</html>

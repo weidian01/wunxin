@@ -325,7 +325,29 @@ function addToFavorite() {
 //*/
 
 
+//用户是否登陆
+wx.isLogin = function ()
+{
+    var auth = wx.getCookie('auth');
 
+    if (!wx.isEmpty(auth)) {
+        alert ('暂未登陆，请登陆!');
+        return false;
+    }
+
+    var url = 'user/login/getUserInfo';
+    var data = wx.ajax(url, '');
+
+    if (data.error == '10009') {
+        return false;
+    }
+
+    if (data.error == '10000') {
+        return data.user_info;
+    }
+
+    return false;
+}
 
 
 
