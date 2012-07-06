@@ -15,6 +15,7 @@ user.init = function ()
 {
     var userName = wx.getCookie('username');
 
+    userName = ( userName == null ) ? '' : userName;
     document.getElementById('username_id').value = userName;
 }
 
@@ -154,7 +155,7 @@ user.checkVerifyCode = function ()
         return false;
     }
 
-    if (verifyCodeCookie != verifyCodePage) {
+    if (verifyCodeCookie.toLowerCase() != verifyCodePage.toLowerCase()) {
         $("#verify_code_notice_id").removeClass("txi").addClass("mistake");
         $('#verify_code_notice_id').html('验证码错误！');
         return false;
@@ -217,7 +218,7 @@ user.submitRegisterForm = function ()
     var verifyCode = user.checkVerifyCode();
 
     if (!agree) {
-        alert('请同意万象网服务条款');;
+        alert('请同意万象网服务条款');
     }
 
     if ( ! userName ) return false;

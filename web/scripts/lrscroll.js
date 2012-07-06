@@ -8,7 +8,7 @@
                 ul.prepend(tLi.slice(tl - v - 1 + 1).clone()).append(tLi.slice(0, v).clone());
                 o.start += v
             }
-            console.log($("li", ul));
+            //console.log($("li", ul));
             var f = $("li", ul), itemLength = f.size(), curr = o.start;
             c.css("visibility", "visible");
             f.css({overflow:"hidden", float:o.vertical ? "none" : "left"});
