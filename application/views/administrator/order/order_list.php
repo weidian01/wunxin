@@ -14,7 +14,7 @@
     </noscript>
     <!-- Page Head -->
     <h2>订单管理</h2>
-
+    操作流程 : 1.确认已支付订单; 2.拆分订单; 3.配货; 4.完成配货; 5.发货;
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="/administrator/order/orderList"><span><br/> 订单列表 </span></a></li>
@@ -25,7 +25,7 @@
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="<?=url('administrator/order/search');?>" method="post">
+        <form action="<?=site_url('administrator/order/search');?>" method="post">
         <p>
             <label><b>输入关键字</b></label>
             <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
@@ -41,6 +41,40 @@
                 <?php }?>
             </select>
             <input type="submit" value="搜索">
+        </p>
+        </form>
+
+        <form action="<?=site_url('administrator/order/orderList');?>" method="GET">
+        <p>
+            <select name="is_pay">
+                <option value="">订单支付状态</option>
+                <?php foreach(array(ORDER_PAY_INIT=>'未支付',ORDER_PAY_SUCC=>'支付成功',ORDER_PAY_FAIL=>'支付失败',ORDER_PAY_DEFECT=>'支付部分', ) as $k=>$v):?>
+                <option value="<?=$k?>" <?php if(isset($where['is_pay']) && $where['is_pay'] == $k) echo 'selected="selected"';?>><?=$v?></option>
+                <?php endforeach;?>
+            </select>
+
+            <select name="status">
+                <option value="">订单确认状态</option>
+                <?php foreach(array(ORDER_INVALID=>'已取消',ORDER_NORMAL=>'未确认',ORDER_CONFIRM=>'已确认', ) as $k=>$v):?>
+                <option value="<?=$k?>" <?php if(isset($where['status']) && $where['status'] == $k) echo 'selected="selected"';?>><?=$v?></option>
+                <?php endforeach;?>
+            </select>
+
+            <select name="parent_id">
+                <option value="">订单拆分状态</option>
+                <?php foreach(array(-1=>'已拆分(父)',0=>'未拆单','child'=>'已拆分(子)', ) as $k=>$v):?>
+                <option value="<?=$k?>" <?php if(isset($where['parent_id']) && $where['parent_id'] == $k) echo 'selected="selected"';?>><?=$v?></option>
+                <?php endforeach;?>
+
+            </select>
+
+            <select name="picking_status">
+                <option value="">订单配货状态</option>
+                <?php foreach(array(PICKING_NOT=>'未配货',PICKING_CONDUCT=>'配货中',PICKING_COMPLETED=>'配货完成', ) as $k=>$v):?>
+                <option value="<?=$k?>" <?php if(isset($where['picking_status']) && $where['picking_status'] == $k) echo 'selected="selected"';?>><?=$v?></option>
+                <?php endforeach;?>
+            </select>
+            <input type="submit" value="筛选">
         </p>
         </form>
     </div>
@@ -71,7 +105,6 @@
                         <th>username</th>
                         <th>金额</th>
                         <th>支付方式</th>
-                        <th>状态</th>
                         <th>创建时间</th>
                         <th>流程</th>
                         <th>配货</th>
@@ -82,14 +115,6 @@
                     <tfoot>
                     <tr>
                         <td colspan="13">
-                            <div class="bulk-actions align-left">
-                                <select name="dropdown">
-                                    <option value="option1">Choose an action...</option>
-                                    <option value="option2">Edit</option>
-                                    <option value="option3">Delete</option>
-                                </select>
-                                <a class="button" href="#">Apply to selected</a>
-                            </div>
                             <div class="pagination">
                             <?php echo isset ($page_html) ? $page_html : '';?>
                             </div>
@@ -107,16 +132,16 @@
                         <td><?php echo $v['recent_name'];?></td>
                         <td><?php
                             switch ($v['is_pay']) {
-                                case 1:
+                                case ORDER_PAY_SUCC:
                                     $payStatus = '付款成功';
                                     break;
-                                case 2:
+                                case ORDER_PAY_FAIL:
                                     $payStatus = '付款失败';
                                     break;
-                                case 3:
+                                case ORDER_PAY_DEFECT:
                                     $payStatus = '等待付款';
                                     break;
-                                default :
+                                default : /*ORDER_PAY_INIT*/
                                     $payStatus = '初始';
                             }
                             echo $payStatus;?></td>
@@ -124,22 +149,23 @@
                         <td><?php echo $v['uname'];?></td>
                         <td><?php echo $v['after_discount_price'];?></td>
                         <td><?php echo $v['pay_type'].'--'.$v['defray_type'];?></td>
-                        <td><?php echo $v['status'] ? '正常' : '取消';?></td>
                         <td><?php echo $v['create_time'];?></td>
-                        <td>
-                            <?php if ($v['status'] == 1): ?>
+                        <td><small>
+                            <?php if ($v['status'] == ORDER_NORMAL): ?>
                             未确认
-                            <?php elseif ($v['status'] == 0): ?>
+                            <?php elseif ($v['status'] == ORDER_INVALID): ?>
                             已取消
-                            <?php else: ?>
+                            <?php else: /*ORDER_CONFIRM*/?>
                             已确认
                             <?php endif;?>,
                             <?php if ($v['parent_id'] == 0): ?>
                             未拆单
-                            <?php else: ?>
-                            已拆单
+                            <?php elseif($v['parent_id']>0):?>
+                                已拆分(子)
+                            <?php else:?>
+                                已拆分(父)
                             <?php endif;?>
-                        </td>
+                        </small></td>
                         <td><?php echo $v['picking_status'] ? '已配货' : '未配货';?></td>
                         <td>
                             <a href="/administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"/></a>

@@ -81,7 +81,7 @@ mb_internal_encoding('UTF-8');
  * as this file.
  *
  */
-$system_path = '../system';
+$system_path = dirname(__DIR__).DIRECTORY_SEPARATOR."system";//'G:/wamp/www/wunxin/system';
 
 /*
  * ---------------------------------------------------------------
@@ -97,7 +97,7 @@ $system_path = '../system';
  * NO TRAILING SLASH!
  *
  */
-$application_folder = '../application';
+$application_folder = dirname(__DIR__).DIRECTORY_SEPARATOR."application";//'G:/wamp/www/wunxin/application';
 
 /*
  * --------------------------------------------------------------------
