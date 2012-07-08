@@ -46,24 +46,24 @@
                     <tr>
                         <td width="19%" align="right">邮箱：</td>
                         <td width="37%"><label>
-                            <input name="username" type="text" class="input5" id="username_id" onblur="user.checkUserExist()"/>
+                            <input name="username" type="text" class="input5" id="username_id" onblur="user.checkUserExist()" onkeydown="user.checkRegisterIsSubmit(event);"/>
                         </label></td>
                         <td width="44%"><span class="txi" id="username_notice_id">请输入用户名</span></td>
                         <!-- <td width="44%"><span class="mistake">您输入的邮件地址格式不正确</span></td> -->
                     </tr>
                     <tr>
                         <td align="right">密码：</td>
-                        <td><input name="password" type="password" class="input5" id="password_id" onblur="user.checkPassWord()"/></td>
+                        <td><input name="password" type="password" class="input5" id="password_id" onblur="user.checkPassWord()" onkeydown="user.checkRegisterIsSubmit(event);"/></td>
                         <td><span class="txi" id="password_notice_id">密码是6位以上的字母或数字</span></td>
                     </tr>
                     <tr>
                         <td align="right">重复密码：</td>
-                        <td><input name="repassword" type="password" class="input5" id="repassword_id" onblur="user.checkRePassWord()"/></td>
+                        <td><input name="repassword" type="password" class="input5" id="repassword_id" onblur="user.checkRePassWord()" onkeydown="user.checkRegisterIsSubmit(event);"/></td>
                         <td><span class="txi" id="repassword_notice_id">请重复输入密码</span></td>
                     </tr>
                     <tr>
                         <td align="right">验证码：</td>
-                        <td><input name="verify_code" type="text" class="input5" id="verify_code_id" onblur="user.checkVerifyCode();"/></td>
+                        <td><input name="verify_code" type="text" class="input5" id="verify_code_id" onblur="user.checkVerifyCode();" onkeydown="user.checkRegisterIsSubmit(event);"/></td>
                         <td><span class="txi" id="verify_code_notice_id">请输入验证码</span></td>
                     </tr>
                     <tr>

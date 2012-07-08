@@ -77,7 +77,7 @@ cart.init = function ()
         '<div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div>' ;
     html += '<div class="post-btn">';
     html += '<a href="javascript:void(0);" onclick="wx.goToBack()";><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
-    html += '<a href="javascript:void(0);" onclick="wx.isLogin()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
+    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
     html += '</div>';
     html += '</td>';
     html += '</tr></table>';
@@ -211,6 +211,16 @@ cart.emptyCart = function ()
     wx.ajax(url, '');
 
     cart.init();
+}
+
+//提交订单至填写订单核对信息页面
+cart.goToOrderConfirm = function ()
+{
+    if (!wx.isLogin()) {
+        return false;
+    }
+
+    wx.goToUrl('order/order/');
 }
 
 

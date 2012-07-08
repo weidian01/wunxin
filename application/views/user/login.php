@@ -38,14 +38,14 @@
                     <tr>
                         <td width="19%" align="right">用户名：</td>
                         <td width="37%"><label>
-                            <input name="username" type="text" class="input5" id="username_id" onblur="user.checkUserName()" maxlength="32"/>
+                            <input name="username" type="text" class="input5" id="username_id" onblur="user.checkUserName()" maxlength="32" onkeydown="user.checkLoginIsSubmit(event)"/>
                         </label></td>
                         <td width="44%"><span class="txi" id="username_notice_id">请输入用户名</span></td>
                         <!-- <td width="44%"><span class="mistake" id="username_notice_id">请输入用户名</span></td> -->
                     </tr>
                     <tr>
                         <td align="right">密&nbsp;&nbsp;&nbsp;&nbsp;码：</td>
-                        <td><input name="password" type="password" class="input5" id="password_id" onblur="user.checkPassWord()" maxlength="32"/></td>
+                        <td><input name="password" type="password" class="input5" id="password_id" onblur="user.checkPassWord()" onkeydown="user.checkLoginIsSubmit(event)" maxlength="32"/></td>
                         <td><span class="txi" id="password_notice_id">请输入密码</span></td>
                     </tr>
                     <!--

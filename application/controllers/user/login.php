@@ -108,10 +108,10 @@ class login extends MY_Controller
 
     public function getUserInfo ()
     {
-        $response = error(10000);
+        $response = error(10009);
 
         if ($this->isLogin()) {
-            $response = error(10009);
+            $response = error(10000);
             $response['user_info'] = $this->uInfo;
         }
 
