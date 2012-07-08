@@ -349,7 +349,20 @@ wx.isLogin = function ()
     return false;
 }
 
+//跳转到某个地址
+wx.goToUrl = function (url)
+{
+    url = wx.base_url+url;
 
+    /*
+    if (wx.isUrl(url) ) {
+        alert ('不是一个正确的URL地址!');
+        return false;
+    }
+    //*/
+
+    window.location.href = url;
+}
 
 
 

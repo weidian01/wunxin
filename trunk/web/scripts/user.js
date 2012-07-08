@@ -76,6 +76,13 @@ user.checkPassWord = function ()
     return passWord;
 }
 
+user.checkLoginIsSubmit = function (e)
+{
+    if (e.keyCode == 13) {
+        user.submitLoginForm();
+    }
+}
+
 //提交登陆表单
 user.submitLoginForm = function ()
 {
@@ -205,7 +212,15 @@ user.checkUserExist = function ()
 
 }
 
-//登陆表彰提交
+//检测注册是否提交
+user.checkRegisterIsSubmit = function (e)
+{
+    if (e.keyCode == 13) {
+        user.submitRegisterForm();
+    }
+}
+
+//注册表单提交
 user.submitRegisterForm = function ()
 {
     var source = document.getElementById('source_id').value;
@@ -231,7 +246,7 @@ user.submitRegisterForm = function ()
     var data = wx.ajax(url, param);
 
     if (data.error == '10034') {
-        window.location.href=data.redirect_url;
+        window.location.href = data.redirect_url;
     }
 
     $('#message_id').html(data.msg);

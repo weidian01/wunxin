@@ -419,7 +419,6 @@ function syinfo(a, b)
         dsy.style.display = "";
         dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
         dsc.style.backgroundPosition = "0px -179px";
-
     }
     else {
         dsy.style.display = "none";
