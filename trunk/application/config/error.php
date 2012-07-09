@@ -106,6 +106,10 @@ $error[30006] = array('error' => '30006', 'msg' => '删除发票成功', 'code' 
 $error[30007] = array('error' => '30007', 'msg' => '删除发票失败', 'code' => 'delete_invoice_failure');
 $error[30008] = array('error' => '30008', 'msg' => '删除发票参数不全', 'code' => 'delete_invoice_parameter_failure');
 
+$error[30009] = array('error' => '30009', 'msg' => '保存收货地址成功', 'code' => 'save_recent_address_success');
+$error[30010] = array('error' => '30010', 'msg' => '保存收货地址失败', 'code' => 'save_recent_address_failure');
+$error[30011] = array('error' => '30011', 'msg' => '保存收货地址参数不全', 'code' => 'save_recent_address_parameter_failure');
+
 
 
 /**
@@ -222,8 +226,12 @@ $error[70010] = array('error' => '70010', 'msg' => '退订邮件列表参数不�
 $error[99001] = array('error' => '99001', 'msg' => '添加系统建议与意见成功', 'code' => 'add_system_proposal_success');
 $error[99002] = array('error' => '99002', 'msg' => '添加系统建议与意见失败', 'code' => 'add_system_proposal_failure');
 $error[99003] = array('error' => '99003', 'msg' => '添加系统建议与意见参数不全', 'code' => 'add_system_proposal_parameter_failure');
+$error[99004] = array('error' => '99004', 'msg' => '参数为空', 'code' => 'parameter_failure');
+$error[99005] = array('error' => '99005', 'msg' => '获取成功', 'code' => 'get_success');
 
 $error[99999] = array('error' => '99999', 'msg' => '未知错误', 'code' => 'unknown_error');
+
+
 
 
 
