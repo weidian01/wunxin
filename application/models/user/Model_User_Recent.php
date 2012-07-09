@@ -28,6 +28,7 @@ class Model_User_Recent extends MY_Model
             'zipcode' => $addrInfo['zipcode'],
             'phone_num' => $addrInfo['phone_num'],
             'call_num' => $addrInfo['call_num'],
+            'email' => $addrInfo['email'],
             'default_address' => 1,
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );

@@ -364,6 +364,17 @@ wx.goToUrl = function (url)
     window.location.href = url;
 }
 
+//让页面重新加载
+wx.pageReload = function (time)
+{
+    if (time) {
+        time = time * 1000;
+        setTimeout('window.location.reload()', time);
+    } else {
+        window.location.reload();
+    }
+}
+
 
 
 

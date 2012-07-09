@@ -23,6 +23,7 @@ $(document).ready(function(){
 </head>
 <body>
 <?php include '/../header.php';?>
+<form action="/order/order/submit/" method="POST">
 <div class="box pad8" style="overflow:hidden;">
   <div class="process">
     <ul>
@@ -33,65 +34,81 @@ $(document).ready(function(){
   </div>
   <div class="other-shopping">
     <div class="tit">收获人信息：&nbsp;&nbsp;<span onclick="editorder('edit-cong','cong')">[修改]</span></div>
-    <div class="consignee" id="cong">陈小妮<span style="padding-left:20px;"></span>北京,北京市,海淀区,中关村东路18号财智C1806<span style="padding-left:20px;"></span>100083<br/>
-      15100000000，    010-62000000</div>
+    <?php foreach ($recent_data as $v) {?>
+        <?php if ($v['default_address']) {?>
+    <div class="consignee" id="cong">
+        <?php echo $v['recent_name']; ?><span style="padding-left:20px;"></span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
+        <span style="padding-left:20px;"></span><?php echo $v['zipcode'];?><br/>
+        <?php echo $v['phone_num'];?>，    <?php echo $v['call_num'];?>
+    </div>
+        <?php }?>
+    <?php }?>
     <div class="consignee" id="edit-cong" style="display:none;">
-      <div class="consigneeList"> <a href="javascript:void(0);"><span class="xzradio">
-        <input name="" type="radio" value="" />
-        </span><span>陈小妮</span><span>北京,北京市,海淀区,中关村东路18号财智c1806</span><span>15100000000</span><span>010-62222000000</span></a> <a href="javascript:void(0);"><span class="xzradio">
-        <input name="" type="radio" value="" />
-        </span><span>陈小妮</span><span>北京,北京市,海淀区,中关村东路18号财智c1806</span><span>15100000000</span><span>010-62222000000</span></a> </div>
-      <div class="address">
-        <input name="" type="radio" value="" checked="checked"/>
-        添加新地址</div>
-      <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <div class="consigneeList">
+          <?php foreach ($recent_data as $rdv) {?>
+          <a href="javascript:void(0);">
+              <span class="xzradio"> <input name="address_id" type="radio" value="<?php echo $rdv['address_id'];?>" /> </span>
+              <span><?php echo $rdv['recent_name'];?></span><span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
+              </span><span><?php echo $rdv['phone_num'];?></span><span><?php echo $rdv['call_num'];?></span>
+          </a>
+          <?php }?>
+          <a href="javascript:void(0);" onclick="order.layerSwitch()">
+            <span class="xzradio"> <input name="address_id" type="radio" value="" /> </span>
+            <span>添加新地址</span>
+          </a>
+      </div>
+      <!--<div class="address"> <input name="" type="radio" value="" checked="checked"/> 添加新地址</div>-->
+      <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0" style="display: none;" id="new_address_id">
         <tr>
           <td width="10%" align="right"><span class="font10">*</span> 收货人姓名：</td>
-          <td width="90%"><input name="textfield" type="text" class="input4" id="textfield" />
-            <span class="font2">请填写您的真实姓名</span></td>
+          <td width="90%"><input name="recent_name" type="text" class="input4" id="recent_name_id"/>
+            <span class="font2" id="recent_name_notice_id">请填写您的真实姓名</span></td>
         </tr>
         <tr>
           <td width="10%" align="right"><span class="font10">*</span> 省市：</td>
-          <td width="90%"><select name="select" id="select">
-              <option>河北省</option>
+          <td width="90%">
+              <select name="select" id="province_id" onchange="order.changeProvince(this.value)">
+                  <?php foreach ($province_data as $pv) {?>
+                  <option value="<?php echo $pv['id'];?>"><?php echo $pv['name'];?></option>
+                  <?php }?>
             </select>
             &nbsp;&nbsp;
-            <select name="">
-              <option>石家庄市</option>
+            <select name="city" id="city_id" onchange="order.changeCity(this.value)">
+              <option value="0">市</option>
             </select>
             &nbsp;&nbsp;
-            <select name="">
-              <option>平山区</option>
+            <select name="area" id="area_id">
+              <option value="0">县/区</option>
             </select>
             &nbsp;&nbsp; <span class="font2">
-            <input name="textfield7" type="text" class="input1" id="textfield7" value="风飞路人民大厦15楼1502" />
-            请填写您的真实姓名</span></td>
+            <input name="detail_address" type="text" class="input1" id="detail_address_id" value="" />
+            <span id="address_notice_id">请填写您的收货地址</span></span></td>
         </tr>
         <tr>
           <td align="right"><span class="font10">*</span>手机号码：</td>
-          <td><input name="textfield2" type="text" class="input4" id="textfield2" value="13500250000" />
-            <span class="font2">请填写正确手机号码，便于接收发货和收货通知</span></td>
+          <td><input name="phone_num" type="text" class="input4" id="phone_num_id" value="13500250000" />
+            <span class="font2" id="phone_num_notice_id">请填写正确手机号码，便于接收发货和收货通知</span></td>
         </tr>
         <tr>
           <td align="right">固定电话：</td>
-          <td><input name="textfield3" type="text" class="input2" id="textfield3" value="0532" />
+          <td><input name="area_num" type="text" class="input2" id="area_num_id" value="0532" />
             -
-            <input name="textfield4" type="text" class="input3" id="textfield4" value="88562344" />
+            <input name="call_num" type="text" class="input3" id="call_num_id" value="88562344" />
             <span class="font2">如010-12345678，固定电话和手机号码请至少填写一项</span></td>
         </tr>
         <tr>
           <td align="right"><span class="font10">*</span> 电子邮件：</td>
-          <td><input name="textfield5" type="text" class="input4" id="textfield5" />
-            <span class="font2">用于接收订单提醒邮件，便于您及时了解订单状态</span></td>
+          <td><input name="email" type="text" class="input4" id="email_id" />
+            <span class="font2" id="email_notice_id">用于接收订单提醒邮件，便于您及时了解订单状态</span></td>
         </tr>
         <tr>
           <td align="right"><span class="font10">*</span> 邮编：</td>
-          <td><input name="textfield6" type="text" class="input4" id="textfield6" />
-            <span class="font2">请填写准确的邮编，以便商品能尽快送达</span></td>
+          <td><input name="post_code" type="text" class="input4" id="post_code_id" />
+            <span class="font2" id="post_code_notice_id">建议邮编：<span id="proposal_post_code_id"></span></span></td>
         </tr>
         <tr>
           <td height="50" align="right">&nbsp;</td>
-          <td><a class="btn-save" href="#">保存并送到此地址</a></td>
+          <td><a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress()">保存并送到此地址</a></td>
         </tr>
       </table>
     </div>
@@ -137,144 +154,98 @@ $(document).ready(function(){
           <td colspan="2">
           <div class="payment-c">
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="onlinepay-b" value="" name="bank"/>
-          </div>
+          <!--<div class="pradio"> <input type="radio" id="onlinepay-b" value="" name="bank"/> </div>-->
           <div class="bankpic"><label for="onlinepay-b"><span class="bankimg" id="onlinepay">在线支付</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" value="" id="icbc-b" name="bank" />
-          </div>
+          <!--<div class="pradio"> <input type="radio" value="" id="icbc-b" name="bank" /> </div>-->
           <div class="bankpic"><label for="icbc-b"><span class="bankimg" id="icbc">中国工商银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="cmb-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="cmb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="cmb-b"><span class="bankimg" id="cmb">招商银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" value="" id="boc-b" name="bank" />
-          </div>
+          <!--<div class="pradio"> <input type="radio" value="" id="boc-b" name="bank" /> </div>-->
           <div class="bankpic"><label for="boc-b"><span class="bankimg" id="boc">中国银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="ccb-b" value="" name="bank" />
-          </div>
+          <!--<div class="pradio"> <input type="radio" id="ccb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="ccb-b"><span class="bankimg" id="ccb">中国建设银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="abc-b" value="" name="bank" />
-          </div>
+          <!--<div class="pradio"> <input type="radio" id="abc-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="abc-b"><span class="bankimg" id="abc">中国农业银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="cgb-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="cgb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="cgb-b"><span class="bankimg" id="cgb">广发银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="cmbc-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="cmbc-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="cmbc-b"><span class="bankimg" id="cmbc">中国民生银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="cib-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="cib-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="cib-b"><span class="bankimg" id="cib">兴业银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="bob-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="bob-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="bob-b"><span class="bankimg" id="bob">北京银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="bjrcb-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="bjrcb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="bjrcb-b"><span class="bankimg" id="bjrcb">北京农村商业银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="psbc-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="psbc-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="psbc-b"><span class="bankimg" id="psbc">中国邮政储蓄银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="bcomm-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="bcomm-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="bcomm-b"><span class="bankimg" id="bcomm">交通银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="spdb-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="spdb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="spdb-b"><span class="bankimg" id="spdb">浦发银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="sdb-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="sdb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="sdb-b"><span class="bankimg" id="sdb">深圳发展银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="cebb-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="cebb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="cebb-b"><span class="bankimg" id="cebb">中国光大银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="pingan-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="pingan-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="pingan-b"><span class="bankimg" id="pingan">平安银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="ecitic-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="ecitic-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="ecitic-b"><span class="bankimg" id="ecitic">中信银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="hzb-b" value="" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="hzb-b" value="" name="bank" /> </div>-->
           <div class="bankpic"><label for="hzb-b"><span class="bankimg" id="hzb">杭州银行</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input type="radio" id="" value="nbcb-b" name="bank" />
-          </div>
+            <!--<div class="pradio"> <input type="radio" id="" value="nbcb-b" name="bank" /> </div>-->
           <div class="bankpic"><label for="nbcb-b"><span class="bankimg" id="nbcb">宁波银行</span></label></div>
         </div>
       </div>
-            <p>择支付平台</p>
+            <p>选择支付平台</p>
             <div class="payment-c">
         <div class="payment-b">
-          <div class="pradio">
-            <input name="bank" id="alipay-b" type="radio" value=""/>
-          </div>
+            <!--<div class="pradio"> <input name="bank" id="alipay-b" type="radio" value=""/> </div>-->
           <div class="bankpic"><label for="alipay-b"><span class="bankimg" id="alipay">支付宝</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input name="bank" id="cmpay-b" type="radio" value="" />
-          </div>
+            <!--<div class="pradio"> <input name="bank" id="cmpay-b" type="radio" value="" /> </div>-->
           <div class="bankpic"><label for="cmpay-b"><span class="bankimg" id="cmpay">手机支付</span></label></div>
         </div>
         <div class="payment-b">
-          <div class="pradio">
-            <input name="bank" id="tenpay-b" type="radio" value="" />
-          </div>
+            <!--<div class="pradio"> <input name="bank" id="tenpay-b" type="radio" value="" /> </div>-->
           <div class="bankpic"><label for="tenpay-b"><span class="bankimg" id="tenpay">财付通</span></label></div>
         </div>
       </div>
@@ -336,15 +307,18 @@ $(document).ready(function(){
           <td width="10%" align="center"><span class="font11">赠送积分</span></td>
           <td width="12%" align="center"><span class="font11">小计</span></td>
         </tr>
+          <?php foreach ($cart_info as $cv) {?>
         <tr>
-          <td width="7%"><img src="/images/pic_07.jpg" width="52" height="66" /></td>
-          <td width="49%"><a class="gn2" href="#">Bessie OL气质荷叶边条纹短裙 </a><br/>
-            <span class="font2">GZ26052909-S</span></td>
-          <td align="center">39.00</td>
-          <td align="center">1件</td>
-          <td align="center">--</td>
-          <td align="center"><span class="font6">39.00</span></td>
+          <td width="7%"><img src="<?php echo base_url().'upload/product/'.$cv['product_img'];?>" width="52" height="66" /></td>
+          <td width="49%"><a class="gn2" href="#"><?php echo $cv['pname'];?></a><br/>
+            <!-- <span class="font2">GZ26052909-S</span> --></td>
+          <td align="center"><?php echo $cv['product_price'];?></td>
+          <td align="center"><?php echo $cv['product_num'];?></td>
+          <td align="center"><?php echo $cv['product_price'] * $cv['product_num'];?></td>
+          <td align="center"><span class="font6"><?php echo $cv['product_price'] * $cv['product_num'];?></span></td>
         </tr>
+          <?php }?>
+        <!--
         <tr>
           <td><img src="/images/pic_10.jpg" width="52" height="67" /></td>
           <td><a class="gn2" href="#">Bessie OL气质荷叶边条纹短裙 </a><br/>
@@ -363,11 +337,16 @@ $(document).ready(function(){
           <td align="center">--</td>
           <td align="center"><span class="font6">256.00</span></td>
         </tr>
+        -->
       </table>
       <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
         <tr>
           <td width="21%"><div class="sy"><span class="invo" id="invos" onclick="syinfo('syinv','invos')"></span></div></td>
-          <td width="79%" align="right">产品数量总计：3&nbsp;&nbsp;&nbsp;&nbsp;赠送积分总计：147&nbsp;&nbsp;&nbsp;&nbsp;花费积分总计：0&nbsp;&nbsp;&nbsp;&nbsp;商品金额总计：￥422.00</td>
+          <td width="79%" align="right">
+              产品数量总计：<?php echo $total_num;?>&nbsp;&nbsp;&nbsp;&nbsp;
+              赠送积分总计：<?php echo $total_price;?>&nbsp;&nbsp;&nbsp;&nbsp;
+              花费积分总计：0&nbsp;&nbsp;&nbsp;&nbsp;
+              商品金额总计：￥<?php echo $total_price;?></td>
         </tr>
       </table>
       <div class="order-info">
@@ -376,40 +355,46 @@ $(document).ready(function(){
             <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="19%" align="right">发票抬头：</td>
-                <td width="81%"><input class="input1" type="text" name="textfield8" id="textfield8" /></td>
+                <td width="81%"><input class="input1" type="text" name="invoice_payable" id="textfield8" /></td>
               </tr>
               <tr>
                 <td align="right">发票类型：</td>
-                <td><select name="select2" id="select2">
-                    <option>发票类型一</option>
-                    <option>发票类型二</option>
+                <td><select name="invoice_content" id="select2">
+                    <option value="1">服装</option>
+                    <option value="2">其他</option>
                   </select></td>
               </tr>
             </table>
           </div>
           <div class="sy2"><span class="ordermark" id="omk" onclick="marksinfo('syinv2','omk')"></span></div>
           <div class="sybox" id="syinv2" style="display:none;">
-            <textarea class="tta" name="" rows="6"></textarea>
+            <textarea class="tta" name="annotated" rows="6"></textarea>
             <p style="padding-top:8px;"><span class="font2">声明：备注中的有关收货人信息、支付方式、配送方式、发票信息等购买要求一律以上面的选择为准，备注无效。</span><br/>
+                <!--
               是否打印价格：
               <input name="" type="radio" value="" />
               是
               <input name="" type="radio" value="" />
               否 （如送朋友的商品可不打印价格哦）</p>
+              -->
           </div>
         </div>
-        <div class="order-sum">运费：￥0.00<br/>
+        <div class="order-sum">运费：￥0<br/>
           礼品卡冲抵：￥0.00<br/>
           虚拟账户余额冲抵：￥0.00
-          <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥422.00</span></div>
+          <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥<?php echo $total_price;?></span></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="topost"><a href="#"><img src="/images/post-order.gif" width="150" height="41" alt="提交订单" /></a></div>
+  <div class="topost">
+      <a href="#"><img src="/images/post-order.gif" width="150" height="41" alt="提交订单" /></a>
+  </div>
 </div>
+</form>
 <?php include '/../footer.php';?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="/scripts/order.js"></SCRIPT>
 <script type="text/javascript">
 function syinfo(a, b)
 {
