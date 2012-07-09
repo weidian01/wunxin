@@ -73,13 +73,6 @@ order.layerSwitch = function ()
     $('#new_address_id').show();
 }
 
-//检查收货人名称
-order.checkRecentName = function ()
-{
-    var recentName = document.getElementById('recent_name_id').value;
-
-}
-
 //保存收货地址
 order.saveAddress = function ()
 {
@@ -93,6 +86,8 @@ order.saveAddress = function ()
     var callNum = document.getElementById('call_num_id').value;
     var email = document.getElementById('email_id').value;
     var postCode = document.getElementById('post_code_id').value;
+    var addressId = document.getElementById('aid_id').value;
+    addressId = addressId ? addressId : 0;
 
     $('#recent_name_notice_id').html('请填写收货人姓名!');
     if (!wx.isEmpty(recentName)) {
@@ -125,12 +120,56 @@ order.saveAddress = function ()
     }
 
     var url = 'order/order/saveAddress';
-    var param = 'recent_name='+ recentName+'&province='+ province+'&city='+ city+'&area='+ area+
+    var param = 'recent_name='+ recentName+'&province='+ province+'&city='+ city+'&area='+ area+'&address_id='+addressId+
         '&detail_address='+ detailAddress+'&phone_num='+ phoneNum+'&area_num='+ areaNum+'&call_num='+callNum+'&email='+ email+'&post_code='+ postCode;
     var data = wx.ajax(url, param);
 
     if (data.error == '30009') {
         wx.pageReload();
     }
+
+    if (data.error == '30010') {
+        alert(data.msg);
+    }
+
+    if (data.error == '30011') {
+        alert(data.msg);
+    }
+
+    if (data.error == '30012') {
+        alert(data.msg);
+    }
     //saveAddress
+}
+
+wx.editAddress = function (aId)
+{
+
+    var url = 'order/order/getOneAddress';
+    var param = 'address_id='+ aId;
+    var data = wx.ajax(url, param);
+
+    var str = data.call_num;
+    var callNum = str.split('-');
+console.log(callNum);
+    $('#edit_address_id').html('<br/>'+data.province+', '+data.city+', '+data.area);
+    document.getElementById('recent_name_id').value = data.recent_name;
+    document.getElementById('detail_address_id').value = data.detail_address;
+    document.getElementById('phone_num_id').value = data.phone_num;
+    document.getElementById('area_num_id').value = wx.isEmpty(callNum[0]) ? callNum[0] : '';
+    document.getElementById('call_num_id').value = wx.isEmpty(callNum[1]) ? callNum[1] : '';
+    document.getElementById('email_id').value = data.email;
+    document.getElementById('post_code_id').value = data.zipcode;
+    document.getElementById('aid_id').value = data.address_id;
+    order.layerSwitch();
+}
+
+//删除收货地址
+wx.deleteAddress = function (aId)
+{
+    var url = 'order/order/deleteAddress';
+    var param = 'address_id='+ aId;
+    var data = wx.ajax(url, param);
+
+    $('#address_'+aId).remove();
 }

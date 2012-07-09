@@ -109,6 +109,7 @@ $error[30008] = array('error' => '30008', 'msg' => '删除发票参数不全', '
 $error[30009] = array('error' => '30009', 'msg' => '保存收货地址成功', 'code' => 'save_recent_address_success');
 $error[30010] = array('error' => '30010', 'msg' => '保存收货地址失败', 'code' => 'save_recent_address_failure');
 $error[30011] = array('error' => '30011', 'msg' => '保存收货地址参数不全', 'code' => 'save_recent_address_parameter_failure');
+$error[30012] = array('error' => '30012', 'msg' => '修改收货地址参失败', 'code' => 'save_recent_address_parameter_failure');
 
 
 

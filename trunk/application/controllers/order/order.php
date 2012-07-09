@@ -87,6 +87,16 @@ class order extends MY_Controller
         echo self::json_output($response);
     }
 
+    public function getOneAddress()
+    {
+        $aId = $this->input->get_post('address_id');
+
+        $this->load->model('user/Model_User_Recent', 'recent');
+        $data = $this->recent->getUserRecentAddressByAid($aId);
+
+        $this->json_output($data);
+    }
+
     /**
      * 保存地址信息
      */
@@ -101,6 +111,7 @@ class order extends MY_Controller
         $data['call_num'] = $this->input->get_post('area_num').'-'.$this->input->get_post('call_num');
         $data['email'] = $this->input->get_post('email');
         $data['zipcode'] = $this->input->get_post('post_code');
+        $addressId = $this->input->get_post('address_id');
 
         $response = error(30009);
 
@@ -118,15 +129,32 @@ class order extends MY_Controller
             $data['uid'] = $this->uInfo['uid'];
             $data['uname'] = $this->uInfo['uname'];
             $data['country'] = '中国';
+            $data['default_address'] = 1;
             $this->load->model('user/Model_User_Recent', 'recent');
-            $status = $this->recent->addUserRecipientAddress($data);
-            if (!$status) {
-                $response = error(30010);
-                break;
-            }
 
+            if ($addressId) {
+                $status = $this->recent->editRecentAddress($addressId, $data);
+                if (!$status) {
+                    $response = error(30012);
+                    break;
+                }
+            } else {
+                $status = $this->recent->addUserRecipientAddress($data);
+                if (!$status) {
+                    $response = error(30010);
+                    break;
+                }
+            }
         } while (false);
 
         $this->json_output($response);
+    }
+
+    public function deleteAddress()
+    {
+        $aId = $this->input->get_post('address_id');
+
+        $this->load->model('user/Model_User_Recent', 'recent');
+        $this->recent->deleteRecentAddress($aId);
     }
 }
