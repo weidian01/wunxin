@@ -13,7 +13,7 @@ class Product extends MY_Controller
      */
     public function productList()
     {
-
+        $this->load->view('product/product_list');
     }
 
     /**

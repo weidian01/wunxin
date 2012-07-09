@@ -46,10 +46,13 @@ $(document).ready(function(){
     <div class="consignee" id="edit-cong" style="display:none;">
       <div class="consigneeList">
           <?php foreach ($recent_data as $rdv) {?>
-          <a href="javascript:void(0);">
+          <a href="javascript:void(0);" id="address_<?php echo $rdv['address_id'];?>">
               <span class="xzradio"> <input name="address_id" type="radio" value="<?php echo $rdv['address_id'];?>" /> </span>
               <span><?php echo $rdv['recent_name'];?></span><span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
               </span><span><?php echo $rdv['phone_num'];?></span><span><?php echo $rdv['call_num'];?></span>
+
+              <span onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">编辑</span>
+              <span onclick="wx.deleteAddress(<?php echo $rdv['address_id'];?>)">删除</span>
           </a>
           <?php }?>
           <a href="javascript:void(0);" onclick="order.layerSwitch()">
@@ -57,6 +60,7 @@ $(document).ready(function(){
             <span>添加新地址</span>
           </a>
       </div>
+        <input type="hidden" name="aid" id="aid_id" value="0"/>
       <!--<div class="address"> <input name="" type="radio" value="" checked="checked"/> 添加新地址</div>-->
       <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0" style="display: none;" id="new_address_id">
         <tr>
@@ -80,20 +84,20 @@ $(document).ready(function(){
             <select name="area" id="area_id">
               <option value="0">县/区</option>
             </select>
-            &nbsp;&nbsp; <span class="font2">
+            &nbsp;&nbsp; <span class="font2"> <span id="edit_address_id"></span>
             <input name="detail_address" type="text" class="input1" id="detail_address_id" value="" />
             <span id="address_notice_id">请填写您的收货地址</span></span></td>
         </tr>
         <tr>
           <td align="right"><span class="font10">*</span>手机号码：</td>
-          <td><input name="phone_num" type="text" class="input4" id="phone_num_id" value="13500250000" />
+          <td><input name="phone_num" type="text" class="input4" id="phone_num_id" value="" />
             <span class="font2" id="phone_num_notice_id">请填写正确手机号码，便于接收发货和收货通知</span></td>
         </tr>
         <tr>
           <td align="right">固定电话：</td>
-          <td><input name="area_num" type="text" class="input2" id="area_num_id" value="0532" />
+          <td><input name="area_num" type="text" class="input2" id="area_num_id" value="" />
             -
-            <input name="call_num" type="text" class="input3" id="call_num_id" value="88562344" />
+            <input name="call_num" type="text" class="input3" id="call_num_id" value="" />
             <span class="font2">如010-12345678，固定电话和手机号码请至少填写一项</span></td>
         </tr>
         <tr>

@@ -56,8 +56,11 @@ class Model_User_Recent extends MY_Model
             'zipcode' => $aInfo['zipcode'],
             'phone_num' => $aInfo['phone_num'],
             'call_num' => $aInfo['call_num'],
+            'email' => $aInfo['email'],
+            'default_address' => $aInfo['default_address'],
         );
 
+        $this->updateUserDefaultAddress($aInfo['uid']);
         $this->db->where('address_id', $aId);
         return $this->db->update('user_recent_address', $data);
     }
