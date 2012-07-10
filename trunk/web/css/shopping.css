@@ -79,13 +79,14 @@ input.gnum{ border:1px solid #ccc; height:16px; line-height:16px; width:30px; te
 .topay{ padding:0px 15px; text-align:right;}
 .consignee{ padding:15px 20px 15px 50px; line-height:25px;}
 .consigneeList{ border:1px solid #e3e3e3; overflow:hidden;}
-.consignee .consigneeList a{ display:block; line-height:30px; height:30px; border-bottom:1px solid #f6f6f6; text-decoration:none; cursor:pointer;}
-.consignee .consigneeList a:hover{ background-color:#f9fbfd;}
-.consignee .consigneeList a span{ display:block; float:left; height:30px; line-height:30px; padding:0px 20px 0px 0px;}
-.consignee .consigneeList a span.xzradio{ height:20px; padding:7px 10px 0px 10px; _padding:3px 10px 0px 10px;}
+.consignee .consigneeList label{ display:block; line-height:30px; height:30px; border-bottom:1px solid #f6f6f6; text-decoration:none; cursor:pointer;}
+.consignee .consigneeList label:hover{ background-color:#f9fbfd;}
+.consignee .consigneeList label span{ display:block; float:left; height:30px; line-height:30px; padding:0px 20px 0px 0px;}
+.consignee .consigneeList label span.xzradio{ height:20px; padding:7px 10px 0px 10px; _padding:3px 10px 0px 10px;}
 .address{ padding:10px 0px 6px 11px; border-bottom:1px dashed #ddd; margin-bottom:10px;}
 .other-shopping .tab1 tr td a.btn-save{ display:block; float:left; padding:4px 15px; line-height:20px; background-color:#a10000; color:#fff; font-size:14px; font-weight:bold; text-decoration:none;}
 .other-shopping .tab2 tr td a.btn-save{ display:block; float:left; padding:4px 15px; line-height:20px; background-color:#a10000; color:#fff; font-size:14px; font-weight:bold; text-decoration:none;}
+.other-shopping .btn-save{ display:block; float:left; padding:4px 15px; line-height:20px; background-color:#a10000; color:#fff; font-size:14px; font-weight:bold; text-decoration:none;}
 .borders{ border-top:1px solid #eee;}
 .paybox{ padding:15px 10px 15px 40px;}
 .postal{ line-height:20px; padding:10px 0 0 0;}

@@ -33,7 +33,7 @@ $(document).ready(function(){
     </ul>
   </div>
   <div class="other-shopping">
-    <div class="tit">收获人信息：&nbsp;&nbsp;<span onclick="editorder('edit-cong','cong')">[修改]</span></div>
+    <div class="tit">收获人信息：&nbsp;&nbsp;<span onclick="editorder('edit-cong','cong', this)" id="modify_text_id">[修改]</span></div>
     <?php foreach ($recent_data as $v) {?>
         <?php if ($v['default_address']) {?>
     <div class="consignee" id="cong">
@@ -46,19 +46,19 @@ $(document).ready(function(){
     <div class="consignee" id="edit-cong" style="display:none;">
       <div class="consigneeList">
           <?php foreach ($recent_data as $rdv) {?>
-          <a href="javascript:void(0);" id="address_<?php echo $rdv['address_id'];?>">
+          <label id="address_<?php echo $rdv['address_id'];?>" onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">
               <span class="xzradio"> <input name="address_id" type="radio" value="<?php echo $rdv['address_id'];?>" /> </span>
               <span><?php echo $rdv['recent_name'];?></span><span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
               </span><span><?php echo $rdv['phone_num'];?></span><span><?php echo $rdv['call_num'];?></span>
 
-              <span onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">编辑</span>
+              <!--<span onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">编辑</span>-->
               <span onclick="wx.deleteAddress(<?php echo $rdv['address_id'];?>)">删除</span>
-          </a>
+          </label>
           <?php }?>
-          <a href="javascript:void(0);" onclick="order.layerSwitch()">
+          <label onclick="order.layerSwitch()">
             <span class="xzradio"> <input name="address_id" type="radio" value="" /> </span>
             <span>添加新地址</span>
-          </a>
+          </label>
       </div>
         <input type="hidden" name="aid" id="aid_id" value="0"/>
       <!--<div class="address"> <input name="" type="radio" value="" checked="checked"/> 添加新地址</div>-->
@@ -110,13 +110,18 @@ $(document).ready(function(){
           <td><input name="post_code" type="text" class="input4" id="post_code_id" />
             <span class="font2" id="post_code_notice_id">建议邮编：<span id="proposal_post_code_id"></span></span></td>
         </tr>
+          <!--
         <tr>
           <td height="50" align="right">&nbsp;</td>
           <td><a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress()">保存并送到此地址</a></td>
         </tr>
+        -->
       </table>
+        <br/>
+        <a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress()">保存并送到此地址</a>
+        <br/>
     </div>
-    <div class="tit borders">支付及配送方式：&nbsp;&nbsp;<span onclick="editorder('pay-delivery2','pay-delivery1')">[修改]</span></div>
+    <div class="tit borders">支付及配送方式：&nbsp;&nbsp;<span onclick="editorder('pay-delivery2','pay-delivery1', this)">[修改]</span></div>
     <div class="consignee" id="pay-delivery1">
       <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -433,17 +438,18 @@ function marksinfo(a, b)
     }
 }
 
-function editorder(a, b)
+function editorder(a, b, t)
 {
     var ey = document.getElementById(a);
     var et = document.getElementById(b);
     if (ey.style.display == "none") {
         ey.style.display = "";
         et.style.display = "none";
-    }
-    else {
+        t.innerText = '[不保存关闭]';
+    } else {
         ey.style.display = "none";
         et.style.display = "";
+        t.innerText = '[修改]';
     }
 }
 </script>
