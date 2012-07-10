@@ -381,10 +381,9 @@
         </fieldset><br />
         <fieldset>
             <select name="ed_id" class="small-input">
-                <option value="option1">Send to...</option>
-                <option value="option2">Everyone</option>
-                <option value="option3">Admin</option>
-                <option value="option4">Jane Doe</option>
+                <?php foreach($express as $item):?>
+                <option value="<?=$item['ed_id']?>"><?=$item['name']?></option>
+                <?php endforeach;?>
             </select> <small>物流公司</small>
         </fieldset><br />
         <fieldset>
@@ -399,6 +398,7 @@
 <link rel="stylesheet" href="<?=config_item('static_url')?>css/impromptu.css" type="text/css" media="screen"/>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery-impromptu.4.0.min.js"></script>
 <script>
+
     function order_locking(order_sn)
     {
         $.ajax({
@@ -444,7 +444,7 @@
     function order_picking(order_sn)
     {
         $.prompt($("#messages").html(), {
-            callback:mycallbackform,
+            submit:mycallbackform,
             buttons:{ "提交":true, "取消":false },
             prefix:'jqismooth'
         });

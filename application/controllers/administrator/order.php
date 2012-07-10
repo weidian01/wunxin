@@ -127,6 +127,8 @@ class order extends MY_Controller
         $pInfo = $this->express->getPickingAndExpressCompanyByOrderSn($orderSn); //获取配货信息
         $uInfo = $this->user->getUserById($oInfo['uid']);
 
+        $this->load->model('order/Model_Order_Express', 'express');
+        $express = $this->express->getExpressCompany(100, 0);
 
         //echo '<pre>';print_r($oInfo);exit;
 
@@ -136,6 +138,7 @@ class order extends MY_Controller
             'return' => $returnInfo,
             'picking' => $pInfo,
             'userInfo' => $uInfo,
+            'express' => $express,
         );
 
         $this->load->view('/administrator/order/order_detail', $data);
