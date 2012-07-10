@@ -94,20 +94,21 @@ class Model_User_Recent extends MY_Model
 
     /**
      * 删除用户收货地址
+     *
      * @param $aId
      * @param $uid
      * @return boolean
      */
     public function deleteUserRecentAddress($aId, $uid)
     {
-        return $this->db->delete('user_recent_address', array('address_id' => $aId, 'uid' => $uid));
+        return $this->db->delete('user_recent_address', array('address_id' => $aId, 'uid' => $uid, 'default_address' => '0'));
     }
 
     /**
      * @name 更新用户全部收货地址不为默认
      *
      * @param $uid
-     * @return mixed
+     * @return boolean
      */
     private function updateUserDefaultAddress($uid)
     {
@@ -118,14 +119,13 @@ class Model_User_Recent extends MY_Model
         return $this->db->update('user_recent_address', $data);
     }
 
-
     /**
      * 获取用户收货地址列表
      *
      * @param $uId
      * @param int $limit
      * @param int $offset
-     * @return mixed
+     * @return null | array
      */
     public function getUserRecentAddressByUid($uId, $limit = 20, $offset = 0)
     {
@@ -151,10 +151,23 @@ class Model_User_Recent extends MY_Model
      * @name 获取收货地址 -- 通过地址ID
      *
      * @param $aid
+     * @param $uId
      * @return array
      */
-    public function getUserRecentAddressByAid($aid)
+    public function getUserRecentAddressByAid($aid, $uId)
     {
-        return $this->db->select('*')->get_where('user_recent_address', array('address_id' => $aid))->row_array();
+        return $this->db->select('*')->get_where('user_recent_address', array('address_id' => $aid, 'uid' => $uId))->row_array();
+    }
+
+    /**
+     * 获取用户默认地址
+     *
+     * @param $aid
+     * @param $uId
+     * @return array
+     */
+    public function getUserDefaultRecentAddressByaId($aid, $uId)
+    {
+        return $this->db->select('*')->get_where('user_recent_address', array('address_id' => $aid, 'uid' => $uId, 'default_address' => '1'))->row_array();
     }
 }

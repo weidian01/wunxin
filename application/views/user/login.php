@@ -6,7 +6,7 @@
     <title>万象网 -- 会员登陆</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/member.css" rel="stylesheet" type="text/css"/>
-    <SCRIPT type=text/javascript src="/scripts/jquery-1.4.2.min.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="/scripts/jquery.js"></SCRIPT>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="/script/iepng.js"></script>
     <script type="text/javascript">

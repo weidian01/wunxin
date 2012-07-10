@@ -86,7 +86,6 @@ input.gnum{ border:1px solid #ccc; height:16px; line-height:16px; width:30px; te
 .address{ padding:10px 0px 6px 11px; border-bottom:1px dashed #ddd; margin-bottom:10px;}
 .other-shopping .tab1 tr td a.btn-save{ display:block; float:left; padding:4px 15px; line-height:20px; background-color:#a10000; color:#fff; font-size:14px; font-weight:bold; text-decoration:none;}
 .other-shopping .tab2 tr td a.btn-save{ display:block; float:left; padding:4px 15px; line-height:20px; background-color:#a10000; color:#fff; font-size:14px; font-weight:bold; text-decoration:none;}
-.other-shopping .btn-save{ display:block; float:left; padding:4px 15px; line-height:20px; background-color:#a10000; color:#fff; font-size:14px; font-weight:bold; text-decoration:none;}
 .borders{ border-top:1px solid #eee;}
 .paybox{ padding:15px 10px 15px 40px;}
 .postal{ line-height:20px; padding:10px 0 0 0;}

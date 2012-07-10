@@ -5,7 +5,7 @@
     <title>我的购物车</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/shopping.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="/scripts/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="/scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -74,7 +74,7 @@
         <td colspan="5" style="border-bottom:1px solid #a5afc3;"><div class="gsum">产品数量总计：<span class="font1">3</span>&nbsp;&nbsp;&nbsp;&nbsp;赠送积分总计：<span class="font1">147</span>&nbsp;&nbsp;&nbsp;&nbsp;花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;商品金额总计：<span class="font1">422.00</span></div></td>
       </tr>
       <tr>
-        <td colspan="6"><div class="empty"><a href="#">清空购物车</a></div>
+        <td colspan="7"><div class="empty"><a href="#">清空购物车</a></div>
           <div class="post-btn"><a href="#"><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32" /></a>&nbsp;&nbsp;<a href="#"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算" /></a></div></td>
       </tr>
     </table>
