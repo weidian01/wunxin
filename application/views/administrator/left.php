@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="/css/reset.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="/css/invalid.css" type="text/css" media="screen"/>
-    <script type="text/javascript" src="/scripts/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.js?version=1.7.2"></script>
     <script type="text/javascript" src="/scripts/simpla.jquery.configuration.js"></script>
-    <script type="text/javascript" src="/scripts/facebox.js"></script>
+    <!--script type="text/javascript" src="/scripts/facebox.js"></script-->
     <script type="text/javascript" src="/scripts/jquery.wysiwyg.js"></script>
     <script language="javascript" type="text/javascript" src="/scripts/My97DatePicker/WdatePicker.js"></script>
 </head>
@@ -95,8 +95,7 @@
                 </li>
             </ul>
             <!-- End #main-nav -->
-            <div id="messages" style="display: none">
-                <!-- Messages are shown when a link with these attributes are clicked: href="#messages" rel="modal"  -->
+            <!--div id="messages" style="display: none">
                 <h3>3 Messages</h3>
 
                 <p><strong>17th May 2009</strong> by Admin<br/>
@@ -129,7 +128,7 @@
                         <input class="button" type="submit" value="Send"/>
                     </fieldset>
                 </form>
-            </div>
+            </div-->
             <!-- End #messages -->
         </div>
     </div>

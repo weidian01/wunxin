@@ -46,11 +46,10 @@
     </li>
     <?php if($data['parent_id'] > 0):?>
     <li> <?php if($data['picking_status']==0):?>
-        <a class="button" onclick="order_picking(<?=$data['order_sn']?>)" href="javascript:;">配货</a>
+        <a class="button" onclick="order_picking(<?=$data['order_sn']?>)">配货</a>
         <?php elseif($data['picking_status']==1):?>
         配货中<?php else:?>配货完成<?php endif;?>
         / <a href="<?=site_url('administrator/order_picking/search')?>?keyword=<?=$data['order_sn']?>&s_type=2">查看</a></li>
-    <!--li><a class="button" href="#">发货</a> / <a href="#">查看</a></li-->
         <?php endif;?>
 </ol><br><br>
 <!-- End .shortcut-buttons-set -->
@@ -373,9 +372,32 @@
 </div>
 <!-- End #main-content -->
 </div>
+
+<div id="messages" style="display:none">
+    <h3>创建配货单</h3>
+    <form action="#" method="post">
+        <fieldset>
+        <input class="text-input small-input" type="text" name="logistics_orders_sn"> <small>物流订单号</small>
+        </fieldset><br />
+        <fieldset>
+            <select name="ed_id" class="small-input">
+                <option value="option1">Send to...</option>
+                <option value="option2">Everyone</option>
+                <option value="option3">Admin</option>
+                <option value="option4">Jane Doe</option>
+            </select> <small>物流公司</small>
+        </fieldset><br />
+        <fieldset>
+            <textarea class="textarea" name="descr" cols="79" rows="5" onclick="if(this.innerHTML === '管理员备注') this.innerHTML = '';">管理员备注</textarea>
+        </fieldset>
+    </form>
+</div>
+
 </body>
 <!-- Download From www.exet.tk-->
 </html>
+<link rel="stylesheet" href="<?=config_item('static_url')?>css/impromptu.css" type="text/css" media="screen"/>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery-impromptu.4.0.min.js"></script>
 <script>
     function order_locking(order_sn)
     {
@@ -421,23 +443,33 @@
 
     function order_picking(order_sn)
     {
+        $.prompt($("#messages").html(), {
+            callback:mycallbackform,
+            buttons:{ "提交":true, "取消":false },
+            prefix:'jqismooth'
+        });
+
+        function mycallbackform(e, v, m, f) {
+            if (v == false)
+                return;
+
             $.ajax({
                 type:"POST",
                 url:"<?=site_url('administrator/order_picking/create')?>",
-                data:"order_sn="+order_sn,
+                data:"order_sn=" + order_sn + "&" + $.param(f),
                 async:false,
                 dataType:'json',
                 success:function (data) {
-                    if(data.error==0)
-                    {
+                    if (data.error == 0) {
                         alert('配货单已生成');
                         $("#process > li:eq(3) > a:eq(0)").replaceWith('配货中');
                     }
-                    else
-                    {
+                    else {
                         alert(data.msg);
                     }
                 }
             });
+        }
+        return;
     }
 </script>
