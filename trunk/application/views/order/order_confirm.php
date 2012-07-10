@@ -5,7 +5,7 @@
 <title>填写订单核对信息</title>
 <link href="/css/base.css" rel="stylesheet" type="text/css" />
 <link href="/css/shopping.css" rel="stylesheet" type="text/css" />
-<SCRIPT type=text/javascript src="/scripts/jquery-1.4.2.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="/scripts/jquery.js"></SCRIPT>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="/scripts/iepng.js"></script>
 <script type="text/javascript">
@@ -23,7 +23,7 @@ $(document).ready(function(){
 </head>
 <body>
 <?php include '/../header.php';?>
-<form action="/order/order/submit/" method="POST">
+<form action="/order/order/submit/" method="POST" onsubmit="order.orderSubmit()" id="order_form_id" name="order_form_id">
 <div class="box pad8" style="overflow:hidden;">
   <div class="process">
     <ul>
@@ -34,29 +34,40 @@ $(document).ready(function(){
   </div>
   <div class="other-shopping">
     <div class="tit">收获人信息：&nbsp;&nbsp;<span onclick="editorder('edit-cong','cong', this)" id="modify_text_id">[修改]</span></div>
-    <?php foreach ($recent_data as $v) {?>
-        <?php if ($v['default_address']) {?>
-    <div class="consignee" id="cong">
-        <?php echo $v['recent_name']; ?><span style="padding-left:20px;"></span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
-        <span style="padding-left:20px;"></span><?php echo $v['zipcode'];?><br/>
-        <?php echo $v['phone_num'];?>，    <?php echo $v['call_num'];?>
-    </div>
+    <?php if (empty ($recent_data)) {?>
+        <script type="text/javascript">
+        $(document).ready(function(){
+          wx.addAddress();
+          editorder('edit-cong','cong', this);
+        });
+        </script>
+    <?php } else {?>
+        <?php foreach ($recent_data as $v) {?>
+            <?php if ($v['default_address']) {?>
+        <div class="consignee" id="cong">
+            <?php echo $v['recent_name']; ?><span style="padding-left:20px;"></span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
+            <span style="padding-left:20px;"></span><?php echo $v['zipcode'];?><br/>
+            <?php echo $v['phone_num'];?>，    <?php echo $v['call_num'];?>
+        </div>
+            <?php }?>
         <?php }?>
     <?php }?>
     <div class="consignee" id="edit-cong" style="display:none;">
       <div class="consigneeList">
-          <?php foreach ($recent_data as $rdv) {?>
+
+          <?php if (empty ($recent_data)) $recent_data = array();foreach ($recent_data as $rdv) {?>
           <label id="address_<?php echo $rdv['address_id'];?>" onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">
-              <span class="xzradio"> <input name="address_id" type="radio" value="<?php echo $rdv['address_id'];?>" /> </span>
-              <span><?php echo $rdv['recent_name'];?></span><span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
+              <span class="xzradio"> <input name="address_id" type="radio" value="<?php echo $rdv['address_id'];?>" <?php echo $rdv['default_address'] == '1' ? 'checked="checked"' : '';?>/> </span>
+              <span><?php echo $rdv['recent_name'];?></span><span><?php echo $rdv['province'].','.$rdv['city'].','.$rdv['area'].','.$rdv['detail_address'];?>
               </span><span><?php echo $rdv['phone_num'];?></span><span><?php echo $rdv['call_num'];?></span>
 
               <!--<span onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">编辑</span>-->
               <span onclick="wx.deleteAddress(<?php echo $rdv['address_id'];?>)">删除</span>
           </label>
           <?php }?>
-          <label onclick="order.layerSwitch()">
-            <span class="xzradio"> <input name="address_id" type="radio" value="" /> </span>
+
+          <label onclick="wx.addAddress()">
+            <span class="xzradio"> <input name="address_id" type="radio" value="0" /> </span>
             <span>添加新地址</span>
           </label>
       </div>
@@ -72,6 +83,7 @@ $(document).ready(function(){
           <td width="10%" align="right"><span class="font10">*</span> 省市：</td>
           <td width="90%">
               <select name="select" id="province_id" onchange="order.changeProvince(this.value)">
+                  <option value="0">省份</option>
                   <?php foreach ($province_data as $pv) {?>
                   <option value="<?php echo $pv['id'];?>"><?php echo $pv['name'];?></option>
                   <?php }?>
@@ -110,23 +122,21 @@ $(document).ready(function(){
           <td><input name="post_code" type="text" class="input4" id="post_code_id" />
             <span class="font2" id="post_code_notice_id">建议邮编：<span id="proposal_post_code_id"></span></span></td>
         </tr>
-          <!--
         <tr>
           <td height="50" align="right">&nbsp;</td>
           <td><a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress()">保存并送到此地址</a></td>
         </tr>
-        -->
       </table>
-        <br/>
+        <!--<br/>
         <a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress()">保存并送到此地址</a>
-        <br/>
+        <br/>-->
     </div>
-    <div class="tit borders">支付及配送方式：&nbsp;&nbsp;<span onclick="editorder('pay-delivery2','pay-delivery1', this)">[修改]</span></div>
+    <div class="tit borders">支付及送货时间：&nbsp;&nbsp;<span onclick="editorder('pay-delivery2','pay-delivery1', this)">[修改]</span></div>
     <div class="consignee" id="pay-delivery1">
       <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="9%" align="right">支付方式：</td>
-          <td width="91%">货到付款</td>
+          <td width="91%" id="pay_type_view_id">在线支付</td>
         </tr>
         <tr>
           <td align="right">配送方式：</td>
@@ -137,8 +147,8 @@ $(document).ready(function(){
           <td>0.00（免运费）</td>
         </tr>
         <tr>
-          <td align="right">送货日期：</td>
-          <td>非大件物品只工作日送货（节假日、双休日不送）</td>
+          <td align="right">送货时间：</td>
+          <td id="delivert_time_view_id">工作日、双休日和节假日均送货</td>
         </tr>
       </table>
     </div>
@@ -149,7 +159,7 @@ $(document).ready(function(){
           <td width="72%"><strong>备注</strong></td>
         </tr>
         <tr>
-          <td width="4%" align="center"><input name="radio" type="radio" id="radio" value="radio" checked="checked" /></td>
+          <td width="4%" align="center"><input name="pay_type" type="radio" id="radio" value="1" checked="checked" /></td>
           <td width="24%">在线支付</td>
           <td> 即时到帐，支持绝大数银行借记卡及部分银行信用卡 查看银行及限额</td>
         </tr>
@@ -243,7 +253,7 @@ $(document).ready(function(){
           <div class="bankpic"><label for="nbcb-b"><span class="bankimg" id="nbcb">宁波银行</span></label></div>
         </div>
       </div>
-            <p>选择支付平台</p>
+            <p>支付平台</p>
             <div class="payment-c">
         <div class="payment-b">
             <!--<div class="pradio"> <input name="bank" id="alipay-b" type="radio" value=""/> </div>-->
@@ -261,7 +271,7 @@ $(document).ready(function(){
             </td>
         </tr>
         <tr>
-          <td align="center"><input type="radio" name="radio2" id="radio2" value="radio2" /></td>
+          <td align="center"><input type="radio" name="pay_type" id="radio2" value="3" /></td>
           <td>邮政汇款</td>
           <td>通过快钱平台收款 汇款后1-3个工作日到账 查看帮助</td>
         </tr>
@@ -281,25 +291,25 @@ $(document).ready(function(){
       </table>
       <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
         <tr>
-          <td colspan="2"><strong>配送方式</strong></td>
+          <td colspan="2"><strong>送货时间</strong></td>
         </tr>
         <tr>
-          <td width="4%" align="center"><input type="radio" name="radio3" id="radio3" value="radio3" /></td>
+          <td width="4%" align="center"><input type="radio" name="delivert_time" id="radio3" value="3" /></td>
           <td width="96%"> 只工作日送货（双休日、节假日不送）</td>
         </tr>
         <tr>
-          <td align="center"><input type="radio" name="radio3" id="radio4" value="radio3" /></td>
+          <td align="center"><input type="radio" name="delivert_time" id="radio4" value="1" checked="checked"/></td>
           <td>工作日、双休日和节假日均送货</td>
         </tr>
         <tr>
-          <td align="center" valign="top"><input type="radio" name="radio3" id="radio5" value="radio3" /></td>
-          <td> 只双休日、节假日送货（工作时间不送货）<br />
+          <td align="center" valign="top"><input type="radio" name="delivert_time" id="radio5" value="2" /></td>
+          <td> 只双休日、节假日送货（工作时间不送货）<br /><br />
             声明：我们会努力按照您指定的时间配送，但因为天气、交通等各类因素影响，您的订单有可能会有延误现象，敬请谅解！<br />
-            送货前是否联系：是 否（您需要特定时间配送可以选择哦！）</td>
+            <!--送货前是否联系：是 否（您需要特定时间配送可以选择哦！）--></td>
         </tr>
         <tr>
           <td height="50" align="center">&nbsp;</td>
-          <td><a class="btn-save" href="#">保存并送到此地址</a></td>
+          <td><a class="btn-save" href="javascript:void(0);" onclick="order.savePayRecent()">保存支付与送货时间</a></td>
         </tr>
       </table>
     </div>
@@ -350,7 +360,7 @@ $(document).ready(function(){
       </table>
       <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
         <tr>
-          <td width="21%"><div class="sy"><span class="invo" id="invos" onclick="syinfo('syinv','invos')"></span></div></td>
+          <!--<td width="21%"><div class="sy"><span class="invo" id="invos" onclick="syinfo('syinv','invos')"></span></div></td>-->
           <td width="79%" align="right">
               产品数量总计：<?php echo $total_num;?>&nbsp;&nbsp;&nbsp;&nbsp;
               赠送积分总计：<?php echo $total_price;?>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -360,24 +370,24 @@ $(document).ready(function(){
       </table>
       <div class="order-info">
         <div class="order-fj">
-          <div class="sybox" id="syinv" style="display:none;">
-            <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
+            <!--<div class="sybox" id="syinv" style="display:none;">
+              <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
                 <td width="19%" align="right">发票抬头：</td>
-                <td width="81%"><input class="input1" type="text" name="invoice_payable" id="textfield8" /></td>
+                <td width="81%"><input class="input1" type="text" name="invoice_payable" id="invoice_payable_id" /></td>
               </tr>
               <tr>
                 <td align="right">发票类型：</td>
-                <td><select name="invoice_content" id="select2">
+                <td><select name="invoice_content" id="invoice_content_id">
                     <option value="1">服装</option>
                     <option value="2">其他</option>
                   </select></td>
               </tr>
             </table>
-          </div>
+          </div>-->
           <div class="sy2"><span class="ordermark" id="omk" onclick="marksinfo('syinv2','omk')"></span></div>
           <div class="sybox" id="syinv2" style="display:none;">
-            <textarea class="tta" name="annotated" rows="6"></textarea>
+            <textarea class="tta" name="annotated" rows="6" id="annotated_id"></textarea>
             <p style="padding-top:8px;"><span class="font2">声明：备注中的有关收货人信息、支付方式、配送方式、发票信息等购买要求一律以上面的选择为准，备注无效。</span><br/>
                 <!--
               是否打印价格：
@@ -397,7 +407,7 @@ $(document).ready(function(){
     </div>
   </div>
   <div class="topost">
-      <a href="#"><img src="/images/post-order.gif" width="150" height="41" alt="提交订单" /></a>
+      <a href="javascript:void(0);" onclick="order.orderSubmit()"><img src="/images/post-order.gif" width="150" height="41" alt="提交订单" /></a>
   </div>
 </div>
 </form>
@@ -443,13 +453,13 @@ function editorder(a, b, t)
     var ey = document.getElementById(a);
     var et = document.getElementById(b);
     if (ey.style.display == "none") {
-        ey.style.display = "";
-        et.style.display = "none";
         t.innerText = '[不保存关闭]';
+        ey.style.display = "";
+        (et == null || et == '') ? '' : et.style.display = "none";
     } else {
-        ey.style.display = "none";
-        et.style.display = "";
         t.innerText = '[修改]';
+        ey.style.display = "none";
+        (et == null || et == '') ? '' : et.style.display = "";
     }
 }
 </script>

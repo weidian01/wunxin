@@ -287,7 +287,7 @@ wx.getReferer = function ()
 wx.goToBack = function ()
 {
     var url = wx.getReferer();
-
+alert(url);
     if (wx.isEmpty(url) && wx.isUrl(url)) {
         window.location.href = url;
     }
@@ -378,17 +378,22 @@ wx.pageReload = function (time)
     }
 }
 
+//验证手机号码
+wx.isMobile = function (value) {
+    if (/^13\d{9}$/g.test(value) || (/^15[0-35-9]\d{8}$/g.test(value)) || (/^18[05-9]\d{8}$/g.test(value))) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
+//判断输入是否为中文
+wx.isChinese = function(s) {
+    var ret = true;
+    for (var i = 0; i < s.length; i++)
+        ret = ret && (s.charCodeAt(i) >= 10000);
+    return ret;
+}
 
 
 

@@ -71,7 +71,7 @@ cart.init = function ()
     html += '</tr>';
 
     html += '<tr>';
-    html += '<td colspan="6">';
+    html += '<td colspan="7">';
     html += '<div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>' +
 		'<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div> ' +
         '<div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div>' ;

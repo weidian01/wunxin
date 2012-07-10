@@ -4136,8 +4136,6 @@ auto_increment = 1;
 
 alter table wx_order comment '订单表';
 
-INSERT INTO `wx_order` (`order_sn`,`address_id`,`uid`,`uname`,`after_discount_price`,`discount_rate`,`before_discount_price`,`pay_type`,`defray_type`,`is_pay`,`order_source`,`pay_time`,`delivert_time`,`annotated`,`invoice`,`paid`,`need_pay`,`ip`,`picking_status`,`create_time`) VALUES (1,1,1,'hjpking@gmail.com',10,10,10,1,'0',0,1,'2012-06-01 19:16:15',1,'麻烦快点发货',0,10,0,'127.0.0.01',0,'2012-06-01 19:16:15');
-
 /*==============================================================*/
 /* Index: Index_uid                                             */
 /*==============================================================*/
@@ -4165,6 +4163,7 @@ create table wx_order_product
    product_size         int comment '产品尺码ID',
    presentation_integral int comment '赠送积分',
    preferential         int comment '优惠,人民币，单位为分',
+   warehouse            varchar(64) comment '仓库',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
@@ -4198,6 +4197,7 @@ create table wx_picking
    descr                varchar(256) comment '管理员备注',
    freight              int unsigned comment '运费,单位为分',
    create_time          datetime comment '创建时间',
+   status               tinyint comment '配货单状态 0删除 1初始 2配货完成',
    primary key (picking_id)
 )
 engine = MYISAM
@@ -4319,6 +4319,7 @@ create table wx_product_attr
    attr_id              int unsigned comment '属性id',
    model_id             int unsigned comment '模型id',
    attr_value           char(32) comment '属性值',
+   search               tinyint default 0 comment '是否允许搜索，0不可搜索，1可以搜索',
    primary key (id)
 )
 engine = MYISAM
@@ -4356,6 +4357,7 @@ create table wx_product_category
    descr                varchar(256) comment '描述',
    title                varchar(32) comment '标题',
    create_time          datetime comment '创建时间',
+   product_num          int unsigned default 0 comment '分类产品数量',
    primary key (class_id)
 )
 engine = MYISAM

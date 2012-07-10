@@ -17,25 +17,20 @@ class Model_Order extends MY_Model
     public function addOrder(array $orderInfo)
     {
         $data = array(
-            'parent_id' => isset($orderInfo['address_id']) ? $orderInfo['address_id']:0,
-            'status' => isset($orderInfo['status']) ? $orderInfo['status']:1,
-            'address_id' => $orderInfo['address_id'],
             'uid' => $orderInfo['uid'],
             'uname' => $orderInfo['uname'],
             'after_discount_price' => $orderInfo['after_discount_price'],
             'discount_rate' => $orderInfo['discount_rate'],
             'before_discount_price' => $orderInfo['before_discount_price'],
             'pay_type' => $orderInfo['pay_type'],
-            'defray_type' => $orderInfo['defray_type'],
-            'is_pay' => $orderInfo['is_pay'],
             'order_source' => $orderInfo['order_source'],
-            'pay_time' => $orderInfo['pay_time'],
             'delivert_time' => $orderInfo['delivert_time'],
             'annotated' => $orderInfo['annotated'],
             'invoice' => $orderInfo['invoice'],
             'paid' => $orderInfo['paid'],
             'need_pay' => $orderInfo['need_pay'],
             'ip' => $orderInfo['ip'],
+            'address_id' => $orderInfo['address_id'],
             'invoice_payable' => $orderInfo['invoice_payable'],
             'invoice_content' => $orderInfo['invoice_content'],
             'recent_name' => $orderInfo['recent_name'],
@@ -82,6 +77,34 @@ class Model_Order extends MY_Model
     }
 
     /**
+     * 添加一个订单产品
+     *
+     * @param array $productInfo
+     * @param $orderSn
+     * @return int
+     */
+    public function addOneOrderProduct(array $productInfo, $orderSn) {
+        $data = array(
+            'order_sn' => $orderSn,
+            'pid' => $productInfo['pid'],
+            'uid' => $productInfo['uid'],
+            'uname' => $productInfo['uname'],
+            'pname' => $productInfo['pname'],
+            'market_price' => $productInfo['market_price'],
+            'sall_price' => $productInfo['sall_price'],
+            'product_num' => $productInfo['product_num'],
+            'product_size' => $productInfo['product_size'],
+            'presentation_integral' => $productInfo['presentation_integral'],
+            'preferential' => $productInfo['preferential'],
+            'warehouse'=> $productInfo['warehouse'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
+        );
+
+        $this->db->insert('order_product', $data);
+        return $this->db->insert_id();
+    }
+
+    /**
      * @name 增加订单和订单产品
      *
      * @param $orderInfo 订单信息
@@ -103,19 +126,23 @@ class Model_Order extends MY_Model
      * @name 获取订单信息 -- 通过订单ID
      *
      * @param $orderSn 订单ID
-     * @return array
+     * @param $field
+     * @return array | null
      */
     public function getOrderByOrderSn($orderSn, $field = '*')
     {
-        $field = $field === '*' ? '*' : $field;
+        //$field = $field === '*' ? '*' : $field;
 
-        return $this->db->select($field)->get_where('order', array('order_sn' => $orderSn))->row_array();
+        $data = $this->db->select($field)->get_where('order', array('order_sn' => $orderSn))->row_array();
+
+        return empty ($data) ? null : $data;
     }
 
     /**
      * @name 获取订单产品信息 -- 通过订单ID
      *
      * @param $orderSn 订单ID
+     * @param $field
      * @return array
      */
     public function getOrderAllProductByOrderSn($orderSn, $field = '*')
@@ -198,6 +225,7 @@ class Model_Order extends MY_Model
      *
      * @param int $limit
      * @param int $offset
+     * @param array $where
      * @return null | array
      */
     public function getOrderList($limit = 20, $offset = 0,$where = array())
@@ -208,6 +236,12 @@ class Model_Order extends MY_Model
         return empty ($data) ? null : $data;
     }
 
+    /**
+     * 获取订单数量
+     *
+     * @param array $where
+     * @return mixed
+     */
     public function getOrderCount($where = array())
     {
         $this->db->select('*')->from('order');

@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title;?></title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <SCRIPT type=text/javascript src="/scripts/jquery-1.4.2.min.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="/scripts/jquery.js"></SCRIPT>
     <SCRIPT type=text/javascript src="/scripts/index.js"></SCRIPT>
     <script type="text/javascript" charset=utf-8 src="/scripts/lrscroll.js"></script>
     <!--[if lt IE 7]>

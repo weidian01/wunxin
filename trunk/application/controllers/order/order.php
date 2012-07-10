@@ -8,6 +8,14 @@
  */
 class order extends MY_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (!$this->isLogin()) {
+            return ;
+        }
+    }
     /**
      * 订单确认
      *
@@ -54,6 +62,142 @@ class order extends MY_Controller
     }
 
     /**
+     * 提交订单
+     */
+    public function submit()
+    {
+        $addressId = $this->input->get_post('address_id');
+        $payType = $this->input->get_post('pay_type');
+        $delivertTime = $this->input->get_post('delivert_time');
+        $annotated = $this->input->get_post('annotated');
+
+        $response = error(30013);
+
+        do {
+            if (empty ($addressId) || empty ($payType) || empty ($delivertTime)) {
+                $response = error(30015);
+                break;
+            }
+
+            $this->load->model('user/Model_User_Recent', 'recent');
+            $recentData = $this->recent->getUserDefaultRecentAddressByaId($addressId, $this->uInfo['uid']);
+            if (empty ($recentData)) {
+                $response = error(30016);
+                break;
+            }
+
+            $cartData = $this->getCartToCookie();
+            $totalPrice = 0;
+            foreach ($cartData as $cv) {
+                $totalPrice += ($cv['product_price'] * $cv['product_num']);
+
+            }
+
+            $discount = $this->userDiscount($totalPrice);
+
+            $data = array(
+                'uid' => $this->uInfo['uid'],
+                'uname' => $this->uInfo['uname'],
+                'after_discount_price' => $discount['price'],
+                'discount_rate' => $discount['discount'],
+                'before_discount_price' => $totalPrice,
+                'pay_type' => $payType,
+                'order_source' => '1',
+                'delivert_time' => $delivertTime,
+                'annotated' => $annotated,
+                'invoice' => '',
+                'paid' => '0',
+                'need_pay' => $totalPrice,
+                'ip' => $this->input->ip_address(),
+                'address_id' => $addressId,
+                'invoice_payable' => '',
+                'invoice_content' => '',
+                'recent_name' => $recentData['recent_name'],
+                'recent_address' => $recentData['province'], $recentData['city'], $recentData['area'], $recentData['detail_address'],
+                'zipcode' => $recentData['zipcode'],
+                'phone_num' => $recentData['phone_num'],
+                'call_num' => $recentData['call_num'],
+            );
+
+            $this->load->model('order/Model_Order', 'order');
+            $orderId = $this->order->addOrder($data);
+            if (!$orderId) {
+                $response = error(30014);
+                break;
+            }
+            $response['order_sn'] = $orderId;
+
+            $this->load->model('product/Model_Product', 'product');
+            foreach ($cartData as $v) {
+                $productData = $this->product->getProductById($cv['pid']);
+
+                $orderProductData [] = array (
+                    'order_sn' => $orderId,
+                    'pid' => $productData['pid'],
+                    'uid' => $this->uInfo['uid'],
+                    'uname' => $this->uInfo['uname'],
+                    'pname' => $productData['pname'],
+                    'market_price' => $productData['market_price'],
+                    'sall_price' => $productData['sell_price'],
+                    'product_num' => $v['product_num'],
+                    'product_size' => $v['product_size'],
+                    'presentation_integral' => $productData['sell_price'],
+                    'preferential' => '',
+                    'warehouse'=> $productData['warehouse'],
+                );
+
+                $this->order->addOrderProduct($orderProductData, $orderId);
+            }
+
+            $this->input->set_cookie('cart_info', '', -100);
+
+        } while (false);
+
+        $this->json_output($response);
+    }
+
+    /**
+     * 订单成功页面
+     */
+    public function success()
+    {
+        $orderSn = $this->uri->segment(4, 0);
+
+        if (empty ($orderSn)) {
+            exit;
+        }
+
+        $this->load->model('order/Model_Order', 'order');
+        $data = $this->order->getOrderByOrderSn($orderSn);
+
+        if (empty ($data)) {
+            exit;
+        }
+
+        $this->load->view('order/success', array('order' => $data));
+    }
+
+    /**
+     * 根据用户等级计算打折
+     *
+     * @param $price
+     * @return int
+     */
+    private function userDiscount($price)
+    {
+        $p = $price;
+        $discount = 1;
+
+        switch($this->uInfo['lid']) {
+            case '1' : $p = ($price * 1);  $discount = 1;break;
+            case '2' : $p = ($price * 0.98); $discount = 0.98; break;
+            case '3' : $p = ($price * 0.95); $discount = 0.95; break;
+        }
+
+        return array ('price' => $p, 'discount' => $discount);
+    }
+
+    /**
      * 获取城市数据
      */
     public function getCity()
@@ -87,12 +231,21 @@ class order extends MY_Controller
         echo self::json_output($response);
     }
 
+    /**
+     * 获取一个收货地址
+     *
+     * @return bool
+     */
     public function getOneAddress()
     {
         $aId = $this->input->get_post('address_id');
 
+        if (!$this->isLogin()) {
+            return false;
+        }
+
         $this->load->model('user/Model_User_Recent', 'recent');
-        $data = $this->recent->getUserRecentAddressByAid($aId);
+        $data = $this->recent->getUserRecentAddressByAid($aId, $this->uInfo['uid']);
 
         $this->json_output($data);
     }
@@ -150,11 +303,22 @@ class order extends MY_Controller
         $this->json_output($response);
     }
 
+    /**
+     * 删除收货地址
+     *
+     * @return bool
+     */
     public function deleteAddress()
     {
         $aId = $this->input->get_post('address_id');
 
         $this->load->model('user/Model_User_Recent', 'recent');
-        $this->recent->deleteRecentAddress($aId);
+
+        if (!$this->isLogin()) {
+            return false;
+        }
+
+        $this->recent->deleteRecentAddress($aId, $this->uInfo['uid']);
     }
 }
+
