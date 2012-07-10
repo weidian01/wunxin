@@ -17,11 +17,11 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/order/orderList"><span><br/> 订单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span><br/> 收款单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span><br/> 配货单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span><br/> 添加快递公司 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span><br/> 快递公司列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order/orderList"><span> 订单列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span>添加快递公司 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
 
     </ul>
     <!-- End .shortcut-buttons-set -->
@@ -79,6 +79,7 @@
                         <th>管理员备注</th>
                         <th>运费</th>
                         <th>创建时间</th>
+                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -110,6 +111,12 @@
                         <td><?php echo $v['descr'];?></td>
                         <td><?php echo $v['freight'];?></td>
                         <td><?php echo $v['create_time'];?></td>
+                        <th>
+                            <?php if($v['status']==0):?>无效
+                            <?php elseif($v['status']==1):?>未配货
+                            <?php elseif($v['status']==2):?>配货完成
+                            <?php endif;?>
+                        </th>
                         <td>
                             <a href="/administrator/order_picking/pickingDetail/<?php echo $v['picking_id'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"/></a>
                         </td>

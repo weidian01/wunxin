@@ -17,11 +17,11 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/order/orderList"><span><br/> 订单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span><br/> 收款单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span><br/> 配货单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span><br/> 添加快递公司 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span><br/> 快递公司列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order/orderList"><span> 订单列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
+        <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
         <!--
         <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
         <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
@@ -29,6 +29,17 @@
         <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="/images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
         -->
     </ul>
+    <div class="clear"> </div>
+    操作
+    <ol id="process">
+        <li>
+        <a class="button" onclick="complete(<?=$data['picking_id'];?>)" href="javascript:;" >完成配货</a>
+        </li>
+        <!--li>
+        <a class="button" onclick="order_locking()" href="javascript:;" >发货</a>
+        </li-->
+    </ol><br><br>
+
     <!-- End .shortcut-buttons-set -->
     <div class="clear"> </div>
     <!-- End .clear -->
@@ -97,7 +108,7 @@
                         <th>数量</th>
                     </tr>
                     </thead>
-                    <tfoot>
+                    <!--tfoot>
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
@@ -106,7 +117,7 @@
                             <div class="clear"></div>
                         </td>
                     </tr>
-                    </tfoot>
+                    </tfoot-->
                     <tbody>
                     <?php if (empty ($product_data)) {
                         $product_data = array();
@@ -128,3 +139,23 @@
 </div>
 </body>
 </html>
+<script>
+    function complete(picking_id)
+    {
+        $.ajax({
+            type:"POST",
+            url:"<?=site_url('administrator/order_picking/complete')?>",
+            data:"picking_id=" + picking_id,
+            async:false,
+            dataType:'json',
+            success:function (data) {
+                if (data.error == 0) {
+                    $("#process > li:eq(0) > a:eq(0)").replaceWith('配货完成');
+                }
+                else {
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+</script>

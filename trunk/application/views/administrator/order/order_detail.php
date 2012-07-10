@@ -16,11 +16,11 @@
 <h2>订单管理</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="/administrator/order/orderList"><span><br/> 订单列表 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span><br/> 收款单列表 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span><br/> 配货单列表 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span><br/> 添加快递公司 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span><br/> 快递公司列表 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order/orderList"><span> 订单列表 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
+    <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
 </ul>
 <div class="clear"></div>
 操作流程
@@ -45,8 +45,12 @@
         <?php endif;?> / <a href="<?=site_url('administrator/order/orderList')."?parent_id={$data['order_sn']}"?>">查看子订单</a>
     </li>
     <?php if($data['parent_id'] > 0):?>
-    <li><a class="button" href="#">配货</a> / <a href="#">查看</a></li>
-    <li><a class="button" href="#">发货</a> / <a href="#">查看</a></li>
+    <li> <?php if($data['picking_status']==0):?>
+        <a class="button" onclick="order_picking(<?=$data['order_sn']?>)" href="javascript:;">配货</a>
+        <?php elseif($data['picking_status']==1):?>
+        配货中<?php else:?>配货完成<?php endif;?>
+        / <a href="<?=site_url('administrator/order_picking/search')?>?keyword=<?=$data['order_sn']?>&s_type=2">查看</a></li>
+    <!--li><a class="button" href="#">发货</a> / <a href="#">查看</a></li-->
         <?php endif;?>
 </ol><br><br>
 <!-- End .shortcut-buttons-set -->
@@ -413,5 +417,27 @@
                 }
             }
         });
+    }
+
+    function order_picking(order_sn)
+    {
+            $.ajax({
+                type:"POST",
+                url:"<?=site_url('administrator/order_picking/create')?>",
+                data:"order_sn="+order_sn,
+                async:false,
+                dataType:'json',
+                success:function (data) {
+                    if(data.error==0)
+                    {
+                        alert('配货单已生成');
+                        $("#process > li:eq(3) > a:eq(0)").replaceWith('配货中');
+                    }
+                    else
+                    {
+                        alert(data.msg);
+                    }
+                }
+            });
     }
 </script>
