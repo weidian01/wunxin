@@ -120,6 +120,7 @@ wx.arr_find = function (arr, d)
 //AJAX请求
 wx.ajax = function (url, parameter)
 {
+    var msg;
 	$.ajax({
 	   type : "POST",
 	   url  : wx.base_url+url,
@@ -127,11 +128,11 @@ wx.ajax = function (url, parameter)
 	   data : parameter,
        dataType:'json',
 	   success: function(msgs){
-			//msg = eval('('+msgs+')');
-           return msgs;
+			//eval('('+msgs+')');
+           msg = msgs;
 	   }
 	});
-	//return msg;
+	return msg;
 }
 
 //获取单选框的值
