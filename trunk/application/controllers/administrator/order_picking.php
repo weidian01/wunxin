@@ -102,6 +102,10 @@ class order_picking extends MY_Controller
     {
         $keyword = $this->input->get_post('keyword');
         $sType = $this->input->get_post('s_type');
+        if(! $keyword)
+        {
+            redirect('administrator/order_picking/pickingList');
+        }
 
         $this->load->model('order/Model_Order_Picking', 'picking');
         switch ($sType) {
