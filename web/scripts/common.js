@@ -125,7 +125,7 @@ wx.ajax = function (url, parameter)
 	   url  : wx.base_url+url,
 	   async: false,
 	   data : parameter,
-       dataType:json,
+       dataType:'json',
 	   success: function(msgs){
 			//msg = eval('('+msgs+')');
            return msgs;
