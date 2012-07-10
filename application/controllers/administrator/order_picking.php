@@ -95,7 +95,6 @@ class order_picking extends MY_Controller
 
         $productData = $this->picking->getPickingProductInfoByPid($pickingId);
         //echo '<pre>';print_r($productData);exit;
-
         $this->load->view('/administrator/order/picking/picking_detail', array('data' => $pData, 'product_data' => $productData, 'searchType' => $this->searchType));
     }
 
@@ -119,5 +118,52 @@ class order_picking extends MY_Controller
         }
 
         $this->load->view('/administrator/order/picking/picking_list', array('data' => $rData, 'searchType' => $this->searchType, 'keyword' => $keyword, 'sType' => $sType));
+    }
+
+    /**
+     * 创建配货单
+     */
+    public function create()
+    {
+        $order_sn = $this->input->get_post('order_sn');
+        $this->load->model('order/Model_Order', 'order');
+        $order_info = $this->order->getOrderByOrderSn($order_sn, 'order_sn, address_id, picking_status');
+
+        if (!$order_info) {
+            self::json_output(array("error" => 1, 'msg' => '订单不存在'));
+        }
+
+        if ($order_info['picking_status'] > 0) {
+            self::json_output(array("error" => 3, 'msg' => '不可重复配货'));
+        }
+        unset($order_info['picking_status']);
+
+        $order_product = $this->order->getOrderAllProductByOrderSn($order_sn, "`pid`,`pname`,`product_num`");
+        if(!$order_product)
+        {
+            self::json_output(array("error"=>2,'msg'=>'订单内无产品'));
+        }
+
+        $this->load->model('order/Model_Order_Picking', 'picking');
+        $this->picking->create($order_info, $order_product, $this->amInfo['am_uid']);
+
+        self::json_output(array("error"=>0));  //正常
+    }
+
+    /**
+     * 完成配货但
+     */
+    public function complete()
+    {
+        $picking_id = $this->input->get_post('picking_id');
+        $this->load->model('order/Model_Order_Picking', 'picking');
+        $info = $this->picking->getPickingByPid($picking_id);
+        if(!$info)
+        {
+            self::json_output(array("error"=>2,'msg'=>'配货单不存在'));
+        }
+        $this->db->update('picking', array('status'=>2), array('picking_id'=>$picking_id, 'status'=>1));
+        $this->db->update('order', array('picking_status'=>2), array('order_sn'=>$info['order_sn'], 'picking_status'=>1));
+        self::json_output(array("error"=>0));  //正常
     }
 }

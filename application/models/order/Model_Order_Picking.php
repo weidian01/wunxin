@@ -105,4 +105,19 @@ class Model_Order_Picking extends MY_Model
     }
 
 
+    public function create($info,$product, $amUid)
+    {
+       $info['uid'] = $amUid;
+       $info['create_time'] = date("Y-m-d H:i:s", TIMESTAMP);
+       $this->db->insert('picking', $info);
+       $picking_id = $this->db->insert_id();
+       foreach($product as $k=>$v)
+       {
+           $product[$k]['picking_id'] = $picking_id;
+           $product[$k]['create_time'] = $info['create_time'];
+       }
+       $this->db->insert_batch('picking_product', $product);
+       $this->db->update('order', array('picking_status'=>1), array('order_sn'=>$info['order_sn'], 'picking_status'=>0, 'status'=>2));
+    }
+
 }

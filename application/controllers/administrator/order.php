@@ -242,6 +242,4 @@ class order extends MY_Controller
         self::json_output(array('error'=>0));//未确认无法支付
         die;
     }
-
-
 }
