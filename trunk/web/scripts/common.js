@@ -125,11 +125,13 @@ wx.ajax = function (url, parameter)
 	   url  : wx.base_url+url,
 	   async: false,
 	   data : parameter,
+       dataType:json,
 	   success: function(msgs){
-			msg = eval('('+msgs+')');
+			//msg = eval('('+msgs+')');
+           return msgs;
 	   }
 	});
-	return msg;
+	//return msg;
 }
 
 //获取单选框的值
