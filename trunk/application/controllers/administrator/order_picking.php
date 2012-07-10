@@ -141,6 +141,9 @@ class order_picking extends MY_Controller
             self::json_output(array("error" => 3, 'msg' => '不可重复配货'));
         }
         unset($order_info['picking_status']);
+        $order_info['ed_id'] = $this->input->post('ed_id');
+        $order_info['logistics_orders_sn'] = $this->input->post('logistics_orders_sn');
+        $order_info['descr'] = $this->input->post('descr');
 
         $order_product = $this->order->getOrderAllProductByOrderSn($order_sn, "`pid`,`pname`,`product_num`");
         if(!$order_product)
