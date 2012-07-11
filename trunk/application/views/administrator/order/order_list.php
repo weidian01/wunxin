@@ -111,7 +111,6 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-
                     <tfoot>
                     <tr>
                         <td colspan="13">
@@ -174,14 +173,12 @@
                         <td>
                             <a href="/administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"/></a>
                             <!--<a href="/administrator/order/orderEdit/<?php echo $v['order_sn'];?>" title="编辑订单"> <img src="/images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
-                            &nbsp;
-                            <a href="/administrator/order/orderDelete/<?php echo $v['order_sn'];?>" title="删除订单"> <img src="/images/icons/cross.png" alt="删除订单"/></a>
+
+                            <!--&nbsp;<a href="/administrator/order/orderDelete/<?php echo $v['order_sn'];?>" title="删除订单"> <img src="/images/icons/cross.png" alt="删除订单"/></a>-->
                             <!--<a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>
                         <?php }?>
-
-
                     </tbody>
                 </table>
             </div>

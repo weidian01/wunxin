@@ -399,8 +399,8 @@ $(document).ready(function(){
           </div>
         </div>
         <div class="order-sum">运费：￥0<br/>
-          礼品卡冲抵：￥0.00<br/>
-          虚拟账户余额冲抵：￥0.00
+          <!--礼品卡冲抵：￥0.00<br/>
+          虚拟账户余额冲抵：￥0.00-->
           <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥<?php echo $total_price;?></span></div>
         </div>
       </div>
@@ -439,9 +439,7 @@ function marksinfo(a, b)
         dsy.style.display = "";
         dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
         dsc.style.backgroundPosition = "0px -217px";
-
-    }
-    else {
+    } else {
         dsy.style.display = "none";
         dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
         dsc.style.backgroundPosition = "0px -108px";

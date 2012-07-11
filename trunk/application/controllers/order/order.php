@@ -93,13 +93,13 @@ class order extends MY_Controller
 
             }
 
-            $discount = $this->userDiscount($totalPrice);
+            //$discount = $this->userDiscount($totalPrice);
 
             $data = array(
                 'uid' => $this->uInfo['uid'],
                 'uname' => $this->uInfo['uname'],
-                'after_discount_price' => $discount['price'],
-                'discount_rate' => $discount['discount'],
+                'after_discount_price' => $totalPrice,
+                'discount_rate' => $totalPrice,
                 'before_discount_price' => $totalPrice,
                 'pay_type' => $payType,
                 'order_source' => '1',
@@ -113,7 +113,7 @@ class order extends MY_Controller
                 'invoice_payable' => '',
                 'invoice_content' => '',
                 'recent_name' => $recentData['recent_name'],
-                'recent_address' => $recentData['province'], $recentData['city'], $recentData['area'], $recentData['detail_address'],
+                'recent_address' => $recentData['province'].' '.$recentData['city'].' '.$recentData['area'].' '.$recentData['detail_address'],
                 'zipcode' => $recentData['zipcode'],
                 'phone_num' => $recentData['phone_num'],
                 'call_num' => $recentData['call_num'],
