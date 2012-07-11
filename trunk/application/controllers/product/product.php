@@ -11,9 +11,17 @@ class Product extends MY_Controller
     /**
      * 产品列表
      */
-    public function productList()
+    public function thread()
     {
-        $this->load->view('product/product_list');
+        $this->load->model('product/Model_Product_Model', 'mod');
+        $this->db->cache_on();
+        $this->mod->getModelAttr(1);
+        //echo APPPATH;
+        //$this->db->cache_off();
+        //$this->output->cache(1);
+        $this->load->view('product/product/thread');
+
+
     }
 
     /**

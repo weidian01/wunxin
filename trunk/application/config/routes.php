@@ -39,8 +39,9 @@
 */
 
 $route['default_controller'] = "welcomes";
+//$route['product/([a-z]+)\/?(.*)'] = "product/product/$1";
+$route['product/(:any)'] = "product/product/$1";
 $route['404_override'] = '';
-
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

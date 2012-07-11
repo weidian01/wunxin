@@ -128,13 +128,29 @@ class Model_Product_Model extends MY_Model
             ->get_where('product_model', array('model_id' => $model_id))
             ->row_array();
         if ($model) {
-            $model['attrs'] = $this->db
-                ->select('attr_id, model_id, type, attr_name, attr_value, sort, search')
-                ->order_by('sort', 'desc')
-                ->get_where('product_model_attr', array('model_id' => $model_id))
-                ->result_array();
+            $model['attrs'] = $this->getModelAttr($model_id);
         }
         return $model;
+    }
+
+    /**
+     * 根据模型id 获取模型属性
+     * @param $model_id
+     * @param null $search null 全部 1 可搜索的属性 0不可搜索的属性
+     * @return mixed
+     */
+    function getModelAttr($model_id, $search=null)
+    {
+        $where = array('model_id' => $model_id);
+        if($search !== null)
+        {
+            $where['search'] = $search;
+        }
+        return $this->db
+            ->select('attr_id, model_id, type, attr_name, attr_value, sort, search')
+            ->order_by('sort', 'desc')
+            ->get_where('product_model_attr', $where)
+            ->result_array();
     }
 
     /**
