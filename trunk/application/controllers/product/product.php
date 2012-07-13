@@ -100,7 +100,8 @@ class Product extends MY_Controller
      */
     public function info()
     {
-        echo 'product info';
+        //echo 'product info';
+        $this->load->view('product/product/info');
     }
 
 

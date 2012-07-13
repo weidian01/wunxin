@@ -18,29 +18,6 @@ var wx = {
 };
 
 // 获取Cookie
-/*
-wx.getCookie = function (name)
-{
-    name = wx.cookie_prefix+name;
-
-	var start = document.cookie.indexOf( + "=");console.log(document.cookie);
-    //console.log(name.length);
-	var len = start + name.length + 1;
-	if ((!start) && (name != document.cookie.substring(0, name.length))) {
-		return null;
-	}
-
-	if (start == -1)
-	return null;
-	var end = document.cookie.indexOf(';', len);
-	if (end == -1)
-	end = document.cookie.length;
-
-	return unescape(document.cookie.substring(len, end));
-}
-//*/
-
-// 获取Cookie
 wx.getCookie = function (name)
 {
     name = wx.cookie_prefix+name;
@@ -72,23 +49,6 @@ wx.setCookie = function (name, value, expires)
 	( ( wx.cookie_domain ) ? ';domain=' + wx.cookie_domain : '' ) +
 	( ( secure ) ? ';secure' : '' );
 }
-
-/*
-wx.setCookie = function (name, value, expires, path, domain, secure)
-{
-	var today = new Date();
-	today.setTime(today.getTime());
-	if (expires) {
-		expires = expires * 1000 * 60 * 60 * 24;
-	}
-	var expires_date = new Date(today.getTime() + (expires));
-	document.cookie = wx.cookie_prefix+name+'='+escape(value) +
-	( ( expires ) ? ';expires='+expires_date.toGMTString() : '' ) + //expires.toGMTString()
-	( ( path ) ? ';path=' + path : '' ) +
-	( ( domain ) ? ';domain=' + domain : '' ) +
-	( ( secure ) ? ';secure' : '' );
-}
-//*/
 
 // 删除Cookie
 wx.deleteCookie = function (name, path, domain)
@@ -334,7 +294,7 @@ wx.isLogin = function ()
     var auth = wx.getCookie('auth');
 
     if (!wx.isEmpty(auth)) {
-        alert ('暂未登陆，请登陆!');
+        //alert ('暂未登陆，请登陆!');
         return false;
     }
 
@@ -395,8 +355,23 @@ wx.isChinese = function(s) {
     return ret;
 }
 
+//判断是否登陆，改变页头
+wx.initLoginStatus = function ()
+{
+    var userInfo = wx.isLogin();
+    var html = '';
 
+    if (userInfo) {
+        html = '<a href="/user/login/login_out">[退出]</a>';
+        $('#user_name_id').html(userInfo.nickname);
+        $('#loginout_id').html(html);
 
+        $('#user_info_id').remove();
+        $('#user_login_out_id').remove();
+    }
+
+}
+wx.initLoginStatus();
 
 
 wx.cartGlobalInit();
