@@ -40,7 +40,8 @@
 
 $route['default_controller'] = "welcomes";
 //$route['product/([a-z]+)\/?(.*)'] = "product/product/$1";
-$route['product/(:any)'] = "product/product/$1";
+$route['category/(.*)'] = "product/product/category/$1";
+$route['product/(:num)'] = "product/product/info";
 $route['404_override'] = '';
 
 /* End of file routes.php */

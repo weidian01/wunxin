@@ -1,0 +1,55 @@
+@charset "utf-8";
+.path,.path ul li{ height:30px; line-height:30px; background:url(../images/g-bg.png) no-repeat;}
+.path{ padding-left:20px; background-position:0px -179px;}
+.path ul li{ float:left; padding-right:12px; padding-left:5px; display:block; background-position: right -91px;}
+.path ul li.last{ background:none;}
+.side-left{ float:left; width:200px; overflow:hidden;}
+.goods-list{ float:left; width:765px; padding-left:15px;}
+.sidebox{ border:1px solid #e5e5e5; padding:1px; margin-bottom:15px;}
+.side-tit{ height:28px; line-height:28px; padding-left:10px; background:url(../images/bgw_03.gif) repeat-x; font-weight:bold; color: #CA0000;}
+.side-tit2{ height:28px; line-height:28px; padding-left:10px; background:url(../images/bgw_03.gif) repeat-x; font-weight:bold; }
+.menu{ padding:5px 0px 10px 0px;}
+.menu ul li{ line-height:30px; padding-left:15px;}
+.side-qh{ height:20px; padding-top:10px; padding-left:10px; border-bottom:1px solid #ca0000; }
+.side-m{ float:left; display:inline; margin-right:3px; padding:0px 8px; height:20px; line-height:20px; border-right:1px solid #e5e5e5;
+border-left:1px solid #e5e5e5;border-top:1px solid #e5e5e5;}
+.current{border-right:1px solid #ca0000;border-left:1px solid #ca0000;border-top:1px solid #ca0000;}
+.rankbox{ padding:15px 0px; }
+.bdan{ padding:0px 0px 0px 10px; width:182px; overflow:hidden; }
+.rankbox .bdan li{ display:block;padding:0px 0px 0px 0px; width:182px; overflow:hidden; border-bottom:1px solid #eee; padding-bottom:3px; line-height:25px;}
+.rankbox .bdan .no1{float:left; width:16px; font-size:14px; color:#ca0000; font-weight:bold; line-height:25px;}
+.rankbox .bdan .bdimg{ float:left; width:55px; display:none;}
+.rankbox .bdan .bdimg img{ border:1px solid #e3e3e3;}
+.rankbox .bdan .bdancont{float:left; padding-top:4px; width:152px; height:22px; overflow:hidden; padding-left:8px; line-height:18px;}
+.rankbox .bdan .bdancont .bdprice{ padding-top:5px; display:none;}
+.rankbox .bdan .on{ height:60px;}
+.rankbox .bdan .on .bdancont{ width:100px; height:60px;}
+.rankbox .bdan .on .bdimg{ float:left; width:55px; display:block;}
+.bdan2{ padding:10px 0px 0px 10px; width:182px; height:96px; overflow:hidden; border-bottom:1px solid #eee; padding-bottom:3px; line-height:25px;}
+.bdan2 .bdimg{ float:left; width:55px;}
+.bdancont2{ float:left; padding-left:10px; line-height:16px; width:115px;}
+.pad10{ padding-top:0px;}
+.adpic{ border:1px solid #e5e5e5; margin-bottom:10px;}
+.select{ border:1px solid #ddd; background-color:#f3f3f3; padding:18px;overflow: hidden}
+.slect-item{ float:left;  margin-left:8px; background-color:#fff9ec; border:1px solid #ca0000; height:19px; overflow:hidden; padding:0px 2px 0px 10px;}
+.slect-item span{ display:block; float:left; line-height:19px;}
+.slect-item a.close{ float:left; display:block; width:12px; height:13px; padding:3px 2px 0px 8px; background:url(../images/bgw_06.gif) no-repeat 8px 3px;}
+.slect-item table td{ line-height:20px;}
+.sitem li{ float:left; padding:0px 15px; line-height:20px; white-space:nowrap; cursor:pointer;}
+.extend{ height:26px; margin-top:-1px; padding-left:330px;}
+.extend .kz{ width:116px; height:26px; background:url(../images/bgw_11.gif) no-repeat;}
+.goodsbox{ padding:20px 0 0 0; width:765px; overflow:hidden; }
+.goods-cb{ float:left; width:176px; overflow:hidden; padding:0px 8px 15px 7px;}
+.goods-cb .goods-cbox{ border:1px solid #e8e8e8; padding:5px; width:164px;}
+.goods-cb .goods-cbox p{ line-height:18px; padding:5px 0px;}
+.viewhistory{ margin-bottom:20px; width:978px; overflow:hidden; border:1px solid #e3e3e3;}
+.viewhistory .tit{ height:28px; line-height:28px; background:url(../images/bgw_03.gif) repeat-x; padding-left:10px; font-size:14px; font-weight:bold; color:#ca0000;}
+.viewhis{ padding:10px 0px; height:185px;}
+.viewhis .vhis{ float:left; padding-left:21px; width:142px;}
+.viewhistory .viewhis .vhis .hoverimg{ display:block; border:1px solid #e3e3e3;}
+.viewhis .vhis p{ height:18px; line-height:18px; padding:6px 0 0 0; overflow:hidden;}
+.viewhistory .viewhis .vhis a.hoverimg:hover{ border:1px solid #ac1116;}
+
+
+
+

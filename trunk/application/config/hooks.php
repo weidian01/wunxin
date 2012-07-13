@@ -10,6 +10,14 @@
 |
 */
 
+$hook['cache_override'][] = array(
+                                'class'    => 'ViewCache',
+                                'function' => 'display',
+                                'filename' => 'ViewCache.php',
+                                'filepath' => 'hooks',
+                                'params'   => ''
+                                );
+
 
 
 

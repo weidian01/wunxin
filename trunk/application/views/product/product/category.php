@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title><?=$title?></title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/goods.css" rel="stylesheet" type="text/css" />
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
@@ -560,7 +560,7 @@ $(document).ready(function(){
   </div>
   <!--left end-->
   <div class="goods-list">
-    <div class="select">
+    <div id="modelAttr" class="select">
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="10%" align="right">您已选择：</td>
@@ -568,101 +568,20 @@ $(document).ready(function(){
             <div class="slect-item"><span>宽松型</span><a href="#" class="close"></a></div>
             <div class="slect-item"><span>印花</span><a href="#" class="close"></a></div></td>
         </tr>
-        <tr>
-          <td align="right">尺码：</td>
-          <td><ul class="sitem">
-              <li><a href="#">S</a></li>
-              <li><a href="#">M</a></li>
-              <li><a href="#">L</a></li>
-              <li><a href="#">XL</a></li>
-            </ul></td>
-        </tr>
-        <tr>
-          <td align="right">版型：</td>
-          <td><ul class="sitem">
-              <li><a href="#">宽松型</a></li>
-              <li><a href="#">修身型</a></li>
-              <li><a href="#">收腰型</a></li>
-              <li><a href="#">直桶型</a></li>
-            </ul></td>
-        </tr>
-        <tr>
-          <td align="right">图案：</td>
-          <td><ul class="sitem">
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-            </ul></td>
-        </tr>
-        <tr>
-          <td align="right">面料：</td>
-          <td><ul class="sitem">
-              <li><a href="#">雪纺</a></li>
-              <li><a href="#">亚麻</a></li>
-              <li><a href="#">纯棉</a></li>
-              <li><a href="#">化纤</a></li>
-              <li><a href="#">混纺</a></li>
-            </ul></td>
-        </tr>
-      </table>
-      <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0" id="moreslect" style="display:none;">
-        <tr>
-          <td width="10%" align="right">版型：</td>
-          <td width="90%"><ul class="sitem">
-              <li><a href="#">宽松型</a></li>
-              <li><a href="#">修身型</a></li>
-              <li><a href="#">收腰型</a></li>
-              <li><a href="#">直桶型</a></li>
-            </ul></td>
-        </tr>
-        <tr>
-          <td align="right">图案：</td>
-          <td><ul class="sitem">
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-              <li><a href="#">印花图案</a></li>
-              <li><a href="#">植物图案</a></li>
-              <li><a href="#">动物图案</a></li>
-              <li><a href="#">几何图案</a></li>
-            </ul></td>
-        </tr>
-        <tr>
-          <td align="right">面料：</td>
-          <td><ul class="sitem">
-              <li><a href="#">雪纺</a></li>
-              <li><a href="#">亚麻</a></li>
-              <li><a href="#">纯棉</a></li>
-              <li><a href="#">化纤</a></li>
-              <li><a href="#">混纺</a></li>
-            </ul></td>
-        </tr>
+        <?php foreach($modelAttr as $item):?>
+          <tr>
+            <td align="right"><?=$item['attr_name']?>：</td>
+            <td><ul class="sitem">
+                <?php foreach($item['attr_value'] as $v):?>
+                    <li><a href="/category/<?=$category?>/!<?=$item['attr_id']?>-<?=$v?>"><?=$v?></a></li>
+                <?php endforeach;?>
+              </ul></td>
+          </tr>
+        <?php endforeach;?>
       </table>
     </div>
     <div class="extend">
-      <div class="kz" id="kza" onclick="extenditem('moreslect','kza')"></div>
+      <div class="kz" id="kza" onclick="more()"></div>
     </div>
     <div class="goodsbox">
       <div class="goods-cb">
@@ -896,3 +815,15 @@ $(document).ready(function(){
 <!-- #EndLibraryItem -->
 </body>
 </html>
+<script>
+    $(function ($) {
+        $("#kza").toggle(
+            function () {
+                $("#modelAttr").css({height:"199px"});
+            },
+            function () {
+                $("#modelAttr").css({height:"auto"});
+            }
+        );
+    });
+</script>

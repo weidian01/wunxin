@@ -192,7 +192,8 @@
  */
 	if ($EXT->_call_hook('cache_override') === FALSE)
 	{
-		if ($OUT->_display_cache($CFG, $URI) == TRUE)
+        $key = "{$URI->rsegment(1)}@{$URI->rsegment(2)}";
+		if (isset($CFG->config['cache_view'][$key]) && $OUT->_display_cache($CFG, $URI) == TRUE)
 		{
 			exit;
 		}
