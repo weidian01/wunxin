@@ -562,18 +562,30 @@ $(document).ready(function(){
   <div class="goods-list">
     <div id="modelAttr" class="select">
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <?php if(isset($param) && $param):?>
         <tr>
           <td width="10%" align="right">您已选择：</td>
-          <td width="90%"><div class="slect-item"><span>M</span><a href="#" class="close"></a></div>
-            <div class="slect-item"><span>宽松型</span><a href="#" class="close"></a></div>
-            <div class="slect-item"><span>印花</span><a href="#" class="close"></a></div></td>
+          <td width="90%">
+            <?php foreach($param as $key=>$item):?>
+              <?php $tmp=$param;unset($tmp[$key]);$str='';?>
+              <?php foreach($tmp as $k=>$v):?>
+                  <?php $str .= "!{$k}-{$v}";?>
+              <?php endforeach;?>
+              <div class="slect-item"><span><?=urldecode($item)?></span><a href="/category/<?echo $category,'/1/',$str?>" class="close"></a></div>
+            <?php endforeach;?>
+          </td>
         </tr>
+        <?php endif;?>
         <?php foreach($modelAttr as $item):?>
           <tr>
-            <td align="right"><?=$item['attr_name']?>：</td>
-            <td><ul class="sitem">
-                <?php foreach($item['attr_value'] as $v):?>
-                    <li><a href="/category/<?=$category?>/!<?=$item['attr_id']?>-<?=$v?>"><?=$v?></a></li>
+            <td width="10%" align="right"><?=$item['attr_name']?>：</td>
+            <td width="90%"><ul class="sitem">
+                <?php foreach($item['attr_value'] as $tiem):?>
+                    <?php $tmp=$param;unset($tmp[$item['attr_id']]);$str='';?>
+                    <?php foreach($tmp as $k=>$v):?>
+                        <?php $str .= "!{$k}-{$v}";?>
+                    <?php endforeach;?>
+                    <li><a href="/category/<?echo $category,'/1/!',$item['attr_id'],'-',$tiem,$str?>"><?=$tiem?></a></li>
                 <?php endforeach;?>
               </ul></td>
           </tr>
@@ -584,204 +596,23 @@ $(document).ready(function(){
       <div class="kz" id="kza" onclick="more()"></div>
     </div>
     <div class="goodsbox">
+      <?php foreach($products as $product):?>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_03.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
+        <div class="goods-cbox">
+            <a href="javascript:;"><img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" /></a>
+            <p><?=$product['pname']?><br/>
+            <span class="font4">售价 ￥<?=sprintf("%.2f",$product['sell_price']/100)?></span></p>
         </div>
       </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_03.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_03.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_03.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_03.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_03.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_03.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"><img src="<?=config_item('static_url')?>images/g_05.jpg" width="164" height="220" alt="ddd" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
-      <div class="goods-cb">
-        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>images/g_11.jpg" width="164" height="220" alt="eeee" />
-          <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/>
-            <span class="font4">售价 ￥39.00</span></p>
-        </div>
-      </div>
+    <?php endforeach;?>
     </div>
-    <div class="pages"> <span class="disabled"> 上一页 </span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">12</a><a href="#?page=200">13</a><a href="#?page=2"> 下一页 </a> &nbsp;&nbsp;共13页&nbsp;&nbsp;&nbsp;&nbsp;到第&nbsp;
-      <input class="input6" name="input" type="text" />
-      &nbsp;页&nbsp;&nbsp;&nbsp;&nbsp;
-      <input name="" type="button" class="input7" value="确定" />
+    <?php if($pageHTML):?>
+    <div class="pages">
+        <?=$pageHTML?>
+        共<?=$pageNUM?>页&nbsp;&nbsp;&nbsp;&nbsp;
+        到第<input class="input6" name="input" type="text" /> 页 <input type="button" class="input7" value="确定" />
     </div>
+    <?php endif;?>
   </div>
   <!--right end-->
 </div>
@@ -819,7 +650,7 @@ $(document).ready(function(){
     $(function ($) {
         $("#kza").toggle(
             function () {
-                $("#modelAttr").css({height:"199px"});
+                $("#modelAttr").css({height:"180px"});
             },
             function () {
                 $("#modelAttr").css({height:"auto"});

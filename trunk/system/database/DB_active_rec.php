@@ -397,6 +397,11 @@ class CI_DB_active_record extends CI_DB_driver {
 	 */
 	protected function _where($key, $value = NULL, $type = 'AND ', $escape = NULL)
 	{
+        if(is_string($key) && $value===null)
+        {
+            $escape = false;
+        }
+
 		if ( ! is_array($key))
 		{
 			$key = array($key => $value);
