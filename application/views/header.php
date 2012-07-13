@@ -1,6 +1,6 @@
 <div class="hd">
     <div class="hd-cont">
-        <div class="hd-wel">您好！欢迎光临万象网</div>
+        <div class="hd-wel">您好&nbsp;&nbsp;<span id="user_name_id">欢迎光临万象网</span>！&nbsp;&nbsp;<span id="loginout_id"></span></div>
         <div class="cart">
             <div class="cart-num" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)">
                 购物车有<span class="font1" id="cart_product_num">
@@ -39,8 +39,8 @@
                 <li><a href="#">浏览记录</a></li>
                 <li><a href="#">我的万象</a></li>
                 <li><a href="#">我的订单</a></li>
-                <li><a style="color:#000;" href="/user/register/">注册</a></li>
-                <li><a href="/user/login/">登录</a></li>
+                <li id="user_info_id"><a style="color:#000;" href="/user/register/">注册</a></li>
+                <li id="user_login_out_id"><a href="/user/login/">登录</a></li>
             </ul>
         </div>
     </div>

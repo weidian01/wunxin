@@ -103,7 +103,8 @@ class login extends MY_Controller
         delete_cookie('auth');
 
         unset ($this->uInfo);
-        //redirect(config_item('base_url'), 'refresh');
+        
+        redirect(config_item('base_url'));
     }
 
     public function getUserInfo ()
