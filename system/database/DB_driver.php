@@ -290,6 +290,7 @@ class CI_DB_driver {
 		if ($this->save_queries == TRUE)
 		{
 			$this->queries[] = $sql;
+            log_message('LOG', str_replace("\n", ' ', $sql));
 		}
 
 		// Start the Query Timer
@@ -339,7 +340,8 @@ class CI_DB_driver {
 
 		if ($this->save_queries == TRUE)
 		{
-			$this->query_times[] = ($em + $es) - ($sm + $ss);
+			$this->query_times[] = $use_time = ($em + $es) - ($sm + $ss);
+            log_message('LOG', '/*' . $use_time . '*/');
 		}
 
 		// Increment the query counter

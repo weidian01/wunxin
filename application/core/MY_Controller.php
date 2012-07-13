@@ -11,9 +11,6 @@ class MY_Controller extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        if (ENVIRONMENT === 'development') {
-            log_message('LOG', $this->input->server('SERVER_NAME') . $this->input->server('REQUEST_URI'));
-        }
     }
 
     /**
@@ -157,5 +154,18 @@ class MY_Controller extends CI_Controller
         $this->input->set_cookie('cart_info', json_encode($cData), 10000000);
 
         return $cData;
+    }
+
+    protected function cache_view($match='')
+    {
+        $key = "{$this->uri->rsegment(1)}@{$this->uri->rsegment(2)}";
+        $life = isset($this->config->config['cache_view'][$key]) ? $this->config->config['cache_view'][$key] : 0;
+        if($life > 0  && ! $match)
+            return false;
+        if (preg_match('#^' . $match . '$#', $this->uri->uri_string())) {
+            $this->output->cache($life);
+            return true;
+        }
+        return false;
     }
 }
