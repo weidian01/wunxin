@@ -1046,5 +1046,111 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include '/../../footer.php';?>
 <!-- #EndLibraryItem -->
+<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<script type="text/javascript">
+// JavaScript Document
+$(document).ready(function(){
+  $(".bankpic").click(function(){
+    $(".bankpic").css("border","1px solid #eee");
+	$(this).css("border","1px solid #a10000");
+  });
+
+  $(".sub-s").click(function(){
+    $(".sub-s").css("border","2px solid #dddddd");
+	$(".selected").css("display","none");
+	$(this).css("border","2px solid #ac1116");
+	$(this).find(".selected").css('display','block');
+  });
+  $(".sub-cm").click(function(){
+    $(".sub-cm").css("border","2px solid #dddddd");
+	$(".selected2").css("display","none");
+	$(this).css("border","2px solid #ac1116");
+	$(this).find(".selected2").css('display','block');
+  });
+  $(".big-pic").mouseover(function(){
+    $(".largeimg").css("display","block");
+  });
+  $(".big-pic").mouseout(function(){
+    $(".largeimg").css("display","none");
+  });
+  $("#rankt1 ul.bdan li").mouseover(function(){
+    $("#rankt1 ul.bdan li").removeClass('on');
+    $("#rankt1 .bdan").find(".bdimg").css("display","none");
+    $("#rankt1 .bdan").find(".bdprice").css("display","none");
+	$(this).addClass("on");
+	$(this).find(".bdimg").css("display","block");
+	$(this).find(".bdimg").css("display","block");
+	$(this).find(".bdprice").css("display","block");
+  });
+  $("#rankt2 ul.bdan li").mouseover(function(){
+    $("#rankt2 ul.bdan li").removeClass('on');
+    $("#rankt2 .bdan").find(".bdimg").css("display","none");
+    $("#rankt2 .bdan").find(".bdprice").css("display","none");
+	$(this).addClass("on");
+	$(this).find(".bdimg").css("display","block");
+	$(this).find(".bdimg").css("display","block");
+	$(this).find(".bdprice").css("display","block");
+  });
+  $("#rankt3 ul.bdan li").mouseover(function(){
+    $("#rankt3 ul.bdan li").removeClass('on');
+    $("#rankt3 .bdan").find(".bdimg").css("display","none");
+    $("#rankt3 .bdan").find(".bdprice").css("display","none");
+	$(this).addClass("on");
+	$(this).find(".bdimg").css("display","block");
+	$(this).find(".bdimg").css("display","block");
+	$(this).find(".bdprice").css("display","block");
+  });
+  $(".ginfo-tle1").click(function(){
+	$(".ginfo-tle1").css("background-position","0px -32px");
+    $(".ginfo-tle1").find("span").css({"background-position":"right -98px","color":"#333333"});
+	$(this).css("background-position","0px 0px");
+    $(this).find("span").css({"background-position":"right -66px","color":"#ffffff"});
+
+  });
+  $(".dinfo-tle1").click(function(){
+	$(".dinfo-tle1").css("background-position","0px -32px");
+    $(".dinfo-tle1").find("span").css({"background-position":"right -98px","color":"#333333"});
+	$(this).css("background-position","0px 0px");
+    $(this).find("span").css({"background-position":"right -66px","color":"#ffffff"});
+
+  });
+});
+
+function showtab(a,id,num)
+{
+	for(var i=1;i<num;i++)
+	{
+		document.getElementById(a+i).style.display="none";
+		}
+		document.getElementById(a+id).style.display="block";
+	}
+	function showtab2(a,id,num)
+{
+	for(var i=1;i<num;i++)
+	{
+	  if(id==1){
+		  document.getElementById(a+i).style.display="block";
+		  }
+		  else{
+		document.getElementById(a+i).style.display="none";}
+	}
+		document.getElementById(a+id).style.display="block";
+}
+
+function rankbox(a,b,id)
+{
+    for(var i=1;i<4;i++)
+    {
+        document.getElementById(a+i).style.borderRight="1px solid #e5e5e5";
+        document.getElementById(a+i).style.borderLeft="1px solid #e5e5e5";
+        document.getElementById(a+i).style.borderTop="1px solid #e5e5e5";
+        document.getElementById(b+i).style.display="none";
+    }
+    document.getElementById(a+id).style.borderRight="1px solid #ca0000";
+    document.getElementById(a+id).style.borderLeft="1px solid #ca0000";
+    document.getElementById(a+id).style.borderTop="1px solid #ca0000";
+    document.getElementById(b+id).style.display="";
+}
+</script>
 </body>
 </html>
