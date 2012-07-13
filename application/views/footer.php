@@ -80,7 +80,7 @@
     <p>
         <a rel="nofollow" target="_blank" href="http://www.miibeian.gov.cn/">ICP证: 京ICP备05003606号</a>
         <span class="mr15">北京万象乾鑫科技有限公司</span>
-        <span>Copyright©2000-2011 WunXin Inc. All Rights Reserved</span>
+        <span>Copyright©2000-2011 WunXin Inc. All Rights Reserved</span> <span style="font-size:9px">Page rendered in {elapsed_time} seconds</span>
     </p>
   </div>
 </div>

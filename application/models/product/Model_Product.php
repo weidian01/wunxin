@@ -60,9 +60,13 @@ class Model_Product extends MY_Model
      * @param int $offset
      * @return null | array
      */
-    public function getProductList($limit = 20, $offset = 0, $where = null)
+    public function getProductList($limit = 20, $offset = 0, $field= "*", $where = null)
     {
-        $data = $this->db->get_where('product', $where, $limit, $offset)->result_array();
+        $this->db->select($field);
+        $this->db->from('product');
+        $where && $this->db->where($where);
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
 
         return empty ($data) ? null : $data;
     }

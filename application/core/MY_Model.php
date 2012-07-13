@@ -105,16 +105,16 @@ class MY_Model extends CI_Model
         return true;
     }
 
-//    function __destruct()
-//    {
-//        --self::$obj_num;
-//        if (ENVIRONMENT === 'development' && self::$obj_num === 0 && ! $this->input->is_ajax_request()) {
-//            echo '<div  style="margin: 12px 15px 12px 15px;float: right;border: 1px solid #D0D0D0;">';
-//            foreach ($this->db->queries as $k => $v) {
-//                echo '<b style="color:red;font-size:20px;">SQL:</b>' , str_replace("\n", '', $v) , ' ------ <b style="color:red;font-size:20px;">TIME:</b>' , $this->db->query_times[$k],"<br>";
-//            }
-//            echo '</div>';
-//        }
-//
-//    }
+    function __destruct()
+    {
+        --self::$obj_num;
+        if (ENVIRONMENT === 'development' && self::$obj_num === 0 && ! $this->input->is_ajax_request()) {
+            echo '<div  style="margin: 12px 15px 12px 15px;float: right;border: 1px solid #D0D0D0;">';
+            foreach ($this->db->queries as $k => $v) {
+                echo '<b style="color:red;font-size:20px;">SQL:</b>' , str_replace("\n", '', $v) , ' ------ <b style="color:red;font-size:20px;">TIME:</b>' , $this->db->query_times[$k],"<br>";
+            }
+            echo '</div>';
+        }
+
+    }
 }

@@ -178,5 +178,28 @@ class Model_Product_Model extends MY_Model
         return $this->db->count_all_results();
     }
 
-
+    /**
+     * 根据属性获取符合条件的产品id
+     * @param array $attrs
+     * @return array
+     */
+    function getPidByAttr(array $attrs)
+    {
+        $num = count($attrs);
+        $data = array();
+        if ($num) {
+            $where = '';
+            foreach ($attrs as $key => $value) {
+                $where .= "OR (attr_id='{$key}' AND attr_value='{$value}') ";
+            }
+            $where = ltrim($where, "OR");
+            $result = $this->db->query("SELECT pid FROM (`wx_product_attr`)  WHERE {$where} GROUP BY pid HAVING(COUNT(pid) >= {$num}) ORDER BY NULL");
+            if ($result->num_rows() > 0) {
+                foreach ($result->result() as $row) {
+                    $data[] = $row->pid;
+                }
+            }
+        }
+        return $data;
+    }
 }
