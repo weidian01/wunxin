@@ -100,8 +100,23 @@ class Product extends MY_Controller
      */
     public function info()
     {
+        $productId = (int)$this->uri->rsegment(3, 1);
+
+        if (empty ($productId)) {
+            exit;
+        }
+
+        $this->load->model('product/Model_Product', 'product');
+        $pInfo = $this->product->getProductById($productId);
+
+        if (empty ($pInfo) || !is_array($pInfo)) {
+            exit;
+        }
+
+
+
         //echo 'product info';
-        $this->load->view('product/product/info');
+        $this->load->view('product/product/info', array('product_data' => $pInfo));
     }
 
 

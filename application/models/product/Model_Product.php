@@ -23,6 +23,7 @@ class Model_Product extends MY_Model
 
     /**
      * 获取产品和产品默认图片
+     *
      * @param $pid
      * @return null | array
      */

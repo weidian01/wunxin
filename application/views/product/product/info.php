@@ -23,7 +23,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <li><a href="#">首页</a></li>
       <li><a href="#">女装</a></li>
       <li><a href="#">T恤/卫衣</a></li>
-      <li class="last">时尚多彩百搭休闲连衣裙</li>
+      <li class="last"><?php echo $product_data['pname'];?></li>
     </ul>
   </div>
 </div>
@@ -50,11 +50,11 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   </div>
   <div class="goods-i">
     <div class="goods-name">
-      <h1>时尚多彩百搭休闲连衣裙 <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
+      <h1><?php echo empty ($product_data['pname']) ? '' : $product_data['pname'];?> <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
       <span class="font3">2012新品 </span></div>
     <p>商品编号：CY0569852310000<br/>
-      特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥135.00</span><br/>
-      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥135.00</span></p>
+      特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?php echo $product_data['sell_price'] / 100;?></span><br/>
+      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?php echo $product_data['market_price'] / 100;?></span></p>
     <div class="pf">
       <div class="pftxt">商品评分：</div>
       <div class="pfstar"><span class="fullstar"></span><span class="fullstar"></span><span class="fullstar"></span><span class="fullstar"></span><span class="emptystar"></span>
@@ -74,7 +74,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="ctxt">购买件数：</div>
         <div class="sizebox">
           <div class="buy-num"> <a class="minus" href="#"></a> <a class="plus" href="#"></a>
-            <input name="" type="text" />
+            <input name="buy_num" type="text" value="1" style="text-align: center;"/>
           </div>
         </div>
       </div>
