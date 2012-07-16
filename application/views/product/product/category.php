@@ -53,8 +53,9 @@ $(document).ready(function(){
         </ul>
       </div>
     </div>
-
+    <!--
     <div class="sidebox">
+
       <div class="side-tit2">T恤销售排行榜</div>
       <div class="side-qh">
         <div class="side-m current" id="sidet1" onmouseover="rankbox('sidet','rankt','1')">同类别</div>
@@ -121,6 +122,7 @@ $(document).ready(function(){
           </li>
         </ul>
       </div>
+
       <div class="rankbox" id="rankt2" style="display:none;">
         <ul class="bdan">
           <li class="on">
@@ -242,12 +244,12 @@ $(document).ready(function(){
         </ul>
       </div>
     </div>
-
+-->
     <div class="sidebox">
       <div class="side-tit2">T恤销售排行榜</div>
       <div class="side-qh">
         <div class="side-m current" id="sidem1" onmouseover="rankbox('sidem','rank','1')">同类别</div>
-        <div class="side-m" id="sidem2" onmouseover="rankbox('sidem','rank','2')">同品牌</div>
+        <div class="side-m" id="sidem2" onmouseover="rankbox('sidem','rank','2')">同风格</div>
         <div class="side-m" id="sidem3" onmouseover="rankbox('sidem','rank','3')">同价位</div>
       </div>
       <div class="rankbox" id="rank1">
