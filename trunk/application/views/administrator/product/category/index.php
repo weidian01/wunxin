@@ -45,6 +45,7 @@
                     </th>
                     <th>分类名称</th>
                     <th>分类级别</th>
+                    <th>排序</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -57,6 +58,7 @@
 
                     <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['cname'];?></td>
                     <td><?=$item['floor']?></td>
+                    <td><?=$item['sort']?></td>
                     <td><a href="<?php echo site_url("administrator/product_category/edit/{$item['class_id']}")?>"><img
                         src="/images/icons/pencil.png" alt="Edit"/></a> <a
                         href="<?php echo site_url("administrator/product_category/del/{$item['class_id']}")?>"><img

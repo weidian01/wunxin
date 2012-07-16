@@ -34,33 +34,27 @@ $(document).ready(function(){
 <div class="box">
   <div class="path">
     <ul>
-      <li><a href="#">首页</a></li>
-      <li><a href="#">女装</a></li>
-      <li class="last">T恤/卫衣</li>
+      <li><a href="<?=site_url()?>">首页</a></li>
+      <?php foreach($nav as $v):?>
+        <?php if($category ==$v['class_id']):?>
+            <li class="last"><?=$v['cname']?></a></li>
+        <?php else:?>
+            <li><a href="/category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
+        <?php endif;?>
+      <?php endforeach;?>
+      <!--li class="last">T恤/卫衣</li-->
     </ul>
   </div>
 </div>
 <div class="box3">
   <div class="side-left">
     <div class="sidebox">
-      <div class="side-tit">女装</div>
+      <div class="side-tit"><?=$this->channel[$ancestor]['cname']?></div>
       <div class="menu">
         <ul>
-          <li><a href="#">T恤/卫衣(150)</a></li>
-          <li><a href="#">针织衫(50)</a></li>
-          <li><a href="#">雪纺衫(50)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
-          <li><a href="#">针织衫(50)</a></li>
-          <li><a href="#">雪纺衫(50)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
-          <li><a href="#">针织衫(50)</a></li>
-          <li><a href="#">雪纺衫(50)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
-          <li><a href="#">连衣裙(126)</a></li>
+            <?php unset($clan[$ancestor]);foreach($clan as $item):?>
+            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']-1);?><a href="/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
+            <?php endforeach;?>
         </ul>
       </div>
     </div>
@@ -560,6 +554,7 @@ $(document).ready(function(){
   </div>
   <!--left end-->
   <div class="goods-list">
+    <?php if(! isset($this->channel[$category]['is_parent'])):?>
     <div id="modelAttr" class="select">
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
         <?php if(isset($param) && $param):?>
@@ -595,11 +590,12 @@ $(document).ready(function(){
     <div class="extend">
       <div class="kz" id="kza" onclick="more()"></div>
     </div>
+    <?php endif;?>
     <div class="goodsbox">
       <?php foreach($products as $product):?>
       <div class="goods-cb">
         <div class="goods-cbox">
-            <a href="javascript:;"><img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" /></a>
+            <a href="/product/<?=$product['pid']?>"><img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" /></a>
             <p><?=$product['pname']?><br/>
             <span class="font4">售价 ￥<?=sprintf("%.2f",$product['sell_price']/100)?></span></p>
         </div>

@@ -82,11 +82,13 @@
 <div class="nav">
     <div class="navbox">
         <div class="mainnav">
-            <a class="curr" href="/">首页</a>
-            <a href="#">男装款</a>
-            <a href="#">女装款</a>
-            <a href="#">情侣装款</a>
-            <a class="last" href="#">亲子装款</a>
+            <a class="curr" href="<?=site_url()?>">首页</a>
+            <?php foreach($this->channel as $channel):?>
+                <?php if($channel["parent_id"]==0):?>
+                <a href="/category/<?=$channel['class_id']?>"><?=$channel['cname']?></a>
+                <?php endif;?>
+            <?php endforeach;?>
+            <!--a class="last" href="#">亲子装款</a-->
         </div>
 
         <div class="other">

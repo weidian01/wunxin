@@ -8,17 +8,23 @@
  */
 class Model_Product_Category extends MY_Model
 {
+    private $category = array();
+
     /**
      * 获取所有分类列表
      */
     public function getCategroyList()
     {
+        if($this->category)
+            return $this->category;
+
         $categroyList = $this->db
             ->select()
             ->order_by('sort', 'desc')
             ->get_where('product_category')
             ->result_array();
-        return $this->sortdata($categroyList);
+        $this->category = $this->sortdata($categroyList);
+        return $this->category;
     }
 
     /**
@@ -28,26 +34,96 @@ class Model_Product_Category extends MY_Model
      * @param int $id
      * @return array
      */
-    private static function sortdata($catArray, $id = 0)
+    private static function sortdata(&$catArray, $id = 0)
     {
         static $formatCat = array();
         static $floor = 0;
-
+        static $ancestor = 0;
         foreach ($catArray as $key => $val) {
-            if ($val['parent_id'] == $id) {
-                $val['cname'] = $val['cname'];
 
+            if ($val['parent_id'] == $id) {
+                ($val['parent_id'] == 0) && $ancestor = $val['class_id'];
+                //$val['cname'] = $val['cname'];
+                $val['ancestor'] = $ancestor;
+                $id && $formatCat[$id]['is_parent'] = true;
                 $val['floor'] = $floor;
                 $formatCat[$val['class_id']] = $val;
-
                 unset($catArray[$key]);
-
                 $floor++;
                 self::sortdata($catArray, $val['class_id']);
                 $floor--;
             }
         }
         return $formatCat;
+    }
+
+    /**
+     * 获取所有父类
+     * @param $cid
+     */
+    public function getParents($cid = 0)
+    {
+        $category = $this->getCategroyList();
+        $result = array();
+        if(! isset($category[$cid]))
+            return $result;
+        while(true)
+        {
+            $result = array($cid => $category[$cid]) + $result;
+            $cid = $category[$cid]['parent_id'];
+            if ($cid == 0) {
+                break;
+            }
+        }
+        return $result;
+    }
+
+    public function getChildren($cid = 0, $filter = true)
+    {
+        $category = $this->getCategroyList();
+        $result = array();
+        if(! isset($category[$cid]))
+            return $result;
+        $flag = false;
+        $floor = $category[$cid]['floor'];
+        foreach($category as $item)
+        {
+            if($flag && ($item['floor'] <= $floor))
+            {
+                break;
+            }
+            if($cid == $item['class_id'])
+            {
+                $flag = true;
+                $floor = $item['floor'];
+            }
+            if($flag)
+            {
+                if($filter)
+                {
+                    !isset($item['is_parent']) && $result[$item['class_id']] = $item;
+                }
+                else
+                {
+                    $result[$item['class_id']] = $item;
+                }
+            }
+        }
+        return $result;
+    }
+
+    public function getClan($cid = 0)
+    {
+        $category = $this->getCategroyList();
+        $result = array();
+        foreach($category as $item)
+        {
+            if($cid == $item['ancestor'])
+            {
+                $result[$item['class_id']] = $item;
+            }
+        }
+        return $result;
     }
 
     /**
