@@ -18,11 +18,6 @@ $(document).ready(function(){
     $(".bankpic").css("border","1px solid #eee");
 	$(this).css("border","1px solid #a10000");
   });
-
-  $(".goods-cbox").mouseover(function(){
-    $(".goods-cbox").css("border","1px solid #e8e8e8");
-	$(this).css("border","1px solid #ac1116");
-  });
 });
 </script>
 </head>
@@ -652,5 +647,24 @@ $(document).ready(function(){
                 $("#modelAttr").css({height:"auto"});
             }
         );
+
+        $(".goods-cbox").hover(
+            function () {
+                $(this).css("border", "1px solid #ac1116");
+            },
+            function () {
+                $(this).css("border", "1px solid #e8e8e8");
+            }
+        );
     });
+
+    function rankbox(a,b,id) {
+        for (var i = 1; i < 4; i++) {
+            $("#"+ a + i).css({'borderRight':'1px solid #e5e5e5','borderLeft':'1px solid #e5e5e5','borderTop':'1px solid #e5e5e5'})
+            document.getElementById(b + i).style.display = (i == id) ? 'block':"none";
+        }
+        $("#"+ a + id).css({'borderRight':'1px solid #ca0000','borderLeft':'1px solid #ca0000','borderTop':'1px solid #ca0000'})
+    }
+
+
 </script>
