@@ -5,13 +5,20 @@
 <title>无标题文档</title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/goods.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"> </script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"> </script>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
 EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
 </script>
 <![endif]-->
+<script>
+    $(function ($) {
+        $('.pic-rn').click(function(){
+            $('.big-pic > img').attr('src', $("img", this).attr('src'));
+        });
+    });
+</script>
 </head>
 <body>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
@@ -21,9 +28,12 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   <div class="path">
     <ul>
       <li><a href="#">首页</a></li>
-      <li><a href="#">女装</a></li>
-      <li><a href="#">T恤/卫衣</a></li>
-      <li class="last"><?php echo $product_data['pname'];?></li>
+
+        <?php foreach($nav as $v):?>
+            <li><a href="/category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
+        <?php endforeach;?>
+      <li class="last"><?=$product['pname']?></li>
+
     </ul>
   </div>
 </div>
@@ -34,11 +44,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="smallpic-b">
         <div class="spic">
           <div class="picsn">
-            <div class="pic-rn"><a href="#"><img src="<?=config_item('static_url')?>images/60.jpg" width="60" height="60" alt="ff" /></a></div>
-            <div class="pic-rn"><a href="#"><img src="<?=config_item('static_url')?>images/60.jpg" width="60" height="60" alt="ff" /></a></div>
-            <div class="pic-rn"><a href="#"><img src="<?=config_item('static_url')?>images/60.jpg" width="60" height="60" alt="ff" /></a></div>
-            <div class="pic-rn"><a href="#"><img src="<?=config_item('static_url')?>images/60.jpg" width="60" height="60" alt="ff" /></a></div>
-            <div class="pic-rn"><a href="#"><img src="<?=config_item('static_url')?>images/60.jpg" width="60" height="60" alt="ff" /></a></div>
+            <?php foreach($photo as $item):?>
+            <div class="pic-rn"><a href="javascript:;"><img src="<?=config_item('static_url')?>upload/product/<?=$item['img_addr']?>" width="60" height="60" alt="ff" /></a></div>
+            <?php endforeach;?>
           </div>
         </div>
       </div>
@@ -50,11 +58,14 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   </div>
   <div class="goods-i">
     <div class="goods-name">
-      <h1><?php echo empty ($product_data['pname']) ? '' : $product_data['pname'];?> <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
+
+      <h1><?=$product['pname']?> <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
       <span class="font3">2012新品 </span></div>
     <p>商品编号：CY0569852310000<br/>
-      特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?php echo $product_data['sell_price'] / 100;?></span><br/>
-      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?php echo $product_data['market_price'] / 100;?></span></p>
+
+      特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?=sprintf('%.2f', $product['sell_price']/100)?></span><br/>
+      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?=sprintf('%.2f', $product['market_price']/100)?></span></p>
+
     <div class="pf">
       <div class="pftxt">商品评分：</div>
       <div class="pfstar"><span class="fullstar"></span><span class="fullstar"></span><span class="fullstar"></span><span class="fullstar"></span><span class="emptystar"></span>
