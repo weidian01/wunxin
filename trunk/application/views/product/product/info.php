@@ -14,7 +14,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <![endif]-->
 <script>
     $(function ($) {
-        $('.pic-rn').mouseover(function(){
+        $('.pic-rn').click(function(){
             $('.big-pic > img').attr('src', $("img", this).attr('src'));
         });
     });
@@ -1054,6 +1054,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   </div>
   <!--right end-->
 </div>
+<br />
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include '/../../footer.php';?>
 <!-- #EndLibraryItem -->
