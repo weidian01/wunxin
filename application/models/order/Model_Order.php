@@ -221,6 +221,34 @@ class Model_Order extends MY_Model
     }
 
     /**
+     * 获取用户订单列表
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserOrderList($uId, $limit = 20, $offset = 0)
+    {
+        $this->db->select('*')->from('order')->where('uid', $uId)->order_by('order_sn', 'desc')->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户订单数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserOrderCount($uId)
+    {
+        $this->db->select('*')->from('order')->where('uid', $uId);
+        return $this->db->count_all_results();
+        //return empty ($data) ? null : $data;
+    }
+
+    /**
      * 获取订单列表
      *
      * @param int $limit

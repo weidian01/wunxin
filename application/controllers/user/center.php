@@ -11,6 +11,7 @@ class center extends MY_Controller
     function __construct()
     {
         parent::__construct();
+
         if (!$this->isLogin()) {
             return ;
         }
@@ -23,6 +24,10 @@ class center extends MY_Controller
 
     public function index()
     {
-        $this->load->view('user/center');
+        $this->load->model('order/Model_Order', 'order');
+        $data = $this->order->getOrderByUid(1);
+        //echo '<pre>';print_r($data);exit;
+
+        $this->load->view('user/center', array('data' => $data));
     }
 }
