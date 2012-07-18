@@ -452,6 +452,7 @@ function editorder(a, b, t)
     var et = document.getElementById(b);
     if (ey.style.display == "none") {
         t.innerText = '[不保存关闭]';
+        //$('#modify_text_id').html('[不保存关闭]');
         ey.style.display = "";
         (et == null || et == '') ? '' : et.style.display = "none";
     } else {

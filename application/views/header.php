@@ -37,8 +37,8 @@
             <ul>
                 <li><a href="javascript:void (0);" onclick="wx.addFavorite()">收藏本站</a></li>
                 <li><a href="#">浏览记录</a></li>
-                <li><a href="#">我的万象</a></li>
-                <li><a href="#">我的订单</a></li>
+                <!--<li><a href="/user/center">我的万象</a></li>-->
+                <li><a href="/user/center">我的订单</a></li>
                 <li id="user_info_id"><a style="color:#000;" href="/user/register/">注册</a></li>
                 <li id="user_login_out_id"><a href="/user/login/">登录</a></li>
             </ul>

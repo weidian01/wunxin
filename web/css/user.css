@@ -1,0 +1,50 @@
+@charset "utf-8";
+.u-left{ float:left; width:150px; border:1px solid #e3e3e3;}
+.u-right{ float:left; width:813px; padding-left:15px;}
+.u-tit{ height:28px; line-height:28px; background:url(../images/bgw_03.gif) repeat-x; padding-left:10px; color:#a10000; font-weight:bold;}
+.u-menu{ padding:8px 0px;}
+.u-menu ul li,.u-ac span,.tuipre,.tuinext{background:url(../images/u-bg.gif) no-repeat}
+.u-menu ul li{ line-height:25px; height:25px; padding-left:20px; background-position:11px 10px;}
+.u-r-box{ border:1px solid #e3e3e3; width:810px; overflow:hidden; margin-bottom:15px;}
+.u-r-tit{ height:25px; line-height:25px; padding-left:15px; background:url(../images/bgw_03.gif) repeat-x; border-bottom:2px solid #a10000; font-size:14px; color:#a10000; font-weight:bold;}
+.u-ac{ padding:15px; height:20px;}
+.u-ac span{ display:block; height:16px;  line-height:16px; float:left; overflow:hidden;}
+.u-ac .ruo{ padding:0px 130px 0px 0px; background-position:65px -24px; }
+.u-ac .zhong{ padding:0px 130px 0px 0px; background-position:65px -40px; display:none; }
+.u-ac .qiang{ padding:0px 130px 0px 0px; background-position:65px -56px; display:none;}
+.yanzheng{ float:left; padding:0px 0px 0px 30px; height:20px;}
+.u-ac .phone{ height:20px; line-height:20px; width:70px; padding:0px 0px 0px 21px; background-position:-132px -41px; color:#1A5B9D}
+.u-ac .topay{ height:20px; line-height:20px; width:90px; padding:0px 0px 0px 21px; background-position:-132px -21px; color:#1A5B9D}
+.u-ac .email{ height:20px; line-height:20px; width:70px; padding:0px 0px 0px 21px; background-position:-130px -60px; color:#1A5B9D}
+.safetip{ float:left; color:#a10000; padding-top:2px; padding-left:15px; }
+.u-ac .safetip a{ color:#a10000; }
+.orderlist-sek{ padding:8px 15px; height:20px; line-height:20px;}
+.sinput{ height:24px; width:48px; padding:0px; margin:0px; border:0px; background:url(../images/btnbg_03.gif) no-repeat;}
+.o-list{ height:26px; background:url(../images/bgw_03.gif) repeat-x; border-top:1px solid #e3e3e3; }
+.goods-in{width:200px; display:block;  position:relative; padding:8px 30px 8px 8px; overflow:hidden;}
+.goods-in .g-i-img{ float:left; width:50px; height:50px; text-align:center; }
+.goods-in .g-i-img img{ border:1px solid #eee;}
+.gobuy{ height:21px;}
+.gobuy a{ display:block; height:21px; width:72px; background:url(../images/bui_11.jpg) no-repeat; }
+.scolls,.scolls2{ position:absolute; z-index:1000; width:13px; height:11px; right:4px; top:45%; overflow:hidden;background:url(../images/fan.gif) no-repeat; cursor:pointer; }
+.scolls2{ background-position:0px -11px;}
+.u-right .u-r-box .tab6 tr td a{ color:#2262A8;}
+.u-r-box .ddall li{ float:right; padding-right:15px;}
+.tui-tit{ height:23px; background:url(../images/bgqie_03.gif) repeat-x; line-height:23px; padding-left:10px; font-weight:bold; color:#a10000; font-size:14px;}
+
+.tui{ position:relative; z-index:100; width:720px; padding:15px 40px; overflow:hidden;}
+.tui ul li{ float:left; width:130px; padding:0px 7px; line-height:18px; overflow:hidden;}
+.tui ul li img{ border:1px solid #ddd;}
+.tui ul li p{ height:40px; }
+.tuipre,.tuinext{ position:absolute; width:33px; height:37px;}
+.tuipre{ left:10px; top:60px; background-position:0px -93px;}
+.tuinext{ right:0px; top:60px; background-position:-33px -93px;}
+.tuipre a,.tuinext a{ display:block; width:32px; height:37px;}
+
+
+
+
+
+
+
+
