@@ -8,14 +8,19 @@
  */
 class order extends MY_Controller
 {
-    public function __construct()
+    function __construct()
     {
         parent::__construct();
-
         if (!$this->isLogin()) {
             return ;
         }
+
+        if(! $this->input->is_ajax_request()){
+            $this->load->model('product/Model_Product_Category', 'cate');
+            $this->channel = $this->cate->getCategroyList();
+        }
     }
+
     /**
      * 订单确认
      *

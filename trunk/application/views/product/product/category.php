@@ -639,6 +639,7 @@ $(document).ready(function(){
 <!-- #EndLibraryItem -->
 </body>
 </html>
+<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <script>
     $(function ($) {
         $("#kza").toggle(

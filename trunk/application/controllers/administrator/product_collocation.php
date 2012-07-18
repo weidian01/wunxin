@@ -70,7 +70,7 @@ class product_collocation extends MY_Controller
         $data['spid'] = intval($this->input->get_post('spid'));
         $data['sort'] = intval($this->input->get_post('sort'));
 
-        if (empty ($data['pid']) || empty ($data['spid']) || empty ($data['sort'])) {
+        if (empty ($data['pid']) || empty ($data['spid'])) {
             show_error('参数不全');
         }
 
