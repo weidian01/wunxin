@@ -629,5 +629,50 @@ function url($string, $prefix='base')
     return $url . $string;
 }
 
+function copyImg($source_file, $new_width, $new_height, $new_file_name=null, $quality = 90)
+{
+    list($width, $height) = getimagesize($source_file);
+    $type = strtolower(substr(strrchr($source_file, "."),1));
+    switch($type){
+        case 'bmp':
+            $source = imagecreatefromwbmp($source_file);
+            break;
+        case 'gif':
+            $source = imagecreatefromgif($source_file);
+            break;
+        case 'png':
+            $source = imagecreatefrompng($source_file);
+            break;
+        case 'jpeg':
+        case 'jpg':
+            $source = imagecreatefromjpeg($source_file);
+            break;
+    }
+    $thumb = imagecreatetruecolor($new_width, $new_height);	//$source = imagecreatefromjpeg($source_file);
+    imagecopyresampled($thumb, $source, 0, 0, 0, 0, $new_width, $new_height, $width, $height);	// Output
+    switch ($type) {
+        case 'bmp':
+            imagewbmp($thumb, $new_file_name, $quality);
+            break;
+        case 'gif':
+            imagegif($thumb, $new_file_name, $quality);
+            break;
+        case 'png':
+            imagepng($thumb, $new_file_name, $quality);
+            break;
+        case 'jpeg':
+        case 'jpg':
+            imagejpeg($thumb, $new_file_name, $quality);
+            break;
+    }
+	return true;
+}
+
+function intToPath($id) {
+	$id = (int)$id;
+    if($id < 1)return false;
+    preg_match("/(\d{1,2})(\d{0,2})/","{$id}", $matches);
+	return $matches[1] . '/' . $matches[1].$matches[2] . '/' . $id . "/";
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

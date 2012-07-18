@@ -5,7 +5,9 @@
 <title><?=$product['pname']?> -- 万象网</title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/goods.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"> </script>
+<link href="<?=config_item('static_url')?>css/jquery.jqzoom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.jqzoom-core.js"> </script>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
@@ -14,9 +16,49 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <![endif]-->
 <script>
     $(function ($) {
-        $('.pic-rn').click(function(){
-            $('.big-pic > img').attr('src', $("img", this).attr('src'));
+        $('#button_next').click(function(){
+            var list = $('#img_list > div');
+            var size = list.size();
+            var offset = 0;
+            var show = 5;
+            if(size < show) return;
+            list.each(function (i) {
+                var display = $(this).css('display');
+                if (display != 'none') {
+                    offset = i;
+                    return false;
+                }
+            });
+            if((size - offset) > show)
+                $('#img_list > div:eq('+offset+')').slideUp();
         });
+
+        $('#button_prev').click(function(){
+            var list = $('#img_list > div');
+            var size = list.size();
+            var offset = 0;
+            var show = 5;
+            if(size < show) return;
+            list.each(function (i) {
+                var display = $(this).css('display');
+                if (display == 'none') {
+                    offset = i;
+                }
+            });
+            $('#img_list > div:eq('+offset+')').slideDown();
+        });
+
+        $('.jqzoom').jqzoom({
+            zoomType:'standard',
+            zoomWidth:350,
+            zoomHeight:350,
+            showEffect:'fadein',
+            hideEffect:'fadeout',
+            lens:false,
+            preloadImages:false,
+            alwaysOn:false
+        });
+
     });
 </script>
 </head>
@@ -40,19 +82,22 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <div class="box3 pad4">
   <div class="goods-pic">
     <div class="small-pic">
-      <div class="picqh"></div>
+      <div class="picqh" id="button_prev"></div>
       <div class="smallpic-b">
         <div class="spic">
-          <div class="picsn">
-            <?php foreach($photo as $item):?>
-            <div class="pic-rn"><a href="javascript:;"><img src="<?=config_item('static_url')?>upload/product/<?=$item['img_addr']?>" width="60" height="60" alt="ff" /></a></div>
+          <div class="picsn" id="img_list">
+            <?php $def_photo='';foreach($photo as $item):?>
+            <?php if($item['is_default'] == 1){$def_photo = $item['img_addr'];}?>
+            <div class="pic-rn"><a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('static_url')?>upload/product/<?=str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('static_url')?>upload/product/<?=$item['img_addr']?>'}"><img src="<?=config_item('static_url')?>upload/product/<?=str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
             <?php endforeach;?>
           </div>
         </div>
       </div>
-      <div class="picqh2"></div>
+      <div class="picqh2" id="button_next"></div>
     </div>
-    <div class="big-pic"><img src="<?=config_item('static_url')?>images/goodsinfo.jpg" width="350" height="420" alt="aaaaaa" />
+    <div class="big-pic"><a href="<?=config_item('static_url')?>upload/product/<?=$def_photo?>" rel='gal1' class="jqzoom" title="preview" >
+        <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('.','_M.', $def_photo)?>" width="350" height="420" />
+        </a>
       <div class="largeimg"><img src="<?=config_item('static_url')?>images/lpic.jpg" width="500" height="420" /></div>
     </div>
   </div>
@@ -75,7 +120,17 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="size">
       <div class="goods-type">
         <div class="ctxt">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：</div>
-        <div class="sizebox"> <a class="sub-s" href="#"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> <a class="sub-s" href="#"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> <a class="sub-s" href="#"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> <a class="sub-s" href="#"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> <a class="sub-s" href="#"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> <a class="sub-s" href="#"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> <a class="sub-s"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> <a class="sub-s" href="#"> <span class="selected"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span> <span class="coview" style="background:#936;"></span><span class="cotxt">紫色</span></a> </div>
+          <div class="sizebox">
+              <?php foreach($alike as $item):?>
+              <a class="sub-s" href="/product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
+                <span class="selected" style="display:<?php echo ($item['pid'] === $product['pid']) ? 'block':'none';?>">
+                <img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10"/>
+                </span>
+                <span class="coview" style="background:url(<?=config_item('static_url')?>upload/product/<?=intToPath($item['pid'])?>icon.jpg)"></span>
+                <span class="cotxt">紫色</span>
+              </a>
+              <?php endforeach;?>
+          </div>
       </div>
       <div class="goods-type">
         <div class="ctxt">尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</div>
@@ -1067,24 +1122,18 @@ $(document).ready(function(){
 	$(this).css("border","1px solid #a10000");
   });
 
-  $(".sub-s").click(function(){
-    $(".sub-s").css("border","2px solid #dddddd");
-	$(".selected").css("display","none");
-	$(this).css("border","2px solid #ac1116");
-	$(this).find(".selected").css('display','block');
-  });
   $(".sub-cm").click(function(){
     $(".sub-cm").css("border","2px solid #dddddd");
 	$(".selected2").css("display","none");
 	$(this).css("border","2px solid #ac1116");
 	$(this).find(".selected2").css('display','block');
   });
-  $(".big-pic").mouseover(function(){
-    $(".largeimg").css("display","block");
-  });
-  $(".big-pic").mouseout(function(){
-    $(".largeimg").css("display","none");
-  });
+//  $(".big-pic").mouseover(function(){
+//    $(".largeimg").css("display","block");
+//  });
+//  $(".big-pic").mouseout(function(){
+//    $(".largeimg").css("display","none");
+//  });
   $("#rankt1 ul.bdan li").mouseover(function(){
     $("#rankt1 ul.bdan li").removeClass('on');
     $("#rankt1 .bdan").find(".bdimg").css("display","none");

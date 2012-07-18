@@ -134,37 +134,6 @@ class product extends MY_Controller
 
     public function save()
     {
-
-        $i = 0;
-        foreach ($_FILES['images'] as $key => $item) {
-            foreach ($item as $k => $v) {
-                $_FILES['image' . $k][$key] = $v;
-            }
-        }
-        unset($_FILES['images']);
-        if ($_FILES['image0']['size'] > 0) {
-            $this->load->helper('directory');
-            $date = date('Y/m/d', TIMESTAMP);
-            $config['upload_path'] = UPLOAD . 'product' . DS . $date;
-            recursiveMkdirDirectory($config['upload_path']);
-            $config['allowed_types'] = 'gif|jpg|png|jepg';
-            $config['max_size'] = '1000';
-            //$config['max_width'] = '1024';
-            //$config['max_height'] = '768';
-            $config['encrypt_name'] = true;
-            $config['overwrite'] = true;
-            $this->load->library('upload', $config);
-            $product_photo = array();
-            foreach ($_FILES as $key => $item) {
-                if (!$this->upload->do_upload($key)) {
-                    show_error($this->upload->display_errors());
-                } else {
-                    $tmp = $this->upload->data();
-                    $product_photo[] = $date. '/' .$tmp['file_name'];
-                }
-            }
-
-        }
         //echo '<pre>';print_r($this->input->post());die;
         $data['pname'] = $this->input->post('pname');
         $data['class_id'] = $this->input->post('class_id');
@@ -216,10 +185,53 @@ class product extends MY_Controller
                 }
             }
         }
+
+        foreach ($_FILES['images'] as $key => $item) {
+            foreach ($item as $k => $v) {
+                $_FILES['image' . $k][$key] = $v;
+            }
+        }
+        unset($_FILES['images']);
+        if ($_FILES['image0']['size'] > 0) {
+            $this->load->helper('directory');
+            //$date = date('Y/m/d', TIMESTAMP);
+            $path = intToPath($pid);
+            $config['upload_path'] = UPLOAD . 'product' . DS . $path;
+            recursiveMkdirDirectory($config['upload_path']);
+            $config['allowed_types'] = 'gif|jpg|png|jepg';
+            $config['max_size'] = '1000';
+            //$config['max_width'] = '1024';
+            //$config['max_height'] = '768';
+            $config['encrypt_name'] = true;
+            $config['overwrite'] = true;
+            $this->load->library('upload', $config);
+            $product_photo = array();
+            foreach ($_FILES as $key => $item) {
+                if (!$this->upload->do_upload($key)) {
+                    show_error($this->upload->display_errors());
+                } else {
+                    $tmp = $this->upload->data();
+                    $source_file = $config['upload_path'] . $tmp['file_name'];
+                    copyImg($source_file, 350, 420, str_replace('.', '_M.', $source_file));
+                    copyImg($source_file, 60, 60, str_replace('.', '_S.', $source_file));
+                    $product_photo[] = $path . $tmp['file_name'];
+                }
+            }
+        }
+
         $default_photo = $this->input->post('default_photo');
         $default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
         $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
         $attr && $this->product->addProductAttr($attr);
+        /*生成默认图片*/
+        $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();
+        if($default_photo)
+        {
+            $img_path = UPLOAD . 'product' . DS .$default_photo['img_addr'];
+            copyImg($img_path, 164, 220, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')));
+            copyImg($img_path, 25, 25, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')));
+        }
+        /*生成默认图片*/
         redirect('administrator/product/index');
     }
 

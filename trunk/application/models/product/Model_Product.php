@@ -100,6 +100,17 @@ class Model_Product extends MY_Model
         return empty ($pInfo) ? false : true;
     }
 
+    /**
+     * 通过款式号获取相关产品
+     * @param $style_no
+     * @param string $field
+     * @return mixed
+     */
+    public function getProductByStyleNo($style_no , $field = "*")
+    {
+        $this->db->select($field);
+        return $this->db->get_where('product', array('style_no' => $style_no))->result_array();
+    }
 
     public function addProduct(array $pInfo)
     {

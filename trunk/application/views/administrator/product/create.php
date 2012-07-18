@@ -78,11 +78,11 @@
                                     <?=$attr['attr_name']?> : <?php if ($attr['type'] == 3):?><select name="attr_value[<?=$attr['attr_id']?>][]"><option value="">请选择</option><?php endif;?>
                                     <?php foreach($attr['attr_value'] as $v):?>
                                         <?php if ($attr['type'] == 1): ?>
-                                        <input type="radio" name="attr_value[<?=$attr['attr_id']?>][]"  value="<?=$v?>" <?php if(in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
+                                        <input type="radio" name="attr_value[<?=$attr['attr_id']?>][]"  value="<?=$v?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
                                         <?php elseif ($attr['type'] == 2): ?>
-                                        <input type="checkbox" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$v?>" <?php if(in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
+                                        <input type="checkbox" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$v?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
                                         <?php elseif ($attr['type'] == 3): ?>
-                                        <option value="<?=$v?>" <?php if(in_array($v, $pattr[$attr['attr_id']])):?>selected="selected"<?php endif;?>><?=$v?></option>
+                                        <option value="<?=$v?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v, $pattr[$attr['attr_id']])):?>selected="selected"<?php endif;?>><?=$v?></option>
                                         <?php elseif ($attr['type'] == 4): ?>
                                         <input class="text-input" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$pattr[$attr['attr_id']][0]?>" type="text">
                                         <?php endif;?>
