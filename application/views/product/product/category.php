@@ -592,7 +592,7 @@ $(document).ready(function(){
       <?php foreach($products as $product):?>
       <div class="goods-cb">
         <div class="goods-cbox">
-            <a href="/product/<?=$product['pid']?>"><img src="<?=config_item('static_url')?>images/g_08.jpg" width="164" height="220" alt="eeee" /></a>
+            <a href="/product/<?=$product['pid']?>"><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="220" alt="eeee" /></a>
             <p><?=$product['pname']?><br/>
             <span class="font4">售价 ￥<?=sprintf("%.2f",$product['sell_price']/100)?></span></p>
         </div>

@@ -127,14 +127,16 @@ class Product extends MY_Controller
         $product = $this->product->getProductById($pid);
         if($product)
         {
+            //产品图片
             $photo = $this->product->getProductPhoto($pid);
-
+            //相同款式
+            $alike = $this->product->getProductByStyleNo($product['style_no'],'pid');
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),
                 'product' => $product,
-                'photo'=>$photo,
+                'photo' => $photo,
+                'alike' => $alike,
             ));
-            //echo '<pre>';print_r($photo);
         }
         else
         {
