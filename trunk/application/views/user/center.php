@@ -77,8 +77,10 @@
                 </table>
             </div>
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <?php if (empty ($data)) $data = array();
+                foreach ($data as $v) {?>
                 <tr>
-                    <td width="14%" align="center"><a href="#">cy255566525522</a></td>
+                    <td width="14%" align="center"><a href="#"><?php echo $v['order_sn'];?></a></td>
                     <td width="31%">
                         <div class="goods-in">
                             <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg" width="45" height="45"/></a></div>
@@ -107,6 +109,8 @@
                         <div class="gobuy"><a href="#"></a></div>
                     </td>
                 </tr>
+                    <?php }?>
+                <!--
                 <tr>
                     <td width="14%" align="center"><a href="#">cy255566525522</a></td>
                     <td width="31%">
@@ -169,6 +173,7 @@
                         <div class="gobuy"><a href="#"></a></div>
                     </td>
                 </tr>
+                -->
                 <tr>
                     <td colspan="7" align="right">
                         <ul class="ddall">
