@@ -131,7 +131,8 @@ class Model_Product extends MY_Model
         $data = array();
         foreach ($size as $k => $v) {
             $data[$k]['pid'] = $pid;
-            $data[$k]['size_id'] = $v;
+            $data[$k]['size_id'] = $k;
+            $data[$k]['name'] = $v;
         }
         if ($data) {
             $this->db->insert_batch('product_size', $data);

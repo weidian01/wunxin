@@ -13,7 +13,7 @@ class center extends MY_Controller
         parent::__construct();
 
         if (!$this->isLogin()) {
-            return ;
+            redirect("user/login");
         }
 
         if(! $this->input->is_ajax_request()){
