@@ -2,6 +2,19 @@
 
 class register extends MY_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        if ($this->isLogin()) {
+            //redirect();
+        }
+
+        if(! $this->input->is_ajax_request()){
+            $this->load->model('product/Model_Product_Category', 'cate');
+            $this->channel = $this->cate->getCategroyList();
+        }
+    }
     /**
      * 显示注册页面
      */

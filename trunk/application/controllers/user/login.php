@@ -6,6 +6,10 @@ class login extends MY_Controller
     {
         parent::__construct();
 
+        if ($this->isLogin()) {
+            //redirect();
+        }
+
         if(! $this->input->is_ajax_request()){
             $this->load->model('product/Model_Product_Category', 'cate');
             $this->channel = $this->cate->getCategroyList();

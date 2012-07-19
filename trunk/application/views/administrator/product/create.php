@@ -144,7 +144,7 @@
                             <span id="size">
                                 <?php if(isset($size)):?>
                                 <?php foreach($size as $v):?>
-                                <input type="checkbox" name="size[]" value="<?=$v['size_id']?>" <?php if(in_array($v['size_id'], $psize)):?>checked<?php endif;?>/><?=$v['name']?>
+                                <input type="checkbox" name="size[<?=$v['size_id']?>]" value="<?=$v['name']?>" <?php if(in_array($v['size_id'], $psize)):?>checked<?php endif;?>/><?=$v['name']?>
                                 <?php endforeach;?>
                                 <?php endif;?>
                             </span>
@@ -235,7 +235,7 @@ function load_size(val)
            if(data)
            {
                for(var i in data){
-                   $("#size").append('<input type="checkbox" name="size[]" value="'+data[i].size_id+'">'+data[i].name+' ');
+                   $("#size").append('<input type="checkbox" name="size['+data[i].size_id+']" value="'+data[i].name+'">'+data[i].name+' ');
                 }
            }
        },'json');
