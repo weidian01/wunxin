@@ -53,7 +53,7 @@
             $.each(data, function (i, item) {
                 html += ('<div class="vhis">\
                         <a class="hoverimg" href="' + wx.base_url + 'product/' + item.pid + '">\
-                        <img src="' + wx.img_url + 'upload/product/3/3/3/default.jpg" width="140" height="140" /></a>\
+                        <img src="' + wx.img_url + 'upload/product/'+idToPath(item.pid)+'default.jpg" width="140" height="140" /></a>\
                         <p>' + item.pname + '</p>\
                         <span class="font4">￥' + item.sell_price / 100 + ' </span>\
                       </div>');
@@ -61,6 +61,13 @@
             $('#tlcptj').html(html).parent().show();
         });
     });
+
+    function idToPath(id)
+    {
+        var id = String(id);
+        var l = id.match(/(\d{1,2})(\d{0,2})/);
+        return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
+    }
 
     function select_size(id, name, obj)
     {
