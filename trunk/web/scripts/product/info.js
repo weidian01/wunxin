@@ -48,11 +48,17 @@
         });
 
         //同类产品推荐
-        $.getJSON(wx.base_url + "product/product//jsoncallback=?", function(data){
-          $.each(data.items, function(i,item){
-            $("<img/>").attr("src", item.media.m).appendTo("#images");
-            if ( i == 3 ) return false;
-          });
+        $.getJSON(wx.base_url + "product/ajax/getProductByClass/?class_id="+product_class_id+"&limit=6&jsoncallback=?", function(data){
+            var html = '';
+            $.each(data, function (i, item) {
+                html += ('<div class="vhis">\
+                        <a class="hoverimg" href="' + wx.base_url + 'product/' + item.pid + '">\
+                        <img src="' + wx.img_url + 'upload/product/3/3/3/default.jpg" width="140" height="140" /></a>\
+                        <p>' + item.pname + '</p>\
+                        <span class="font4">￥' + item.sell_price / 100 + ' </span>\
+                      </div>');
+            });
+            $('#tlcptj').html(html).parent().show();
         });
     });
 

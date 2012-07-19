@@ -93,8 +93,14 @@ class MY_Controller extends CI_Controller
         return false;
     }
 
-    static protected function json_output($data)
+    static protected function json_output($data,$JSONP = false)
     {
+        if($JSONP && isset($_GET['jsoncallback']))
+        {
+            $callback = $_GET['jsoncallback'];
+            echo "{$callback}(",json_encode($data),")";
+            die();
+        }
         die(json_encode($data));
     }
 
