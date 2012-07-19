@@ -209,28 +209,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       </div>
     </div>
   </div>
-  <div class="viewhistory pad11">
+  <div class="viewhistory pad11" style="display:none">
     <div class="tit"><span class="font18">同类产品推荐</span></div>
-    <div class="viewhis">
-      <div class="vhis"> <a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_03.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_05.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_08.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_10.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_03.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_05.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-    </div>
+    <div class="viewhis" id="tlcptj"></div>
   </div>
 </div>
 <div class="box3">
