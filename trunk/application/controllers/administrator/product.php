@@ -229,7 +229,7 @@ class product extends MY_Controller
         {
             $img_path = UPLOAD . 'product' . DS .$default_photo['img_addr'];
             copyImg($img_path, 164, 220, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')));
-            copyImg($img_path, 25, 25, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')));
+            copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')));
         }
         /*生成默认图片*/
         redirect('administrator/product/index');

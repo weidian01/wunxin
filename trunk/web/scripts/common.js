@@ -192,7 +192,7 @@ wx.cartGlobalInit = function ()
 
     for (var i in data) {
         html += '<div class="cart-bx">';
-        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'upload/product/'+data[i].product_img+'" width="50" height="50" alt="连衣裙"/></div>';
+        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'upload/product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="连衣裙"/></div>';
         html += '<div class="cart-goodsname">'+data[i].pname+'<br/><span class="font5">￥'+data[i].product_price+'</span></div>';
         html += '<div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
         html += '</div>';
@@ -375,3 +375,10 @@ wx.initLoginStatus();
 
 
 wx.cartGlobalInit();
+
+function idToPath(id)
+{
+    var id = String(id);
+    var l = id.match(/(\d{1,2})(\d{0,2})/);
+    return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
+}

@@ -110,7 +110,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           </ul>
         </div>
       </div>
-      <div class="addcart"><a class="addcart-btn" href="#"></a><a class="sc-btn" href="#"></a></div>
+      <div class="addcart"><a class="addcart-btn" href="javascript:;" onclick="addToCart();"></a><a class="sc-btn" href="#"></a></div>
     </div>
   </div>
 </div>
@@ -515,50 +515,10 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </div>
       </div>
     </div>
-    <div class="sidebox">
+    <div class="sidebox" id="browseHistory" style="display:none">
       <div class="side-tit2">
         <div class="viewrecord">最近浏览</div>
-        <div class="clearrecord">清除</div>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
-      </div>
-      <div class="recordbox"> <a href="#"><img src="<?=config_item('static_url')?>images/lif.jpg" width="180" height="200" /></a>
-        <p><a href="#">休闲简略纯棉T恤 黑色</a><br/>
-          <span class="font19">￥54.00</span></p>
+        <div class="clearrecord" onclick="clearBrowseHistory()">清除</div>
       </div>
     </div>
   </div>
@@ -594,15 +554,15 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </table>
       </div>
       <div class="goods-detail">
-        <div class="detail-tit">
+        <!--div class="detail-tit">
           <div class="titles">实拍展示</div>
-        </div>
-        <div class="goodsimg"><img src="<?=config_item('static_url')?>images/goods-img_03.jpg" width="483" height="696" /></div>
-        <div class="goodsimg"><img src="<?=config_item('static_url')?>images/goods-img_07.jpg" width="713" height="618" /></div>
+        </div-->
+        <!--div class="goodsimg"><img src="<?=config_item('static_url')?>images/goods-img_03.jpg" width="483" height="696" /></div>
+        <div class="goodsimg"><img src="<?=config_item('static_url')?>images/goods-img_07.jpg" width="713" height="618" /></div-->
         <div class="detail-tit">
           <div class="titles2">细节展示</div>
         </div>
-        <div class="goodsimg"><img src="<?=config_item('static_url')?>images/goods-img_15.jpg" width="644" height="692" /></div>
+        <div class="goodsimg"><?=$product['pcontent']?></div>
       </div>
     </div>
     <div class="gbox-relation" id="g-relation2">
@@ -1053,7 +1013,11 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <!-- #EndLibraryItem -->
 <script type=text/javascript src="/scripts/common.js"></script>
 <script>
-var product_class_id = <?=$product['class_id']?>;
+var product = {};
+product.class_id = <?=$product['class_id']?>;
+product.pid = <?=$product['pid']?>;
+product.pname = '<?=$product['pname']?>';
+product.sell_price = <?=$product['sell_price']?>/100;
 </script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/info.js"></script>
 </body>

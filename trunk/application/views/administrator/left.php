@@ -38,6 +38,7 @@
                         <li><a href="<?=site_url('administrator/product_size/index')?>">产品尺码</a></li>
                         <li><a href="<?=site_url('administrator/product_color/index')?>">产品颜色</a></li>
                         <li><a href="/administrator/product_collocation/pcList/" title="">产品搭配管理</a></li>
+                        <li><a href="/administrator/product_style/create/" title="">产品款式管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'order') === 0):?>current<?php endif;?>">订单列表</a>

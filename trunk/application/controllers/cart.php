@@ -48,7 +48,7 @@ class cart extends MY_Controller
             }
 
             $this->load->model('product/Model_Product', 'product');
-            $pInfo = $this->product->getProductAndPhotoByPid($pId);
+            $pInfo = $this->product->getProductById($pId);
 
             if (empty ($pInfo)) {
                 $response = error(20002);
@@ -60,7 +60,7 @@ class cart extends MY_Controller
                 'pname' => $pInfo['pname'],
                 'product_price' => $pInfo['sell_price'] / 100,
                 'product_num' => $pNum,
-                'product_img' => $pInfo['img_addr'],
+                //'product_img' => $pInfo['img_addr'],
                 'product_size' => $pSize,
                 'additional_info' => $pAdditionalInfo,
             );

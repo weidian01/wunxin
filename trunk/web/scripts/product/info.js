@@ -48,25 +48,62 @@
         });
 
         //同类产品推荐
-        $.getJSON(wx.base_url + "product/ajax/getProductByClass/?class_id="+product_class_id+"&limit=6&jsoncallback=?", function(data){
+        $.getJSON(wx.base_url + "product/ajax/getProductByClass/?class_id="+product.class_id+"&limit=6&jsoncallback=?", function(data){
             var html = '';
             $.each(data, function (i, item) {
                 html += ('<div class="vhis">\
                         <a class="hoverimg" href="' + wx.base_url + 'product/' + item.pid + '">\
                         <img src="' + wx.img_url + 'upload/product/'+idToPath(item.pid)+'default.jpg" width="140" height="140" /></a>\
                         <p>' + item.pname + '</p>\
-                        <span class="font4">￥' + item.sell_price / 100 + ' </span>\
+                        <span class="font4">￥' + parseFloat(item.sell_price / 100) + ' </span>\
                       </div>');
             });
             $('#tlcptj').html(html).parent().show();
         });
+        browseHistoryHTML(setBrowseHistory(product.pid, product.pname, product.sell_price))
     });
 
-    function idToPath(id)
+    function browseHistoryHTML(list)
     {
-        var id = String(id);
-        var l = id.match(/(\d{1,2})(\d{0,2})/);
-        return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
+        html='';
+        for(k in list)
+        {
+            var item = list[k].split('|');
+            html += '<div class="recordbox"> \
+                <a href="/product/'+item[0]+'"><img src="' + wx.img_url + 'upload/product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
+                    <p><a href="/product/'+item[0]+'">'+item[1]+'</a><br/> \
+                      <span class="font19">￥'+item[2]+'</span></p> \
+                  </div>';
+        }
+        $('#browseHistory').append(html).show();
+    }
+
+    function clearBrowseHistory()
+    {
+        wx.setCookie('browseHistory', '', 0);
+        $('#browseHistory .recordbox').fadeOut('fast');
+    }
+
+    //保存最后查看
+    function setBrowseHistory(id, name, price)
+    {
+        var value = id+'|'+name+'|'+price;
+        var str = wx.getCookie('browseHistory');
+        if(str == null) str = '';
+        var arr = re = str.split(';');
+        if($.inArray(value, arr) < 0)
+        {
+            arr.push(value);
+        }
+        if(arr.length > 10) delete arr[0]
+        var cookie = '';
+        for(k in arr)
+        {
+            if(cookie) cookie += ';'
+            cookie += arr[k];
+        }
+        wx.setCookie('browseHistory', cookie, 0);
+        return re.reverse();
     }
 
     function select_size(id, name, obj)
@@ -75,7 +112,7 @@
         $(".selected2").css("display", "none");
         $(obj).css("border", "2px solid #ac1116");
         $(obj).find(".selected2").css('display', 'block');
-        $('#product_size').html(name);
+        $('#product_size').html('<input type="hidden" value="'+id+'">'+name);
     }
 
     function product_num(model)
@@ -91,6 +128,15 @@
                return ;
            $('#product_num').val(--product_num)
        }
+    }
+
+    function addToCart()
+    {
+        var p_num = $('#product_num').val();
+        var p_size = $('#product_size > input:eq(0)').val();
+        $.getJSON(wx.base_url + "cart/addToCart/?pid="+product.pid+"&p_num="+p_num+"&p_size="+p_size+"&jsoncallback=?", function(data){
+            alert(data.msg);
+        });
     }
 
     $(document).ready(function () {
