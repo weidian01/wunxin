@@ -54,6 +54,11 @@ class cart extends MY_Controller
                 $response = error(20002);
                 break;
             }
+            $size = $this->product->getProductSize($pId, $pSize);
+            if (empty ($size)) {
+                $response = error(20002);
+                break;
+            }
             //echo '<pre>';print_r($pInfo);exit;
             $cInfo = array(
                 'pid' => $pInfo['pid'],
@@ -61,7 +66,7 @@ class cart extends MY_Controller
                 'product_price' => $pInfo['sell_price'] / 100,
                 'product_num' => $pNum,
                 //'product_img' => $pInfo['img_addr'],
-                'product_size' => $pSize,
+                'product_size' => $size['name'],
                 'additional_info' => $pAdditionalInfo,
             );
             //echo '<pre>';print_r($cInfo);exit;

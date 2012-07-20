@@ -39,7 +39,8 @@
             hideEffect:'fadeout',
             lens:false,
             preloadImages:false,
-            alwaysOn:false
+            alwaysOn:false,
+            showPreload:false
         });
 
         $("#product_num").blur(function(){
@@ -55,7 +56,7 @@
                         <a class="hoverimg" href="' + wx.base_url + 'product/' + item.pid + '">\
                         <img src="' + wx.img_url + 'upload/product/'+idToPath(item.pid)+'default.jpg" width="140" height="140" /></a>\
                         <p>' + item.pname + '</p>\
-                        <span class="font4">￥' + parseFloat(item.sell_price / 100) + ' </span>\
+                        <span class="font4">￥' + sprintf('%.2f', item.sell_price / 100) + ' </span>\
                       </div>');
             });
             $('#tlcptj').html(html).parent().show();
@@ -134,9 +135,15 @@
     {
         var p_num = $('#product_num').val();
         var p_size = $('#product_size > input:eq(0)').val();
+        if((typeof p_size) == 'undefined')
+        {
+            alert('请选择产品尺码');
+            return;
+        }
         $.getJSON(wx.base_url + "cart/addToCart/?pid="+product.pid+"&p_num="+p_num+"&p_size="+p_size+"&jsoncallback=?", function(data){
             alert(data.msg);
         });
+        wx.cartGlobalInit();
     }
 
     $(document).ready(function () {

@@ -376,8 +376,7 @@ wx.initLoginStatus();
 
 wx.cartGlobalInit();
 
-function idToPath(id)
-{
+function idToPath(id) {
     var id = String(id);
     var l = id.match(/(\d{1,2})(\d{0,2})/);
     return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
