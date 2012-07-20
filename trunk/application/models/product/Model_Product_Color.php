@@ -52,11 +52,17 @@ class Model_Product_Color extends MY_Model
      */
     function getColorById($color_id)
     {
-        $info = $this->db
+        if (is_array($color_id)) {
+            return $this->db
+                ->select()
+                ->from('color')
+                ->where_in('color_id', $color_id)->get()
+                ->result_array();
+        }
+        return $this->db
             ->select()
             ->get_where('color', array('color_id' => $color_id))
             ->row_array();
-        return $info;
     }
 
     /**

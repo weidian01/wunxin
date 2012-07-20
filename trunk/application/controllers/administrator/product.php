@@ -58,7 +58,20 @@ class product extends MY_Controller
         $this->load->model('product/Model_Product_Model', 'mod');
         $model = $this->mod->getModelList(500);
         $this->load->model('product/Model_Product_Color', 'color');
-        $color = $this->color->getList(500);
+        $tmp = $this->color->getList(500);
+        $color = array();
+        foreach($tmp as $v)
+        {
+            $color[$v['color_id']] =  $v;
+        }
+        foreach($color as $k=>$item)
+        {
+            if($item['parent_id'] != 0)
+            {
+                $color[$item['parent_id']]['children'][] = $item;
+                unset($color[$k]);
+            }
+        }
         $this->load->view('administrator/product/create', array('category' => $category, 'model' => $model, 'color'=>$color));
     }
 
@@ -118,7 +131,21 @@ class product extends MY_Controller
         $this->load->model('product/Model_Product_Size', 'size');
         //print_r($size);
         $this->load->model('product/Model_Product_Color', 'color');
-        $color = $this->color->getList(500);
+        $tmp = $this->color->getList(500);
+        $color = array();
+        foreach($tmp as $v)
+        {
+            $color[$v['color_id']] =  $v;
+        }
+        foreach($color as $k=>$item)
+        {
+            if($item['parent_id'] != 0)
+            {
+                $color[$item['parent_id']]['children'][] = $item;
+                unset($color[$k]);
+            }
+        }
+
         $this->load->view('administrator/product/create', array(
             'info' => $info,
             'category' => $category,

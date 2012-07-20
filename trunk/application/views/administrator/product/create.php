@@ -97,7 +97,11 @@
                             <select name="color_id" class="small-input">
                                 <option value="0">选择产品色系</option>
                                 <?php foreach ($color as $item): ?>
-                                <option value="<?=$item['color_id']?>" <?php if(isset($info['color_id']) && $info['color_id']==$item['color_id'] ){echo 'selected="selected"';}?>><?=$item['china_name']?>/<?=$item['english_name']?></option>
+                                <optgroup label="<?=$item['china_name']?>">
+                                <?php if(isset($item['children'])):foreach ($item['children'] as $v): ?>
+                                <option value="<?=$v['color_id']?>" <?php if(isset($info['color_id']) && $info['color_id']==$v['color_id'] ){echo 'selected="selected"';}?>><?=$v['china_name']?>/<?=$v['english_name']?></option>
+                                <?php endforeach;endif;?>
+                                </optgroup>
                                 <?php endforeach;?>
                             </select> <br>
                             <small>必须指定产品色系</small>
