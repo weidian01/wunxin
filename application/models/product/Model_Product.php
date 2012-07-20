@@ -140,8 +140,12 @@ class Model_Product extends MY_Model
         return;
     }
 
-    public function getProductSize($pid)
+    public function getProductSize($pid, $size_id=0)
     {
+        if($size_id)
+        {
+            return $this->db->get_where('product_size',array('pid'=>$pid, 'size_id'=>$size_id))->row_array();
+        }
         return $this->db->get_where('product_size',array('pid'=>$pid))->result_array();
     }
 
