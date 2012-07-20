@@ -39,7 +39,7 @@ cart.init = function ()
 
     for (var i in data) {
         html += '<tr>';
-        html += '<td width="7%"><img src="'+wx.img_url+'upload/product/'+data[i].product_img+'" width="52" height="66"/></td>';
+        html += '<td width="7%"><img src="'+wx.img_url+'upload/product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50"/></td>';
         html += '<td width="40%">';
         html += '<a class="gn" href="#">'+data[i].pname+'</a><br/>';
         html += '<a href="'+data[i].pid+'">收藏</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a>';

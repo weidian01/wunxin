@@ -133,7 +133,7 @@ class MY_Controller extends CI_Controller
             'pname' => $pInfo['pname'],
             'product_price' => $pInfo['product_price'],
             'product_num' => $pInfo['product_num'],
-            'product_img' => $pInfo['product_img'],
+            //'product_img' => $pInfo['product_img'],
             'product_size' => $pInfo['product_size'],
             'additional_info' => $pInfo['additional_info'],
         );
