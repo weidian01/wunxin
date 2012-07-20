@@ -130,15 +130,30 @@ class Product extends MY_Controller
             //产品图片
             $photo = $this->product->getProductPhoto($pid);
             //相同款式
-            $alike = $this->product->getProductByStyleNo($product['style_no'],'pid');
-            $psize = $this->product->getProductSize($pid);
+            $tmp = $this->product->getProductByStyleNo($product['style_no'],'pid,color_id');
+            $alike = $color_id = $color = array();
+            foreach($tmp as $v)
+            {
+                $alike[$v['pid']] = $v;
+                $color_id[] = $v['color_id'];
+            }
+            $this->load->model('product/Model_Product_Color', 'color');
+            $tmp = $this->color->getColorById($color_id);
+            foreach($tmp as $v)
+            {
+                $color[$v['color_id']] = $v;
+            }
+            foreach($alike as $k=>$v)
+            {
+                $alike[$k]['color'] = $color[$v['color_id']];
+            }
 
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),
                 'product' => $product,
                 'photo' => $photo,
                 'alike' => $alike,
-                'psize' => $psize,
+                'psize' => $this->product->getProductSize($pid),
             ));
         }
         else
