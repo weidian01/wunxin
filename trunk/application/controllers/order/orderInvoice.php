@@ -62,12 +62,12 @@ class orderInvoice extends MY_Controller
     public function deleteInvoice()
     {
         $iId = intval($this->input->get_post('invoice_id'));
-        $uId = intval($this->input->get_post('uid'));
+        //$uId = intval($this->input->get_post('uid'));
 
         $response = error(30006);
 
         do {
-            if (empty ($iId) || empty ($uId)) {
+            if (empty ($iId)) {
                 $response = error(30008);
                 break;
             }
@@ -76,14 +76,15 @@ class orderInvoice extends MY_Controller
                 $response = error(10009);
                 break;
             }
-
+/*
             if ($uId != $this->uInfo['uid']) {
                 $response = error(99999);
                 break;
             }
-
-            $this->load->model('user/Model_Order_Invoice', 'invoice');
+*/
+            $this->load->model('order/Model_Order_Invoice', 'invoice');
             $status = $this->invoice->deleteInvoice($iId, $this->uInfo['uid']);
+            //var_dump($status);
             if (!$status) {
                 $response = error(30007);
                 break;

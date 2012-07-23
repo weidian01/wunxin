@@ -28,7 +28,7 @@ class center extends MY_Controller
     public function index()
     {
         $this->load->model('order/Model_Order', 'order');
-        $data = $this->order->getOrderByUid(1);
+        $data = $this->order->getOrderByUid($this->uInfo['uid']);
         //echo '<pre>';print_r($data);exit;
 
         $this->load->view('user/center/center', array('data' => $data));
@@ -47,12 +47,34 @@ class center extends MY_Controller
      * 发票
      */
     public function invoice()
-    {//echo '<pre>';print_r($_SERVER['PHP_SELF']);exit;
-        $this->load->model('order/Model_Order_Invoice', 'invoice');
-        $data = $this->invoice->getUserInvoiceByuId($this->uInfo['uid']);
-        $this->uInfo;
+    {
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/invoice', array('data' => $data));
+        $this->load->model('order/Model_Order_Invoice', 'invoice');
+        $totalNum = $this->invoice->getUserInvoiceCount($this->uInfo['uid']);
+
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/invoice/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+
+        $data = $this->invoice->getUserInvoiceByuId($this->uInfo['uid'], $Limit, $offset);
+        //$this->uInfo;
+
+        $this->load->view('user/center/invoice', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**

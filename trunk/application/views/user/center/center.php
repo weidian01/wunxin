@@ -38,6 +38,7 @@
             -->
         </div>
         <div class="u-r-box">
+            <!--
             <div class="orderlist-sek">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -61,6 +62,7 @@
                 </table>
 
             </div>
+
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -76,12 +78,30 @@
                     </tr>
                 </table>
             </div>
+            -->
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr class="o-list">
+                    <td width="15%" height="26" align="center">订单编号</td>
+                    <td width="25%" align="center">订单商品 </td>
+                    <td width="8%" align="center">收货人</td>
+                    <td width="10%" align="center">订单金额</td>
+                    <td width="12%" align="center">下单时间</td>
+                    <td width="10%" align="center">支付状态</td>
+                    <td width="10%" align="center">订单状态</td>
+                    <td width="20%" align="center">操作</td>
+                </tr>
                 <?php if (empty ($data)) $data = array();
-                foreach ($data as $v) {?>
+                $notPayNum = 0;
+                $completedNum = 0;
+                $canceledNum = 0;
+                foreach ($data as $v) {
+                    if ($v['is_pay'] != '1') { $notPayNum += 1; }
+                    if ($v['picking_status'] == '2') { $completedNum += 1; }
+                    if ($v['status'] == '0') { $canceledNum += 1; }
+                ?>
                 <tr>
-                    <td width="14%" align="center"><a href="#"><?php echo $v['order_sn'];?></a></td>
-                    <td width="31%">
+                    <td align="center"><a href="#"><?php echo $v['order_sn'];?></a></td>
+                    <td>
                         <div class="goods-in">
                             <?php foreach ($v['products'] as $pv) {?>
                             <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?><?php echo $pv['pid'];?>" width="45" height="45"/></a></div>
@@ -89,8 +109,8 @@
                             <!--<div class="scolls"><a href="#"></a></div> -->
                         </div>
                     </td>
-                    <td width="8%" align="center"><?php echo $v['recent_name'];?></td>
-                    <td width="9%" align="center">￥<?php echo $v['after_discount_price'];?><br/>
+                    <td align="center"><?php echo $v['recent_name'];?></td>
+                    <td align="center">￥<?php echo $v['after_discount_price'];?><br/>
                         <?php
                         switch($v['pay_type']) {
                             case '1': $pt = '线上支付'; break;
@@ -102,8 +122,21 @@
                         };
                         echo $pt;
                         ?></td>
-                    <td width="14%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td width="7%" align="center"><?php
+                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td align="center">
+                        <?php
+                        switch($v['is_pay']) {
+                            case '0': $st = '初始'; break;
+                            case '1': $st = '付款成功'; break;
+                            case '2': $st = '付款失败'; break;
+                            case '3': $st = '等待付款'; break;
+                            default: $st = '初始'; break;
+                        }
+                            echo $st;
+                        ?>
+                    </td>
+
+                    <td align="center"><?php
                         switch($v['status']) {
                             case '0': $st = '已取消'; break;
                             case '1': $st = '正常'; break;
@@ -112,7 +145,7 @@
                         }
                             echo $st;
                         ?></td>
-                    <td width="17%" align="center"><a href="#">查看</a>
+                    <td align="center"><a href="#">查看</a>
 
                         <?php if ($v['picking_status'] == '2') {?>
                         | <a href="#">评价</a> | <a href="#">晒单</a><br/>
@@ -125,16 +158,20 @@
                 <tr>
                     <td colspan="7" align="right">
                         <ul class="ddall">
-                            <li>订单总数：<span class="font1">3</span></li>
-                            <li>已取消订单数：<span class="font1">0</span></li>
-                            <li>已完成订单数：<span class="font1">0</span></li>
-                            <li>未付款订单数：<span class="font1">0</span></li>
-                            <li>等待付款订单数：<span class="font1">0</span></li>
+                            <li>订单总数：<span class="font1"><?php echo count($data); ?></span></li>
+                            <li>已取消订单数：<span class="font1"><?php echo $canceledNum;?></span></li>
+                            <li>已完成订单数：<span class="font1"><?php echo $completedNum;?></span></li>
+                            <li>未付款订单数：<span class="font1"><?php echo $notPayNum;?></span></li>
+                            <!--<li>等待付款订单数：<span class="font1">0</span></li>-->
                         </ul>
                     </td>
                 </tr>
             </table>
         </div>
+        <div class="pages" style="float: right;">
+                <span class="current">1</span>&nbsp;<a href="/category/5/2">2</a>&nbsp;<a href="/category/5/2">下一页</a>&nbsp;        共2页&nbsp;&nbsp;&nbsp;&nbsp;
+                到第<input class="input6" name="input" type="text"> 页 <input type="button" class="input7" value="确定">
+            </div>
         <div class="u-r-box">
             <div class="tui-tit">为您推荐</div>
             <div class="tui">

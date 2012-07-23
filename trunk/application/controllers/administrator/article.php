@@ -157,7 +157,7 @@ class article extends MY_Controller
         $descr = $this->input->get_post('descr');
         $visiblity = $this->input->get_post('visiblity');
         $top = $this->input->get_post('top');
-        $content = addslashes(htmlspecialchars($_REQUEST['content']));//$this->input->get_post('content');
+        $content = htmlspecialchars( stripslashes($_REQUEST['content']));//$this->input->get_post('content');
         $id = $this->input->get_post('id');
         //echo '<pre>';print_r($_REQUEST);exit;
 //echo $content;exit;
