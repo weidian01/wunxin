@@ -2,32 +2,9 @@
     <div class="hd-cont">
         <div class="hd-wel">您好&nbsp;&nbsp;<span id="user_name_id">欢迎光临万象网</span>！&nbsp;&nbsp;<span id="loginout_id"></span></div>
         <div class="cart">
-            <div class="cart-num" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)">
-                购物车有<span class="font1" id="cart_product_num">
-                <img src="/images/small_loading.gif" alt=""/>
-                </span> 件
+            <div class="cart-num" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)"> 购物车有
+                <span class="font1" id="cart_product_num"> <img src="/images/small_loading.gif" alt=""/> </span> 件
                 <div id="cartbox" class="cart-form" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)" style=" display:none;">
-                    <!--
-                    <div class="cart-bx">
-                        <div class="cart-goodsimg"><img src="/images/sdg3.jpg" width="50" height="50" alt="连衣裙"/></div>
-                        <div class="cart-goodsname">时尚帅气军旅风男士休闲短袖T恤<br/><span class="font5">￥356.00</span></div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="cart-bx">
-                        <div class="cart-goodsimg"><img src="/images/sdg3.jpg" width="50" height="50" alt="连衣裙"/></div>
-                        <div class="cart-goodsname">时尚帅气军旅风男士休闲短袖T恤<br/><span class="font5">￥356.00</span></div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="cart-bx">
-                        <div class="cart-goodsimg"><img src="/images/sdg3.jpg" width="50" height="50" alt="连衣裙"/></div>
-                        <div class="cart-goodsname">时尚帅气军旅风男士休闲短袖T恤<br/><span class="font5">￥356.00</span></div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="cart-hj">
-                        <div class="sum">合计：<span class="font3">￥530.60</span></div>
-                        <div class="cart-to-js"><a href="#">我要结算</a></div>
-                    </div>
-                    -->
                     <h4>购物车中还没有商品，赶紧去选购吧！</h4>
                 </div>
             </div>
@@ -36,9 +13,10 @@
         <div class="hd-login">
             <ul>
                 <li><a href="javascript:void (0);" onclick="wx.addFavorite()">收藏本站</a></li>
+                <li><a href="/other/help/index/">帮助中心</a></li>
                 <li><a href="#">浏览记录</a></li>
                 <!--<li><a href="/user/center">我的万象</a></li>-->
-                <li><a href="/user/center">我的订单</a></li>
+                <li><a href="/user/center/index">我的订单</a></li>
                 <li id="user_info_id"><a style="color:#000;" href="/user/register/">注册</a></li>
                 <li id="user_login_out_id"><a href="/user/login/">登录</a></li>
             </ul>
@@ -94,10 +72,10 @@
         <div class="other">
             <div class="otherbox">
                 <ul>
-                    <li><a href="#">2012新品区</a></li>
-                    <li><a href="#">上新区</a></li>
-                    <li><a href="#">断码区</a></li>
-                    <li class="end"><a href="#">样品区</a></li>
+                    <li><a href="#">新品区</a></li>
+                    <li><a href="#">新设计图</a></li>
+                    <li><a href="#">新设计师</a></li>
+                    <li class="end"><a href="#">热门晒单</a></li>
                 </ul>
             </div>
         </div>

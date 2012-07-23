@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>我的订单</title>
+    <title>我的订单 -- 个人中心</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
@@ -15,7 +15,7 @@
     <![endif]-->
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
-<?php include('/../header.php');?>
+<?php include('/../../header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -83,97 +83,45 @@
                     <td width="14%" align="center"><a href="#"><?php echo $v['order_sn'];?></a></td>
                     <td width="31%">
                         <div class="goods-in">
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg" width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="scolls"><a href="#"></a></div>
+                            <?php foreach ($v['products'] as $pv) {?>
+                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?><?php echo $pv['pid'];?>" width="45" height="45"/></a></div>
+                            <?php }?>
+                            <!--<div class="scolls"><a href="#"></a></div> -->
                         </div>
                     </td>
-                    <td width="8%" align="center">陈妮</td>
-                    <td width="9%" align="center">￥88.00<br/>货到付款</td>
-                    <td width="14%" align="center">2012-05-20-16:30</td>
-                    <td width="7%" align="center">已完成</td>
-                    <td width="17%" align="center"><a href="#">查看</a> | <a href="#">评价</a> | <a href="#">晒单</a><br/>
-                        <a href="#">申请返修/退换货</a>
+                    <td width="8%" align="center"><?php echo $v['recent_name'];?></td>
+                    <td width="9%" align="center">￥<?php echo $v['after_discount_price'];?><br/>
+                        <?php
+                        switch($v['pay_type']) {
+                            case '1': $pt = '线上支付'; break;
+                            case '2': $pt = '货到付款'; break;
+                            case '3': $pt = '邮局汇款'; break;
+                            case '4': $pt = '来万象自提'; break;
+                            case '5': $pt = '公司转账'; break;
+                            default: $pt = '线上支付'; break;
+                        };
+                        echo $pt;
+                        ?></td>
+                    <td width="14%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td width="7%" align="center"><?php
+                        switch($v['status']) {
+                            case '0': $st = '已取消'; break;
+                            case '1': $st = '正常'; break;
+                            case '2': $st = '已确认'; break;
+                            default: $st = '正常'; break;
+                        }
+                            echo $st;
+                        ?></td>
+                    <td width="17%" align="center"><a href="#">查看</a>
 
+                        <?php if ($v['picking_status'] == '2') {?>
+                        | <a href="#">评价</a> | <a href="#">晒单</a><br/>
+                        <a href="#">申请返修/退换货</a>
+                        <?php }?>
                         <div class="gobuy"><a href="#"></a></div>
                     </td>
                 </tr>
                     <?php }?>
-                <!--
-                <tr>
-                    <td width="14%" align="center"><a href="#">cy255566525522</a></td>
-                    <td width="31%">
-                        <div class="goods-in">
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="scolls"><a href="#"></a></div>
-                        </div>
-                    </td>
-                    <td width="8%" align="center">陈妮</td>
-                    <td width="9%" align="center">￥88.00<br/>货到付款</td>
-                    <td width="14%" align="center">2012-05-20-16:30</td>
-                    <td width="7%" align="center">已完成</td>
-                    <td width="17%" align="center"><a href="#">查看</a> | <a href="#">评价</a> | <a href="#">晒单</a><br/>
-                        <a href="#">申请返修/退换货</a>
-
-                        <div class="gobuy"><a href="#"></a></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="14%" align="center"><a href="#">cy255566525522</a></td>
-                    <td width="31%">
-                        <div class="goods-in">
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?>images/bui_07.jpg"
-                                                                  width="45" height="45"/></a></div>
-                            <div class="scolls"><a href="#"></a></div>
-                        </div>
-                    </td>
-                    <td width="8%" align="center">陈妮</td>
-                    <td width="9%" align="center">￥88.00<br/>货到付款</td>
-                    <td width="14%" align="center">2012-05-20-16:30</td>
-                    <td width="7%" align="center">已完成</td>
-                    <td width="17%" align="center"><a href="#">查看</a> | <a href="#">评价</a> | <a href="#">晒单</a><br/>
-                        <a href="#">申请返修/退换货</a>
-
-                        <div class="gobuy"><a href="#"></a></div>
-                    </td>
-                </tr>
-                -->
                 <tr>
                     <td colspan="7" align="right">
                         <ul class="ddall">
@@ -224,7 +172,7 @@
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
-<?php include("/../footer.php");?>
+<?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
