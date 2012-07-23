@@ -80,7 +80,7 @@ class product_comment extends MY_Controller
 
             $operaType = $operaType == 1 ? true : false;
 
-            $this->load->model('comment/Model_Product_comment', 'comment');
+            $this->load->model('product/Model_Product_comment', 'comment');
             $status = $this->comment->productCommentIsValid($commentId, $operaType);
             if (!$status) {
                 $response = error(50009);
@@ -115,7 +115,7 @@ class product_comment extends MY_Controller
                     break;
             }
 
-            $this->load->model('comment/Model_Product_comment', 'comment');
+            $this->load->model('product/Model_Product_comment', 'comment');
             $data = array(
                 'comment_id' => $commentId,
                 'uid' => $uInfo['uid'],
@@ -139,4 +139,19 @@ class product_comment extends MY_Controller
     /**
      *
      */
+    public function ajaxComment()
+    {
+        $pid = $this->input->get_post('pid');
+        $limit = max(10, $this->input->get_post('limit'));
+        $pageno = max(1, $this->input->get_post('pageno'));
+        $offset = ($pageno - 1) * $limit;
+        $this->load->model('product/Model_Product_comment', 'comment');
+        $re['totalCount'] = $this->comment->getCommentCountByPid($pid);
+        $re['comments'] = array();
+        if($re['totalCount'])
+        {
+            $re['comments'] = $this->comment->getCommentByPid($pid, $limit, $offset, $field = 'comment_id,pid,uid,uname,content, is_valid, is_invalid, color, size, rank, comfort, exterior, size_deviation,  create_time');
+        }
+        self::json_output($re, true);
+    }
 }
