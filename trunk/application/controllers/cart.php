@@ -39,7 +39,7 @@ class cart extends MY_Controller
         $pSize = $this->input->get_post('p_size');
         $pAdditionalInfo = $this->input->get_post('additional_info');
 
-        $response = error(60001);
+        $response = array('error'=>0);
 
         do {
             if (empty ($pId) || empty ($pSize)) {
@@ -77,7 +77,7 @@ class cart extends MY_Controller
             }
         } while (false);
 
-        $this->json_output($response);
+        self::json_output($response,true);
     }
 
     /**
@@ -114,7 +114,7 @@ class cart extends MY_Controller
             //$response = error(60009);
         } while (false);
 
-        $this->json_output($response);
+        self::json_output($response);
     }
 
     /**

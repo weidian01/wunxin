@@ -141,9 +141,17 @@
             return;
         }
         $.getJSON(wx.base_url + "cart/addToCart/?pid="+product.pid+"&p_num="+p_num+"&p_size="+p_size+"&jsoncallback=?", function(data){
-            alert(data.msg);
+            if(data.error == 0)
+            {
+                alert('成功将产品添加到购物车中');
+                wx.cartGlobalInit();
+            }
+            else
+            {
+                alert(data.msg);
+            }
         });
-        wx.cartGlobalInit();
+
     }
 
     $(document).ready(function () {
