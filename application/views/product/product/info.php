@@ -105,7 +105,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="ctxt">已选择：</div>
         <div class="sizebox">
           <ul>
-            <li>紫色</li>
+            <li><?=$alike[$product['pid']]['color']['china_name']?></li>
             <li id="product_size"></li>
           </ul>
         </div>
