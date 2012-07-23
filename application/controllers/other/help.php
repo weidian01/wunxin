@@ -13,7 +13,7 @@ class help extends MY_Controller
         parent::__construct();
 
         if (!$this->isLogin()) {
-            return ;
+            //return ;
         }
 
         if(! $this->input->is_ajax_request()){
@@ -26,9 +26,10 @@ class help extends MY_Controller
     {
         $id = $this->uri->segment(4, 0);
 
-        $this->load->model('other/help', 'help');
-        $this->help->sa();
+        $this->load->model('other/Model_Help', 'help');
+        $data = $this->help->getHelpById($id);
+//echo '<pre>';print_r($data);exit;
 
-        $this->load->view('other/help');
+        $this->load->view('other/help', array('data' => $data));
     }
 }

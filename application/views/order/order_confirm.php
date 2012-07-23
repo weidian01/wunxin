@@ -388,7 +388,7 @@ $(document).ready(function(){
           <div class="sy2"><span class="ordermark" id="omk" onclick="marksinfo('syinv2','omk')"></span></div>
           <div class="sybox" id="syinv2" style="display:none;">
             <textarea class="tta" name="annotated" rows="6" id="annotated_id"></textarea>
-            <p style="padding-top:8px;"><span class="font2">声明：备注中的有关收货人信息、支付方式、配送方式、发票信息等购买要求一律以上面的选择为准，备注无效。</span><br/>
+            <p style="padding-top:8px;"><span class="font2">声明：备注中的有关收货人信息、支付方式、配送方式等购买要求一律以上面的选择为准，备注无效。</span><br/>
                 <!--
               是否打印价格：
               <input name="" type="radio" value="" />
