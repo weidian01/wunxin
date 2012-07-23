@@ -95,6 +95,12 @@ wx.ajax = function (url, parameter)
 	return msg;
 }
 
+wx.jsonp = function(url, param, func)
+{
+    var result = {};
+    $.getJSON(url + "?"+ $.param(param)+"&jsoncallback=?", func);
+}
+
 //获取单选框的值
 wx.getRadioCheckBoxValue = function (RadioName)
 {

@@ -704,58 +704,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             </tr>
           </table>
         </div>
-        <div class="comment">
-          <div class="cmt-body">
-            <div class="user-comment">
-              <div class="u-tx"><img src="<?=config_item('static_url')?>images/tx_03.jpg" width="50" height="50" /></div>
-              <div class="u-cmt"> <span class="font17">tianshi021******</span>
-                <p>质量还不错，试穿了一下，总体感觉良好，快递也很给力，下次还会来购买！</p>
-              </div>
-              <div class="u-time"><span class="font2">2012-05-20 12:35 </span></div>
-            </div>
-            <div class="u-info">
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="77%" height="25">身高：165cm&nbsp;&nbsp;&nbsp;&nbsp;体重：51kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：紫色&nbsp;&nbsp;&nbsp;&nbsp;尺码：L</td>
-                  <td width="23%"><div class="u-ly">对我有用(125)</div></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="cmt-body">
-            <div class="user-comment">
-              <div class="u-tx"><img src="<?=config_item('static_url')?>images/tx_03.jpg" width="50" height="50" /></div>
-              <div class="u-cmt"> <span class="font17">tianshi021******</span>
-                <p>质量还不错，试穿了一下，总体感觉良好，快递也很给力，下次还会来购买！</p>
-              </div>
-              <div class="u-time"><span class="font2">2012-05-20 12:35 </span></div>
-            </div>
-            <div class="u-info">
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="77%" height="25">身高：165cm&nbsp;&nbsp;&nbsp;&nbsp;体重：51kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：紫色&nbsp;&nbsp;&nbsp;&nbsp;尺码：L</td>
-                  <td width="23%"><div class="u-ly">对我有用(125)</div></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="cmt-body">
-            <div class="user-comment">
-              <div class="u-tx"><img src="<?=config_item('static_url')?>images/tx_03.jpg" width="50" height="50" /></div>
-              <div class="u-cmt"> <span class="font17">tianshi021******</span>
-                <p>质量还不错，试穿了一下，总体感觉良好，快递也很给力，下次还会来购买！</p>
-              </div>
-              <div class="u-time"><span class="font2">2012-05-20 12:35 </span></div>
-            </div>
-            <div class="u-info">
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="77%" height="25">身高：165cm&nbsp;&nbsp;&nbsp;&nbsp;体重：51kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：紫色&nbsp;&nbsp;&nbsp;&nbsp;尺码：L</td>
-                  <td width="23%"><div class="u-ly">对我有用(125)</div></td>
-                </tr>
-              </table>
-            </div>
-          </div>
+        <div id="comments" class="comment" style="display:none;">
           <div class="cmt-body">
             <div class="user-comment">
               <div class="u-tx"><img src="<?=config_item('static_url')?>images/tx_03.jpg" width="50" height="50" /></div>
@@ -775,6 +724,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           </div>
         </div>
       </div>
+      <div style="float:right;" class="pages" id="commentsPage" style="display:none;"></div>
     </div>
     <div class="gbox-relation" id="g-relation3">
       <div class="shaidan" id="shaidan">

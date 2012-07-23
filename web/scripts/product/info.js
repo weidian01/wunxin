@@ -61,7 +61,10 @@
             });
             $('#tlcptj').html(html).parent().show();
         });
-        browseHistoryHTML(setBrowseHistory(product.pid, product.pname, product.sell_price))
+        browseHistoryHTML(setBrowseHistory(product.pid, product.pname, product.sell_price));
+
+
+        comment(product.pid, 1);
     });
 
     function browseHistoryHTML(list)
@@ -152,6 +155,58 @@
             }
         });
 
+    }
+
+    function comment(pid, page)
+    {
+        wx.jsonp(wx.base_url+'product/product_comment/ajaxComment', {'pid':pid, 'pageno':page}, function(data){
+            if(data.totalCount > 0)
+            {
+                var html = '';
+                $.each(data.comments, function (i, o) {
+                    html += '<div class="cmt-body">\
+                      <div class="user-comment">\
+                        <div class="u-tx"><img src="http://wunxin.com/images/tx_03.jpg" width="50" height="50" /></div>\
+                        <div class="u-cmt"> <span class="font17">'+ o.uname+'</span>\
+                          <p>'+ o.content+'</p>\
+                        </div>\
+                        <div class="u-time"><span class="font2">2012-05-20 12:35 </span></div>\
+                      </div>\
+                      <div class="u-info">\
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"\
+                          <tr>\
+                            <td width="70%" height="25">身高：165cm&nbsp;&nbsp;&nbsp;&nbsp;体重：51kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：紫色&nbsp;&nbsp;&nbsp;&nbsp;尺码：L</td>\
+                            <td width="13%"><div class="u-ly">对我有用('+ o.is_valid+')</div></td><td width="13%"><div class="u-ly">对我无用('+ o.is_invalid+')</div></td>\
+                          </tr>\
+                        </table>\
+                      </div>\
+                    </div>';
+                });
+                $("#comments").html(html).show();
+                $('#commentsPage').html(pagination(1, 10 , 1000)).show();
+            }
+        });
+    }
+
+    function pagination(pageno, pagesize, total)
+    {
+        var html = '';
+        if((typeof pagesize) == 'undefined') pagesize = 10;
+        var max = Math.ceil(total/pagesize);
+        for(var i=1; i <= max; i++)
+        {
+            if(pageno == i)
+            {
+                html += '<span class="current">'+i+'</span>';
+            }
+            else
+            {
+                html += '<a href="#">'+i+'</a>';
+            }
+        }
+        return html;
+
+        //<a href="http://wunxin.com/user/center/productFavorite/2">下一页</a>
     }
 
     $(document).ready(function () {

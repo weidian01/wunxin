@@ -149,4 +149,31 @@ class Model_Product_Comment extends MY_Model
 
         return true;
     }
+
+    /**
+     * 通过产品id获取评论信息
+     * @param $pid
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @return mixed
+     */
+    public function getCommentByPid($pid, $limit = 20, $offset = 0, $field = '*')
+    {
+        $this->db->select($field);
+        $this->db->order_by("comment_id", "desc");
+        return $this->db->get_where('product_comment', array('pid' => $pid), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 通过产品id获取评论数量
+     * @param $pid
+     * @return mixed
+     */
+    public function getCommentCountByPid($pid)
+    {
+        $this->db->from('product_comment');
+        $this->db->where(array('pid' => $pid));
+        return $this->db->count_all_results();
+    }
 }
