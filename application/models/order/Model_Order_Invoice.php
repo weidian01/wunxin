@@ -47,10 +47,11 @@ class Model_Order_Invoice extends MY_Model
      * 根据发表号和uid删除备选发票信息
      * @param $invoice_id
      * @param $uid
+     * @return bool
      */
     public function deleteInvoice($invoice_id, $uid)
     {
-        $this->db->delete('invoice', array('invoice_id' => $invoice_id, 'uid' => $uid));
+        return $this->db->delete('invoice', array('invoice_id' => $invoice_id, 'uid' => $uid));
     }
 
     /**
