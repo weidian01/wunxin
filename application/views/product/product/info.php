@@ -961,8 +961,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include '/../../footer.php';?>
 <!-- #EndLibraryItem -->
-<script type=text/javascript src="/scripts/function.js"></script>
-<script type=text/javascript src="/scripts/common.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/function.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script>
 var product = {};
 product.class_id = <?=$product['class_id']?>;
