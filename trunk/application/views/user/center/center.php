@@ -103,7 +103,9 @@
                     <td align="center"><a href="#"><?php echo $v['order_sn'];?></a></td>
                     <td>
                         <div class="goods-in">
-                            <?php foreach ($v['products'] as $pv) {?>
+                            <?php
+                            if (empty ($v['products'])) $v['products'] = array();
+                            foreach ($v['products'] as $pv) {?>
                             <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?><?php echo $pv['pid'];?>" width="45" height="45"/></a></div>
                             <?php }?>
                             <!--<div class="scolls"><a href="#"></a></div> -->
