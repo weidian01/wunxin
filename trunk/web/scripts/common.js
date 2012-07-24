@@ -253,7 +253,7 @@ wx.getReferer = function ()
 wx.goToBack = function ()
 {
     var url = wx.getReferer();
-alert(url);
+
     if (wx.isEmpty(url) && wx.isUrl(url)) {
         window.location.href = url;
     }

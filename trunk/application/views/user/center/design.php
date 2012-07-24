@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>我的晒单 -- 个人中心</title>
+    <title>我的设计图 -- 个人中心</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
@@ -21,7 +21,7 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">我的晒单</div>
+            <div class="u-r-tit">我的设计图</div>
             <!--
             <div class="u-ac">
               <span class="ruo">账户安全：</span>
@@ -66,23 +66,29 @@
             -->
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr class="o-list">
-                    <td width="16%" height="26" align="center">收藏编号</td>
-                    <td width="15%" align="center">设计师头像</td>
-                    <td width="25%" align="center">设计师名称</td>
-                    <!--<td width="10%" align="center">设计师简介</td> -->
-                    <td width="17%" align="center">收藏时间</td>
-                    <td width="17%" align="center">操作</td>
+                    <td width="10%" height="26" align="center">编号</td>
+                    <td width="10%" align="center">图片</td>
+                    <td width="15%" align="center">名称</td>
+                    <td width="25%" align="center">介绍</td>
+                    <td width="8%" align="center">总投票人数</td>
+                    <td width="8%" align="center">总投票分数</td>
+                    <td width="10%" align="center">添加时间</td>
+                    <td width="10%" align="center">操作</td>
                 </tr>
                 <?php if (empty ($data)) $data = array();
                 foreach ($data as $v) {?>
                 <tr>
-                    <td width="16%" height="26" align="center"><?php echo $v['designer_favorite_id'];?></td>
-                    <td width="28%"><img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($v['uid'])?>icon.jpg" alt=""/></td>
-                    <td width="8%" align="center"><?php echo $v['favorite_uname']; ?></td>
-                    <!--<td width="10%" align="center"><?php echo $v['default'];?></td>-->
-                    <td width="17%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td width="17%" align="center">
-                        <a href="javascript:void(0);" onclick="deleteDesignerFavorite(<?php echo $v['designer_favorite_id'];?>)">删除</a>
+                    <td height="26" align="center"><?php echo $v['did'];?></td>
+                    <td ><img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" alt=""/></td>
+                    <td align="center"><?php echo $v['dname'];?></td>
+                    <td align="center"><?php echo $v['ddetail'];?></td>
+                    <td align="center"><?php echo $v['total_num'];?></td>
+                    <td align="center"><?php echo $v['total_fraction'];?></td>
+                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td align="center">
+                        <a href="javascript:void(0);" onclick="(<?php echo $v['did'];?>)">修改</a>
+                        <br/>
+                        <a href="javascript:void(0);" onclick="(<?php echo $v['did'];?>)">删除</a>
                     </td>
                 </tr>
                 <?php }?>

@@ -83,7 +83,7 @@ class Model_Design extends MY_Model
     }
 
     /**
-     * 获取设计图 -- 通过用户ID
+     * 获取用户设计图
      *
      * @param $uId
      * @param $limit
@@ -97,6 +97,12 @@ class Model_Design extends MY_Model
         return empty ($data) ? null : $data;
     }
 
+    /**
+     * 获取用户设计图数量
+     *
+     * @param $uId
+     * @return int
+     */
     public function getUserDesignCount($uId)
     {
         $this->db->from('design');

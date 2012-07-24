@@ -35,9 +35,9 @@ class Model_Designer_Comment extends MY_Model
     }
 
     /**
-     * 获取设计师评论数量
+     * 获取用户留言数量
      *
-     * @param $uid
+     * @param $uId
      * @return int
      */
     public function getDesignerCommentByUidCount($uId)

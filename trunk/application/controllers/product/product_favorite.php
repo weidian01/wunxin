@@ -62,7 +62,7 @@ class product_favorite extends MY_Controller
         $response = error(20013);
 
         do {
-            if (empty ($pid)) {
+            if (empty ($fid)) {
                 $response = error(20015);
                 break;
             }

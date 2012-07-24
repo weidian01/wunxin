@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>我的晒单 -- 个人中心</title>
+    <title>我收藏的设计图 -- 个人中心</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
@@ -21,7 +21,7 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">我的晒单</div>
+            <div class="u-r-tit">收藏的设计图</div>
             <!--
             <div class="u-ac">
               <span class="ruo">账户安全：</span>
@@ -67,8 +67,8 @@
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr class="o-list">
                     <td width="16%" height="26" align="center">收藏编号</td>
-                    <td width="15%" align="center">设计师头像</td>
-                    <td width="25%" align="center">设计师名称</td>
+                    <td width="15%" align="center">设计图</td>
+                    <td width="25%" align="center">设计图简介</td>
                     <!--<td width="10%" align="center">设计师简介</td> -->
                     <td width="17%" align="center">收藏时间</td>
                     <td width="17%" align="center">操作</td>
@@ -76,13 +76,13 @@
                 <?php if (empty ($data)) $data = array();
                 foreach ($data as $v) {?>
                 <tr>
-                    <td width="16%" height="26" align="center"><?php echo $v['designer_favorite_id'];?></td>
-                    <td width="28%"><img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($v['uid'])?>icon.jpg" alt=""/></td>
-                    <td width="8%" align="center"><?php echo $v['favorite_uname']; ?></td>
+                    <td width="16%" height="26" align="center"><?php echo $v['id'];?></td>
+                    <td width="28%"><img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" alt=""/></td>
+                    <td width="8%" align="center"><?php echo 'a';//$v['favorite_uname']; ?></td>
                     <!--<td width="10%" align="center"><?php echo $v['default'];?></td>-->
                     <td width="17%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td width="17%" align="center">
-                        <a href="javascript:void(0);" onclick="deleteDesignerFavorite(<?php echo $v['designer_favorite_id'];?>)">删除</a>
+                        <a href="javascript:void(0);" onclick="deleteDesignerFavorite(<?php echo $v['id'];?>)">删除</a>
                     </td>
                 </tr>
                 <?php }?>

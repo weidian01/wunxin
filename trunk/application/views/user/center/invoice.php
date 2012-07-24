@@ -169,22 +169,22 @@
 <script type="text/javascript">
     function deleteInvoice(vId)
     {
-        if (confirm())
+        if (confirm('确定删除！')) {
+            if (!wx.isEmpty(vId)) {
+                return false;
+            }
 
-        if (!wx.isEmpty(vId)) {
-            return false;
+            var url = '/order/orderInvoice/deleteInvoice';
+            var param = 'invoice_id='+vId;
+            var data = wx.ajax(url, param);
+
+            if (data.error == '30006') {
+                wx.pageReload(0);
+                return true;
+            }
+
+            alert('删除失败!');
         }
-
-        var url = '/order/orderInvoice/deleteInvoice';
-        var param = 'invoice_id='+vId;
-        var data = wx.ajax(url, param);
-
-        if (data.error == '30006') {
-            wx.pageReload(0);
-            return true;
-        }
-
-        alert('删除失败!');
         //$('#invoice_'+vId).remove();
     }
 </script>

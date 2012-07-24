@@ -63,16 +63,29 @@ class Model_Product_QA extends MY_Model
     }
 
     /**
-     * 获取产品疑难问答 -- 通过用户ID
+     * 获取用户对产品疑难问答
      *
-     * @param int $uid
+     * @param int $uId
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getProductQAByUid($uid, $limit = 20, $offset = 0)
+    public function getProductQAByUid($uId, $limit = 20, $offset = 0)
     {
-        return $this->db->select('*')->get_where('product_qa', array('uid' => $uid), $limit, $offset)->result_array();
+        return $this->db->select('*')->get_where('product_qa', array('uid' => $uId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取用户对产品疑难问答数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getProductQaCountByuId($uId)
+    {
+        $this->db->select('*')->from('product_qa')->where('uid', $uId);
+
+        return $this->db->count_all_results();
     }
 
     /**
