@@ -63,7 +63,10 @@
         });
         browseHistoryHTML(setBrowseHistory(product.pid, product.pname, product.sell_price));
 
-
+        //分页绑定事件
+        $('#commentsPage a').live('click', function() {
+            comment(product.pid, $(this).attr('href','#anchorComment').attr('name'));
+        });
         comment(product.pid, 1);
     });
 
@@ -182,31 +185,39 @@
                       </div>\
                     </div>';
                 });
-                $("#comments").html(html).show();
-                $('#commentsPage').html(pagination(1, 10 , 1000)).show();
+                $("#comments").html(html).fadeOut('fast').fadeIn('slow');
+                $('#commentsPage').html(pagination(page, 10 , data.totalCount)).show();
             }
         });
     }
 
     function pagination(pageno, pagesize, total)
     {
+        var n = 5;
         var html = '';
         if((typeof pagesize) == 'undefined') pagesize = 10;
         var max = Math.ceil(total/pagesize);
-        for(var i=1; i <= max; i++)
-        {
-            if(pageno == i)
-            {
-                html += '<span class="current">'+i+'</span>';
+        if (max > 1) {
+            var i = 1;
+            if ((pageno - n) > 0)
+                i = pageno - n;
+            var end = max;
+            if ((pageno + n) < max)
+                end = pageno + n;
+            for (i; i <= end; i++) {
+                if (pageno == i) {
+                    html += '<span class="current">' + i + '</span>';
+                }
+                else {
+                    html += '<a href="javascript:;" name="'+i+'">' + i + '</a>';
+                }
             }
-            else
-            {
-                html += '<a href="#">'+i+'</a>';
-            }
+            if (pageno > 1)
+                html = '<a href="javascript:;" name="1">首页</a> <a href="javascript:;" name="'+(pageno-1)+'">上一页</a>' + html;
+            if (pageno < max)
+                html += '<a href="javascript:;" name="'+(pageno+1)+'">下一页</a> <a href="javascript:;" name="'+max+'">尾页</a>';
         }
         return html;
-
-        //<a href="http://wunxin.com/user/center/productFavorite/2">下一页</a>
     }
 
     $(document).ready(function () {
