@@ -34,6 +34,21 @@ class center extends MY_Controller
         $this->load->view('user/center/center', array('data' => $data));
     }
 
+    public function orderDetail()
+    {
+        $orderSn = $this->uri->segment(4, 0);
+
+        if (empty ($orderSn)) {
+            redirect('/user/center/index');
+            return ;
+        }
+
+        $this->load->model('order/Model_Order', 'order');
+        $orderData = $this->order->getOrderByOrderSn($orderSn);
+
+        $this->load->view('user/center/order_detail', array('order_data' => $orderData, ));
+    }
+
     public function returns()
     {
         $this->load->model('order/Model_Order', 'order');
