@@ -11,14 +11,27 @@ class Model_Product_Comment extends MY_Model
     /**
      * @name 获取产品评论 -- 通过用户ID
      *
-     * @param $uid
+     * @param $uId
      * @param int $limit
      * @param int $offset
      * @return array
      */
-    public function getCommentByUid($uid, $limit = 20, $offset = 0)
+    public function getCommentByUid($uId, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('product_comment', array('uid' => $uid), $limit, $offset)->array_result();
+        return $this->db->get_where('product_comment', array('uid' => $uId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取用户产品评论数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getCommentCountByuId($uId)
+    {
+        $this->db->from('product_comment');
+        $this->db->where(array('uid' => $uId));
+        return $this->db->count_all_results();
     }
 
     /**

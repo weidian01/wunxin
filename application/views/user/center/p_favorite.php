@@ -64,38 +64,26 @@
 
             </div>
             -->
-            <div class="o-list">
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td width="16%" height="26" align="center">收藏编号</td>
-                        <td width="28%">产品图片</td>
-                        <td width="8%" align="center">产品名称</td>
-                        <td width="10%" align="center">产品价格</td>
-                        <td width="17%" align="center">收藏时间</td>
-                        <td width="17%" align="center">操作</td>
-                    </tr>
-                </table>
-            </div>
+            <!--  -->
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr class="o-list">
+                    <td width="16%" height="26" align="center">收藏编号</td>
+                    <td width="15%">产品图片</td>
+                    <td width="25%" align="center">产品名称</td>
+                    <td width="10%" align="center">产品价格</td>
+                    <td width="17%" align="center">收藏时间</td>
+                    <td width="17%" align="center">操作</td>
+                </tr>
                 <?php if (empty ($data)) $data = array();
                 foreach ($data as $v) {?>
                 <tr>
-                    <td width="16%" height="26" align="center"><a href="#"><?php echo $v['invoice_id'];?></a></td>
-                    <td width="28%"><?php echo $v['invoice_payable'];?> </td>
-                    <td width="8%" align="center"><?php
-                        switch($v['invoice_content']) {
-                            case '1': $st = '服装'; break;
-                            case '2': $st = '其他'; break;
-                            case '3': $st = $v['invoice_content']; break;
-                            default: $st = '服装'; break;
-                        }
-                            echo $st;
-                        ?></td>
-                    <td width="10%" align="center"><?php echo $v['default'] == '1' ? '是' : '否';?></td>
-                    <td width="17%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td width="17%" align="center">
-                        <a href="">修改</a>
-                        <a href="">删除</a>
+                    <td height="26" align="center"><a href="#"><?php echo $v['id'];?></a></td>
+                    <td><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/></td>
+                    <td align="center"><?php //echo $v['pname']; ?></td>
+                    <td align="center"><?php //echo $v['market_price'];?></td>
+                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td align="center">
+                        <a href="javascript:void(0);" onclick="deleteProductFavorite(<?php echo $v['id'];?>)">删除</a>
                     </td>
                 </tr>
                     <?php }?>
@@ -113,6 +101,9 @@
                 </tr>
                 -->
             </table>
+        </div>
+        <div class="pages" style="float: right;">
+        <?php echo $page_html;?>
         </div>
         <!--
         <div class="u-r-box">
@@ -155,6 +146,27 @@
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<script type="text/javascript">
+    function deleteProductFavorite(pId)
+    {
+        if (confirm('确定删除！')) {
+            if (!wx.isEmpty(pId)) {
+                return false;
+            }
+
+            var url = '/product/product_favorite/deleteFavorite';
+            var param = 'fid='+pId;
+            var data = wx.ajax(url, param);
+
+            if (data.error == '20013') {
+                wx.pageReload(0);
+                return true;
+            }
+
+            alert('删除失败!');
+        }
+    }
+</script>
 <!-- #EndLibraryItem -->
 </body>
 </html>

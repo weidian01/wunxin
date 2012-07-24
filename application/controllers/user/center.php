@@ -55,7 +55,6 @@ class center extends MY_Controller
         $this->load->model('order/Model_Order_Invoice', 'invoice');
         $totalNum = $this->invoice->getUserInvoiceCount($this->uInfo['uid']);
 
-
         $this->load->library('pagination');
         $config['base_url'] = site_url() . '/user/center/invoice/';
         $config['total_rows'] = $totalNum;
@@ -82,10 +81,30 @@ class center extends MY_Controller
      */
     public function share()
     {
-        $this->load->model('product/Model_Product_Share', 'share');
-        $data = $this->share->getProductShareByUid($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/share', array('data' => $data));
+        $this->load->model('product/Model_Product_Share', 'share');
+        $totalNum = $this->share->getProductShareCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/share/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->share->getProductShareAndImagesByUid($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/share', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -93,10 +112,30 @@ class center extends MY_Controller
      */
     public function productFavorite()
     {
-        $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $data = $this->favorite->getUserProductFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/p_favorite', array('data' => $data));
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $totalNum = $this->favorite->getUserProductFavoriteCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/productFavorite/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->favorite->getUserProductFavorite($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/p_favorite', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -104,10 +143,30 @@ class center extends MY_Controller
      */
     public function designerFavorite()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('user/Model_Designer_Favorite', 'favorite');
+        $totalNum = $this->favorite->getUserDesignerFavoriteCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/designerFavorite/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/u_favorite', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -115,10 +174,30 @@ class center extends MY_Controller
      */
     public function designFavorite()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('design/Model_Design_Favorite', 'favorite');
+        $totalNum = $this->favorite->getUserFavoriteDesignCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/designFavorite/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->favorite->getUserFavoriteDesignByUid($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/d_favorite', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -126,6 +205,7 @@ class center extends MY_Controller
      */
     public function profile()
     {
+
         $this->load->model('user/Model_Designer_Favorite', 'favorite');
         $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
 
@@ -137,10 +217,10 @@ class center extends MY_Controller
      */
     public function modifyPassword()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        //$this->load->model('user/Model_Designer_Favorite', 'favorite');
+        //$data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->view('user/center/profile');
     }
 
     /**
@@ -148,21 +228,61 @@ class center extends MY_Controller
      */
     public function productComment()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('product/Model_Product_Comment', 'comment');
+        $totalNum = $this->comment->getCommentCountByuId($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/productComment/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->comment->getCommentByUid($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/p_comment', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
-     * 设计师评论
+     * 设计师留言
      */
     public function designerComment()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('user/Model_Designer_Comment', 'comment');
+        $totalNum = $this->comment->getDesignerCommentByUidCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/designerComment/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->comment->getDesignerCommentByUid($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/d_comment', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -170,10 +290,30 @@ class center extends MY_Controller
      */
     public function qa()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('product/Model_Product_QA', 'qa');
+        $totalNum = $this->qa->getProductQaCountByuId($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/qa/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->qa->getProductQAByUid($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/qa', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -181,10 +321,30 @@ class center extends MY_Controller
      */
     public function recentAddress()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('user/Model_User_Recent', 'recent');
+        $totalNum = $this->recent->getUserRecentAddressCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/recentAddress/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->recent->getUserRecentAddressByUid($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/recent', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -192,10 +352,30 @@ class center extends MY_Controller
      */
     public function myDesign()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('design/Model_Design', 'design');
+        $totalNum = $this->design->getUserDesignCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/myDesign/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->design->getDesignByUid($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/design', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**
@@ -203,10 +383,30 @@ class center extends MY_Controller
      */
     public function myProduct()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('product/Model_Product', 'product');
+        $totalNum = $this->product->getUserProductCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/myDesign/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->product->getUserProduct($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->view('user/center/product', array('data' => $data, 'page_html' => $pageHtml));
     }
 
     /**

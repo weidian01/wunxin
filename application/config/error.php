@@ -60,6 +60,11 @@ $error[10034] = array('error' => '10034', 'msg' => '注册用户成功', 'code' 
 
 $error[10035] = array('error' => '10035', 'msg' => '用户可以使用', 'code' => 'you_can_use_the');
 
+$error[10036] = array('error' => '10036', 'msg' => '修改密码成功', 'code' => 'modify_password_success');
+$error[10037] = array('error' => '10037', 'msg' => '修改密码失败', 'code' => 'modify_password_failure');
+$error[10038] = array('error' => '10038', 'msg' => '修改密码参数不全', 'code' => 'modify_password_parameter_failure');
+
+
 
 /**
  * 产品错误代码  --  产品相关错误代码以 20 开头

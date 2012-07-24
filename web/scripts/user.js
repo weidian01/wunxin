@@ -16,7 +16,10 @@ user.init = function ()
     var userName = wx.getCookie('username');
 
     userName = ( userName == null ) ? '' : userName;
-    document.getElementById('username_id').value = userName;
+    //console.log(document.getElementById('username_id'));
+    if (document.getElementById('username_id')) {
+        document.getElementById('username_id').value = userName;
+    }
 }
 
 //检测用户名

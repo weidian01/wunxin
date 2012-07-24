@@ -67,7 +67,7 @@ class Model_Designer_Favorite extends MY_Model
      */
     public function deleteUserFavoriteFavorite($fId, $uid)
     {
-        $this->db->where('id', $fId);
+        $this->db->where('designer_favorite_id', $fId);
         $this->db->where('favorite_uid', $uid);
         return $this->db->delete('designer_favorite');
     }

@@ -79,6 +79,55 @@ class Model_Product_Share extends MY_Model
         return $this->db->select('*')->get_where('share', array('uid' => $uId), $limit, $offset)->result_array();
     }
 
+    /**
+     * 获取用户的晒单及晒单图片
+     *
+     * @param int $uId
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function getProductShareAndImagesByUid($uId, $limit = 20, $offset = 0)
+    {
+        $data =  $this->db->select('*')->get_where('share', array('uid' => $uId), $limit, $offset)->result_array();
+
+        foreach ($data as $k => $v) {
+            $shareId = $v['share_id'];
+
+            $data[$k]['share_images'] = $this->getProductShareImage($shareId);
+        }
+
+        return $data;
+    }
+
+    /**
+     * 获取用户的晒单数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getProductShareCount($uId)
+    {
+        $this->db->select('*')->from('share')->where('uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
+     * 获取产品分享图片
+     *
+     * @param $shareId
+     * @return array
+     */
+    public function getProductShareImage($shareId)
+    {
+        return $this->db->select('*')->get_where('share_images', array('share_id' => $shareId))->result_array();
+    }
+
+    /**
+     * @param $imgId
+     * @return mixed
+     */
     public function likeProductShareImage($imgId)
     {
         $data = array('is_like' => 'is_like+1');
@@ -96,6 +145,11 @@ class Model_Product_Share extends MY_Model
 
     }
 
+    /**
+     * @param $sid
+     * @param $sInfo
+     * @return mixed
+     */
     public function shareComment($sid, $sInfo)
     {
         $data = array(

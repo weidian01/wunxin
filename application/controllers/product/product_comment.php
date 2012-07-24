@@ -109,10 +109,10 @@ class product_comment extends MY_Controller
                 break;
             }
 
-                $uInfo = $this->isLogin();
-                if (!$uInfo) {
-                    $response = error(10009);
-                    break;
+            $uInfo = $this->isLogin();
+            if (!$uInfo) {
+                $response = error(10009);
+                break;
             }
 
             $this->load->model('product/Model_Product_comment', 'comment');

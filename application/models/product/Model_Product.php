@@ -59,6 +59,8 @@ class Model_Product extends MY_Model
      *
      * @param int $limit
      * @param int $offset
+     * @param string $field
+     * @param int $where
      * @return null | array
      */
     public function getProductList($limit = 20, $offset = 0, $field= "*", $where = null)
@@ -112,12 +114,25 @@ class Model_Product extends MY_Model
         return $this->db->get_where('product', array('style_no' => $style_no))->result_array();
     }
 
+    /**
+     * 添加产品
+     *
+     * @param array $pInfo
+     * @return mixed
+     */
     public function addProduct(array $pInfo)
     {
         $this->db->insert('product', $pInfo);
         return $this->db->insert_id();
     }
 
+    /**
+     * 修改产品
+     *
+     * @param $pId
+     * @param array $pInfo
+     * @return mixed
+     */
     public function editProduct($pId, array $pInfo)
     {
         $this->db->where('pid', $pId);
@@ -126,6 +141,13 @@ class Model_Product extends MY_Model
 
     }
 
+    /**
+     * 添加产品尺寸
+     *
+     * @param array $size
+     * @param $pid
+     * @return mixed
+     */
     public function addProductSize(array $size, $pid)
     {
         $data = array();
@@ -140,6 +162,13 @@ class Model_Product extends MY_Model
         return;
     }
 
+    /**
+     * 获取产品尺寸
+     *
+     * @param $pid
+     * @param int $size_id
+     * @return mixed
+     */
     public function getProductSize($pid, $size_id=0)
     {
         if($size_id)
@@ -149,6 +178,12 @@ class Model_Product extends MY_Model
         return $this->db->get_where('product_size',array('pid'=>$pid))->result_array();
     }
 
+    /**
+     * 删除产品尺寸
+     *
+     * @param $pid
+     * @return mixed
+     */
     public function delProductSizeById($pid)
     {
         $this->db->where('pid', $pid);
@@ -178,6 +213,12 @@ class Model_Product extends MY_Model
         return ;
     }
 
+    /**
+     * 设计产品默认图片
+     *
+     * @param $product_id
+     * @param $photo_id
+     */
     public function setProductDefaultPhoto($product_id, $photo_id)
     {
         $this->db->update('product_photo', array('is_default' => 1), array('id' => $photo_id, 'is_default' => 0));
@@ -191,11 +232,23 @@ class Model_Product extends MY_Model
         }
     }
 
+    /**
+     * 获取产品图片
+     *
+     * @param $pid
+     * @return mixed
+     */
     public function getProductPhoto($pid)
     {
         return $this->db->get_where('product_photo',array('pid'=>$pid))->result_array();
     }
 
+    /**
+     * 删除产品图片
+     *
+     * @param $id
+     * @return mixed
+     */
     public function delProductPhotoById($id)
     {
         if(is_array($id))
@@ -210,6 +263,12 @@ class Model_Product extends MY_Model
         return ;
     }
 
+    /**
+     * 添加产品属性
+     *
+     * @param $attr
+     * @return mixed
+     */
     public function addProductAttr($attr)
     {
         if ($attr) {
@@ -218,11 +277,23 @@ class Model_Product extends MY_Model
         return ;
     }
 
+    /**
+     * 获取产品属性
+     *
+     * @param $pid
+     * @return mixed
+     */
     public function getProductAttr($pid)
     {
         return $this->db->get_where('product_attr',array('pid'=>$pid))->result_array();
     }
 
+    /**
+     * 删除产品属性
+     *
+     * @param $pId
+     * @return mixed
+     */
     public function delProductAttrById($pId)
     {
         $this->db->where('pid', $pId);
@@ -230,11 +301,44 @@ class Model_Product extends MY_Model
         return ;
     }
 
+    /**
+     * 删除产品
+     *
+     * @param $pId
+     * @return mixed
+     */
     public function deleteProduct($pId)
     {
         $this->db->where('pid', $pId);
         $this->db->where('status', 1);
         $this->db->update('product', array('status'=>0));
         return ;
+    }
+
+    /**
+     * 获取用户产品
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return array
+     */
+    public function getUserProduct($uId, $limit = 20, $offset = 0)
+    {
+        //return $this->db->get_where('product',array('uid'=>$uId), $limit, $offset)->result_array();
+        return $this->db->select('*')->get_where('product', array('uid' => $uId), $limit, $offset)->result_array();
+    }
+
+    /**
+     * 获取用户产品数量
+     *
+     * @param $uId
+     * @return mixed
+     */
+    public function getUserProductCount($uId)
+    {
+        $this->db->select('*')->from('product')->where('uid', $uId);
+
+        return $this->db->count_all_results();
     }
 }

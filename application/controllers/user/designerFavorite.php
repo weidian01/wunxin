@@ -70,7 +70,7 @@ class designerFavorite extends MY_Controller
             }
 
             $this->load->model('user/Model_Designer_Favorite', 'favorite');
-            $status = $this->favorite->deleteUserProductFavorite($fid, $this->uInfo['uid']);
+            $status = $this->favorite->deleteUserFavoriteFavorite($fid, $this->uInfo['uid']);
             if (!$status) {
                 $response = error(10021);
                 break;

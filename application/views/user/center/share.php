@@ -72,7 +72,7 @@
                         <td width="8%" align="center">晒单标题</td>
                         <td width="10%" align="center">晒单内容</td>
                         <td width="17%" align="center">创建时间</td>
-                        <td width="17%" align="center">操作</td>
+                        <!--<td width="17%" align="center">操作</td>-->
                     </tr>
                 </table>
             </div>
@@ -80,23 +80,24 @@
                 <?php if (empty ($data)) $data = array();
                 foreach ($data as $v) {?>
                 <tr>
-                    <td width="16%" height="26" align="center"><a href="#"><?php echo $v['invoice_id'];?></a></td>
-                    <td width="28%"><?php echo $v['invoice_payable'];?> </td>
-                    <td width="8%" align="center"><?php
-                        switch($v['invoice_content']) {
-                            case '1': $st = '服装'; break;
-                            case '2': $st = '其他'; break;
-                            case '3': $st = $v['invoice_content']; break;
-                            default: $st = '服装'; break;
-                        }
-                            echo $st;
-                        ?></td>
-                    <td width="10%" align="center"><?php echo $v['default'] == '1' ? '是' : '否';?></td>
+                    <td width="16%" height="26" align="center"><!--<a href="#">--><?php echo $v['share_id'];?><!--</a>--></td>
+                    <td width="28%">
+                        <div class="goods-in">
+                            <?php foreach ($v['share_images'] as $pv) {?>
+                            <div class="g-i-img"><a href="#"><img src="<?=config_item('static_url')?><?php echo $pv['img_addr'];?>" width="45" height="45"/></a></div>
+                            <?php }?>
+                            <!--<div class="scolls"><a href="#"></a></div> -->
+                        </div>
+                    </td>
+                    <td width="8%" align="center"><?php echo $v['title']; ?></td>
+                    <td width="10%" align="center"><?php echo $v['content'];?></td>
                     <td width="17%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <!--
                     <td width="17%" align="center">
                         <a href="">修改</a>
                         <a href="">删除</a>
                     </td>
+                    -->
                 </tr>
                     <?php }?>
                 <!--
@@ -113,6 +114,9 @@
                 </tr>
                 -->
             </table>
+        </div>
+        <div class="pages" style="float: right;">
+        <?php echo $page_html;?>
         </div>
         <!--
         <div class="u-r-box">
