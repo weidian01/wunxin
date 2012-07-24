@@ -160,9 +160,23 @@
 
     }
 
+    //对评论进行顶/踩
+    function top(o,cid,top)
+    {
+        wx.jsonp(wx.base_url+'product/comment/ajaxTop', {'cid':cid, 'top':top}, function(data){
+            if (data.error != 0) {
+                alert(data.msg)
+            } else {
+                var tmp = $(o).html().split(/\(|\)/);
+                $(o).html(tmp[0]+'('+(parseInt(tmp[1])+1)+')');
+            }
+        });
+    }
+
+    //获取评论列表
     function comment(pid, page)
     {
-        wx.jsonp(wx.base_url+'product/product_comment/ajaxComment', {'pid':pid, 'pageno':page}, function(data){
+        wx.jsonp(wx.base_url+'product/comment/ajaxComment', {'pid':pid, 'pageno':page}, function(data){
             if(data.totalCount > 0)
             {
                 var html = '';
@@ -179,7 +193,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0"\
                           <tr>\
                             <td width="70%" height="25">身高：165cm&nbsp;&nbsp;&nbsp;&nbsp;体重：51kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：紫色&nbsp;&nbsp;&nbsp;&nbsp;尺码：L</td>\
-                            <td width="13%"><div class="u-ly">对我有用('+ o.is_valid+')</div></td><td width="13%"><div class="u-ly">对我无用('+ o.is_invalid+')</div></td>\
+                            <td width="13%"><div class="u-ly" onclick="top(this, '+ o.comment_id+' ,1)">对我有用('+ o.is_valid+')</div></td><td width="13%"><div class="u-ly" onclick="top(this, '+ o.comment_id+' ,0)">对我无用('+ o.is_invalid+')</div></td>\
                           </tr>\
                         </table>\
                       </div>\
