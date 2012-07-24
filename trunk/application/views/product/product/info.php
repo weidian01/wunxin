@@ -568,7 +568,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="gbox-relation" id="g-relation2">
       <div class="shaidan" id="comment">
         <div class="sd-tit">
-          <div class="sdbt">商品评论&nbsp;<span class="font15"><span class="font17">158</span> 条评论</span></div>
+          <div class="sdbt"><a name="anchorComment">商品评论&nbsp;<span class="font15"><span class="font17">158</span> 条评论</span></div>
           <div class="sd-btn"><a href="#">我要评论</a></div>
           <div class="sd-yh">购买过该商品的用户才能评论&nbsp;&nbsp;</div>
         </div>
