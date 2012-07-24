@@ -167,7 +167,7 @@ $error[40024] = array('error' => '40024', 'msg' => '无权限删除此设计图�
 $error[50001] = array('error' => '50001', 'msg' => '评论不合法', 'code' => 'comment_illegal');
 $error[50002] = array('error' => '50002', 'msg' => '未购买产品不能评论', 'code' => 'not_buy_product_can_not_comment');
 $error[50003] = array('error' => '50003', 'msg' => '添加评论失败', 'code' => 'add_comment_failure');
-$error[50004] = array('error' => '50004', 'msg' => '评论成功', 'code' => 'comment_success');
+$error[50004] = array('error' => '50004', 'msg' => '重复投票', 'code' => 'repeat_voting');
 $error[50005] = array('error' => '50005', 'msg' => '评论是否有效提供成功', 'code' => 'comment_whether_effective_delivery_successful');
 $error[50006] = array('error' => '50006', 'msg' => '评论回复成功', 'code' => 'comment_reply_success');
 $error[50007] = array('error' => '50007', 'msg' => '评论回复失败', 'code' => 'comment_reply_failure');

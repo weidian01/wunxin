@@ -1084,7 +1084,8 @@
     background: url(/images/bgw_03.gif) repeat-x;
     padding: 0px 15px;
     line-height: 26px;
-    color: #1B72C0
+    color: #1B72C0;
+    cursor:pointer;
 }
 
 .question {

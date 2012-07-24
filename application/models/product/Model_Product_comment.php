@@ -189,4 +189,21 @@ class Model_Product_Comment extends MY_Model
         $this->db->where(array('pid' => $pid));
         return $this->db->count_all_results();
     }
+
+    public function top($comment_id, $uid, $top = true)
+    {
+        $this->db->query("INSERT IGNORE INTO wx_product_comment_vote_log (`uid`, `cid`) VALUES ({$uid}, {$comment_id})");
+        $insert_id = $this->db->insert_id();
+        if ($insert_id) {
+            $this->db->where('comment_id', $comment_id);
+            if ($top) {
+                $up = array('is_valid' => 'is_valid+1');
+            } else {
+                $up = array('is_invalid' => 'is_invalid+1');
+            }
+            $this->db->set($up, '', false)->update('product_comment');
+            return true;
+        }
+        return false;
+    }
 }
