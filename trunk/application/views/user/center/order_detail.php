@@ -92,15 +92,19 @@
                                 case '2': $pst = '配货完成'; $statusNumber += 33.4; break;
                                 default :$pst = '';
                             }
+
+
                             if ($order_data['status'] == '0') {
                                 echo $st;
                                 $statusNumber = 0;
-                            } elseif ($order_data['is_pay'] == '2') {
+                            } elseif ($order_data['is_pay'] != '1') {
                                 echo $st.', '.$pt;
+                                $statusNumber = 33.3;
+                            } elseif ($order_data['picking_status'] != '2') {
+                                echo $st.', '.$pt.', '.$pst;
                                 $statusNumber = 66.6;
                             } else {
                                 echo $st.', '.$pt.', '.$pst;
-                                $statusNumber = 100;
                             }
 
                             /**
@@ -137,7 +141,7 @@
                           <dl class="li-3 <?php echo $pickingStatus;?>">
                             <dt>3. 配货状态</dt>
                           </dl>
-                          <dl class="li-4 <?php echo $statusNumber;?>">
+                          <dl class="li-4 <?php echo $pickingStatus;?>">
                             <dt>4. 交易完成</dt>
                           </dl>
 
@@ -209,7 +213,7 @@
                                             <tr>
                                                 <td style="width:60px;">
                                                     <!--<img src="<?php echo $pv['pid']?>">-->
-                                                    <img src="<?=config_item('static_url')?><?php echo $pv['pid'];?>" width="45" height="45"/>
+                                                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" alt=""/>
                                                 </td>
                                                 <td>
                                                     <a title="<?php echo $pv['pname']?>" class="a_e" href="/product/pro_19910_28559/VISIBLEVSB2012015TXu.html">

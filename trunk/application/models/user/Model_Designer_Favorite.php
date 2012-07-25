@@ -58,6 +58,29 @@ class Model_Designer_Favorite extends MY_Model
         return $this->db->count_all_results();
     }
 
+    public function getUserDesignerFavoriteAndUser($uId, $limit = 20, $offset = 0)
+    {
+        $field = 'designer_favorite_id, user.uid, favorite_uid, favorite_uname, ip, favorite_num,
+        uname, nickname, lid, password, source, integral, amount, status, designer_favorite.create_time';
+
+        $this->db->select($field)->from('designer_favorite')->join('user', 'designer_favorite.uid = user.uid')->where('designer_favorite.favorite_uid', $uId);
+        $this->db->limit($limit, $offset)->order_by('designer_favorite.create_time', 'desc');
+
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    public function getUserDesignerFavoriteAndUserCount($uId)
+    {
+        $field = 'designer_favorite_id, user.uid, favorite_uid, favorite_uname, ip,
+        uname, nickname, lid, password, source, integral, amount, status, designer_favorite.create_time';
+
+        $this->db->select($field)->from('designer_favorite')->join('user', 'designer_favorite.uid = user.uid')->where('designer_favorite.favorite_uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
     /**
      * 删除一个用户收藏的产品
      *
@@ -92,7 +115,7 @@ class Model_Designer_Favorite extends MY_Model
      */
     public function emptyUserFavoriteFavorite($uId)
     {
-        $this->db->where('uid', $uId);
+        $this->db->where('favorite_uid', $uId);
         return $this->db->delete('designer_favorite');
     }
 

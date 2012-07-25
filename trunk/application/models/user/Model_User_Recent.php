@@ -129,7 +129,7 @@ class Model_User_Recent extends MY_Model
      */
     public function getUserRecentAddressByUid($uId, $limit = 20, $offset = 0)
     {
-        $data = $this->db->select('*')->get_where('user_recent_address', array('uid' => $uId), $limit, $offset)->result_array();
+        $data = $this->db->select('*')->order_by('address_id', 'desc')->get_where('user_recent_address', array('uid' => $uId), $limit, $offset)->result_array();
 
         return empty ($data) ? null : $data;
     }

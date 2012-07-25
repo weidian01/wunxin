@@ -95,6 +95,7 @@ class Model_Product_Share extends MY_Model
             $shareId = $v['share_id'];
 
             $data[$k]['share_images'] = $this->getProductShareImage($shareId);
+
         }
 
         return $data;
