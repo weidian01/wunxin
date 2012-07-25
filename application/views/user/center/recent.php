@@ -21,7 +21,7 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">收货地址管理</div>
+            <div class="u-r-tit">收货地址管理<span style="float:right;text-align: right;"><a href="/user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span></div>
             <!--
             <div class="u-ac">
               <span class="ruo">账户安全：</span>
@@ -79,7 +79,7 @@
                 </tr>
                 <?php if (empty ($data)) $data = array();
                 foreach ($data as $v) {?>
-                <tr>
+                <tr id="address_<?php echo $v['address_id'];?>">
                     <td align="center"><?php echo $v['address_id'];?></td>
                     <td align="center"><?php echo $v['recent_name'];?></td>
                     <td align="center"><?php echo $v['email'];?></td>
@@ -90,9 +90,9 @@
                     <td align="center"><?php echo $v['default_address'] == '1' ? '是' : '否';?></td>
                     <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td align="center">
-                        <a href="javascript:void(0);" onclick="(<?php echo $v['address_id'];?>)">修改</a>
-                        <br/>
-                        <a href="javascript:void(0);" onclick="(<?php echo $v['address_id'];?>)">删除</a>
+                        <!--<a href="javascript:void(0);" onclick="(<?php echo $v['address_id'];?>)">修改</a>
+                        <br/>-->
+                        <a href="javascript:void(0);" onclick="deleteRecentAddress(<?php echo $v['address_id'];?>)">删除</a>
                     </td>
                 </tr>
                 <?php }?>
@@ -156,18 +156,19 @@
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <script type="text/javascript">
-    function deleteDesignerFavorite(dId)
+    function deleteRecentAddress(aId)
     {
         if (confirm('确定删除！')) {
-            if (!wx.isEmpty(dId)) {
+            if (!wx.isEmpty(aId)) {
                 return false;
             }
 
-            var url = '/user/designerFavorite/deleteDesignerFavorite';
-            var param = 'fid='+dId;
+            var url = '/user/userRecent/deleteRecentAddress';
+            var param = 'address_id='+aId;
             var data = wx.ajax(url, param);
 
-            if (data.error == '10020') {
+            if (data.error == '10032') {
+                //$('#address_'+aId).remove();
                 wx.pageReload(0);
                 return true;
             }

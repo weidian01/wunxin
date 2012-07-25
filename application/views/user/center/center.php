@@ -86,8 +86,9 @@
                     <td width="8%" align="center">收货人</td>
                     <td width="10%" align="center">订单金额</td>
                     <td width="12%" align="center">下单时间</td>
-                    <td width="10%" align="center">支付状态</td>
                     <td width="10%" align="center">订单状态</td>
+                    <td width="10%" align="center">支付状态</td>
+                    <td width="10%" align="center">配货状态</td>
                     <td width="20%" align="center">操作</td>
                 </tr>
                 <?php if (empty ($data)) $data = array();
@@ -125,6 +126,15 @@
                         echo $pt;
                         ?></td>
                     <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td align="center"><?php
+                    switch($v['status']) {
+                        case '0': $st = '已取消'; break;
+                        case '1': $st = '正常'; break;
+                        case '2': $st = '已确认'; break;
+                        default: $st = '正常'; break;
+                    }
+                        echo $st;
+                    ?></td>
                     <td align="center">
                         <?php
                         switch($v['is_pay']) {
@@ -138,29 +148,32 @@
                         ?>
                     </td>
 
-                    <td align="center"><?php
-                        switch($v['status']) {
-                            case '0': $st = '已取消'; break;
-                            case '1': $st = '正常'; break;
-                            case '2': $st = '已确认'; break;
-                            default: $st = '正常'; break;
+                    <td align="center">
+                        <?php
+                        switch($v['picking_status']) {
+                            case '0': $pst = '未配货'; break;
+                            case '1': $pst = '配货中'; break;
+                            case '2': $pst = '发货完成'; break;
+                            default: $pst = '初始'; break;
                         }
-                            echo $st;
-                        ?></td>
-                    <td align="center"><a href="#">查看</a>
+                            echo $pst;
+                        ?>
+                    </td>
+
+                    <td align="center"><a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>">查看</a>
 
                         <?php if ($v['picking_status'] == '2') {?>
-                        | <a href="#">评价</a> | <a href="#">晒单</a><br/>
-                        <a href="#">申请返修/退换货</a>
+                            <br/> <a href="#">评价</a> <br/> <a href="#">晒单</a><br/>
+                        <a href="#">申请退换货</a>
                         <?php }?>
                         <div class="gobuy"><a href="#"></a></div>
                     </td>
                 </tr>
                     <?php }?>
                 <tr>
-                    <td colspan="7" align="right">
+                    <td colspan="9" align="right">
                         <ul class="ddall">
-                            <li>订单总数：<span class="font1"><?php echo count($data); ?></span></li>
+                            <li>订单总数：<span class="font1"><?php echo $total_num; ?></span></li>
                             <li>已取消订单数：<span class="font1"><?php echo $canceledNum;?></span></li>
                             <li>已完成订单数：<span class="font1"><?php echo $completedNum;?></span></li>
                             <li>未付款订单数：<span class="font1"><?php echo $notPayNum;?></span></li>
@@ -171,8 +184,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-                <span class="current">1</span>&nbsp;<a href="/category/5/2">2</a>&nbsp;<a href="/category/5/2">下一页</a>&nbsp;        共2页&nbsp;&nbsp;&nbsp;&nbsp;
-                到第<input class="input6" name="input" type="text"> 页 <input type="button" class="input7" value="确定">
+                <?php echo $page_html; ?>
             </div>
         <div class="u-r-box">
             <div class="tui-tit">为您推荐</div>

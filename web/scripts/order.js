@@ -71,7 +71,7 @@ order.layerSwitch = function ()
 }
 
 //保存收货地址
-order.saveAddress = function ()
+order.saveAddress = function (urls)
 {
     var recentName = document.getElementById('recent_name_id').value;
     var province = $('#province_id').find('option:selected').text();//document.getElementById('province_id').value;
@@ -133,7 +133,12 @@ order.saveAddress = function ()
     var data = wx.ajax(url, param);
 
     if (data.error == '30009') {
-        wx.pageReload();
+//console.log(urls);
+        if (wx.isEmpty(urls)) {
+            wx.goToUrl(urls);
+        } else {
+            wx.pageReload();
+        }
     }
 
     if (data.error == '30010') {

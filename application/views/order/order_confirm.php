@@ -33,7 +33,7 @@ $(document).ready(function(){
     </ul>
   </div>
   <div class="other-shopping">
-    <div class="tit">收获人信息：&nbsp;&nbsp;<span onclick="editorder('edit-cong','cong', this)" id="modify_text_id">[修改]</span></div>
+    <div class="tit">收货人信息：&nbsp;&nbsp;<span onclick="editorder('edit-cong','cong', this)" id="modify_text_id">[修改]</span></div>
     <?php if (empty ($recent_data)) {?>
         <script type="text/javascript">
         $(document).ready(function(){

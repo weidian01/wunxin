@@ -89,7 +89,7 @@ class designerFavorite extends MY_Controller
             $response = error(10009);
         } else {
             $this->load->model('user/Model_Designer_Favorite', 'favorite');
-            $status = $this->favorite->emptyUserProductFavorite($this->uInfo['uid']);
+            $status = $this->favorite->emptyUserFavoriteFavorite($this->uInfo['uid']);
             $response = $status ? error(10023) : error(10024);
         }
 

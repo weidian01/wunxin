@@ -200,7 +200,10 @@ class Model_Order extends MY_Model
      */
     public function getOrderByUid($uid, $limit = 20, $offset = 0)
     {
-        $data = $this->db->select('*')->order_by('order_sn', 'desc')->get_where('order', array('uid' => $uid), $limit, $offset)->result_array();
+        $this->db->select('')->from('order')->where('uid', $uid)->where('parent_id !=', '-1')->order_by('order_sn', 'desc');
+        $data = $this->db->limit($limit, $offset)->get()->result_array();
+
+        //$data = $this->db->select('*')->order_by('order_sn', 'desc')->get_where('order', array('uid' => $uid, 'parent_id' => '!-1', ), $limit, $offset)->result_array();
         //var_dump($data);
         $orders = $ordersn = array();
         foreach ($data as $item) {
@@ -221,6 +224,19 @@ class Model_Order extends MY_Model
     }
 
     /**
+     * 获取用户订单数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserOrderCount($uId)
+    {
+        $this->db->select('*')->from('order')->where('uid', $uId)->where('parent_id !=', '-1');
+        return $this->db->count_all_results();
+        //return empty ($data) ? null : $data;
+    }
+
+    /**
      * 获取用户订单列表
      *
      * @param $uId
@@ -233,19 +249,6 @@ class Model_Order extends MY_Model
         $this->db->select('*')->from('order')->where('uid', $uId)->order_by('order_sn', 'desc')->limit($limit, $offset);
         $data = $this->db->get()->result_array();
         return empty ($data) ? null : $data;
-    }
-
-    /**
-     * 获取用户订单数量
-     *
-     * @param $uId
-     * @return int
-     */
-    public function getUserOrderCount($uId)
-    {
-        $this->db->select('*')->from('order')->where('uid', $uId);
-        return $this->db->count_all_results();
-        //return empty ($data) ? null : $data;
     }
 
     /**
