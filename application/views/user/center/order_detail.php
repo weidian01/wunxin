@@ -78,7 +78,7 @@
                             	case '1': $st = '订单正常'; break;
                                 case '2': $st = '订单已确认'; break;
                             	default :$st = '订单正常';
-                            }
+                            }//var_dump($order_data['is_pay']);
                             switch ($order_data['is_pay']) {
                                 case '0': $pt = '等待付款'; break;
                                 case '1': $pt = '付款成功'; $statusNumber += 33.3; break;
@@ -92,7 +92,17 @@
                                 case '2': $pst = '配货完成'; $statusNumber += 33.4; break;
                                 default :$pst = '';
                             }
-                            echo $st.', '.$pt.', '.$pst;
+                            if ($order_data['status'] == '0') {
+                                echo $st;
+                                $statusNumber = 0;
+                            } elseif ($order_data['is_pay'] == '2') {
+                                echo $st.', '.$pt;
+                                $statusNumber = 66.6;
+                            } else {
+                                echo $st.', '.$pt.', '.$pst;
+                                $statusNumber = 100;
+                            }
+
                             /**
                             if ($order_data['status'] == '1' && $order_data['is_pay'] == '1' && $order_data['picking_status'] == '2') {
                                 $statusNumber = 100;
@@ -108,39 +118,69 @@
                         <div class="dd-jd"> <div class="dd-jd-box">
                             <div style="width:<?php echo $statusNumber; ?>%;" class="dd-jd-over"></div>
                           </div>
-                          <dl class="li-1 act">
+                          <dl class="li-1 <?php echo ($order_data['status'] == '0') ? '' : 'act';?>">
+                              <?php
+                              $payStatus = ($order_data['is_pay'] == '1') ? 'act' : '';
+                              $pickingStatus = ($order_data['picking_status'] == '2') ? 'act' : '';
+
+                                if ($order_data['status'] == '0') {
+                                    $payStatus = '';
+                                    $pickingStatus = '';
+                                }
+                              ?>
                             <dt>1. 提交订单</dt>
                             <dd><?php echo $order_data['create_time'];?></dd>
                           </dl>
-                          <dl class="li-2 <?php echo ($order_data['status'] == '1') ? 'act' : '';?>">
+                          <dl class="li-2 <?php echo $payStatus;?>">
                             <dt>2. 支付状态</dt>
                           </dl>
-                          <dl class="li-3 <?php echo ($order_data['status'] == '1') ? 'act' : '';?>">
+                          <dl class="li-3 <?php echo $pickingStatus;?>">
                             <dt>3. 配货状态</dt>
                           </dl>
-                          <dl class="li-4 <?php echo ($statusNumber == 100) ? 'act' : '';?>">
+                          <dl class="li-4 <?php echo $statusNumber;?>">
                             <dt>4. 交易完成</dt>
                           </dl>
 
                         </div>
                         <h2>订单跟踪</h2>
 
-                        <div class="box"> 下单时间：2012.06.23 19:32:05
+                        <div class="box"> 下单时间：<?php echo $order_data['create_time'];?>
                         </div>
                         <h2>订单信息</h2>
 
-                        <div class="box"> 收货人：侯侯侯<br>
-                            收货地址：河北省,石家庄市,桥西区，苛械械工要要工工共 人人工，431253<br>
-                            联系电话：15115111511,
+                        <div class="box"> 收货人：<?php echo $order_data['recent_name']; ?><br>
+                            收货地址：<?php echo $order_data['recent_address']. ', '.$order_data['zipcode']; ?><br>
+                            联系电话：<?php echo $order_data['phone_num'].', '.$order_data['call_num']; ?>
                         </div>
                         <h2>备注</h2>
-
-                        <div class="box"></div>
+                        <div class="box">
+                            <?php echo $order_data['annotated']; ?>
+                        </div>
                         <h2>支付及配送方式</h2>
 
                         <div class="box">
-                            支付类型：在线支付<br>
-                            送货上门时间：只工作日送货（双休日、节假日不用送）
+                            支付类型：
+                            <?php
+                            switch ($order_data['pay_type']) {
+                                case '1': $ptt = '线上支付'; break;
+                                case '2': $ptt = '货到付款'; break;
+                                case '3': $ptt = '邮局汇款'; break;
+                                case '4': $ptt = '来万象自提'; break;
+                                case '5': $ptt = '公司转账'; break;
+                                default :$ptt = '线上支付';
+                            }
+                            echo $ptt;?>
+                            <br><br>
+                            送货上门时间：
+                            <?php
+                            switch ($order_data['delivert_time']) {
+                                case '1': $dtt = '工作日、双休日和节假日均送货'; break;
+                                case '2': $dtt = ' 只双休日、节假日送货（工作时间不送货）'; break;
+                                case '3': $dtt = '只工作日送货（双休日、节假日不送）'; break;
+                                case '4': $dtt = '学校地址，白天没人'; break;
+                                default :$dtt = '工作日、双休日和节假日均送货';
+                            }
+                            echo $dtt;?>
                         </div>
                         <h2>商品清单</h2>
 
@@ -150,63 +190,48 @@
                                 <tr>
                                     <th align="center">商品信息</th>
                                     <th width="90" align="center">单价（元）</th>
-                                    <th width="100" align="center">返YOHO币 <a title="什么是YOHO币" target="_blank"
-                                                                             href="#"><img
-                                        src="http://static.yohobuy.com/images/ico_help_3.png"></a></th>
+                                    <th width="100" align="center"> 赠送积分<!--<a title="什么是YOHO币" target="_blank" href="#"> <img src="http://static.yohobuy.com/images/ico_help_3.png"> </a>--></th>
+                                    <th width="90" align="center">尺寸</th>
                                     <th width="90" align="center">数量</th>
                                     <th width="90" align="center">小计（元）</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <?php
+                                $totalPrice = 0;
+                                foreach ($order_product as $pv) {
+                                    $totalPrice += ($pv['sall_price'] * $pv['product_num']);
+                                    ?>
                                 <tr>
                                     <td>
                                         <table width="100%" class="tablein">
                                             <tbody>
                                             <tr>
-                                                <td style="width:60px;"><img
-                                                    src="http://img01.static.yohobuy.com/thumb/2012/06/15/11/01482239214ed92ba048df96b605660f3200600060.jpg">
+                                                <td style="width:60px;">
+                                                    <!--<img src="<?php echo $pv['pid']?>">-->
+                                                    <img src="<?=config_item('static_url')?><?php echo $pv['pid'];?>" width="45" height="45"/>
                                                 </td>
-                                                <td><a title="VISIBLE  简约款亨利领短袖TEE白 " class="a_e"
-                                                       href="/product/pro_19910_28559/VISIBLEVSB2012015TXu.html">VISIBLE
-                                                    简约款亨利领短袖TEE白 </a><br>
-                                                    <span class="f_g">颜色：白    尺码：M</span></td>
+                                                <td>
+                                                    <a title="<?php echo $pv['pname']?>" class="a_e" href="/product/pro_19910_28559/VISIBLEVSB2012015TXu.html">
+                                                        <?php echo $pv['pname']?> </a><br> <!--<span class="f_g">颜色：白    尺码：M</span></td>-->
                                             </tr>
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td width="90" align="center"><strong>168.00</strong></td>
-                                    <td width="100" align="center"><strong>0</strong></td>
-                                    <td width="90" align="center"><strong>1</strong></td>
-                                    <td width="90" align="center" class="end"><strong>168</strong></td>
+                                    <td width="90" align="center"><strong><?php echo $pv['sall_price'];?></strong></td>
+                                    <td width="100" align="center"><strong><?php echo $pv['sall_price'];?></strong></td>
+                                    <td width="90" align="center"><strong><?php echo $pv['product_size'];?></strong></td>
+                                    <td width="90" align="center"><strong><?php echo $pv['product_num'];?></strong></td>
+                                    <td width="90" align="center" class="end"><strong><?php echo ($pv['sall_price'] * $pv['product_num']);?></strong></td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <table width="100%" class="tablein">
-                                            <tbody>
-                                            <tr>
-                                                <td style="width:60px;"><img
-                                                    src="http://img01.static.yohobuy.com/thumb/2012/06/12/09/01e21150dcdc24dc6005059857719b3de700600060.jpg">
-                                                </td>
-                                                <td><a title="corade 僵尸粽子袋红 " class="a_e"
-                                                       href="/product/pro_19768_28336/CORADEJiangShiZongZiDai.html">corade
-                                                    僵尸粽子袋红 </a><br>
-                                                    <span class="f_g">颜色：红    尺码：F</span></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </td>
-                                    <td width="90" align="center"><strong>0.00</strong></td>
-                                    <td width="100" align="center"><strong>0</strong></td>
-                                    <td width="90" align="center"><strong>1</strong></td>
-                                    <td width="90" align="center" class="end"><strong>0</strong></td>
-                                </tr>
+                                <?php } ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td class="end" colspan="5"> 商品总价： <strong> ¥ 168元</strong><br>
-                                        运费：+ ¥ 10.00元<br>
-                                        YOHO币使用：0个<br>
-                                        实际应支付：<strong><span class="f_rz">¥ 178.00元</span></strong><br>
+                                    <td class="end" colspan="6"> 商品总价： <strong> ¥ <?php echo $totalPrice;?>元</strong><br>
+                                        运费：+ ¥ 0元<br>
+                                        万象币使用：0个<br>
+                                        实际应支付：<strong><span class="f_rz">¥ <?php echo $totalPrice;?>元</span></strong><br>
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -214,12 +239,19 @@
                         </div>
                     </div>
                     <div class="submit">
-                        <a class="btn_bb3" onclick=" if( confirm( '您确定要取消订单吗?' ) ) { return true ; } else { return false ; } " href="/home/orders/cancel?order_code=2071112972">取消订单</a>
-                        <a class="btn_bb2" href="/shopping/pay?ordercode=2071112972">立即付款</a>
 
+                        <?php if ($order_data['status'] == '0') {?>
+                            <span class="stat_cancel">订单已取消</span>
+                        <?php } else {?>
+                            <?php if ($order_data['status'] != '2') {?>
+                            <a class="btn_bb3" onclick=" if( confirm( '您确定要取消订单吗?' ) ) { return true ; } else { return false ; } " href="/home/orders/cancel?order_code=2071112972">取消订单</a>
+                            <?php }?>
+
+                            <?php if ($order_data['status'] == '2' && $order_data['is_pay'] != '1') {?>
+                            <a class="btn_bb2" href="/shopping/pay?ordercode=2071112972">立即付款</a>
+                            <?php }?>
+                        <?php }?>
                         <br>
-
-                        <span class="stat_cancel">订单已取消</span>
                     </div>
                 </div>
             </div>

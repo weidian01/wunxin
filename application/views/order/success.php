@@ -54,6 +54,7 @@ $(document).ready(function(){
               case '1': $s = '工作日、双休日和节假日均送货'; break;
               case '2': $s = ' 只双休日、节假日送货（工作时间不送货）'; break;
               case '3': $s = '只工作日送货（双休日、节假日不送）'; break;
+              case '4': $s = '学校地址，白天没人'; break;
           }echo $s;
           ?><br/>
           <?php echo $order['recent_name'].',';

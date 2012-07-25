@@ -46,7 +46,9 @@ class center extends MY_Controller
         $this->load->model('order/Model_Order', 'order');
         $orderData = $this->order->getOrderByOrderSn($orderSn);
 
-        $this->load->view('user/center/order_detail', array('order_data' => $orderData, ));
+        $orderProduct = $this->order->getOrderAllProductByOrderSn($orderSn);
+
+        $this->load->view('user/center/order_detail', array('order_data' => $orderData, 'order_product' => $orderProduct));
     }
 
     public function returns()
