@@ -850,7 +850,7 @@
 
 .detail-tit .titles2 {
     height: 49px;
-    background: url(/images/info_10.jpg) no-repeat bottom left;
+    background: url(/images/info_10.jpg) no-repeat;
     text-indent: -99em;
 }
 
@@ -999,6 +999,7 @@
 .cdex-b .cdtit .full-st, .cdex-b .cdtit .ban-st {
     float: left;
     display: block;
+    height: 22px;
     width: 20px;
     background: url(/images/str_31.gif) no-repeat 0px 6px;
 }

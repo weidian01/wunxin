@@ -132,7 +132,7 @@ class CI_DB_result {
 	 * @access	public
 	 * @return	array
 	 */
-	public function result_array()
+	public function result_array($key=null)
 	{
 		if (count($this->result_array) > 0)
 		{
@@ -150,7 +150,10 @@ class CI_DB_result {
 		$this->_data_seek(0);
 		while ($row = $this->_fetch_assoc())
 		{
-			$this->result_array[] = $row;
+            if($key === null)
+			    $this->result_array[] = $row;
+            else
+                $this->result_array[$row[$key]] = $row;
 		}
 
 		return $this->result_array;

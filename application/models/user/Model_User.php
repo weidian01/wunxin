@@ -56,9 +56,32 @@ class Model_User extends MY_Model
      * @param $uId 用户ID
      * @return array
      */
-    public function getUserById($uId)
+    public function getUserById($uId, $fields = "*")
     {
-        return $this->db->select('uid, nickname, password, lid, source, uname, integral, amount, status, create_time')->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
+        list($key, $fields) = self::formatField($fields);
+        $this->db->select($fields)->from('user');
+        if(is_array($uId))
+        {
+            return  $this->db->where_in('uid', $uId)->get()->result_array($key);
+        }
+        return $this->db->where('uid', $uId)->get()->row_array();
+    }
+
+    /**
+     * 根据用户id获取用户扩展信息
+     * @param $uId
+     * @param string $fields
+     * @return mixed
+     */
+    public function getUserInfoById($uId , $fields = "*")
+    {
+        list($key, $fields) = self::formatField($fields);
+        $this->db->select($fields)->from('user_info');
+        if(is_array($uId))
+        {
+            return $this->db->where_in('uid', $uId)->get()->result_array($key);
+        }
+        return $this->db->where('uid', $uId)->get()->row_array();
     }
 
     /**
