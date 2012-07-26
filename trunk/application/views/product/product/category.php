@@ -5,7 +5,8 @@
 <title><?=$title?> -- 万象网</title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/goods.css" rel="stylesheet" type="text/css" />
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
@@ -592,7 +593,7 @@ $(document).ready(function(){
       <?php foreach($products as $product):?>
       <div class="goods-cb">
         <div class="goods-cbox">
-            <a href="/product/<?=$product['pid']?>"><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="220" alt="eeee" /></a>
+            <a href="/product/<?=$product['pid']?>"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="220" alt="eeee" /></a>
             <p><?=$product['pname']?><br/>
             <span class="font4">售价 ￥<?=sprintf("%.2f",$product['sell_price']/100)?></span></p>
         </div>
@@ -659,6 +660,8 @@ $(document).ready(function(){
                 $(this).css("border", "1px solid #e8e8e8");
             }
         );
+
+        $('img.lazy').lazyload({effect:"fadeIn"});
     });
 
     function rankbox(a,b,id) {
@@ -668,6 +671,4 @@ $(document).ready(function(){
         }
         $("#"+ a + id).css({'borderRight':'1px solid #ca0000','borderLeft':'1px solid #ca0000','borderTop':'1px solid #ca0000'})
     }
-
-
 </script>

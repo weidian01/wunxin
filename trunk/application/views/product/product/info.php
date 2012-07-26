@@ -8,6 +8,7 @@
 <link href="<?=config_item('static_url')?>css/jquery.jqzoom.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.jqzoom-core.js"> </script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
@@ -66,8 +67,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 
     <div class="pf">
       <div class="pftxt">商品评分：</div>
-      <div class="pfstar"><span class="fullstar"></span><span class="fullstar"></span><span class="fullstar"></span><span class="fullstar"></span><span class="emptystar"></span>
-        <div class="pfen">4.2分&nbsp;&nbsp;&nbsp;<a href="#">（12条评论）</a></div>
+      <div class="pfstar"><span class="emptystar"></span><span class="emptystar"></span><span class="emptystar"></span><span class="emptystar"></span><span class="emptystar"></span>
+        <div class="pfen"><span>0</span>分&nbsp;&nbsp;&nbsp;<a href="#anchorComment">（<span>0</span>条评论）</a></div>
       </div>
     </div>
     <div class="size">
@@ -421,7 +422,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2" style="float:left;"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -432,7 +433,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -443,7 +444,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -454,7 +455,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -465,7 +466,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -476,7 +477,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -487,7 +488,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -498,7 +499,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -509,7 +510,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -555,142 +556,35 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       </div>
       <div class="goods-detail">
         <!--div class="detail-tit">
-          <div class="titles">实拍展示</div>
+          <div class="titles"></div>
         </div-->
-        <!--div class="goodsimg"><img src="<?=config_item('static_url')?>images/goods-img_03.jpg" width="483" height="696" /></div>
-        <div class="goodsimg"><img src="<?=config_item('static_url')?>images/goods-img_07.jpg" width="713" height="618" /></div-->
         <div class="detail-tit">
           <div class="titles2">细节展示</div>
         </div>
-        <div class="goodsimg"><?=$product['pcontent']?></div>
+        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="/images/lazy.gif" data-original=', $product['pcontent'])?></div>
       </div>
     </div>
     <div class="gbox-relation" id="g-relation2">
       <div class="shaidan" id="comment">
         <div class="sd-tit">
-          <div class="sdbt"><a name="anchorComment">商品评论&nbsp;<span class="font15"><span class="font17">158</span> 条评论</span></div>
+          <div class="sdbt"><a name="anchorComment">商品评论&nbsp;<span class="font17" id="totalCount">0</span> <span class="font15">条评论</span></div>
           <div class="sd-btn"><a href="#">我要评论</a></div>
           <div class="sd-yh">购买过该商品的用户才能评论&nbsp;&nbsp;</div>
         </div>
         <div class="comm-dex">
-          <div class="cdex-b">
-            <div class="cdtit"><span class="cd-pf">商品评分：</span><span class="full-st"></span><span class="full-st"></span><span class="full-st"></span><span class="full-st"></span><span class="ban-st"></span></div>
+          <div class="cdex-b" id="product_rank">
+            <div class="cdtit"><span class="cd-pf">商品评分：</span></div>
             <table class="tab7" width="95%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span></td>
-                <td width="45%"><div class="cmtbar">
-                    <div class="colorbar"></div>
-                  </div></td>
-                <td width="23%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span></td>
-                <td width="45%"><div class="cmtbar">
-                    <div class="colorbar" style="width:20%"></div>
-                  </div></td>
-                <td width="23%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="45%"><div class="cmtbar">
-                    <div class="colorbar" style="width:18%"></div>
-                  </div></td>
-                <td width="23%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="45%"><div class="cmtbar">
-                    <div class="colorbar" style="width:10%"></div>
-                  </div></td>
-                <td width="23%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="45%"><div class="cmtbar">
-                    <div class="colorbar" style="width:4%"></div>
-                  </div></td>
-                <td width="23%">100</td>
-              </tr>
             </table>
           </div>
-          <div class="cdex-b">
-            <div class="cdtit"><span class="cd-pf">商品评分：</span><span class="full-st"></span><span class="full-st"></span><span class="full-st"></span><span class="full-st"></span><span class="ban-st"></span></div>
+          <div class="cdex-b" id="product_comfort">
+            <div class="cdtit"><span class="cd-pf">舒适度：</span></div>
             <table class="tab7" width="95%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:20%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:18%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:10%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:4%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
             </table>
           </div>
-          <div class="cdex-b">
-            <div class="cdtit"><span class="cd-pf">商品评分：</span><span class="full-st"></span><span class="full-st"></span><span class="full-st"></span><span class="full-st"></span><span class="ban-st"></span></div>
+          <div class="cdex-b" id="product_exterior">
+            <div class="cdtit"><span class="cd-pf">外观：</span></div>
             <table class="tab7" width="95%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:20%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:18%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:10%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
-              <tr>
-                <td width="32%"><span class="fullstar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span><span class="emptystar3"></span></td>
-                <td width="46%"><div class="cmtbar">
-                    <div class="colorbar" style="width:4%"></div>
-                  </div></td>
-                <td width="22%">100</td>
-              </tr>
             </table>
           </div>
         </div>
@@ -704,27 +598,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             </tr>
           </table>
         </div>
-        <div id="comments" class="comment" style="display:none;">
-          <div class="cmt-body">
-            <div class="user-comment">
-              <div class="u-tx"><img src="<?=config_item('static_url')?>images/tx_03.jpg" width="50" height="50" /></div>
-              <div class="u-cmt"> <span class="font17">tianshi021******</span>
-                <p>质量还不错，试穿了一下，总体感觉良好，快递也很给力，下次还会来购买！</p>
-              </div>
-              <div class="u-time"><span class="font2">2012-05-20 12:35 </span></div>
-            </div>
-            <div class="u-info">
-              <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="77%" height="25">身高：165cm&nbsp;&nbsp;&nbsp;&nbsp;体重：51kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：紫色&nbsp;&nbsp;&nbsp;&nbsp;尺码：L</td>
-                  <td width="23%"><div class="u-ly">对我有用(125)</div></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
+        <div id="comments" class="comment" style="display:none;"><!--商品评论列表--></div>
       </div>
-      <div style="float:right;" class="pages" id="commentsPage" style="display:none;"></div>
+      <div style="float:right;" class="pages" id="commentsPage" style="display:none;"><!--商品评论分页--></div>
     </div>
     <div class="gbox-relation" id="g-relation3">
       <div class="shaidan" id="shaidan">
@@ -740,7 +616,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           </tr>
         </table>
         <div class="sd-main">
-          <div style="text-align:center"><img src="<?=config_item('static_url')?>images/sd_23.jpg" width="643" height="473" /></div>
+          <div style="text-align:center"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sd_23.jpg"/></div>
           <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td width="26%" align="center" bgcolor="#f3f3f3">达人麻豆</td>
@@ -760,50 +636,50 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="sd-other">
           <div class="sd-cont">
             <div class="sd-cbox">
-              <div class="sdimg"><img src="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
+              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
               <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
                 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
             </div>
           </div>
           <div class="sd-cont">
             <div class="sd-cbox">
-              <div class="sdimg"><img src="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
+              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
               <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
                 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
             </div>
           </div>
           <div class="sd-cont">
             <div class="sd-cbox">
-              <div class="sdimg"><img src="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
+              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
               <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
                 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
             </div>
           </div>
           <div class="sd-cont">
             <div class="sd-cbox">
-              <div class="sdimg"><img src="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
+              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
               <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
                 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
             </div>
           </div>
           <div class="sd-cont">
             <div class="sd-cbox">
-              <div class="sdimg"><img src="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
+              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
               <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
                 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
             </div>
           </div>
           <div class="sd-cont">
             <div class="sd-cbox">
-              <div class="sdimg"><img src="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
+              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
               <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
                 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
             </div>
           </div>
         </div>
-        <div class="sd-page"><a class="chk" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a  class="nextp" href="#">下一页</a>
+        <!--div class="sd-page"><a class="chk" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a  class="nextp" href="#">下一页</a>
           <p class="moresd"><span class="font18">查看更多晒单 >></span></p>
-        </div>
+        </div-->
       </div>
     </div>
     <div class="gbox-relation" id="g-relation4">

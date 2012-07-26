@@ -206,4 +206,27 @@ class Model_Product_Comment extends MY_Model
         }
         return false;
     }
+
+    public function getAppraise($pid, $fields = array('rank','comfort', 'exterior'))
+    {
+        $re = array();
+        foreach($fields as $field)
+        {
+            $sql = "SELECT {$field},COUNT({$field}) AS num FROM wx_product_comment WHERE pid = ? GROUP BY {$field} ORDER BY NULL";
+            $query = $this->db->query($sql, array($pid));
+            $re[$field] = self::formatAppraise($query->result_array(), $field);
+        }
+        return $re;
+    }
+
+    private static function formatAppraise($data, $name)
+    {
+        $re = array('star'=>array(5=>0, 4=>0, 3=>0, 2=>0, 1=>0),'point'=>0,'count'=>0);
+        foreach ($data as $row) {
+            $re['star'][$row[$name]] = $row['num'];
+            $re['point'] += $row[$name] * $row['num'];
+            $re['count'] += $row['num'];
+        }
+        return $re;
+    }
 }

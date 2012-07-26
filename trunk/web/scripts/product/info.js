@@ -54,22 +54,27 @@
             $.each(data, function (i, item) {
                 html += ('<div class="vhis">\
                         <a class="hoverimg" href="' + wx.base_url + 'product/' + item.pid + '">\
-                        <img src="' + wx.img_url + 'upload/product/'+idToPath(item.pid)+'default.jpg" width="140" height="140" /></a>\
+                        <img class="lazy" src="'+wx.img_url+'images/lazy.gif" data-original="' + wx.img_url + 'upload/product/'+idToPath(item.pid)+'default.jpg" width="140" height="140" /></a>\
                         <p>' + item.pname + '</p>\
                         <span class="font4">￥' + sprintf('%.2f', item.sell_price / 100) + ' </span>\
                       </div>');
             });
             $('#tlcptj').html(html).parent().show();
+            lazyload(".vhis img.lazy");
         });
         browseHistoryHTML(setBrowseHistory(product.pid, product.pname, product.sell_price));
 
         //分页绑定事件
         $('#commentsPage a').live('click', function() {
-            comment(product.pid, $(this).attr('href','#anchorComment').attr('name'));
+            productComment(product.pid, $(this).attr('href','#anchorComment').attr('name'));
         });
-        comment(product.pid, 1);
+        productComment(product.pid, 1);/*获取产品评论*/
+        productAppraise(product.pid);
+        lazyload("img.lazy");
+        lazyload("#product_detail img.lazy");/*不知道为什么 这里的图片绑定不到lazyload 所以重复绑定一次*/
     });
 
+    /*设置浏览记录*/
     function browseHistoryHTML(list)
     {
         html='';
@@ -77,7 +82,7 @@
         {
             var item = list[k].split('|');
             html += '<div class="recordbox"> \
-                <a href="/product/'+item[0]+'"><img src="' + wx.img_url + 'upload/product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
+                <a href="/product/'+item[0]+'"><img class="lazy" src="'+wx.img_url+'images/lazy.gif" data-original="' + wx.img_url + 'upload/product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
                     <p><a href="/product/'+item[0]+'">'+item[1]+'</a><br/> \
                       <span class="font19">￥'+item[2]+'</span></p> \
                   </div>';
@@ -85,13 +90,14 @@
         $('#browseHistory').append(html).show();
     }
 
+    /*清空最近浏览*/
     function clearBrowseHistory()
     {
         wx.setCookie('browseHistory', '', 0);
         $('#browseHistory .recordbox').fadeOut('fast');
     }
 
-    //保存最后查看
+    /*保存最近浏览*/
     function setBrowseHistory(id, name, price)
     {
         var value = id+'|'+name+'|'+price;
@@ -113,6 +119,7 @@
         return re.reverse();
     }
 
+    /*选择产品号码*/
     function select_size(id, name, obj)
     {
         $(".sub-cm").css("border", "2px solid #dddddd");
@@ -122,6 +129,7 @@
         $('#product_size').html('<input type="hidden" value="'+id+'">'+name);
     }
 
+    /*设置产品数量*/
     function product_num(model)
     {
        var product_num = parseInt($('#product_num').val());
@@ -137,6 +145,7 @@
        }
     }
 
+    /*添加产品到购物车*/
     function addToCart()
     {
         var p_num = $('#product_num').val();
@@ -160,8 +169,8 @@
 
     }
 
-    //对评论进行顶/踩
-    function top(o,cid,top)
+    /*对评论进行顶/踩*/
+    function tops(o,cid,top)
     {
         wx.jsonp(wx.base_url+'product/comment/ajaxTop', {'cid':cid, 'top':top}, function(data){
             if (data.error != 0) {
@@ -173,38 +182,80 @@
         });
     }
 
-    //获取评论列表
-    function comment(pid, page)
+    /*获取产品评论*/
+    function productComment(pid, page)
     {
         wx.jsonp(wx.base_url+'product/comment/ajaxComment', {'pid':pid, 'pageno':page}, function(data){
             if(data.totalCount > 0)
             {
                 var html = '';
                 $.each(data.comments, function (i, o) {
+                    var portrait =  o.header ? idToPath(o.uid)+o.header:'default.jpg';
                     html += '<div class="cmt-body">\
                       <div class="user-comment">\
-                        <div class="u-tx"><img src="http://wunxin.com/images/tx_03.jpg" width="50" height="50" /></div>\
-                        <div class="u-cmt"> <span class="font17">'+ o.uname+'</span>\
-                          <p>'+ o.content+'</p>\
-                        </div>\
-                        <div class="u-time"><span class="font2">2012-05-20 12:35 </span></div>\
+                        <div class="u-tx"><img class="lazy" src="'+wx.img_url+'images/lazy.gif" data-original="'+wx.img_url+'upload/portrait/'+portrait+'" width="50" height="50" /></div>\
+                        <div class="u-cmt"><span class="font17">'+ o.uname+'</span><p>'+ o.content+'</p></div>\
+                        <div class="u-time"><span class="font2">'+ o.create_time+' </span></div>\
                       </div>\
                       <div class="u-info">\
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0"\
-                          <tr>\
-                            <td width="70%" height="25">身高：165cm&nbsp;&nbsp;&nbsp;&nbsp;体重：51kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：紫色&nbsp;&nbsp;&nbsp;&nbsp;尺码：L</td>\
-                            <td width="13%"><div class="u-ly" onclick="top(this, '+ o.comment_id+' ,1)">对我有用('+ o.is_valid+')</div></td><td width="13%"><div class="u-ly" onclick="top(this, '+ o.comment_id+' ,0)">对我无用('+ o.is_invalid+')</div></td>\
-                          </tr>\
-                        </table>\
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>\
+                            <td width="70%" height="25">身高：'+ o.height+'cm&nbsp;&nbsp;&nbsp;&nbsp;体重：'+ o.weight+'kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：'+ o.color+'&nbsp;&nbsp;&nbsp;&nbsp;尺码：'+ o.size+'</td>\
+                            <td width="13%"><div class="u-ly" onclick="tops(this, '+ o.comment_id+' ,1)">对我有用('+ o.is_valid+')</div></td><td width="13%"><div class="u-ly" onclick="tops(this, '+ o.comment_id+' ,0)">对我无用('+ o.is_invalid+')</div></td>\
+                          </tr></table>\
                       </div>\
                     </div>';
                 });
-                $("#comments").html(html).fadeOut('fast').fadeIn('slow');
-                $('#commentsPage').html(pagination(page, 10 , data.totalCount)).show();
+                $("#totalCount").text(data.totalCount);/*设置评论数量*/
+                $(".pfstar > div > a > span").text(data.totalCount);/*设置评论数量*/
+                $('#commentsPage').html(pagination(page, 10 , data.totalCount)).show();/*设置评论分页*/
+            } else {
+                var html = '暂无评论';
             }
+            $("#comments").html(html).fadeOut('fast').fadeIn('slow');/*设置评论列表*/
+            lazyload(".u-tx img.lazy");
         });
     }
 
+    /*产品评价星级*/
+    function productAppraise(pid)
+    {
+        wx.jsonp(wx.base_url+'product/comment/ajaxAppraise', {'pid':pid}, function(data){
+            $.each(data, function (i, o) {
+                var html = '';
+                for (var k=5;k>0;k--) {
+                    var star = '';
+                    for (j = 0; j < 5; j++)
+                        star += (j < k) ? '<span class="fullstar3"></span>' : '<span class="emptystar3"></span>';
+                    html += '<tr><td width="32%">' + star + '</td>\
+                      <td width="46%"><div class="cmtbar"><div class="colorbar" style="width:' + (o.star[k] ? (o.star[k] / o.count * 100):0) + '%"></div></div></td>\
+                      <td width="22%">' + o.star[k] + '</td></tr>';
+                }
+                var max = o.point > 0 ? o.point/o.count:0;
+                if(max)
+                {
+                    var level = '';
+                    for(var s=0; s<max; s++)
+                        level += (s+1) > max ? '<span class="ban-st"></span>':'<span class="full-st"></span>';
+                    $("#product_"+i+" > div").append(sprintf("%.1f", max)+level);
+                    if (i == 'rank') {
+                        $(".pfstar > span").each(function(i){
+                            if (i < (max-1))
+                                $(this).removeClass("emptystar").addClass('fullstar');
+                        });
+                        $(".pfstar > div > span").text(sprintf("%.1f", max));
+                    }
+                }
+                $("#product_"+i+" > table").html(html);
+            });
+        });
+    }
+
+    function lazyload(selector)
+    {
+        $(selector).lazyload({effect:"fadeIn"});
+    }
+
+    /*分页函数*/
     function pagination(pageno, pagesize, total)
     {
         var n = 5;

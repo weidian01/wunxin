@@ -105,6 +105,20 @@ class MY_Model extends CI_Model
         return true;
     }
 
+    static protected function formatField($fields)
+    {
+        if(is_array($fields))
+        {
+            $key = isset($fields[0]) ? null : key($fields);
+            $fields = current($fields);
+        }
+        else
+        {
+            $key = null;
+        }
+        return array($key, $fields);
+    }
+
     function __destruct()
     {
         --self::$obj_num;

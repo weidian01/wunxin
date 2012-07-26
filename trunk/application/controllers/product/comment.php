@@ -151,6 +151,16 @@ class comment extends MY_Controller
         if($re['totalCount'])
         {
             $re['comments'] = $this->comment->getCommentByPid($pid, $limit, $offset, $field = 'comment_id,pid,uid,uname,content, is_valid, is_invalid, color, size, rank, comfort, exterior, size_deviation,  create_time');
+            foreach($re['comments'] as $item)
+            {
+                $uid[] = $item['uid'];
+            }
+            $this->load->model('user/Model_User', 'user');
+            $uinfo = $this->user->getUserInfoById($uid, array('uid'=>'uid, header, height, weight'));
+            foreach($re['comments'] as $key=>$item)
+            {
+                $re['comments'][$key] += $uinfo[$item['uid']];
+            }
         }
         self::json_output($re, true);
     }
@@ -169,6 +179,17 @@ class comment extends MY_Controller
             {
                 $response = error(50004);
             }
+        }
+        self::json_output($response, true);
+    }
+
+    public function ajaxAppraise()
+    {
+        $pid = $this->input->get_post('pid');
+        $response = error(20002);
+        if ($pid) {
+            $this->load->model('product/Model_Product_comment', 'comment');
+            $response = $this->comment->getAppraise($pid);
         }
         self::json_output($response, true);
     }
