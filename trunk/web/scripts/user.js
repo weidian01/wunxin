@@ -8,7 +8,7 @@
 * Date: 2012.07.04
 */
 
-var user = {};
+var user = {oldBoxId : 1,};
 
 //用户JS库初始化
 user.init = function ()

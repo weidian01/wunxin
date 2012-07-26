@@ -3,10 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>修改密码 -- 个人中心</title>
+    <title>个人资料 -- 个人中心</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="http://static.yohobuy.com/js/home/user.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="/scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -14,83 +15,44 @@
     </script>
     <![endif]-->
     <style type="text/css">
-        body, div, ul, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, input, p, blockquote, th, td, button, blockquote { margin: 0; padding: 0; }
-        .xgmm .main {
-            background: url("http://static.yohobuy.com/images/k_r_b.png") no-repeat scroll center bottom transparent;
-            float: left;
-            min-height: 400px;
-            padding: 10px 11px 11px;
-            width: 778px;
-        }
-        .xgmm .main dl {
-            border: 1px solid #FFFFFF;
-            float: left;
-            height: 35px;
-            margin-bottom: 5px;
-            width: 776px;
-        }
-        dl, ul, li, ol {
-            list-style: none outside none;
-            margin: 0;
-            padding: 0;
-        }
-        .xgmm .main dl dt {
-            float: left;
-            line-height: 35px;
-            text-align: right;
-            width: 86px;
-        }
-        .xgmm .main dl dd {
-            float: left;
-            padding-top: 5px;
-            width: 665px;
-        }
-        .txi {
-            background: url("/images/onShow.png") no-repeat scroll 5px 5px transparent;
-            color: #999999;
-            display: inline-block;
-            font-size: 12px;
-            height: 22px;
-            line-height: 22px;
-            padding-left: 25px;
-        }
+/*个人资料*/
+.grzl{width:800px;height:auto;background:url(/images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
+.grzl .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(/images/k_r_tg2.png) no-repeat top;float:left;}
+.grzl .title h2{width:175px;height:15px;background:url(/images/z_grzl.png) no-repeat; text-indent:-999em;float:left;}
+.grzl .main{width:778px;min-height:400px;_height:400px;padding:1px 11px 11px 11px;background:url(/images/k_r_b.png) no-repeat bottom;float:left;}
+.grzl .main h2{clear:both;height:21px;line-height:21px;padding-left:23px;background:url(/images/ico_arrow2.png) no-repeat 5px 5px #efefef;
+    border:1px #e6e6e6 solid;font-size:12px;color:#333;font-weight:normal;cursor:pointer;margin-bottom:2px;}
+.grzl .main h2 span{color:#999;}
+.grzl .main h2 .more{padding:2px 10px 0px 0px;float:right;}
+.grzl .main .box{width:778px;clear:both;padding-top:10px;margin-bottom:10px;float:left;}
+.grzl .main .box:after { content:""; display:block; clear:both; height:0; }
+.grzl .main .submit{padding:0px 0px 20px 80px;}
+.grzl-hyxx .box-info{width:552px;padding-right:38px;float:left;}
+.grzl-hyxx .box-info dl{height:30px;border:1px #fff solid;margin-bottom:2px;line-height:22px;font-family:宋体;}
+.grzl-hyxx .box-info dl dt{width:80px;text-align:right;color:#333;float:left;}
+.grzl-hyxx .box-info dl dd{width:470px;padding-bottom:1px;color:#666;float:left;}
+.grzl-hyxx .box-pic{width:148px;padding:20px;background:url(/images/line_dot_s.png) repeat-y left;text-align:center;float:right;}
+.grzl-hyxx .box-pic img{width:100px;height:100px;margin-bottom:10px;}
 
-        .input_1 {
-            background: url("/images/input_1.png") repeat-x scroll 0 0 #FFFFFF;
-            border: 1px solid #C9C9C9;
-            color: #333333;
-            height: 20px;
-            line-height: 20px;
-            vertical-align: top;
-        }
-        .mistake {
-            background: url("/images/onError.png") no-repeat scroll 5px 5px #FFF2E9;
-            color: #E8044F;
-            display: inline-block;
-            font-size: 12px;
-            height: 22px;
-            line-height: 22px;
-            padding-left: 25px;
-        }
+.grzl-grxg dl{clear:both;width:770px;padding-bottom:5px;float:left;}
+.grzl-grxg dl:after { content:""; display:block; clear:both; height:0; }
+.grzl-grxg dl dt{width:80px;text-align:right;line-height:25px;float:left;}
+.grzl-grxg dl dd{width:690px;float:left;}
 
-        .xgmm .main .submit {
-            clear: both;
-            padding: 20px 0 0 86px;
-        }
+.grzl-lxxx dl{clear:both;width:770px;padding-bottom:5px;float:left;}
+.grzl-lxxx dl:after { content:""; display:block; clear:both; height:0; }
+.grzl-lxxx dl dt{width:80px;text-align:right;line-height:22px;float:left;}
+.grzl-lxxx dl dd{width:690px;line-height:22px;float:left;}
+.grzl-lxxx a{color:#468fa2; text-decoration:underline;}
 
-        .btn_b1 {
-            background: url("/images/btn_b1.png") no-repeat scroll 0 0 transparent;
-            border: 0 none;
-            color: #FFFFFF;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 14px;
-            font-weight: bold;
-            height: 34px;
-            line-height: 34px;
-            padding-right: 10px;
-            width: 118px;
-        }
+.grzl-xapp dl{clear:both;width:730px;padding:0px 20px 5px 20px;float:left;}
+.grzl-xapp dl span{color:#999;line-height:25px;display:inline-block;}
+.grzl-xapp ul{clear:both;width:750px;padding:0px 20px 20px 0px;float:left;}
+.grzl-xapp ul li{height:22px;padding-left:20px;float:left;}
+.grzl-xapp .submit{width:690px;padding:0px 0px 0px 80px;}
+.grzl-xapp .addbox{width:725px;margin:0px 0px 10px 20px;display:inline;padding:5px 10px 5px 0px;border:1px #ccc solid;background:#f8f8f8;color:#000;}
+.grzl-xapp .addbox li{height:22px;line-height:22px;padding:0px 0px 0px 10px;float:left;display:inline-block; white-space:nowrap;}
+.grzl-xapp .addbox .btn_del{ vertical-align:middle;}
     </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
@@ -100,40 +62,262 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">修改密码</div>
+            <div class="u-r-tit">个人资料</div>
         </div>
-        <div class="u-r-box">
-            <div class="xgmm">
+
+        <div class="grzl">
             <div class="main">
-                <dl id="oldpassword_dl">
-                    <dt>旧密码：</dt>
-                    <dd>
-                        <input name="oldpassword" id="old_password" type="password" class="input_1" style="width:155px;" onblur="checkPassWord()">
-                        <span class="txi" id="old_password_notice_id">您之前使用的密码<!--，<a href="http://www.yohobuy.com/help/?category_id=57">忘记密码？</a>--></span>
-                    </dd>
-                </dl>
-                <dl id="password_dl">
-                    <dt>设定新密码：</dt>
-                    <dd>
-                        <input name="password" id="password_id" type="password" class="input_1" style="width:155px;" onblur="user.checkPassWord()">
-                        <span class="txi" id="password_notice_id">您要设置的新密码，密码为6位以上30位以下字母或数字</span>
-                    </dd>
-                </dl>
-                <dl id="confirm_password_dl">
-                    <dt>重复密码：</dt>
-                    <dd>
-                        <input name="confirm_password" id="repassword_id" type="password" class="input_1" style="width:155px;" onblur="user.checkRePassWord()">
-                        <span class="txi" id="repassword_notice_id">重复密码和新密码要一致</span>
-                    </dd>
-                </dl>
-                <div class="submit">
-                    <input type="button" value="" class="btn_b1" onclick="changePassword()">
+                <div class="grzl-hyxx">
+                    <form method="POST" id="userBaseInfo" action="#">
+                        <h2 onclick="user.showBox(1);"> <div class="more"><a title="修改" class="btn_edit"></a></div> 会员信息： </h2>
+                        <div id="box_1">
+                            <div class="box">
+                                <div class="box-info">
+                                    <dl>
+                                        <dt>登录邮箱：</dt>
+                                        <dd><?php echo $uinfo['uname'];?></dd>
+                                    </dl>
+                                    <dl class="tips-box-text">
+                                        <dt>昵称：</dt>
+                                        <dd>
+                                            <input type="text" value="<?php echo $uinfo['nickname'];?>" style="width:150px;" id="nickname" class="input_1" name="nickname">
+                                            <span id="nicknameTip" class="tips-p">昵称必须大于2而小于20个字符</span>
+                                        </dd>
+                                    </dl>
+                                    <dl class="tips-box-text">
+                                        <dt>真实姓名：</dt>
+                                        <dd>
+                                            <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['real_name'];?>" id="user_name" name="user_name">
+                                            <span id="user_nameTip" class="tips-p">真实姓名至少2个中文,最多5个中文</span>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>性别：</dt>
+                                        <dd>
+                                            <input type="radio" value="1" id="gender" name="gender" <?php echo ($uinfo['sex'] == '1') ? 'checked="checked"' : '';?>>男
+                                            <input type="radio" value="2" id="gender" name="gender" <?php echo ($uinfo['sex'] == '2') ? 'checked="checked"' : '';?>>女
+                                            <input type="radio" value="0" id="gender" name="gender" <?php echo ($uinfo['sex'] == '0') ? 'checked="checked"' : '';?>>保密
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>生日：</dt>
+                                        <dd>
+                                            <select onchange="user.changeYear();" id="year" name="year">
+                                                <?php for($i = 1940; $i <= date('Y'); $i++) {?>
+                                                <option value="<?php echo $i;?>"><?php echo $i;?>年</option>
+                                                <?php }?>
+                                            </select>
+
+                                            <select onchange="user.changeMonth(this);" id="month" name="month">
+                                                <?php for($i = 1; $i <= 12; $i++) {?>
+                                                <option value="<?php echo $i;?>"><?php echo $i;?>月</option>
+                                                <?php }?>
+                                            </select>
+                                            <select id="day" name="day">
+                                                <?php if (empty ($uinfo['birthday'])) {?>
+                                                <option value="1">1</option>
+                                                <?php } else {?>
+                                                <option value="<?php echo date('d', strtotime($uinfo['birthday'])); ?>"><?php echo date('d', strtotime($uinfo['birthday'])); ?></option>
+                                                <?php }?>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>婚姻状况：</dt>
+                                        <dd>
+                                            <select data-vocation="" name="Vocation" id="Vocation" onchange="ChangeVocation()">
+                                                <option value="0">请选择&nbsp; </option>
+                                                <?php foreach ($jobs as $jk => $jv){?>
+                                                <option value="<?php echo $jk;?>" <?php echo ($jk == $uinfo['job']) ? 'selected="selected"' : '';?>><?php echo $jv;?></option>
+                                                <?php }?>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>教程程度：</dt>
+                                        <dd>
+                                            <select data-vocation="" name="Vocation" id="Vocation" onchange="ChangeVocation()">
+                                                <option value="0">请选择&nbsp; </option>
+                                                <?php foreach ($jobs as $jk => $jv){?>
+                                                <option value="<?php echo $jk;?>" <?php echo ($jk == $uinfo['job']) ? 'selected="selected"' : '';?>><?php echo $jv;?></option>
+                                                <?php }?>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>职业：</dt>
+                                        <dd>
+                                            <select data-vocation="" name="Vocation" id="Vocation" onchange="ChangeVocation()">
+                                                <option value="0">请选择&nbsp; </option>
+                                                <?php foreach ($jobs as $jk => $jv){?>
+                                                <option value="<?php echo $jk;?>" <?php echo ($jk == $uinfo['job']) ? 'selected="selected"' : '';?>><?php echo $jv;?></option>
+                                                <?php }?>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                          <dt>所属行业：</dt>
+                                          <dd>
+                                              <select data-vocation="" name="Vocation">
+                                                  <option value="0">请选择&nbsp; </option>
+                                                  <?php foreach ($industry as $ik => $iv){?>
+                                                  <option value="<?php echo $ik;?>" <?php echo ($ik == $uinfo['industry']) ? 'selected="selected"' : '';?>><?php echo $iv;?></option>
+                                                  <?php }?>
+                                              </select>
+                                          </dd>
+                                      </dl>
+                                    <dl>
+                                        <dt>收入状况：</dt>
+                                        <dd>
+                                            <select id="income" name="income">
+                                                <option value="0">请选择&nbsp; </option>
+                                                <?php foreach ($income as $ik => $iv) {?>
+                                                <option value="<?php echo $ik;?>" <?php echo ($ik == $uinfo['income']) ? 'selected="selected"' : '';?>><?php echo $iv;?></option>
+                                                <?php }?>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>身材/偏好：</dt>
+                                        <dd>
+                                            身高(CM):&nbsp;<input type="text" name="height" value="<?php echo $uinfo['height'];?>" size="5"/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            体重(KG):&nbsp;<input type="text" name="weight" value="<?php echo $uinfo['weight'];?>" size="5"/>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            体型:&nbsp;
+                                            <select name="body_type">
+                                                <option value="0">请选择体型</option>
+                                                <?php foreach($body_type as $bk => $bv) {?>
+                                                <option value="<?php echo $bk;?>"  <?php echo ($bk == $uinfo['body_type']) ? 'selected="selected"' : '';?>><?php echo $bv;?></option>
+                                                <?php }?>
+                                            </select>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>个人网站：</dt>
+                                        <dd>
+                                            <input type="text" name="website" value="<?php echo $uinfo['website'];?>"/>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>自我介绍：</dt>
+                                        <dd>
+                                            <textarea rows="3" cols="30" name="introduction"><?php echo $uinfo['introduction'];?></textarea>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="box-pic">
+                                    <img src="http://static.yoho.cn/images/default_userhead_boy_100_100.png"><br>
+                                    <a class="btn_ggtx" href="/home/user/headportrait">更改头像</a>
+                                </div>
+
+                            </div>
+                            <div class="submit">
+                                <input type="button" class="btn_b1" value="保存" id="baseInfo">
+                            </div>
+                        </div>
+                    </form>
                 </div>
+
+                <form method="POST" name="userContactInfo" id="userContactInfo" action="#">
+                    <div class="grzl-lxxx">
+                        <h2 onclick="user.showBox(2);">
+                            <div class="more"><a title="修改" class="btn_edit"></a></div>
+                            联系信息：
+                        </h2>
+                        <div id="box_2" style="display: none;">
+                            <div class="box">
+                                <dl>
+                                    <dt>来自：</dt>
+                                    <dd>
+                                        <select name="province" id="province" onchange="order.changeProvince(this.value)">
+                                            <option value="0">请选择省份</option>
+                                            <?php foreach ($province_data as $pv) {?>
+                                            <option value="<?php echo $pv['id'];?>" <?php echo ($pv['name'] == trim($uinfo['province'])) ? 'selected="selected"' : '';?>><?php echo $pv['name'];?></option>
+                                            <?php }?>
+                                        </select>
+                                        <select name="city" id="city_id">
+                                            <option value="0">请选择市</option>
+                                            <?php foreach ($city_data as $cv) {?>
+                                            <option value="<?php echo $cv['id'];?>" <?php echo ($cv['name'] == trim($uinfo['city'])) ? 'selected="selected"' : '';?>><?php echo $cv['name'];?></option>
+                                            <?php }?>
+                                        </select>
+                                        <!--
+                                        <select id="area_id" name="area_code">
+                                            <option value="0">请选择区或县</option>
+                                            <?php foreach ($area_data as $av) {?>
+                                            <option value="<?php echo $av['id'];?>" <?php echo ($av['name'] == trim($uinfo['province'])) ? 'selected="selected"' : '';?>><?php echo $av['name'];?></option>
+                                            <?php }?>
+                                        </select>
+                                        -->
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>固定电话：</dt>
+                                    <dd>
+                                        <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['family_call'];?>" id="phone" name="phone">
+                                        <span id="phoneTip" class="tips-p">如: 010-82831245</span>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>手机号码：</dt>
+                                    <dd>
+                                        <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['phone'];?>" id="mobile" name="mobile">
+                                        <span id="mobileTip" class="tips-p">填写手机号便于接收发货和收货通知</span></dd>
+                                </dl>
+                                <dl>
+                                    <dt>QQ：</dt>
+                                    <dd>
+                                        <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['qq'];?>" id="qq" name="qq">
+                                        <span class="tips-p">填写QQ方便您的好友联系你</span></dd>
+                                </dl>
+                                <dl>
+                                    <dt>联系地址：</dt>
+                                    <dd><input type="text" style="width:300px;" class="input_1" value="<?php echo $uinfo['detail_address'];?>" id="full_address" name="full_address">
+                                        <span id="full_addressTip" class="tips-p">请填写详细地址</span>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>邮编：</dt>
+                                    <dd><input type="text" class="input_1" value="<?php echo $uinfo['zipcode'];?>" id="zip_code" name="zip_code">
+                                        <span id="zip_codeTip" class="tips-p">请输入收货人所在地邮编号</span></dd>
+                                </dl>
+                            </div>
+                            <div class="submit"><input type="button" class="btn_b1" value="保存" id="contactInfo"></div>
+                        </div>
+                    </div>
+                </form>
+                <form method="POST" name="userShoppingInfo" id="userShoppingInfo" action="#">
+                    <div class="grzl-grxg">
+                        <h2 onclick="user.showBox(3);">
+                            <div class="more"><a title="修改" class="btn_edit"></a></div>
+                            详情信息：
+                        </h2>
+                        <div id="box_3" style="display: none;">
+                            <div class="box">
+
+                                <dl>
+                                    <dt>着装习惯：</dt>
+                                    <dd>
+                                        <input type="checkbox" value="1" id="dress_1" name="dress[]"> 正装
+                                        <input type="checkbox" value="2" id="dress_2" name="dress[]"> 商务
+                                        <input type="checkbox" value="3" id="dress_3" name="dress[]"> 街头潮流
+                                        <input type="checkbox" value="4" id="dress_4" name="dress[]"> 运动休闲
+                                        <input type="checkbox" value="5" id="dress_5" name="dress[]"> 文艺气质
+                                        <input type="checkbox" value="6" id="dress_6" name="dress[]"> 甜美可爱
+                                        <input type="checkbox" value="7" id="dress_7" name="dress[]"> 另类
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="submit"><input type="button" class="btn_b1" value="保存" id="shoppingInfo"></div>
+                        </div>
+                    </div>
+                </form>
+              </div>
             </div>
-            </div>
-        </div>
+
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?php //echo $page_html;?>
         </div>
     </div>
 </div>
@@ -141,50 +325,229 @@
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="/scripts/user.js"></SCRIPT>
+<SCRIPT type=text/javascript src="/scripts/order.js"></SCRIPT>
 <script type="text/javascript">
-    function checkPassWord ()
+user.userInfoInit = function(year, monthon, day)
+{
+    this.crateDay(year, monthon, day);
+    $("#box_2").hide();
+    $("#box_3").hide();
+    $("#box_4").hide();
+}
+user.changeMonth = function() {
+    var year = $("#year").val();
+    var month = $("#month").val();
+    var day = $("#day").val();
+    this.crateDay(year, month, day);
+}
+user.changeYear = function() {
+    var year = $("#year").val();
+    var month = $("#month").val();
+    var day = $("#day").val();
+    this.crateDay(year, month, day);
+}
+user.crateDay = function(year, month, day) {
+    if(parseInt(year) == 0)
     {
-        var passWord = document.getElementById('old_password').value;
+        year = 0;
 
-        $('#old_password_notice_id').html('');
-        $("#old_password_notice_id").removeClass("mistake");
-        $("#old_password_notice_id").removeClass("txi");
-
-        if (!wx.isEmpty (passWord)) {
-            $("#old_password_notice_id").removeClass("txi").addClass("mistake");
-            $('#old_password_notice_id').html('密码为空！');
-            return false;
-        }
-
-        if (!wx.limit_length(passWord, 6, 32)) {
-            $("#old_password_notice_id").removeClass("txi").addClass("mistake");
-            $('#old_password_notice_id').html('密码小于6位或大于32位！');
-            return false;
-        }
-
-        return passWord;
     }
-
-    function changePassword()
+    if(parseInt(month) == 0)
     {
-        var oldPassword = checkPassWord();
-        var newPassword = user.checkPassWord();
+        month = 0;
+    }
+    $("#year").val(year);
+    $("#month").val(month);
 
-        if (!oldPassword) return ;
-        if (!newPassword) return ;
-        wx.goToUrl
-        var url = '/user/change_password/submit';
-        var param = 'old_password='+oldPassword+'&new_password='+newPassword;
-        var data = wx.ajax(url, param);
-
-        if (data.error == '10036') {
-            alert('修改密码成功！ 请重新登陆！');
-            wx.goToUrl('/user/login/index');
-            return;
+    var html = '<select name="day" id="day">';
+    html += '<option value="0">请选择日</option>';
+    if(year > 0 && month > 0){
+        var monthArray = new Array(4, 6, 9, 11);
+        var dayNum = 31;
+        if (jQuery.inArray(month, monthArray) != -1) {
+            dayNum = 30;
+        } else if (month == 2 ) {
+            dayNum = 28;
+            if(0 == year % 4 && (year % 100 != 0 || year % 400 == 0))
+            {
+                dayNum = 29;
+            }
         }
 
-        alert(data.msg);
+        for ( var i = 1; i <= dayNum; i++) {
+            var select = '';
+            if (parseInt(day) == i) {
+                select = 'selected';
+            }
+            html += '<option value="' + i + '" ' + select + '>' + i	+ '日</option>';
+        }
     }
+    html += '</select>';
+    $("#day").replaceWith(html);
+}
+
+user.showBox = function(id)
+{
+    if(parseInt(id) == 0 || parseInt(this.oldBoxId) == 0)
+    {
+        return false;
+    }
+    $("#box_" + id).slideDown('slow');
+    $("#box_" + this.oldBoxId).hide();
+    this.oldBoxId = id;
+    if(id == 2)
+    {
+        this.checkContactForm();
+    }else if(id == 1)
+    {
+        this.checkBaseForm();
+    }
+}
+
+user.save = function (postUrl,formId, box_id){
+    if(typeof(postUrl) == 'undefined' || postUrl == '' || typeof(formId) == 'undefined' || formId == '')
+    {
+        alert('参数错误');
+        return false;
+    }
+    $.post(postUrl,$('#'+formId).serialize(),
+        function(data){
+            if(data.code == 200){
+                alert(data.message);
+                if(parseInt(box_id) != 0)
+                {
+                    user.showBox(box_id);
+                }
+                return true;
+            }
+            alert(data.message);
+            return false;
+        }, 'json');
+}
+
+user.delBrand = function(brand_id, flag)
+{
+    if(parseInt(brand_id) == 0)
+    {
+        return false;
+    }
+    var brand = $("#likebrand").val();
+    $("#likebrand").val(brand.replace(','+brand_id+',', ','));
+    $("#pp_" + brand_id).attr('checked', false);
+    $("#brand_" + brand_id).remove();
+}
+
+user.addBrand = function(obj, brand_id, brand_name)
+{
+    if(parseInt(brand_id) == 0)
+    {
+        return false;
+    }
+    var brandInfo = $('#brand_' + brand_id).html();
+    if(typeof obj != 'undefined' && obj != '' && obj.checked == false)
+    {
+        this.delBrand(brand_id);
+        return false;
+    }
+    if(brandInfo != null)
+    {
+        alert('您已经选择了该品牌.');
+        return false;
+    }
+    var html = '<li id="brand_'+brand_id+'">'+ brand_name +' <a href="javascript:void(0);" onclick="user.delBrand('+brand_id+', this);" class="btn_del"></a></li>';
+    $("#brandBox").append(html);
+    var brandStr = $("#likebrand").val();
+    brandStr += brand_id + ',';
+    $("#likebrand").val(brandStr);
+}
+
+user.checkBrand = function()
+{
+    $.post('/home/user/checkbrand',{keywords:$('#keywords').val()},
+        function(data){
+            if(data.code == 200){
+                user.addBrand('',data.data.id, data.data.brand_name);
+                $('#keywords').val('');
+                return true;
+            }
+            alert(data.message);
+            return false;
+        }, 'json');
+}
+
+user.checkBaseForm = function()
+{
+    return false;
+    jQuery.formValidator.initConfig({
+        formid : "userBaseInfo"
+    });
+    jQuery("#nickname").formValidator({
+        onshow : "请填写昵称",
+        onfocus : "昵称必须大于2而小于20个字符",
+        oncorrect : "昵称输入正确"
+    }).inputValidator({
+        min : 2,
+        max : 20,
+        onerror : "您输入的昵称不正确"
+    });
+    jQuery("#user_name").formValidator({
+        onshow : "请填写申请人的真实姓名",
+        onfocus : "真实姓名只能为中文",
+        oncorrect : "输入正确"
+    }).regexValidator({
+        regexp : "^[\u4e00-\u9fa5]{2,5}$",
+        onerror : "真实姓名至少2个中文,最多5个中文"
+    });
+}
+
+user.checkContactForm = function()
+{
+    return false;
+    jQuery.formValidator.initConfig({
+        formid : "userContactInfo"
+    });
+    $('#mobile').formValidator({
+        onshow : "填写手机号便于接收发货和收货通知",
+        onfocus : "填写手机号便于接收发货和收货通知",
+        oncorrect : "输入正确"
+    }).regexValidator({
+        regexp : regexEnum.mobile,
+        onerror : "您输入的手机号码格式不正确"
+    });
+    $('#full_address').formValidator({
+        onshow : "请填写详细地址",
+        onfocus : "请填写详细地址",
+        oncorrect : "输入正确",
+        onempty: "请填写详细地址",
+        empty: false
+    }).inputValidator({
+        min : 10,
+        onerror : "请填写详细地址"
+    });
+    //邮编
+    $('#zip_code').formValidator({
+        onshow : "请输入收货人所在地邮编号",
+        onfocus : "请输入收货人所在地邮编号",
+        oncorrect : "输入正确",
+        onempty: "请输入收货人所在地邮编号",
+        empty: false
+    }).regexValidator({
+        regexp : regexEnum.zipcode,
+        onerror : "您输入的邮编式不正确"
+    });
+}
+
+user.checkShoppingForm = function()
+{
+    if($('#brandStr').val() == '')
+    {
+        alert('请添加您喜欢的品牌');
+        return false;
+    }
+    return true;
+}
+
+user.userInfoInit(<?php echo date('Y', strtotime($uinfo['birthday'])); ?>, <?php echo date('m', strtotime($uinfo['birthday'])); ?>, <?php echo date('d', strtotime($uinfo['birthday'])); ?>);
 </script>
 <!-- #EndLibraryItem -->
 </body>
