@@ -64,6 +64,13 @@ $error[10036] = array('error' => '10036', 'msg' => '修改密码成功', 'code' 
 $error[10037] = array('error' => '10037', 'msg' => '修改密码失败', 'code' => 'modify_password_failure');
 $error[10038] = array('error' => '10038', 'msg' => '修改密码参数不全', 'code' => 'modify_password_parameter_failure');
 
+$error[10039] = array('error' => '10039', 'msg' => '保存用户昵称失败', 'code' => 'save_user_nickname_failure');
+$error[10040] = array('error' => '10040', 'msg' => '保存用户信息失败', 'code' => 'save_user_info_failure');
+
+$error[10041] = array('error' => '10041', 'msg' => '删除设计师留言参数不全', 'code' => 'delete_designer_message_parameter_failure');
+$error[10042] = array('error' => '10042', 'msg' => '删除设计师留言失败', 'code' => 'delete_designer_message_failure');
+
+
 
 
 /**
@@ -95,6 +102,13 @@ $error[20017] = array('error' => '20017', 'msg' => '清空收藏夹失败', 'cod
 $error[20018] = array('error' => '20018', 'msg' => '产品晒单评论成功', 'code' => 'product_share_comment_success');
 $error[20019] = array('error' => '20019', 'msg' => '产品晒单评论失败', 'code' => 'product_share_comment_failure');
 $error[20020] = array('error' => '20020', 'msg' => '产品晒单评论参数不全', 'code' => 'product_share_comment_parameter_failure');
+
+$error[20021] = array('error' => '20021', 'msg' => '删除产品评论参数不全', 'code' => 'delete_product_comment_parameter_failure');
+$error[20022] = array('error' => '20022', 'msg' => '删除产品评论失败', 'code' => 'delete_product_comment_failure');
+
+$error[20023] = array('error' => '20023', 'msg' => '删除产品问答失败', 'code' => 'delete_product_comment_failure');
+$error[20024] = array('error' => '20024', 'msg' => '删除产品问答参数不全', 'code' => 'delete_product_comment_parameter_failure');
+
 
 /**
  * 订单错误代码  --  订单相关错误代码以 30 开头

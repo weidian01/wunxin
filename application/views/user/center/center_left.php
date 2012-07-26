@@ -23,7 +23,7 @@ $currUrl = str_replace('/index.php', '', $currUrl);
             <li><a href="/user/center/designerFavorite" class="<?php echo (strpos($currUrl, 'designerFavorite') !== false) ? 'curr' : '';?>">设计师收藏</a></li>
             <li><a href="/user/center/designFavorite" class="<?php echo (strpos($currUrl, 'designFavorite') !== false) ? 'curr' : '';?>">设计图收藏</a></li>
             -->
-            <li><a href="/user/center/profile" class="<?php echo (strpos($currUrl, 'profile') !== false) ? 'curr' : '';?>">个人资料</a></li>
+            <li><a href="/user/center/profile" class="<?php echo (strpos($currUrl, 'profile') !== false || strpos($currUrl, 'addUserHeader') !== false) ? 'curr' : '';?>">个人资料</a></li>
             <li><a href="/user/center/modifyPassword" class="<?php echo (strpos($currUrl, 'modifyPassword') !== false) ? 'curr' : '';?>">修改密码</a></li>
             <li><a href="/user/center/productComment" class="<?php echo (strpos($currUrl, 'productComment') !== false) ? 'curr' : '';?>">产品评论</a></li>
             <li><a href="/user/center/designerComment" class="<?php echo (strpos($currUrl, 'designerComment') !== false) ? 'curr' : '';?>">设计师留言</a></li>

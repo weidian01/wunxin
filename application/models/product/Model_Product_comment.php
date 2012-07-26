@@ -35,6 +35,47 @@ class Model_Product_Comment extends MY_Model
     }
 
     /**
+     * 获取用户评论产品
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserCommentAndProduct($uId, $limit = 20, $offset = 0)
+    {
+        $field = 'comment_id, product_comment.uid, product_comment.uname, title, content, ip, rank, is_valid, is_invalid, reply_num, color, size, comfort, exterior, comment_num,
+        size_deviation, product_comment.create_time, product.pid, did, class_id, color_id, model_id, brand_id, pname, market_price, sell_price, style_no, stock,
+        warehouse, product_taobao_addr, keyword, descr, pcontent, source, expand, gender, size_type, status, check_status, shelves, cost_price, sales, favorite_num';
+
+        $this->db->select($field);
+        $this->db->from('product_comment');
+        $this->db->join('product', 'product_comment.pid = product.pid', 'left');
+        $this->db->where('product_comment.uid', $uId);
+        $this->db->order_by('product_comment.create_time', 'desc');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户评论产品数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserCommentAndProductCount($uId)
+    {
+        $this->db->select('*');
+        $this->db->from('product_comment');
+        $this->db->join('product', 'product_comment.pid = product.pid', 'left');
+        $this->db->where('product_comment.uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
      * @name 获取产品评论 -- 通过产品ID
      *
      * @param int $pid

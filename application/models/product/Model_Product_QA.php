@@ -89,6 +89,47 @@ class Model_Product_QA extends MY_Model
     }
 
     /**
+     * 获取用户产品问答
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserProductQaAndProduct($uId, $limit = 20, $offset = 0)
+    {
+        $field = 'qa_id, product_qa.pid, product_qa.uid, product_qa.uname, qa_title, qa_content, reply_content, ip, reply_time, is_reply, is_valid, is_invalid, reply_num, product_qa.create_time,
+        did, class_id, color_id, model_id, brand_id, pname, market_price, sell_price, style_no, stock, warehouse, product_taobao_addr, keyword, descr, pcontent, source,
+        expand, gender, size_type, status, check_status, shelves, cost_price, sales, favorite_num';
+
+        $this->db->select($field);
+        $this->db->from('product_qa');
+        $this->db->join('product', 'product_qa.pid = product.pid', 'left');
+        $this->db->where('product_qa.uid', $uId);
+        $this->db->order_by('product_qa.create_time', 'desc');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户产品问答数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserProductQaAndProductCount($uId)
+    {
+        $this->db->select('*');
+        $this->db->from('product_qa');
+        $this->db->join('product', 'product_qa.pid = product.pid', 'left');
+        $this->db->where('product_qa.uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
      * 疑难问答是否有效
      *
      * @param $qaId
@@ -120,11 +161,12 @@ class Model_Product_QA extends MY_Model
     /**
      * 删除产品疑难问答 -- 通过疑难问答ID
      * @param $qaId
+     * @param $uId
      * @return bool
      */
-    public function deleteProductQAByQAId($qaId)
+    public function deleteProductQAByQAId($qaId, $uId)
     {
-        $this->db->delete('product_qa_reply', array('qa_id' => $qaId));
+        $this->db->delete('product_qa_reply', array('qa_id' => $qaId, 'uid' => $uId));
 
         $this->db->delete('product_qa', array('qa_id' => $qaId));
 

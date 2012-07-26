@@ -48,6 +48,46 @@ class Model_Designer_Comment extends MY_Model
     }
 
     /**
+     * 获取用户评论的设计师
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserDesignerCommentAndDesigner($uId, $limit = 20, $offset = 0)
+    {
+        $field = 'message_id, user_message.uid, user_message.uname, title, content, ip, reply_num, user_message.create_time, be_uid,
+        nickname, lid, password, source, integral, amount, status, favorite_num';
+
+        $this->db->select($field);
+        $this->db->from('user_message');
+        $this->db->join('user', 'user_message.be_uid = user.uid', 'left');
+        $this->db->where('user_message.uid', $uId);
+        $this->db->order_by('user_message.create_time', 'desc');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户评论的设计师数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserDesignerCommentAndDesignerCount($uId)
+    {
+        $this->db->select('*');
+        $this->db->from('user_message');
+        $this->db->join('user', 'user_message.be_uid = user.uid', 'left');
+        $this->db->where('user_message.uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
      * 获取设计师留言 -- 通过留言ID
      *
      * @param $mId
@@ -94,7 +134,7 @@ class Model_Designer_Comment extends MY_Model
 
 
     /**
-     * 删除产品留言 -- 通过留言ID
+     * 删除设计师留言 -- 通过留言ID
      *
      * @param $cId
      * @return bool
