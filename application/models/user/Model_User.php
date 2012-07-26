@@ -103,10 +103,10 @@ class Model_User extends MY_Model
      */
     public function getUserAllInfoById($uId)
     {
-        $field = 'user.uid, nickname, password, lid, uname, source, status, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone, id_card,
+        $field = 'user.uid, nickname, password, lid, uname, source, status, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone, id_card, qq,
             company_call, family_call, height, weight, body_type, marital_status, education_level, job, industry, income, interest, introduction, website, create_time, bank_name, bank_account';
 
-        $this->db->select($field)->from('user')->join('user_info', 'user.uid = user_info.uid')->where('user.uid', $uId)->where('user.status', 1);
+        $this->db->select($field)->from('user')->join('user_info', 'user.uid = user_info.uid', 'left')->where('user.uid', $uId)->where('user.status', 1);
         return $this->db->get()->row_array();
     }
 
@@ -118,7 +118,7 @@ class Model_User extends MY_Model
      */
     public function getUserALlInfoByName($uName)
     {
-        $field = 'user.uid, nickname, password, lid, uname, source, status, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone, id_card,
+        $field = 'user.uid, nickname, password, lid, uname, source, status, integral, amount, real_name, header, sex, birthday, country, province, city, zipcode, detail_address, phone, id_card, qq,
             company_call, family_call, height, weight, body_type, marital_status, education_level, job, industry, income, interest, introduction, website, create_time, bank_name, bank_account';
 
         $this->db->select($field)->from('user')->join('user_info', 'user.uid = user_info.uid')->where('user.uname', $uName)->where('user.status', 1);

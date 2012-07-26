@@ -117,7 +117,7 @@
                                         <th colspan="2" align="left"><b style="color: #8B8378;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品信息</b></th>
                                         <td align="center" style="text-align:center;"><b style="color: #8B8378;">产品价格</b></td>
                                         <td align="center" style="text-align:center;"><b style="color: #8B8378;">收藏时间</b></td>
-                                        <th align="center" style="text-align:center;"><b style="color: #8B8378;">被收藏次数</b></th>
+                                        <th align="center" style="text-align:center;"><b style="color: #8B8378;">人气</b></th>
                                         <th align="center" style="text-align:center;"><b style="color: #8B8378;">操作</b></th>
                                     </tr>
                                     </thead>
@@ -180,18 +180,21 @@
 
         </div>
 
-        <!--
         <div class="u-r-box">
-            <div class="tui-tit">为您推荐</div>
+            <div class="tui-tit">产品收藏热度榜</div>
             <div class="tui">
                 <div class="tuipre"><a href="#"></a></div>
                 <div class="tuinext"><a href="#"></a></div>
                 <ul>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
+                    <?php foreach ($favorite_recommend as $fv) {?>
+                    <li>
+                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
 
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
+                        <p><?php echo $fv['pname'];?></p>
+                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
+                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                    <?php }?>
+                    <!--
                     <li><img src="<?=config_item('static_url')?>images/mlf_09.jpg" width="128" height="128"/>
 
                         <p>[VT]短袖印花T恤 简约大方主义</p>
@@ -212,10 +215,11 @@
                         <p>[VT]短袖印花T恤 简约大方主义</p>
                         <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
                         售价：<span class="font1">￥55.00</span></li>
+                    -->
                 </ul>
             </div>
         </div>
-        -->
+
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->

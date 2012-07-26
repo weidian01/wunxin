@@ -100,6 +100,20 @@ class Model_Product_Favorite extends MY_Model
     }
 
     /**
+     * 获取产品收藏推荐
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getFavoriteProductRecommend($limit = 20, $offset = 0)
+    {
+        $data = $this->db->select('*')->from('product')->order_by('favorite_num', 'desc')->limit($limit, $offset)->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
      * 删除一个产品收藏
      *
      * @param int $fId

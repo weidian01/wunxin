@@ -82,6 +82,20 @@ class Model_Designer_Favorite extends MY_Model
     }
 
     /**
+     * 获取设计师收藏推荐
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserFavoriteRecommend($limit = 20, $offset = 0)
+    {
+        $data = $this->db->select('*')->from('user')->order_by('favorite_num', 'desc')->limit($limit, $offset)->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
      * 删除一个用户收藏的产品
      *
      * @param int $fId

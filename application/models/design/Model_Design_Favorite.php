@@ -61,6 +61,56 @@ class Model_Design_Favorite extends MY_Model
     }
 
     /**
+     * 获取用户设计图收藏和设计图信息
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserDesignFavoriteAndDesign($uId, $limit = 20, $offset = 0)
+    {
+        $field = 'design.did, class_id, dname, ddetail, design_img, design_source, source_expand, status, vote_end_time, total_num, total_fraction, favorite_num,
+        id, design_favorite.uid, design_favorite.uname, ip, design_favorite.create_time';
+
+        $this->db->select($field)->from('design_favorite')->join('design', 'design_favorite.did = design.did', 'left')->where('design_favorite.uid', $uId);
+        $this->db->limit($limit, $offset)->order_by('design_favorite.create_time', 'desc');
+
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户设计图收藏和设计图信息数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserDesignFavoriteAndDesignCount($uId)
+    {
+        $field = '*';
+
+        $this->db->select($field)->from('design_favorite')->join('design', 'design_favorite.did = design.did', 'left')->where('design_favorite.uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
+     * 获取用户收藏设计师推荐
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserFavoriteDesignRecommend($limit = 20, $offset = 0)
+    {
+        $data = $this->db->select('*')->from('design')->order_by('favorite_num', 'desc')->limit($limit, $offset)->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
      * 删除设计图收藏
      *
      * @param int $dId
