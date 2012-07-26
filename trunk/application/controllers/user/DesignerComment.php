@@ -92,4 +92,36 @@ class DesignerComment extends MY_Controller
 
         $this->json_output($response);
     }
+
+    /**
+     * 删除设计师留言
+     */
+    public function deleteDesignerComment()
+    {
+        $messageId = intval($this->input->get_post('message_id'));
+
+        $response = array('error' => '0', 'msg' => '删除设计师留言成功', 'code' => 'delete_designer_message_success');
+
+        do {
+            if (empty ($messageId)) {
+                $response = error(10041);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('user/Model_Designer_Comment', 'comment');
+
+            $status = $this->comment->deleteDesignerCommentByCommentId($messageId);
+            if (!$status) {
+                $response = error(10042);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
+    }
 }

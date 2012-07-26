@@ -4302,8 +4302,9 @@ create table wx_product
    check_status         tinyint unsigned default 1 comment '审核，0未通过，1已通过',
    shelves              varchar(32) default '1' comment '上架，0下架，1上架',
    cost_price           int unsigned default 0 comment '成本价格，单位为分',
-   sales                int comment '销量',
-   favorite_num         int comment '收藏数量',
+   sales                int unsigned comment '销量',
+   favorite_num         int unsigned comment '收藏数量',
+   comment_num          int unsigned comment '评论数量',
    create_time          datetime comment '创建时间',
    primary key (pid)
 )
@@ -5181,13 +5182,13 @@ create table wx_user_info
    zipcode              char(7) comment '邮政编码',
    detail_address       varchar(128) comment '详细地址',
    phone                char(11) comment '手机',
-   company_call         char(11) comment '公司电话',
+   company_call         char(12) comment '公司电话',
    family_call          char(12) comment '家庭电话',
    height               tinyint unsigned comment '身高，单位为厘米',
    weight               smallint comment '体重，单位公斤（KG）',
    body_type            tinyint unsigned default 0 comment '体型， 1偏瘦，2均称，3偏胖，4肥胖',
    marital_status       int unsigned default 0 comment '婚姻状况,0保密，1已婚，2未婚',
-   education_level      tinyint unsigned default 0 comment '教育程度, 0保密, 1高中及以下,2大学专科,3大学本科,4硕士,5博士及以上',
+   education_level      tinyint unsigned default 0 comment '教育程度, 1高中及以下,2大学专科,3大学本科,4硕士,5博士及以上',
    job                  tinyint unsigned comment '从事职业,
             array(
                     ''1'' => ''企业雇主/企业经营者'',
@@ -5218,6 +5219,9 @@ engine = MYISAM
 auto_increment = 1;
 
 alter table wx_user_info comment '用户详细信息表';
+
+INSERT INTO `wx_user_info` VALUES (1,'侯积平',NULL,1,'1996-11-28','中国','湖南省','郴州市','423614','安仁县竹山乡','15101559313','万象乾鑫科技有限公司','010-81818282',173,70,2,1,3,2,4,5,'吃饭，睡觉，打豆豆。','低头就为抬头','http://www.wunxin.com','431028198702113418','中国工商银行','100000000000000',229852196);
+INSERT INTO `wx_user_info` VALUES (2,'兰国宾',NULL,2,'1984-02-13','中国','北京市','北京市','100010','朝阳区','13613661366','万象乾鑫科技有限公司','010-81818282',172,70,2,2,3,2,4,5,'吃饭，睡觉，打豆豆。','低头就为抬头','http://www.wunxin.com','431028198702113418','中国工商银行','100000000000000',395959695);
 
 /*==============================================================*/
 /* Index: uid_unique                                            */

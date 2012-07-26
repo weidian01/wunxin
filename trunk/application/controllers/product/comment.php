@@ -193,4 +193,32 @@ class comment extends MY_Controller
         }
         self::json_output($response, true);
     }
+
+    public function deleteComment()
+    {
+        $cId = $this->input->get_post('cid');
+
+        $response = array('error' => '0', 'msg' => '删除产品评论成功', 'code' => 'delete_product_comment_success');;
+
+        do {
+            if (empty ($cId)) {
+                $response = error(20021);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('product/Model_Product_comment', 'comment');
+            $status = $this->comment->deleteProductCommentByCommentId($cId);
+            if (!$status) {
+                $response = error(20022);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
+    }
 }

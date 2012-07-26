@@ -124,5 +124,35 @@ class product_qa extends MY_Controller
         $this->json_output($response);
     }
 
+    /**
+     * 删除产品问答
+     */
+    public function deleteProductQa()
+    {
+        $qaId = intval($this->input->get_post('qa_id'));
 
+        $response = array('error' => '0', 'msg' => '删除产品问答成功', 'code' => 'delete_product_comment_success');
+
+        do {
+            if (empty ($qaId)) {
+                $response = error(20024);
+                break;
+            }
+
+            $uInfo = $this->isLogin();
+            if (!$uInfo) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('product/Model_Product_QA', 'qa');
+            $status = $this->qa->deleteProductQAByQAId($qaId, $this->uInfo['uid']);
+            if (!$status) {
+                $response = error(20023);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
+    }
 }

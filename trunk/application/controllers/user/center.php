@@ -254,80 +254,26 @@ class center extends MY_Controller
 
         $this->load->model('user/Model_User', 'user');
         $data = $this->user->getUserAllInfoById($this->uInfo['uid']);
-        //echo '<pre>';print_r($data);exit;
-        $jobs = array(
-            '1' => '企业雇主/企业经营者',
-            '2' => '高级行政人员(行政总裁、总经理、董事等)',
-            '3' => '中层管理人员(总监、经理、主任等)',
-            '4' => '专业人士(会计师、律师、工程师、医生、教师等)',
-            '5' => '办公职员(一般文职、业务、办事人员等)',
-            '6' => '工人/蓝领',
-            '7' => '公务员、公共事业单位员工',
-            '8' => '自由职业者',
-            '9' => '军人',
-            '10' => '学生',
-            '11' => '退休/无业人员',
-            '12' => '家庭主妇',
-            '13' => '其他',
-        );
 
-        $income = array(
-            '1' => '2000元以下',
-            '2' => '2000～3999元',
-            '3' => '4000～5999元',
-            '4' => '6000～7999元',
-            '5' => '8000～9999元',
-            '6' => '10000～15000元',
-            '7' => '15000元以上'
-        );
-
-        $bodyType = array(
-            '1' => '偏瘦',
-            '2' => '均称',
-            '3' => '偏胖',
-            '4' => '肥胖'
-        );
-
-        $industry = array(
-            '1' => '政府机关/社会团体',
-            '2' => '邮电通讯',
-            '3' => 'IT业/互联网',
-            '4' => '商业/贸易',
-            '5' => '旅游/餐饮/酒店',
-            '6' => '银行/金融/证券/保险/投资',
-            '7' => '健康/医疗服务',
-            '8' => '建筑/房地产',
-            '9' => '交通运输/物流仓储',
-            '10' => '法律/司法',
-            '11' => '文化/娱乐/体育',
-            '12' => '媒介/广告/咨询',
-            '13' => '教育/科研',
-            '14' => '林业/农业/牧业/渔业',
-            '15' => '制造业(轻工业)',
-            '16' => '制造业(重工业)',
-            '17' => '能源/公用事业',
-            '18' => '其他',
-
-        );
-
-
+        $jobs = config_item('jobs');
+        $income = config_item('income');
+        $bodyType = config_item('bodyType');
+        $industry = config_item('industry');
+        $educationLevel = config_item('educationLevel');
+        $maritalStatus = config_item('maritalStatus');
 
         $this->load->model('other/Model_Area', 'area');
         $provinceData = $this->area->getProvinceList();
-
         $provinceId = 0;
         foreach ($provinceData as $v) {
             if ($data['province'] == $v['name']) { $provinceId = $v['id'];}
         }
 
         $cityData = $this->area->getCityList($provinceId);
-
         $areaId = 0;
         foreach ($cityData as $v) {
             if (trim($data['city']) == $v['name']) { $areaId = $v['id'];}
         }
-
-        $areaData = $this->area->getAreaList($areaId);
 
         $vData = array(
             'uinfo' => $data,
@@ -335,13 +281,18 @@ class center extends MY_Controller
             'income' => $income,
             'province_data' => $provinceData,
             'city_data' => $cityData,
-            'area_data' => $areaData,
             'body_type' => $bodyType,
             'industry' => $industry,
+            'education_level' => $educationLevel,
+            'marital_status' => $maritalStatus,
         );
 
-
         $this->load->view('user/center/profile', $vData);
+    }
+
+    public function addUserHeader()
+    {
+        $this->load->view('user/center/add_header');
     }
 
     /**
@@ -360,12 +311,12 @@ class center extends MY_Controller
      */
     public function productComment()
     {
-        $Limit = 15;
+        $Limit = 10;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
 
         $this->load->model('product/Model_Product_Comment', 'comment');
-        $totalNum = $this->comment->getCommentCountByuId($this->uInfo['uid']);
+        $totalNum = $this->comment->getUserCommentAndProductCount($this->uInfo['uid']);
 
         $this->load->library('pagination');
         $config['base_url'] = site_url() . '/user/center/productComment/';
@@ -381,9 +332,13 @@ class center extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-        $data = $this->comment->getCommentByUid($this->uInfo['uid'], $Limit, $offset);
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $data = $this->comment->getUserCommentAndProduct($this->uInfo['uid'], $Limit, $offset);
 
-        $this->load->view('user/center/p_comment', array('data' => $data, 'page_html' => $pageHtml));
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+
+        $this->load->view('user/center/p_comment', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**
@@ -391,12 +346,12 @@ class center extends MY_Controller
      */
     public function designerComment()
     {
-        $Limit = 15;
+        $Limit = 10;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
 
         $this->load->model('user/Model_Designer_Comment', 'comment');
-        $totalNum = $this->comment->getDesignerCommentByUidCount($this->uInfo['uid']);
+        $totalNum = $this->comment->getUserDesignerCommentAndDesignerCount($this->uInfo['uid']);
 
         $this->load->library('pagination');
         $config['base_url'] = site_url() . '/user/center/designerComment/';
@@ -412,9 +367,12 @@ class center extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-        $data = $this->comment->getDesignerCommentByUid($this->uInfo['uid'], $Limit, $offset);
+        $data = $this->comment->getUserDesignerCommentAndDesigner($this->uInfo['uid'], $Limit, $offset);
 
-        $this->load->view('user/center/d_comment', array('data' => $data, 'page_html' => $pageHtml));
+        $this->load->model('user/Model_Designer_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(5);
+//echo '<pre>';print_r($favoriteRecommend);exit;
+        $this->load->view('user/center/u_comment', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**
@@ -422,12 +380,12 @@ class center extends MY_Controller
      */
     public function qa()
     {
-        $Limit = 15;
+        $Limit = 10;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
 
         $this->load->model('product/Model_Product_QA', 'qa');
-        $totalNum = $this->qa->getProductQaCountByuId($this->uInfo['uid']);
+        $totalNum = $this->qa->getUserProductQaAndProductCount($this->uInfo['uid']);
 
         $this->load->library('pagination');
         $config['base_url'] = site_url() . '/user/center/qa/';
@@ -443,9 +401,12 @@ class center extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-        $data = $this->qa->getProductQAByUid($this->uInfo['uid'], $Limit, $offset);
+        $data = $this->qa->getUserProductQaAndProduct($this->uInfo['uid'], $Limit, $offset);
 
-        $this->load->view('user/center/qa', array('data' => $data, 'page_html' => $pageHtml));
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+
+        $this->load->view('user/center/qa', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**

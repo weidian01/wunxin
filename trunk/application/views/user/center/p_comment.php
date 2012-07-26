@@ -64,28 +64,37 @@
 
             </div>
             -->
+            <style>
+                .o-list td{font-weight: bold;color: #8B7B8B;}
+            </style>
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr class="o-list">
-                    <td width="16%" height="26" align="center">评论编号</td>
-                    <td width="15%" align="center">产品图片</td>
-                    <td width="25%" align="center">产品标题</td>
-                    <td width="10%" align="center">产品价格</td>
-                    <td width="10%" align="center">评论内容</td>
-                    <td width="17%" align="center">评论时间</td>
-                    <!--<td width="17%" align="center">操作</td>-->
+                    <td width="8%" height="26" align="center">评论编号</td>
+                    <td width="8%" align="center">产品图片</td>
+                    <td width="20%" align="center">产品标题</td>
+                    <td width="8%" align="center">产品价格</td>
+                    <td width="20%" align="center">评论内容</td>
+                    <td width="10%" align="center">人气</td>
+                    <td width="8%" align="center">评论时间</td>
+                    <td width="8%" align="center">操作</td>
                 </tr>
                 <?php if (empty ($data)) $data = array();
                 foreach ($data as $v) {?>
                 <tr>
                     <td height="26" align="center"><?php echo $v['comment_id'];?></td>
-                    <td ><img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['pid'])?>icon.jpg" alt=""/></td>
-                    <td align="center"><?php echo 'a';//$v['favorite_uname']; ?></td>
-                    <td align="center"><?php echo 'a';//$v['default'];?></td>
+                    <td ><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/></td>
+                    <td align="center"><?php echo $v['pname']; ?></td>
+                    <td align="center">￥<?php echo $v['sell_price'] / 100;?></td>
                     <td align="center"><?php echo $v['content'];?></td>
+                    <td align="center">
+                        <a href="#" title="此评论被评论 <?php echo $v['comment_num'];?> 条" style="color: #990000;">被评论 <?php echo $v['comment_num'];?> 条</a> <br />
+                        <a href="#" title="此评论被回复 <?php echo $v['comment_num'];?> 条" style="color: #990000;">回复 <?php echo $v['reply_num'];?> 条</a>
+                    </td>
                     <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <!--<td align="center">
-                        <a href="javascript:void(0);" onclick="deleteProductComment(<?php echo $v['comment_id'];?>)">删除</a>
-                    </td>-->
+                    <td align="center">
+                        <a href="javascript:void(0);" onclick="deleteProductComment(<?php echo $v['comment_id'];?>)">删除</a> <br />
+                        <a href="javascript:void(0);" onclick="(<?php echo $v['comment_id'];?>)">购买</a>
+                    </td>
                 </tr>
                 <?php }?>
                 <!--
@@ -106,13 +115,21 @@
         <div class="pages" style="float: right;">
         <?php echo $page_html;?>
         </div>
-        <!--
         <div class="u-r-box">
             <div class="tui-tit">为您推荐</div>
             <div class="tui">
                 <div class="tuipre"><a href="#"></a></div>
                 <div class="tuinext"><a href="#"></a></div>
                 <ul>
+                    <?php foreach ($favorite_recommend as $fv) {?>
+                    <li>
+                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
+
+                        <p><?php echo $fv['pname'];?></p>
+                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
+                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                    <?php }?>
+                    <!--
                     <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
 
                         <p>[VT]短袖印花T恤 简约大方主义</p>
@@ -138,28 +155,28 @@
                         <p>[VT]短袖印花T恤 简约大方主义</p>
                         <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
                         售价：<span class="font1">￥55.00</span></li>
+                    -->
                 </ul>
             </div>
         </div>
-        -->
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <script type="text/javascript">
-    function deleteDesignerFavorite(dId)
+    function deleteProductComment(cId)
     {
         if (confirm('确定删除！')) {
-            if (!wx.isEmpty(dId)) {
+            if (!wx.isEmpty(cId)) {
                 return false;
             }
 
-            var url = '/user/designerFavorite/deleteDesignerFavorite';
-            var param = 'fid='+dId;
+            var url = '/product/comment/deleteComment';
+            var param = 'cid='+cId;
             var data = wx.ajax(url, param);
 
-            if (data.error == '10020') {
+            if (data.error == '0') {
                 wx.pageReload(0);
                 return true;
             }

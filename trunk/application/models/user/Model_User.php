@@ -54,6 +54,7 @@ class Model_User extends MY_Model
      * @name 获取用户信息 -- 通过用户ID
      *
      * @param $uId 用户ID
+     * @param $fields 字段
      * @return array
      */
     public function getUserById($uId, $fields = "*")
@@ -162,7 +163,7 @@ class Model_User extends MY_Model
     }
 
     /**
-     * @name 修改用户信息 -- 通过用户ID
+     * @name 修改用户基本信息 -- 通过用户ID
      *
      * @param $uId 用户ID
      * @param $userInfo 用户信息
@@ -170,36 +171,19 @@ class Model_User extends MY_Model
      */
     public function modifyUserByUserId($uId, array $userInfo)
     {
-        $data = array(
-            'real_name' => $userInfo['real_name'],
-            'header' => $userInfo['header'],
-            'sex' => $userInfo['sex'],
-            'birthday' => $userInfo['birthday'],
-            'country' => $userInfo['country'],
-            'province' => $userInfo['province'],
-            'city' => $userInfo['city'],
-            'zipcode' => $userInfo['zipcode'],
-            'detail_address' => $userInfo['detail_address'],
-            'phone' => $userInfo['phone'],
-            'company_call' => $userInfo['company_call'],
-            'family_call' => $userInfo['family_call'],
-            'height' => $userInfo['height'],
-            'weight' => $userInfo['weight'],
-            'body_type' => $userInfo['body_type'],
-            'marital_status' => $userInfo['marital_status'],
-            'education_level' => $userInfo['education_level'],
-            'job' => $userInfo['job'],
-            'industry' => $userInfo['industry'],
-            'income' => $userInfo['income'],
-            'interest' => $userInfo['interest'],
-            'introduction' => $userInfo['introduction'],
-            'website' => $userInfo['website'],
-            'id_card' => $userInfo['id_card'],
-            'bank_name' => $userInfo['bank_name'],
-            'bank_account' => $userInfo['bank_account']
-        );
+        return $this->db->where('uid', $uId)->update('user', $userInfo);
+    }
 
-        return $this->db->where('uid', $uId)->update('user', $data);
+    /**
+     * 修改用户详细信息(更灵活)
+     *
+     * @param $uId
+     * @param array $userInfo
+     * @return boolean
+     */
+    public function modifyDetailUser($uId, array $userInfo)
+    {
+        return $this->db->where('uid', $uId)->update('user_info', $userInfo);
     }
 
     /**
