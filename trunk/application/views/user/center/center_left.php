@@ -25,8 +25,13 @@ $currUrl = str_replace('/index.php', '', $currUrl);
             -->
             <li><a href="/user/center/profile" class="<?php echo (strpos($currUrl, 'profile') !== false || strpos($currUrl, 'addUserHeader') !== false) ? 'curr' : '';?>">个人资料</a></li>
             <li><a href="/user/center/modifyPassword" class="<?php echo (strpos($currUrl, 'modifyPassword') !== false) ? 'curr' : '';?>">修改密码</a></li>
-            <li><a href="/user/center/productComment" class="<?php echo (strpos($currUrl, 'productComment') !== false) ? 'curr' : '';?>">产品评论</a></li>
+            <li><a href="/user/center/productComment" class="<?php
+            echo (strpos($currUrl, 'productComment') !== false || strpos($currUrl, 'designComment') !== false || strpos($currUrl, 'designerComment') !== false) ? 'curr' : '';
+            ?>">我的评论</a></li>
+            <!--
+            <li><a href="/user/center/designComment" class="<?php echo (strpos($currUrl, 'designComment') !== false) ? 'curr' : '';?>">设计图评论</a></li>
             <li><a href="/user/center/designerComment" class="<?php echo (strpos($currUrl, 'designerComment') !== false) ? 'curr' : '';?>">设计师留言</a></li>
+            -->
             <li><a href="/user/center/qa" class="<?php echo (strpos($currUrl, 'qa') !== false) ? 'curr' : '';?>">产品问答</a></li>
             <li><a href="/user/center/recentAddress" class="<?php echo (strpos($currUrl, 'recentAddress') !== false || strpos($currUrl, 'addRecentAddress') !== false) ? 'curr' : '';?>">收货地址管理</a></li>
             <li><a href="/user/center/myDesign" class="<?php echo (strpos($currUrl, 'myDesign') !== false) ? 'curr' : '';?>">我的设计图</a></li>
@@ -36,8 +41,9 @@ $currUrl = str_replace('/index.php', '', $currUrl);
     <div class="u-tit">自助服务</div>
     <div class="u-menu">
         <ul>
-            <li><a href="/user/center/sales" class="<?php echo (strpos($currUrl, 'sales') !== false) ? 'curr' : '';?>">促销信息退订</a></li>
-            <li><a href="/user/center/giftCard" class="<?php echo (strpos($currUrl, 'giftCard') !== false) ? 'curr' : '';?>">礼品卡管理</a></li>
+            <li><a href="/user/center/salesInfo" class="<?php echo (strpos($currUrl, 'salesInfo') !== false) ? 'curr' : '';?>">促销信息退订</a></li>
+            <li><a href="/user/center/giftCard" class="<?php echo (strpos($currUrl, 'giftCard') !== false || strpos($currUrl, 'bingCard') !== false) ? 'curr' : '';?>">礼品卡管理</a></li>
+            <li><a href="/user/center/systemProposal" class="<?php echo (strpos($currUrl, 'systemProposal') !== false) ? 'curr' : '';?>">系统建议与意见</a></li>
         </ul>
     </div>
 </div>

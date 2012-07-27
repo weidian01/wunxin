@@ -55,6 +55,7 @@
         .table2 tfoot { background: none repeat scroll 0 0 #F8F8F8; font-weight: bold; text-align: center; }
         .btn_s1_z7 { background: url("/images/btn_s1_z7.png") repeat-x scroll 0 0 transparent; border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block; font-size: 12px;
             height: 20px; line-height: 20px; margin: 0; padding: 0; text-align: center; width: 102px; }
+
     </style>
 </head>
 <body>
@@ -71,18 +72,19 @@
             <div class="scj">
                 <div class="main">
                     <div class="tab">
-                        <a href="/user/center/productComment" class="act">产品评论</a>
-                        <a href="/user/center/designComment">设计图评论</a>
+                        <a href="/user/center/productComment">产品评论</a>
+                        <a href="/user/center/designComment" class="act">设计图评论</a>
                         <a href="/user/center/designerComment">设计师留言</a>
                     </div>
                     <div id="itemList">
                         <div class="list-m">
+                            <form id="f1" method="post">
                                 <table width="100%" class="table2">
                                     <thead>
                                     <tr>
                                         <!--<td align="center" style="text-align:center;"><b style="color: #8B8378;">收藏编号</b></td>-->
-                                        <th colspan="2" align="left"><b style="color: #8B8378;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品信息</b></th>
-                                        <td align="center" style="text-align:center;"><b style="color: #8B8378;">评论内容</b></td>
+                                        <th colspan="2" align="left"><b style="color: #8B8378;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;设计图信息</b></th>
+                                        <td align="center" style="text-align:center;"><b style="color: #8B8378;">设计图介绍</b></td>
                                         <th align="center" style="text-align:center;"><b style="color: #8B8378;">人气</b></th>
                                         <td align="center" style="text-align:center;"><b style="color: #8B8378;">评论时间</b></td>
                                         <th align="center" style="text-align:center;"><b style="color: #8B8378;">操作</b></th>
@@ -90,40 +92,39 @@
                                     </thead>
                                     <tbody class="tbody">
                                     <?php if (empty ($data)) { ?>
-                                        <tr>
-                                            <td colspan="6"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">您还没有产品评论，购买产品后赶紧评论吧。</td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="6"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">您还没有设计图评论，赶快去发表您对设计图的看法吧。</td>
+                                    </tr>
                                     <?php } else {?>
                                         <?php foreach ($data as $v) {?>
                                         <tr>
                                             <!--<td style="width:90px;text-align:center;"><?php echo $v['id'];?></td>-->
-                                            <td style="width:20px;">
+                                            <td style="width:60px;">
                                                 <div class="imgbox">
-                                                    <a href="#" title="<?php echo $v['pname'];?>">
-                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                                                    <a href="#" class="a_e" title="<?php echo $v['dname'];?>">
+                                                        <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" alt="" width="60" height="60"/>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="#" class="a_e" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a>&nbsp;&nbsp;
-                                                <span style="color: #CC0033;font-weight: bold;">￥<?php echo $v['sell_price'];?></span><br>
+                                                <a href="#" class="a_e" title="<?php echo $v['dname'];?>"><?php echo $v['dname'];?></a> &nbsp;&nbsp;<br>
+                                                <span>设计师：<a href="#" title="<?php echo $v['uname'];?>"><?php echo $v['uname'];?></a></span>
                                             </td>
-                                            <td style="width:170px;text-align:center;"><?php echo $v['content'];?></td>
-                                            <td style="width:70px;text-align:left;">
-                                                &nbsp;&nbsp;<a href="#" title="此评论被评论 <?php echo $v['comment_num'];?> 条" style="color: #990000;">被评论 <?php echo $v['comment_num'];?> 条</a> <br />
-                                                &nbsp;&nbsp;<a href="#" title="此评论被回复 <?php echo $v['comment_num'];?> 条" style="color: #990000;">回复 <?php echo $v['reply_num'];?> 条</a>
+                                            <td style="width:170px;text-align:center;"><?php echo $v['ddetail'];?></td>
+                                            <td style="width:110px;text-align:center;">
+                                                <a href="#" title="此设计图评论被回复 <?php echo $v['reply_num'];?> 条" style="cursor:pointer;color:#990000;">被回复 <?php echo $v['reply_num'];?> 条</a> <br /><br />
+                                                <a href="#" title="共有 <?php echo $v['total_num'];?> 用户投票" style="cursor:pointer;color:#990000;">共 <?php echo $v['total_num'];?> 票</a> &nbsp;|&nbsp;
+                                                <a href="#" title="此设计图总分数为 <?php echo $v['total_fraction'];?> 分" style="cursor:pointer;color:#990000;">共 <?php echo $v['total_fraction'];?> 分</a>
                                             </td>
                                             <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                                            <td style="width:70px;text-align:center;">
-                                                <a href="javascript:void(0);" onclick="(<?php echo $v['comment_id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
+                                            <td style="width:60px;text-align:center;">
+                                                <a href="#">
+                                                    <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计图">
                                                 </a>
-                                                <a href="javascript:void(0);" onclick="(<?php echo $v['comment_id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/comment.png" title="评论此产品">
+                                                <br/>
+                                                <a href="javascript:void(0);" onclick="deleteComment(<?php echo $v['comment_id'];?>)">
+                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图评论">
                                                 </a>
-                                                <a href="javascript:void(0);" onclick="deleteProductComment(<?php echo $v['comment_id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
-                                                </a> <br />
                                             </td>
                                         </tr>
                                         <?php }?>
@@ -131,13 +132,10 @@
                                     </tbody>
                                     <tfoot>
                                     <tr id="listFooter">
-                                        <!--
-                                        <th colspan="8" align="right">
-                                            <button type="button" class="btn_s1_z7" onclick="emptyFavorite('cleanup','您确定要清空收藏夹里的所有产品')"> 清空所有产品 </button>
-                                        </th>-->
                                     </tr>
                                     </tfoot>
                                 </table>
+                            </form>
                         </div>
                         <div class="list-b">
 
@@ -151,7 +149,6 @@
                 </div>
             </div>
 
-
         </div>
 
         <div class="u-r-box">
@@ -162,11 +159,11 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
+                        <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="128" height="128"/>
 
-                        <p><?php echo $fv['pname'];?></p>
-                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
-                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                        <p><?php echo $fv['dname'];?></p>
+                        <span class="font2">设计师：<?php echo substr($fv['uname'], 0, 10);?></span><br/>
+                        被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span></li>
                     <?php }?>
                 </ul>
             </div>
@@ -178,15 +175,15 @@
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <script type="text/javascript">
-    function deleteProductComment(cId)
+    function deleteComment(cId)
     {
         if (confirm('确定删除！')) {
             if (!wx.isEmpty(cId)) {
                 return false;
             }
 
-            var url = '/product/comment/deleteComment';
-            var param = 'cid='+cId;
+            var url = '/design/designComment/deleteComment';
+            var param = 'comment_id='+cId;
             var data = wx.ajax(url, param);
 
             if (data.error == '0') {

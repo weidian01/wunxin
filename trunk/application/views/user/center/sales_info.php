@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>修改密码 -- 个人中心</title>
+    <title>促销信息退订 -- 个人中心</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
@@ -20,7 +20,7 @@
             float: left; min-height: 400px; padding: 10px 11px 11px; width: 778px; }
         .xgmm .main dl { border: 1px solid #FFFFFF; float: left; height: 35px; margin-bottom: 5px; width: 776px; }
         dl, ul, li, ol { list-style: none outside none; margin: 0; padding: 0; }
-        .xgmm .main dl dt { float: left; line-height: 35px; text-align: right; width: 86px; }
+        .xgmm .main dl dt { float: left; line-height: 35px; text-align: right; width: 100px; }
         .xgmm .main dl dd { float: left; padding-top: 5px; width: 665px; }
         .txi { background: url("/images/onShow.png") no-repeat scroll 5px 5px transparent; color: #999999; display: inline-block; font-size: 12px; height: 22px;
             line-height: 22px; padding-left: 25px; }
@@ -39,35 +39,37 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">修改密码</div>
+            <div class="u-r-tit">促销信息退订</div>
         </div>
         <div class="u-r-box">
             <div class="xgmm">
             <div class="main">
+                <h3>退订邮件</h3> <br/><br/>
+                <?php if (empty ($data)) {?>
                 <dl id="oldpassword_dl">
-                    <dt>旧密码：</dt>
+                    <dt style="font-size: 14px;font-weight: bold;font-size: 11px;color: #707070;">输入邮件地址：</dt>
                     <dd>
-                        <input name="oldpassword" id="old_password" type="password" class="input_1" style="width:155px;" onblur="checkPassWord()">
-                        <span class="txi" id="old_password_notice_id">您之前使用的密码<!--，<a href="http://www.yohobuy.com/help/?category_id=57">忘记密码？</a>--></span>
+                        <input name="email" id="email_id" type="text" class="input_1" style="width:180px;" onblur="checkPassWord()">
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="button" value="退订" onclick="unsubscribe()">
                     </dd>
                 </dl>
-                <dl id="password_dl">
-                    <dt>设定新密码：</dt>
-                    <dd>
-                        <input name="password" id="password_id" type="password" class="input_1" style="width:155px;" onblur="user.checkPassWord()">
-                        <span class="txi" id="password_notice_id">您要设置的新密码，密码为6位以上30位以下字母或数字</span>
-                    </dd>
-                </dl>
-                <dl id="confirm_password_dl">
-                    <dt>重复密码：</dt>
-                    <dd>
-                        <input name="confirm_password" id="repassword_id" type="password" class="input_1" style="width:155px;" onblur="user.checkRePassWord()">
-                        <span class="txi" id="repassword_notice_id">重复密码和新密码要一致</span>
-                    </dd>
-                </dl>
-                <div class="submit">
-                    <input type="button" value="" class="btn_b1" onclick="changePassword()">
-                </div>
+
+                <?php } else {?>
+                    <?php
+                    foreach ($data as $v) {?>
+                    <dl id="oldpassword_dl">
+                        <dt style="font-size: 14px;font-weight: bold;font-size: 11px;color: #707070;">邮件地址：</dt>
+                        <dd>
+                            <input name="email" id="email_id_<?php echo $v['id'];?>" type="text" class="input_1" style="width:180px;" onblur="checkPassWord()" value="<?php echo $v['email_addr'];?>">
+                            &nbsp;&nbsp;&nbsp;
+                            <!--<input type="button" value="退订" onclick="unsubscribe(<?php echo $v['id'];?>)">-->
+                            <img src="<?=config_item('static_url')?>images/unsubscribe.png" alt="" onclick="unsubscribe(<?php echo $v['id'];?>)" style="cursor: pointer;" title="退订此邮件地址">
+
+                        </dd>
+                    </dl>
+                    <?php }?>
+                <?php }?>
             </div>
             </div>
         </div>
@@ -81,48 +83,36 @@
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="/scripts/user.js"></SCRIPT>
 <script type="text/javascript">
-    function checkPassWord ()
+    function unsubscribe(mId)
     {
-        var passWord = document.getElementById('old_password').value;
+        var mailId;
+        if (wx.isEmpty(mId)) {
+            mailId = 'email_id_'+mId;
+        } else {
+            mailId = 'email_id';
+        }
 
-        $('#old_password_notice_id').html('');
-        $("#old_password_notice_id").removeClass("mistake");
-        $("#old_password_notice_id").removeClass("txi");
+        console.log(mailId);
+        var email = document.getElementById(mailId).value;
 
-        if (!wx.isEmpty (passWord)) {
-            $("#old_password_notice_id").removeClass("txi").addClass("mistake");
-            $('#old_password_notice_id').html('密码为空！');
+        if (!wx.isEmpty (email)) {
+            alert('邮件地址为空')
             return false;
         }
 
-        if (!wx.limit_length(passWord, 6, 32)) {
-            $("#old_password_notice_id").removeClass("txi").addClass("mistake");
-            $('#old_password_notice_id').html('密码小于6位或大于32位！');
+        if (!wx.isEmail(email)) {
+            alert('邮件地址格式错误')
             return false;
         }
 
-        return passWord;
-    }
+        var data = wx.ajax('/business/mailSubscription/unSubscribe', 'mail_address='+email);
 
-    function changePassword()
-    {
-        var oldPassword = checkPassWord();
-        var newPassword = user.checkPassWord();
-
-        if (!oldPassword) return ;
-        if (!newPassword) return ;
-        wx.goToUrl
-        var url = '/user/change_password/submit';
-        var param = 'old_password='+oldPassword+'&new_password='+newPassword;
-        var data = wx.ajax(url, param);
-
-        if (data.error == '10036') {
-            alert('修改密码成功！ 请重新登陆！');
-            wx.goToUrl('/user/login/index');
-            return;
+        if (data.error == '70008') {
+            wx.pageReload(0);
+            return true;
         }
 
-        alert(data.msg);
+        alert('退订失败');
     }
 </script>
 <!-- #EndLibraryItem -->

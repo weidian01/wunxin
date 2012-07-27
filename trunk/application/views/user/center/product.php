@@ -22,148 +22,104 @@
     <div class="u-right">
         <div class="u-r-box">
             <div class="u-r-tit">我的产品</div>
-            <!--
-            <div class="u-ac">
-              <span class="ruo">账户安全：</span>
-              <span class="zhong">账户安全：</span>
-              <span class="qiang">账户安全：</span>
-              <div class="yanzheng">
-                <span class="phone">未验证手机</span>
-                <span class="email">未验证邮箱</span>
-                <span class="topay">未启用支付密码</span>
-              </div>
-              <div class="safetip">为保护账户安全，请尽快<a href="#"><strong>启用所有安全服务</strong></a></div>
-
-            </div>
-            -->
         </div>
-        <div class="u-r-box">
-            <!--
-            <div class="orderlist-sek">
 
+        <div class="u-r-box">
+            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+            <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td width="44%"><label>
-                            <select name="select" id="select">
-                                <option>近一个月订单</option>
-                            </select>&nbsp;&nbsp;
-                            <select name="select2" id="select2">
-                                <option>订单状态</option>
-                            </select>
-                        </label></td>
-                        <td width="46%" align="right"><label>
-                            <input name="textfield" type="text" class="input1" id="textfield" value="商品名称，商品编号，订单编号"
-                                   onfocus="if (value =='商品名称，商品编号，订单编号'){value =''}"
-                                   onblur="if (value ==''){value='商品名称，商品编号，订单编号'}"/>
-                        </label></td>
-                        <td width="10%">&nbsp;&nbsp;<label>
-                            <input class="sinput" type="submit" name="button" id="button" value="查询"/>
-                        </label></td>
+                        <td width="8%" height="26" align="center">编号</td>
+                        <td width="8%" align="center">图片</td>
+                        <td width="25%" align="center">产品名称</td>
+                        <td width="8%" align="center">价格</td>
+                        <td width="8%" align="center">销量</td>
+                        <td width="8%" align="center">状态</td>
+                        <td width="10%" align="center">人气</td>
+                        <td width="8%" align="center">添加时间</td>
+                        <td width="10%" align="center">操作</td>
                     </tr>
                 </table>
-
             </div>
-            -->
+
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr class="o-list">
-                    <td width="10%" height="26" align="center">编号</td>
-                    <td width="10%" align="center">图片</td>
-                    <td width="15%" align="center">名称</td>
-                    <td width="25%" align="center">价格</td>
-                    <td width="8%" align="center">销量</td>
-                    <td width="8%" align="center">状态</td>
-                    <td width="10%" align="center">添加时间</td>
-                    <td width="10%" align="center">操作</td>
-                </tr>
-                <?php if (empty ($data)) $data = array();
-                foreach ($data as $v) {?>
-                <tr>
-                    <td height="26" align="center"><?php echo $v['pid'];?></td>
-                    <td ><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/></td>
-                    <td align="center"><?php echo $v['pname'];?></td>
-                    <td align="center"><?php echo $v['market_price'];?></td>
-                    <td align="center"><?php echo $v['sales'];?></td>
-                    <td align="center"><?php echo $v['status'] == '1' ? '正常' : '删除';?></td>
-                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td align="center">
-                        <a href="javascript:void(0);" onclick="(<?php echo $v['did'];?>)">修改</a>
-                        <br/>
-                        <a href="javascript:void(0);" onclick="(<?php echo $v['did'];?>)">删除</a>
-                    </td>
-                </tr>
+                <?php if (empty ($data)) {?>
+                    <tr>
+                        <td colspan="9"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">暂时没有产品，赶快创建属于自己的产品吧。</td>
+                    </tr>
+                <?php } else {?>
+                    <?php foreach ($data as $v) {?>
+                    <tr>
+                        <td width="8%" height="26" align="center"><?php echo $v['pid'];?></td>
+                        <td width="8%" align="center">
+                            <a href="#">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                            </a>
+                        </td>
+                        <td width="25%" align="center"><a href="#" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a></td>
+                        <td width="8%" align="center">￥<?php echo $v['market_price'] / 100;?></td>
+                        <td width="8%" align="center"><?php echo $v['sales'];?></td>
+                        <td width="8%" align="center">
+                            <a href="#" title="产品<?php echo $v['shelves'] == '1' ? '上架' : '已下架';?>"><?php echo $v['shelves'] == '1' ? '上架' : '已下架';?></a><br/>
+                            <a href="#" title="产品审核<?php echo $v['check_status'] == '1' ? '通过' : '未通过';?>"><?php echo $v['check_status'] == '1' ? '通过' : '未通过';?></a>
+                        </td>
+                        <td width="10%" align="center">
+                            <a href="#" title="共被评论 <?php echo $v['comment_num'];?> 次">评论 <?php echo $v['comment_num'];?> 条</a><br/>
+                            <a href="#" title="共被收藏 <?php echo $v['favorite_num'];?> 次">收藏 <?php echo $v['favorite_num'];?> 次</a>
+                        </td>
+                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="10%" align="center">
+                            <!--<a href="javascript:void(0);" onclick="(<?php echo $v['pid'];?>)">修改</a>
+                            <br/>-->
+                            <a href="javascript:void(0);" onclick="deleteProduct(<?php echo $v['pid'];?>)">
+                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品">
+                            </a>
+                        </td>
+                    </tr>
+                    <?php }?>
                 <?php }?>
-                <!--
-                <tr>
-                    <td colspan="7" align="right">
-                        <ul class="ddall">
-                            <li>订单总数：<span class="font1">3</span></li>
-                            <li>已取消订单数：<span class="font1">0</span></li>
-                            <li>已完成订单数：<span class="font1">0</span></li>
-                            <li>未付款订单数：<span class="font1">0</span></li>
-                            <li>等待付款订单数：<span class="font1">0</span></li>
-                        </ul>
-                    </td>
-                </tr>
-                -->
             </table>
         </div>
         <div class="pages" style="float: right;">
         <?php echo $page_html;?>
         </div>
-        <!--
+
         <div class="u-r-box">
-            <div class="tui-tit">为您推荐</div>
+            <div class="tui-tit">产品推荐</div>
             <div class="tui">
                 <div class="tuipre"><a href="#"></a></div>
                 <div class="tuinext"><a href="#"></a></div>
                 <ul>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
+                    <?php foreach ($favorite_recommend as $fv) {?>
+                    <li>
+                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
 
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_09.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_12.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_15.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
+                        <p><?php echo $fv['pname'];?></p>
+                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
+                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                    <?php }?>
                 </ul>
             </div>
         </div>
-        -->
+
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <script type="text/javascript">
-    function deleteDesignerFavorite(dId)
+    function deleteProduct(pId)
     {
         if (confirm('确定删除！')) {
-            if (!wx.isEmpty(dId)) {
+            if (!wx.isEmpty(pId)) {
                 return false;
             }
 
-            var url = '/user/designerFavorite/deleteDesignerFavorite';
-            var param = 'fid='+dId;
+            var url = '/product/product/deleteProduct';
+            var param = 'pid='+pId;
             var data = wx.ajax(url, param);
 
-            if (data.error == '10020') {
+            if (data.error == '0') {
                 wx.pageReload(0);
                 return true;
             }

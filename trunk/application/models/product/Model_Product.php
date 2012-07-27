@@ -305,14 +305,16 @@ class Model_Product extends MY_Model
      * 删除产品
      *
      * @param $pId
+     * @param $uId
      * @return mixed
      */
-    public function deleteProduct($pId)
+    public function deleteProduct($pId, $uId)
     {
         $this->db->where('pid', $pId);
+        $this->db->where('uid', $uId);
         $this->db->where('status', 1);
-        $this->db->update('product', array('status'=>0));
-        return ;
+
+        return $this->db->update('product', array('status'=>0));
     }
 
     /**
@@ -326,7 +328,7 @@ class Model_Product extends MY_Model
     public function getUserProduct($uId, $limit = 20, $offset = 0)
     {
         //return $this->db->get_where('product',array('uid'=>$uId), $limit, $offset)->result_array();
-        return $this->db->select('*')->get_where('product', array('uid' => $uId), $limit, $offset)->result_array();
+        return $this->db->select('*')->get_where('product', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
     }
 
     /**
@@ -337,7 +339,7 @@ class Model_Product extends MY_Model
      */
     public function getUserProductCount($uId)
     {
-        $this->db->select('*')->from('product')->where('uid', $uId);
+        $this->db->select('*')->from('product')->where('uid', $uId)->where('status', 1);
 
         return $this->db->count_all_results();
     }

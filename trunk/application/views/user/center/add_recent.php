@@ -35,30 +35,16 @@
     <div class="u-right">
         <div class="u-r-box">
             <div class="u-r-tit">添加收货地址 </div>
-            <!--
-            <div class="u-ac">
-              <span class="ruo">账户安全：</span>
-              <span class="zhong">账户安全：</span>
-              <span class="qiang">账户安全：</span>
-              <div class="yanzheng">
-                <span class="phone">未验证手机</span>
-                <span class="email">未验证邮箱</span>
-                <span class="topay">未启用支付密码</span>
-              </div>
-              <div class="safetip">为保护账户安全，请尽快<a href="#"><strong>启用所有安全服务</strong></a></div>
-
-            </div>
-            -->
         </div>
         <div class="u-r-box">
             <form action="/user/center/addInvoice" method="post">
                 <input type="hidden" name="act" value="add">
                 <input type="hidden" name="act" value="<?php echo empty ($recentData['recent_name']) ? '0' : $recentData['address_id'];?>" id="aid_id">
-            <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0" id="new_address_id">
+                <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0" id="new_address_id">
                     <tr>
                       <td width="10%" align="right"><span class="font10">*</span> 收货人姓名：</td>
                       <td width="90%"><input name="recent_name" type="text" class="input4" id="recent_name_id" value="<?php echo empty ($recentData['recent_name']) ? '' : $recentData['recent_name'];?>"/>
-                        <span class="font2" id="recent_name_notice_id">请填写您的真实姓名</span></td>
+                        <span class="font2" id="recent_name_notice_id"> 请填写您的真实姓名</span></td>
                     </tr>
                     <tr>
                       <td width="10%" align="right"><span class="font10">*</span> 省市：</td>
@@ -79,33 +65,33 @@
                         </select>
                         &nbsp;&nbsp; <span class="font2"> <span id="edit_address_id"></span>
                         <input name="detail_address" type="text" class="input1" id="detail_address_id" value="" />
-                        <span id="address_notice_id">请填写您的收货地址</span></span></td>
+                        <span id="address_notice_id"> 请填写您的收货地址</span></span></td>
                     </tr>
                     <tr>
                       <td align="right"><span class="font10">*</span>手机号码：</td>
                       <td><input name="phone_num" type="text" class="input4" id="phone_num_id" value="" />
-                        <span class="font2" id="phone_num_notice_id">请填写正确手机号码，便于接收发货和收货通知</span></td>
+                        <span class="font2" id="phone_num_notice_id"> 请填写正确手机号码，便于接收发货和收货通知</span></td>
                     </tr>
                     <tr>
                       <td align="right">固定电话：</td>
                       <td><input name="area_num" type="text" class="input2" id="area_num_id" value="" />
                         -
                         <input name="call_num" type="text" class="input3" id="call_num_id" value="" />
-                        <span class="font2">如010-12345678，固定电话和手机号码请至少填写一项</span></td>
+                        <span class="font2"> 如010-12345678，固定电话和手机号码请至少填写一项</span></td>
                     </tr>
                     <tr>
                       <td align="right"><span class="font10">*</span> 电子邮件：</td>
                       <td><input name="email" type="text" class="input4" id="email_id" />
-                        <span class="font2" id="email_notice_id">用于接收订单提醒邮件，便于您及时了解订单状态</span></td>
+                        <span class="font2" id="email_notice_id"> 用于接收订单提醒邮件，便于您及时了解订单状态</span></td>
                     </tr>
                     <tr>
                       <td align="right"><span class="font10">*</span> 邮编：</td>
                       <td><input name="post_code" type="text" class="input4" id="post_code_id" />
-                        <span class="font2" id="post_code_notice_id">建议邮编：<span id="proposal_post_code_id"></span></span></td>
+                        <span class="font2" id="post_code_notice_id"> 建议邮编：<span id="proposal_post_code_id"></span></span></td>
                     </tr>
                     <tr>
                       <td height="50" align="right">&nbsp;</td>
-                      <td><a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress('/user/center/recentAddress')">添加地址</a></td>
+                      <td><a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress('/user/center/recentAddress')">保存地址</a></td>
                     </tr>
                   </table>
             </form>

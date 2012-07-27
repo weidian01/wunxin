@@ -65,6 +65,46 @@ class Model_Design_Comment extends MY_Model
     }
 
     /**
+     * 获取用户设计图评论和设计图
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserCommentAndDesign($uId, $limit = 20, $offset = 0)
+    {
+        $field = 'comment_id, design_comment.did, design_comment.uid, design_comment.uname, title, content, ip, reply_num, design_comment.create_time,
+        class_id, dname, ddetail, design_img, design_source, source_expand, status, vote_end_time, total_num, total_fraction, favorite_num';
+
+        $this->db->select($field);
+        $this->db->from('design_comment');
+        $this->db->join('design', 'design_comment.did = design.did', 'left');
+        $this->db->where('design_comment.uid', $uId);
+        $this->db->order_by('design_comment.create_time', 'desc');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户设计图评论和设计图数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserCommentAndDesignCount($uId)
+    {
+        $this->db->select('*');
+        $this->db->from('design_comment');
+        $this->db->join('design', 'design_comment.did = design.did', 'left');
+        $this->db->where('design_comment.uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
      * @name 获取设计图评论 -- 通过设计图ID
      *
      * @param int $did
@@ -129,12 +169,14 @@ class Model_Design_Comment extends MY_Model
 
     /**
      * 删除设计图评论 -- 通过评论ID
+     *
      * @param $cId
+     * @param $uId
      * @return bool
      */
-    public function deleteDesignCommentByCommentId($cId)
+    public function deleteDesignCommentByCommentId($cId, $uId)
     {
-        $this->db->delete('design_comment', array('comment_id' => $cId));
+        $this->db->delete('design_comment', array('comment_id' => $cId, 'uid' => $uId));
 
         $this->db->delete('design_comment_reply', array('comment_id' => $cId));
 
@@ -203,12 +245,11 @@ class Model_Design_Comment extends MY_Model
      * 删除一个产品评论回复 -- 通过回复ID
      *
      * @param $rId
+     * @param $uId
      * @return bool
      */
     public function deleteDesignCommentReplyByReplyId($rId)
     {
-        $this->db->delete('design_comment_reply', array('id' => $rId));
-
-        return true;
+        return $this->db->delete('design_comment_reply', array('id' => $rId));
     }
 }

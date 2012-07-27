@@ -22,76 +22,28 @@
     <div class="u-right">
         <div class="u-r-box">
             <div class="u-r-tit">我的发票</div>
-            <!--
-            <div class="u-ac">
-              <span class="ruo">账户安全：</span>
-              <span class="zhong">账户安全：</span>
-              <span class="qiang">账户安全：</span>
-              <div class="yanzheng">
-                <span class="phone">未验证手机</span>
-                <span class="email">未验证邮箱</span>
-                <span class="topay">未启用支付密码</span>
-              </div>
-              <div class="safetip">为保护账户安全，请尽快<a href="#"><strong>启用所有安全服务</strong></a></div>
-
-            </div>
-            -->
         </div>
         <div class="u-r-box">
-            <!--
-            <div class="orderlist-sek">
-
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td width="44%"><label>
-                            <select name="select" id="select">
-                                <option>近一个月订单</option>
-                            </select>&nbsp;&nbsp;
-                            <select name="select2" id="select2">
-                                <option>订单状态</option>
-                            </select>
-                        </label></td>
-                        <td width="46%" align="right"><label>
-                            <input name="textfield" type="text" class="input1" id="textfield" value="商品名称，商品编号，订单编号"
-                                   onfocus="if (value =='商品名称，商品编号，订单编号'){value =''}"
-                                   onblur="if (value ==''){value='商品名称，商品编号，订单编号'}"/>
-                        </label></td>
-                        <td width="10%">&nbsp;&nbsp;<label>
-                            <input class="sinput" type="submit" name="button" id="button" value="查询"/>
-                        </label></td>
-                    </tr>
-                </table>
-
-            </div>
-
+            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td width="16%" height="26" align="center">发票编号</td>
-                        <td width="28%">发票抬头</td>
+                        <td width="8%" height="26" align="center">发票编号</td>
+                        <td width="28%" align="center">发票抬头</td>
                         <td width="8%" align="center">发票内容</td>
                         <td width="10%" align="center">是否为默认</td>
-                        <td width="17%" align="center">创建时间</td>
-                        <td width="17%" align="center">操作</td>
+                        <td width="10%" align="center">创建时间</td>
+                        <td width="10%" align="center">操作</td>
                     </tr>
                 </table>
             </div>
-            -->
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr class="o-list">
-                    <td width="16%" height="26" align="center">发票编号</td>
-                    <td width="28%" align="center">发票抬头</td>
-                    <td width="8%" align="center">发票内容</td>
-                    <td width="10%" align="center">是否为默认</td>
-                    <td width="17%" align="center">创建时间</td>
-                    <td width="17%" align="center">操作</td>
-                </tr>
                 <?php if (empty ($data)) $data = array();
                 foreach ($data as $v) {?>
                 <tr id="invoice_<?php echo $v['invoice_id'];?>">
-                    <td height="26" align="center"><a href="#"><?php echo $v['invoice_id'];?></a></td>
-                    <td><?php echo $v['invoice_payable'];?> </td>
-                    <td align="center"><?php
+                    <td width="8%" height="26" align="center"><a href="#"><?php echo $v['invoice_id'];?></a></td>
+                    <td width="28%"><?php echo $v['invoice_payable'];?> </td>
+                    <td width="8%" align="center"><?php
                         switch($v['invoice_content']) {
                             case '1': $st = '服装'; break;
                             case '2': $st = '其他'; break;
@@ -100,10 +52,12 @@
                         }
                             echo $st;
                         ?></td>
-                    <td align="center"><?php echo $v['default'] == '1' ? '是' : '否';?></td>
-                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td align="center">
-                        <a href="javascript:void(0);" onclick="deleteInvoice(<?php echo $v['invoice_id'];?>)">删除</a>
+                    <td width="10%" align="center"><?php echo $v['default'] == '1' ? '是' : '否';?></td>
+                    <td width="10%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td width="10%" align="center">
+                        <a href="javascript:void(0);" onclick="deleteInvoice(<?php echo $v['invoice_id'];?>)">
+                            <img src="<?=config_item('static_url')?>images/delete.png" title="删除此发票">
+                        </a>
                     </td>
                 </tr>
                 <?php }?>
