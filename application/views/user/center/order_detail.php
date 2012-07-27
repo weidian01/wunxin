@@ -195,9 +195,9 @@
                                     <th align="center">商品信息</th>
                                     <th width="90" align="center">单价（元）</th>
                                     <th width="100" align="center"> 赠送积分<!--<a title="什么是YOHO币" target="_blank" href="#"> <img src="http://static.yohobuy.com/images/ico_help_3.png"> </a>--></th>
-                                    <th width="90" align="center">尺寸</th>
                                     <th width="90" align="center">数量</th>
                                     <th width="90" align="center">小计（元）</th>
+                                    <th width="90" align="center">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -212,30 +212,36 @@
                                             <tbody>
                                             <tr>
                                                 <td style="width:60px;">
-                                                    <!--<img src="<?php echo $pv['pid']?>">-->
-                                                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" alt=""/>
+                                                    <a href="#" title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>">
+                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                                                    </a>
                                                 </td>
                                                 <td>
-                                                    <a title="<?php echo $pv['pname']?>" class="a_e" href="/product/pro_19910_28559/VISIBLEVSB2012015TXu.html">
-                                                        <?php echo $pv['pname']?> </a><br> <!--<span class="f_g">颜色：白    尺码：M</span></td>-->
+                                                    <a title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>" class="a_e" href="#"> <?php echo $pv['pname']?> </a><br>
+                                                    <span class="f_g">尺码：<?php echo $pv['product_size'];?></span>
+                                                </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td width="90" align="center"><strong><?php echo $pv['sall_price'];?></strong></td>
-                                    <td width="100" align="center"><strong><?php echo $pv['sall_price'];?></strong></td>
-                                    <td width="90" align="center"><strong><?php echo $pv['product_size'];?></strong></td>
+                                    <td width="90" align="center"><strong>￥<?php echo $pv['sall_price'] / 100;?></strong></td>
+                                    <td width="100" align="center"><strong><?php echo $pv['sall_price'] / 100;?></strong></td>
                                     <td width="90" align="center"><strong><?php echo $pv['product_num'];?></strong></td>
-                                    <td width="90" align="center" class="end"><strong><?php echo ($pv['sall_price'] * $pv['product_num']);?></strong></td>
+                                    <td width="90" align="center"><strong><?php echo ($pv['sall_price'] * $pv['product_num']) / 100;?></strong></td>
+                                    <td width="90" align="center" class="end">
+                                        <a href="#"><img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品"></a>
+                                        <a href="#"><img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单"></a><br/>
+                                        <a href="#"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货"></a>
+                                    </td>
                                 </tr>
                                 <?php } ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td class="end" colspan="6"> 商品总价： <strong> ¥ <?php echo $totalPrice;?>元</strong><br>
+                                    <td class="end" colspan="6"> 商品总价： <strong> ¥ <?php echo $totalPrice / 100;?>元</strong><br>
                                         运费：+ ¥ 0元<br>
                                         万象币使用：0个<br>
-                                        实际应支付：<strong><span class="f_rz">¥ <?php echo $totalPrice;?>元</span></strong><br>
+                                        实际应支付：<strong><span class="f_rz">¥ <?php echo $totalPrice / 100;?>元</span></strong><br>
                                     </td>
                                 </tr>
                                 </tfoot>

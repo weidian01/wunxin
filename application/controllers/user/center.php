@@ -52,18 +52,21 @@ class center extends MY_Controller
         //$data = $this->invoice->getUserInvoiceByuId($this->uInfo['uid'], $Limit, $offset);
         $data = $this->order->getOrderByUid($this->uInfo['uid'], $Limit, $offset);
         //$this->uInfo;
+//echo '<pre>';print_r($data);exit;
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
 
-        $this->load->view('user/center/center', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum));
+        $this->load->view('user/center/center', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
 
+    /**
+     * @return mixed
+     */
     public function orderDetail()
     {
         $orderSn = $this->uri->segment(4, 0);
 
-        if (empty ($orderSn)) {
-            redirect('/user/center/index');
-            return ;
-        }
+
 
         $this->load->model('order/Model_Order', 'order');
         $orderData = $this->order->getOrderByOrderSn($orderSn);
@@ -143,7 +146,10 @@ class center extends MY_Controller
 
         $data = $this->share->getProductShareAndImagesByUid($this->uInfo['uid'], $Limit, $offset);
 
-        $this->load->view('user/center/share', array('data' => $data, 'page_html' => $pageHtml));
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+
+        $this->load->view('user/center/share', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**
@@ -332,13 +338,46 @@ class center extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-        $this->load->model('product/Model_Product_Favorite', 'favorite');
         $data = $this->comment->getUserCommentAndProduct($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
         $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
 
-        $this->load->view('user/center/p_comment', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
+        $this->load->view('user/center/p_comment', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
+    }
+
+    /**
+     * 设计图评论
+     */
+    public function designComment()
+    {
+        $Limit = 10;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
+
+        $this->load->model('design/Model_Design_Comment', 'comment');
+        $totalNum = $this->comment->getUserCommentAndDesignCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/designComment/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->comment->getUserCommentAndDesign($this->uInfo['uid'], $Limit, $offset);
+//echo '<pre>';print_r($data);exit;
+        $this->load->model('design/Model_Design_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(5);
+
+        $this->load->view('user/center/d_comment', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**
@@ -372,7 +411,7 @@ class center extends MY_Controller
         $this->load->model('user/Model_Designer_Favorite', 'favorite');
         $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(5);
 //echo '<pre>';print_r($favoriteRecommend);exit;
-        $this->load->view('user/center/u_comment', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
+        $this->load->view('user/center/u_comment', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**
@@ -440,7 +479,9 @@ class center extends MY_Controller
         $this->load->view('user/center/recent', array('data' => $data, 'page_html' => $pageHtml));
     }
 
-
+    /**
+     * 添加收货地址
+     */
     public function addRecentAddress()
     {
         $this->load->model('other/Model_Area', 'area');
@@ -449,13 +490,12 @@ class center extends MY_Controller
         $this->load->view('user/center/add_recent', array('province_data' => $provinceData,));
     }
 
-
     /**
      * 我的设计图
      */
     public function myDesign()
     {
-        $Limit = 15;
+        $Limit = 10;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
 
@@ -478,7 +518,10 @@ class center extends MY_Controller
 
         $data = $this->design->getDesignByUid($this->uInfo['uid'], $Limit, $offset);
 
-        $this->load->view('user/center/design', array('data' => $data, 'page_html' => $pageHtml));
+        $this->load->model('design/Model_Design_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(5);
+
+        $this->load->view('user/center/design', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**
@@ -486,7 +529,7 @@ class center extends MY_Controller
      */
     public function myProduct()
     {
-        $Limit = 15;
+        $Limit = 10;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
 
@@ -494,7 +537,7 @@ class center extends MY_Controller
         $totalNum = $this->product->getUserProductCount($this->uInfo['uid']);
 
         $this->load->library('pagination');
-        $config['base_url'] = site_url() . '/user/center/myDesign/';
+        $config['base_url'] = site_url() . '/user/center/myProduct/';
         $config['total_rows'] = $totalNum;
         $config['per_page'] = $Limit;
         $config['num_links'] = 5;
@@ -509,18 +552,21 @@ class center extends MY_Controller
 
         $data = $this->product->getUserProduct($this->uInfo['uid'], $Limit, $offset);
 
-        $this->load->view('user/center/product', array('data' => $data, 'page_html' => $pageHtml));
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+
+        $this->load->view('user/center/product', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
 
     /**
      * 促销信息退订
      */
-    public function sales()
+    public function salesInfo()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $this->load->model('business/Model_Mail_Subscription', 'mail');
+        $data = $this->mail->getUserSubscribeList($this->uInfo['uid']);
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->view('user/center/sales_info', array('data' => $data));
     }
 
     /**
@@ -528,9 +574,39 @@ class center extends MY_Controller
      */
     public function giftCard()
     {
-        $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $data = $this->favorite->getUserDesignerFavorite($this->uInfo['uid']);
+        $Limit = 10;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/u_favorite', array('data' => $data));
+        $this->load->model('business/Model_Gift_Card', 'card');
+        $totalNum = $this->card->getUserCardInfoAndModelCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/giftCard/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->card->getUserCardInfoAndModel($this->uInfo['uid'], $Limit, $offset);
+//echo '<pre>';print_r($data);exit;
+        $this->load->view('user/center/gift_card', array('data' => $data, 'page_html' => $pageHtml));
+    }
+
+    public function bingCard()
+    {
+        $this->load->view('user/center/bing_card');
+    }
+
+    public function systemProposal()
+    {
+        $this->load->view('user/center/system_proposal');
     }
 }

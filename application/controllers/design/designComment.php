@@ -103,4 +103,35 @@ class designComment extends MY_Controller
 
         $this->json_output($response);
     }
+
+    /**
+     * 删除设计图评论
+     */
+    public function deleteComment()
+    {
+        $cId = $this->input->get_post('comment_id');
+
+        $response = array('error' => '0', 'msg' => '删除设计图评论成功', 'code' => 'delete_design_comment_success');
+
+        do {
+            if (empty ($cId)) {
+                $response = error(40027);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('design/Model_Design_Comment', 'comment');
+            $status = $this->comment->deleteDesignCommentByCommentId($cId, $this->uInfo['uid']);
+            if (!$status) {
+                $response = error(40028);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
+    }
 }

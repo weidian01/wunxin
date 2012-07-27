@@ -53,16 +53,26 @@ class mailSubscription extends MY_Controller
     {
         $mailAddress = $this->input->get_post('mail_address');
 
-        if (empty ($mailAddress)) {
-            $response = error(70010);
-        } else {
-            $response = error(70008);
+        $response = error(70008);
+
+        do {
+            if (empty ($mailAddress)) {
+                $response = error(70010);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
             $this->load->model('business/Model_Mail_Subscription', 'mail');
-            $status = $this->mail->unSubscribe($mailAddress);
+            $status = $this->mail->unSubscribe($mailAddress, $this->uInfo['uid']);
             if (!$status) {
                 $response = error(70009);
+                break;
             }
-        }
+        } while (false);
 
         $this->json_output($response);
     }

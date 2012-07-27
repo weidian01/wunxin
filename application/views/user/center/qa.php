@@ -24,57 +24,60 @@
             <div class="u-r-tit">产品问答</div>
         </div>
         <div class="u-r-box">
-            <style>
-                .o-list{font-weight: bold;}
-            </style>
+            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+            <div class="o-list">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="6%" height="26" align="center">编号</td>
+                        <td width="8%" align="center">产品图片</td>
+                        <td width="20%" align="center">产品标题</td>
+                        <td width="8%" align="center">产品价格</td>
+                        <td width="20%" align="center">问答内容</td>
+                        <td width="15%" align="center">人气</td>
+                        <td width="8%" align="center">问答时间</td>
+                        <td width="8%" align="center">操作</td>
+                    </tr>
+                </table>
+            </div>
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr class="o-list">
-                    <td width="6%" height="26" align="center">编号</td>
-                    <td width="8%" align="center">产品图片</td>
-                    <td width="20%" align="center">产品标题</td>
-                    <td width="8%" align="center">产品价格</td>
-                    <td width="20%" align="center">问答内容</td>
-                    <td width="15%" align="center">人气</td>
-                    <td width="8%" align="center">问答时间</td>
-                    <td width="8%" align="center">操作</td>
-                </tr>
-                <?php if (empty ($data)) $data = array();
-                foreach ($data as $v) {?>
-                <tr>
-                    <td height="26" align="center"><?php echo $v['qa_id'];?></td>
-                    <td align="center"><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/></td>
-                    <td align="center"><?php echo $v['pname'];?></td>
-                    <td align="center">￥<?php echo $v['sell_price'] / 100;?></td>
-                    <td align="left">
-                        <b>问：</b><?php echo $v['qa_content'];?> <br />
-                        <b>答：</b><?php echo $v['reply_content'];?> <span style="font-size: 10px;"> <?php echo date('m-d H:i:s', strtotime($v['reply_time']));?></span>
-                    </td>
-                    <td align="center">
-                        <a href="#" title="共被回复 <?php echo $v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?php echo $v['reply_num'];?> 条</a><br />
 
-                        <a href="#" title="共有 <?php echo $v['is_valid'];?> 条有用" style="color: #990000;font-size: 10px;">有效 <?php echo $v['is_valid'];?> 条</a>&nbsp;|&nbsp;
-                        <a href="#" title="共有 <?php echo $v['is_invalid'];?> 条有用" style="color: #990000;font-size: 10px;">无效 <?php echo $v['is_invalid'];?> 条</a>
-                    </td>
-                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td align="center">
-                        <a href="javascript:void(0);" onclick="deleteProductQa(<?php echo $v['qa_id'];?>)">删除</a> <br />
-                        <a href="javascript:void(0);" onclick="(<?php echo $v['qa_id'];?>)">购买</a>
-                    </td>
-                </tr>
-                <?php }?>
-                <!--
+                <?php if (empty ($data)) {?>
                 <tr>
-                    <td colspan="7" align="right">
-                        <ul class="ddall">
-                            <li>订单总数：<span class="font1">3</span></li>
-                            <li>已取消订单数：<span class="font1">0</span></li>
-                            <li>已完成订单数：<span class="font1">0</span></li>
-                            <li>未付款订单数：<span class="font1">0</span></li>
-                            <li>等待付款订单数：<span class="font1">0</span></li>
-                        </ul>
-                    </td>
+                    <td colspan="8"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时还没有产品问答。</td>
                 </tr>
-                -->
+                <?php } else {?>
+                    <?php foreach ($data as $v) {?>
+                    <tr>
+                        <td width="6%" height="26" align="center"><?php echo $v['qa_id'];?></td>
+                        <td width="8%" align="center">
+                            <a href="#" title="<?php echo $v['pname'];?>">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                            </a>
+                        </td>
+                        <td width="20%" align="center"><a href="#" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a></td>
+                        <td width="8%" align="center">￥<?php echo $v['sell_price'] / 100;?></td>
+                        <td width="20%" align="left">
+                            <b>问：</b><?php echo $v['qa_content'];?> <br />
+                            <b>答：</b><?php echo $v['reply_content'];?> <span style="font-size: 10px;"> <?php echo date('m-d H:i:s', strtotime($v['reply_time']));?></span>
+                        </td>
+                        <td width="15%" align="center">
+                            <a href="#" title="共被回复 <?php echo $v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?php echo $v['reply_num'];?> 条</a><br />
+
+                            <a href="#" title="共有 <?php echo $v['is_valid'];?> 条有用" style="color: #990000;font-size: 10px;">有效 <?php echo $v['is_valid'];?> 条</a>&nbsp;|&nbsp;
+                            <a href="#" title="共有 <?php echo $v['is_invalid'];?> 条有用" style="color: #990000;font-size: 10px;">无效 <?php echo $v['is_invalid'];?> 条</a>
+                        </td>
+                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="8%" align="center">
+                            <a href="javascript:void(0);" onclick="deleteProductQa(<?php echo $v['qa_id'];?>)">
+                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此问答">
+                            </a> <br />
+                            <a href="javascript:void(0);" onclick="(<?php echo $v['qa_id'];?>)">
+                                <img src="<?=config_item('static_url')?>images/buy.png" title="删除此产品">
+                            </a>
+                        </td>
+                    </tr>
+                    <?php }?>
+                <?php }?>
             </table>
         </div>
         <div class="pages" style="float: right;">
@@ -82,7 +85,7 @@
         </div>
 
         <div class="u-r-box">
-            <div class="tui-tit">为您推荐</div>
+            <div class="tui-tit">热闹产品推荐</div>
             <div class="tui">
                 <div class="tuipre"><a href="#"></a></div>
                 <div class="tuinext"><a href="#"></a></div>
@@ -95,33 +98,6 @@
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>
-                    <!--
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_09.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_12.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_15.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                        -->
                 </ul>
             </div>
         </div>

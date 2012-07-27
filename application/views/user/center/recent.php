@@ -22,134 +22,58 @@
     <div class="u-right">
         <div class="u-r-box">
             <div class="u-r-tit">收货地址管理<span style="float:right;text-align: right;"><a href="/user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span></div>
-            <!--
-            <div class="u-ac">
-              <span class="ruo">账户安全：</span>
-              <span class="zhong">账户安全：</span>
-              <span class="qiang">账户安全：</span>
-              <div class="yanzheng">
-                <span class="phone">未验证手机</span>
-                <span class="email">未验证邮箱</span>
-                <span class="topay">未启用支付密码</span>
-              </div>
-              <div class="safetip">为保护账户安全，请尽快<a href="#"><strong>启用所有安全服务</strong></a></div>
-
-            </div>
-            -->
         </div>
         <div class="u-r-box">
-            <!--
-            <div class="orderlist-sek">
-
-                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                        <td width="44%"><label>
-                            <select name="select" id="select">
-                                <option>近一个月订单</option>
-                            </select>&nbsp;&nbsp;
-                            <select name="select2" id="select2">
-                                <option>订单状态</option>
-                            </select>
-                        </label></td>
-                        <td width="46%" align="right"><label>
-                            <input name="textfield" type="text" class="input1" id="textfield" value="商品名称，商品编号，订单编号"
-                                   onfocus="if (value =='商品名称，商品编号，订单编号'){value =''}"
-                                   onblur="if (value ==''){value='商品名称，商品编号，订单编号'}"/>
-                        </label></td>
-                        <td width="10%">&nbsp;&nbsp;<label>
-                            <input class="sinput" type="submit" name="button" id="button" value="查询"/>
-                        </label></td>
-                    </tr>
-                </table>
-
+            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+                <div class="o-list">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="6%" height="26" align="center">编号</td>
+                            <td width="6%" align="center">收货人</td>
+                            <td width="18%" align="center">邮件地址</td>
+                            <td width="8%" align="center">邮政编码</td>
+                            <td width="10%" align="center">手机号码</td>
+                            <td width="8%" align="center">座机</td>
+                            <td width="20%" align="center">详细地址</td>
+                            <td width="6%" align="center">默认</td>
+                            <td width="8%" align="center">添加时间</td>
+                            <td width="6%" align="center">操作</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            -->
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr class="o-list">
-                    <td width="8%" height="26" align="center">编号</td>
-                    <td width="8%" align="center">收货人</td>
-                    <td width="8%" align="center">邮件地址</td>
-                    <td width="8%" align="center">邮政编码</td>
-                    <td width="10%" align="center">手机号码</td>
-                    <td width="10%" align="center">座机</td>
-                    <td width="20%" align="center">详细地址</td>
-                    <td width="8%" align="center">默认</td>
-                    <td width="8%" align="center">添加时间</td>
-                    <td width="10%" align="center">操作</td>
-                </tr>
-                <?php if (empty ($data)) $data = array();
-                foreach ($data as $v) {?>
-                <tr id="address_<?php echo $v['address_id'];?>">
-                    <td align="center"><?php echo $v['address_id'];?></td>
-                    <td align="center"><?php echo $v['recent_name'];?></td>
-                    <td align="center"><?php echo $v['email'];?></td>
-                    <td align="center"><?php echo $v['zipcode'];?></td>
-                    <td align="center"><?php echo $v['phone_num'];?></td>
-                    <td align="center"><?php echo $v['call_num'];?></td>
-                    <td align="center"><?php echo $v['province']. ' '. $v['city'] .' '. $v['area']. ' ' . $v['detail_address'];?></td>
-                    <td align="center"><?php echo $v['default_address'] == '1' ? '是' : '否';?></td>
-                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td align="center">
-                        <!--<a href="javascript:void(0);" onclick="(<?php echo $v['address_id'];?>)">修改</a>
-                        <br/>-->
-                        <a href="javascript:void(0);" onclick="deleteRecentAddress(<?php echo $v['address_id'];?>)">删除</a>
-                    </td>
-                </tr>
-                <?php }?>
-                <!--
+                <?php if (empty ($data)) { ?>
                 <tr>
-                    <td colspan="7" align="right">
-                        <ul class="ddall">
-                            <li>订单总数：<span class="font1">3</span></li>
-                            <li>已取消订单数：<span class="font1">0</span></li>
-                            <li>已完成订单数：<span class="font1">0</span></li>
-                            <li>未付款订单数：<span class="font1">0</span></li>
-                            <li>等待付款订单数：<span class="font1">0</span></li>
-                        </ul>
-                    </td>
+                    <td colspan="8"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">没有设置收货地址，点击 “ <a href="/user/center/addRecentAddress"> 创建 </a> ”一个吧。</td>
                 </tr>
-                -->
+                <?php } else {?>
+                    <?php foreach ($data as $v) {?>
+                    <tr id="address_<?php echo $v['address_id'];?>">
+                        <td width="6%" align="center"><?php echo $v['address_id'];?></td>
+                        <td width="6%" align="center"><?php echo $v['recent_name'];?></td>
+                        <td width="18%" align="center"><?php echo $v['email'];?></td>
+                        <td width="8%" align="center"><?php echo $v['zipcode'];?></td>
+                        <td width="10%" align="center"><?php echo $v['phone_num'];?></td>
+                        <td width="8%" align="center"><?php echo $v['call_num'];?></td>
+                        <td width="20%" align="center"><?php echo $v['province']. ' '. $v['city'] .' '. $v['area']. ' ' . $v['detail_address'];?></td>
+                        <td width="6%" align="center"><?php echo $v['default_address'] == '1' ? '是' : '否';?></td>
+                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="6%" align="center">
+                            <!--<a href="javascript:void(0);" onclick="(<?php echo $v['address_id'];?>)">修改</a>
+                            <br/>-->
+                            <a href="javascript:void(0);" onclick="deleteRecentAddress(<?php echo $v['address_id'];?>)">
+                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此地址">
+                            </a>
+                        </td>
+                    </tr>
+                    <?php }?>
+                <?php }?>
             </table>
         </div>
         <div class="pages" style="float: right;">
         <?php echo $page_html;?>
         </div>
-        <!--
-        <div class="u-r-box">
-            <div class="tui-tit">为您推荐</div>
-            <div class="tui">
-                <div class="tuipre"><a href="#"></a></div>
-                <div class="tuinext"><a href="#"></a></div>
-                <ul>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_09.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_12.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_15.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                </ul>
-            </div>
-        </div>
-        -->
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->

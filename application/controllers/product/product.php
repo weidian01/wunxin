@@ -162,5 +162,31 @@ class Product extends MY_Controller
         }
     }
 
+    public function deleteProduct()
+    {
+        $pId = $this->input->get_post('pid');
 
+        $response = array('error' => '0', 'msg' => '删除产品成功', 'code' => 'delete_design_success');
+
+        do {
+            if (empty ($pId)) {
+                $response = error(20025);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('product/Model_Product', 'product');
+            $status = $this->product->deleteProduct($pId, $this->uInfo['uid']);
+            if (!$status) {
+                $response = error(20026);
+                break;
+            }
+        } while (false);
+
+        $this->json_output($response);
+    }
 }

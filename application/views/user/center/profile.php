@@ -217,7 +217,8 @@ dt{font-weight: bold;color: #848484;}
 
                         </div>
                         <div class="submit">
-                            <input type="button" class="btn_b1" value="保存" id="baseInfo" onclick="user.saveUserBaseInfo()">
+                            <!--<input type="button" class="btn_b1" value="保存" id="baseInfo" onclick="user.saveUserBaseInfo()">-->
+                            <img src="<?=config_item('static_url')?>images/save_modify.jpg" title="保存修改的用户信息" onclick="user.saveUserBaseInfo()" style="cursor: pointer;">
                         </div>
                     </div>
                 </div>
@@ -289,7 +290,10 @@ dt{font-weight: bold;color: #848484;}
                                     <span id="zip_codeTip" class="tips-p">请输入收货人所在地邮编号</span></dd>
                             </dl>
                         </div>
-                        <div class="submit"><input type="button" class="btn_b1" value="保存" id="contactInfo" onclick="user.saveUserBaseInfo()"></div>
+                        <div class="submit">
+                            <!--<input type="button" class="btn_b1" value="保存" id="contactInfo" onclick="user.saveUserBaseInfo()">-->
+                            <img src="<?=config_item('static_url')?>images/save_modify.jpg" title="保存修改的用户信息" onclick="user.saveUserBaseInfo()" style="cursor: pointer;">
+                        </div>
                     </div>
                 </div>
 
@@ -316,7 +320,10 @@ dt{font-weight: bold;color: #848484;}
                                 </dd>
                             </dl>
                         </div>
-                        <div class="submit"><input type="button" class="btn_b1" value="保存" id="shoppingInfo" onclick="user.saveUserBaseInfo()"></div>
+                        <div class="submit">
+                            <!--<input type="button" class="btn_b1" value="保存" id="shoppingInfo" onclick="user.saveUserBaseInfo()">-->
+                            <img src="<?=config_item('static_url')?>images/save_modify.jpg" title="保存修改的用户信息" onclick="user.saveUserBaseInfo()" style="cursor: pointer;">
+                        </div>
                     </div>
                 </div>
 

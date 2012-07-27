@@ -92,7 +92,7 @@ class Model_Design extends MY_Model
      */
     public function getDesignByUid($uId, $limit = 20, $offset = 0)
     {
-        $data = $this->db->select('*')->get_where('design', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
+        $data = $this->db->select('*')->order_by('create_time', 'desc')->get_where('design', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
 
         return empty ($data) ? null : $data;
     }
@@ -146,5 +146,18 @@ class Model_Design extends MY_Model
         return $this->db->update('design', array('status' => 0));
     }
 
+    /**
+     * 物理删除设计图
+     *
+     * @param $dId
+     * @param $uId
+     * @return boolean
+     */
+    public function deleteDesign($dId, $uId)
+    {
+        $this->db->where('did', $dId);
+        $this->db->where('uid', $uId);
 
+        return $this->db->delete('design');
+    }
 }

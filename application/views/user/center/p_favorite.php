@@ -19,7 +19,7 @@
         .scj .main{width:798px;padding:0px 1px 1px 1px;background:url(/images/k_r_b.png) no-repeat bottom;float:left;}
         .scj .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(/images/k_r_tg2.png) no-repeat top;float:left;}
         .scj .title h2{width:175px;height:15px;background:url(/images/z_scj.png) no-repeat; text-indent:-999em;float:left;}
-        .scj .main .tab{width:778px;height:25px;background:url(/images/tab_lan2.png) repeat-x 0px -25px;margin:10px 10px 10px 10px;display:inline;float:left;}
+        .scj .main .tab{width:778px;height:25px;background:url(/images/tab_lan2.png) repeat-x 0px -25px;margin:10px 10px 0px 10px;display:inline;float:left;}
         .scj .main .tab a{width:98px;height:25px;line-height:25px;text-align:center;background:url(/images/tab_lan3.png) no-repeat -101px 0px;margin-right:3px;display:inline;color:#333;float:left;}
         .scj .main .tab a.act{width:98px;height:25px;line-height:25px;text-align:center;background:url(/images/tab_lan3.png) no-repeat 0px 0px;
             margin-right:3px;display:inline;color:#333;font-weight:bold;float:left;}
@@ -68,31 +68,6 @@
             <div class="u-r-tit">我的收藏夹</div>
         </div>
         <div class="u-r-box">
-            <!--
-            <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr class="o-list">
-                    <td width="16%" height="26" align="center">收藏编号</td>
-                    <td width="15%">产品图片</td>
-                    <td width="25%" align="center">产品名称</td>
-                    <td width="10%" align="center">产品价格</td>
-                    <td width="17%" align="center">收藏时间</td>
-                    <td width="17%" align="center">操作</td>
-                </tr>
-                <?php if (empty ($data)) $data = array();
-                foreach ($data as $v) {?>
-                <tr>
-                    <td height="26" align="center"><a href="#"><?php echo $v['id'];?></a></td>
-                    <td><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/></td>
-                    <td align="center"><?php //echo $v['pname']; ?></td>
-                    <td align="center"><?php //echo $v['market_price'];?></td>
-                    <td align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                    <td align="center">
-                        <a href="javascript:void(0);" onclick="deleteProductFavorite(<?php echo $v['id'];?>)">删除</a>
-                    </td>
-                </tr>
-                    <?php }?>
-            </table>
-            -->
             <div class="scj">
                 <div class="main">
                     <div class="tab">
@@ -102,48 +77,52 @@
                     </div>
                     <div id="itemList">
                         <div class="list-m">
-                            <!--
-                            <h2>
-                                <a href="javascript:void(0);" onclick="changeStyle(0);" class="act">全部（2）</a>
-                                |　<a href="javascript:void(0);" onclick="changeStyle(11);">T恤（1）</a> &nbsp;&nbsp; |　<a
-                                href="javascript:void(0);" onclick="changeStyle(101);">文具（1）</a> &nbsp;&nbsp;
-                            </h2>
-                            -->
                             <form id="f1" method="post">
                                 <table width="100%" class="table2">
                                     <thead>
                                     <tr>
-                                        <!--<td align="center" style="text-align:center;"><b style="color: #8B8378;">收藏编号</b></td>-->
                                         <th colspan="2" align="left"><b style="color: #8B8378;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;产品信息</b></th>
-                                        <td align="center" style="text-align:center;"><b style="color: #8B8378;">产品价格</b></td>
                                         <td align="center" style="text-align:center;"><b style="color: #8B8378;">收藏时间</b></td>
                                         <th align="center" style="text-align:center;"><b style="color: #8B8378;">人气</b></th>
                                         <th align="center" style="text-align:center;"><b style="color: #8B8378;">操作</b></th>
                                     </tr>
                                     </thead>
                                     <tbody class="tbody">
-                                    <?php if (empty ($data)) $data = array();
-                                    foreach ($data as $v) {?>
+                                    <?php if (empty ($data)) { ?>
                                     <tr>
-                                        <!--<td style="width:90px;text-align:center;"><?php echo $v['id'];?></td>-->
-                                        <td style="width:60px;">
-                                            <div class="imgbox">
-                                                <!--<img src="http://img02.static.yohobuy.com/thumb/2011/06/24/13/02bc8668e95b1115ecc6635b7c341dd1ae00600060.jpg">-->
-                                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="a_e"><?php echo $v['pname'];?></a><br>
-                                        </td>
-                                        <td style="width:90px;text-align:center;"><?php echo $v['sell_price'];?></td>
-                                        <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
-                                        <td style="width:90px;text-align:center;">共收藏 <?php echo $v['favorite_num'];?> 次</td>
-                                        <td style="width:90px;text-align:center;">
-                                            <a href="#" class="a_e">查看产品</a>
-                                            <br/><br/>
-                                            <span class="det" onclick="deleteFavorite(<?php echo $v['id'];?>)" style="cursor:pointer;color:#468fa2;">删除</span>
-                                        </td>
+                                        <td colspan="5"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">暂时没有收藏产品，赶快去收藏自己喜欢的产品吧。</td>
                                     </tr>
+                                    <?php } else {?>
+                                        <?php foreach ($data as $v) {?>
+                                        <tr>
+                                            <td style="width:60px;">
+                                                <div class="imgbox">
+                                                    <a href="#" class="a_e" title="<?php echo $v['pname'];?>">
+                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="a_e" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?> &nbsp;&nbsp;
+                                                    <span style="color: #CC0033;font-weight: bold;">￥<?php echo $v['sell_price'];?><span></a></a><br>
+                                            </td>
+                                            <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                                            <td style="width:90px;text-align:center;">
+                                                <a href="#" title="产品共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;">共收藏 <?php echo $v['favorite_num'];?> 次</td>
+                                            <td style="width:90px;text-align:center;">
+                                                <a href="#" class="a_e">
+                                                    <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品评论">
+                                                </a><br/>
+                                                <a href="#" class="a_e">
+                                                    <img src="<?=config_item('static_url')?>images/view.png" title="查看此产品">
+                                                </a>
+                                                <br/>
+                                                <a href="#" class="a_e" onclick="deleteFavorite(<?php echo $v['id'];?>)">
+                                                    <img src="<?=config_item('static_url')?>images/view.png" title="删除此产品评论">
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php }?>
                                     <?php }?>
                                     </tbody>
                                     <tfoot>

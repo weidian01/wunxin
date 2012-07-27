@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>修改密码 -- 个人中心</title>
+    <title>系统建议与意见 -- 个人中心</title>
     <link href="/css/base.css" rel="stylesheet" type="text/css"/>
     <link href="/css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
@@ -39,35 +39,33 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">修改密码</div>
+            <div class="u-r-tit">系统建议与意见</div>
         </div>
         <div class="u-r-box">
             <div class="xgmm">
             <div class="main">
                 <dl id="oldpassword_dl">
-                    <dt>旧密码：</dt>
+                    <dt>标题：</dt>
                     <dd>
-                        <input name="oldpassword" id="old_password" type="password" class="input_1" style="width:155px;" onblur="checkPassWord()">
+                        <input name="title" id="title_id" type="text" class="input_1" style="width:200px;" onblur="checkPassWord()">
                         <span class="txi" id="old_password_notice_id">您之前使用的密码<!--，<a href="http://www.yohobuy.com/help/?category_id=57">忘记密码？</a>--></span>
                     </dd>
                 </dl>
                 <dl id="password_dl">
-                    <dt>设定新密码：</dt>
+                    <dt>内容：</dt>
                     <dd>
-                        <input name="password" id="password_id" type="password" class="input_1" style="width:155px;" onblur="user.checkPassWord()">
+                        <!--<input name="content" id="" type="password" class="input_1" style="width:155px;" onblur="user.checkPassWord()">-->
+                        <textarea rows="3" cols="15" name="content" id="content_id" class="" ></textarea>
                         <span class="txi" id="password_notice_id">您要设置的新密码，密码为6位以上30位以下字母或数字</span>
                     </dd>
                 </dl>
-                <dl id="confirm_password_dl">
-                    <dt>重复密码：</dt>
+
+                <dl >
+                    <dt></dt>
                     <dd>
-                        <input name="confirm_password" id="repassword_id" type="password" class="input_1" style="width:155px;" onblur="user.checkRePassWord()">
-                        <span class="txi" id="repassword_notice_id">重复密码和新密码要一致</span>
+                        <input type="button" value="保存"  onclick="changePassword()">
                     </dd>
                 </dl>
-                <div class="submit">
-                    <input type="button" value="" class="btn_b1" onclick="changePassword()">
-                </div>
             </div>
             </div>
         </div>

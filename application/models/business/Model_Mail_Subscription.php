@@ -89,14 +89,47 @@ class Model_Mail_Subscription extends MY_Model
     }
 
     /**
+     * 获取用户订阅列表
+     *
+     * @param int $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserSubscribeList($uId, $limit = 20, $offset = 0)
+    {
+        $this->db->select('*');
+        $this->db->from('mail_subscription');
+        $this->db->limit($limit, $offset);
+        $this->db->where('uid', $uId);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户订阅数量
+     *
+     * @param int $uId
+     * @return int
+     */
+    public function getUserSubscribeCount($uId)
+    {
+        $this->db->select('*')->from('mail_subscription')->where('uid', $uId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
      * 退订促销信息
      *
      * @param $mailAddr
+     * @param $uId
      * @return boolean
      */
-    public function unSubscribe($mailAddr)
+    public function unSubscribe($mailAddr, $uId)
     {
-        return $this->db->delete('mail_subscription', array('email_addr' => $mailAddr));
+        return $this->db->delete('mail_subscription', array('email_addr' => $mailAddr, 'uid' => $uId));
     }
 
     /**

@@ -109,6 +109,10 @@ $error[20022] = array('error' => '20022', 'msg' => '删除产品评论失败', '
 $error[20023] = array('error' => '20023', 'msg' => '删除产品问答失败', 'code' => 'delete_product_comment_failure');
 $error[20024] = array('error' => '20024', 'msg' => '删除产品问答参数不全', 'code' => 'delete_product_comment_parameter_failure');
 
+$error[20025] = array('error' => '20025', 'msg' => '删除产品参数不全', 'code' => 'delete_product_parameter_failure');
+$error[20026] = array('error' => '20026', 'msg' => '删除产品失败', 'code' => 'delete_product_failure');
+
+
 
 /**
  * 订单错误代码  --  订单相关错误代码以 30 开头
@@ -174,6 +178,12 @@ $error[40022] = array('error' => '40022', 'msg' => '删除设计图投票失败'
 $error[40023] = array('error' => '40023', 'msg' => '删除设计图投票参数不全', 'code' => 'delete_design_vote_parameter_failure');
 $error[40024] = array('error' => '40024', 'msg' => '无权限删除此设计图投票', 'code' => 'no_permission_remove_the_vote_of_this_design');
 
+$error[40025] = array('error' => '40025', 'msg' => '删除设计图参数不全', 'code' => 'delete_design_parameter_failure');
+$error[40026] = array('error' => '40026', 'msg' => '删除设计图失败', 'code' => 'delete_design_failure');
+
+$error[40027] = array('error' => '40027', 'msg' => '删除设计图评论参数不全', 'code' => 'delete_design_comment_parameter_failure');
+$error[40028] = array('error' => '40028', 'msg' => '删除设计图评论失败', 'code' => 'delete_design_comment_failure');
+
 
 /**
  * 评论错误代码  --  评论相关错误代码以 50 开头
@@ -232,7 +242,7 @@ $error[60019] = array('error' => '60019', 'msg' => '存储用户购物车中产�
 /**
  * 业务错误代码 -- 相关业务错误代码以 70 开头
  */
-$error[70001] = array('error' => '70001', 'msg' => '绑定卡成功', 'code' => 'banding_card_success');
+$error[70001] = array('error' => '70001', 'msg' => '卡密码错误', 'code' => 'card_password_error');
 $error[70002] = array('error' => '70002', 'msg' => '绑定卡失败', 'code' => 'banding_card_failure');
 $error[70003] = array('error' => '70003', 'msg' => '绑定卡参数不全', 'code' => 'banding_card_parameter_failure');
 $error[70004] = array('error' => '70004', 'msg' => '卡已经绑定', 'code' => 'card_already_banding_success');
@@ -244,6 +254,11 @@ $error[70007] = array('error' => '70007', 'msg' => '订阅邮件列表参数不�
 $error[70008] = array('error' => '70008', 'msg' => '退订邮件列表成功', 'code' => 'unSubscribe_mail_list_success');
 $error[70009] = array('error' => '70009', 'msg' => '退订邮件列表失败', 'code' => 'unSubscribe_mail_list_failure');
 $error[70010] = array('error' => '70010', 'msg' => '退订邮件列表参数不全', 'code' => 'unSubscribe_mail_list_parameter_failure');
+
+$error[70011] = array('error' => '70011', 'msg' => '删除礼物卡参数不全', 'code' => 'delete_gift_card_parameter_failure');
+$error[70012] = array('error' => '70012', 'msg' => '删除礼物卡失败', 'code' => 'delete_gift_card_failure');
+
+
 
 /**
  * 其他错误代码  --  其他相关错误代码以 70 开头
