@@ -23,24 +23,21 @@
         <div class="u-r-box">
             <div class="u-r-tit">收货地址管理<span style="float:right;text-align: right;"><a href="/user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span></div>
         </div>
-        <div class="u-r-box">
             <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
-                <div class="o-list">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td width="6%" height="26" align="center">编号</td>
-                            <td width="6%" align="center">收货人</td>
-                            <td width="18%" align="center">邮件地址</td>
-                            <td width="8%" align="center">邮政编码</td>
-                            <td width="10%" align="center">手机号码</td>
-                            <td width="8%" align="center">座机</td>
-                            <td width="20%" align="center">详细地址</td>
-                            <td width="6%" align="center">默认</td>
-                            <td width="8%" align="center">添加时间</td>
-                            <td width="6%" align="center">操作</td>
-                        </tr>
-                    </table>
-                </div>
+            <div class="o-list">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="6%" height="26" align="center">编号</td>
+                        <td width="6%" align="center">收货人</td>
+                        <td width="18%" align="center">邮件地址</td>
+                        <td width="7%" align="center">邮政编码</td>
+                        <td width="10%" align="center">手机号码</td>
+                        <td width="10%" align="center">座机</td>
+                        <td width="20%" align="center">详细地址</td>
+                        <td width="5%" align="center">默认</td>
+                        <td width="6%" align="center">操作</td>
+                    </tr>
+                </table>
             </div>
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <?php if (empty ($data)) { ?>
@@ -53,12 +50,11 @@
                         <td width="6%" align="center"><?php echo $v['address_id'];?></td>
                         <td width="6%" align="center"><?php echo $v['recent_name'];?></td>
                         <td width="18%" align="center"><?php echo $v['email'];?></td>
-                        <td width="8%" align="center"><?php echo $v['zipcode'];?></td>
+                        <td width="7%" align="center"><?php echo $v['zipcode'];?></td>
                         <td width="10%" align="center"><?php echo $v['phone_num'];?></td>
-                        <td width="8%" align="center"><?php echo $v['call_num'];?></td>
+                        <td width="10%" align="center"><?php echo $v['call_num'];?></td>
                         <td width="20%" align="center"><?php echo $v['province']. ' '. $v['city'] .' '. $v['area']. ' ' . $v['detail_address'];?></td>
-                        <td width="6%" align="center"><?php echo $v['default_address'] == '1' ? '是' : '否';?></td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="5%" align="center"><?php echo $v['default_address'] == '1' ? '是' : '否';?></td>
                         <td width="6%" align="center">
                             <!--<a href="javascript:void(0);" onclick="(<?php echo $v['address_id'];?>)">修改</a>
                             <br/>-->

@@ -10,13 +10,16 @@ class systemProposal extends MY_Controller
 {
     public function addSystemProposal()
     {
-
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
+        $uName = $this->input->get_post('uname');
+        $phone = $this->input->get_post('phone');
+        $mail = $this->input->get_post('mail');
 
-        $response = error(99001);
+        $response = array('error' => '0', 'msg' => '添加系统建议与意见成功', 'code' => 'add_system_proposal_success');
+
         do {
-            if (empty ($title) || empty ($content)) {
+            if (empty ($content)) {
                 $response = error(99003);
                 break;
             }
@@ -30,7 +33,10 @@ class systemProposal extends MY_Controller
                 'title' => $title,
                 'content' => $content,
                 'uid' => $this->uInfo['uid'],
-                'uname' => $this->uInfo['uname']
+                'uname' => $this->uInfo['uname'],
+                'realname' => $uName,
+                'telecall' => $phone,
+                'email' => $mail,
             );
 
             $this->load->model('other/Model_System_Proposal', 'proposal');

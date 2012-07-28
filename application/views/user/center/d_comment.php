@@ -112,9 +112,9 @@
                                             </td>
                                             <td style="width:170px;text-align:center;"><?php echo $v['ddetail'];?></td>
                                             <td style="width:110px;text-align:center;">
-                                                <a href="#" title="此设计图评论被回复 <?php echo $v['reply_num'];?> 条" style="cursor:pointer;color:#990000;">被回复 <?php echo $v['reply_num'];?> 条</a> <br /><br />
-                                                <a href="#" title="共有 <?php echo $v['total_num'];?> 用户投票" style="cursor:pointer;color:#990000;">共 <?php echo $v['total_num'];?> 票</a> &nbsp;|&nbsp;
-                                                <a href="#" title="此设计图总分数为 <?php echo $v['total_fraction'];?> 分" style="cursor:pointer;color:#990000;">共 <?php echo $v['total_fraction'];?> 分</a>
+                                                <a href="#" title="此设计图评论被回复 <?php echo $v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?php echo $v['reply_num'];?> 条</a> <br /><br />
+                                                <a href="#" title="共有 <?php echo $v['total_num'];?> 用户投票" style="color: #990000;font-size: 10px;">共 <?php echo $v['total_num'];?> 票</a> &nbsp;|&nbsp;
+                                                <a href="#" title="此设计图总分数为 <?php echo $v['total_fraction'];?> 分" style="color: #990000;font-size: 10px;">共 <?php echo $v['total_fraction'];?> 分</a>
                                             </td>
                                             <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:60px;text-align:center;">
@@ -122,6 +122,11 @@
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计图">
                                                 </a>
                                                 <br/>
+                                                <a href="#">
+                                                    <img src="<?=config_item('static_url')?>images/comment.png" title="评论此设计图">
+                                                </a>
+                                                <br/>
+
                                                 <a href="javascript:void(0);" onclick="deleteComment(<?php echo $v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图评论">
                                                 </a>

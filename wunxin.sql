@@ -4824,8 +4824,9 @@ create table wx_returns
    uid                  int unsigned comment '用户ID',
    order_sn             int comment '订单ID',
    pid                  int comment '产品ID',
+   product_num          int comment '产品数量',
    type                 tinyint comment '类型1，退货，2换货',
-   reason               tinyint comment '原因,1尺寸不对，2货品有问题，3其他',
+   reason               varchar(128) comment '原因,1尺寸不对，2货品有质量问题，3其他质量',
    descr                varchar(256) comment '描述',
    logistic_num         char(16) comment '退换货物流单号',
    cs_operations        tinyint default 0 comment '客服操作，0初始，1协商成功，2协商失败',
@@ -5025,10 +5026,13 @@ alter table wx_size comment '尺码表';
 create table wx_system_proposal
 (
    id                   int unsigned not null auto_increment comment '自增ID',
-   title                varchar(32) comment '标题',
+   title                varchar(32) default '0' comment '标题',
    content              varchar(255) comment '内容',
-   uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
+   uid                  int unsigned default 0 comment '用户ID',
+   uname                varchar(32) default '0' comment '用户名称',
+   realname             varchar(8) default '0' comment '真实姓名',
+   telecall             char(15) default '0' comment '电话',
+   email                varchar(35) default '0' comment '邮件地址',
    create_time          datetime comment '创建时间',
    primary key (id)
 )
@@ -5392,8 +5396,8 @@ create table wx_user_recent_address
    area                 varchar(16) comment '区域',
    detail_address       varchar(128) comment '详细地址',
    zipcode              char(7) comment '邮编',
-   phone_num            char(11) comment '手机号码',
-   call_num             char(11) comment '座机',
+   phone_num            char(15) comment '手机号码',
+   call_num             char(13) comment '座机',
    default_address      tinyint comment '默认地址,0否，1是',
    create_time          datetime comment '创建时间',
    primary key (address_id)

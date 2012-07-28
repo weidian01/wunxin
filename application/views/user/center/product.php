@@ -64,8 +64,8 @@
                             <a href="#" title="产品审核<?php echo $v['check_status'] == '1' ? '通过' : '未通过';?>"><?php echo $v['check_status'] == '1' ? '通过' : '未通过';?></a>
                         </td>
                         <td width="10%" align="center">
-                            <a href="#" title="共被评论 <?php echo $v['comment_num'];?> 次">评论 <?php echo $v['comment_num'];?> 条</a><br/>
-                            <a href="#" title="共被收藏 <?php echo $v['favorite_num'];?> 次">收藏 <?php echo $v['favorite_num'];?> 次</a>
+                            <a href="#" title="共被评论 <?php echo $v['comment_num'];?> 次" style="color: #990000;font-size: 10px;">评论 <?php echo $v['comment_num'];?> 条</a><br/>
+                            <a href="#" title="共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">收藏 <?php echo $v['favorite_num'];?> 次</a>
                         </td>
                         <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="10%" align="center">

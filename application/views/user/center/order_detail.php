@@ -231,7 +231,7 @@
                                     <td width="90" align="center" class="end">
                                         <a href="#"><img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品"></a>
                                         <a href="#"><img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单"></a><br/>
-                                        <a href="#"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货"></a>
+                                        <a href="/user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货"></a>
                                     </td>
                                 </tr>
                                 <?php } ?>

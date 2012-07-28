@@ -91,7 +91,9 @@
                     </tr>
                     <tr>
                       <td height="50" align="right">&nbsp;</td>
-                      <td><a class="btn-save" href="javascript:void(0);" onclick="order.saveAddress('/user/center/recentAddress')">保存地址</a></td>
+                      <td><a class="" href="javascript:void(0);" onclick="order.saveAddress('/user/center/recentAddress')">
+                          <img src="<?=config_item('static_url')?>images/save_address.png" title="保存地址">
+                      </a></td>
                     </tr>
                   </table>
             </form>

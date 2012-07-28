@@ -49,7 +49,7 @@
                     if ($v['status'] == '0') { $canceledNum += 1; }
                 ?>
                 <tr>
-                    <td width="15%" align="center"><a href="#"><?php echo $v['order_sn'];?></a></td>
+                    <td width="15%" align="center"><a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
                     <td width="35%">
                         <div class="goods-in" style="width: 250px;">
                             <?php
@@ -112,9 +112,9 @@
                             <img src="<?=config_item('static_url')?>images/view.png" title="查看订单详情">
                         </a>
                         <?php if ($v['picking_status'] == '2') {?>
-                        &nbsp;&nbsp;<a href="#"><img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品"></a><br/>
-                        <a href="#"><img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品"></a>
-                        &nbsp;&nbsp;<a href="#"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货"></a>
+                        &nbsp;&nbsp;<a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品"></a><br/>
+                        <a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品"></a>
+                        &nbsp;&nbsp;<a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货"></a>
                         <?php }?>
                         <!--<div class="gobuy"><a href="#"></a></div>-->
                     </td>
