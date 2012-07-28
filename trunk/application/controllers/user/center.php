@@ -48,11 +48,9 @@ class center extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-
-        //$data = $this->invoice->getUserInvoiceByuId($this->uInfo['uid'], $Limit, $offset);
         $data = $this->order->getOrderByUid($this->uInfo['uid'], $Limit, $offset);
-        //$this->uInfo;
-//echo '<pre>';print_r($data);exit;
+        //echo '<pre>';print_r($data);exit;
+
         $this->load->model('product/Model_Product_Favorite', 'favorite');
         $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
 
@@ -66,8 +64,6 @@ class center extends MY_Controller
     {
         $orderSn = $this->uri->segment(4, 0);
 
-
-
         $this->load->model('order/Model_Order', 'order');
         $orderData = $this->order->getOrderByOrderSn($orderSn);
 
@@ -78,11 +74,130 @@ class center extends MY_Controller
 
     public function returns()
     {
-        $this->load->model('order/Model_Order', 'order');
-        $data = $this->order->getOrderByUid(1);
-        //echo '<pre>';print_r($data);exit;
+        $Limit = 10;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->view('user/center/center', array('data' => $data));
+        $this->load->model('order/Model_Order_Return', 'return');
+        $totalNum = $this->return->getUserReturnAndProductCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/returns/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->return->getUserReturnAndProduct($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        //echo '<pre>';print_r($favoriteRecommend);exit;
+
+        $this->load->view('user/center/return', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
+    }
+
+    public function addReturn()
+    {
+        $pId = intval($this->input->get_post('pid'));
+        $orderSn = intval($this->input->get_post('order_sn'));
+//echo $pId,$orderSn;
+        $this->load->view('user/center/add_return', array('pid' => $pId, 'order_sn' => $orderSn));
+    }
+
+    public function saveReturn()
+    {
+        $data['pid'] = intval($this->input->get_post('pid'));
+        $data['order_sn'] = ($this->input->get_post('order_sn'));
+        $data['type'] = intval($this->input->get_post('type'));
+        $data['reason'] = intval($this->input->get_post('reason'));
+        $data['descr'] = ($this->input->get_post('content'));
+        //var_dump($_FILES['problem_one']['error'] != '0');
+//echo '<pre>';print_r($_FILES['problem_two']);exit;
+        if (
+            empty ($data['pid']) ||
+            empty ($data['order_sn']) ||
+            empty ($data['type']) ||
+            empty ($data['reason']) ||
+            empty ($data['descr']) ||
+            $_FILES['problem_one']['error'] != '0' ||
+            $_FILES['problem_two']['error'] != '0'
+        ) {
+            show_error('请认真填写相关问题！');
+        }
+
+        //用户是否登陆
+        if (!$this->isLogin()) {
+            redirect('/user/login');
+            return '';
+        }
+        $data['uid'] = $this->uInfo['uid'];
+
+        $this->load->model('order/Model_Order_Return', 'return');
+        $returnStatus = $this->return->getReturnByOrderSnAndPid($data['order_sn'], $data['pid']);
+        if ($returnStatus) {
+            show_error('已经申请过退换货!');
+        }
+
+        //是否订购过产品
+        $this->load->model('order/Model_Order', 'order');
+        $buyStatus = $this->order->userIsBuyProduct($data['uid'], $data['pid']);
+        if (empty ($buyStatus)) {
+            show_error('您并未购买过此产品或产品还未配送到!');
+        }
+//echo $buyStatus['pay_time'].'<br/>'.date('Y-m-d H:i:s');
+        //订单是否超过30天
+        $this->load->helper('time');
+        $diffDay = timeDiff(strtotime($buyStatus['pay_time']), time());//echo '<pre>';print_r($diffDay);exit;
+        if ($diffDay['day'] >= 30) {
+            show_error('已过期，订单时间已超过30天。');
+        }
+
+        $this->load->helper('directory');
+        $directory = 'upload'.DS.'return'.DS.date('Y_m_d').DS.date('H').DS;
+        recursiveMkdirDirectory(WEBROOT . $directory);
+
+        $config = array(
+            'upload_path' => WEBROOT . $directory, 'allowed_types' => 'gif|jpg|png', 'max_size' => '4000', 'remove_spaces' => true,
+            'overwrite' => false, 'max_width' => '0', 'max_height' => '0', 'file_name' => $data['order_sn'].'_'.$data['pid'].'_'.date('Ymd').'_one',
+        );
+        $this->load->library('upload', $config);
+        //$this->upload->do_upload('problem_one');
+        //echo $data['order_sn'].'_'.$data['pid'].'_'.date('Ymd').'_one';exit;'<pre>'.WEBROOT . $directory;print_r($this->upload);exit;
+
+        if ($this->upload->do_upload('problem_one')) {
+            $uData = $this->upload->data();
+            $data['img_one'] = $directory . $uData['file_name'];
+        } else {
+            show_error('补充图片1，文件上传失败!');
+        }
+
+        $config = array(
+            'upload_path' => WEBROOT . $directory, 'allowed_types' => 'gif|jpg|png', 'max_size' => '4000', 'remove_spaces' => true,
+            'overwrite' => false, 'max_width' => '0', 'max_height' => '0', 'file_name' => $data['order_sn'].'_'.$data['pid'].'_'.date('Ymd').'_two',
+        );
+        $this->load->library('upload', $config);
+        $directory = 'upload'.DS.'return'.DS.date('Y_m_d').DS.date('H').DS;
+        recursiveMkdirDirectory(WEBROOT . $directory);
+        if ($this->upload->do_upload('problem_two')) {
+            $uData = $this->upload->data();
+            $data['img_two'] = $directory . $uData['file_name'];
+        } else {
+            show_error('补充图片2，文件上传失败!');
+        }
+
+        $status = $this->return->addReturn($data);
+        if (!$status) {
+            show_error('添加退换货失败');
+        }
+        redirect('/user/center/returns');
     }
 
     /**
@@ -111,9 +226,7 @@ class center extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-
         $data = $this->invoice->getUserInvoiceByuId($this->uInfo['uid'], $Limit, $offset);
-        //$this->uInfo;
 
         $this->load->view('user/center/invoice', array('data' => $data, 'page_html' => $pageHtml));
     }
@@ -607,6 +720,38 @@ class center extends MY_Controller
 
     public function systemProposal()
     {
-        $this->load->view('user/center/system_proposal');
+        $this->load->view('user/center/add_system_proposal');
+    }
+
+    public function mySystemProposal()
+    {
+        $Limit = 15;
+        $currentPage = $this->uri->segment(4, 1);
+        $offset = ($currentPage - 1) * $Limit;
+
+        $this->load->model('other/Model_System_Proposal', 'sp');
+        $totalNum = $this->sp->getUserSystemProposalCount($this->uInfo['uid']);
+
+        $this->load->library('pagination');
+        $config['base_url'] = site_url() . '/user/center/mySystemProposal/';
+        $config['total_rows'] = $totalNum;
+        $config['per_page'] = $Limit;
+        $config['num_links'] = 5;
+        $config['uri_segment'] = 4;
+        $config['use_page_numbers'] = TRUE;
+        $config['cur_tag_open'] = '<span class="current">';
+        $config['cur_tag_close'] = '</span>';
+        $config['prev_link'] = '上一页';
+        $config['next_link'] = '下一页';
+        $this->pagination->initialize($config);
+        $pageHtml = $this->pagination->create_links();
+
+        $data = $this->sp->getUserSystemProposal($this->uInfo['uid'], $Limit, $offset);
+
+        $this->load->model('product/Model_Product_Favorite', 'favorite');
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+
+//echo '<pre>';print_r($data);exit;
+        $this->load->view('user/center/system_proposal', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
 }

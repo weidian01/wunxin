@@ -120,7 +120,7 @@
                                             <td style="width:90px;text-align:center;"><?php echo $v['nickname'];?></td>
                                             <td style="width:90px;text-align:center;"><?php echo $v['integral'];?></td>
                                             <td style="width:90px;text-align:center;">
-                                                <a href="#" title="设计师被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;"> 共收藏 <?php echo $v['favorite_num'];?> 次</a>
+                                                <a href="#" title="设计师被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;"> 共收藏 <?php echo $v['favorite_num'];?> 次</a>
                                             </td>
                                             <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:90px;text-align:center;">

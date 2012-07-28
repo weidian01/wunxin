@@ -68,11 +68,11 @@
                         </td>
                         <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="8%" align="center">
+                            <a href="javascript:void(0);" onclick="(<?php echo $v['qa_id'];?>)">
+                                <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
+                            </a><br />
                             <a href="javascript:void(0);" onclick="deleteProductQa(<?php echo $v['qa_id'];?>)">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此问答">
-                            </a> <br />
-                            <a href="javascript:void(0);" onclick="(<?php echo $v['qa_id'];?>)">
-                                <img src="<?=config_item('static_url')?>images/buy.png" title="删除此产品">
                             </a>
                         </td>
                     </tr>
@@ -85,7 +85,7 @@
         </div>
 
         <div class="u-r-box">
-            <div class="tui-tit">热闹产品推荐</div>
+            <div class="tui-tit">热门产品推荐</div>
             <div class="tui">
                 <div class="tuipre"><a href="#"></a></div>
                 <div class="tuinext"><a href="#"></a></div>

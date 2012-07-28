@@ -21,6 +21,9 @@ class Model_System_Proposal extends MY_Model
             'content' => $sInfo['content'],
             'uid' => $sInfo['uid'],
             'uname' => $sInfo['uname'],
+            'realname' => $sInfo['realname'],
+            'telecall' => $sInfo['telecall'],
+            'email' => $sInfo['email'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
@@ -40,6 +43,7 @@ class Model_System_Proposal extends MY_Model
         $this->db->select('*');
         $this->db->from('system_proposal');
         $this->db->limit($limit, $offset);
+        $this->db->order_by('create_time', 'desc');
         $data = $this->db->get()->result_array();
 
         return empty ($data) ? null : $data;
@@ -53,6 +57,38 @@ class Model_System_Proposal extends MY_Model
     public function getSystemProposalCount()
     {
         $this->db->select('*')->from('system_proposal');
+
+        return $this->db->count_all_results();
+    }
+
+    /**
+     * 获取用户提供的系统建议或意见
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getUserSystemProposal($uId, $limit = 20, $offset = 0)
+    {
+        $this->db->select('*');
+        $this->db->from('system_proposal')->where('uid', $uId);
+        $this->db->limit($limit, $offset);
+        $this->db->order_by('create_time', 'desc');
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户提供的系统建议或意见数量
+     *
+     * @param $uId
+     * @return int
+     */
+    public function getUserSystemProposalCount($uId)
+    {
+        $this->db->select('*')->from('system_proposal')->where('uid', $uId);
 
         return $this->db->count_all_results();
     }

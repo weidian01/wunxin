@@ -121,9 +121,9 @@
                                             <td style="width:90px;text-align:center;"><?php echo $v['uname'];?></td>
                                             <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:110px;text-align:center;">
-                                                <a href="#" style="color: #990000;" title="设计图被收藏 <?php echo $v['favorite_num'];?> 次">共收藏 <?php echo $v['favorite_num'];?> 次</a> <br />
-                                                <a href="#" title="共有 <?php echo $v['total_num'];?> 用户投票" style="cursor:pointer;color:#990000;">共 <?php echo $v['total_num'];?> 票</a> &nbsp;|&nbsp;
-                                                <a href="#" title="此设计图总分数为 <?php echo $v['total_fraction'];?> 分" style="cursor:pointer;color:#990000;">共 <?php echo $v['total_fraction'];?> 分</a>
+                                                <a href="#" style="color: #990000;font-size: 10px;" title="设计图被收藏 <?php echo $v['favorite_num'];?> 次">共收藏 <?php echo $v['favorite_num'];?> 次</a> <br />
+                                                <a href="#" style="color: #990000;font-size: 10px;" title="共有 <?php echo $v['total_num'];?> 用户投票">共 <?php echo $v['total_num'];?> 票</a> &nbsp;|&nbsp;
+                                                <a href="#" style="color: #990000;font-size: 10px;" title="此设计图总分数为 <?php echo $v['total_fraction'];?> 分">共 <?php echo $v['total_fraction'];?> 分</a>
                                             </td>
                                             <td style="width:90px;text-align:center;">
                                                 <a href="#" class="a_e" title="查看设计图">

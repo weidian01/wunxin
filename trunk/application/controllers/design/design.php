@@ -19,13 +19,13 @@ class design extends MY_Controller
     }
 
     /**
-     * 删除设计师
+     * 删除设计图
      */
     public function deleteDesign()
     {
         $dId = $this->input->get_post('did');
 
-        $response = array('error' => '0', 'msg' => '删除产品成功', 'code' => 'delete_design_success');
+        $response = array('error' => '0', 'msg' => '删除设计图成功', 'code' => 'delete_design_success');
 
         do {
             if (empty ($dId)) {

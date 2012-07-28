@@ -110,17 +110,19 @@
                                             </td>
                                             <td style="width:170px;text-align:center;"><?php echo $v['content'];?></td>
                                             <td style="width:70px;text-align:left;">
-                                                &nbsp;&nbsp;<a href="#" title="此评论被评论 <?php echo $v['comment_num'];?> 条" style="color: #990000;">被评论 <?php echo $v['comment_num'];?> 条</a> <br />
-                                                &nbsp;&nbsp;<a href="#" title="此评论被回复 <?php echo $v['comment_num'];?> 条" style="color: #990000;">回复 <?php echo $v['reply_num'];?> 条</a>
+                                                &nbsp;&nbsp;<a href="#" title="此评论被评论 <?php echo $v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">被评论 <?php echo $v['comment_num'];?> 条</a> <br />
+                                                &nbsp;&nbsp;<a href="#" title="此评论被回复 <?php echo $v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">回复 <?php echo $v['reply_num'];?> 条</a>
                                             </td>
                                             <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:70px;text-align:center;">
                                                 <a href="javascript:void(0);" onclick="(<?php echo $v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
                                                 </a>
+                                                <!--
                                                 <a href="javascript:void(0);" onclick="(<?php echo $v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/comment.png" title="评论此产品">
                                                 </a>
+                                                -->
                                                 <a href="javascript:void(0);" onclick="deleteProductComment(<?php echo $v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
                                                 </a> <br />

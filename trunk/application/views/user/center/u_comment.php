@@ -114,8 +114,8 @@
                                             <td style="width:80px;text-align:center;"><?php echo $v['title'];?></td>
                                             <td style="width:160px;text-align:center;"><?php echo $v['content'];?></td>
                                             <td style="width:90px;text-align:left;">
-                                                &nbsp;&nbsp;<a href="#" title="此留言被回复 <?php echo $v['reply_num'];?>  条" style="color: #990000;">回复 <?php echo $v['reply_num'];?> 条</a><br /><br />
-                                                &nbsp;&nbsp;<a href="#" title="此设计师被收藏 <?php echo $v['favorite_num'];?>  条" style="color: #990000;">收藏 <?php echo $v['favorite_num'];?> 条</a>
+                                                &nbsp;&nbsp;<a href="#" title="此留言被回复 <?php echo $v['reply_num'];?>  条" style="color: #990000;font-size: 10px;">回复 <?php echo $v['reply_num'];?> 条</a><br /><br />
+                                                &nbsp;&nbsp;<a href="#" title="此设计师被收藏 <?php echo $v['favorite_num'];?>  条" style="color: #990000;font-size: 10px;">收藏 <?php echo $v['favorite_num'];?> 条</a>
                                             </td>
                                             <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:70px;text-align:center;">

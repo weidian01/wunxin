@@ -139,6 +139,9 @@ $error[30014] = array('error' => '30014', 'msg' => '添加订单失败', 'code' 
 $error[30015] = array('error' => '30015', 'msg' => '添加订单参数不全', 'code' => 'add_order_parameter_failure');
 $error[30016] = array('error' => '30016', 'msg' => '收货地址为空', 'code' => 'recent_address_empty');
 
+$error[30017] = array('error' => '30017', 'msg' => '取消退换货申请参数不全', 'code' => 'cancel_return_parameter_failure');
+$error[30018] = array('error' => '30018', 'msg' => '取消退换货申请失败', 'code' => 'cancel_return_failure');
+
 
 
 /**
@@ -263,7 +266,7 @@ $error[70012] = array('error' => '70012', 'msg' => '删除礼物卡失败', 'cod
 /**
  * 其他错误代码  --  其他相关错误代码以 70 开头
  */
-$error[99001] = array('error' => '99001', 'msg' => '添加系统建议与意见成功', 'code' => 'add_system_proposal_success');
+//$error[99001] = array('error' => '99001', 'msg' => '添加系统建议与意见成功', 'code' => 'add_system_proposal_success');
 $error[99002] = array('error' => '99002', 'msg' => '添加系统建议与意见失败', 'code' => 'add_system_proposal_failure');
 $error[99003] = array('error' => '99003', 'msg' => '添加系统建议与意见参数不全', 'code' => 'add_system_proposal_parameter_failure');
 $error[99004] = array('error' => '99004', 'msg' => '参数为空', 'code' => 'parameter_failure');

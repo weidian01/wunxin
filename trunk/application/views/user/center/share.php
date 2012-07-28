@@ -58,7 +58,7 @@
                     <td width="20%" align="center"><?php echo $v['title']; ?></td>
                     <td width="25%" align="center"><?php echo $v['content'];?></td>
                     <td width="18%" align="center">
-                        <a href="#" title="查看 <?php echo $v['comment_num'];?> 条晒单评论" style="color:#990000;"> 查看评论 (<?php echo $v['comment_num'];?>)</a>
+                        <a href="#" title="查看 <?php echo $v['comment_num'];?> 条晒单评论" style="color: #990000;font-size: 10px;"> 查看评论 (<?php echo $v['comment_num'];?>)</a>
                     </td>
                     <td width="10%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                     <!--

@@ -108,17 +108,17 @@
                                             </td>
                                             <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:90px;text-align:center;">
-                                                <a href="#" title="产品共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;">共收藏 <?php echo $v['favorite_num'];?> 次</td>
+                                                <a href="#" title="产品共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">共收藏 <?php echo $v['favorite_num'];?> 次</td>
                                             <td style="width:90px;text-align:center;">
                                                 <a href="#" class="a_e">
-                                                    <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品评论">
+                                                    <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
                                                 </a><br/>
                                                 <a href="#" class="a_e">
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此产品">
                                                 </a>
                                                 <br/>
                                                 <a href="#" class="a_e" onclick="deleteFavorite(<?php echo $v['id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/view.png" title="删除此产品评论">
+                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
                                                 </a>
                                             </td>
                                         </tr>

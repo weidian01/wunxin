@@ -7,7 +7,7 @@ $currUrl = str_replace('/index.php', '', $currUrl);
     <div class="u-menu">
         <ul>
             <li><a href="/user/center/index" class="<?php echo (strpos($currUrl, 'index', true) !== false || strpos($currUrl, 'orderDetail', true) !== false) ? ' curr' : ''; ?>">我的订单</a></li>
-            <li><a href="/user/center/returns" class="<?php echo (strpos($currUrl, 'returns') !== false) ? 'curr' : '';?>">退换货办理</a></li>
+            <li><a href="/user/center/returns" class="<?php echo (strpos($currUrl, 'returns') !== false || strpos($currUrl, 'addReturn') !== false) ? 'curr' : '';?>">退换货办理</a></li>
             <li><a href="/user/center/invoice" class="<?php echo (strpos($currUrl, 'invoice') !== false || strpos($currUrl, 'addInvoice') !== false) ? 'curr' : '';?>">发票管理</a></li>
             <li><a href="/user/center/share" class="<?php echo (strpos($currUrl, 'share') !== false) ? 'curr' : '';?>">我的晒单</a></li>
         </ul>
@@ -43,7 +43,7 @@ $currUrl = str_replace('/index.php', '', $currUrl);
         <ul>
             <li><a href="/user/center/salesInfo" class="<?php echo (strpos($currUrl, 'salesInfo') !== false) ? 'curr' : '';?>">促销信息退订</a></li>
             <li><a href="/user/center/giftCard" class="<?php echo (strpos($currUrl, 'giftCard') !== false || strpos($currUrl, 'bingCard') !== false) ? 'curr' : '';?>">礼品卡管理</a></li>
-            <li><a href="/user/center/systemProposal" class="<?php echo (strpos($currUrl, 'systemProposal') !== false) ? 'curr' : '';?>">系统建议与意见</a></li>
+            <li><a href="/user/center/systemProposal" class="<?php echo (strpos($currUrl, 'systemProposal') !== false || strpos($currUrl, 'mySystemProposal') !== false) ? 'curr' : '';?>">系统建议与意见</a></li>
         </ul>
     </div>
 </div>
