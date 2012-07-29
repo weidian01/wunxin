@@ -154,12 +154,14 @@
                                 </h3>
                                 -->
                                 <div style="padding:10px 0;color:#666;">
+                                    <br/>
                                     <h3>
                                     请你上传头像， 也可以
                                     <a style="color:#cc3300;" href="javascript:void(0);" onclick="useCamera()">使用摄像头来拍摄！</a>
                                     </h3>
+                                    <br/>
                                 </div>
-                                <form enctype="multipart/form-data" method="post" name="upform" target="upload_target" action="/user/user/saveHeader">
+                                <form enctype="multipart/form-data" method="post" name="upform" target="upload_target" action="/user/user/upload">
                                     <input type="file" name="Filedata" id="Filedata"/>
                                     <input style="margin-right:20px;" type="submit" name="" value="上传头像" onclick="return checkFile();"/>
                                     <span style="visibility:hidden;" id="loading_gif">
@@ -172,9 +174,9 @@
                                     //允许上传的图片类型
                                     var extensions = 'jpg,jpeg,gif,png';
                                     //保存缩略图的地址.
-                                    var saveUrl = '/user/user/saveHeader';
+                                    var saveUrl = 'http://wunxin.com/user/user/saveAvatar';
                                     //保存摄象头白摄图片的地址.
-                                    var cameraPostUrl = '/user/user/saveCameraHeader';
+                                    var cameraPostUrl = '/user/user/camera';
                                     //头像编辑器flash的地址.
                                     var editorFlaPath = '<?=config_item('static_url')?>images/AvatarEditor.swf';
                                     //Download by http://www.codefans.net
