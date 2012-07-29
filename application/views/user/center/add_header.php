@@ -23,16 +23,32 @@
         .sztx .main .uploadbox dt{width:70px;font-weight:bold;float:left;}
         .sztx .main .uploadbox dd{width:708px;float:left;}
         .sztx .main .uploadbox dd p{padding:0px 0px 15px 8px;line-height:20px;}
-        .sztx .main .photobox{width:618px;padding:30px 90px;float:left;}
+        .sztx .main .photobox{width:618px;padding:20px 60px;float:left;}
         .sztx .main .photobox .photo{width:300px;height:300px;text-align:left;border:1px #000 solid;background:url(/images/photobox_bg.png);float:left;}
-        .sztx .main .photobox ul{padding-left:10px;float:left;}
-        .sztx .main .photobox ul li{padding-bottom:10px;}
         .sztx .main .submit{clear:both;padding-left:80px;}
         .sztx .main .submit p{padding:10px;}
-        .btn_b3 {
-            background: url("/images/btn_b3.png") no-repeat scroll 0 0 transparent;
+        .btn_b3 { background: url("/images/btn_b3.png") no-repeat scroll 0 0 transparent;
             border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; height: 35px; line-height: 35px; text-align: center; width: 122px;
         }
+
+        #cutpic { font-size: 12px; padding: 0px; }
+        .pic_list { border-right: 0 solid #E4E4E4; float: left; width: 406px; }
+        .pic_list ul { margin-left: 17px; margin-right: 80px; overflow: hidden; }
+        .pic_list li { border: 2px solid gray; display: inline; float: left; height: 60px; margin-left: 7px; margin-top: 8px; width: 60px; }
+
+        .content img { vertical-align: middle; }
+        .finishnew ul { list-style-type: none; margin: 0; padding: 0 0 0; }
+        .finishnew { float: left; }
+        .finishnew ul { list-style-type: none; margin: 0; padding: 0 0 0; }
+        ul, menu, dir { display: block; }
+        .finishnew ul li { color: #666666; float: left; font-family: "宋体"; font-size: 12px; line-height: 18px; padding-right: 15px; }
+        .content img { vertical-align: middle; }
+        img { border: medium none; }
+        .blank10w { clear: both; display: block; font-size: 0; height: 10px; width: 60px; }
+        .save { background-image: url("/images/scBTN.jpg"); border: 0 none; height: 27px; }
+        .pic_list li img.selected { border: 2px solid #980d2c; cursor: pointer;display: inline; }
+        .pic_list li img.hover { border:2px solid #980d2c; cursor:pointer; }
+
     </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
@@ -52,75 +68,96 @@
                         <dl>
                             <dt>上传图片：</dt>
                             <dd>
-                                <p>
-                                    <object width="104" height="20" class="swfupload"
-                                            data="http://static.yohobuy.com/admin/js/swfupload/swfupload.swf"
-                                            type="application/x-shockwave-flash" id="SWFUpload_0">
-                                        <param value="TRANSPARENT" name="wmode">
-                                        <param value="http://static.yohobuy.com/admin/js/swfupload/swfupload.swf"
-                                               name="movie">
-                                        <param value="high" name="quality">
-                                        <param value="false" name="menu">
-                                        <param value="always" name="allowScriptAccess">
-                                        <param
-                                            value="movieName=SWFUpload_0&amp;uploadURL=http%3A%2F%2Fsso.upload.yohobuy.com&amp;useQueryString=false&amp;requeueOnError=false&amp;httpSuccess=&amp;assumeSuccessTimeout=0&amp;params=&amp;filePostName=Filedata&amp;fileTypes=*.jpg%3B*.gif%3B*.jpeg%3B*.png&amp;fileTypesDescription=All%20Files&amp;fileSizeLimit=2%20MB&amp;fileUploadLimit=6&amp;fileQueueLimit=0&amp;debugEnabled=false&amp;buttonImageURL=http%3A%2F%2Fstatic.yohobuy.com%2Fimages%2Fbtn_upload_xzzp.png&amp;buttonWidth=104&amp;buttonHeight=20&amp;buttonText=%3Cspan%20class%3D%22btn_upload_xzzp%22%3E%E9%80%89%E6%8B%A9%E6%9C%AC%E5%9C%B0%E7%85%A7%E7%89%87%3C%2Fspan%3E&amp;buttonTextTopPadding=0&amp;buttonTextLeftPadding=24&amp;buttonTextStyle=.btn_upload_xzzp%7Bcolor%3A%23ffffff%7D&amp;buttonAction=-110&amp;buttonDisabled=false&amp;buttonCursor=-2"
-                                            name="flashvars">
-                                    </object>
-                                </p>
-                                <div class="tips-text"> 支持JPEG和静态的GIF格式图片，不支持GIF动画图片，上传图片大小不能超过2M。</div>
+                                <div class="tips-text">
+                                    支持JPEG和静态的GIF格式图片，不支持GIF动画图片，上传图片大小不能超过2M。
+
+                                    <div>
+                                        你可以选择： 选择头像<input type="radio" value="0" name="types" onclick="showLayer(0)" checked="checked">
+                                        上传头像<input type="radio" value="1" name="types" onclick="showLayer(1)">
+                                    </div>
+                                </div>
                             </dd>
                         </dl>
                     </div>
-                    <div class="photobox">
-                        <div class="photo" id="cropzoom_container"><img
-                            src="<?=config_item('static_url')?>images/photobox_bg.png" id="imgsrcs"></div>
-                        <ul>
-                            <li id="preview"><img src="<?=config_item('static_url')?>images/userdefault_100_100.png" id="generated_100_100"></li>
-                            <!-- li><img id="generated_48_48" src="http://static.yohobuy.com/images/userdefault_100_100.png" /></li-->
-                            <li><img src="<?=config_item('static_url')?>images/userdefault_48_48.png" id="generated_48_48">
-                            </li>
-                            <li><img src="<?=config_item('static_url')?>images/userdefault_16_16.png" id="generated_16_16">
-                            </li>
-                        </ul>
+                    <div class="photobox" id="select_header">
+                        <div id="cutpic">
+                            <div class="pic_list">
+                                <ul>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar1.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar2.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar3.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar4.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar5.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar6.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar7.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar8.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar9.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar10.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar11.jpg" class=""></a></li>
+                                    <li><a>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar12.jpg" class=""></a></li>
+                                </ul>
+                            </div>
+
+                            <script type="text/javascript">
+                                function onErrors(t, uid, type)
+                                {
+                                    var url = '/user/user/getUserHeader?uid='+uid+'&type='+type;
+                                    var data = $.ajax(url, '');
+                                    alert(data.url);
+                                    console.log(data.url);
+                                    return;
+                                    t.src = url.url;
+                                    t.onerror=null;// 控制onerror事件只触发一次
+                                }
+                            </script>
+                            <div class="finishnew" style=" margin:8px;">
+                                <ul>
+                                    <li style=" height:127px;">
+                                        <img src="<?=config_item('static_url')?>user/user/getUserHeader?uid=<?=$uInfo['uid']?>&type=2" alt="<?php echo $uInfo['uname'];?>" width="60" height="60"
+                                             />
+                                        <span class="blank10w"></span>
+                                        <a id="OK" onclick="SaveHead();" name="my_avatar_change_save">
+                                            <img border="0" src="<?=config_item('static_url')?>/images/save_avatar.png" style="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="clear">
+                            </div>
+
+                            <form id="form1" action="/user/_SaveAvatarVT" enctype="multipart/form-data" method="post">
+                                <input type="hidden" id="filename" name="filename" value="">
+                                <input type="hidden" id="ID" name="ID" value="73238">
+                            </form>
+                        </div>
                     </div>
-                    <div class="submit">
-                        <div class="tips-text"> 右边是获取的切图的示意图，你可以拖动上面的像框来编辑图片。</div>
-                        <form method="POST" target="userIframe" action="http://sso.upload.yohobuy.com/crop" id="cropForm">
-                            <input type="hidden" id="_key" value="----E---" name="_key">
-                            <input type="hidden" id="image_source" name="image_source">
-                            <input type="hidden" id="image_h" name="image_h">
-                            <input type="hidden" id="image_rotate" name="image_rotate">
-                            <input type="hidden" id="image_w" name="image_w">
-                            <input type="hidden" id="image_x" name="image_x">
-                            <input type="hidden" id="image_y" name="image_y">
-                            <input type="hidden" id="selector_h" name="selector_h">
-                            <input type="hidden" id="selector_w" name="selector_w">
-                            <input type="hidden" id="selector_x" name="selector_x">
-                            <input type="hidden" id="selector_y" name="selector_y">
-                            <input type="hidden" id="view_port_w" name="view_port_w">
-                            <input type="hidden" id="view_port_h" name="view_port_h">
-                        </form>
-                        <form method="POST" action="/home/user/savehead">
-                            <p>
-                                <input type="hidden" id="headico" name="headico">
-                                <input type="button" class="btn_b3" value="剪切照片" id="crop">
-                                <input type="button" class="btn_b3" value="照片复位" id="restore">
-                                <input type="submit" class="btn_b3" value="确认修改" id="cropUpdate">
-                                <br><span style="display:none" class="loading">正在处理中…</span>
-                            </p>
-                        </form>
+
+                    <div id="upload_header" style="display: none;">
+sdasdsadsadasadsadas
                     </div>
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <script type="text/javascript">
-    function deleteDesignerFavorite(dId)
+    function SaveHead(dId)
     {
         if (confirm('确定删除！')) {
             if (!wx.isEmpty(dId)) {
@@ -139,6 +176,48 @@
             alert('删除失败!');
         }
     }
+
+    function showLayer(v)
+    {
+        if (v == '1') {
+            document.getElementById('upload_header').style.display = '';
+            document.getElementById('select_header').style.display = 'none';
+        } else {
+            document.getElementById('select_header').style.display = '';
+            document.getElementById('upload_header').style.display = 'none';
+        }
+    }
+
+    $(function () {
+           var imgList = $(".pic_list img");
+           $(".finishnew img:eq(0)").bind("error", function () {
+               $(this).attr("src", "/images/avatar1.jpg");
+           });
+           imgList.click(function () {
+               $("[fid=tipsavevt]").text("").hide();
+               $(".finishnew img:eq(0)").attr("src", $(this).attr("src")).parent().next("[fid=msgvtnoimage]").hide();
+               $("#filename").val($(this).attr("src"));
+               imgList.removeClass("selected");
+               $(this).addClass("selected");
+           });
+           imgList.hover(function () {
+               if ($(this).attr("src") == $("#filename").val()) {
+                   return;
+               }
+               imgList.removeClass("hover");
+               $(this).addClass("hover");
+           }, function () {
+               $(this).removeClass("hover");
+           });
+           var path = $(".finishnew img:eq(0)").attr("src");
+           //    if (path.indexOf("vancl300.jpg") > -1) {
+           //        $(".pic_list img:eq(0)").click();
+           //    }
+           //    else {
+           //
+           $(".pic_list img[src='" + path + "']").click();
+           //    }
+       });
 </script>
 <!-- #EndLibraryItem -->
 </body>
