@@ -32,7 +32,7 @@
 .grzl-hyxx .box-info dl dt{width:80px;text-align:right;color:#848484;float:left;}
 .grzl-hyxx .box-info dl dd{width:470px;padding-bottom:1px;color:#666;float:left;}
 .grzl-hyxx .box-pic{width:148px;padding:20px;background:url(/images/line_dot_s.png) repeat-y left;text-align:center;float:right;}
-.grzl-hyxx .box-pic img{width:100px;height:100px;margin-bottom:10px;}
+
 
 .grzl-grxg dl{clear:both;width:770px;padding-bottom:5px;float:left;}
 .grzl-grxg dl:after { content:""; display:block; clear:both; height:0; }
@@ -212,7 +212,9 @@ dt{font-weight: bold;color: #848484;}
                                 <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($uinfo['uid'])?>icon.jpg" alt="<?php echo $uinfo['uname'];?>" width="60" height="60"/>
                                 <!--<img src="http://static.yoho.cn/images/default_userhead_boy_100_100.png">-->
                                 <br>
-                                <a class="btn_ggtx" href="/user/center/addUserHeader">更改头像</a>
+                                <a class="btn_ggtx" href="/user/center/addUserHeader">
+                                    <img src="<?=config_item('static_url')?>images/modify_header.png" alt="" title="更改头像">
+                                </a>
                             </div>
 
                         </div>
