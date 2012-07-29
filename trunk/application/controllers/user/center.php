@@ -411,7 +411,7 @@ class center extends MY_Controller
 
     public function addUserHeader()
     {
-        $this->load->view('user/center/add_header');
+        $this->load->view('user/center/add_header', array('uInfo' => $this->uInfo));
     }
 
     /**

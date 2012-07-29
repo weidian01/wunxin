@@ -71,4 +71,37 @@ class user extends MY_Controller
         self::json_output($response);
     }
 
+    public function getUserHeader()
+    {
+        $uId = intval( $this->input->get_post('uid') );
+        $type = intval( $this->input->get_post('type') );//1为default, 其他为icon
+
+        $imgName = ($type == 1) ? 'default.jpg' : 'icon.jpg';
+
+        if ( empty ($uId) ) {
+            return '';
+        }
+
+        $this->load->model('user/Model_User', 'user');
+        $userInfo = $this->user->getUserById($uId);
+
+        if (empty ($userInfo)) {
+            return '';
+        }
+        $header = '';
+        //var_dump($userInfo['header']);
+        if ($userInfo['header'] <= 0) {
+            $header = '/images/avatar/avatar1.jpg';
+        } else {
+            $header = '/upload'.DS.'designer'.DS.intToPath($uId).$imgName;
+        }
+
+        header('Accept-Ranges: bytes');
+        header('Content-Length: ' . filesize(config_item('base_url').$header));
+        header('Keep-Alive: timeout=15, max=2469');
+        echo file_get_contents(config_item('base_url').$header));
+        file_put_contents("cookieLog.txt", $_SERVER['REQUEST_URI']);
+        //header( 'Content-Type:text/xml');
+        //echo $header;
+    }
 }
