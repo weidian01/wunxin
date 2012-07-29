@@ -93,7 +93,7 @@ class Model_User extends MY_Model
      */
     public function getUserByName($uName)
     {
-        return $this->db->select('uid, nickname, password, lid, source, uname, integral, amount, status, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
+        return $this->db->select('uid, nickname, password, header, lid, source, uname, integral, amount, status, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
     }
 
     /**
@@ -136,7 +136,7 @@ class Model_User extends MY_Model
     public function userLogin($uName, $password)
     {
         //$uInfo = $this->getUserByName($uName);
-        $uInfo = $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
+        $uInfo = $this->db->select('uid, nickname, header, password, lid, uname, integral, amount, create_time')->get_where('user', array('uname' => $uName, 'status' => 1))->row_array();
 
         if (empty ($uInfo) || !is_array($uInfo)) {
             return 1;
@@ -201,7 +201,7 @@ class Model_User extends MY_Model
             return true;
         }
 
-        $uInfo = $this->db->select('uid, nickname, password, lid, uname, integral, amount, create_time')
+        $uInfo = $this->db->select('uid, nickname, password, header, lid, uname, integral, amount, create_time')
             ->get_where('user', array('uid' => $uId, 'status' => 1))->row_array();
 
         //用户不存在
