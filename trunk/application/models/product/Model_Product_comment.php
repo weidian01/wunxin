@@ -248,7 +248,7 @@ class Model_Product_Comment extends MY_Model
         return false;
     }
 
-    public function getAppraise($pid, $fields = array('rank','comfort', 'exterior'))
+    public function getAppraise($pid, $fields = array('rank','comfort', 'exterior','size_deviation'))
     {
         $re = array();
         foreach($fields as $field)
@@ -262,7 +262,14 @@ class Model_Product_Comment extends MY_Model
 
     private static function formatAppraise($data, $name)
     {
-        $re = array('star'=>array(5=>0, 4=>0, 3=>0, 2=>0, 1=>0),'point'=>0,'count'=>0);
+        if($name === 'size_deviation')
+        {
+            $re = array('star'=>array(2=>0, 1=>0, 0=>0),'point'=>0,'count'=>0);
+        }
+        else
+        {
+            $re = array('star'=>array(5=>0, 4=>0, 3=>0, 2=>0, 1=>0),'point'=>0,'count'=>0);
+        }
         foreach ($data as $row) {
             $re['star'][$row[$name]] = $row['num'];
             $re['point'] += $row[$name] * $row['num'];

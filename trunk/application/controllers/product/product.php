@@ -155,6 +155,8 @@ class Product extends MY_Controller
                 'alike' => $alike,
                 'psize' => $this->product->getProductSize($pid),
             ));
+            $html = $str = preg_replace('/\s+/', ' ', $this->output->get_output());
+            file_put_contents(WEBROOT . 'product/' . $pid . '.html', $html, LOCK_EX);
         }
         else
         {

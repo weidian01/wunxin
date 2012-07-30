@@ -191,6 +191,7 @@ class comment extends MY_Controller
             $this->load->model('product/Model_Product_comment', 'comment');
             $response = $this->comment->getAppraise($pid);
         }
+        //print_r($response);
         self::json_output($response, true);
     }
 

@@ -76,6 +76,7 @@ $error[10042] = array('error' => '10042', 'msg' => '删除设计师留言失败'
 /**
  * 产品错误代码  --  产品相关错误代码以 20 开头
  */
+$error[20000] = array('error' => '20000', 'msg' => '产品分类不存在', 'code' => 'product_class_not_exist');
 $error[20001] = array('error' => '20001', 'msg' => '产品不合法', 'code' => 'product_illegal');
 
 $error[20002] = array('error' => '20002', 'msg' => '产品不存在', 'code' => 'product_does_not_exist');

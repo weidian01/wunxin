@@ -18,16 +18,17 @@ class Ajax extends MY_Controller
     public function getProductByClass()
     {
         $class_id = (int)$this->input->get('class_id');
-        $products = array();
+        $pid = (int)$this->input->get('pid');
+        $response = error(20000);//产品分类步存在
         if ($class_id > 0) {
             $limit = max((int)$this->input->get('limit'), 1);
             $offset = max((int)$this->input->get('offset'), 0);
 
-            $where = " class_id = {$class_id}";
+            $where = " class_id = {$class_id} AND pid != {$pid}";
             $this->load->model('product/Model_Product', 'product');
-            $products = $this->product->getProductList($limit, $offset, "pid, pname, market_price, sell_price", $where);
+            $response = $this->product->getProductList($limit, $offset, "pid, pname, market_price, sell_price", $where);
         }
-        self::json_output($products, true);
+        self::json_output($response, true);
     }
 
     public function browseHistory()
