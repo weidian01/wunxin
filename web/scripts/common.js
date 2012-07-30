@@ -377,13 +377,56 @@ wx.initLoginStatus = function ()
     }
 
 }
-wx.initLoginStatus();
 
+//产品收藏
+wx.favoriteProduct = function(pId)
+{
+    var auth = wx.getCookie('auth');
 
-wx.cartGlobalInit();
+    if (!wx.isEmpty(auth)) {
+        alert('请登陆');
+        return false;
+    }
+
+    var url = 'product/product_favorite/favorite';
+    var param = 'pid='+pId;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        alert('收藏产品成功');
+        return true;
+    }
+
+    if (data.error = '10009') {
+        alert ('请登陆');
+        return false;
+    }
+    alert (data.msg);
+    return false;
+}
+
+wx.productComment = function (pId)
+{
+    var auth = wx.getCookie('auth');
+
+    if (!wx.isEmpty(auth)) {
+        alert('请登陆');
+        return false;
+    }
+
+    var url = 'product/product_favorite/favorite';
+    var param = 'pid='+pId;
+    var data = wx.ajax(url, param);
+}
 
 function idToPath(id) {
     var id = String(id);
     var l = id.match(/(\d{1,2})(\d{0,2})/);
     return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
 }
+
+wx.initLoginStatus();
+
+
+wx.cartGlobalInit();
+

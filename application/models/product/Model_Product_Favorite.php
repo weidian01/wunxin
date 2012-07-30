@@ -14,21 +14,39 @@ class Model_Product_Favorite extends MY_Model
      * @param array $fInfo
      * @return boolean
      */
-    public function productFavorite(array $fInfo)
+    public function favorite(array $fInfo)
     {
-        $tableName = 'product_favorite';
-        $checkStatus = $this->batchCheckTableField($tableName, $fInfo, true);
-        if (!$checkStatus) return false;
+        $sql = "INSERT IGNORE INTO wx_product_favorite(pid, uid, uname, ip, create_time) values ";
+        $sql .= "({$fInfo['pid']}, {$fInfo['uid']}, '".$fInfo['uname']."', '".$fInfo['ip']."', '".date('Y-m-d H:i:s', TIMESTAMP)."')";
 
-        $data = array(
-            'pid' => $fInfo['pid'],
-            'uid' => $fInfo['uid'],
-            'ip' => $fInfo['ip'],
-            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
-        );
+        $this->db->query($sql);
+        $lastId = $this->db->insert_id();
 
-        $this->db->insert($tableName, $data);
-        return $this->db->insert_id();
+        //更新产品收藏数量
+        if ($lastId) {
+
+            $this->db->where('pid', $fInfo['pid']);
+            $this->db->set('favorite_num', 'favorite_num+1', false);
+            $this->db->update('product');
+
+            return $lastId;
+        }
+
+        return false;
+    }
+
+    /**
+     * 获取用户产品收藏
+     *
+     * @param $uId
+     * @param $pId
+     * @return null | array
+     */
+    public function getUserFavorite($uId, $pId)
+    {
+        $data = $this->db->select('*')->get_where('product_favorite', array('uid' => $uId, 'pid' => $pId))->row_array();
+
+        return empty ($data) ? null : $data;
     }
 
     /**

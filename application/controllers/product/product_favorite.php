@@ -11,12 +11,12 @@ class product_favorite extends MY_Controller
     /**
      * 用户收藏产品
      */
-    public function productFavorite()
+    public function favorite()
     {
         $pid = $this->input->get_post('pid');
         $ip = $this->input->ip_address();
 
-        $response = error(20010);
+        $response = array('error' => '0', 'msg' => '收藏成功', 'code' => 'product_favorite_success');
 
         do {
             if (empty ($pid)) {
@@ -29,7 +29,16 @@ class product_favorite extends MY_Controller
                 break;
             }
 
-            $this->load->model('product/Model_Product', 'product');
+            $this->load->model('product/Model_Product_Favorite', 'favorite');
+            $isFavorite = $this->favorite->getUserFavorite($this->uInfo['uid'], $pid);
+
+            //是否收藏过此产品
+            if ($isFavorite == null) {
+                $response = error(20010);
+                break;
+            }
+
+            //产品是否存在
             $pInfo = $this->product->productIsExist($pid);
             if (!$pInfo) {
                 $response = error(20002);
@@ -39,10 +48,11 @@ class product_favorite extends MY_Controller
             $data = array(
                 'pid' => $pid,
                 'uid' => $this->uInfo['uid'],
-                'favorite_ip' => $ip
+                'uname' => $this->uInfo['uname'],
+                'ip' => $ip
             );
             $this->load->model('product/Model_Product_Favorite', 'favorite');
-            $status = $this->favorite->productFavorite($data);
+            $status = $this->favorite->favorite($data);
             if (!$status) {
                 $response = error(20011);
                 break;
