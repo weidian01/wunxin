@@ -57,9 +57,12 @@ class Model_Product_QA extends MY_Model
      * @param int $offset
      * @return array
      */
-    public function getProductQAByPid($pid, $limit = 20, $offset = 0)
+    public function getProductQAByPid($pid, $limit = 20, $offset = 0, $fields = '*', $order = null)
     {
-        return $this->db->select('*')->get_where('product_qa', array('pid' => $pid), $limit, $offset)->result_array();
+        list($key, $fields) = self::formatField($fields);
+        $this->db->select($fields);
+        $order && $this->db->order_by($order);
+        return $this->db->get_where('product_qa', array('pid' => $pid), $limit, $offset)->result_array($key);
     }
 
     /**

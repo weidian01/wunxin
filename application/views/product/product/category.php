@@ -610,29 +610,10 @@ $(document).ready(function(){
   </div>
   <!--right end-->
 </div>
-<div class="box3 pad4">
+<div id="viewhistory" style="display:none" class="box3 pad4">
   <div class="viewhistory">
     <div class="tit">最近浏览过的商品</div>
-    <div class="viewhis">
-      <div class="vhis"> <a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_03.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_05.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_08.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_10.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_03.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_05.jpg" width="140" height="140" /></a>
-        <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-        <span class="font4">￥49.00 </span></div>
-    </div>
+    <div class="viewhis"><!--最近浏览--></div>
   </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
@@ -640,35 +621,6 @@ $(document).ready(function(){
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
-<script>
-    $(function ($) {
-        $("#kza").toggle(
-            function () {
-                $("#modelAttr").css({height:"180px"});
-            },
-            function () {
-                $("#modelAttr").css({height:"auto"});
-            }
-        );
-
-        $(".goods-cbox").hover(
-            function () {
-                $(this).css("border", "1px solid #ac1116");
-            },
-            function () {
-                $(this).css("border", "1px solid #e8e8e8");
-            }
-        );
-
-        $('img.lazy').lazyload({effect:"fadeIn"});
-    });
-
-    function rankbox(a,b,id) {
-        for (var i = 1; i < 4; i++) {
-            $("#"+ a + i).css({'borderRight':'1px solid #e5e5e5','borderLeft':'1px solid #e5e5e5','borderTop':'1px solid #e5e5e5'})
-            document.getElementById(b + i).style.display = (i == id) ? 'block':"none";
-        }
-        $("#"+ a + id).css({'borderRight':'1px solid #ca0000','borderLeft':'1px solid #ca0000','borderTop':'1px solid #ca0000'})
-    }
-</script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/function.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/category.js"></script>

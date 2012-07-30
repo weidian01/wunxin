@@ -61,9 +61,24 @@ class Model_Product_Share extends MY_Model
      * @param int $offset
      * @return array
      */
-    public function getProductShareByPid($pId, $limit = 20, $offset = 0)
+    public function getProductShareByPid($pId, $limit = 20, $offset = 0, $fields = '*', $order = null)
     {
-        return $this->db->select('*')->get_where('share', array('uid' => $pId), $limit, $offset)->result_array();
+        list($key, $fields) = self::formatField($fields);
+        $this->db->select($fields);
+        $order && $this->db->order_by($order);
+        return $this->db->get_where('share', array('pid' => $pId), $limit, $offset)->result_array($key);
+    }
+
+    /**
+     * 根据产品id获取晒单数量
+     * @param $pid
+     * @return mixed
+     */
+    public function getProductShareCountByPid($pid)
+    {
+        $this->db->from('share');
+        $this->db->where(array('pid' => $pid));
+        return $this->db->count_all_results();
     }
 
     /**

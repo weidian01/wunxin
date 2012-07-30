@@ -592,9 +592,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td width="7%" height="30" align="center" class="font9">尺码：</td>
-              <td width="31%"><strong><span class="font10">78%</span></strong>的用户认为该商品的实际尺码 <span class="font10">[合适]</span></td>
-              <td width="32%"><strong><span class="font10">15%</span></strong>的用户认为该商品的实际尺码 <span class="font10">[偏大]</span></td>
-              <td width="30%"><strong><span class="font10">6%</span></strong>的用户认为该商品的实际尺码 <span class="font10">[偏小]</span></td>
+              <td width="31%"><strong><span class="font10" id="chima_z">0%</span></strong>的用户认为该商品的实际尺码 <span class="font10">[合适]</span></td>
+              <td width="32%"><strong><span class="font10" id="chima_d">0%</span></strong>的用户认为该商品的实际尺码 <span class="font10">[偏大]</span></td>
+              <td width="30%"><strong><span class="font10" id="chima_x">0%</span></strong>的用户认为该商品的实际尺码 <span class="font10">[偏小]</span></td>
             </tr>
           </table>
         </div>
@@ -605,81 +605,20 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="gbox-relation" id="g-relation3">
       <div class="shaidan" id="shaidan">
         <div class="sd-tit">
-          <div class="sdbt"><span class="font18">晒单</span>&nbsp;&nbsp;&nbsp;&nbsp;共 <span class="font1">15</span> 单</div>
+          <div class="sdbt"><span class="font18">晒单</span>&nbsp;&nbsp;&nbsp;&nbsp;共 <span class="font1" id="share_total">0</span> 单</div>
           <div class="sd-btn"><a href="#">我要晒单</a></div>
           <div class="sd-yh">优先来晒单，有机会获得5元礼品卡哦！</div>
         </div>
-        <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="83%">街头随意悠闲装扮，抓住青春的脚步，体验精彩的瞬间！<img src="<?=config_item('static_url')?>images/kk_23.jpg" width="39" height="15" /></td>
-            <td width="17%">来自：butterfly</td>
-          </tr>
-        </table>
-        <div class="sd-main">
-          <div style="text-align:center"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sd_23.jpg"/></div>
-          <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td width="26%" align="center" bgcolor="#f3f3f3">达人麻豆</td>
-              <td width="29%" align="center" bgcolor="#f3f3f3">身高/体重</td>
-              <td width="23%" align="center" bgcolor="#f3f3f3">三围</td>
-              <td width="22%" align="center" bgcolor="#f3f3f3">尺码</td>
-            </tr>
-            <tr>
-              <td align="center">12</td>
-              <td align="center">165cm/51kg</td>
-              <td align="center">--</td>
-              <td align="center">M</td>
-            </tr>
-          </table>
-          <p>夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球 夏日超</p>
+        <span id="share_main"></span>
+        <div class="sd-other" style="display:none"><!--晒单列表--></div>
+        <div class="sd-page">
+        <!--a class="chk" href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a  class="nextp" href="#">下一页</a-->
+          <p class="moresd"><span class="font10">查看更多晒单 >></span></p>
         </div>
-        <div class="sd-other">
-          <div class="sd-cont">
-            <div class="sd-cbox">
-              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
-              <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
-                夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
-            </div>
-          </div>
-          <div class="sd-cont">
-            <div class="sd-cbox">
-              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
-              <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
-                夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
-            </div>
-          </div>
-          <div class="sd-cont">
-            <div class="sd-cbox">
-              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
-              <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
-                夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
-            </div>
-          </div>
-          <div class="sd-cont">
-            <div class="sd-cbox">
-              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
-              <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
-                夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
-            </div>
-          </div>
-          <div class="sd-cont">
-            <div class="sd-cbox">
-              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
-              <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
-                夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
-            </div>
-          </div>
-          <div class="sd-cont">
-            <div class="sd-cbox">
-              <div class="sdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/sdad_27.jpg" width="107" height="143" /></div>
-              <div class="sdtext"><strong>Good 荧光绿色</strong><br/>
-                夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球夏日超完美潮饰~饰诱眼球 夏日超完美潮饰~饰诱眼球</div>
-            </div>
-          </div>
-        </div>
-        <!--div class="sd-page"><a class="chk" href="#">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a  class="nextp" href="#">下一页</a>
-          <p class="moresd"><span class="font18">查看更多晒单 >></span></p>
-        </div-->
       </div>
     </div>
     <div class="gbox-relation" id="g-relation4">
@@ -702,53 +641,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             </table>
             <div class="q-t-w">更多关于万象网购物问题及配送方式问题，详情请 <a href="#">点击这里 >></a></div>
           </div>
-          <div class="q-a-box">
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-            <div class="q-a">
-              <div class="q-a-u">曲春平&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;2012-05-12 16:30</div>
-              <div class="q-a-wt">咨询内容：您好，请问身高165，体重50，建议穿哪个尺码？</div>
-              <div class="q-a-hd">客服回复：亲爱的会员，您好，根据您提供的尺码，我们建议您穿M码。感谢您的咨询，祝您购物愉快！</div>
-            </div>
-          </div>
+          <div class="q-a-box"><!--互动问答内容--></div>
+          <div id="more_qa" style="float:center;display:none" class="pages"><!--更多--></div>
         </div>
       </div>
     </div>
@@ -837,8 +731,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include '/../../footer.php';?>
 <!-- #EndLibraryItem -->
-<script type=text/javascript src="<?=config_item('static_url')?>scripts/function.js"></script>
-<script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/function.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script>
 var product = {};
 product.class_id = <?=$product['class_id']?>;
