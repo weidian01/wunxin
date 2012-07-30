@@ -13,17 +13,26 @@ class comment extends MY_Controller
      */
     public function postProductComment()
     {
-        $uid = $this->input->get_post('uid');
-        $pid = $this->input->get_post('pid');
-        $title = $this->input->get_post('title');
-        $content = $this->input->get_post('content');
-        $ip = $this->input->ip_address();
-        $rank = $this->input->get_post('rank');
+        $data['pid'] = $this->input->get_post('pid');
+        $data['title'] = $this->input->get_post('title');
+        $data['content'] = $this->input->get_post('content');
+        $data['ip'] = $this->input->ip_address();
+        $data['rank'] = $this->input->get_post('rank');
+        $data['comfort'] = $this->input->get_post('comfort');
+        $data['exterior'] = $this->input->get_post('exterior');
+        $data['size_deviation'] = $this->input->get_post('size_deviation');
 
-        $response = array('error'=>0);
+
+        $response = array('error' => '0', 'msg' => '评论成功', 'code' => 'add_comment_comment');
 
         do {
-            if (empty ($uid) || empty ($pid) || empty ($title) || empty ($content) || empty ($rank)) {
+            if (empty ($data['pid']) ||
+                empty ($data['title']) ||
+                empty ($data['content']) ||
+                empty ($data['rank']) ||
+                empty ($data['comfort']) ||
+                empty ($data['exterior']) ||
+                empty ($data['size_deviation'])) {
                 $response = error(50008);
                 break;
             }
@@ -32,6 +41,18 @@ class comment extends MY_Controller
                 $response = error(10009);
                 break;
             }
+            $data['uid'] = $this->uInfo['uid'];
+            $data['uname'] = $this->uInfo['uname'];
+
+            //产品是否存在
+            $pInfo = $this->product->productIsExist($data['pid']);
+            if (!$pInfo) {
+                $response = error(20002);
+                break;
+            }
+            //$data['color']
+            //'color' => $cInfo['color'],
+            //'size' => $cInfo['size'],
 
             $this->load->model('order/Model_order', 'order');
             $data = $this->order->userIsBuyProduct(1, 1); //($uid, $pid);

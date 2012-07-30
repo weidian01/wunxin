@@ -100,10 +100,15 @@ class Model_Product_Comment extends MY_Model
             'pid' => $cInfo['pid'],
             'uid' => $cInfo['uid'],
             'uname' => $cInfo['uname'],
-            'comment_title' => $cInfo['comment_title'],
-            'comment_content' => $cInfo['comment_content'],
+            'title' => $cInfo['title'],
+            'content' => $cInfo['content'],
             'ip' => $cInfo['ip'],
+            'color' => $cInfo['color'],
+            'size' => $cInfo['size'],
             'rank' => $cInfo['rank'],
+            'comfort' => $cInfo['comfort'],
+            'exterior' => $cInfo['exterior'],
+            'size_deviation' => $cInfo['size_deviation'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 

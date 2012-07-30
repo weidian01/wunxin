@@ -16,7 +16,7 @@ class Model_User_Log extends MY_Model
     * @param $source 登陆来源
     * @return boolean
     */
-   public function record_login_log($uId,$ip, $source = 1)
+   public function record_login_log($uId, $ip, $source = 1)
    {
        $data = array(
            'uid' => $uId,

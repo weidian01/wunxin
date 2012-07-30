@@ -92,9 +92,9 @@ $error[20007] = array('error' => '20007', 'msg' => '喜欢晒单产品成功', '
 $error[20008] = array('error' => '20008', 'msg' => '喜欢晒单产品失败', 'code' => 'like_share_product_failure');
 $error[20009] = array('error' => '20009', 'msg' => '喜欢晒单产品参数不全', 'code' => 'like_share_product_parameter_failure');
 
-$error[20010] = array('error' => '20010', 'msg' => '产品收藏成功', 'code' => 'product_favorite_success');
-$error[20011] = array('error' => '20011', 'msg' => '产品收藏失败', 'code' => 'product_favorite_failure');
-$error[20012] = array('error' => '20012', 'msg' => '产品收藏参数不全', 'code' => 'product_favorite_parameter_failure');
+$error[20010] = array('error' => '20010', 'msg' => '已收藏产品', 'code' => 'already_favorite_product');
+$error[20011] = array('error' => '20011', 'msg' => '产品收藏失败', 'code' => 'favorite_product_failure');
+$error[20012] = array('error' => '20012', 'msg' => '收藏产品参数不全', 'code' => 'favorite_product_parameter_failure');
 
 $error[20013] = array('error' => '20013', 'msg' => '删除收藏成功', 'code' => 'delete_favorite_success');
 $error[20014] = array('error' => '20014', 'msg' => '删除收藏失败', 'code' => 'delete_favorite_failure');
