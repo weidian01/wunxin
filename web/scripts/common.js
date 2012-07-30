@@ -368,7 +368,7 @@ wx.initLoginStatus = function ()
     var html = '';
 
     if (userInfo) {
-        html = '<a href="/user/login/login_out">[退出]</a>';
+        html = '<a href="/user/login/login_out" style="color: #AE8D8F;">[退出]</a>';
         $('#user_name_id').html(userInfo.nickname);
         $('#loginout_id').html(html);
 
