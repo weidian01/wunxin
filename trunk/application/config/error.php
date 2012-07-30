@@ -70,6 +70,9 @@ $error[10040] = array('error' => '10040', 'msg' => '保存用户信息失败', '
 $error[10041] = array('error' => '10041', 'msg' => '删除设计师留言参数不全', 'code' => 'delete_designer_message_parameter_failure');
 $error[10042] = array('error' => '10042', 'msg' => '删除设计师留言失败', 'code' => 'delete_designer_message_failure');
 
+$error[10043] = array('error' => '10043', 'msg' => '设计用户头像参数不全', 'code' => 'setting_user_header_parameter_failure');
+$error[10044] = array('error' => '10044', 'msg' => '设计用户头像失败', 'code' => 'setting_user_header_failure');
+
 
 
 

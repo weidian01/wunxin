@@ -5108,6 +5108,7 @@ create table wx_user
    uid                  int unsigned not null auto_increment comment '用户ID',
    uname                varchar(32) comment '用户名称',
    nickname             varchar(32) comment '昵称',
+   header               tinyint unsigned default 0 comment '头像',
    lid                  int unsigned default 1 comment '等级ID',
    password             char(32) comment '登陆密码',
    source               varchar(128) default '1' comment '用户来源，1主站',
@@ -5177,7 +5178,6 @@ create table wx_user_info
 (
    uid                  int unsigned not null comment '用户ID',
    real_name            char(16) comment '真实姓名',
-   header               varchar(64) comment '头像',
    sex                  tinyint unsigned default 0 comment '性别,0为保密，1为男，2女',
    birthday             date comment '生日',
    country              char(16) comment '国家',

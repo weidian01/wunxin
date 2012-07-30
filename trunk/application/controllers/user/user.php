@@ -71,18 +71,65 @@ class user extends MY_Controller
         self::json_output($response);
     }
 
+    /**
+     * 设置用户头像
+     */
+    public function setUserHeader()
+    {
+        $avatarId = intval($this->input->get_post('avatar_id'));
+
+        $response = array('error' => '0', 'msg' => '设计用户头像成功', 'code' => 'setting_user_header_success');
+
+        do {
+            if (empty ($avatarId)) {
+                $response = error(10043);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            if (!in_array($avatarId, array(1,2,3,4,5,6,7,8,9,10,11,12))) {
+                $response = error(99999);
+                break;
+            }
+
+            $source = WEBROOT.'images/avatar/avatar'.$avatarId.'.jpg';
+            if (!file_exists($source)) {
+                $response = error(10044);
+                break;
+            }
+
+            $destOne = WEBROOT.'upload/designer/'.intToPath($this->uInfo['uid']).'default.jpg';
+            $destTwo = WEBROOT.'upload/designer/'.intToPath($this->uInfo['uid']).'icon.jpg';
+            if (!copy($source, $destOne) || !copy($source, $destTwo)) {
+                $response = error(10044);
+                break;
+            }
+        } while (false);
+
+        self::json_output($response);
+    }
+
     public function upload()
     {
+        if (!$this->isLogin()) {
+            echo '<script type="text/javascript">alert("用户未登陆!");</script>';
+            return ;
+        }
+
         @header("Expires: 0");
         @header("Cache-Control: private, post-check=0, pre-check=0, max-age=0", FALSE);
         @header("Pragma: no-cache");
 
-        define('SD_ROOT', dirname(__FILE__).'/');
         $pic_id = time();//使用时间来模拟图片的ID.
         $pic_path = WEBROOT.'/upload/tmp/'.$pic_id.'.jpg';
 
         //上传后图片的绝对地址
         $pic_abs_path = config_item('base_url').'/upload/tmp/'.$pic_id.'.jpg';
+
         //保存上传图片.
         if(empty($_FILES['Filedata'])) {
         	echo '<script type="text/javascript">alert("对不起, 图片未上传成功, 请再试一下");</script>';
@@ -106,8 +153,12 @@ class user extends MY_Controller
 
     public function camera()
     {
+        if (!$this->isLogin()) {
+            echo '<script type="text/javascript">alert("用户未登陆!");</script>';
+            return ;
+        }
+
         //保存报像头上传的图片.
-        define('SD_ROOT', dirname(__FILE__).'/');
         @header("Expires: 0");
         @header("Cache-Control: private, post-check=0, pre-check=0, max-age=0", FALSE);
         @header("Pragma: no-cache");
@@ -142,30 +193,21 @@ class user extends MY_Controller
     public function saveAvatar()
     {
         if (!$this->isLogin()) {
-            redirect('user/login');
+            echo '<script type="text/javascript">alert("用户未登陆!");</script>';
             return ;
         }
 
-        function  log_result($word) {
-        	@$fp = fopen("log.txt","a");
-        	@flock($fp, LOCK_EX) ;
-        	@fwrite($fp,$word."：执行日期：".strftime("%Y%m%d%H%I%S",time())."\r\n");
-        	@flock($fp, LOCK_UN);
-        	@fclose($fp);
-        }
-        define('SD_ROOT', dirname(__FILE__).'/');
         @header("Expires: 0");
         @header("Cache-Control: private, post-check=0, pre-check=0, max-age=0", FALSE);
         @header("Pragma: no-cache");
 
+        $type = $this->input->get_post('type');
+
         //这里传过来会有两种类型，一先一后, big和small, 保存成功后返回一个json字串，客户端会再次post下一个.
-        $type = isset($_GET['type'])?trim($_GET['type']):'small';
-        $pic_id = trim($_GET['photoId']);
-        //$orgin_pic_path = $_GET['photoServer']; //原始图片地址，备用.
-        //$from = $_GET['from']; //原始图片地址，备用.
+        $type = (isset($type) && $type == 'small') ? 'icon' : 'default';
 
         //生成图片存放路径
-        $new_avatar_path = 'upload/tmp/'.$pic_id.'_'.$type.'.jpg';
+        $new_avatar_path = 'upload'.DS.'designer'.DS.intToPath($this->uInfo['uid']).DS.$type.'.jpg';
 
         //将POST过来的二进制数据直接写入图片文件.
         $len = file_put_contents(WEBROOT.$new_avatar_path, file_get_contents("php://input"));
@@ -176,24 +218,17 @@ class user extends MY_Controller
         imagejpeg($avtar_img, WEBROOT.$new_avatar_path, 80);
         //nix系统下有必要时可以使用 chmod($filename,$permissions);
 
-        log_result('ss: '.$len);
-
-
         //输出新保存的图片位置, 测试时注意改一下域名路径, 后面的statusText是成功提示信息.
         //status 为1 是成功上传，否则为失败.
         $d = new pic_data();
         //$d->data->urls[0] = 'http://sns.com/avatar_test/'.$new_avatar_path;
-        $d->data->urls[0] = '/avatar_test/'.$new_avatar_path;
+        $d->data->urls[0] = $new_avatar_path;
         $d->status = 1;
         $d->statusText = '上传成功!';
 
         $msg = json_encode($d);
 
         echo $msg;
-
-        log_result($msg);
-
-
     }
 
     public function getUserHeader()

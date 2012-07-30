@@ -13,10 +13,26 @@
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
+    <style type="text/css">
+        .path ul li.last { background: none repeat scroll 0 0 transparent; }
+        .path, .path ul li { height: 30px; line-height: 30px; background: url(/images/g-bg.png) no-repeat; }
+        .path, .path ul li { height: 30px; line-height: 30px; }
+        .path { padding-left: 20px; background-position: 0px -179px; }
+        .path ul li { float: left; padding-right: 12px; padding-left: 5px; display: block; background-position: right -91px; }
+    </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include('/../../header.php');?>
 <!-- #EndLibraryItem -->
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="#">首页</a></li>
+      <li><a href="/user/center/index">个人中心</a></li>
+      <li class="last">订单列表</li>
+    </ul>
+  </div>
+</div>
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
     <div class="u-right">

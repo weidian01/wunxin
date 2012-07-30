@@ -23,7 +23,7 @@
         .sztx .main .uploadbox dt{width:70px;font-weight:bold;float:left;}
         .sztx .main .uploadbox dd{width:708px;float:left;}
         .sztx .main .uploadbox dd p{padding:0px 0px 15px 8px;line-height:20px;}
-        .sztx .main .photobox{width:618px;padding:20px 60px;float:left;}
+        .sztx .main .photobox{width:650px;padding:20px 60px;float:left;}
         .sztx .main .photobox .photo{width:300px;height:300px;text-align:left;border:1px #000 solid;background:url(/images/photobox_bg.png);float:left;}
         .sztx .main .submit{clear:both;padding-left:80px;}
         .sztx .main .submit p{padding:10px;}
@@ -69,11 +69,13 @@
                             <dt>上传图片：</dt>
                             <dd>
                                 <div class="tips-text">
-                                    支持JPEG和静态的GIF格式图片，不支持GIF动画图片，上传图片大小不能超过2M。
-
+                                    支持JPEG、PNG和静态的GIF格式图片，不支持GIF动画图片，上传图片大小不能超过2M。
+                                    <br /><br /><br />
                                     <div>
-                                        你可以选择： 选择头像<input type="radio" value="0" name="types" onclick="showLayer(0)" checked="checked">
-                                        上传头像<input type="radio" value="1" name="types" onclick="showLayer(1)">
+
+                                        你可以选择： <b>选择头像</b> <input type="radio" value="0" name="types" onclick="showLayer(0)" checked="checked">&nbsp;&nbsp;&nbsp;
+                                        <b>上传头像</b> <input type="radio" value="1" name="types" onclick="showLayer(1)">
+
                                     </div>
                                 </div>
                             </dd>
@@ -84,53 +86,45 @@
                             <div class="pic_list">
                                 <ul>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar1.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar1.jpg" class="" title="1"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar2.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar2.jpg" class="" title="2"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar3.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar3.jpg" class="" title="3"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar4.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar4.jpg" class="" title="4"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar5.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar5.jpg" class="" title="5"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar6.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar6.jpg" class="" title="6"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar7.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar7.jpg" class="" title="7"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar8.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar8.jpg" class="" title="8"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar9.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar9.jpg" class="" title="9"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar10.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar10.jpg" class="" title="10"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar11.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar11.jpg" class="" title="11"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar12.jpg" class=""></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar12.jpg" class="" title="12"></a></li>
                                 </ul>
                             </div>
 
-                            <script type="text/javascript">
-                                function onErrors(t, uid, type)
-                                {
-                                    var url = '/user/user/getUserHeader?uid='+uid+'&type='+type;
-                                    var data = $.ajax(url, '');
-                                    alert(data.url);
-                                    console.log(data.url);
-                                    return;
-                                    t.src = url.url;
-                                    t.onerror=null;// 控制onerror事件只触发一次
-                                }
-                            </script>
                             <div class="finishnew" style=" margin:8px;">
                                 <ul>
                                     <li style=" height:127px;">
-                                        <img src="<?=config_item('static_url')?>user/user/getUserHeader?uid=<?=$uInfo['uid']?>&type=2" alt="<?php echo $uInfo['uname'];?>" width="60" height="60"
-                                             />
+                                        <img src="<?=config_item('static_url')?>upload/designer/<?=str_replace('\\', '/', intToPath($uInfo['uid']))?>icon.jpg" alt="<?php echo $uInfo['uname'];?>" width="60" height="60"
+                                            onerror="javascript:this.src='<?=config_item('static_url')?>images/avatar/avatar1.jpg'"/>
                                         <span class="blank10w"></span>
-                                        <a id="OK" onclick="SaveHead();" name="my_avatar_change_save">
+                                        <a id="OK" onclick="SaveHead();" name="my_avatar_change_save" style="width: 90px;float: left;">
                                             <img border="0" src="<?=config_item('static_url')?>images/save_avatar.png" style="">
+
                                         </a>
+                                        <span style="display: none;color: #A1A1A1;font-weight: bold;font-size: 11px;float: left;" id="setting_header_wait">
+                                            <img class="maskall" src="<?=config_item('static_url')?>images/loading.gif">
+                                        </span>
                                     </li>
                                 </ul>
                             </div>
@@ -139,8 +133,7 @@
                             </div>
 
                             <form id="form1" action="/user/_SaveAvatarVT" enctype="multipart/form-data" method="post">
-                                <input type="hidden" id="filename" name="filename" value="">
-                                <input type="hidden" id="ID" name="ID" value="73238">
+                                <input type="hidden" id="avatar_id" name="ID" value="0">
                             </form>
                         </div>
                     </div>
@@ -154,7 +147,7 @@
                                 </h3>
                                 -->
                                 <div style="padding:10px 0;color:#666;">
-                                    <br/>
+                                    <br/><br/><br/>
                                     <h3>
                                     请你上传头像， 也可以
                                     <a style="color:#cc3300;" href="javascript:void(0);" onclick="useCamera()">使用摄像头来拍摄！</a>
@@ -170,83 +163,6 @@
                                 </form>
                                 <iframe src="about:blank" name="upload_target" style="display:none;"></iframe>
                                 <div id="avatar_editor"></div>
-                                <script type="text/javascript">
-                                    //允许上传的图片类型
-                                    var extensions = 'jpg,jpeg,gif,png';
-                                    //保存缩略图的地址.
-                                    var saveUrl = 'http://wunxin.com/user/user/saveAvatar';
-                                    //保存摄象头白摄图片的地址.
-                                    var cameraPostUrl = '/user/user/camera';
-                                    //头像编辑器flash的地址.
-                                    var editorFlaPath = '<?=config_item('static_url')?>images/AvatarEditor.swf';
-                                    //Download by http://www.codefans.net
-                                    function useCamera() {
-                                        var content = '<embed height="464" width="514" ';
-                                        content += 'flashvars="type=camera';
-                                        content += '&postUrl=' + cameraPostUrl + '?&radom=1';
-                                        content += '&saveUrl=' + saveUrl + '?radom=1" ';
-                                        content += 'pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" ';
-                                        content += 'allowscriptaccess="always" quality="high" ';
-                                        content += 'src="' + editorFlaPath + '"/>';
-                                        document.getElementById('avatar_editor').innerHTML = content;
-                                    }
-
-                                    function buildAvatarEditor(pic_id, pic_path, post_type) {
-                                        var content = '<embed height="464" width="514"';
-                                        content += 'flashvars="type=' + post_type;
-                                        content += '&photoUrl=' + pic_path;
-                                        content += '&photoId=' + pic_id;
-                                        content += '&postUrl=' + cameraPostUrl + '?&radom=1';
-                                        content += '&saveUrl=' + saveUrl + '?radom=1"';
-                                        content += ' pluginspage="http://www.macromedia.com/go/getflashplayer"';
-                                        content += ' type="application/x-shockwave-flash"';
-                                        content += ' allowscriptaccess="always" quality="high" src="' + editorFlaPath + '"/>';
-                                        document.getElementById('avatar_editor').innerHTML = content;
-                                    }
-                                    /**
-                                     * 提供给FLASH的接口 ： 没有摄像头时的回调方法
-                                     */
-                                    function noCamera() {
-                                        alert("俺是小狗, 俺没有camare ：）");
-                                    }
-
-                                    /**
-                                     * 提供给FLASH的接口：编辑头像保存成功后的回调方法
-                                     */
-                                    function avatarSaved() {
-                                        alert('保存成功，哈哈');
-                                        //window.location.href = '/profile.do';
-                                    }
-
-                                    /**
-                                     * 提供给FLASH的接口：编辑头像保存失败的回调方法, msg 是失败信息，可以不返回给用户, 仅作调试使用.
-                                     */
-                                    function avatarError(msg) {
-                                        alert("上传失败了呀，哈哈");
-                                    }
-
-                                    function checkFile() {
-                                        var path = document.getElementById('Filedata').value;
-                                        var ext = getExt(path);
-                                        var re = new RegExp("(^|\\s|,)" + ext + "($|\\s|,)", "ig");
-                                        if (extensions != '' && (re.exec(extensions) == null || ext == '')) {
-                                            alert('对不起，只能上传jpg, gif, png类型的图片');
-                                            return false;
-                                        }
-                                        showLoading();
-                                        return true;
-                                    }
-
-                                    function getExt(path) {
-                                        return path.lastIndexOf('.') == -1 ? '' : path.substr(path.lastIndexOf('.') + 1, path.length).toLowerCase();
-                                    }
-                                    function showLoading() {
-                                        document.getElementById('loading_gif').style.visibility = 'visible';
-                                    }
-                                    function hideLoading() {
-                                        document.getElementById('loading_gif').style.visibility = 'hidden';
-                                    }
-                                </script>
                             </div>
                         </div>
 
@@ -262,22 +178,45 @@
 <script type="text/javascript">
     function SaveHead(dId)
     {
-        if (confirm('确定删除！')) {
-            if (!wx.isEmpty(dId)) {
-                return false;
-            }
+        //document.getElementById('setting_header_wait').style = '';
+        $('#setting_header_wait').html('<img src="<?=config_item('static_url')?>images/loading.gif" style="  margin-top:30px;" class="maskall">');
+        $('#setting_header_wait').fadeIn();
 
-            var url = '/user/designerFavorite/deleteDesignerFavorite';
-            var param = 'fid='+dId;
-            var data = wx.ajax(url, param);
+        var avatarId = document.getElementById('avatar_id').value;
 
-            if (data.error == '10020') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('删除失败!');
+        if (!wx.isEmpty(avatarId)) {
+            return false;
         }
+
+        var url = '/user/user/setUserHeader';
+        var param = 'avatar_id='+avatarId;
+        var data = wx.ajax(url, param);
+
+        if (data.error == '0') {
+            $('#setting_header_wait').hide();
+            $('#setting_header_wait').html(data.msg);
+            $('#setting_header_wait').fadeIn('slow');
+            //wx.pageReload(0);
+            window.setTimeout(hide,5000);
+            return true;
+        }
+
+        var t = '';
+        switch (data.error) {
+            case '10043': t = '请选择头像';break;
+            case '10044': t = '设置失败';break;
+            default :t = '未知错误';
+        }
+
+        $('#setting_header_wait').html(t);
+        //$('#setting_header_wait').hidden();
+
+        //alert('删除失败!');
+    }
+
+    function hide(id)
+    {
+        $('#setting_header_wait').fadeOut('slow');
     }
 
     function showLayer(v)
@@ -294,7 +233,7 @@
     $(function () {
            var imgList = $(".pic_list img");
            $(".finishnew img:eq(0)").bind("error", function () {
-               $(this).attr("src", "/images/avatar1.jpg");
+               $(this).attr("src", "/images/avatar/avatar1.jpg");
            });
            imgList.click(function () {
                $("[fid=tipsavevt]").text("").hide();
@@ -302,6 +241,8 @@
                $("#filename").val($(this).attr("src"));
                imgList.removeClass("selected");
                $(this).addClass("selected");
+
+               document.getElementById('avatar_id').value = this.title;
            });
            imgList.hover(function () {
                if ($(this).attr("src") == $("#filename").val()) {
@@ -321,6 +262,83 @@
            $(".pic_list img[src='" + path + "']").click();
            //    }
        });
+
+
+    //允许上传的图片类型
+    var extensions = 'jpg,jpeg,gif,png';
+    //保存缩略图的地址.
+    var saveUrl = '/user/user/saveAvatar';
+    //保存摄象头白摄图片的地址.
+    var cameraPostUrl = '/user/user/camera';
+    //头像编辑器flash的地址.
+    var editorFlaPath = '<?=config_item('static_url')?>images/AvatarEditor.swf';
+    //Download by http://www.codefans.net
+    function useCamera() {
+        var content = '<embed height="464" width="514" ';
+        content += 'flashvars="type=camera';
+        content += '&postUrl=' + cameraPostUrl + '?&radom=1';
+        content += '&saveUrl=' + saveUrl + '?radom=1" ';
+        content += 'pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" ';
+        content += 'allowscriptaccess="always" quality="high" ';
+        content += 'src="' + editorFlaPath + '"/>';
+        document.getElementById('avatar_editor').innerHTML = content;
+    }
+
+    function buildAvatarEditor(pic_id, pic_path, post_type) {
+        var content = '<embed height="464" width="514"';
+        content += 'flashvars="type=' + post_type;
+        content += '&photoUrl=' + pic_path;
+        content += '&photoId=' + pic_id;
+        content += '&postUrl=' + cameraPostUrl + '?&radom=1';
+        content += '&saveUrl=' + saveUrl + '?radom=1"';
+        content += ' pluginspage="http://www.macromedia.com/go/getflashplayer"';
+        content += ' type="application/x-shockwave-flash"';
+        content += ' allowscriptaccess="always" quality="high" src="' + editorFlaPath + '"/>';
+        document.getElementById('avatar_editor').innerHTML = content;
+    }
+    /**
+     * 提供给FLASH的接口 ： 没有摄像头时的回调方法
+     */
+    function noCamera() {
+        alert("俺是小狗, 俺没有camare ：）");
+    }
+
+    /**
+     * 提供给FLASH的接口：编辑头像保存成功后的回调方法
+     */
+    function avatarSaved() {
+        alert('保存成功，哈哈');
+        //window.location.href = '/profile.do';
+    }
+
+    /**
+     * 提供给FLASH的接口：编辑头像保存失败的回调方法, msg 是失败信息，可以不返回给用户, 仅作调试使用.
+     */
+    function avatarError(msg) {
+        alert("上传失败了呀，哈哈");
+    }
+
+    function checkFile() {
+        var path = document.getElementById('Filedata').value;
+        var ext = getExt(path);
+        var re = new RegExp("(^|\\s|,)" + ext + "($|\\s|,)", "ig");
+        if (extensions != '' && (re.exec(extensions) == null || ext == '')) {
+            alert('对不起，只能上传jpg, gif, png类型的图片');
+            return false;
+        }
+        showLoading();
+        return true;
+    }
+
+    function getExt(path) {
+        return path.lastIndexOf('.') == -1 ? '' : path.substr(path.lastIndexOf('.') + 1, path.length).toLowerCase();
+    }
+    function showLoading() {
+        document.getElementById('loading_gif').style.visibility = 'visible';
+    }
+    function hideLoading() {
+        document.getElementById('loading_gif').style.visibility = 'hidden';
+    }
 </script>
 <!-- #EndLibraryItem -->
 </body>

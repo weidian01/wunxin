@@ -251,14 +251,14 @@
                     <div class="submit">
 
                         <?php if ($order_data['status'] == '0') {?>
-                            <span class="stat_cancel">订单已取消</span>
+                            <span class="stat_cancel" style="font-weight: bold;">订单已取消</span>
                         <?php } else {?>
                             <?php if ($order_data['status'] != '2') {?>
-                            <a class="btn_bb3" onclick=" if( confirm( '您确定要取消订单吗?' ) ) { return true ; } else { return false ; } " href="/home/orders/cancel?order_code=2071112972">取消订单</a>
+                            <a class="btn_bb3" onclick=" if( confirm( '您确定要取消订单吗?' ) ) { return true ; } else { return false ; } " href="/home/orders/cancel?order_code=2071112972" style="color: #ffffff;font-weight: bold;">取消订单</a>
                             <?php }?>
 
                             <?php if ($order_data['status'] == '2' && $order_data['is_pay'] != '1') {?>
-                            <a class="btn_bb2" href="/shopping/pay?ordercode=2071112972">立即付款</a>
+                            <a class="btn_bb2" href="/shopping/pay?ordercode=2071112972" style="color: #ffffff;font-weight: bold;">立即付款</a>
                             <?php }?>
                         <?php }?>
                         <br>
@@ -273,9 +273,17 @@
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
+<?php include("/../../float_layer.php");?>
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
 <!-- #EndLibraryItem -->
+<a onclick="kk()">kkkk</a>
+<script type="text/javascript">
+    function kk()
+    {
+        jQuery.facebox('something cool');
+    }
+</script>
 </body>
 </html>
 
