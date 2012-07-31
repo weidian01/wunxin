@@ -96,7 +96,7 @@
                             <label>产品色系</label>
                             <select name="color_id" class="small-input">
                                 <option value="0">选择产品色系</option>
-                                <?php foreach ($color as $item): ?>
+                                <?php foreach ($color as $item):?>
                                 <optgroup label="<?=$item['china_name']?>">
                                 <?php if(isset($item['children'])):foreach ($item['children'] as $v): ?>
                                 <option value="<?=$v['color_id']?>" <?php if(isset($info['color_id']) && $info['color_id']==$v['color_id'] ){echo 'selected="selected"';}?>><?=$v['china_name']?>/<?=$v['english_name']?></option>
@@ -173,7 +173,7 @@
 
                         <p>
                             <label>图片</label>
-                            <?php if(isset($image)):?><img width="50" height="50" src="<?=config_item('static_url'),'upload/color/',$image?>"><?php endif;?>
+                            <?php if(isset($image)):?><img width="50" height="50" src="<?=config_item('static_url').'upload/color/'.$image?>"><?php endif;?>
                             <input class="" multiple="" type="file" value="" name="images[]"/>
                         </p>
 
@@ -181,14 +181,14 @@
                         <style>.default_photo{border:3px solid #ff4500;}</style>
                         <div id="product_photo">
                         <?php foreach($photo as $v):?>
-                            <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url'),'upload/product/',$v['img_addr']?>" width="120" height="80" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="select_photo(<?=$v['id']?>)"/> <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
+                            <div id="photo_<?=$v['id']?>"><img src="<?=config_item('static_url').'upload/product/'.$v['img_addr']?>" width="120" height="80" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="select_photo(<?=$v['id']?>)"/> <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
                             <?php if($v['is_default']==1):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id']?>"/><?php endif;?>
                         <?php endforeach;?>
                         </div>
                         <?php endif;?>
                         <p>
                             <label>仓库</label>
-                            <input class="text-input" id="large-input" name="warehouse" type="text" value="<?php echo isset($info['warehouse']) ? $info['warehouse'] : ''?>">
+                            <input class="text-input" id="" name="warehouse" type="text" value="<?php echo isset($info['warehouse']) ? $info['warehouse'] : ''?>">
                             <small style="color:red;">不包含http:// 例 : jsbike.taobao.com</small>
                         </p>
                         <p>

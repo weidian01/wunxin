@@ -328,7 +328,7 @@ $(document).ready(function(){
         </tr>
           <?php foreach ($cart_info as $cv) {?>
         <tr>
-          <td width="7%"><img src="<?php echo base_url().'upload/product/'.$cv['product_img'];?>" width="52" height="66" /></td>
+          <td width="7%"><img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($cv['pid']))?>icon.jpg" width="60" height="60" /></td>
           <td width="49%"><a class="gn2" href="#"><?php echo $cv['pname'];?></a><br/>
             <!-- <span class="font2">GZ26052909-S</span> --></td>
           <td align="center"><?php echo $cv['product_price'];?></td>

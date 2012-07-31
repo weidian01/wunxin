@@ -26,7 +26,7 @@ class product extends MY_Controller
     {
         $this->load->model('product/Model_Product', 'product');
         $this->load->library('pagination');
-        $num = $this->product->getProductCout();
+        $num = $this->product->getProductCount();
         $pagesize = 20;
         $config['base_url'] = site_url('administrator/product/index');
         $config['total_rows'] = $num;

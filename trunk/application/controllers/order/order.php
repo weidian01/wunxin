@@ -37,7 +37,7 @@ class order extends MY_Controller
         }
 
         $cartInfo = $this->getCartToCookie();
-
+//echo '<pre>';print_r($cartInfo);exit;
         if (empty ($cartInfo)) {
             echo "<script type='text/javascript'>alert('购物车为空！');window.location.href = '".$referer."'</script>";
             return ;
@@ -133,8 +133,11 @@ class order extends MY_Controller
             $response['order_sn'] = $orderId;
 
             $this->load->model('product/Model_Product', 'product');
+            $this->load->model('product/Model_Product_Color', 'color');
+
             foreach ($cartData as $v) {
                 $productData = $this->product->getProductById($cv['pid']);
+                $colorData = $this->color->getColorById($productData['color_id']);
 
                 $orderProductData [] = array (
                     'order_sn' => $orderId,
@@ -145,6 +148,7 @@ class order extends MY_Controller
                     'market_price' => $productData['market_price'],
                     'sall_price' => $productData['sell_price'],
                     'product_num' => $v['product_num'],
+                    'color' => $colorData['china_name'],
                     'product_size' => $v['product_size'],
                     'presentation_integral' => $productData['sell_price'],
                     'preferential' => '',
@@ -323,7 +327,7 @@ class order extends MY_Controller
             return false;
         }
 
-        $this->recent->deleteRecentAddress($aId, $this->uInfo['uid']);
+        $this->recent->deleteUserRecentAddress($aId, $this->uInfo['uid']);
     }
 }
 

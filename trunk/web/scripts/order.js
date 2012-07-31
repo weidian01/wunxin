@@ -155,6 +155,7 @@ order.saveAddress = function (urls)
     //saveAddress
 }
 
+//编辑地址
 wx.editAddress = function (aId)
 {
 
@@ -163,9 +164,12 @@ wx.editAddress = function (aId)
     var data = wx.ajax(url, param);
 
     var str = data.call_num;
-    var callNum = str.split('-');
+    var callNum = '';
+    if (wx.isEmpty(str)) {
+        var callNum = str.split('-');
+    }
 
-    $('#edit_address_id').html('<br/>'+data.province+', '+data.city+', '+data.area);
+    //$('#edit_address_id').html('<br/>'+data.province+', '+data.city+', '+data.area);
     document.getElementById('recent_name_id').value = data.recent_name;
     document.getElementById('detail_address_id').value = data.detail_address;
     document.getElementById('phone_num_id').value = data.phone_num;
@@ -174,9 +178,37 @@ wx.editAddress = function (aId)
     document.getElementById('email_id').value = data.email;
     document.getElementById('post_code_id').value = data.zipcode;
     document.getElementById('aid_id').value = data.address_id;
+
+    var provinceCount=$("#province_id option").length;
+    for (var i = 0; i < provinceCount; i++) {
+        if ($("#province_id").get(0).options[i].text == data.province) {
+            $("#province_id").get(0).options[i].selected = true;
+            order.changeProvince($("#province_id").get(0).options[i].value);
+            break;
+        }
+    }
+
+    var cityCount=$("#city_id option").length;
+    for (var i = 0; i < cityCount; i++) {
+        if ($("#city_id").get(0).options[i].text == data.city) {
+            $("#city_id").get(0).options[i].selected = true;
+            order.changeCity($("#city_id").get(0).options[i].value);
+            break;
+        }
+    }
+
+    var areaCount=$("#area_id option").length;
+    for (var i = 0; i < areaCount; i++) {
+        if ($("#area_id").get(0).options[i].text == data.area) {
+            $("#area_id").get(0).options[i].selected = true;
+            break;
+        }
+    }
+
     order.layerSwitch();
 }
 
+//添加地址
 wx.addAddress = function ()
 {
     $('#edit_address_id').html('');
@@ -200,7 +232,7 @@ wx.deleteAddress = function (aId)
 
     $('#address_'+aId).remove();
 
-    wx.pageReload();
+    //wx.pageReload();
 }
 
 //保存支付与送货时间

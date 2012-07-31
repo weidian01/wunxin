@@ -198,8 +198,8 @@ wx.cartGlobalInit = function ()
 
     for (var i in data) {
         html += '<div class="cart-bx">';
-        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'upload/product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="连衣裙"/></div>';
-        html += '<div class="cart-goodsname">'+data[i].pname+'<br/><span class="font5">￥'+data[i].product_price+'</span></div>';
+        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'upload/product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="'+data[i].pname+'" title="'+data[i].pname+'"/></div>';
+        html += '<div class="cart-goodsname"><a href="#">'+data[i].pname+'</a><br/><span class="font5">￥'+data[i].product_price+'</span></div>';
         html += '<div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
         html += '</div>';
         totalPrice += (data[i].product_price * data[i].product_num);
@@ -300,7 +300,7 @@ wx.isLogin = function ()
     var auth = wx.getCookie('auth');
 
     if (!wx.isEmpty(auth)) {
-        //alert ('暂未登陆，请登陆!');
+        alert ('暂未登陆，请登陆!');
         return false;
     }
 
@@ -308,13 +308,15 @@ wx.isLogin = function ()
     var data = wx.ajax(url, '');
 
     if (data.error == '10009') {
+        alert ('暂未登陆，请登陆!');
         return false;
     }
 
-    if (data.error == '10000') {
+    if (data.error == '0') {
         return data.user_info;
     }
 
+    alert ('暂未登陆，请登陆!');
     return false;
 }
 
@@ -381,11 +383,12 @@ wx.initLoginStatus = function ()
 //产品收藏
 wx.favoriteProduct = function(pId)
 {
-    var auth = wx.getCookie('auth');
-
-    if (!wx.isEmpty(auth)) {
-        alert('请登陆');
+    if ( !wx.isEmpty(pId)) {
         return false;
+    }
+
+    if ( !wx.isLogin() ) {
+        return 0;
     }
 
     var url = 'product/product_favorite/favorite';
@@ -393,30 +396,136 @@ wx.favoriteProduct = function(pId)
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
-        alert('收藏产品成功');
         return true;
     }
 
-    if (data.error = '10009') {
-        alert ('请登陆');
-        return false;
-    }
-    alert (data.msg);
-    return false;
+    //alert (data.msg);
+    return data;
 }
 
-wx.productComment = function (pId)
+//产品评论 pId 产品ID, title 标题, content 内容, rank 商品评分, comfort 合适度评分, exterior外观评分, size_deviation 尺寸偏差
+wx.productComment = function (pId, title, content, rank, comfort, exterior, size_deviation)
 {
-    var auth = wx.getCookie('auth');
-
-    if (!wx.isEmpty(auth)) {
-        alert('请登陆');
+    if ( !wx.isEmpty(pId) || !wx.isEmpty(title) || !wx.isEmpty(content) || !wx.isEmpty(rank) || !wx.isEmpty(comfort) || !wx.isEmpty(exterior) || !wx.isEmpty(size_deviation) ) {
         return false;
     }
 
-    var url = 'product/product_favorite/favorite';
-    var param = 'pid='+pId;
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
+
+    var url = 'product/comment/addComment';
+    var param = 'pid='+pId+'&title='+title+'&content='+content+'&rank='+rank+'&comfort='+comfort+'&exterior='+exterior+'&size_deviation='+size_deviation;
     var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+}
+
+//评论回复
+wx.commentReply = function (commentId, content)
+{
+    if ( !wx.isEmpty(commentId) || !wx.isEmpty(content) ) {
+        return false;
+    }
+
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
+
+    var url = 'product/comment/commentReply';
+    var param = 'comment_id='+commentId+'&content='+content;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+}
+
+//评论是否有效 commentId 评论ID， operaType 操作类型 0为无效， 0为有效
+wx.commentIsInvalid = function (commentId, operaType)
+{
+    if ( !wx.isEmpty(commentId)) {
+        return false;
+    }
+
+    var url = 'product/comment/CommentIsValid';
+    var param = 'comment_id='+commentId+'&opera_type='+operaType;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+}
+
+//添加产品问答
+wx.addQa = function (pId, title, content)
+{
+    if ( !wx.isEmpty(pId) || !wx.isEmpty(title) || !wx.isEmpty(content) ) {
+        return false;
+    }
+
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
+
+    var url = 'product/qa/addQa';
+    var param = 'pid='+pId+'&title='+title+'&content='+content;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+}
+
+//产品问答是否有效  qaId 问答ID， operaType 操作类型 0为无效， 0为有效
+wx.qaIsValid = function (qaId, operaType)
+{
+    if ( !wx.isEmpty(qaId)) {
+        return false;
+    }
+
+    var url = 'product/qa/postProductQAIsValid';
+    var param = 'qa_id='+qaId+'&opera_type='+operaType;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+}
+
+//产品问答回复
+wx.qaReply = function (qaId, content)
+{
+    if ( !wx.isEmpty(qaId) || !wx.isEmpty(content) ) {
+        return false;
+    }
+
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
+
+    var url = 'product/qa/postProductQAReply';
+    var param = 'qa_id='+qaId+'&content='+content;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+
 }
 
 function idToPath(id) {

@@ -65,6 +65,7 @@ class Model_Order extends MY_Model
                 'market_price' => $v['market_price'],
                 'sall_price' => $v['sall_price'],
                 'product_num' => $v['product_num'],
+                'color' => $v['color'],
                 'product_size' => $v['product_size'],
                 'presentation_integral' => $v['presentation_integral'],
                 'preferential' => $v['preferential'],
@@ -301,7 +302,22 @@ class Model_Order extends MY_Model
             ->where('order.is_pay', '1')
             ->where('order.picking_status', '2')->get()->row_array();
 
-        return $data;
+        return empty ($data) ? null : $data;
+    }
+
+    /**
+     * 获取用户订单产品
+     *
+     * @param $uId
+     * @param $pId
+     * @param array $where
+     * @return null | array
+     */
+    public function getUserOrderProduct($uId, $pId, $where = array())
+    {
+        $data = $this->db->select('*')->from('order_product')->where('uid', $uId)->where('pid', $pId)->where($where)->get()->row_array();
+
+        return empty ($data) ? null : $data;
     }
 
     /**

@@ -12,7 +12,7 @@
 /**
  * 用户错误代码  --  用户相关错误代码以 10 开头
  */
-$error[10000] = array('error' => '10000', 'msg' => '登陆成功', 'code' => 'login_success');
+//$error[10000] = array('error' => '10000', 'msg' => '登陆成功', 'code' => 'login_success');
 $error[10001] = array('error' => '10001', 'msg' => '用户名不合法', 'code' => 'username_illegal');
 $error[10002] = array('error' => '10002', 'msg' => '用户已存在', 'code' => 'user_already_exists');
 $error[10003] = array('error' => '10003', 'msg' => '两次输入密码不一致', 'code' => 'twice_input_password_inconsistent');
@@ -199,27 +199,31 @@ $error[50001] = array('error' => '50001', 'msg' => '评论不合法', 'code' => 
 $error[50002] = array('error' => '50002', 'msg' => '未购买产品不能评论', 'code' => 'not_buy_product_can_not_comment');
 $error[50003] = array('error' => '50003', 'msg' => '添加评论失败', 'code' => 'add_comment_failure');
 $error[50004] = array('error' => '50004', 'msg' => '重复投票', 'code' => 'repeat_voting');
-$error[50005] = array('error' => '50005', 'msg' => '评论是否有效提供成功', 'code' => 'comment_whether_effective_delivery_successful');
-$error[50006] = array('error' => '50006', 'msg' => '评论回复成功', 'code' => 'comment_reply_success');
+//$error[50005] = array('error' => '50005', 'msg' => '评论是否有效提供成功', 'code' => 'comment_whether_effective_delivery_successful');
+//$error[50006] = array('error' => '50006', 'msg' => '评论回复成功', 'code' => 'comment_reply_success');
 $error[50007] = array('error' => '50007', 'msg' => '评论回复失败', 'code' => 'comment_reply_failure');
 $error[50008] = array('error' => '50008', 'msg' => '评论参数不全', 'code' => 'comment_parameter_failure');
 $error[50009] = array('error' => '50009', 'msg' => '评论是否有效提供失败', 'code' => 'comment_whether_effective_delivery_failure');
 
 $error[50010] = array('error' => '50010', 'msg' => '疑难问答参数不全', 'code' => 'qa_parameter_failure');
 $error[50011] = array('error' => '50011', 'msg' => '疑难问答提交失败', 'code' => 'qa_delivery_failure');
-$error[50012] = array('error' => '50012', 'msg' => '疑难问答提交成功', 'code' => 'qa_delivery_success');
-$error[50013] = array('error' => '50013', 'msg' => '疑难问答是否有效提供成功', 'code' => 'qa_whether_effective_delivery_successful');
+//$error[50012] = array('error' => '50012', 'msg' => '疑难问答提交成功', 'code' => 'qa_delivery_success');
+//$error[50013] = array('error' => '50013', 'msg' => '疑难问答是否有效提供成功', 'code' => 'qa_whether_effective_delivery_successful');
 $error[50014] = array('error' => '50014', 'msg' => '疑难问答是否有效提供失败', 'code' => 'qa_whether_effective_delivery_failure');
 $error[50015] = array('error' => '50015', 'msg' => '疑难问答是否有效参数不全', 'code' => 'qa_whether_effective_parameter_failure');
-$error[50016] = array('error' => '50016', 'msg' => '疑难问答回复成功', 'code' => 'qa_whether_effective_reply_successful');
+//$error[50016] = array('error' => '50016', 'msg' => '疑难问答回复成功', 'code' => 'qa_whether_effective_reply_successful');
 $error[50017] = array('error' => '50017', 'msg' => '疑难问答回复失败', 'code' => 'qa_whether_effective_reply_failure');
 $error[50018] = array('error' => '50018', 'msg' => '疑难问答回复参数不全', 'code' => 'qa_whether_effective_reply_failure');
+
+$error[50019] = array('error' => '50019', 'msg' => '已评论过此产品', 'code' => 'already_comment_the_product');
+
+//$error[50020] = array('error' => '50020', 'msg' => '已评论过此产品', 'code' => 'already_comment_the_product');
 
 
 /**
  * 购物车错误代码 -- 购物车相关错误代码以60开头
  */
-$error[60001] = array('error' => '60001', 'msg' => '添加产品到购物车成功', 'code' => 'add_products_to_cart_successful');
+//$error[60001] = array('error' => '60001', 'msg' => '添加产品到购物车成功', 'code' => 'add_products_to_cart_successful');
 $error[60002] = array('error' => '60002', 'msg' => '添加产品到购物车失败', 'code' => 'add_products_to_cart_failure');
 $error[60003] = array('error' => '60003', 'msg' => '添加产品到购物车参数不全', 'code' => 'add_products_to_cart_parameter_failure');
 

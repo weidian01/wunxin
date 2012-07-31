@@ -82,7 +82,7 @@ drop index Index_uid on wx_order;
 
 drop table if exists wx_order;
 
-drop index Index_order_sn on wx_order_product;
+drop index Index_order_product_order_sn on wx_order_product;
 
 drop table if exists wx_order_product;
 
@@ -120,17 +120,21 @@ drop index Index_pid on wx_product_collocation;
 
 drop table if exists wx_product_collocation;
 
-drop index Index_uid on wx_product_comment;
+drop index Index_p_comment_uid on wx_product_comment;
 
-drop index Index_pid on wx_product_comment;
+drop index Index_p_comment_pid on wx_product_comment;
 
 drop table if exists wx_product_comment;
+
+drop index Index_comment_id on wx_product_comment_reply;
+
+drop table if exists wx_product_comment_reply;
 
 drop index Index_uid_cid on wx_product_comment_vote_log;
 
 drop table if exists wx_product_comment_vote_log;
 
-drop index Index_pid_uid on wx_product_favorite;
+drop index Index_favorite_pid_uid on wx_product_favorite;
 
 drop index Index_uid on wx_product_favorite;
 
@@ -144,19 +148,15 @@ drop table if exists wx_product_model_attr;
 
 drop table if exists wx_product_photo;
 
-drop index Index_uid on wx_product_qa;
+drop index Index_p_qa_uid on wx_product_qa;
 
-drop index Index_pid on wx_product_qa;
+drop index Index_p_qa_pid on wx_product_qa;
 
 drop table if exists wx_product_qa;
 
 drop index Index_qa_id on wx_product_qa_reply;
 
 drop table if exists wx_product_qa_reply;
-
-drop index Index_comment_id on wx_product_reply;
-
-drop table if exists wx_product_reply;
 
 drop index Index_pid on wx_product_size;
 
@@ -3828,7 +3828,8 @@ create table wx_design
    vote_end_time        datetime comment '投票结束时间',
    total_num            int unsigned default 0 comment '总投票人数',
    total_fraction       int unsigned default 0 comment '总分数',
-   favorite_num         int comment '收藏数量',
+   favorite_num         int unsigned default 0 comment '收藏数量',
+   comment_num          int unsigned default 0 comment '评论数量',
    create_time          datetime comment '创建时间',
    primary key (did)
 )
@@ -4187,14 +4188,15 @@ create table wx_order_product
    uid                  int comment '用户ID',
    uname                varchar(32) comment '用户名称',
    pname                varchar(120) comment '产品名称',
-   market_price         int comment '市场价格',
-   sall_price           int comment '销售价格',
+   market_price         int default 0 comment '市场价格',
+   sall_price           int default 0 comment '销售价格',
    product_num          int default 1 comment '产品数量',
    comment_status       tinyint default 0 comment '是否评论，0未评论，1已评论',
    share_status         tinyint default 0 comment '是否晒单，0未晒单，1已晒单',
    product_size         char(5) comment '产品尺码',
-   presentation_integral int comment '赠送积分',
-   preferential         int comment '优惠,人民币，单位为分',
+   color                varchar(16) comment '颜色',
+   presentation_integral int default 0 comment '赠送积分',
+   preferential         int default 0 comment '优惠,人民币，单位为分',
    warehouse            varchar(64) comment '仓库',
    create_time          datetime comment '创建时间',
    primary key (id)
@@ -4204,13 +4206,13 @@ auto_increment = 1;
 
 alter table wx_order_product comment '订单产品';
 
-INSERT INTO `wx_order_product` (`id`,`order_sn`,`pid`,`uid`,`uname`,`pname`,`market_price`,`sall_price`,`product_num`,`create_time`,`comment_status`,`share_status`,`product_size`,`presentation_integral`,`preferential`) VALUES (1,1,1,1,'hjpking@gmail.com','潮人必备个性T恤-红色',10,10,10,'2012-06-01 19:16:15',1,1,1,10,0);
-INSERT INTO `wx_order_product` (`id`,`order_sn`,`pid`,`uid`,`uname`,`pname`,`market_price`,`sall_price`,`product_num`,`create_time`,`comment_status`,`share_status`,`product_size`,`presentation_integral`,`preferential`) VALUES (2,1,2,1,'hjpking@gmail.com','潮人必备个性T恤-白色',10,10,10,'2012-06-01 19:16:15',1,1,1,10,0);
+INSERT INTO `wx_order_product` (`id`,`order_sn`,`pid`,`uid`,`uname`,`pname`,`market_price`,`sall_price`,`product_num`,`create_time`,`comment_status`,`share_status`,`product_size`,`color`,`presentation_integral`,`preferential`) VALUES (1,1,1,1,'hjpking@gmail.com','潮人必备个性T恤-红色',10,10,10,'2012-06-01 19:16:15',1,1,1,'红色',10,0);
+INSERT INTO `wx_order_product` (`id`,`order_sn`,`pid`,`uid`,`uname`,`pname`,`market_price`,`sall_price`,`product_num`,`create_time`,`comment_status`,`share_status`,`product_size`,`color`,`presentation_integral`,`preferential`) VALUES (2,1,2,1,'hjpking@gmail.com','潮人必备个性T恤-白色',10,10,10,'2012-06-01 19:16:15',1,1,1,'白色',10,0);
 
 /*==============================================================*/
-/* Index: Index_order_sn                                        */
+/* Index: Index_order_product_order_sn                          */
 /*==============================================================*/
-create index Index_order_sn on wx_order_product
+create index Index_order_product_order_sn on wx_order_product
 (
    order_sn
 );
@@ -4302,9 +4304,10 @@ create table wx_product
    check_status         tinyint unsigned default 1 comment '审核，0未通过，1已通过',
    shelves              varchar(32) default '1' comment '上架，0下架，1上架',
    cost_price           int unsigned default 0 comment '成本价格，单位为分',
-   sales                int unsigned comment '销量',
-   favorite_num         int unsigned comment '收藏数量',
-   comment_num          int unsigned comment '评论数量',
+   sales                int unsigned default 0 comment '销量',
+   favorite_num         int unsigned default 0 comment '收藏数量',
+   comment_num          int unsigned default 0 comment '评论数量',
+   share_num            int unsigned default 0 comment '晒单数量',
    create_time          datetime comment '创建时间',
    primary key (pid)
 )
@@ -4463,10 +4466,10 @@ create table wx_product_comment
    reply_num            smallint unsigned default 0 comment '回复数量',
    color                varchar(15) comment '颜色',
    size                 char(5) comment '尺码',
-   rank                 tinyint unsigned comment '商品评分',
-   comfort              tinyint comment '舒适度',
-   exterior             tinyint comment '外观',
-   size_deviation       tinyint comment '尺寸偏差,0偏小，1合适，2偏大',
+   rank                 tinyint unsigned default 5 comment '商品评分',
+   comfort              tinyint default 5 comment '舒适度',
+   exterior             tinyint default 5 comment '外观',
+   size_deviation       tinyint default 1 comment '尺寸偏差,1合适，2偏大, 3偏小',
    create_time          datetime comment '评论时间',
    primary key (comment_id)
 )
@@ -4476,19 +4479,46 @@ auto_increment = 1;
 alter table wx_product_comment comment '产品评论表';
 
 /*==============================================================*/
-/* Index: Index_pid                                             */
+/* Index: Index_p_comment_pid                                   */
 /*==============================================================*/
-create index Index_pid on wx_product_comment
+create index Index_p_comment_pid on wx_product_comment
 (
    pid
 );
 
 /*==============================================================*/
-/* Index: Index_uid                                             */
+/* Index: Index_p_comment_uid                                   */
 /*==============================================================*/
-create index Index_uid on wx_product_comment
+create index Index_p_comment_uid on wx_product_comment
 (
    uid
+);
+
+/*==============================================================*/
+/* Table: wx_product_comment_reply                              */
+/*==============================================================*/
+create table wx_product_comment_reply
+(
+   id                   int unsigned not null auto_increment comment '自增ID',
+   comment_id           int unsigned comment '评论ID',
+   uid                  int unsigned comment '用户ID',
+   uname                varchar(32) comment '用户名称',
+   ip                   char(16) comment '回复IP地址',
+   reply_content        varchar(255) comment '回复内容',
+   create_time          datetime comment '创建时间',
+   primary key (id)
+)
+engine = MYISAM
+auto_increment = 1;
+
+alter table wx_product_comment_reply comment '产品评论回复表';
+
+/*==============================================================*/
+/* Index: Index_comment_id                                      */
+/*==============================================================*/
+create index Index_comment_id on wx_product_comment_reply
+(
+   comment_id
 );
 
 /*==============================================================*/
@@ -4548,9 +4578,9 @@ create index Index_uid on wx_product_favorite
 );
 
 /*==============================================================*/
-/* Index: Index_pid_uid                                         */
+/* Index: Index_favorite_pid_uid                                */
 /*==============================================================*/
-create unique index Index_pid_uid on wx_product_favorite
+create unique index Index_favorite_pid_uid on wx_product_favorite
 (
    pid,
    uid
@@ -4618,15 +4648,15 @@ create table wx_product_qa
    pid                  int unsigned comment '产品ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
-   qa_title             varchar(32) comment '问题标题',
-   qa_content           varchar(255) comment '问题内容',
+   title                varchar(32) comment '问题标题',
+   content              varchar(255) comment '问题内容',
    reply_content        varchar(255) comment '回答内容',
    ip                   char(16) comment '提问IP地址',
    reply_time           datetime comment '回复时间',
-   is_reply             tinyint unsigned comment '是否回复',
-   is_valid             int unsigned comment '是否有效',
-   is_invalid           int unsigned comment '是否无效',
-   reply_num            smallint unsigned comment '回复数量',
+   is_reply             tinyint unsigned default 0 comment '是否回复, 0未回复，1已回复',
+   is_valid             int unsigned default 0 comment '是否有效',
+   is_invalid           int unsigned default 0 comment '是否无效',
+   reply_num            smallint unsigned default 0 comment '回复数量',
    create_time          datetime comment '提问时间',
    primary key (qa_id)
 )
@@ -4636,17 +4666,17 @@ auto_increment = 1;
 alter table wx_product_qa comment '产品疑难问答';
 
 /*==============================================================*/
-/* Index: Index_pid                                             */
+/* Index: Index_p_qa_pid                                        */
 /*==============================================================*/
-create index Index_pid on wx_product_qa
+create index Index_p_qa_pid on wx_product_qa
 (
    pid
 );
 
 /*==============================================================*/
-/* Index: Index_uid                                             */
+/* Index: Index_p_qa_uid                                        */
 /*==============================================================*/
-create index Index_uid on wx_product_qa
+create index Index_p_qa_uid on wx_product_qa
 (
    uid
 );
@@ -4676,33 +4706,6 @@ alter table wx_product_qa_reply comment '产品疑难问答回复';
 create index Index_qa_id on wx_product_qa_reply
 (
    qa_id
-);
-
-/*==============================================================*/
-/* Table: wx_product_reply                                      */
-/*==============================================================*/
-create table wx_product_reply
-(
-   id                   int unsigned not null auto_increment comment '自增ID',
-   comment_id           int unsigned comment '评论ID',
-   uid                  int unsigned comment '用户ID',
-   uname                varchar(32) comment '用户名称',
-   ip                   char(16) comment '回复IP地址',
-   reply_content        varchar(255) comment '回复内容',
-   create_time          datetime comment '创建时间',
-   primary key (id)
-)
-engine = MYISAM
-auto_increment = 1;
-
-alter table wx_product_reply comment '产品评论回复表';
-
-/*==============================================================*/
-/* Index: Index_comment_id                                      */
-/*==============================================================*/
-create index Index_comment_id on wx_product_reply
-(
-   comment_id
 );
 
 /*==============================================================*/
@@ -5108,7 +5111,6 @@ create table wx_user
    uid                  int unsigned not null auto_increment comment '用户ID',
    uname                varchar(32) comment '用户名称',
    nickname             varchar(32) comment '昵称',
-   header               tinyint unsigned default 0 comment '头像',
    lid                  int unsigned default 1 comment '等级ID',
    password             char(32) comment '登陆密码',
    source               varchar(128) default '1' comment '用户来源，1主站',

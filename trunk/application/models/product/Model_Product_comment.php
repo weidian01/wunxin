@@ -113,7 +113,11 @@ class Model_Product_Comment extends MY_Model
         );
 
         $this->db->insert('product_comment', $data);
-        return $this->db->insert_id();
+        $lastId = $this->db->insert_id();
+
+        $this->db->update('order_product', array('comment_status' => 1), array('id' => $cInfo['o_p_id']));
+
+        return $lastId;
     }
 
     /**
@@ -139,7 +143,7 @@ class Model_Product_Comment extends MY_Model
      */
     public function deleteProductCommentByCommentId($cId)
     {
-        $this->db->delete('product_reply', array('comment_id' => $cId));
+        $this->db->delete('product_comment_reply', array('comment_id' => $cId));
 
         $this->db->delete('product_comment', array('comment_id' => $cId));
 
@@ -169,7 +173,7 @@ class Model_Product_Comment extends MY_Model
      */
     public function getReplyByCommentId($cid, $limit = 20, $offset = 0)
     {
-        return $this->db->get_where('product_reply', array('comment_id' => $cid), $limit, $offset)->array_result();
+        return $this->db->get_where('product_comment_reply', array('comment_id' => $cid), $limit, $offset)->array_result();
     }
 
 
@@ -192,7 +196,7 @@ class Model_Product_Comment extends MY_Model
 
         $this->updateCommentReplyNum($rInfo['comment_id']);
 
-        $this->db->insert('product_reply', $data);
+        $this->db->insert('product_comment_reply', $data);
         return $this->db->insert_id();
     }
 
@@ -204,7 +208,7 @@ class Model_Product_Comment extends MY_Model
      */
     public function deleteProductCommentReplyByReplyId($rId)
     {
-        $this->db->delete('product_reply', array('id' => $rId));
+        $this->db->delete('product_comment_reply', array('id' => $rId));
 
         return true;
     }
