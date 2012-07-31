@@ -6,42 +6,41 @@
  * Time: 上午8:51
  * wunxin E-commerce management system
  */
-class product_qa extends MY_Controller
+class qa extends MY_Controller
 {
     /**
      * 提交疑难问答
      */
-    public function postProductQa()
+    public function addQa()
     {
-        $pid = $this->input->get_post('pid');
-        $uid = $this->input->get_post('uid');
-        $qa_title = $this->input->get_post('qa_title');
-        $qa_content = $this->input->get_post('qa_content');
+        $pid = intval( $this->input->get_post('pid') );
+        $title = $this->input->get_post('title');
+        $content = $this->input->get_post('content');
         $ip = $this->input->get_post('ip');
 
-        $response = error(50012);
+        $response = array('error' => '0', 'msg' => '提交疑难问答成功', 'code' => 'qa_delivery_success');
 
         do {
-            if (empty ($pid) || empty ($uid) || empty ($qa_title) || empty ($qa_content)) {
+            if (empty ($pid) || empty ($title) || empty ($content)) {
                 $response = error(50010);
                 break;
             }
 
-            $uInfo = $this->isLogin();
-            if (!$uInfo) {
+            if (!$this->isLogin()) {
                 $response = error(10009);
                 break;
             }
 
             $data = array(
                 'pid' => $pid,
-                'uid' => $uInfo['uid'],
-                'uname' => $uInfo['uname'],
-                'qa_title' => $qa_title,
-                'qa_content' => $qa_content,
+                'uid' => $this->uInfo['uid'],
+                'uname' => $this->uInfo['uname'],
+                'title' => $title,
+                'content' => $content,
                 'ip' => $ip
             );
-            $this->load->model('comment/Model_Product_QA', 'qa');
+
+            $this->load->model('product/Model_Product_QA', 'qa');
             $status = $this->qa->addProductQA($data);
             if (!$status) {
                 $response = error(50011);
@@ -57,20 +56,20 @@ class product_qa extends MY_Controller
      */
     public function postProductQAIsValid()
     {
-        $qaId = $this->input->get_post('qa_id');
-        $operaType = $this->input->get_post('opera_type');
+        $qaId = intval( $this->input->get_post('qa_id') );
+        $operaType = intval( $this->input->get_post('opera_type') );
 
-        $response = error(50013);
+        $response = array('error' => '0', 'msg' => '疑难问答是否有效提供成功', 'code' => 'qa_whether_effective_delivery_successful');
 
         do {
-            if (empty ($qaId) || empty ($operaType)) {
+            if (empty ($qaId)) {
                 $response = error(50015);
                 break;
             }
 
             $operaType = $operaType == 1 ? true : false;
 
-            $this->load->mode('comment/Model_Product_QA', 'qa');
+            $this->load->model('product/Model_Product_QA', 'qa');
             $status = $this->qa->productQAIsValid($qaId, $operaType);
             if (!$status) {
                 $response = error(50014);
@@ -87,15 +86,14 @@ class product_qa extends MY_Controller
      */
     public function postProductQAReply()
     {
-        $uid = $this->input->get_post('uid');
         $qaId = $this->input->get_post('qa_id');
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
 
-        $response = error(50016);
+        $response = array('error' => '0', 'msg' => '疑难问答回复成功', 'code' => 'qa_whether_effective_reply_successful');
 
         do {
-            if (empty ($uid) || empty ($commentId) || empty ($content)) {
+            if (empty ($qaId) || empty ($content)) {
                 $response = error(50018);
                 break;
             }
@@ -113,7 +111,8 @@ class product_qa extends MY_Controller
                 'ip' => $ip,
                 'reply_content' => $content
             );
-            $this->load->mode('comment/Model_Product_QA', 'qa');
+
+            $this->load->model('product/Model_Product_QA', 'qa');
             $status = $this->qa->addProductQAReply($data);
             if (!$status) {
                 $response = error(50017);
@@ -127,6 +126,7 @@ class product_qa extends MY_Controller
     /**
      * 删除产品问答
      */
+    /*
     public function deleteProductQa()
     {
         $qaId = intval($this->input->get_post('qa_id'));
@@ -155,4 +155,5 @@ class product_qa extends MY_Controller
 
         $this->json_output($response);
     }
+    //*/
 }

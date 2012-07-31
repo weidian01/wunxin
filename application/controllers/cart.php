@@ -36,10 +36,10 @@ class cart extends MY_Controller
     {
         $pId = intval($this->input->get_post('pid'));
         $pNum = intval($this->input->get_post('p_num')) ? intval($this->input->get_post('p_num')) : 1;
-        $pSize = $this->input->get_post('p_size');
+        $pSize = strtolower($this->input->get_post('p_size'));
         $pAdditionalInfo = $this->input->get_post('additional_info');
 
-        $response = array('error'=>0);
+        $response = array('error' => '0', 'msg' => '添加产品到购物车成功', 'code' => 'add_products_to_cart_successful');
 
         do {
             if (empty ($pId) || empty ($pSize)) {
@@ -50,12 +50,15 @@ class cart extends MY_Controller
             $this->load->model('product/Model_Product', 'product');
             $pInfo = $this->product->getProductById($pId);
 
+            /**
             if (empty ($pInfo)) {
                 $response = error(20002);
                 break;
             }
+            //*/
+
             $size = $this->product->getProductSize($pId, $pSize);
-            if (empty ($size)) {
+            if (empty ($size) || empty ($pInfo)) {
                 $response = error(20002);
                 break;
             }
@@ -66,7 +69,7 @@ class cart extends MY_Controller
                 'product_price' => $pInfo['sell_price'] / 100,
                 'product_num' => $pNum,
                 //'product_img' => $pInfo['img_addr'],
-                'product_size' => $size['name'],
+                'product_size' => $size['abbreviation'],
                 'additional_info' => $pAdditionalInfo,
             );
             //echo '<pre>';print_r($cInfo);exit;

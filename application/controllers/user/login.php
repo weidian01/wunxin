@@ -59,7 +59,7 @@ class login extends MY_Controller
         $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url'); //跳转地址
         $expire = $this->input->get_post('remember') ? (86400 * 360) : 0; //是否记录登录状态
 
-        $response = error(10000);
+        $response = array('error' => '0', 'msg' => '登陆成功', 'code' => 'login_success');
         $response['redirect_url'] = $redirect_url;
 
         do {
@@ -116,12 +116,15 @@ class login extends MY_Controller
         redirect(config_item('base_url'));
     }
 
+    /**
+     * 获取用户信息
+     */
     public function getUserInfo ()
     {
         $response = error(10009);
 
         if ($this->isLogin()) {
-            $response = error(10000);
+            $response = array('error' => '0', 'msg' => '登陆成功', 'code' => 'login_success');
             $response['user_info'] = $this->uInfo;
         }
 

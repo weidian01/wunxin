@@ -11,19 +11,18 @@ class comment extends MY_Controller
     /**
      * 添加产品评论
      */
-    public function postProductComment()
+    public function addComment()
     {
-        $data['pid'] = $this->input->get_post('pid');
+        $data['pid'] = intval($this->input->get_post('pid'));
         $data['title'] = $this->input->get_post('title');
         $data['content'] = $this->input->get_post('content');
         $data['ip'] = $this->input->ip_address();
-        $data['rank'] = $this->input->get_post('rank');
-        $data['comfort'] = $this->input->get_post('comfort');
-        $data['exterior'] = $this->input->get_post('exterior');
-        $data['size_deviation'] = $this->input->get_post('size_deviation');
+        $data['rank'] = intval($this->input->get_post('rank'));
+        $data['comfort'] = intval($this->input->get_post('comfort'));
+        $data['exterior'] = intval($this->input->get_post('exterior'));
+        $data['size_deviation'] = intval($this->input->get_post('size_deviation'));
 
-
-        $response = array('error' => '0', 'msg' => '评论成功', 'code' => 'add_comment_comment');
+        $response = array('error' => '0', 'msg' => '评论成功', 'code' => 'comment_success');
 
         do {
             if (empty ($data['pid']) ||
@@ -45,31 +44,33 @@ class comment extends MY_Controller
             $data['uname'] = $this->uInfo['uname'];
 
             //产品是否存在
+            $this->load->model('product/Model_Product', 'product');
             $pInfo = $this->product->productIsExist($data['pid']);
             if (!$pInfo) {
                 $response = error(20002);
                 break;
             }
-            //$data['color']
-            //'color' => $cInfo['color'],
-            //'size' => $cInfo['size'],
 
+            //是否购买过产品
             $this->load->model('order/Model_order', 'order');
-            $data = $this->order->userIsBuyProduct(1, 1); //($uid, $pid);
-            if (empty ($data)) {
+            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid']);
+            if (empty ($isBuyProduct)) {
                 $response = error(50002);
                 break;
             }
+            $data['size'] = $isBuyProduct['product_size'];
 
-            $data = array(
-                'pid' => $data['pid'],
-                'uid' => $this->uInfo['uid'],
-                'uname' => $this->uInfo['uname'],
-                'comment_title' => $title,
-                'comment_content' => $content,
-                'ip' => $ip,
-                'rank' => $rank
-            );
+            //是否评论过
+            if ($isBuyProduct['comment_status'] == '1') {
+                $response = error(50019);
+                break;
+            }
+            $data['o_p_id'] = $isBuyProduct['id'];//订单产品表自增ID
+
+            //获取产品颜色
+            $this->load->model('product/Model_Product_Color', 'color');
+            $colorData = $this->color->getColorById($data['pid']);
+            $data['color'] = $colorData['china_name'];
 
             $this->load->model('product/Model_Product_comment', 'comment');
             $status = $this->comment->addProductComment($data);
@@ -85,16 +86,15 @@ class comment extends MY_Controller
     /**
      * 评论是否有效, 1为有效，0为无效
      */
-    public function postProductCommentIsValid()
+    public function CommentIsValid()
     {
-        $commentId = $this->input->get_post('comment_id');
-        $operaType = $this->input->get_post('opera_type');
+        $commentId = intval( $this->input->get_post('comment_id') );
+        $operaType = intval( $this->input->get_post('opera_type') );
 
-
-        $response = error(50005);
+        $response = array('error' => '0', 'msg' => '评论是否有效提供成功', 'code' => 'comment_whether_effective_delivery_successful');
 
         do {
-            if (empty ($commentId) || empty ($operaType)) {
+            if (empty ($commentId)) {
                 $response = error(50008);
                 break;
             }
@@ -115,42 +115,39 @@ class comment extends MY_Controller
     /**
      * 产品评论回复
      */
-    public function postProductCommentReply()
+    public function commentReply()
     {
-        $uid = $this->input->get_post('uid');
-        $commentId = $this->input->get_post('comment_id');
+        $commentId = intval( $this->input->get_post('comment_id') );
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
 
-        $response = error(50006);
+        $response = array('error' => '0', 'msg' => '评论回复成功', 'code' => 'comment_reply_success');
 
         do {
-            if (empty ($uid) || empty ($commentId) || empty ($content)) {
+            if (empty ($commentId) || empty ($content)) {
                 $response = error(50008);
                 break;
             }
 
-                $uInfo = $this->isLogin();
-                if (!$uInfo) {
-                    $response = error(10009);
-                    break;
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
             }
 
-            $this->load->model('product/Model_Product_comment', 'comment');
             $data = array(
                 'comment_id' => $commentId,
-                'uid' => $uInfo['uid'],
-                'uname' => $uInfo['uname'],
+                'uid' => $this->uInfo['uid'],
+                'uname' => $this->uInfo['uname'],
                 'ip' => $ip,
                 'reply_content' => $content
             );
+
+            $this->load->model('product/Model_Product_comment', 'comment');
             $status = $this->comment->addProductCommentReply($data);
             if (!$status) {
                 $response = error(50007);
                 break;
             }
-
-            $this->comment->updateCommentReplyNum($commentId);
         } while (false);
 
 
@@ -162,7 +159,7 @@ class comment extends MY_Controller
      */
     public function ajaxComment()
     {
-        $pid = $this->input->get_post('pid');
+        $pid = intval( $this->input->get_post('pid') );
         $limit = max(10, $this->input->get_post('limit'));
         $pageno = max(1, $this->input->get_post('pageno'));
         $offset = ($pageno - 1) * $limit;

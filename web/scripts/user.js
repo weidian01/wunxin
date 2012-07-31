@@ -105,7 +105,7 @@ user.submitLoginForm = function ()
     var param = 'username='+userName+'&password='+passWord+'&source='+source+'&redirect_url='+redirectUrl+'&remember='+remember;
     var data = wx.ajax(url, param);
 
-    if (data.error == '10000') {
+    if (data.error == '0') {
         window.location.href=data.redirect_url;
     }
 

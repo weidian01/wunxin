@@ -47,7 +47,7 @@ class Model_Product extends MY_Model
      * @param null $where
      * @return int
      */
-    public function getProductCout($where = null)
+    public function getProductCount($where = null)
     {
         $this->db->from('product');
         $where && $this->db->where($where);
@@ -104,6 +104,7 @@ class Model_Product extends MY_Model
 
     /**
      * 通过款式号获取相关产品
+     *
      * @param $style_no
      * @param string $field
      * @return mixed
@@ -154,7 +155,7 @@ class Model_Product extends MY_Model
         foreach ($size as $k => $v) {
             $data[$k]['pid'] = $pid;
             $data[$k]['size_id'] = $k;
-            $data[$k]['name'] = $v;
+            $data[$k]['abbreviation'] = $v;
         }
         if ($data) {
             $this->db->insert_batch('product_size', $data);

@@ -9,8 +9,10 @@
 class Model_Product_Color extends MY_Model
 {
     /**
+     * 保存颜色
+     *
      * @param array $data
-     * @param int $size_id
+     * @param int $color_id
      */
     public function save(array $data, $color_id = 0)
     {
@@ -24,18 +26,21 @@ class Model_Product_Color extends MY_Model
 
     /**
      * 根据模型id 删除模型
-     * @param $model_id
+     *
+     * @param $color_id
+     * @return boolean
      */
     function delete($color_id)
     {
         $this->db->where('color_id', $color_id);
-        $this->db->delete('color');
+        return $this->db->delete('color');
     }
 
     /**
      * 查看是否有产品使用该模型
-     * @param $model_id
-     * @return int
+     *
+     * @param $color_id
+     * @return bool
      */
     function isUse($color_id)
     {
@@ -47,7 +52,8 @@ class Model_Product_Color extends MY_Model
 
     /**
      * 获取根据模型id一个模型的详细内容(模型名称和其属性值)
-     * @param $model_id
+     *
+     * @param $color_id
      * @return array
      */
     function getColorById($color_id)
@@ -67,6 +73,7 @@ class Model_Product_Color extends MY_Model
 
     /**
      * 获取模型列表
+     *
      * @param int $offset
      * @param int $limit
      * @return array
@@ -82,7 +89,8 @@ class Model_Product_Color extends MY_Model
 
     /**
      * 获取模型数量
-     * @return mixed
+     *
+     * @return int
      */
     function getNum()
     {

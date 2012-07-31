@@ -85,23 +85,24 @@ class Model_User_Recent extends MY_Model
      * @name 删除收货地址
      *
      * @param $aId
+     * @param $uId
      * @return boolean
      */
-    public function deleteRecentAddress($aId)
+    public function deleteRecentAddress($aId, $uId)
     {
-        return $this->db->delete('user_recent_address', array('address_id' => $aId));
+        return $this->db->delete('user_recent_address', array('address_id' => $aId, 'uid' => $uId, 'default_address' => '0'));
     }
 
     /**
      * 删除用户收货地址
      *
      * @param $aId
-     * @param $uid
+     * @param $uId
      * @return boolean
      */
-    public function deleteUserRecentAddress($aId, $uid)
+    public function deleteUserRecentAddress($aId, $uId)
     {
-        return $this->db->delete('user_recent_address', array('address_id' => $aId, 'uid' => $uid, 'default_address' => '0'));
+        return $this->db->delete('user_recent_address', array('address_id' => $aId, 'uid' => $uId, 'default_address' => '0'));
     }
 
     /**

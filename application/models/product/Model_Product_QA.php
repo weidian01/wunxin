@@ -20,13 +20,13 @@ class Model_Product_QA extends MY_Model
             'pid' => $qInfo['pid'],
             'uid' => $qInfo['uid'],
             'uname' => $qInfo['uname'],
-            'qa_title' => $qInfo['qa_title'],
-            'qa_content' => $qInfo['qa_content'],
+            'title' => $qInfo['title'],
+            'content' => $qInfo['content'],
             'ip' => $qInfo['ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
-        $this->db->insert('product_comment', $data);
+        $this->db->insert('product_qa', $data);
         return $this->db->insert_id();
     }
 
@@ -142,7 +142,7 @@ class Model_Product_QA extends MY_Model
     public function productQAIsValid($qaId, $type = true)
     {
         $field = $type ? 'is_valid' : 'is_invalid';
-        $data = array($field => $field . '+1');
+        $data = array($field => $field.'+1');
 
         $this->db->where('qa_id', $qaId);
         return $this->db->set($data, '', false)->update('product_qa');
