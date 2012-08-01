@@ -6,14 +6,20 @@
  */
 var product = {};
 //产品收藏
-product.favoriteProduct = function(pId)
+product.favoriteProduct = function(pId, bingingId)
 {
     if ( !wx.isEmpty(pId)) {
+        art.dialog({ title:false, follow: document.getElementById(bingingId), content: '<span style="font-weight: bold;color: #a10000;">参数不全</span>' });
         return false;
     }
 
+    if (bingingId == '' || bingingId == undefined) {
+        bingingId = '';
+    }
+
     if ( !wx.isLogin() ) {
-        return 0;
+        wx.loginLayer();
+        return false;
     }
 
     var url = 'product/product_favorite/favorite';
@@ -21,10 +27,19 @@ product.favoriteProduct = function(pId)
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
+        wx.favoriteProductLayer(1, bingingId);
         return true;
     }
 
-    return data;
+    switch (data.error) {
+        case '20012':wx.favoriteProductLayer(4, bingingId); break;
+        case '10009':wx.loginLayer(); break;
+        case '20002':wx.favoriteProductLayer(3, bingingId); break;
+        case '20010':wx.favoriteProductLayer(2, bingingId); break;
+        case '20011':wx.favoriteProductLayer(4, bingingId); break;
+    }
+
+    return false;
 }
 
 //删除产品收藏

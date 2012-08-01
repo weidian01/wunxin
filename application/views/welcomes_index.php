@@ -3,18 +3,21 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title;?></title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <SCRIPT type=text/javascript src="/scripts/jquery.js"></SCRIPT>
-    <SCRIPT type=text/javascript src="/scripts/index.js"></SCRIPT>
-    <script type="text/javascript" charset=utf-8 src="/scripts/lrscroll.js"></script>
+    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/index.js"></SCRIPT>
+    <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/lrscroll.js"></script>
+    <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/artDialog.js"></script>
+    <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/product.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
 </head>
 <body>
+<a onclick="product.favoriteProduct('', 'followTestBtn')" id="followTestBtn">收藏</a>
 <?php include 'header.php';?>
 <div class="box2">
     <div class="container">
@@ -503,7 +506,7 @@
 </div>
 </div>
 <?php include 'footer.php';?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript">
     //转播图 代码开始
     var st = new SlideTrans("idContainer2", "idSlider2", <?php echo count($broadcast_recommend);?>, { Vertical:false });
