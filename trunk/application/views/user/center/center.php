@@ -22,7 +22,6 @@
     </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
-<a href="javascript:void(0);" onclick="wx.qaReply(4, 'test content')">aaaaa</a>
 <?php include('/../../header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box">

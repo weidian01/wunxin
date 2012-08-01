@@ -101,7 +101,7 @@ class Model_Product_QA extends MY_Model
      */
     public function getUserProductQaAndProduct($uId, $limit = 20, $offset = 0)
     {
-        $field = 'qa_id, product_qa.pid, product_qa.uid, product_qa.uname, qa_title, qa_content, reply_content, ip, reply_time, is_reply, is_valid, is_invalid, reply_num, product_qa.create_time,
+        $field = 'qa_id, product_qa.pid, product_qa.uid, product_qa.uname, title, content, reply_content, ip, reply_time, is_reply, is_valid, is_invalid, reply_num, product_qa.create_time,
         did, class_id, color_id, model_id, brand_id, pname, market_price, sell_price, style_no, stock, warehouse, product_taobao_addr, keyword, descr, pcontent, source,
         expand, gender, size_type, status, check_status, shelves, cost_price, sales, favorite_num';
 

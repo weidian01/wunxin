@@ -11,16 +11,16 @@ class designerFavorite extends MY_Controller
     /**
      * 添加设计收藏
      */
-    public function addDesignerFavorite()
+    public function addFavorite()
     {
         $uid = $this->input->get_post('uid');
         $ip = $this->input->ip_address();
 
-        $response = error(10013);
+        $response = array('error' => '0', 'msg' => '收藏的设计师成功', 'code' => 'favorite_designer_success');
 
         do {
             if (empty ($uid)) {
-                $response = error(10012);
+                $response = error(10019);
                 break;
             }
 
@@ -29,6 +29,7 @@ class designerFavorite extends MY_Controller
                 break;
             }
 
+            //获取被收藏的设计师信息
             $this->load->model('user/Model_User', 'user');
             $uInfo = $this->user->getUserById($uid);
             if (!$uInfo) {
@@ -36,14 +37,26 @@ class designerFavorite extends MY_Controller
                 break;
             }
 
+            //是否收藏过
+            $this->load->model('user/Model_Designer_Favorite', 'favorite');
+            $favoriteData = $this->favorite->getUserFavoriteDesigner($this->uInfo['uid'], $uid);
+            if ( !empty ($favoriteData) ) {
+                $response = error(10017);
+                break;
+            }
+
             $data = array(
-                'uid' => $uid,
                 'favorite_uid' => $this->uInfo['uid'],
-                'favorite_uname' => $this->uInfo['uname'],
+                'uid' => $this->uInfo['uid'],
+                'uname' => $this->uInfo['uname'],
                 'ip' => $ip
             );
-            $this->load->model('user/Model_Designer_Favorite', 'favorite');
-            $this->favorite->designerFavorite($data);
+
+            $status = $this->favorite->designerFavorite($data);
+            if (!$status) {
+                $response = error(10018);
+                break;
+            }
         } while (false);
 
         $this->json_output($response);
@@ -56,7 +69,7 @@ class designerFavorite extends MY_Controller
     {
         $fid = intval($this->input->get_post('fid'));
 
-        $response = error(10020);
+        $response = array('error' => '0', 'msg' => '删除收藏的设计师成功', 'code' => 'delete_favorite_designer_success');
 
         do {
             if (empty ($fid)) {

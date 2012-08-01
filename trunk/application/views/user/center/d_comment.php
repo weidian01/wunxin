@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>我的评论 -- 个人中心</title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -127,7 +127,7 @@
                                                 </a>
                                                 <br/>
 
-                                                <a href="javascript:void(0);" onclick="deleteComment(<?php echo $v['comment_id'];?>)">
+                                                <a href="javascript:void(0);" onclick="design.deleteComment(<?php echo $v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图评论">
                                                 </a>
                                             </td>
@@ -143,17 +143,14 @@
                             </form>
                         </div>
                         <div class="list-b">
-
                             <div class="pages" style="float: right;">
                             <?php echo $page_html;?><span class="page"> 共<?php echo $total_num;?>条结果<!--，1/1页--></span>
                             </div>
-
                             <div class="clear"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="u-r-box">
@@ -173,33 +170,12 @@
                 </ul>
             </div>
         </div>
-
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
-<script type="text/javascript">
-    function deleteComment(cId)
-    {
-        if (confirm('确定删除！')) {
-            if (!wx.isEmpty(cId)) {
-                return false;
-            }
-
-            var url = '/design/designComment/deleteComment';
-            var param = 'comment_id='+cId;
-            var data = wx.ajax(url, param);
-
-            if (data.error == '0') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('删除失败!');
-        }
-    }
-</script>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/design.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>

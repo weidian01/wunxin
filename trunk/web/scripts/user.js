@@ -256,12 +256,142 @@ user.submitRegisterForm = function ()
     $('.tips_box').fadeIn("slow");
 }
 
+//收藏设计师
+user.favoriteDesigner = function (uId)
+{
+    if ( !wx.isEmpty(uId)) {
+        return false;
+    }
 
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
 
+    var url = 'user/designerFavorite/addFavorite';
+    var param = 'uid='+uId;
+    var data = wx.ajax(url, param);
 
+    if (data.error == '0') {
+        return true;
+    }
 
+    return data;
+}
 
+//删除设计师收藏
+user.deleteDesignerFavorite = function(fId)
+{
+    if (confirm('确定删除设计师收藏！')) {
+        if (!wx.isEmpty(fId)) {
+            return false;
+        }
 
+        if ( !wx.isLogin() ) {
+            return 0;
+        }
+
+        var url = '/user/designerFavorite/deleteDesignerFavorite';
+        var param = 'fid='+fId;
+        var data = wx.ajax(url, param);
+
+        if (data.error == '0') {
+            wx.pageReload(0);
+            return true;
+        }
+
+        return data;
+    }
+}
+
+//清空设计师收藏
+user.emptyFavorite = function()
+{
+    if ( confirm('确定清空所有设计师收藏！') ) {
+        if ( !wx.isLogin() ) {
+            return 0;
+        }
+
+        var url = '/user/designerFavorite/emptyDesignerFavorite';
+        var param = '';
+        var data = wx.ajax(url, param);
+
+        if (data.error == '10023') {
+            wx.pageReload(0);
+            return true;
+        }
+
+        return data;
+    }
+}
+
+//设计师留言
+user.designerMessage = function (uId, title, content)
+{
+    if ( !wx.isEmpty(uId) || !wx.isEmpty(title) || !wx.isEmpty(content) ) {
+        return false;
+    }
+
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
+
+    var url = 'user/message/add';
+    var param = 'be_uid='+uId+'&title='+title+'&content='+content;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+}
+
+//设计师留言回复
+user.designerMessageReply = function (uId, content)
+{
+    if ( !wx.isEmpty(uId) || !wx.isEmpty(content) ) {
+        return false;
+    }
+
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
+
+    var url = 'user/message/messageReply';
+    var param = 'message_id='+uId+'&content='+content;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        return true;
+    }
+
+    return data;
+}
+
+//删除设计师留言
+user.deleteDesignerMessage = function(mId)
+{
+    if (confirm('确定删除！')) {
+        if (!wx.isEmpty(mId)) {
+            return false;
+        }
+
+        if ( !wx.isLogin() ) {
+            return 0;
+        }
+
+        var url = '/user/message/delete';
+        var param = 'message_id='+mId;
+        var data = wx.ajax(url, param);
+
+        if (data.error == '0') {
+            wx.pageReload(0);
+            return true;
+        }
+
+        alert('删除失败!');
+    }
+}
 
 
 

@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>我的收藏夹 -- 个人中心</title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -78,13 +78,6 @@
                     </div>
                     <div id="itemList">
                         <div class="list-m">
-                            <!--
-                            <h2>
-                                <a href="javascript:void(0);" onclick="changeStyle(0);" class="act">全部（2）</a>
-                                |　<a href="javascript:void(0);" onclick="changeStyle(11);">T恤（1）</a> &nbsp;&nbsp; |　<a
-                                href="javascript:void(0);" onclick="changeStyle(101);">文具（1）</a> &nbsp;&nbsp;
-                            </h2>
-                            -->
                             <form id="f1" method="post">
                                 <table width="100%" class="table2">
                                     <thead>
@@ -129,7 +122,7 @@
                                                 <a href="#" class="a_e" title="查看设计图">
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看设计图">
                                                 </a> <br/>
-                                                <a href="#" class="a_e" title="查看设计图" onclick="deleteFavorite(<?php echo $v['id'];?>)">
+                                                <a href="#" class="a_e" title="查看设计图" onclick="design.deleteFavorite(<?php echo $v['id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的设计图">
                                                 </a>
                                             </td>
@@ -139,17 +132,8 @@
                                     </tbody>
                                     <tfoot>
                                     <tr id="listFooter">
-                                        <!--
-                                        <th><input onclick="checkproductAll(this)" id="checkpro" type="checkbox"></th>
-                                        <th colspan="3" align="left">
-                                            　
-                                            <button type="submit" class="btn_s2_z5" id="removebut"
-                                                    onclick="return info('deletemulti','您确定要移除您选中的产品')">移除收藏夹
-                                            </button>
-                                        </th>
-                                        -->
                                         <th colspan="7" align="right">
-                                            <button type="button" class="btn_s1_z7" onclick="emptyFavorite()">清空所有设计图 </button>
+                                            <button type="button" class="btn_s1_z7" onclick="design.emptyFavorite()">清空所有设计图 </button>
                                         </th>
                                     </tr>
                                     </tfoot>
@@ -167,8 +151,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="u-r-box">
@@ -185,33 +167,6 @@
                         <span class="font2">设计师：<?php echo substr($fv['uname'], 0, 10);?></span><br/>
                         被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span></li>
                     <?php }?>
-                    <!--
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_09.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_12.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_15.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    -->
                 </ul>
             </div>
         </div>
@@ -220,44 +175,8 @@
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
-<script type="text/javascript">
-    function deleteFavorite(dId)
-    {
-        if (confirm('确定删除此设计图！')) {
-            if (!wx.isEmpty(dId)) {
-                return false;
-            }
-
-            var url = '/design/designFavorite/deleteDesignFavorite';
-            var param = 'design_id='+dId;
-            var data = wx.ajax(url, param);
-
-            if (data.error == '40013') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('删除失败!');
-        }
-    }
-
-    function emptyFavorite()
-    {
-        if (confirm('确定清空设计图收藏！')) {
-            var url = '/design/designFavorite/emptyDesignFavorite';
-            var param = '';
-            var data = wx.ajax(url, param);
-
-            if (data.error == '40016') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('删除失败!');
-        }
-    }
-</script>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/design.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>

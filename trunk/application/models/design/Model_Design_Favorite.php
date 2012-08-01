@@ -16,10 +16,6 @@ class Model_Design_Favorite extends MY_Model
      */
     public function userFavoriteDesign(array $dInfo)
     {
-        $tableName = 'design_favorite';
-        $checkStatus = $this->batchCheckTableField($tableName, $dInfo, true);
-        if (!$checkStatus) return false;
-
         $data = array(
             'did' => $dInfo['did'],
             'uid' => $dInfo['uid'],
@@ -28,8 +24,29 @@ class Model_Design_Favorite extends MY_Model
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
-        $this->db->insert($tableName, $data);
-        return $this->db->insert_id();
+        $this->db->insert('design_favorite', $data);
+        $lastId = $this->db->insert_id();
+        if ($lastId) {
+            $this->db->where('did', $dInfo['did']);
+            $this->db->set('favorite_num', 'favorite_num+1', false);
+            $this->db->update('design');
+        }
+
+        return $lastId;
+    }
+
+    /**
+     * 获取用户收藏的产品
+     *
+     * @param $uId
+     * @param $dId
+     * @return null | array
+     */
+    public function getUserDesignFavorite($uId, $dId)
+    {
+        $data = $this->db->select('*')->get_where('design_favorite', array('uid' => $uId, 'did' => $dId))->row_array();
+
+        return empty ($data) ? null : $data;
     }
 
     /**
@@ -47,18 +64,6 @@ class Model_Design_Favorite extends MY_Model
         return empty ($data) ? null : $data;
     }
 
-    /**
-     * 获取用户收藏的设计图数量
-     *
-     * @param $uId
-     * @return int
-     */
-    public function getUserFavoriteDesignCount($uId)
-    {
-        $this->db->select('*')->from('design_favorite')->where('uid', $uId);
-
-        return $this->db->count_all_results();
-    }
 
     /**
      * 获取用户设计图收藏和设计图信息
@@ -70,7 +75,7 @@ class Model_Design_Favorite extends MY_Model
      */
     public function getUserDesignFavoriteAndDesign($uId, $limit = 20, $offset = 0)
     {
-        $field = 'design.did, class_id, dname, ddetail, design_img, design_source, source_expand, status, vote_end_time, total_num, total_fraction, favorite_num,
+        $field = 'design.did, class_id, dname, ddetail, design_img, design_source, source_expand, status, vote_end_time, total_num, total_fraction, favorite_num, comment_num,
         id, design_favorite.uid, design_favorite.uname, ip, design_favorite.create_time';
 
         $this->db->select($field)->from('design_favorite')->join('design', 'design_favorite.did = design.did', 'left')->where('design_favorite.uid', $uId);

@@ -16,7 +16,7 @@ class qa extends MY_Controller
         $pid = intval( $this->input->get_post('pid') );
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
-        $ip = $this->input->get_post('ip');
+        $ip = $this->input->ip_address();
 
         $response = array('error' => '0', 'msg' => '提交疑难问答成功', 'code' => 'qa_delivery_success');
 
@@ -126,7 +126,6 @@ class qa extends MY_Controller
     /**
      * 删除产品问答
      */
-    /*
     public function deleteProductQa()
     {
         $qaId = intval($this->input->get_post('qa_id'));
@@ -155,5 +154,4 @@ class qa extends MY_Controller
 
         $this->json_output($response);
     }
-    //*/
 }

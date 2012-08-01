@@ -23,21 +23,21 @@ $error[10007] = array('error' => '10007', 'msg' => '密码错误', 'code' => 'pa
 $error[10008] = array('error' => '10008', 'msg' => '注册用户失败', 'code' => 'register_user_failure');
 $error[10009] = array('error' => '10009', 'msg' => '用户未登陆', 'code' => 'User_not_logged');
 
-$error[10010] = array('error' => '10010', 'msg' => '评论设计师成功', 'code' => 'comment_designer_success');
-$error[10011] = array('error' => '10011', 'msg' => '评论设计师失败', 'code' => 'comment_designer_failure');
-$error[10012] = array('error' => '10012', 'msg' => '评论设计师参数不全', 'code' => 'comment_designer_parameter_failure');
+//$error[10010] = array('error' => '10010', 'msg' => '评论设计师成功', 'code' => 'comment_designer_success');
+$error[10011] = array('error' => '10011', 'msg' => '给设计师留言失败', 'code' => 'message_designer_failure');
+$error[10012] = array('error' => '10012', 'msg' => '给设计师留言参数不全', 'code' => 'message_designer_parameter_failure');
 
-$error[10013] = array('error' => '10013', 'msg' => '评论设计师回复成功', 'code' => 'reply_comment_designer_success');
+//$error[10013] = array('error' => '10013', 'msg' => '评论设计师回复成功', 'code' => 'reply_comment_designer_success');
 $error[10014] = array('error' => '10014', 'msg' => '评论设计师回复失败', 'code' => 'reply_comment_designer_failure');
 $error[10015] = array('error' => '10015', 'msg' => '评论设计师回复参数不全', 'code' => 'reply_comment_designer_parameter_failure');
 
 $error[10016] = array('error' => '10016', 'msg' => '设计师评论不存在', 'code' => 'comment_designer_not_exist');
 
-$error[10017] = array('error' => '10017', 'msg' => '收藏设计师成功', 'code' => 'favorite_designer_success');
+$error[10017] = array('error' => '10017', 'msg' => '已经收藏设计师', 'code' => 'already_favorite_designer');
 $error[10018] = array('error' => '10018', 'msg' => '收藏设计师失败', 'code' => 'favorite_designer_failure');
 $error[10019] = array('error' => '10019', 'msg' => '收藏设计师参数不全', 'code' => 'favorite_designer_parameter_failure');
 
-$error[10020] = array('error' => '10020', 'msg' => '删除收藏的设计师成功', 'code' => 'delete_favorite_designer_success');
+//$error[10020] = array('error' => '10020', 'msg' => '删除收藏的设计师成功', 'code' => 'delete_favorite_designer_success');
 $error[10021] = array('error' => '10021', 'msg' => '删除收藏的设计师失败', 'code' => 'delete_favorite_designer_failure');
 $error[10022] = array('error' => '10022', 'msg' => '删除收藏的设计师参数不全', 'code' => 'delete_favorite_designer_parameter_failure');
 
@@ -153,7 +153,7 @@ $error[30018] = array('error' => '30018', 'msg' => '取消退换货申请失败'
  */
 $error[40001] = array('error' => '40001', 'msg' => '设计图不合法', 'code' => 'artwork_illegal');
 
-$error[40002] = array('error' => '40002', 'msg' => '添加设计图评论成功', 'code' => 'add_design_comment_success');
+//$error[40002] = array('error' => '40002', 'msg' => '添加设计图评论成功', 'code' => 'add_design_comment_success');
 $error[40003] = array('error' => '40003', 'msg' => '添加设计图评论失败', 'code' => 'add_design_comment_failure');
 $error[40004] = array('error' => '40004', 'msg' => '添加设计图评论参数不全', 'code' => 'add_design_comment_parameter_failure');
 
@@ -161,11 +161,11 @@ $error[40005] = array('error' => '40005', 'msg' => '设计图不存在', 'code' 
 
 $error[40006] = array('error' => '40006', 'msg' => '评论不存在', 'code' => 'comment_not_exist');
 
-$error[40007] = array('error' => '40007', 'msg' => '添加设计图评论回复成功', 'code' => 'add_design_comment_reply_success');
+//$error[40007] = array('error' => '40007', 'msg' => '添加设计图评论回复成功', 'code' => 'add_design_comment_reply_success');
 $error[40008] = array('error' => '40008', 'msg' => '添加设计图评论回复失败', 'code' => 'add_design_comment_reply_failure');
 $error[40009] = array('error' => '40009', 'msg' => '添加设计图评论回复参数不全', 'code' => 'add_design_comment_reply_parameter_failure');
 
-$error[40010] = array('error' => '40010', 'msg' => '添加设计图收藏成功', 'code' => 'add_design_favorite_success');
+$error[40010] = array('error' => '40010', 'msg' => '已收藏设计图', 'code' => 'already_favorite_design');
 $error[40011] = array('error' => '40011', 'msg' => '添加设计图收藏失败', 'code' => 'add_design_favorite_failure');
 $error[40012] = array('error' => '40012', 'msg' => '添加设计图收藏参数不全', 'code' => 'add_design_favorite_parameter_failure');
 

@@ -6,7 +6,7 @@
  * Time: 上午8:51
  * wunxin E-commerce management system
  */
-class Model_Designer_Comment extends MY_Model
+class Model_Designer_Message extends MY_Model
 {
     /**
      * @name 获取设计师留言 -- 通过设计师ID
@@ -55,7 +55,7 @@ class Model_Designer_Comment extends MY_Model
      * @param int $offset
      * @return null | array
      */
-    public function getUserDesignerCommentAndDesigner($uId, $limit = 20, $offset = 0)
+    public function getUserDesignerMessageAndDesigner($uId, $limit = 20, $offset = 0)
     {
         $field = 'message_id, user_message.uid, user_message.uname, title, content, ip, reply_num, user_message.create_time, be_uid,
         nickname, lid, password, source, integral, amount, status, favorite_num';
@@ -77,7 +77,7 @@ class Model_Designer_Comment extends MY_Model
      * @param $uId
      * @return int
      */
-    public function getUserDesignerCommentAndDesignerCount($uId)
+    public function getUserDesignerMessageAndDesignerCount($uId)
     {
         $this->db->select('*');
         $this->db->from('user_message');
@@ -104,13 +104,14 @@ class Model_Designer_Comment extends MY_Model
      * @param array $cInfo
      * @return boolean
      */
-    public function addDesignerComment(array $cInfo)
+    public function addDesignerMessage(array $cInfo)
     {
         $data = array(
-            'designer_id' => $cInfo['designer_id'],
+            'be_uid' => $cInfo['be_uid'],
             'uid' => $cInfo['uid'],
             'uname' => $cInfo['uname'],
-            'content' => $cInfo['comment_title'],
+            'title' => $cInfo['title'],
+            'content' => $cInfo['content'],
             'ip' => $cInfo['ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
@@ -125,11 +126,11 @@ class Model_Designer_Comment extends MY_Model
      * @param $mId
      * @return bool
      */
-    public function designerCommentIsExist($mId)
+    public function designerMessageIsExist($mId)
     {
-        $data = $this->db->get_where('user_message', array('message_id' => $mId))->row_result();
+        $data = $this->db->get_where('user_message', array('message_id' => $mId))->row_array();
 
-        return empty ($data) ? false : true;
+        return empty ($data) ? null : $data;
     }
 
 
@@ -139,7 +140,7 @@ class Model_Designer_Comment extends MY_Model
      * @param $cId
      * @return bool
      */
-    public function deleteDesignerCommentByCommentId($cId)
+    public function deleteDesignerMessageByCommentId($cId)
     {
         $this->db->delete('user_message', array('message_id' => $cId));
 
@@ -194,14 +195,14 @@ class Model_Designer_Comment extends MY_Model
      * @param array $rInfo
      * @return boolean
      */
-    public function addProductCommentReply(array $rInfo)
+    public function addProductMessageReply(array $rInfo)
     {
         $data = array(
-            'message_id' => $rInfo['message_id'],
             'uid' => $rInfo['uid'],
             'uname' => $rInfo['uname'],
-            'ip' => $rInfo['ip'],
+            'message_id' => $rInfo['message_id'],
             'content' => $rInfo['content'],
+            'ip' => $rInfo['ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
