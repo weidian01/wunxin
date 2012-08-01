@@ -46,13 +46,15 @@ drop index Index_did on wx_design_comment;
 
 drop table if exists wx_design_comment;
 
+drop index Index_d_c_r_comment_id on wx_design_comment_reply;
+
 drop table if exists wx_design_comment_reply;
 
-drop index index_did_uid on wx_design_favorite;
+drop index index_d_favorite_did_uid on wx_design_favorite;
 
-drop index Index_uid on wx_design_favorite;
+drop index Index_d_favorite_uid on wx_design_favorite;
 
-drop index Index_did on wx_design_favorite;
+drop index Index_d_favorite_did on wx_design_favorite;
 
 drop table if exists wx_design_favorite;
 
@@ -3817,7 +3819,7 @@ create table wx_design
 (
    did                  int unsigned not null auto_increment comment '设计图ID',
    class_id             int unsigned comment '设计图分类',
-   uid                  int comment '用户ID',
+   uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
    dname                varchar(16) comment '设计图名称',
    ddetail              varchar(255) comment '设计图介绍',
@@ -3931,6 +3933,14 @@ auto_increment = 1;
 alter table wx_design_comment_reply comment '设计师评论回复表';
 
 /*==============================================================*/
+/* Index: Index_d_c_r_comment_id                                */
+/*==============================================================*/
+create index Index_d_c_r_comment_id on wx_design_comment_reply
+(
+   comment_id
+);
+
+/*==============================================================*/
 /* Table: wx_design_favorite                                    */
 /*==============================================================*/
 create table wx_design_favorite
@@ -3949,25 +3959,25 @@ auto_increment = 1;
 alter table wx_design_favorite comment '设计图收藏表';
 
 /*==============================================================*/
-/* Index: Index_did                                             */
+/* Index: Index_d_favorite_did                                  */
 /*==============================================================*/
-create index Index_did on wx_design_favorite
+create index Index_d_favorite_did on wx_design_favorite
 (
    did
 );
 
 /*==============================================================*/
-/* Index: Index_uid                                             */
+/* Index: Index_d_favorite_uid                                  */
 /*==============================================================*/
-create index Index_uid on wx_design_favorite
+create index Index_d_favorite_uid on wx_design_favorite
 (
    uid
 );
 
 /*==============================================================*/
-/* Index: index_did_uid                                         */
+/* Index: index_d_favorite_did_uid                              */
 /*==============================================================*/
-create unique index index_did_uid on wx_design_favorite
+create unique index index_d_favorite_did_uid on wx_design_favorite
 (
    did,
    uid
@@ -4005,13 +4015,13 @@ create index Index_did on wx_design_vote
 /*==============================================================*/
 create table wx_designer_favorite
 (
-   designer_favorite_id int unsigned not null auto_increment comment '用户收藏ID',
+   fid                  int unsigned not null auto_increment comment '用户收藏ID',
    favorite_uid         int unsigned comment '用户ID',
    uid                  int unsigned comment '被收藏用户ID',
-   favorite_uname       varchar(32) comment '被收藏用户名称',
+   uname                varchar(32) comment '被收藏用户名称',
    ip                   char(16) comment '收藏IP',
    create_time          datetime comment '收藏时间',
-   primary key (designer_favorite_id)
+   primary key (fid)
 )
 engine = MYISAM
 auto_increment = 1;
@@ -5332,13 +5342,13 @@ create index index_uid on wx_user_login_log
 create table wx_user_message
 (
    message_id           int unsigned not null auto_increment comment '留言ID',
+   be_uid               int unsigned comment '被评论的用户ID',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
-   be_uid               int comment '被评论的用户ID',
    title                varchar(32) comment '标题',
    content              varchar(255) comment '内容',
    ip                   char(16) comment 'IP地址',
-   reply_num            int unsigned comment '留言回复数量',
+   reply_num            int unsigned default 0 comment '留言回复数量',
    create_time          datetime comment '创建时间',
    primary key (message_id)
 )
@@ -5361,7 +5371,7 @@ create index Index_uid on wx_user_message
 create table wx_user_message_reply
 (
    id                   int unsigned not null auto_increment comment '自增ID',
-   uid                  int comment '用户ID',
+   uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
    message_id           int unsigned comment '留言ID',
    content              varchar(255) comment '内容',
