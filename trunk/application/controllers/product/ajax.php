@@ -31,9 +31,22 @@ class Ajax extends MY_Controller
         self::json_output($response, true);
     }
 
-    public function browseHistory()
+    public function hotComment()
     {
-         ;
+        $this->load->model('product/Model_Product', 'product');
+
+        $response = $this->product->getProductList(10, 0, array('pid'=>"pid, pname, sell_price"), null, 'comment_num DESC');
+        if($response)
+        {
+            $pids = array_keys($response);
+            $this->load->model('product/Model_Product_comment', 'comment');
+            $tmp = $this->comment->getCommentByPid($pids, 10, 0, 'pid, uid, uname, title, content', "1=1 GROUP BY pid");
+            foreach ($tmp as $key => $item) {
+                $response[$item['pid']] += $item;
+            }
+            //print_r($response);
+        }
+        self::json_output($response, true);
     }
 
 

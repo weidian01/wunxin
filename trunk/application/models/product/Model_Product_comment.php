@@ -83,10 +83,10 @@ class Model_Product_Comment extends MY_Model
      * @param int $offset
      * @return array
      */
-    public function getProductCommentByPid($pid, $limit = 20, $offset = 0)
-    {
-        return $this->db->get_where('product_comment', array('uid' => $pid), $limit, $offset)->array_result();
-    }
+//    public function getProductCommentByPid($pid, $limit = 20, $offset = 0)
+//    {
+//        return $this->db->get_where('product_comment', array('uid' => $pid), $limit, $offset)->array_result();
+//    }
 
     /**
      * @name 添加产品评论
@@ -227,11 +227,17 @@ class Model_Product_Comment extends MY_Model
      * @param string $field
      * @return mixed
      */
-    public function getCommentByPid($pid, $limit = 20, $offset = 0, $field = '*')
+    public function getCommentByPid($pid, $limit = 20, $offset = 0, $field = '*', $where = null)
     {
-        $this->db->select($field);
-        $this->db->order_by("comment_id", "desc");
-        return $this->db->get_where('product_comment', array('pid' => $pid), $limit, $offset)->result_array();
+        list($key, $field) = self::formatField($field);
+        $this->db->select($field)->from('product_comment');
+        $where && $this->db->where($where);
+        $this->db->limit($limit, $offset);
+        if(is_array($pid))
+        {
+            return $this->db->where_in('pid', $pid)->get()->result_array($key);
+        }
+        return $this->db->where('pid', $pid)->get()->row_array();
     }
 
     /**

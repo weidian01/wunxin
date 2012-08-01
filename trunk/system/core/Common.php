@@ -672,7 +672,7 @@ function intToPath($id) {
 	$id = (int)$id;
     if($id < 1)return false;
     preg_match("/(\d{1,2})(\d{0,2})/","{$id}", $matches);
-	return $matches[1] . DS . $matches[1].$matches[2] . DS . $id . DS;
+	return $matches[1] . '/' . $matches[1].$matches[2] . '/' . $id . '/';
 }
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

@@ -111,7 +111,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           </ul>
         </div>
       </div>
-      <div class="addcart"><a class="addcart-btn" href="javascript:;" onclick="addToCart();"></a><a class="sc-btn" href="#"></a></div>
+      <div class="addcart"><a class="addcart-btn" href="javascript:;" onclick="addToCart();"></a><a class="sc-btn" href="javascript:;" onclick="favorite(<?=$product['pid']?>)"></a></div>
     </div>
   </div>
 </div>
@@ -414,107 +414,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           </tr>
         </table>
       </div>
-      <div class="rankbox pad10">
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2" style="float:left;"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-        <div class="bdan2">
-          <table width="95%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td><a href="#">热卖简略印花T恤</a></td>
-              <td><span class="font4">￥152.30</span></td>
-            </tr>
-          </table>
-          <div class="bdimg"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/pick.jpg" width="53" height="54" /></div>
-          <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
-            衣衣对于我来说真的偏长，但是款式还不错</div>
-        </div>
-      </div>
+      <div class="rankbox pad10" id="hotComment" style="display:none"><!--热评商品--></div>
     </div>
     <div class="sidebox" id="browseHistory" style="display:none">
       <div class="side-tit2">
@@ -624,7 +524,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="gbox-relation" id="g-relation4">
       <div class="shaidan" id="qanda">
         <div class="sd-tit" style="margin-bottom:0px;">
-          <div class="sdbt"> 互动问答</div>
+          <div class="sdbt">互动问答</div>
           <div class="sd-btn"><a href="#">我要提问</a></div>
         </div>
         <div class="question">
@@ -641,7 +541,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             </table>
             <div class="q-t-w">更多关于万象网购物问题及配送方式问题，详情请 <a href="#">点击这里 >></a></div>
           </div>
-          <div class="q-a-box"><!--互动问答内容--></div>
+          <div class="q-a-box" id='_hdwd'><!--互动问答内容--></div>
           <div id="more_qa" style="float:center;display:none" class="pages"><!--更多--></div>
         </div>
       </div>

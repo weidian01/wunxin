@@ -55,6 +55,7 @@
 
         browseHistoryHTML(setBrowseHistory(product.pid, product.pname, product.sell_price));
         getProductByClass(product.class_id, product.pid)/*获取同类产品*/
+        getHotComment();
         productComment(product.pid, 1);/*获取产品评论*/
         productAppraise(product.pid);/*产品评价等级*/
         lazyload("img.lazy");
@@ -62,6 +63,13 @@
         productShare(product.pid, 11, 0);
         productQa(product.pid, 10, 0);/*载入产品互动问答*/
     });
+
+    function favorite(pid)
+    {
+        wx.jsonp(wx.base_url + "product/favorite/add", {'pid':pid}, function(data){
+            alert(data.msg);
+        });
+    }
 
     /*设置浏览记录*/
     function browseHistoryHTML(list)
@@ -186,6 +194,29 @@
             lazyload(".vhis img.lazy");
         });
     }
+
+    function getHotComment()
+    {
+        wx.jsonp(wx.base_url + "product/ajax/hotComment", {}, function (data) {
+            var html = '';
+            $.each(data, function (i, item) {
+                html += '<div class="bdan2">\
+                          <table width="95%" border="0" cellspacing="0" cellpadding="0">\
+                            <tr>\
+                              <td><a href="#">'+item.pname+'</a></td>\
+                              <td><span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span></td>\
+                            </tr>\
+                          </table>\
+                          <div class="bdimg"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/portrait/' + (item.uid ? idToPath(item.uid):'') +'small.jpg" width="53" height="54" /></div>\
+                          <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
+                            '+item.content+'</div>\
+                        </div>';
+            });
+            $('#hotComment').html(html).show();
+            lazyload(".bdimg img.lazy");
+        });
+    }
+
 
     /*载入晒单*/
     function productShare(pid, limit, offset)
