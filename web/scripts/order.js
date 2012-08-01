@@ -308,3 +308,15 @@ order.orderSubmit = function ()
     alert(data.msg);
     //document.order_form_id.submit();
 }
+
+order.pay = function ()
+{
+    var payBank = wx.getRadioCheckBoxValue('bank');
+
+    document.pay_form.action = '/pay/yeepay/pay';
+    if (payBank == 'alipay') {
+        document.pay_form.action = '/pay/alipay/pay';
+    }
+
+    document.pay_form.submit();
+}

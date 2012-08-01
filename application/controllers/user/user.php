@@ -192,15 +192,25 @@ class user extends MY_Controller
 
     public function saveAvatar()
     {
+        function  log_result($type) {
+        	@$fp = fopen(WEBROOT."log.txt","a");
+        	@flock($fp, LOCK_EX) ;
+        	@fwrite($fp,$type."：执行日期：".strftime("%Y%m%d%H%I%S",time())."\r\n");
+        	@flock($fp, LOCK_UN);
+        	@fclose($fp);
+        }
+
+        //*
         if (!$this->isLogin()) {
             echo '<script type="text/javascript">alert("用户未登陆!");</script>';
             return ;
-        }
-
+        }//*/
+        //file_put_contents(WEBROOT.'/log.txt', 'a');
         @header("Expires: 0");
         @header("Cache-Control: private, post-check=0, pre-check=0, max-age=0", FALSE);
         @header("Pragma: no-cache");
 
+        //$type = $_GET['type'];
         $type = $this->input->get_post('type');
 
         //这里传过来会有两种类型，一先一后, big和small, 保存成功后返回一个json字串，客户端会再次post下一个.
@@ -208,6 +218,9 @@ class user extends MY_Controller
 
         //生成图片存放路径
         $new_avatar_path = 'upload'.DS.'designer'.DS.intToPath($this->uInfo['uid']).DS.$type.'.jpg';
+        if (file_exists(WEBROOT.$new_avatar_path)) {
+            unlink(WEBROOT.$new_avatar_path);
+        }
 
         //将POST过来的二进制数据直接写入图片文件.
         $len = file_put_contents(WEBROOT.$new_avatar_path, file_get_contents("php://input"));

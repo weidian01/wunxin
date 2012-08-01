@@ -54,7 +54,7 @@
         .table2 td { color: #666666; text-align: left; }
         .table2 tfoot { background: none repeat scroll 0 0 #F8F8F8; font-weight: bold; text-align: center; }
         .btn_s1_z7 { background: url("/images/btn_s1_z7.png") repeat-x scroll 0 0 transparent; border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block; font-size: 12px;
-            height: 20px; line-height: 20px; margin: 0; padding: 0; text-align: center; width: 102px; }
+            height: 20px; line-height: 20px; margin: 0; padding: 0; text-align: center; width: 102px;font-weight: bold;}
     </style>
 </head>
 <body>
