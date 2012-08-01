@@ -110,7 +110,8 @@ wx.getRadioCheckBoxValue = function (RadioName)
 	    var i;
 	    for(i=0;i<obj.length;i++){
 	        if(obj[i].checked){
-	            return true;
+	            //return true;
+                return obj[i].value;
 	        }
 	    }
 	}

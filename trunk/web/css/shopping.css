@@ -375,19 +375,19 @@ input.gnum {
 }
 
 .bankpic span#onlinepay {
-    background-position: 0px -48px;
-}
-
-.bankpic span#icbc {
     background-position: 0px -96px;
 }
 
-.bankpic span#cmb {
+.bankpic span#icbc {
     background-position: 0px -144px;
 }
 
-.bankpic span#boc {
+.bankpic span#cmb {
     background-position: 0px -190px;
+}
+
+.bankpic span#boc {
+    background-position: right -480px;
 }
 
 .bankpic span#ccb {

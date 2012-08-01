@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>订单提交成功</title>
@@ -67,6 +67,8 @@ $(document).ready(function(){
           ?></div>
   </div>
   <?php if ($order['pay_type'] == '1') {?>
+  <form action="" method="POST" onsubmit="return order.pay()" name="pay_form" id="">
+      <input type="hidden" name="order_sn" value="<?php echo $order['order_sn'];?>" />
   <div class="other-shopping">
     <div class="tit">选择支付方式</div>
     <div class="payment">
@@ -74,149 +76,154 @@ $(document).ready(function(){
       <div class="payment-c">
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="onlinepay-b" value="" name="bank"/>
+            <input type="radio" id="onlinepay-b" value="ICBC-NET-B2C" name="bank" checked="checked"/>
           </div>
-          <div class="bankpic"><label for="onlinepay-b"><span class="bankimg" id="onlinepay">中国工商银行</span></label></div>
+          <div class="bankpic" style="border: 1px solid rgb(161, 0, 0);"><label for="onlinepay-b"><span class="bankimg" id="onlinepay">中国工商银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" value="" id="icbc-b" name="bank" />
+            <input type="radio" value="CMBCHINA-NET-B2C" id="icbc-b" name="bank"/>
           </div>
-          <div class="bankpic"><label for="icbc-b"><span class="bankimg" id="icbc">中国工商银行</span></label></div>
+          <div class="bankpic"><label for="icbc-b"><span class="bankimg" id="icbc">招商银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="cmb-b" value="" name="bank" />
+            <input type="radio" id="cmb-b" value="BOC-NET-B2C" name="bank" />
           </div>
-          <div class="bankpic"><label for="cmb-b"><span class="bankimg" id="cmb">招商银行</span></label></div>
+          <div class="bankpic"><label for="cmb-b"><span class="bankimg" id="cmb">中国银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" value="" id="boc-b" name="bank" />
+            <input type="radio" value="HKBEA-NET-B2C" id="boc-b" name="bank" />
           </div>
-          <div class="bankpic"><label for="boc-b"><span class="bankimg" id="boc">中国银行</span></label></div>
+          <div class="bankpic"><label for="boc-b"><span class="bankimg" id="boc">东亚银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="ccb-b" value="" name="bank" />
+            <input type="radio" id="ccb-b" value="CCB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="ccb-b"><span class="bankimg" id="ccb">中国建设银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="abc-b" value="" name="bank" />
+            <input type="radio" id="abc-b" value="ABC-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="abc-b"><span class="bankimg" id="abc">中国农业银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="cgb-b" value="" name="bank" />
+            <input type="radio" id="cgb-b" value="GDB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="cgb-b"><span class="bankimg" id="cgb">广发银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="cmbc-b" value="" name="bank" />
+            <input type="radio" id="cmbc-b" value="CMBC-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="cmbc-b"><span class="bankimg" id="cmbc">中国民生银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="cib-b" value="" name="bank" />
+            <input type="radio" id="cib-b" value="CIB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="cib-b"><span class="bankimg" id="cib">兴业银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="bob-b" value="" name="bank" />
+            <input type="radio" id="bob-b" value="BCCB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="bob-b"><span class="bankimg" id="bob">北京银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="bjrcb-b" value="" name="bank" />
+            <input type="radio" id="bjrcb-b" value="BJRCB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="bjrcb-b"><span class="bankimg" id="bjrcb">北京农村商业银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="psbc-b" value="" name="bank" />
+            <input type="radio" id="psbc-b" value="POST-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="psbc-b"><span class="bankimg" id="psbc">中国邮政储蓄银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="bcomm-b" value="" name="bank" />
+            <input type="radio" id="bcomm-b" value="BOCO-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="bcomm-b"><span class="bankimg" id="bcomm">交通银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="spdb-b" value="" name="bank" />
+            <input type="radio" id="spdb-b" value="SPDB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="spdb-b"><span class="bankimg" id="spdb">浦发银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="sdb-b" value="" name="bank" />
+            <input type="radio" id="sdb-b" value="SDB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="sdb-b"><span class="bankimg" id="sdb">深圳发展银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="cebb-b" value="" name="bank" />
+            <input type="radio" id="cebb-b" value="CEB-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="cebb-b"><span class="bankimg" id="cebb">中国光大银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="pingan-b" value="" name="bank" />
+            <input type="radio" id="pingan-b" value="PINGANBANK-NET" name="bank" />
           </div>
           <div class="bankpic"><label for="pingan-b"><span class="bankimg" id="pingan">平安银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="ecitic-b" value="" name="bank" />
+            <input type="radio" id="ecitic-b" value="ECITIC-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="ecitic-b"><span class="bankimg" id="ecitic">中信银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="hzb-b" value="" name="bank" />
+            <input type="radio" id="hzb-b" value="HZBANK-NET-B2C" name="bank" />
           </div>
           <div class="bankpic"><label for="hzb-b"><span class="bankimg" id="hzb">杭州银行</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="" value="nbcb-b" name="bank" />
+            <input type="radio" id="" value="NBCB-NET-B2C" name="bank" />
           </div>
-          <div class="bankpic"><label for="nbcb-b"><span class="bankimg" id="nbcb">宁波银行</span></label></div>
+          <div class="bankpic"><label for=""><span class="bankimg" id="nbcb">宁波银行</span></label></div>
         </div>
       </div>
       <p>点击选择支付平台付款</p>
       <div class="payment-c">
         <div class="payment-b">
           <div class="pradio">
-            <input name="bank" id="alipay-b" type="radio" value=""/>
+            <input name="bank" id="alipay-b" type="radio" value="alipay"/>
           </div>
           <div class="bankpic"><label for="alipay-b"><span class="bankimg" id="alipay">支付宝</span></label></div>
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input name="bank" id="cmpay-b" type="radio" value="" />
+            <input name="bank" id="cmpay-b" type="radio" value="1000000-NET" />
           </div>
-          <div class="bankpic"><label for="cmpay-b"><span class="bankimg" id="cmpay">手机支付</span></label></div>
+          <div class="bankpic"><label for="cmpay-b"><span class="bankimg" id="cmpay">易宝支付</span></label></div>
         </div>
+
+        <!--
         <div class="payment-b">
           <div class="pradio">
             <input name="bank" id="tenpay-b" type="radio" value="" />
           </div>
           <div class="bankpic"><label for="tenpay-b"><span class="bankimg" id="tenpay">财付通</span></label></div>
         </div>
+        -->
+
       </div>
-      <div class="topay"><a href="#"><img src="/images/pay.gif" width="150" height="41" alt="立即付款" /></a></div>
+      <div class="topay"><a href="javascript:vaid(0);" onclick="order.pay()"><img src="/images/pay.gif" width="150" height="41" alt="立即付款" /></a></div>
     </div>
   </div>
+  </form>
       <?php }?>
   <!--
   <div class="other-shopping" style="height:320px;">
