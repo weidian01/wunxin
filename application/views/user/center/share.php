@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>我的晒单 -- 个人中心</title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -95,7 +95,7 @@
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>

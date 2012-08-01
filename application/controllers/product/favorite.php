@@ -64,7 +64,7 @@ class favorite extends MY_Controller
             }
         } while (false);
 
-        echo self::json_output($response, true);
+        self::json_output($response, true);
     }
 
     /**

@@ -3,11 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>填写订单核对信息</title>
-<link href="/css/base.css" rel="stylesheet" type="text/css" />
-<link href="/css/shopping.css" rel="stylesheet" type="text/css" />
-<SCRIPT type=text/javascript src="/scripts/jquery.js"></SCRIPT>
+<link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
+<link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
 <!--[if lt IE 7]>
-<script type="text/javascript" src="/scripts/iepng.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
 EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
 </script>
@@ -412,8 +412,8 @@ $(document).ready(function(){
 </div>
 </form>
 <?php include '/../footer.php';?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="/scripts/order.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
 <script type="text/javascript">
 function syinfo(a, b)
 {
