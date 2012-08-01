@@ -14,8 +14,8 @@ design.favoriteDesign = function (dId)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
-        return 0;
+    if ( !wx.checkLoginStatus() ) {
+        return false;
     }
 
     var url = 'design/favorite/add';
@@ -37,8 +37,8 @@ design.deleteFavorite = function (dId)
             return false;
         }
 
-        if ( !wx.isLogin() ) {
-            return 0;
+        if ( !wx.checkLoginStatus() ) {
+            return false;
         }
 
         var url = '/design/favorite/deleteFavorite';
@@ -82,8 +82,8 @@ design.comment = function (dId, title, content)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
-        return 0;
+    if ( !wx.checkLoginStatus() ) {
+        return false;
     }
 
     var url = 'design/comment/add';
@@ -104,8 +104,8 @@ design.commentReply = function (commentId, content)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
-        return 0;
+    if ( !wx.checkLoginStatus() ) {
+        return false;
     }
 
     var url = 'design/comment/Reply';
@@ -126,8 +126,8 @@ design.deleteComment = function(cId)
             return false;
         }
 
-        if ( !wx.isLogin() ) {
-            return 0;
+        if ( !wx.checkLoginStatus() ) {
+            return false;
         }
 
         var url = '/design/comment/delete';

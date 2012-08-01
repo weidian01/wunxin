@@ -8,7 +8,7 @@
 * Date: 2012.07.04
 */
 
-var user = {oldBoxId : 1,};
+var user = {oldBoxId : 1};
 
 //用户JS库初始化
 user.init = function ()
@@ -203,13 +203,7 @@ user.checkUserExist = function ()
     }
 
     status ? $("#username_notice_id").removeClass("mistake").addClass("txi") : $("#username_notice_id").removeClass("txi").addClass("mistake");
-    /*
-    if (status) {
-        $("#username_notice_id").removeClass("mistake").addClass("txi");
-    } else {
-        $("#username_notice_id").removeClass("txi").addClass("mistake");
-    }
-//*/
+
     $('#username_notice_id').html(data.msg);
     return status;
 
@@ -263,8 +257,8 @@ user.favoriteDesigner = function (uId)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
-        return 0;
+    if ( !wx.checkLoginStatus() ) {
+        return false;
     }
 
     var url = 'user/designerFavorite/addFavorite';
@@ -286,8 +280,8 @@ user.deleteDesignerFavorite = function(fId)
             return false;
         }
 
-        if ( !wx.isLogin() ) {
-            return 0;
+        if ( !wx.checkLoginStatus() ) {
+            return false;
         }
 
         var url = '/user/designerFavorite/deleteDesignerFavorite';
@@ -307,8 +301,8 @@ user.deleteDesignerFavorite = function(fId)
 user.emptyFavorite = function()
 {
     if ( confirm('确定清空所有设计师收藏！') ) {
-        if ( !wx.isLogin() ) {
-            return 0;
+        if ( !wx.checkLoginStatus() ) {
+            return false;
         }
 
         var url = '/user/designerFavorite/emptyDesignerFavorite';
