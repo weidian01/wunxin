@@ -140,7 +140,9 @@ order.saveAddress = function (urls)
             wx.pageReload();
         }
     }
+    alert(data.msg);
 
+    /*
     if (data.error == '30010') {
         alert(data.msg);
     }
@@ -152,7 +154,7 @@ order.saveAddress = function (urls)
     if (data.error == '30012') {
         alert(data.msg);
     }
-    //saveAddress
+    //*/
 }
 
 //编辑地址
@@ -226,6 +228,14 @@ wx.addAddress = function ()
 //删除收货地址
 wx.deleteAddress = function (aId)
 {
+    if (!wx.isEmpty(aId)) {
+        return false;
+    }
+
+    if ( !wx.checkLoginStatus() ) {
+        return false;
+    }
+
     var url = 'order/order/deleteAddress';
     var param = 'address_id='+ aId;
     var data = wx.ajax(url, param);

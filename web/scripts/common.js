@@ -300,6 +300,29 @@ wx.isLogin = function ()
     var auth = wx.getCookie('auth');
 
     if (!wx.isEmpty(auth)) {
+        return false;
+    }
+
+    var url = 'user/login/getUserInfo';
+    var data = wx.ajax(url, '');
+
+    if (data.error == '10009') {
+        return false;
+    }
+
+    if (data.error == '0') {
+        return data.user_info;
+    }
+
+    return false;
+}
+
+//检查登陆状态
+wx.checkLoginStatus = function ()
+{
+    var auth = wx.getCookie('auth');
+
+    if (!wx.isEmpty(auth)) {
         alert ('暂未登陆，请登陆!');
         return false;
     }

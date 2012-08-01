@@ -32,9 +32,6 @@
             </table>
             <ul id="idNum" class="num"></ul>
         </div>
-        <SCRIPT>
-
-        </SCRIPT>
         <div class="tod-act">
             <div class="today">
                 <div class=" hp-carousel-cata" id="j-carousel-cata">
