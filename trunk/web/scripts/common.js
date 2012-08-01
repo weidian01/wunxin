@@ -380,10 +380,77 @@ wx.initLoginStatus = function ()
 
 }
 
+//计算图片路径
 function idToPath(id) {
     var id = String(id);
     var l = id.match(/(\d{1,2})(\d{0,2})/);
     return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
+}
+
+//关闭浮层
+wx.layerClose = function ()
+{
+	var list = art.dialog.list;
+	for (var i in list) {
+		list[i].close();
+	};
+}
+
+//收藏产品浮层 status 1 收藏成功， 2 已收藏过此产品， 3 收藏此产品不存在, 4 未知错误，系统繁忙
+wx.favoriteProductLayer = function(status, bingingId){
+    var prompt = '该商品已成功放入收藏夹';
+    var promptIcon = (status == '1') ? 'topicon' : 'topicon2';
+    switch (status){
+        case 1: prompt = '该商品已成功放入收藏夹';break;
+        case 2: prompt = '您已经收藏过该商品';break;
+        case 3: prompt = '您收藏的商品不存在';break;
+        case 4: prompt = '系统繁忙，请稍后再试';break;
+    }
+
+
+	var html = '<div class="topinfo"> ' +
+        '<div class="pop-close" onclick="wx.layerClose()"></div> ' +
+        '<span class="'+promptIcon+'"></span>' +
+        '<span class="topicon2" style="display:none;"></span>' +
+        '<p>'+prompt+'&nbsp;&nbsp;&nbsp;' +
+        '<a class="popfont1" href="/user/center/productFavorite">查看收藏夹 >></a></p>' +
+        '</div>' +
+        '<div class="pop-t">' +
+        '<span class="pop-b">看过该商品的人还购买过</span>' +
+        '<a class="pop-c" href="#">更多您可能喜欢的商品 >></a>' +
+        '</div>' +
+        '<ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="/images/loading.gif"></div></li></ul>';
+
+    if (wx.isEmpty(bingingId)) {
+        art.dialog({
+            follow: document.getElementById(bingingId),
+            title:false,
+            content: html
+        });
+    } else {
+        art.dialog({
+            title:false,
+            content: html
+        });
+    }
+
+    var number = 6;
+    var url = '/product/recommend/favoriteRecommend';
+    var param = 'number='+number;
+    var data = wx.ajax(url, param);
+
+    //console.log(wx.isEmpty(data['data']));
+    if (wx.isEmpty(data['data'])) {
+        var fData = data['data'];
+        var fHtml = '';
+        for (var i in fData) {
+            fHtml += '<li> <div class="pop-img"> <a href="#">' +
+                '<img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="60" height="60" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'"/></a> ' +
+                '</div> <p><a href="#" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'">'+fData[i].pname.substring(0,15)+'</a><br/>' +
+                '<span class="popfont2" style="font-size: 11px;">￥'+( (fData[i].sell_price) / 100 )+'</span></p></li>';
+        }
+        $('.pop-goods').html(fHtml);
+    }
 }
 
 wx.initLoginStatus();
