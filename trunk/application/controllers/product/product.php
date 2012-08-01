@@ -75,7 +75,7 @@ class Product extends MY_Controller
             else
             {
                 $this->load->model('product/Model_Product', 'product');
-                $num = $this->product->getProductCout($where);
+                $num = $this->product->getProductCount($where);
             }
             $products = array();
             $pageHTML = '';

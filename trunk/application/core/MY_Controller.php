@@ -147,7 +147,7 @@ class MY_Controller extends CI_Controller
         $isExist = false;
         if (!empty ($cData)) {
             foreach ($cData as &$cv) {
-                if ($cv['pid'] == $cInfo['pid']) {
+                if ($cv['pid'] == $cInfo['pid'] && $cv['product_size'] == $cInfo['product_size']) {
                     $cv['product_num'] += $cInfo['product_num'];
                     $isExist = true;
                 }

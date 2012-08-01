@@ -119,7 +119,7 @@ class register extends MY_Controller
     public function verifyCode()
     {
         $code = $this->setVerifyCode();
-        $this->input->set_cookie('verify_code', $code, 60);
+        //$this->input->set_cookie('verify_code', $code, 60);
         $this->lib('codeimg', array('code'=>$code));
         $this->codeimg->display();
     }
