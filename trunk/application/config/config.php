@@ -438,11 +438,13 @@ $config['maritalStatus'] = array(
 $config['yeepay_account'] = 'hjpking@gmail.com';
 $config['yeepay_merchant_id'] = '10011840493';
 $config['yeepay_merchant_key'] = '254K66x184o3W5ET9jLS3q2bvr41m5tHtJc7P4p967bF0b8xC7S36L7r529X';
+$config['yeepay_payback_url'] = $config['base_url'].'pay/yeepay/payback/';
 
 //支付宝支付相关信息
 $config['alipay_account'] = 'hjpking@hotmail.com';
 $config['alipay_merchant_id'] = '2088002380741030';
 $config['alipay_merchant_key'] = 'jarnegpaui4sfpjlzp6h269ph8qjdl6v';
+$config['alipay_payback_url'] = $config['base_url'].'pay/alipay/payback/';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

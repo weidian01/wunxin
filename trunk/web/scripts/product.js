@@ -22,7 +22,7 @@ product.favoriteProduct = function(pId, bingingId)
         return false;
     }
 
-    var url = 'product/product_favorite/favorite';
+    var url = 'product/favorite/add';
     var param = 'pid='+pId;
     var data = wx.ajax(url, param);
 
