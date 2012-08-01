@@ -17,7 +17,6 @@
     <![endif]-->
 </head>
 <body>
-<a onclick="product.favoriteProduct('', 'followTestBtn')" id="followTestBtn">收藏</a>
 <?php include 'header.php';?>
 <div class="box2">
     <div class="container">
