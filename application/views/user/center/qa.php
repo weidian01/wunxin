@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>产品问答 -- 个人中心</title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -57,7 +57,7 @@
                         <td width="20%" align="center"><a href="#" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a></td>
                         <td width="8%" align="center">￥<?php echo $v['sell_price'] / 100;?></td>
                         <td width="20%" align="left">
-                            <b>问：</b><?php echo $v['qa_content'];?> <br />
+                            <b>问：</b><?php echo $v['content'];?> <br />
                             <b>答：</b><?php echo $v['reply_content'];?> <span style="font-size: 10px;"> <?php echo date('m-d H:i:s', strtotime($v['reply_time']));?></span>
                         </td>
                         <td width="15%" align="center">
@@ -71,7 +71,7 @@
                             <a href="javascript:void(0);" onclick="(<?php echo $v['qa_id'];?>)">
                                 <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
                             </a><br />
-                            <a href="javascript:void(0);" onclick="deleteProductQa(<?php echo $v['qa_id'];?>)">
+                            <a href="javascript:void(0);" onclick="product.deleteProductQa(<?php echo $v['qa_id'];?>)">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此问答">
                             </a>
                         </td>
@@ -106,27 +106,10 @@
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <script type="text/javascript">
-    function deleteProductQa(qId)
-    {
-        if (confirm('确定删除！')) {
-            if (!wx.isEmpty(qId)) {
-                return false;
-            }
 
-            var url = '/product/product_qa/deleteProductQa';
-            var param = 'qa_id='+qId;
-            var data = wx.ajax(url, param);
-
-            if (data.error == '0') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('删除失败!');
-        }
-    }
 </script>
 <!-- #EndLibraryItem -->
 </body>

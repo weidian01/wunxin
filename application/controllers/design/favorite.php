@@ -6,17 +6,17 @@
  * Time: 下午9:30
  * To change this template use File | Settings | File Templates.
  */
-class designFavorite extends MY_Controller
+class favorite extends MY_Controller
 {
     /**
      * 添加设计图收藏
      */
-    public function addDesignFavorite()
+    public function add()
     {
         $dId = $this->input->get_post('design_id');
         $ip = $this->input->ip_address();
 
-        $response = error(40010);
+        $response = array('error' => '0', 'msg' => '设计图收藏成功', 'code' => 'add_design_favorite_success');
 
         do {
             if (empty ($dId)) {
@@ -35,6 +35,12 @@ class designFavorite extends MY_Controller
                 $response = error(40005);
                 break;
             }
+            $this->load->model('design/Model_Design_Favorite', 'favorite');
+            $favoriteData = $this->favorite->getUserDesignFavorite($this->uInfo['uid'], $dId);
+            if (!empty ($favoriteData)) {
+                $response = error(40010);
+                break;
+            }
 
             $data = array(
                 'did' => $dId,
@@ -42,7 +48,7 @@ class designFavorite extends MY_Controller
                 'uname' => $this->uInfo['uname'],
                 'ip' => $ip,
             );
-            $this->load->model('design/Model_Design_Favorite', 'favorite');
+
             $status = $this->favorite->userFavoriteDesign($data);
             if (!$status) {
                 $response = error(40011);
@@ -56,11 +62,11 @@ class designFavorite extends MY_Controller
     /**
      * 删除设计图收藏
      */
-    public function deleteDesignFavorite()
+    public function deleteFavorite()
     {
         $dId = $this->input->get_post('design_id');
 
-        $response = error(40013);
+        $response = array('error' => '0', 'msg' => '删除设计图收藏成功', 'code' => 'delete_design_favorite_success');
 
         do {
             if (empty ($dId)) {
@@ -87,14 +93,14 @@ class designFavorite extends MY_Controller
     /**
      * 清空设计图收藏
      */
-    public function emptyDesignFavorite()
+    public function emptyFavorite()
     {
         if (!$this->isLogin()) {
             $response = error(10009);
         } else {
             $this->load->model('design/Model_Design_Favorite', 'favorite');
             $status = $this->favorite->emptyUserProductFavoriteByUid($this->uInfo['uid']);
-            $response = $status ? error(40016) : error(40017);
+            $response = $status ? array('error' => '0', 'msg' => '清空设计图收藏成功', 'code' => 'empty_design_favorite_success') : error(40017);
         }
 
         $this->json_output($response);

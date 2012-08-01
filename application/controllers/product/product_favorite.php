@@ -33,12 +33,13 @@ class product_favorite extends MY_Controller
             $isFavorite = $this->favorite->getUserFavorite($this->uInfo['uid'], $pid);
 
             //是否收藏过此产品
-            if ($isFavorite == null) {
+            if ( !empty ($isFavorite) ) {
                 $response = error(20010);
                 break;
             }
 
             //产品是否存在
+            $this->load->model('product/Model_Product', 'product');
             $pInfo = $this->product->productIsExist($pid);
             if (!$pInfo) {
                 $response = error(20002);

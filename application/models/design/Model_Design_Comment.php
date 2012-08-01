@@ -164,7 +164,14 @@ class Model_Design_Comment extends MY_Model
         );
 
         $this->db->insert('design_comment', $data);
-        return $this->db->insert_id();
+        $lastId = $this->db->insert_id();
+        if ($lastId) {
+            $this->db->where('did', $cInfo['did']);
+            $this->db->set('comment_num', 'comment_num+1', false);
+            $this->db->update('design');
+        }
+
+        return $lastId;
     }
 
     /**
@@ -230,15 +237,17 @@ class Model_Design_Comment extends MY_Model
             'comment_id' => $rInfo['comment_id'],
             'uid' => $rInfo['uid'],
             'uname' => $rInfo['uname'],
-            'ip' => $rInfo['ip'],
             'content' => $rInfo['content'],
+            'ip' => $rInfo['ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
-
-        $this->updateCommentReplyNum($rInfo['comment_id']);
-
         $this->db->insert('design_comment_reply', $data);
-        return $this->db->insert_id();
+        $lastId = $this->db->insert_id();
+
+        if ($lastId) {
+            $this->updateCommentReplyNum($rInfo['comment_id']);
+        }
+        return $lastId;
     }
 
     /**

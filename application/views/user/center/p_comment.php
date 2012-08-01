@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>我的评论 -- 个人中心</title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -58,7 +58,7 @@
     </style>
 </head>
 <body>
-<!-- #BeginLibraryItem "/Library/header.lbi" -->
+<!-- #BeginLibraryItem "/Library/header.lbi" (pId, title, content, rank, comfort, exterior, size_deviation)-->
 <?php include('/../../header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
@@ -123,7 +123,7 @@
                                                     <img src="<?=config_item('static_url')?>images/comment.png" title="评论此产品">
                                                 </a>
                                                 -->
-                                                <a href="javascript:void(0);" onclick="deleteProductComment(<?php echo $v['comment_id'];?>)">
+                                                <a href="javascript:void(0);" onclick="product.deleteProductComment(<?php echo $v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
                                                 </a> <br />
                                             </td>
@@ -133,10 +133,6 @@
                                     </tbody>
                                     <tfoot>
                                     <tr id="listFooter">
-                                        <!--
-                                        <th colspan="8" align="right">
-                                            <button type="button" class="btn_s1_z7" onclick="emptyFavorite('cleanup','您确定要清空收藏夹里的所有产品')"> 清空所有产品 </button>
-                                        </th>-->
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -152,8 +148,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="u-r-box">
@@ -178,28 +172,8 @@
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
-<script type="text/javascript">
-    function deleteProductComment(cId)
-    {
-        if (confirm('确定删除！')) {
-            if (!wx.isEmpty(cId)) {
-                return false;
-            }
-
-            var url = '/product/comment/deleteComment';
-            var param = 'cid='+cId;
-            var data = wx.ajax(url, param);
-
-            if (data.error == '0') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('删除失败!');
-        }
-    }
-</script>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>

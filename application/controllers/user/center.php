@@ -502,8 +502,8 @@ class center extends MY_Controller
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->model('user/Model_Designer_Comment', 'comment');
-        $totalNum = $this->comment->getUserDesignerCommentAndDesignerCount($this->uInfo['uid']);
+        $this->load->model('user/Model_Designer_Message', 'message');
+        $totalNum = $this->message->getUserDesignerMessageAndDesignerCount($this->uInfo['uid']);
 
         $this->load->library('pagination');
         $config['base_url'] = site_url() . '/user/center/designerComment/';
@@ -519,7 +519,7 @@ class center extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-        $data = $this->comment->getUserDesignerCommentAndDesigner($this->uInfo['uid'], $Limit, $offset);
+        $data = $this->message->getUserDesignerMessageAndDesigner($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('user/Model_Designer_Favorite', 'favorite');
         $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(5);

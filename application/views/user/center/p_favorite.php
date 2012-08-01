@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>我的收藏夹 -- 个人中心</title>
-    <link href="/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="/scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>/css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>/css/user.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>/scripts/jquery-1.4.2.min.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>/scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -117,8 +117,8 @@
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此产品">
                                                 </a>
                                                 <br/>
-                                                <a href="#" class="a_e" onclick="deleteFavorite(<?php echo $v['id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
+                                                <a href="#" class="a_e" onclick="product.deleteFavoriteProduct(<?php echo $v['id'];?>)">
+                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的此产品">
                                                 </a>
                                             </td>
                                         </tr>
@@ -127,17 +127,8 @@
                                     </tbody>
                                     <tfoot>
                                     <tr id="listFooter">
-                                        <!--
-                                        <th><input onclick="checkproductAll(this)" id="checkpro" type="checkbox"></th>
-                                        <th colspan="3" align="left">
-                                            　
-                                            <button type="submit" class="btn_s2_z5" id="removebut"
-                                                    onclick="return info('deletemulti','您确定要移除您选中的产品')">移除收藏夹
-                                            </button>
-                                        </th>
-                                        -->
                                         <th colspan="6" align="right">
-                                            <button type="button" class="btn_s1_z7" onclick="emptyFavorite('cleanup','您确定要清空收藏夹里的所有产品')"> 清空所有产品 </button>
+                                            <button type="button" class="btn_s1_z7" onclick="product.emptyFavorite()"> 清空所有产品 </button>
                                         </th>
                                     </tr>
                                     </tfoot>
@@ -149,14 +140,11 @@
                             <div class="pages" style="float: right;">
                             <?php echo $page_html;?><span class="page"> 共<?php echo $total_num;?>条结果<!--，1/1页--></span>
                             </div>
-
                             <div class="clear"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
 
         <div class="u-r-box">
@@ -173,28 +161,6 @@
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>
-                    <!--
-                    <li><img src="<?=config_item('static_url')?>images/mlf_09.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_12.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_15.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    <li><img src="<?=config_item('static_url')?>images/mlf_07.jpg" width="128" height="128"/>
-
-                        <p>[VT]短袖印花T恤 简约大方主义</p>
-                        <span class="font2">市场价：￥<span class="font7">189.00</span></span><br/>
-                        售价：<span class="font1">￥55.00</span></li>
-                    -->
                 </ul>
             </div>
         </div>
@@ -203,44 +169,8 @@
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
-<script type="text/javascript">
-    function deleteFavorite(pId)
-    {
-        if (confirm('确定删除！')) {
-            if (!wx.isEmpty(pId)) {
-                return false;
-            }
-
-            var url = '/product/product_favorite/deleteFavorite';
-            var param = 'fid='+pId;
-            var data = wx.ajax(url, param);
-
-            if (data.error == '20013') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('删除失败!');
-        }
-    }
-
-    function emptyFavorite()
-    {
-        if (confirm('清空产品收藏！')) {
-            var url = '/product/product_favorite/emptyFavorite';
-            var param = '';
-            var data = wx.ajax(url, param);
-
-            if (data.error == '20016') {
-                wx.pageReload(0);
-                return true;
-            }
-
-            alert('清空产品收藏失败!');
-        }
-    }
-</script>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/product.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>

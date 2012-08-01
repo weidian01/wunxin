@@ -16,19 +16,15 @@ class Model_Designer_Favorite extends MY_Model
      */
     public function designerFavorite(array $fInfo)
     {
-        $tableName = 'designer_favorite';
-        $checkStatus = $this->batchCheckTableField($tableName, $fInfo, true);
-        if (!$checkStatus) return false;
-
         $data = array(
+            'favorite_uid' => $fInfo['favorite_uid'],
             'uid' => $fInfo['uid'],
-            'favorite_uid' => $fInfo['uid'],
-            'favorite_uname' => $fInfo['favorite_ip'],
+            'uname' => $fInfo['uname'],
             'ip' => $fInfo['ip'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
-        $this->db->insert($tableName, $data);
+        $this->db->insert('designer_favorite', $data);
         return $this->db->insert_id();
     }
 
@@ -60,8 +56,8 @@ class Model_Designer_Favorite extends MY_Model
 
     public function getUserDesignerFavoriteAndUser($uId, $limit = 20, $offset = 0)
     {
-        $field = 'designer_favorite_id, user.uid, favorite_uid, favorite_uname, ip, favorite_num,
-        uname, nickname, lid, password, source, integral, amount, status, designer_favorite.create_time';
+        $field = 'fid, favorite_uid, designer_favorite.uid, designer_favorite.uname, ip, designer_favorite.create_time,
+        favorite_num, nickname, lid, password, source, integral, amount, status, designer_favorite.create_time';
 
         $this->db->select($field)->from('designer_favorite')->join('user', 'designer_favorite.uid = user.uid')->where('designer_favorite.favorite_uid', $uId);
         $this->db->limit($limit, $offset)->order_by('designer_favorite.create_time', 'desc');
@@ -95,6 +91,21 @@ class Model_Designer_Favorite extends MY_Model
         return empty ($data) ? null : $data;
     }
 
+
+    /**
+     * 获取用户收藏的某个设计师
+     *
+     * @param $uId
+     * @param $fuId
+     * @return null ｜array
+     */
+    public function getUserFavoriteDesigner($uId, $fuId)
+    {
+        $data = $this->db->select('*')->from('designer_favorite')->where('favorite_uid', $uId)->where('uid', $fuId)->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
     /**
      * 删除一个用户收藏的产品
      *
@@ -104,7 +115,7 @@ class Model_Designer_Favorite extends MY_Model
      */
     public function deleteUserFavoriteFavorite($fId, $uid)
     {
-        $this->db->where('designer_favorite_id', $fId);
+        $this->db->where('fid', $fId);
         $this->db->where('favorite_uid', $uid);
         return $this->db->delete('designer_favorite');
     }

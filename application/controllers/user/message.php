@@ -6,21 +6,22 @@
  * Time: 下午12:37
  * To change this template use File | Settings | File Templates.
  */
-class DesignerComment extends MY_Controller
+class message extends MY_Controller
 {
     /**
      * 添加设计师留言
      */
-    public function addDesignerComment()
+    public function add()
     {
-        $designerId = intval($this->input->get_post('designer_id'));
+        $beUid = intval($this->input->get_post('be_uid'));
+        $title = trim($this->input->get_post('title'));
         $content = trim($this->input->get_post('content'));
         $ip = $this->input->ip_address();
 
-        $response = error(10010);
+        $response = array('error' => '0', 'msg' => '给设计师留言成功', 'code' => 'message_designer_success');
 
         do {
-            if (empty ($designerId) || empty ($content)) {
+            if (empty ($beUid) || empty ($title) || empty ($content)) {
                 $response = error(10012);
                 break;
             }
@@ -30,15 +31,25 @@ class DesignerComment extends MY_Controller
                 break;
             }
 
+            //设计师是否存在
+            $this->load->model('user/Model_User', 'user');
+            $beUserData = $this->user->getUserById($beUid);
+            if ( empty ($beUserData) ) {
+                $response = error(10006);
+                break;
+            }
+
             $data = array(
-                'designer_id' => $designerId,
+                'be_uid' => $beUid,
                 'uid' => $this->uInfo['uid'],
                 'uname' => $this->uInfo['uname'],
+                'title' => $title,
                 'content' => $content,
                 'ip' => $ip
             );
-            $this->load->model('user/Model_Designer_Comment', 'comment');
-            $status = $this->comment->addDesignerComment($data);
+
+            $this->load->model('user/Model_Designer_Message', 'message');
+            $status = $this->message->addDesignerMessage($data);
             if (!$status) {
                 $response = error(10011);
                 break;
@@ -51,13 +62,13 @@ class DesignerComment extends MY_Controller
     /**
      * 添加设计师评论回复
      */
-    public function addDesignerCommentReply()
+    public function messageReply()
     {
         $messageId = intval($this->input->get_post('message_id'));
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
 
-        $response = error(10013);
+        $response = array('error' => '0', 'msg' => '设计师留言回复成功', 'code' => 'reply_designer_message_success');
 
         do {
             if (empty ($messageId) || empty ($content)) {
@@ -70,20 +81,21 @@ class DesignerComment extends MY_Controller
                 break;
             }
 
-            $this->load->model('user/Model_Designer_Comment', 'comment');
-            if (!$this->comment->designerCommentIsExist($messageId)) {
+            $this->load->model('user/Model_Designer_Message', 'message');
+            if (!$this->message->designerMessageIsExist($messageId)) {
                 $response = error(10016);
                 break;
             }
 
             $data = array(
-                'message_id' => $messageId,
                 'uid' => $this->uInfo['uid'],
                 'uname' => $this->uInfo['uname'],
+                'message_id' => $messageId,
+                'content' => $content,
                 'ip' => $ip,
-                'content' => $content
             );
-            $status = $this->comment->addProductCommentReply($data);
+
+            $status = $this->message->addProductMessageReply($data);
             if (!$status) {
                 $response = error(10014);
                 break;
@@ -96,7 +108,7 @@ class DesignerComment extends MY_Controller
     /**
      * 删除设计师留言
      */
-    public function deleteDesignerComment()
+    public function delete()
     {
         $messageId = intval($this->input->get_post('message_id'));
 
@@ -113,9 +125,9 @@ class DesignerComment extends MY_Controller
                 break;
             }
 
-            $this->load->model('user/Model_Designer_Comment', 'comment');
+            $this->load->model('user/Model_Designer_Message', 'message');
 
-            $status = $this->comment->deleteDesignerCommentByCommentId($messageId);
+            $status = $this->message->deleteDesignerMessageByCommentId($messageId);
             if (!$status) {
                 $response = error(10042);
                 break;
