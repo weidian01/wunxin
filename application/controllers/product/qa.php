@@ -48,7 +48,7 @@ class qa extends MY_Controller
             }
         } while (false);
 
-        $this->json_output($response);
+        self::json_output($response);
     }
 
     /**
@@ -78,7 +78,7 @@ class qa extends MY_Controller
 
         } while (false);
 
-        $this->json_output($response);
+        self::json_output($response);
     }
 
     /**
@@ -120,7 +120,7 @@ class qa extends MY_Controller
             }
         } while (false);
 
-        $this->json_output($response);
+        self::json_output($response);
     }
 
     /**
@@ -152,6 +152,21 @@ class qa extends MY_Controller
             }
         } while (false);
 
-        $this->json_output($response);
+        self::json_output($response);
+    }
+
+    public function ajaxGetQaByPid()
+    {
+        $pid = $this->input->get_post('pid');
+        $limit = max(10, $this->input->get_post('limit'));
+        $offset = max(0, $this->input->get_post('offset'));
+
+        $this->load->model('product/Model_Product_QA', 'qa');
+        $response  = error(20002);
+        if($pid > 0)
+        {
+            $response = $this->qa->getProductQAByPid($pid, $limit, $offset, 'qa_id, uid, uname, qa_title, qa_content, reply_content, reply_time, create_time', 'qa_id ASC');
+        }
+        self::json_output($response , true);
     }
 }
