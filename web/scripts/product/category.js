@@ -18,8 +18,31 @@ $(function ($) {
     );
 
     browseHistoryHTML();
+    $('.goodsbox img.lazy').lazyload({effect:"fadeIn"});
 
-    $('img.lazy').lazyload({effect:"fadeIn"});
+    (function(){
+            wx.jsonp(wx.base_url + "product/ajax/hotComment", {}, function (data) {
+                var html = '';
+                $.each(data, function (i, item) {
+                    html += '<div class="bdan2">\
+                              <table width="95%" border="0" cellspacing="0" cellpadding="0">\
+                                <tr>\
+                                  <td><a href="#">'+item.pname+'</a></td>\
+                                  <td><span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span></td>\
+                                </tr>\
+                              </table>\
+                              <div class="bdimg"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/portrait/' + (item.uid ? idToPath(item.uid):'') +'small.jpg" width="53" height="54" /></div>\
+                              <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
+                                '+item.content+'</div>\
+                            </div>';
+                });
+                $('#hotComment').html(html).show();
+                $('img.lazy').lazyload({effect:"fadeIn"});
+            });
+     })()
+
+
+
 });
 
 function rankbox(a,b,id) {

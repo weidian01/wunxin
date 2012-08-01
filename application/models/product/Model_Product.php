@@ -63,13 +63,15 @@ class Model_Product extends MY_Model
      * @param int $where
      * @return null | array
      */
-    public function getProductList($limit = 20, $offset = 0, $field= "*", $where = null)
+    public function getProductList($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
     {
+        list($key, $field) = self::formatField($field);
         $this->db->select($field);
         $this->db->from('product');
         $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
         $this->db->limit($limit, $offset);
-        $data = $this->db->get()->result_array();
+        $data = $this->db->get()->result_array($key);
 
         return empty ($data) ? null : $data;
     }
