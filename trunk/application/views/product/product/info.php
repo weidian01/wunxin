@@ -111,7 +111,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           </ul>
         </div>
       </div>
-      <div class="addcart"><a class="addcart-btn" href="javascript:;" onclick="addToCart();"></a><a class="sc-btn" href="javascript:;" onclick="favorite(<?=$product['pid']?>)"></a></div>
+      <div class="addcart"><a class="addcart-btn" href="javascript:;" onclick="addToCart();"></a><a class="sc-btn" href="javascript:;" onclick="product.favoriteProduct(<?=$product['pid']?>, 'but_favorite')" id="but_favorite"></a></div>
     </div>
   </div>
 </div>
@@ -632,9 +632,10 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <?php include '/../../footer.php';?>
 <!-- #EndLibraryItem -->
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/function.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/artDialog.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
 <script>
-var product = {};
 product.class_id = <?=$product['class_id']?>;
 product.pid = <?=$product['pid']?>;
 product.pname = '<?=$product['pname']?>';

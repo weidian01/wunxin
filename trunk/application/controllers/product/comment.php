@@ -169,16 +169,17 @@ class comment extends MY_Controller
         if($re['totalCount'])
         {
             $re['comments'] = $this->comment->getCommentByPid($pid, $limit, $offset, $field = 'comment_id,pid,uid,uname,content, is_valid, is_invalid, color, size, rank, comfort, exterior, size_deviation,  create_time');
-            foreach($re['comments'] as $item)
-            {
-                $uid[] = $item['uid'];
-            }
-            $this->load->model('user/Model_User', 'user');
-            $uinfo = $this->user->getUserInfoById($uid, array('uid'=>'uid, header, height, weight'));
-            foreach($re['comments'] as $key=>$item)
-            {
-                $re['comments'][$key] += $uinfo[$item['uid']];
-            }
+//            foreach($re['comments'] as $item)
+//            {
+//                $uid[] = $item['uid'];
+//            }
+//            $this->load->model('user/Model_User', 'user');
+//            $uinfo = $this->user->getUserInfoById($uid, array('uid'=>'uid, header, height, weight'));
+//            //print_r($re['comments']);
+//            foreach($re['comments'] as $key=>$item)
+//            {
+//                $re['comments'][$key] += $uinfo[$item['uid']];
+//            }
         }
         self::json_output($re, true);
     }
