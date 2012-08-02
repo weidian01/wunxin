@@ -131,8 +131,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   <div class="designer">
     <div class="ginfo-title" style="border-bottom:0px;">
       <div class="dinfo-tle1" style="background-position:0px 0px;"><span onclick="showtab('dsnbox','1','4')" style="background-position:right -66px; color:#fff;">设计师介绍</span></div>
-      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','2','4')">设计师作品</span></div>
-      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','3','4')">设计师作品</span></div>
+      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','2','4');getDesignByUser(<?=$product['uid']?>)">设计师作品</span></div>
+      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','3','4');">设计师作品</span></div>
     </div>
     <div class="d-box" id="dsnbox1">
       <div class="desbox">
@@ -166,26 +166,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       </div>
     </div>
     <div class="d-box" id="dsnbox2" style="display:none;">
-      <div class="viewhis">
-        <div class="vhis vew-designer"> <a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_03.jpg" width="140" height="140" /></a>
-          <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-          <span class="font4">￥49.00 </span></div>
-        <div class="vhis vew-designer"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_05.jpg" width="140" height="140" /></a>
-          <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-          <span class="font4">￥49.00 </span></div>
-        <div class="vhis vew-designer"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_08.jpg" width="140" height="140" /></a>
-          <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-          <span class="font4">￥49.00 </span></div>
-        <div class="vhis vew-designer"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_10.jpg" width="140" height="140" /></a>
-          <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-          <span class="font4">￥49.00 </span></div>
-        <div class="vhis vew-designer"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_03.jpg" width="140" height="140" /></a>
-          <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-          <span class="font4">￥49.00 </span></div>
-        <div class="vhis vew-designer"><a class="hoverimg" href="#"><img src="<?=config_item('static_url')?>images/h1_05.jpg" width="140" height="140" /></a>
-          <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
-          <span class="font4">￥49.00 </span></div>
-      </div>
+      <div class="viewhis"><!--设计师作品--></div>
     </div>
     <div class="d-box" id="dsnbox3" style="display:none;">
       <div class="viewhis">

@@ -90,10 +90,12 @@ class Model_Design extends MY_Model
      * @param $offset
      * @return null || array
      */
-    public function getDesignByUid($uId, $limit = 20, $offset = 0)
+    public function getDesignByUid($uId, $limit = 20, $offset = 0, $field = '*')
     {
-        $data = $this->db->select('*')->order_by('create_time', 'desc')->get_where('design', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
-
+        $data = $this->db->select($field)
+            ->order_by('create_time', 'desc')
+            ->get_where('design', array('uid' => $uId, 'status' => 1), $limit, $offset)
+            ->result_array();
         return empty ($data) ? null : $data;
     }
 

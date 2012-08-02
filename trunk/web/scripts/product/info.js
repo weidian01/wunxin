@@ -384,6 +384,25 @@
         return html;
     }
 
+    function getDesignByUser(uid)
+    {
+        var dom = $('.viewhis:eq(0)');
+        if(dom.text()) return;
+        wx.jsonp(wx.base_url + "design/design/ajaxDesignByUser", {'uid':uid}, function (data) {
+            var html = '';
+
+            $.each(data, function (i, item) {
+                html += '<div class="vhis vew-designer">\
+                    <a class="imgborder" href="#"><img src="'+ wx.img_url+ 'design/' + idToPath(item.did) +'icon.jpg" width="140" height="140" /></a>\
+                    <p>'+item.dname+'</p>\
+                    收藏数:<span class="font4">'+item.favorite_num+'</span>\
+                    </div>';
+            });
+            dom.html(html);
+        });
+    }
+
+
     $(document).ready(function () {
 
         $("#rankt1 ul.bdan li").mouseover(function () {
