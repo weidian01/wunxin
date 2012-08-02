@@ -237,7 +237,7 @@ class Model_Product_Comment extends MY_Model
         {
             return $this->db->where_in('pid', $pid)->get()->result_array($key);
         }
-        return $this->db->where('pid', $pid)->get()->row_array();
+        return $this->db->where('pid', $pid)->get()->result_array();
     }
 
     /**

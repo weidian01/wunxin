@@ -282,10 +282,9 @@
             {
                 var html = '';
                 $.each(data.comments, function (i, o) {
-                    var portrait =  o.header ? idToPath(o.uid)+o.header:'default.jpg';
                     html += '<div class="cmt-body">\
                       <div class="user-comment">\
-                        <div class="u-tx"><img class="lazy" src="'+wx.img_url+'images/lazy.gif" data-original="'+wx.img_url+'upload/portrait/'+portrait+'" width="50" height="50" /></div>\
+                        <div class="u-tx"><img class="lazy" src="'+wx.img_url+'images/lazy.gif" data-original="'+wx.img_url+'upload/designer/'+idToPath(o.uid)+'icon.jpg'+'" width="50" height="50" /></div>\
                         <div class="u-cmt"><span class="font17">'+ o.uname+'</span><p>'+ o.content+'</p></div>\
                         <div class="u-time"><span class="font2">'+ o.create_time+' </span></div>\
                       </div>\
