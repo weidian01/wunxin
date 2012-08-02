@@ -216,7 +216,7 @@ cart.emptyCart = function ()
 //提交订单至填写订单核对信息页面
 cart.goToOrderConfirm = function ()
 {
-    if (!wx.isLogin()) {
+    if (!wx.checkLoginStatus()) {
         return false;
     }
 
