@@ -33,7 +33,7 @@
         <div class="regist-lf"><span class="font13">已经是会员？立即登录</span>
             <div class="turn-to-login">
                 <a href="/user/login/" title="快速登陆">
-                    <img src="/images/lo_03.gif" width="135" height="36" alt="登录"/>
+                    <img src="/images/login_yellow.jpg" width="135" height="36" alt="登录"/>
                 </a>
             </div>
         </div>
@@ -96,7 +96,7 @@
                         <td height="40" align="right">&nbsp;</td>
                         <td valign="bottom">
                             <a href="javascript:void(0);" onclick="user.submitRegisterForm()">
-                                <img src="/images/register.gif" width="133" height="32" alt="注册为新会员"/>
+                                <img src="/images/register_red.jpg" width="133" height="32" alt="注册为新会员"/>
                             </a>
                         </td>
                         <td>&nbsp;</td>
