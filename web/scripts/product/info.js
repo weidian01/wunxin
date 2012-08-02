@@ -64,12 +64,12 @@
         productQa(product.pid, 10, 0);/*载入产品互动问答*/
     });
 
-    function favorite(pid)
-    {
-        wx.jsonp(wx.base_url + "product/favorite/add", {'pid':pid}, function(data){
-            alert(data.msg);
-        });
-    }
+//    function favorite(pid)
+//    {
+//        wx.jsonp(wx.base_url + "product/favorite/add", {'pid':pid}, function(data){
+//            alert(data.msg);
+//        });
+//    }
 
     /*设置浏览记录*/
     function browseHistoryHTML(list)
@@ -79,7 +79,7 @@
         {
             var item = list[k].split('|');
             html += '<div class="recordbox"> \
-                <a href="/product/'+item[0]+'"><img class="lazy" src="'+wx.img_url+'images/lazy.gif" data-original="' + wx.img_url + 'upload/product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
+                <a href="/product/'+item[0]+'"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
                     <p><a href="/product/'+item[0]+'">'+item[1]+'</a><br/> \
                       <span class="font19">￥'+sprintf('%.2f', parseFloat(item[2]))+'</span></p> \
                   </div>';
@@ -186,7 +186,7 @@
             $.each(data, function (i, item) {
                 html += '<div class="vhis">\
                     <a class="hoverimg" href="' + wx.base_url + 'product/' + item.pid + '">\
-                    <img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/product/' + idToPath(item.pid) + 'default.jpg" width="140" height="140" /></a>\
+                    <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) + 'default.jpg" width="140" height="140" /></a>\
                     <p>' + item.pname + '</p>\
                     <span class="font4">￥' + sprintf('%.2f', item.sell_price / 100) + ' </span></div>';
             });
@@ -203,11 +203,11 @@
                 html += '<div class="bdan2">\
                           <table width="95%" border="0" cellspacing="0" cellpadding="0">\
                             <tr>\
-                              <td><a href="#">'+item.pname+'</a></td>\
+                              <td><a href="#'+item.pid+'">'+item.pname+'</a></td>\
                               <td><span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span></td>\
                             </tr>\
                           </table>\
-                          <div class="bdimg"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/portrait/' + (item.uid ? idToPath(item.uid):'') +'small.jpg" width="53" height="54" /></div>\
+                          <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="53" height="54" /></div>\
                           <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
                             '+item.content+'</div>\
                         </div>';
@@ -231,7 +231,7 @@
                     {
                         var main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' + o.title + '<img src="' + wx.img_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：' + o.uname + '</td></tr></table>\
                                 <div class="sd-main">\
-                                  <div style="text-align:center"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'images/sd_23.jpg" /></div>\
+                                  <div style="text-align:center"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.static_url + 'images/sd_23.jpg" /></div>\
                                   <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">\
                                     <tr><td align="center" bgcolor="#f3f3f3">达人麻豆</td><td align="center" bgcolor="#f3f3f3">身高/体重</td><td align="center" bgcolor="#f3f3f3">三围</td><td align="center" bgcolor="#f3f3f3">颜色</td><td align="center" bgcolor="#f3f3f3">尺码</td></tr>\
                                     <tr><td align="center">999</td><td align="center">' + o.height + 'cm / ' + o.weight + 'kg</td><td align="center">1 / 2 / 3</td><td align="center">' + o.color + '</td><td align="center">' + o.size + '</td></tr>\
@@ -244,7 +244,7 @@
                     {
                         html += '<div class="sd-cont">\
                                     <div class="sd-cbox">\
-                                        <div class="sdimg"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'images/sdad_27.jpg" width="107" height="143" /></div>\
+                                        <div class="sdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.static_url + 'images/sdad_27.jpg" width="107" height="143" /></div>\
                                         <div class="sdtext"><strong>' + o.title + '</strong><br/>' + o.content + '</div>\
                                     </div>\
                                 </div>';
@@ -284,7 +284,7 @@
                 $.each(data.comments, function (i, o) {
                     html += '<div class="cmt-body">\
                       <div class="user-comment">\
-                        <div class="u-tx"><img class="lazy" src="'+wx.img_url+'images/lazy.gif" data-original="'+wx.img_url+'upload/designer/'+idToPath(o.uid)+'icon.jpg'+'" width="50" height="50" /></div>\
+                        <div class="u-tx"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="'+wx.img_url+'designer/'+idToPath(o.uid)+'icon.jpg'+'" width="50" height="50" /></div>\
                         <div class="u-cmt"><span class="font17">'+ o.uname+'</span><p>'+ o.content+'</p></div>\
                         <div class="u-time"><span class="font2">'+ o.create_time+' </span></div>\
                       </div>\
