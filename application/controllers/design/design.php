@@ -48,4 +48,12 @@ class design extends MY_Controller
 
         $this->json_output($response);
     }
+
+    public function ajaxDesignByUser()
+    {
+        $uid = $this->input->get_post('uid');
+        $this->load->model('design/Model_Design', 'design');
+        $response = $this->design->getDesignByUid($uid, 6, 0 , 'did, dname, ddetail, total_num, total_fraction, favorite_num');
+        self::json_output($response, true);
+    }
 }

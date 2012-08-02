@@ -305,6 +305,11 @@
     overflow: hidden;
 }
 
+.imgborder{
+    display: block;
+    border: 1px solid #e3e3e3;
+}
+
 .viewhistory .viewhis .vhis .hoverimg {
     display: block;
     border: 1px solid #e3e3e3;
