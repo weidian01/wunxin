@@ -16,7 +16,7 @@
 */
 $config['base_url']	= 'http://wunxin.com/';
 
-$config['img_url']	= 'http://wunxin.com/upload';
+$config['img_url']	= 'http://wunxin.com/upload/';
 
 $config['static_url']	= 'http://wunxin.com/';
 
