@@ -86,7 +86,7 @@
                                 <tr>
                                     <td width="35%">
                                         <a href="javascript:void(0);" onclick="user.submitLoginForm()">
-                                            <img src="/images/login.gif" width="133" height="32" alt="登录"/>
+                                            <img src="/images/login.jpg" width="133" height="32" alt="登录"/>
                                         </a>
                                     </td>
                                     <td width="65%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">找回密码</a></td>
@@ -105,7 +105,7 @@
 
             <div class="turn-to-regist">
                 <a href="/user/register" title="免费注册用户">
-                    <img src="/images/rg_09.gif" width="173" height="32" alt="注册"/>
+                    <img src="/images/register.jpg" width="173" height="32" alt="注册"/>
                 </a>
             </div>
             <div class="tip3">注册只需花费您10秒钟哦</div>
