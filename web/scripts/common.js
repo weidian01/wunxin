@@ -10,7 +10,7 @@
 
 var wx = {
     'base_url':'http://wunxin.com/',
-    'img_url':'http://wunxin.com/',
+    'img_url':'http://wunxin.com/upload/',
     'static_url':'http://wunxin.com/',
     'cookie_prefix':'wunxin_',
     'cookie_domain':'wunxin.com',
