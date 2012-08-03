@@ -4152,7 +4152,7 @@ create table wx_order
    discount_rate        int unsigned comment '折扣率',
    before_discount_price int unsigned comment '打折前金额',
    pay_type             tinyint unsigned default 1 comment '付款类型，1，线上支付，2货到付款，3邮局汇款，4来万象自提，5公司转账',
-   defray_type          char(8) default '0' comment '支付方式，存储银行代码(简码)',
+   defray_type          char(15) default '0' comment '支付方式，存储银行代码(简码)',
    is_pay               tinyint unsigned default 0 comment '是否付款，0初始，1付款成功，2付款失败，3等待付款(只支付一部分金额)',
    order_source         tinyint unsigned default 1 comment '订单来源,1正常产品，2团购产品，3积分换购',
    pay_time             datetime comment '付款时间',
@@ -4753,11 +4753,11 @@ create table wx_receivable
    uname                varchar(32) comment '用户名称',
    amount               int unsigned comment '金额,单位为分',
    pay_time             datetime comment '汇款时间',
-   pay_type             tinyint unsigned comment '汇款类型，1银行汇款，2支付宝转账',
+   pay_type             tinyint unsigned comment '汇款类型，1易宝支付，2支付宝转账， 3银行汇款',
    pay_account          varchar(20) comment '收款账户',
-   pay_status           tinyint unsigned comment '支付状态,0未支付，1支付成功',
-   descr                varchar(256) comment '收款备注',
+   extended_information varchar(256) comment '扩展信息',
    manager_id           int unsigned comment '管理员ID',
+   descr                varchar(256) default '0' comment '收款备注',
    create_time          datetime comment '创建时间',
    primary key (receiver_id)
 )
