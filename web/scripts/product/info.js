@@ -413,9 +413,9 @@
             var html = '';
             $.each(data, function (i, item) {
                 html += '<div class="vhis vew-designer">\
-                    <a class="imgborder" href="#"><img src="'+ wx.img_url+ 'design/' + idToPath(item.did) +'icon.jpg" width="140" height="140" /></a>\
-                    <p>'+item.dname+'</p>\
-                    收藏数:<span class="font4">'+item.favorite_num+'</span>\
+                    <a class="imgborder" href="/product/'+item.pid+'"><img src="'+ wx.img_url+ 'product/' + idToPath(item.pid) +'default.jpg" width="140" height="140" /></a>\
+                    <p>'+item.pname+'</p>\
+                    价格:<span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span>\
                     </div>';
             });
             dom.html(html);
