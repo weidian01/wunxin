@@ -77,6 +77,15 @@ wx.arr_find = function (arr, d)
 	return -1;
 }
 
+/* 是否存在于数组 */
+wx.inArray = function (value, array)
+{
+  for (var i=0; i < array.length; i++) {
+      if (array[i] == value) return true;
+  }
+  return false;
+}
+
 //AJAX请求
 wx.ajax = function (url, parameter)
 {
@@ -432,30 +441,19 @@ wx.favoriteProductLayer = function(status, bingingId){
     }
 
 
-	var html = '<div class="topinfo"> ' +
-        '<div class="pop-close" onclick="wx.layerClose()"></div> ' +
-        '<span class="'+promptIcon+'"></span>' +
-        '<span class="topicon2" style="display:none;"></span>' +
-        '<p>'+prompt+'&nbsp;&nbsp;&nbsp;' +
-        '<a class="popfont1" href="/user/center/productFavorite">查看收藏夹 >></a></p>' +
-        '</div>' +
-        '<div class="pop-t">' +
-        '<span class="pop-b">看过该商品的人还购买过</span>' +
-        '<a class="pop-c" href="#">更多您可能喜欢的商品 >></a>' +
-        '</div>' +
-        '<ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="/images/loading.gif"></div></li></ul>';
+	var html = '\<div class="topinfo"> \
+        <div class="pop-close" onclick="wx.layerClose()"></div> <span class="'+promptIcon+'"></span>\
+        <span class="topicon2" style="display:none;"></span> <p>'+prompt+'&nbsp;&nbsp;&nbsp;\
+        <a class="popfont1" href="/user/center/productFavorite">查看收藏夹 >></a></p> </div>\
+        <div class="pop-t"> <span class="pop-b">看过该商品的人还购买过</span> <a class="pop-c" href="#">更多您可能喜欢的商品 >></a> </div>\
+        <ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="/images/loading.gif"></div></li></ul>\
+        ';
 
     if (wx.isEmpty(bingingId)) {
-        art.dialog({
-            follow: document.getElementById(bingingId),
-            title:false,
-            content: html
+        art.dialog({ follow: document.getElementById(bingingId), title:false, content: html
         });
     } else {
-        art.dialog({
-            title:false,
-            content: html
-        });
+        art.dialog({ title:false, content: html });
     }
 
     var number = 6;
@@ -475,6 +473,94 @@ wx.favoriteProductLayer = function(status, bingingId){
         }
         $('.pop-goods').html(fHtml);
     }
+}
+
+//产品评论浮层
+wx.productCommentLayer = function (pId, pNmae)
+{
+    var html ='<input type="hidden" name="pid" value="'+pId+'" id="pid">\
+    <div class="commentDIV"><div class="tit">我要评论<div class="close-cm" onclick="wx.layerClose()"></div></div>\
+      <div class="cmt-gname"><strong>商品名称：</strong>'+pNmae+'</div><div class="cmtbox">\
+        <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_score" id="p_s_s_id"/>\
+          <dt><strong>商品评分：</strong></dt>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 1)"></dd> \
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 2)"></dd> \
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 3)"></dd> \
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 4)"></dd> \
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 5)"></dd>\
+        </dl>\
+         <dl id="p_e_s"><span id="p_e_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_exterior" id="p_e_s_id"/>\
+          <dt><strong>商品外观：</strong></dt>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 1)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 2)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 3)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 4)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 5)"></dd>\
+        </dl>\
+         <dl id="p_c_s"><span id="p_c_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_comfort" id="p_c_s_id"/>\
+          <dt><strong>商品舒适度：</strong></dt>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 1)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 2)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 3)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 4)"></dd>\
+          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 5)"></dd>\
+        </dl></div>\
+      <div class="cmtbox"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>\
+        <td width="17%" height="28"><strong>尺码偏差：</strong></td>\
+        <td width="19%"><input class="bdbox" name="size_deviation" type="radio" value="2" />&nbsp;&nbsp;<label class="bdlabel">偏大</label></td>\
+        <td width="20%"><input class="bdbox" name="size_deviation" type="radio" value="1" checked="checked"/>&nbsp;&nbsp;<label class="bdlabel">合适</label></td>\
+        <td width="44%"><input class="bdbox" name="size_deviation" type="radio" value="3" />&nbsp;&nbsp;<label class="bdlabel">偏小</label></td></tr>\
+    </table></div>\
+     <div class="cmtbox"><div class="cmt-title">\
+        <strong>评论标题：</strong>&nbsp;&nbsp;&nbsp;<span class="popfont2">*</span>&nbsp;&nbsp;&nbsp;请填写评论标题(5-25字) <br/><input class="popinput1" name="title" type="text" id="title"/></div></div>\
+      <div class="cmtbox"><div class="cmt-title">\
+        <strong>商品评论：</strong>&nbsp;&nbsp;&nbsp;<span class="popfont2">*</span>&nbsp;&nbsp;&nbsp;请填写评论标题(5-45字) <br/>\
+        <textarea class="poparea1" name="content" cols="" rows="" id="content"></textarea></div></div>\
+       <div class="cmtbox">\
+         <div class="cmt-tip">欢迎您发表原创、商品质量相关、对其它用户有参考价值的商品评论 发表评论可获积分，若评论被置顶还可以获得50个积分！详见积分规则 </div>\
+        <div class="cmt-btn"><input name="" type="button" class="cmt-button" value="发表评论" onclick="product.productCommentSubmit(\'c_p_submit_button\')" id="c_p_submit_button"/></div>\
+       </div></div>\
+       ';
+
+    art.dialog({
+        opacity: 0.5,	// 透明度
+        padding: 0,
+        title: false,
+        content: html,
+        lock: true
+    });
+}
+
+//选择评分星星
+wx.scoreStatSelect = function (id, pointNum)
+{
+    //检查评论星级数
+    var statLevel = new Array(1,2,3,4,5);
+    if (!wx.inArray(pointNum, statLevel)) {
+        return false;
+    }
+
+    var i = 1;
+    $('#'+id+' dd').each(function (){
+        if (i <= pointNum) {
+            $(this).addClass('pop');
+        } else {
+            $(this).removeClass('pop');
+        }
+        i++;
+    });
+
+    document.getElementById(id+'_id').value = pointNum;
+    //alert(pointNum);
+    var prompt = '';
+    switch (pointNum){
+        case 1:prompt = '(1 分 - 非常不满意)';break;
+        case 2:prompt = '(2 分 - 不满意)';break;
+        case 3:prompt = '(3 分 - 满意)';break;
+        case 4:prompt = '(4 分 - 很满意)';break;
+        case 5:prompt = '(5 分 - 非常满意)';break;
+    }
+    $('#'+id+'_n').html(prompt);
 }
 
 wx.initLoginStatus();

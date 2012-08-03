@@ -101,7 +101,7 @@ class Model_Product extends MY_Model
     {
         $pInfo = $this->db->get_where('product', array('pid' => $pid))->row_array();
 
-        return empty ($pInfo) ? false : true;
+        return $pInfo;
     }
 
     /**

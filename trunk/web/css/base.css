@@ -1,52 +1,13 @@
 @charset "utf-8";
-body {
-    margin: 0px;
-    padding: 0px;
-    font-size: 12px;
-    color: #333;
-    font-family: Arial, "宋体";
-}
-
-ul, li, form, p, dl, dt, dd, ul, ol, h1, h2, h3, h4, h5, h6, input, textarea, button, img {
-    padding: 0px;
-    margin: 0px;
-    list-style: none;
-}
-
-img {
-    border: 0px;
-}
-
-a:link {
-    color: #333;
-    text-decoration: none;
-}
-
-a:visited {
-    color: #333;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #ac1116;
-    text-decoration: underline;
-}
-
-a:active {
-    color: #333;
-    text-decoration: none;
-}
-
-.font1 {
-    font-size: 14px;
-    font-weight: bold;
-    color: #D20000;
-}
-
-.font2 {
-    color: #999;
-}
-
+body { margin: 0px; padding: 0px; font-size: 12px; color: #333; font-family: Arial, "宋体";}
+ul, li, form, p, dl, dt, dd, ul, ol, h1, h2, h3, h4, h5, h6, input, textarea, button, img {padding: 0px;margin: 0px;list-style: none;}
+img {border: 0px;}
+a:link {color: #333;text-decoration: none;}
+a:visited {color: #333;text-decoration: none;}
+a:hover {color: #ac1116;text-decoration: underline;}
+a:active {color: #333;text-decoration: none;}
+.font1 {font-size: 14px;font-weight: bold;color: #D20000;}
+.font2 {color: #999;}
 .font3 {
     font-size: 14px;
     font-weight: bold;
@@ -1564,6 +1525,8 @@ button.aui_state_highlight:active { border-color:#1c6a9e; filter: progid:DXImage
 
 
 /*浮层CSS 开始*/
+
+/*artdialog*/
 .aui_inner { background:#FFF; }
 .aui_outer, .aui_inner { border:1px solid #A10000; border:1px solid #A10000; }
 .aui_border { box-shadow: inset 0 0 1px rgba(255, 255, 255, .9); }
@@ -1599,6 +1562,8 @@ a:link{ color:#333; text-decoration:none;}
 a:visited{ color:#333; text-decoration:none;}
 a:hover{ color:#a10000; text-decoration: underline;}
 a:active{color:#333; text-decoration:none;}
+
+/*收藏浮层*/
 .popfont2{ color:#a10000;}
 .topinfo .topicon,.pop-close,.topinfo .topicon2{ background:url(/images/bg.gif) no-repeat}
 .popupDIV{ width:450px; height:276px; border:1px solid #a10000; background-color:#fff;}
@@ -1617,4 +1582,35 @@ a:active{color:#333; text-decoration:none;}
 .pop-goods li .pop-img a{ display:block; width:60px; height:60px; border:1px solid #ccc;}
 .pop-goods li .pop-img a:hover{ display:block; width:60px; height:60px; border:1px solid #a10000;}
 .pop-goods li p{ height:70px; overflow:hidden; margin:5px 0px;}
+
+/*评论浮层*/
+.commentDIV{ border:1px solid #a10000; width:470px; padding:1px; color:#666;}
+.commentDIV .tit{ height:30px; line-height:30px; position:relative; background-color:#990d2c; padding:0px 0px 0px 10px; font-size:14px; font-weight:bold; color:#fff;}
+.close-cm{ position:absolute; right:5px; top:6px; width:14px; height:16px; background:url(/images/close_03.gif) no-repeat; cursor:pointer;}
+.cmt-gname{ padding:15px 0px 8px 20px; border-bottom:1px dashed #ddd;}
+.cmtbox{ padding:10px 20px 15px 20px; border-bottom:1px dashed #ddd;}
+.cmtbox2{ padding:10px 20px 15px 40px; border-bottom:1px dashed #ddd;}
+.cmtbox dl{ height:28px; padding:0px; margin:0px; display:block;}
+.cmtbox dl dt{ float:left; width:82px; height:19px; line-height:19px; padding:0px 0px 0px 0px; overflow:hidden;}
+.cmtbox dl dd{ float:left; height:19px; width:23px; background:url(/images/at.gif) no-repeat;}
+.cmtbox dl dd.pop{ background:url(/images/c-bg_03.gif) no-repeat;}
+.bdbox{ vertical-align:middle;}
+.bdlabel{ vertical-align:middle;}
+.cmt-title{ line-height:30px;}
+.popinput1{ height:23px; line-height:23px; padding:0px 6px; width:400px; border:1px solid #ddd;}
+.popinput2{ height:20px; line-height:20px; padding:0px 6px; width:200px; border:1px solid #d0d0d0; background:url(/images/xian_03.gif) repeat-x;}
+.poparea1{ height:60px; line-height:23px; padding:0px 6px; width:400px; border:1px solid #ddd;}
+.cmt-tip{ line-height:20px; padding-bottom:10px;}
+.cmt-btn{ text-align:center;}
+.cmt-button{ width:100px; height:27px; background:url(/images/c-bg_07.gif) no-repeat; font-size:14px; font-weight:bold; color:#fff; border:0px; }
+.commentDIV .tit .lgrg li{ float:left; padding:0px 15px;}
+.commentDIV .tit .lgrg .curr{ background-color:#c34848;}
+.lgrgbox{ padding:35px 0px 20px 0px;}
+.lgrgbox td{ line-height:45px;}
+.lgrgbox td a{ color:#144896; text-decoration:underline;}
+.mistake{ padding-left:140px; color:#C40000; padding-bottom:15px;}
+.lgrg-tip{ line-height:22px;}
+.lgrg-tip a{color:#144896; text-decoration:underline; }
+.lgrg-tip p{ padding:10px 0 0 0;}
+
 /*浮层CSS 结束*/

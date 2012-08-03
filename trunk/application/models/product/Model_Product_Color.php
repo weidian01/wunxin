@@ -54,19 +54,20 @@ class Model_Product_Color extends MY_Model
      * 获取根据模型id一个模型的详细内容(模型名称和其属性值)
      *
      * @param $color_id
+     * @param $field
      * @return array
      */
-    function getColorById($color_id)
+    function getColorById($color_id, $field = '*')
     {
         if (is_array($color_id)) {
             return $this->db
-                ->select()
+                ->select($field)
                 ->from('color')
                 ->where_in('color_id', $color_id)->get()
                 ->result_array();
         }
         return $this->db
-            ->select()
+            ->select($field)
             ->get_where('color', array('color_id' => $color_id))
             ->row_array();
     }

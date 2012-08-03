@@ -434,17 +434,24 @@ $config['maritalStatus'] = array(
     '2' => '未婚',
 );
 
+$config['pay_channel'] = array(
+    'ICBC-NET-B2C', 'CMBCHINA-NET-B2C', 'BOC-NET-B2C', 'HKBEA-NET-B2C', 'CCB-NET-B2C', 'ABC-NET-B2C', 'GDB-NET-B2C', 'CMBC-NET-B2C', 'CIB-NET-B2C', 'BCCB-NET-B2C', 'BJRCB-NET-B2C',
+    'POST-NET-B2C', 'BOCO-NET-B2C', 'SPDB-NET-B2C', 'SDB-NET-B2C', 'CEB-NET-B2C', 'PINGANBANK-NET', 'ECITIC-NET-B2C', 'HZBANK-NET-B2C', 'NBCB-NET-B2C', 'alipay', '1000000-NET'
+);
+
 //易宝支付相关信息
 $config['yeepay_account'] = 'hjpking@gmail.com';
 $config['yeepay_merchant_id'] = '10011840493';
 $config['yeepay_merchant_key'] = '254K66x184o3W5ET9jLS3q2bvr41m5tHtJc7P4p967bF0b8xC7S36L7r529X';
-$config['yeepay_payback_url'] = $config['base_url'].'pay/yeepay/payback/';
+$config['yeepay_request_url'] = 'https://www.yeepay.com/app-merchant-proxy/node';
 
 //支付宝支付相关信息
 $config['alipay_account'] = 'hjpking@hotmail.com';
 $config['alipay_merchant_id'] = '2088002380741030';
 $config['alipay_merchant_key'] = 'jarnegpaui4sfpjlzp6h269ph8qjdl6v';
-$config['alipay_payback_url'] = $config['base_url'].'pay/alipay/payback/';
+$config['alipay_request_url'] = '';
+
+$config['pay_back_url'] = $config['base_url'].'pay/payBack/';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
