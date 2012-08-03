@@ -384,13 +384,14 @@
         return html;
     }
 
+    /*获得设计师其他设计图*/
     function getDesignByUser(uid)
     {
-        var dom = $('.viewhis:eq(0)');
+        if(! uid) return;
+        var dom = $('#dsnbox2 > div');
         if(dom.text()) return;
         wx.jsonp(wx.base_url + "design/design/ajaxDesignByUser", {'uid':uid}, function (data) {
             var html = '';
-
             $.each(data, function (i, item) {
                 html += '<div class="vhis vew-designer">\
                     <a class="imgborder" href="#"><img src="'+ wx.img_url+ 'design/' + idToPath(item.did) +'icon.jpg" width="140" height="140" /></a>\
@@ -402,6 +403,24 @@
         });
     }
 
+    /*获得设计师其他产品*/
+    function getProductByUser(uid)
+    {
+        if(! uid) return;
+        var dom = $('#dsnbox3 > div');
+        if(dom.text()) return;
+        wx.jsonp(wx.base_url + "product/ajax/productByUser", {'uid':uid}, function (data) {
+            var html = '';
+            $.each(data, function (i, item) {
+                html += '<div class="vhis vew-designer">\
+                    <a class="imgborder" href="#"><img src="'+ wx.img_url+ 'design/' + idToPath(item.did) +'icon.jpg" width="140" height="140" /></a>\
+                    <p>'+item.dname+'</p>\
+                    收藏数:<span class="font4">'+item.favorite_num+'</span>\
+                    </div>';
+            });
+            dom.html(html);
+        });
+    }
 
     $(document).ready(function () {
 

@@ -48,6 +48,13 @@ class Ajax extends MY_Controller
         }
         self::json_output($response, true);
     }
-
+    public function productByUser()
+    {
+        $uid = $this->input->get_post('uid');
+        $this->load->model('product/Model_Product', 'product');
+        $response = $this->product->getUserProduct($uid, 6, 0, 'pid, pname, sell_price');
+        //$response = array();
+        self::json_output($response, true);
+    }
 
 }
