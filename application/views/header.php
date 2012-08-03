@@ -2,9 +2,9 @@
     <div class="hd-cont">
         <div class="hd-wel">您好&nbsp;&nbsp;<span id="user_name_id">欢迎光临万象网</span>！&nbsp;&nbsp;<span id="loginout_id"></span></div>
         <div class="cart">
-            <div class="cart-num" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)"> 购物车有
+            <div class="cart-num" onmouseover="wx.cartView('cartbox', 1)" onmouseout="wx.cartView('cartbox', 0)"> 购物车有
                 <span class="font1" id="cart_product_num"> <img src="/images/small_loading.gif" alt=""/> </span> 件
-                <div id="cartbox" class="cart-form" onmouseover="cartView('cartbox', 1)" onmouseout="cartView('cartbox', 0)" style=" display:none;">
+                <div id="cartbox" class="cart-form" onmouseover="wx.cartView('cartbox', 1)" onmouseout="wx.cartView('cartbox', 0)" style=" display:none;">
                     <h4>购物车中还没有商品，赶紧去选购吧！</h4>
                 </div>
             </div>

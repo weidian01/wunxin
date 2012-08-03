@@ -301,3 +301,58 @@ $(document).ready(function(){
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
 </body>
 </html>
+
+
+
+
+<!--
+<form id='aliPay_submit' name='aliPay_submit' action='https://mapi.alipay.com/gateway.do?_input_charset=utf-8' method='POST'>
+    <input type='hidden' name='_input_charset' value='utf-8'/>
+    <input type='hidden' name='body' value='潮人必备个性T恤-红色 | 潮人必备个性T恤-白色'/>
+    <input type='hidden' name='logistics_payment' value='SELLER_PAY'/>
+    <input type='hidden' name='logistics_type' value='EXPRESS'/>
+    <input type='hidden' name='notify_url' value='http://wunxin.com/pay/payBack/'/>
+    <input type='hidden' name='out_trade_no' value='105'/>
+    <input type='hidden' name='partner' value='2088002380741030'/>
+    <input type='hidden' name='payment_type' value='1'/>
+    <input type='hidden' name='price' value='567.43'/>
+    <input type='hidden' name='quantity' value='1'/>
+    <input type='hidden' name='receive_address' value='北京市朝阳区高碑乡半壁店村25号'/>
+    <input type='hidden' name='receive_mobile' value='01061116110'/>
+    <input type='hidden' name='receive_name' value='侯积平'/>
+    <input type='hidden' name='receive_phone' value='15101559313'/>
+    <input type='hidden' name='receive_zip' value='100010'/>
+    <input type='hidden' name='return_url' value='http://wunxin.com/pay/payBack/'/>
+    <input type='hidden' name='seller_email' value='hjpking@hotmail.com'/>
+    <input type='hidden' name='service' value='trade_create_by_buyer'/>
+    <input type='hidden' name='subject' value='潮人必备个性T恤-红色'/>
+    <input type='hidden' name='sign' value='5dbf29d06db2ab96934d07f7391dd0b5'/>
+    <input type='hidden' name='sign_type' value='MD5'/>
+    <input type='submit' value='提交'>
+</form>
+
+<form id='alipaysubmit' name='alipaysubmit' action='https://mapi.alipay.com/gateway.do?_input_charset=utf-8' method='POST'>
+    <input type='hidden' name='_input_charset' value='utf-8'/>
+    <input type='hidden' name='body' value='潮人必备个性T恤-红色 | 潮人必备个性T恤-白色'/>
+    <input type='hidden' name='logistics_payment' value='SELLER_PAY'/>
+    <input type='hidden' name='logistics_type' value='EXPRESS'/>
+    <input type='hidden' name='notify_url' value='http://wunxin.com/pay/payBack/'/>
+    <input type='hidden' name='out_trade_no' value='105'/>
+    <input type='hidden' name='partner' value='2088002380741030'/>
+    <input type='hidden' name='payment_type' value='1'/>
+    <input type='hidden' name='price' value='567.43'/>
+    <input type='hidden' name='quantity' value='1'/>
+    <input type='hidden' name='receive_address' value='北京市朝阳区高碑乡半壁店村25号'/>
+    <input type='hidden' name='receive_mobile' value='01061116110'/>
+    <input type='hidden' name='receive_name' value='侯积平'/>
+    <input type='hidden' name='receive_phone' value='15101559313'/>
+    <input type='hidden' name='receive_zip' value='100010'/>
+    <input type='hidden' name='return_url' value='http://wunxin.com/pay/payBack/'/>
+    <input type='hidden' name='seller_email' value='hjpking@hotmail.com'/>
+    <input type='hidden' name='service' value='trade_create_by_buyer'/>
+    <input type='hidden' name='subject' value='潮人必备个性T恤-红色'/>
+    <input type='hidden' name='sign' value='5dbf29d06db2ab96934d07f7391dd0b5'/>
+    <input type='hidden' name='sign_type' value='MD5'/>
+    <input type='submit' value='确认'>
+</form>
+-->

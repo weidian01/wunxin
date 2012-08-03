@@ -63,14 +63,15 @@ class cart extends MY_Controller
                 $response = error(20002);
                 break;
             }
-            //echo '<pre>';print_r($pInfo);exit;
+
             $cInfo = array(
                 'pid' => $pInfo['pid'],
                 'pname' => $pInfo['pname'],
-                'product_price' => $pInfo['sell_price'] / 100,
+                'product_price' => fPrice($pInfo['sell_price']),
                 'product_num' => $pNum,
                 //'product_img' => $pInfo['img_addr'],
-                'product_size' => $size['name'],
+                'size_id' => $size['size_id'],
+                'product_size' => $size['abbreviation'],
                 'additional_info' => $pAdditionalInfo,
             );
             //echo '<pre>';print_r($cInfo);exit;

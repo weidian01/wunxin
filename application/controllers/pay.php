@@ -47,15 +47,19 @@ class pay extends MY_Controller
         $pDesc = substr($pDesc, 0, -2);
         //echo '<pre>';print_r($pDesc);exit;
 
-        if ($bank == 'alipay') {
-            $this->load->model('pay/Model_Pay_Alipay', 'alipay');
-            $html = $this->alipay->request($orderData['order_sn'], fPrice($orderData['after_discount_price']), $bank, $orderProduct[0]['pname'], $pDesc);
-        } else {
-            $this->load->model('pay/Model_Pay_Yeepay', 'yeepay');
-            $html = $this->yeepay->request($orderData['order_sn'], fPrice($orderData['after_discount_price']), $bank, $orderProduct[0]['pname'], $pDesc);//($orderSn, $amount, $PaymentChannel, $pName, $pDesc)
+
+        $html = '';
+        switch ($bank) {
+            case 'ALIPAY':
+                $this->load->model('pay/Model_Pay_Alipay', 'alipay');
+                $html = $this->alipay->request( $orderData['order_sn'], trim($orderProduct[0]['pname']), trim($pDesc), fPrice($orderData['after_discount_price']), $orderData );
+                break;
+            default:
+                $this->load->model('pay/Model_Pay_Yeepay', 'yeepay');
+                $html = $this->yeepay->request($orderData['order_sn'], fPrice($orderData['after_discount_price']), $bank, $orderProduct[0]['pname'], $pDesc);
         }
 
-        if (!$html) {
+        if (!$html || $html == '') {
             show_error('下单失败，参数不全!');
         }
 

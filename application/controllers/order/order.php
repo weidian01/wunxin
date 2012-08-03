@@ -75,6 +75,7 @@ class order extends MY_Controller
         $payType = $this->input->get_post('pay_type');
         $delivertTime = $this->input->get_post('delivert_time');
         $annotated = $this->input->get_post('annotated');
+        $cartData = $this->getCartToCookie();
 
         $response = error(30013);
 
@@ -84,6 +85,13 @@ class order extends MY_Controller
                 break;
             }
 
+            //购物车如果为空，则跳转到购物车页面
+            if ( empty ($cartData) ) {
+                redirect('/cart/');
+                return false;
+            }
+
+            //获取用户收货地址
             $this->load->model('user/Model_User_Recent', 'recent');
             $recentData = $this->recent->getUserDefaultRecentAddressByaId($addressId, $this->uInfo['uid']);
             if (empty ($recentData)) {
@@ -91,10 +99,15 @@ class order extends MY_Controller
                 break;
             }
 
-            $cartData = $this->getCartToCookie();
+            $this->load->model('product/Model_Product', 'product');
+            $this->load->model('product/Model_Product_Color', 'color');
+
+            $productTmpData = array();
             $totalPrice = 0;
             foreach ($cartData as $cv) {
-                $totalPrice += ($cv['product_price'] * $cv['product_num']);
+                $productData = $this->product->getProductById($cv['pid']);
+                $totalPrice += ($productData['sell_price'] * $cv['product_num']);
+                $productTmpData[$productData['pid']] = $productData;
 
             }
 
@@ -132,11 +145,11 @@ class order extends MY_Controller
             }
             $response['order_sn'] = $orderId;
 
-            $this->load->model('product/Model_Product', 'product');
-            $this->load->model('product/Model_Product_Color', 'color');
+
 
             foreach ($cartData as $v) {
-                $productData = $this->product->getProductById($cv['pid']);
+                //$productData = $this->product->getProductById($v['pid']);
+                $productData = $productTmpData[$v['pid']];
                 $colorData = $this->color->getColorById($productData['color_id']);
 
                 $orderProductData [] = array (
@@ -148,9 +161,9 @@ class order extends MY_Controller
                     'market_price' => $productData['market_price'],
                     'sall_price' => $productData['sell_price'],
                     'product_num' => $v['product_num'],
-                    'color' => $colorData['china_name'],
+                    'color' => $colorData['size'],
                     'product_size' => $v['product_size'],
-                    'presentation_integral' => $productData['sell_price'],
+                    'presentation_integral' => fPrice($productData['sell_price']),
                     'preferential' => '',
                     'warehouse'=> $productData['warehouse'],
                 );
