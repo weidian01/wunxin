@@ -61,6 +61,7 @@ class Model_Product extends MY_Model
      * @param int $offset
      * @param string $field
      * @param int $where
+     * @param $order
      * @return null | array
      */
     public function getProductList($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
@@ -326,6 +327,7 @@ class Model_Product extends MY_Model
      * @param $uId
      * @param int $limit
      * @param int $offset
+     * @param string $field
      * @return array
      */
     public function getUserProduct($uId, $limit = 20, $offset = 0, $field = '*')
@@ -346,4 +348,6 @@ class Model_Product extends MY_Model
 
         return $this->db->count_all_results();
     }
+
+
 }

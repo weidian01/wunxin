@@ -8,6 +8,10 @@
 * Date: 2012.07.04
 */
 var order = {};
+order.paymentChannel = new Array(
+    'ICBC-NET-B2C', 'CMBCHINA-NET-B2C', 'BOC-NET-B2C', 'HKBEA-NET-B2C', 'CCB-NET-B2C', 'ABC-NET-B2C', 'GDB-NET-B2C', 'CMBC-NET-B2C', 'CIB-NET-B2C', 'BCCB-NET-B2C', 'BJRCB-NET-B2C',
+    'POST-NET-B2C', 'BOCO-NET-B2C', 'SPDB-NET-B2C', 'SDB-NET-B2C', 'CEB-NET-B2C', 'PINGANBANK-NET', 'ECITIC-NET-B2C', 'HZBANK-NET-B2C', 'NBCB-NET-B2C', 'alipay', '1000000-NET'
+);
 
 //改变省份
 order.changeProvince = function (v)
@@ -309,9 +313,20 @@ order.orderSubmit = function ()
     //document.order_form_id.submit();
 }
 
-order.pay = function ()
+//提交进行支付
+order.pay = function (bindingId)
 {
     var payBank = wx.getRadioCheckBoxValue('bank');
+
+    if ( !wx.isEmpty(payBank) ) {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">请选择支付方式。</span><br/>' });
+        return false;
+    }
+
+    if (!wx.inArray(payBank, order.paymentChannel)) {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">未知的支付方式。</span><br/>' });
+        return false;
+    }
 
     document.pay_form.action = '/pay/index';
     if (payBank == 'alipay') {

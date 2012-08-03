@@ -69,19 +69,33 @@ class Model_Pay_Yeepay extends MY_Model
         $rp_PayDate = $this->input->get_post('rp_PayDate');
         $rq_CardNo = $this->input->get_post('rq_CardNo');
         $ru_Trxtime = $this->input->get_post('ru_Trxtime');
-        $hmac = $this->input->get_post('hmac');
+        $hMac = $this->input->get_post('hmac');
 
+        $rhMac = $this->getCallbackHMacString($r0_Cmd,$r1_Code,$r2_TrxId,$r3_Amt,$r4_Cur,$r5_Pid,$r6_Order,$r7_Uid,$r8_MP,$r9_BType);
+
+        //状态值(status) 1 成功， 2 签名错误， 3 订单支付失败
+        $rData = array('status' => 1);
+        if ($hMac != $rhMac) {
+            $rData['status'] = 2;
+        }
+
+        //判断支付状态
+        if ($r1_Code != 1) {
+            $rData['status'] = 3;
+        }
 
         $rData = array(
-            'amount' => $r3_Amt,
-            'order_sn' => $r6_Order,
             'result' => $r1_Code,
             'third_part_order_sn' => $r2_TrxId,
+            'amount' => $r3_Amt,
+            'order_sn' => $r6_Order,
             'pay_user_id' => $r7_Uid,
-            'request_type' => $r9_BType,
+            'request_type' => ($r9_BType == 1) ? 1 : 2,
             'pay_channel' => $rb_BankId,
             'bank_order_id' => $ro_BankOrderId,
+            'pay_type' => 'yeepay',
         );
+
         return $rData;
     }
 
@@ -168,5 +182,52 @@ class Model_Pay_Yeepay extends MY_Model
         $k_opad = $key ^ $opad;
 
         return md5($k_opad . pack("H*",md5($k_ipad . $data)));
+    }
+
+    /**
+     * 获取回调的密钥值
+     *
+     * @param $r0_Cmd
+     * @param $r1_Code
+     * @param $r2_TrxId
+     * @param $r3_Amt
+     * @param $r4_Cur
+     * @param $r5_Pid
+     * @param $r6_Order
+     * @param $r7_Uid
+     * @param $r8_MP
+     * @param $r9_BType
+     * @return string
+     */
+    public function getCallbackHMacString($r0_Cmd,$r1_Code,$r2_TrxId,$r3_Amt,$r4_Cur,$r5_Pid,$r6_Order,$r7_Uid,$r8_MP,$r9_BType)
+    {
+    	#取得加密前的字符串
+    	$sbOld = "";
+    	#加入商家ID
+    	$sbOld = $sbOld.config_item('yeepay_merchant_id');
+    	#加入消息类型
+    	$sbOld = $sbOld.$r0_Cmd;
+    	#加入业务返回码
+    	$sbOld = $sbOld.$r1_Code;
+    	#加入交易ID
+    	$sbOld = $sbOld.$r2_TrxId;
+    	#加入交易金额
+    	$sbOld = $sbOld.$r3_Amt;
+    	#加入货币单位
+    	$sbOld = $sbOld.$r4_Cur;
+    	#加入产品Id
+    	$sbOld = $sbOld.$r5_Pid;
+    	#加入订单ID
+    	$sbOld = $sbOld.$r6_Order;
+    	#加入用户ID
+    	$sbOld = $sbOld.$r7_Uid;
+    	#加入商家扩展信息
+    	$sbOld = $sbOld.$r8_MP;
+    	#加入交易结果返回类型
+    	$sbOld = $sbOld.$r9_BType;
+
+    	//logstr($r6_Order,$sbOld,HmacMd5($sbOld,config_item('yeepay_merchant_key')));
+    	return $this->HmacMd5($sbOld, config_item('yeepay_merchant_key'));
+
     }
 }
