@@ -9,6 +9,29 @@
 class Model_Order_Receiver extends MY_Model
 {
     /**
+     * 添加收款单
+     *
+     * @param array $data
+     * @return boolean
+     */
+    public function addReceiver(array $data)
+    {
+        $info = array(
+            'order_sn' => $data['order_sn'],
+            'uid' => $data['uid'],
+            'uname' => $data['uname'],
+            'amount' => $data['amount'],
+            'pay_time' => date('Y-m-d H:i:s', TIMESTAMP),
+            'pay_type' => $data['pay_type'],
+            'pay_account' => $data['pay_account'],
+            'extended_information' => $data['extended_information'],
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
+        );
+
+        $this->db->insert('receivable', $info);
+        return $this->db->insert_id();
+    }
+    /**
      * 获取收款单信息 -- 通过收款单ID
      *
      * @param $id

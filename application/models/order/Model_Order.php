@@ -185,6 +185,8 @@ class Model_Order extends MY_Model
             'is_pay' => $changeInfo['is_pay'],
             'paid' => $changeInfo['paid'],
             'need_pay' => $changeInfo['need_pay'],
+            'status' => $changeInfo['status'],
+            'defray_type' => $changeInfo['defray_type'],
             'pay_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 

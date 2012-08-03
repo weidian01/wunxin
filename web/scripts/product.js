@@ -116,11 +116,7 @@ product.productComment = function (pId, bindingId)
         default :prompt = '此商品不存在。';
     }
 
-    if (!wx.isEmpty(bindingId)) {
-        art.dialog({ title:false, time: 5, content: '<br/>'+prompt+'<br/>' });
-    } else {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/>'+prompt+'<br/>' });
-    }
+    art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/>'+prompt+'<br/>' });
 }
 
 //产品评论 pId 产品ID, title 标题, content 内容, rank 商品评分, comfort 合适度评分, exterior外观评分, size_deviation 尺寸偏差
@@ -205,7 +201,7 @@ product.commentReplySubmit = function (bindingId)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
+    if ( !wx.checkLoginStatus() ) {
         return 0;
     }
 
@@ -240,16 +236,12 @@ product.commentIsInvalid = function (commentId, operaType, bindingId)
         case '50009': prompt = '系统繁忙，请稍后再试';break;
     }
 
-    if ( !wx.isEmpty(bindingId)) {
-        art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-    } else {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-    }
-
+    art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
 
     return data;
 }
 
+//删除产品评论
 product.deleteProductComment = function(cId, bindingId)
 {
     if (confirm('确定删除！')) {
@@ -257,7 +249,7 @@ product.deleteProductComment = function(cId, bindingId)
             return false;
         }
 
-        if ( !wx.isLogin() ) {
+        if ( !wx.checkLoginStatus() ) {
             return 0;
         }
 
@@ -273,11 +265,7 @@ product.deleteProductComment = function(cId, bindingId)
             case '10009': prompt = '用户未登陆';break;
         }
 
-        if ( !wx.isEmpty(bindingId)) {
-            art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-        } else {
-            art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-        }
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
 
         if (data.error == '0') {
             //wx.pageReload(0);
@@ -294,7 +282,7 @@ product.addQa = function (pId, title, content)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
+    if ( !wx.checkLoginStatus() ) {
         return 0;
     }
 
@@ -332,11 +320,7 @@ product.qaIsValid = function (qaId, operaType, bindingId)
         case '50014': prompt = '系统繁忙，请稍后再试';break;
     }
 
-    if ( !wx.isEmpty(bindingId)) {
-        art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-    } else {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-    }
+    art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
     return data;
 }
 
@@ -347,7 +331,7 @@ product.qaReply = function (qaId, content)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
+    if ( !wx.checkLoginStatus() ) {
         return 0;
     }
 
@@ -369,7 +353,7 @@ product.deleteProductQa = function(qId)
             return false;
         }
 
-        if ( !wx.isLogin() ) {
+        if ( !wx.checkLoginStatus() ) {
             return 0;
         }
 
@@ -392,11 +376,7 @@ product.deleteProductQa = function(qId)
             case '10009': prompt = '用户未登陆';break;
         }
 
-        if ( !wx.isEmpty(bindingId)) {
-            art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-        } else {
-            art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-        }
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
 
         //alert('系统繁忙，请稍后再试!');
     }

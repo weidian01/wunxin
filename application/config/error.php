@@ -146,6 +146,14 @@ $error[30016] = array('error' => '30016', 'msg' => '收货地址为空', 'code' 
 $error[30017] = array('error' => '30017', 'msg' => '取消退换货申请参数不全', 'code' => 'cancel_return_parameter_failure');
 $error[30018] = array('error' => '30018', 'msg' => '取消退换货申请失败', 'code' => 'cancel_return_failure');
 
+$error[30019] = array('error' => '30019', 'msg' => '未知的支付渠道', 'code' => 'unknown_pay_channels');
+$error[30020] = array('error' => '30020', 'msg' => '支付回调签名不正确', 'code' => 'payment_callback_signature_incorrect');
+$error[30021] = array('error' => '30021', 'msg' => '支付失败', 'code' => 'payment_amount_incorrect');
+$error[30022] = array('error' => '30022', 'msg' => '未知的订单', 'code' => 'unknown_order');
+$error[30023] = array('error' => '30023', 'msg' => '支付金额有误', 'code' => 'payment_amount_incorrect');
+$error[30024] = array('error' => '30024', 'msg' => '系统繁忙，请稍后再试', 'code' => 'the_system_busy, please_try_again_later');
+$error[30025] = array('error' => '30025', 'msg' => '保存收款单信息失败', 'code' => 'save_receivables_single_information_failed');
+
 
 
 /**
