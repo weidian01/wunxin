@@ -310,6 +310,11 @@
     border: 1px solid #e3e3e3;
 }
 
+.imgborder:hover{
+    display: block;
+    border: 1px solid #AC1116;
+}
+
 .viewhistory .viewhis .vhis .hoverimg {
     display: block;
     border: 1px solid #e3e3e3;

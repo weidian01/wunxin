@@ -54,6 +54,7 @@ class design extends MY_Controller
         $uid = $this->input->get_post('uid');
         $this->load->model('design/Model_Design', 'design');
         $response = $this->design->getDesignByUid($uid, 6, 0 , 'did, dname, ddetail, total_num, total_fraction, favorite_num');
+        $response === null && $response = array();
         self::json_output($response, true);
     }
 }

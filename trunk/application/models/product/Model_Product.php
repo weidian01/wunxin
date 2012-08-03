@@ -328,10 +328,10 @@ class Model_Product extends MY_Model
      * @param int $offset
      * @return array
      */
-    public function getUserProduct($uId, $limit = 20, $offset = 0)
+    public function getUserProduct($uId, $limit = 20, $offset = 0, $field = '*')
     {
         //return $this->db->get_where('product',array('uid'=>$uId), $limit, $offset)->result_array();
-        return $this->db->select('*')->get_where('product', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
+        return $this->db->select($field)->get_where('product', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
     }
 
     /**
