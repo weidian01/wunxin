@@ -182,11 +182,26 @@ wx.limit_length = function (str, minLength, maxLength)
 }
 
 //是否显示全局购物车
-function cartView(elementId, type)
+wx.cartView = function(elementId, type)
 {
     var display = type ? '' : 'none';
 
     return document.getElementById(elementId).style.display = display;
+}
+
+//* 格式化产品价格 数据库中存储的价格为分 $type为获取单位：1 元， 2 角， 3 分*/
+wx.fPrice = function (price, type)
+{
+    var p = parseInt(price);
+
+    switch (type) {
+        case 1:  p = ( p / 100 ); break;
+        case 2:  p = ( p / 10 ); break;
+        case 3:  p = ( p / 1 ); break;
+        default: p = ( p / 100 );
+    }
+
+    return p;
 }
 
 //购物车全局初始化
@@ -208,8 +223,8 @@ wx.cartGlobalInit = function ()
 
     for (var i in data) {
         html += '<div class="cart-bx">';
-        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'upload/product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="'+data[i].pname+'" title="'+data[i].pname+'"/></div>';
-        html += '<div class="cart-goodsname"><a href="#">'+data[i].pname+'</a><br/><span class="font5">￥'+data[i].product_price+'</span></div>';
+        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="'+data[i].pname+'" title="'+data[i].pname+'"/></div>';
+        html += '<div class="cart-goodsname"><a href="#">'+data[i].pname+'</a><br/><span class="font5">￥'+(data[i].product_price)+'</span></div>';
         html += '<div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
         html += '</div>';
         totalPrice += (data[i].product_price * data[i].product_num);

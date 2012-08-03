@@ -12,11 +12,12 @@ class Model_Product extends MY_Model
      * @name 获取产品信息 -- 通过产品ID
      *
      * @param int $pid
+     * @param string $field
      * @return bool
      */
-    public function getProductById($pid)
+    public function getProductById($pid, $field = '*')
     {
-        $data = $this->db->select('*')->get_where('product', array('pid' => $pid,))->row_array();
+        $data = $this->db->select($field)->get_where('product', array('pid' => $pid,))->row_array();
 
         return empty ($data) ? null : $data;
     }
@@ -179,6 +180,7 @@ class Model_Product extends MY_Model
         {
             return $this->db->get_where('product_size',array('pid'=>$pid, 'size_id'=>$size_id))->row_array();
         }
+
         return $this->db->get_where('product_size',array('pid'=>$pid))->result_array();
     }
 

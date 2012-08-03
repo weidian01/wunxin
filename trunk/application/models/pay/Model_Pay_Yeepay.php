@@ -8,6 +8,16 @@
  */
 class Model_Pay_Yeepay extends MY_Model
 {
+    /**
+     * 易宝支付请求
+     *
+     * @param $orderSn
+     * @param $amount
+     * @param $PaymentChannel
+     * @param $pName
+     * @param $pDesc
+     * @return bool|string
+     */
     public function request($orderSn, $amount, $PaymentChannel, $pName, $pDesc)
     {
         if (empty ($orderSn) || empty ($amount) || empty ($pName) || empty ($PaymentChannel) || empty ($pDesc) ) {
@@ -51,6 +61,11 @@ class Model_Pay_Yeepay extends MY_Model
         return  $html;//iconv("UTF-8","GB2312",$html);
     }
 
+    /**
+     * 易宝回调处理
+     *
+     * @return array
+     */
     public function response()
     {
         $p1_MerId = $this->input->get_post('p1_MerId');

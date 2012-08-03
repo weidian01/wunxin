@@ -39,24 +39,24 @@ cart.init = function ()
 
     for (var i in data) {
         html += '<tr>';
-        html += '<td width="7%"><img src="'+wx.img_url+'upload/product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50"/></td>';
+        html += '<td width="7%"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50"/></td>';
         html += '<td width="40%">';
         html += '<a class="gn" href="#">'+data[i].pname+'</a><br/>';
         html += '<a href="'+data[i].pid+'">收藏</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a>';
         html += '</td>';
-        html += '<td align="center">'+data[i].product_price+'</td>';
+        html += '<td align="center">'+(data[i].product_price)+'</td>';
         html += '<td align="center">'+data[i].product_size+'</td>';
         html += '<td align="center">';
         html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="/images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
         html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].product_num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
         html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="/images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
-        html += '<td align="center"><span class="font2">'+data[i].product_price * data[i].product_num+'</span></td>';
-        html += '<td align="center"><span class="font6">'+data[i].product_price * data[i].product_num+'</span></td>';
+        html += '<td align="center"><span class="font2">'+(data[i].product_price * data[i].product_num)+'</span></td>';
+        html += '<td align="center"><span class="font6">'+(data[i].product_price * data[i].product_num)+'</span></td>';
         html += '</tr>';
-        totalIntegral += data[i].product_price * data[i].product_num;
-        totalPrice += data[i].product_price * data[i].product_num;
-        totalProductNum += data[i].product_num;
+        totalIntegral += (data[i].product_price * data[i].product_num);
+        totalPrice += (data[i].product_price * data[i].product_num);
+        totalProductNum += (data[i].product_num);
     }
 
     html += '<tr>';
