@@ -75,7 +75,7 @@ product.emptyFavorite = function()
             return 0;
         }
 
-        var url = '/product/product_favorite/emptyFavorite';
+        var url = '/product/favorite/emptyFavorite';
         var param = '';
         var data = wx.ajax(url, param);
 
@@ -84,15 +84,69 @@ product.emptyFavorite = function()
             return true;
         }
 
-        alert('清空产品收藏失败!');
+        alert('系统繁忙，请稍后再试!');
     }
 }
 
 
-//产品评论 pId 产品ID, title 标题, content 内容, rank 商品评分, comfort 合适度评分, exterior外观评分, size_deviation 尺寸偏差
-product.productComment = function (pId, title, content, rank, comfort, exterior, size_deviation)
+//评论产品 -- 检测用户是否购买过此产品 -- 是否已经评论过
+product.productComment = function (pId, bindingId)
 {
+    if ( !wx.isEmpty(pId) ) {
+        return false;
+    }
+
+    if ( !wx.isLogin() ) {
+        return 0;
+    }
+
+    var url = 'product/comment/isBuyProduct';
+    var param = 'pid='+pId;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        wx.productCommentLayer(data.data.pid, data.data.pname);
+        return true;
+    }
+
+    var prompt = '';
+    switch (data.error) {
+        case '50002':prompt = '您尚未购买此商品或订单未完成，还不能对产品进行评论。';break;
+        case '50019':prompt = '您已评论过此商品。';break;
+        default :prompt = '此商品不存在。';
+    }
+
+    if (!wx.isEmpty(bindingId)) {
+        art.dialog({ title:false, time: 5, content: '<br/>'+prompt+'<br/>' });
+    } else {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/>'+prompt+'<br/>' });
+    }
+}
+
+//产品评论 pId 产品ID, title 标题, content 内容, rank 商品评分, comfort 合适度评分, exterior外观评分, size_deviation 尺寸偏差
+product.productCommentSubmit = function (bindingId)
+{
+    var pId = document.getElementById('pid').value;
+    var title = document.getElementById('title').value;
+    var content = document.getElementById('content').value;
+    var rank = document.getElementById('p_s_s_id').value;
+    var comfort = document.getElementById('p_c_s_id').value;
+    var exterior = document.getElementById('p_e_s_id').value;
+    var size_deviation = wx.getRadioCheckBoxValue('size_deviation');
+    //var pId = document.getElementById('size_deviation').value;
+
+    if ( !wx.isEmpty(title) || title.length < 5) {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论标题为空或少于5个字。</span><br/>' });
+        return false;
+    }
+
+    if ( !wx.isEmpty(content) || content.length < 5) {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论内容为空或少于5个字。</span><br/>' });
+        return false;
+    }
+
     if ( !wx.isEmpty(pId) || !wx.isEmpty(title) || !wx.isEmpty(content) || !wx.isEmpty(rank) || !wx.isEmpty(comfort) || !wx.isEmpty(exterior) || !wx.isEmpty(size_deviation) ) {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">请认真填写评论内容。</span><br/>' });
         return false;
     }
 
@@ -105,16 +159,49 @@ product.productComment = function (pId, title, content, rank, comfort, exterior,
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
+        wx.layerClose();
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论成功。</span><br/>' });
         return true;
+    }
+
+    var prompt = '';
+    switch (data.error) {
+        case '20002':prompt = '此商品不存在';break;
+        case '50002':prompt = '您没有购买过此商品';break;
+        case '50019':prompt = '你已评论过此商品';break;
+        case '50003':prompt = '系统繁忙，请稍后再试';break;
+    }
+
+    if (data.error == '50019') {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        return false;
     }
 
     return data;
 }
 
 //评论回复
-product.commentReply = function (commentId, content)
+product.commentReply = function(commentId, bindingId)
 {
-    if ( !wx.isEmpty(commentId) || !wx.isEmpty(content) ) {
+    var html = '\
+        <div id="comment_reply_html_code">\
+        <input type="hidden" value="'+commentId+'" name="comment_id" id="comment_id">\
+        <textarea rows="" cols="" name="content" id="content"/><br/>\
+        <input type="button" value="回复" onclick="product.commentReplySubmit('+bindingId+')">\
+        </div>\
+        ';
+
+    $('#'+bindingId).html(html);
+}
+
+//评论回复提交
+product.commentReplySubmit = function (bindingId)
+{
+    var commentId = document.getElementById('comment_id').value;
+    var content = document.getElementById('content').value;
+
+    if ( !wx.isEmpty(content) || content.length < 5) {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">内容为空或小于5个字。</span><br/>' });
         return false;
     }
 
@@ -127,6 +214,8 @@ product.commentReply = function (commentId, content)
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">回复成功。</span><br/>' });
+        $('#comment_reply_html_code').remove();
         return true;
     }
 
@@ -134,7 +223,7 @@ product.commentReply = function (commentId, content)
 }
 
 //评论是否有效 commentId 评论ID， operaType 操作类型 0为无效， 0为有效
-product.commentIsInvalid = function (commentId, operaType)
+product.commentIsInvalid = function (commentId, operaType, bindingId)
 {
     if ( !wx.isEmpty(commentId)) {
         return false;
@@ -144,30 +233,57 @@ product.commentIsInvalid = function (commentId, operaType)
     var param = 'comment_id='+commentId+'&opera_type='+operaType;
     var data = wx.ajax(url, param);
 
-    if (data.error == '0') {
-        return true;
+    var prompt = '已成功';
+    switch (data.error) {
+        case '0': prompt = '已成功';break;
+        case '50008': prompt = '参数不全';break;
+        case '50009': prompt = '系统繁忙，请稍后再试';break;
     }
+
+    if ( !wx.isEmpty(bindingId)) {
+        art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    } else {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    }
+
 
     return data;
 }
 
-product.deleteProductComment = function(cId)
+product.deleteProductComment = function(cId, bindingId)
 {
     if (confirm('确定删除！')) {
         if (!wx.isEmpty(cId)) {
             return false;
         }
 
+        if ( !wx.isLogin() ) {
+            return 0;
+        }
+
         var url = '/product/comment/deleteComment';
         var param = 'cid='+cId;
         var data = wx.ajax(url, param);
 
-        if (data.error == '0') {
-            wx.pageReload(0);
-            return true;
+        var prompt = '已删除成功';
+        switch (data.error) {
+            case '0': prompt = '已删除成功';break;
+            case '20021': prompt = '参数不全';break;
+            case '20022': prompt = '系统繁忙，请稍后再试';break;
+            case '10009': prompt = '用户未登陆';break;
         }
 
-        alert('删除失败!');
+        if ( !wx.isEmpty(bindingId)) {
+            art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        } else {
+            art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        }
+
+        if (data.error == '0') {
+            //wx.pageReload(0);
+            return true;
+        }
+        //alert('删除失败!');
     }
 }
 
@@ -194,7 +310,7 @@ product.addQa = function (pId, title, content)
 }
 
 //产品问答是否有效  qaId 问答ID， operaType 操作类型 0为无效， 0为有效
-product.qaIsValid = function (qaId, operaType)
+product.qaIsValid = function (qaId, operaType, bindingId)
 {
     if ( !wx.isEmpty(qaId)) {
         return false;
@@ -204,10 +320,23 @@ product.qaIsValid = function (qaId, operaType)
     var param = 'qa_id='+qaId+'&opera_type='+operaType;
     var data = wx.ajax(url, param);
 
+    /*
     if (data.error == '0') {
         return true;
     }
+    //*/
+    var prompt = '已成功';
+    switch (data.error) {
+        case '0': prompt = '已成功';break;
+        case '50015': prompt = '参数不全';break;
+        case '50014': prompt = '系统繁忙，请稍后再试';break;
+    }
 
+    if ( !wx.isEmpty(bindingId)) {
+        art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    } else {
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    }
     return data;
 }
 
@@ -248,11 +377,27 @@ product.deleteProductQa = function(qId)
         var param = 'qa_id='+qId;
         var data = wx.ajax(url, param);
 
+        /*
         if (data.error == '0') {
             wx.pageReload(0);
             return true;
         }
+        //*/
 
-        alert('删除失败!');
+        var prompt = '已删除成功';
+        switch (data.error) {
+            case '0': prompt = '已删除成功';break;
+            case '20024': prompt = '参数不全';break;
+            case '20023': prompt = '系统繁忙，请稍后再试';break;
+            case '10009': prompt = '用户未登陆';break;
+        }
+
+        if ( !wx.isEmpty(bindingId)) {
+            art.dialog({ title:false, time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        } else {
+            art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        }
+
+        //alert('系统繁忙，请稍后再试!');
     }
 }

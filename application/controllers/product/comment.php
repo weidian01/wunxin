@@ -40,8 +40,8 @@ class comment extends MY_Controller
                 $response = error(10009);
                 break;
             }
-            $data['uid'] = $this->uInfo['uid'];
-            $data['uname'] = $this->uInfo['uname'];
+            $data['uid'] = isset ($this->uInfo['uid']) ? $this->uInfo['uid'] : '';
+            $data['uname'] = isset ($this->uInfo['uname']) ? $this->uInfo['uname'] : '';
 
             //产品是否存在
             $this->load->model('product/Model_Product', 'product');
@@ -58,19 +58,19 @@ class comment extends MY_Controller
                 $response = error(50002);
                 break;
             }
-            $data['size'] = $isBuyProduct['product_size'];
+            $data['size'] = isset ($isBuyProduct['product_size']) ? $isBuyProduct['product_size'] : $isBuyProduct['product_size'];
 
             //是否评论过
             if ($isBuyProduct['comment_status'] == '1') {
                 $response = error(50019);
                 break;
             }
-            $data['o_p_id'] = $isBuyProduct['id'];//订单产品表自增ID
+            $data['o_p_id'] = isset ($isBuyProduct['id']) ? $isBuyProduct['id'] : '';//订单产品表自增ID
 
             //获取产品颜色
             $this->load->model('product/Model_Product_Color', 'color');
-            $colorData = $this->color->getColorById($data['pid']);
-            $data['color'] = $colorData['china_name'];
+            $colorData = $this->color->getColorById($pInfo['color_id']);
+            $data['color'] = isset ($colorData['china_name']) ? $colorData['china_name'] : '';
 
             $this->load->model('product/Model_Product_comment', 'comment');
             $status = $this->comment->addProductComment($data);
@@ -81,6 +81,46 @@ class comment extends MY_Controller
         } while (false);
 
         echo json_encode($response);
+    }
+
+    /**
+     * 用户是否购买过此产品
+     */
+    public function isBuyProduct()
+    {
+        $data['pid'] = intval($this->input->get_post('pid'));
+
+        $response = array('error' => '0', 'msg' => '已购买', 'code' => 'need_buy');
+
+        do {
+            if ( empty ($data['pid'])) {
+                $response = error(50008);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            //是否购买过产品
+            $this->load->model('order/Model_order', 'order');
+            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid']);
+            if (empty ($isBuyProduct)) {
+                $response = error(50002);
+                break;
+            }
+
+            //是否评论过
+            if ($isBuyProduct['comment_status'] == '1') {
+                $response = error(50019);
+                break;
+            }
+
+            $response['data'] = $isBuyProduct;
+        } while (false);
+
+        self::json_output($response);
     }
 
     /**

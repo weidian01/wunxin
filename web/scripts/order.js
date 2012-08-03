@@ -313,9 +313,9 @@ order.pay = function ()
 {
     var payBank = wx.getRadioCheckBoxValue('bank');
 
-    document.pay_form.action = '/pay/yeepay/pay';
+    document.pay_form.action = '/pay/index';
     if (payBank == 'alipay') {
-        document.pay_form.action = '/pay/alipay/pay';
+        document.pay_form.action = '/pay/index';
     }
 
     document.pay_form.submit();

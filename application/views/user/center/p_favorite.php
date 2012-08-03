@@ -98,7 +98,7 @@
                                             <td style="width:60px;">
                                                 <div class="imgbox">
                                                     <a href="#" class="a_e" title="<?php echo $v['pname'];?>">
-                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/>
+                                                        <img src="<?=config_item('img_url')?>product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/>
                                                     </a>
                                                 </div>
                                             </td>

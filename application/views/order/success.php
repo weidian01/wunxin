@@ -7,6 +7,8 @@
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
 <!--<SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>-->
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>js/iepng.js"></script>
 <script type="text/javascript">
@@ -25,6 +27,7 @@ $(document).ready(function(){
 
 </head>
 <body>
+<a onclick="product.productComment(1, 'ak')" id="ak">aa</a>
 <?php include '/../header.php';?>
 <div class="box pad8">
   <div class="process">
@@ -67,7 +70,7 @@ $(document).ready(function(){
           ?></div>
   </div>
   <?php if ($order['pay_type'] == '1') {?>
-  <form action="" method="POST" onsubmit="return order.pay()" name="pay_form" id="">
+  <form action="" method="POST" onsubmit="return order.pay()" name="pay_form" id="" target="_blank">
       <input type="hidden" name="order_sn" value="<?php echo $order['order_sn'];?>" />
   <div class="other-shopping">
     <div class="tit">选择支付方式</div>
@@ -190,9 +193,9 @@ $(document).ready(function(){
         </div>
         <div class="payment-b">
           <div class="pradio">
-            <input type="radio" id="" value="NBCB-NET-B2C" name="bank" />
+            <input type="radio" id="nb-b" value="NBCB-NET-B2C" name="bank" />
           </div>
-          <div class="bankpic"><label for=""><span class="bankimg" id="nbcb">宁波银行</span></label></div>
+          <div class="bankpic"><label for="nb-b"><span class="bankimg" id="nbcb">宁波银行</span></label></div>
         </div>
       </div>
       <p>点击选择支付平台付款</p>
