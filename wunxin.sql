@@ -4983,7 +4983,6 @@ create table wx_shopping_cart
    pname                varchar(120) comment '产品名称',
    product_price        int unsigned comment '产品价格，单位为分',
    product_num          int unsigned default 1 comment '产品数量',
-   product_img          varchar(128) comment '产品图片地址',
    product_size         varchar(6) comment '产品尺寸',
    additional_info      varchar(16) default '0' comment '附加信息',
    status               tinyint unsigned default 1 comment '状态,0已删除，1正常',
