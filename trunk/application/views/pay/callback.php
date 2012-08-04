@@ -1,8 +1,22 @@
+<?php
+    $t = '很遗憾，您的订单支付失败了！原因：系统繁忙，请稍后再试';
+    switch ($response['error']) {
+        case '0' : $t = '恭喜您，您的订单支付成功了'; break;
+        case '30019' : $t = '很遗憾，您的订单支付失败了！原因：未知的支付渠道'; break;
+        case '30020' : $t = '很遗憾，您的订单支付失败了！原因：签名错误'; break;
+        case '30021' : $t = '很遗憾，您的订单支付失败了！原因：您未付款或支付失败'; break;
+        case '30022' : $t = '很遗憾，您的订单支付失败了！原因：订单不存在或未知的订单'; break;
+        case '30023' : $t = '很遗憾，您的订单支付失败了！原因：支付的金额与订单的金额不一致'; break;
+        case '30024' : $t = '很遗憾，您的订单支付失败了！原因：系统繁忙，请稍后再试'; break;
+        case '30025' : $t = '很遗憾，您的订单支付失败了！原因：记录收款单信息失败'; break;
+    }
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>订单提交成功</title>
+<title><?php echo $t;?></title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
 <!--<SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>-->
@@ -37,24 +51,9 @@ $(document).ready(function(){
   <div class="other-shopping">
     <div class="tit">订单状态</div>
     <div class="order-c">
-      <p>
-          <?php
-            $t = '很遗憾，您的订单支付失败了！原因：系统繁忙，请稍后再试';
-            switch ($response['error']) {
-                case '0' : $t = '恭喜您，订单支付成功了！'; break;
-                case '30019' : $t = '很遗憾，您的订单支付失败了！原因：未知的支付渠道'; break;
-                case '30020' : $t = '很遗憾，您的订单支付失败了！原因：签名错误'; break;
-                case '30021' : $t = '很遗憾，您的订单支付失败了！原因：您未付款或支付失败'; break;
-                case '30022' : $t = '很遗憾，您的订单支付失败了！原因：订单不存在或未知的订单'; break;
-                case '30023' : $t = '很遗憾，您的订单支付失败了！原因：支付的金额与订单的金额不一致'; break;
-                case '30024' : $t = '很遗憾，您的订单支付失败了！原因：系统繁忙，请稍后再试'; break;
-                case '30025' : $t = '很遗憾，您的订单支付失败了！原因：记录收款单信息失败'; break;
-            }
-            echo $t;
-          ?>!
-      </p>
+      <p><?php echo $t;?>!</p>
       <span class="font9">您的订单号：<?php echo $order['order_sn'];?>
-          应付金额：<span class="font6"><?php echo fPrice($order['after_discount_price']);?></span> 元，
+          <?php echo ($response['error'] == '0') ? '已' : '应';?>付金额：<span class="font6"><?php echo fPrice($order['after_discount_price']);?></span> 元，
           支付方式：<?php
           switch ($order['pay_type']) {
               case '1': $ps = '线上支付'; break;
@@ -81,7 +80,7 @@ $(document).ready(function(){
             }
           ?></div>
   </div>
-  <?php if ($order['pay_type'] != '0') {?>
+  <?php if ($response['error'] != '0') {?>
   <form action="" method="POST" onsubmit="return order.pay()" name="pay_form" id="" target="_blank">
       <input type="hidden" name="order_sn" value="<?php echo $order['order_sn'];?>" />
   <div class="other-shopping">
@@ -255,56 +254,6 @@ $(document).ready(function(){
                           <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span></p>
                       <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
                   <?php }?>
-                  <!--
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  <div class="rq">
-                      <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120"/></div>
-                      <p>Bessie OL气质荷叶边条纹短裙<br/>
-                          原价：￥<span class="font7">236.00</span><br/>
-                          <span class="font6">特惠价：￥198.00</span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
-                  -->
               </div>
           </div>
           <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>

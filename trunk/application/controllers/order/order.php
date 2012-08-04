@@ -151,7 +151,7 @@ class order extends MY_Controller
                 //$productData = $this->product->getProductById($v['pid']);
                 $productData = $productTmpData[$v['pid']];
                 $colorData = $this->color->getColorById($productData['color_id']);
-
+//echo '<pre>';print_r($colorData);exit;
                 $orderProductData [] = array (
                     'order_sn' => $orderId,
                     'pid' => $productData['pid'],
@@ -161,7 +161,7 @@ class order extends MY_Controller
                     'market_price' => $productData['market_price'],
                     'sall_price' => $productData['sell_price'],
                     'product_num' => $v['product_num'],
-                    'color' => $colorData['size'],
+                    'color' => $colorData['china_name'],
                     'product_size' => $v['product_size'],
                     'presentation_integral' => fPrice($productData['sell_price']),
                     'preferential' => '',

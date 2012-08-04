@@ -45,8 +45,6 @@ class pay extends MY_Controller
             $pDesc .= $v['pname'].' | ';
         }
         $pDesc = substr($pDesc, 0, -2);
-        //echo '<pre>';print_r($pDesc);exit;
-
 
         $html = '';
         switch ($bank) {
@@ -114,7 +112,7 @@ class pay extends MY_Controller
             }
 
             //支付金额有误
-            if (fPrice($orderInfo) != $payResult['amount']) {
+            if ($orderInfo['after_discount_price'] != $payResult['amount']) {
                 $data = array('is_pay' => 2, 'paid' => 0, 'need_pay' => $payResult['amount'], 'status' => 1, 'defray_type' => $payResult['pay_channel']);
                 $this->order->updateOrderByOrderSn($data, $payResult['order_sn']);
 
@@ -127,7 +125,7 @@ class pay extends MY_Controller
                 if ( $payResult['request_type'] == 2 ) {
                     echo 'success';
                 }
-
+                $response['order_sn'] = $payResult['order_sn'];
                 break;
             }
 
@@ -170,7 +168,19 @@ class pay extends MY_Controller
                 break;
             }
 
+            //更新产品销量
+            $this->load->model('product/Model_Product', 'product');
+            $orderProduct = $this->order->getOrderAllProductByOrderSn($payResult['order_sn']);
+            foreach ($orderProduct as $opv) {
+                $pId = intval($opv['pid']);
+                $pNum = intval($opv['product_num']);
+
+                $this->product->updateProductSales($pId, $pNum);
+            }
+
+
             $response['order_sn'] = $payResult['order_sn'];
+
         } while (false);
 
         //获取订单信息
@@ -184,7 +194,7 @@ class pay extends MY_Controller
         $recommend = array();
         if ($response['error'] == '0') {
             $this->load->model('product/Model_Product', 'product');
-            $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), array('sales', 'desc'));//($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
+            $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');//($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
         }
 
         $this->load->view('pay/callback', array('response' => $response, 'order' => $orderInfo, 'recommend' => $recommend));
@@ -207,7 +217,7 @@ class pay extends MY_Controller
                 $payChannel = 'Yeepay';
             }
 
-            $merchantId = $this->input->get_post('partner');
+            $merchantId = $this->input->get_post('seller_id');
             $aliPayMerchantId = config_item('alipay_merchant_id');
             if ( ($merchantId !== false) && $merchantId == $aliPayMerchantId) {
                 $payChannel = 'Alipay';

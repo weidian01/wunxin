@@ -62,34 +62,43 @@ class Model_Pay_Alipay extends MY_Model
      */
     public function response()
     {
-        $sign = $this->get_post('sign');//加密串
-        $out_trade_no = $this->get_post('out_trade_no');//商户订单号
-        $trade_no = $this->get_post('trade_no');//支付宝订单号
-        $price = $this->get_post('price');//金额
+        $sign = $this->input->get_post('sign');//加密串
+        $out_trade_no = $this->input->get_post('out_trade_no');//商户订单号
+        $trade_no = $this->input->get_post('trade_no');//支付宝订单号
+        $price = $this->input->get_post('total_fee');//金额
+        $buyer_email = $this->input->get_post('buyer_email');//购买用户的账号
+        $buyer_id = $this->input->get_post('buyer_id');//购买用户的账号
+        $is_success = $this->input->get_post('is_success');//支付状态
 
-        $mySign = $this->buildMySign($_GET, config_item('alipay_merchant_key'));
+        $rData = array(
+            'result' => $is_success,
+            'third_part_order_sn' => $trade_no,
+            'amount' => ($price * 100),
+            'order_sn' => $out_trade_no,
+            'pay_user' => $buyer_email,
+            'pay_user_id' => $buyer_id,
+            'request_type' => empty ($_POST) ? 1 : 2,
+            'pay_channel' => 'alipay',
+            'bank_order_id' => '0',
+            'pay_type' => 'alipay',
+        );
 
-        $out_trade_no	= $_GET['out_trade_no'];	//获取订单号
-            $trade_no		= $_GET['trade_no'];		//获取支付宝交易号
-            $total_fee		= $_GET['price'];
+        $sort_para = $this->paraFilter($_REQUEST);
+
+        ksort($sort_para);
+       	reset($sort_para);
+
+        $mySign = $this->buildMySign($sort_para, config_item('alipay_merchant_key'));
+
         //状态值(status) 1 成功， 2 签名错误， 3 订单支付失败
-        $rData = array('status' => 1);
+        $rData['status'] = 1;
         if ($sign != $mySign) {
             $rData['status'] = 2;
         }
 
-
-        $rData = array(
-            'result' => '',
-            'third_part_order_sn' => $trade_no,
-            'amount' => $price,
-            'order_sn' => $out_trade_no,
-            'pay_user_id' => '',
-            'request_type' => '',
-            'pay_channel' => '',
-            'bank_order_id' => '',
-            'pay_type' => 'alipay',
-        );
+        if ($is_success != 'T') {
+            $rData['status'] = 3;
+        }
 
         return $rData;
     }
@@ -106,6 +115,7 @@ class Model_Pay_Alipay extends MY_Model
     {
     	//把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
     	$preStr = $this->createLinkstring($sort_para);
+        //echo '<pre>';print_r($preStr);exit;
 
     	//把拼接后的字符串再与安全校验码直接连接起来
         $preStr = $preStr.$key;
@@ -124,11 +134,11 @@ class Model_Pay_Alipay extends MY_Model
     private function createLinkString($para)
     {
     	$arg  = "";
-    	while (list ($key, $val) = each ($para)) {
-    		$arg.=$key."=".$val."&";
+        foreach ($para as $key => $val) {
+    		$arg .= $key."=".$val."&";
     	}
     	//去掉最后一个&字符
-    	$arg = substr($arg,0,count($arg)-2);
+    	$arg = substr($arg, 0, count($arg)-2);
 
     	//如果存在转义字符，那么去掉转义
     	if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
