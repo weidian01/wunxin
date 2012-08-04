@@ -86,6 +86,19 @@ class Model_Pay_Yeepay extends MY_Model
         $ru_Trxtime = $this->input->get_post('ru_Trxtime');
         $hMac = $this->input->get_post('hmac');
 
+        $rData = array(
+            'result' => $r1_Code,
+            'third_part_order_sn' => $r2_TrxId,
+            'amount' => ($r3_Amt * 100),
+            'order_sn' => $r6_Order,
+            'pay_user' => $r7_Uid,
+            'pay_user_id' => $r7_Uid,
+            'request_type' => ($r9_BType == 1) ? 1 : 2,
+            'pay_channel' => $rb_BankId,
+            'bank_order_id' => $ro_BankOrderId,
+            'pay_type' => 'yeepay',
+        );
+
         $rhMac = $this->getCallbackHMacString($r0_Cmd,$r1_Code,$r2_TrxId,$r3_Amt,$r4_Cur,$r5_Pid,$r6_Order,$r7_Uid,$r8_MP,$r9_BType);
 
         //状态值(status) 1 成功， 2 签名错误， 3 订单支付失败
@@ -98,18 +111,6 @@ class Model_Pay_Yeepay extends MY_Model
         if ($r1_Code != 1) {
             $rData['status'] = 3;
         }
-
-        $rData = array(
-            'result' => $r1_Code,
-            'third_part_order_sn' => $r2_TrxId,
-            'amount' => $r3_Amt,
-            'order_sn' => $r6_Order,
-            'pay_user_id' => $r7_Uid,
-            'request_type' => ($r9_BType == 1) ? 1 : 2,
-            'pay_channel' => $rb_BankId,
-            'bank_order_id' => $ro_BankOrderId,
-            'pay_type' => 'yeepay',
-        );
 
         return $rData;
     }

@@ -132,6 +132,23 @@ class Model_Product extends MY_Model
     }
 
     /**
+     * 更新产品销售数量
+     *
+     * @param $pId
+     * @param $num
+     * @return boolean
+     */
+    public function updateProductSales($pId, $num)
+    {
+        $pId =  intval($pId);
+        $num = intval($num);
+        $data = array('sales' => 'sales+'.$num);
+
+        $this->db->where('pid', $pId);
+        return $this->db->set($data, '', false)->update('product');
+    }
+
+    /**
      * 修改产品
      *
      * @param $pId

@@ -263,29 +263,30 @@ $(document).ready(function(){
             <!--<div class="pradio"> <input name="bank" id="cmpay-b" type="radio" value="" /> </div>-->
           <div class="bankpic"><label for="cmpay-b"><span class="bankimg" id="cmpay">手机支付</span></label></div>
         </div>
+        <!--
         <div class="payment-b">
-            <!--<div class="pradio"> <input name="bank" id="tenpay-b" type="radio" value="" /> </div>-->
+            <div class="pradio"> <input name="bank" id="tenpay-b" type="radio" value="" /> </div>
           <div class="bankpic"><label for="tenpay-b"><span class="bankimg" id="tenpay">财付通</span></label></div>
         </div>
+        -->
       </div>
             </td>
         </tr>
         <tr>
           <td align="center"><input type="radio" name="pay_type" id="radio2" value="3" /></td>
           <td>邮政汇款</td>
-          <td>通过快钱平台收款 汇款后1-3个工作日到账 查看帮助</td>
+          <td><!--通过快钱平台收款 汇款后1-3个工作日到账 查看帮助--></td>
         </tr>
         <tr>
           <td>&nbsp;</td>
-          <td colspan="2"><div class="postal">选择邮局汇款的麦网订单，订单提交后将保留将保留5天，请您及时汇款，谢谢！<br />
+          <td colspan="2"><div class="postal">选择邮局汇款的万象网订单，订单提交后将保留将保留3天，请您及时汇款，谢谢！<br />
               在填写邮局汇款单时请务必填写以下内容：<br />
-              1、收款人姓名：上海麦考林国际邮购有限公司<br />
-              2、收款人地址：上海邮政信箱615-58信箱<br />
-              3、收款人邮编：201615<br />
-              4、商务汇款：商户客户号310726001<br />
+              1、收款人姓名：侯积平<br />
+              2、收款人地址：北京市朝阳区高碑店乡半壁店村25号<br />
+              3、收款人邮编：100124<br />
+              4、账号：62220606030354<br />
               5、请填写您的姓名、地址、邮编；<br />
-              6、在附言栏注明订单号（您成功提交订单后会收到订单号，也可以在我的麦
-              网中查询到）、联系电话、客户编号（老客户）；<br />
+              6、在附言栏注明订单号（您成功提交订单后会收到订单号，也可以在<a href="/user/center/index" target="_blank">我的订单</a>中查询到）、联系电话、客户编号（老客户）；<br />
               我们将在收到您的汇款后为您寄发包裹。</div></td>
         </tr>
       </table>
