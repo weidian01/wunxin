@@ -68,13 +68,53 @@ class share extends MY_Controller
     }
 
     /**
+     * 用户是否购买过此产品并没有晒单
+     */
+    public function isBuyProduct()
+    {
+        $data['pid'] = intval($this->input->get_post('pid'));
+
+        $response = array('error' => '0', 'msg' => '已购买', 'code' => 'need_buy');
+
+        do {
+            if ( empty ($data['pid'])) {
+                $response = error(50008);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            //是否购买过产品
+            $this->load->model('order/Model_order', 'order');
+            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid']);
+            if (empty ($isBuyProduct)) {
+                $response = error(50002);
+                break;
+            }
+
+            //是否晒单过
+            if ($isBuyProduct['share_status'] == '1') {
+                $response = error(50020);
+                break;
+            }
+
+            $response['data'] = $isBuyProduct;
+        } while (false);
+
+        self::json_output($response);
+    }
+
+    /**
      * 喜欢晒单产品图片
      */
     public function likeShareImage()
     {
         $imgId = $this->input->get_post('img_id');
 
-        $response = error(20007);
+        $response = array('error' => '0', 'msg' => '喜欢晒单产品成功', 'code' => 'like_share_product_success');
 
         do {
             if (empty ($imgId)) {
@@ -96,12 +136,12 @@ class share extends MY_Controller
     /**
      * 添加晒单评论
      */
-    public function shareComment()
+    public function comment()
     {
         $sId = $this->input->get_post('sid');
         $content = $this->input->get_post('content');
 
-        $response = error(20018);
+        $response = array('error' => '0', 'msg' => '产品晒单评论成功', 'code' => 'product_share_comment_success');
 
         do {
             if (empty ($sId) || empty ($content)) {

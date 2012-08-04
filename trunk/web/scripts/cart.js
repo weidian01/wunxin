@@ -86,9 +86,11 @@ cart.init = function ()
 }
 
 //添加产品到购物车
-cart.addToCart = function (pid, pSize, pNum, additional_info)
+cart.addToCart = function (pid, pSize, pNum, additional_info, bindingId)
 {
     if (pid == '' || pid == undefined || pSize == '' || pSize == undefined) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">添加产品到购物车参数不全。</span><br/>' });
+        wx.showPop('添加产品到购物车参数不全。', bindingId);
         return false;
     }
 
@@ -106,25 +108,27 @@ cart.addToCart = function (pid, pSize, pNum, additional_info)
     var param = 'pid='+pid+'&p_size='+pSize+'&p_num='+pNum+'&additional_info='+additional_info;
     var data = wx.ajax(url, param);
 
+    var status = 2;
     switch (data.error)
     {
-        case '60001': alert(data.msg);break;
-        case '60002': alert(data.msg);break;
-        case '60003': alert(data.msg);break;
-        case '20002': alert(data.msg);break;
-        default :alert(data.msg);
+        case '0': status = 1;break;
+        case '60002': status = 2;break;
+        case '60003': status = 3;break;
     }
+
+    wx.addToCartLayer(status, bindingId);
 
     cart.init();
 }
 
 //删除购物车中产品
-cart.deleteCartItem = function (id)
+cart.deleteCartItem = function (id, bindingId)
 {
-    /*
+    //*
     if (id == '' || id == undefined) {
-        alert('a');
-        return '';
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
+        wx.showPop('参数不全。', bindingId);
+        return false;
     }
     //*/
     var url = 'cart/deleteCartProduct';
@@ -167,8 +171,12 @@ cart.changeQuantity = function (id, type)
 }
 
 //保存购物车中产品至数据库
-cart.saveCart = function ()
+cart.saveCart = function (bindingId)
 {
+    if ( wx.checkLoginStatus() ) {
+        return false;
+    }
+
     var url = 'cart/cartStorageToDatabase';
     //var param = '';
     var data = wx.ajax(url, '');
@@ -178,27 +186,37 @@ cart.saveCart = function ()
     }
 
     if (data.error == '60019') {
-        alert('保存失败!');
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">保存失败。</span><br/>' });
+        wx.showPop('保存失败。', bindingId);
+        //alert('保存失败!');
     }
 
     if (data.error == '60017') {
-        alert('保存成功!');
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">保存成功。</span><br/>' });
+        wx.showPop('保存成功。', bindingId);
+        //alert('保存成功!');
     }
 }
 
 //将购物库中购物车产品取出
-cart.removeCart = function ()
+cart.removeCart = function (bindingId)
 {
+    if ( wx.checkLoginStatus() ) {
+        return false;
+    }
+
     var url = 'cart/removeCartProduct';
     //var param = '';
     var data = wx.ajax(url, '');
 
     if (data.error == '10009') {
-        alert('请登陆，暂未登陆!');
+        //alert('请登陆，暂未登陆!');
     }
 
     if (data.error == '60014') {
-        alert('取出产品成功!');
+        //alert('取出产品成功!');
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">取出产品成功。</span><br/>' });
+        wx.showPop('取出产品成功。', bindingId);
     }
 
     cart.init();
@@ -209,6 +227,9 @@ cart.emptyCart = function ()
 {
     var url = 'cart/emptyCart';
     wx.ajax(url, '');
+
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">清空成功。</span><br/>' });
+    wx.showPop('清空成功。', bindingId);
 
     cart.init();
 }

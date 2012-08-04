@@ -88,7 +88,7 @@ $error[20004] = array('error' => '20004', 'msg' => '产品晒单成功', 'code' 
 $error[20005] = array('error' => '20005', 'msg' => '产品晒单失败', 'code' => 'product_share_failure');
 $error[20006] = array('error' => '20006', 'msg' => '产品晒单参数不全', 'code' => 'product_share_parameter_failure');
 
-$error[20007] = array('error' => '20007', 'msg' => '喜欢晒单产品成功', 'code' => 'like_share_product_success');
+//$error[20007] = array('error' => '20007', 'msg' => '喜欢晒单产品成功', 'code' => 'like_share_product_success');
 $error[20008] = array('error' => '20008', 'msg' => '喜欢晒单产品失败', 'code' => 'like_share_product_failure');
 $error[20009] = array('error' => '20009', 'msg' => '喜欢晒单产品参数不全', 'code' => 'like_share_product_parameter_failure');
 
@@ -96,14 +96,14 @@ $error[20010] = array('error' => '20010', 'msg' => '已收藏该产品', 'code' 
 $error[20011] = array('error' => '20011', 'msg' => '产品收藏失败', 'code' => 'favorite_product_failure');
 $error[20012] = array('error' => '20012', 'msg' => '收藏产品参数不全', 'code' => 'favorite_product_parameter_failure');
 
-$error[20013] = array('error' => '20013', 'msg' => '删除收藏成功', 'code' => 'delete_favorite_success');
+//$error[20013] = array('error' => '20013', 'msg' => '删除收藏成功', 'code' => 'delete_favorite_success');
 $error[20014] = array('error' => '20014', 'msg' => '删除收藏失败', 'code' => 'delete_favorite_failure');
 $error[20015] = array('error' => '20015', 'msg' => '删除收藏参数不全', 'code' => 'delete_favorite_parameter_failure');
 
-$error[20016] = array('error' => '20016', 'msg' => '清空收藏夹成功', 'code' => 'empty_favorite_success');
+//$error[20016] = array('error' => '20016', 'msg' => '清空收藏夹成功', 'code' => 'empty_favorite_success');
 $error[20017] = array('error' => '20017', 'msg' => '清空收藏夹失败', 'code' => 'empty_favorite_failure');
 
-$error[20018] = array('error' => '20018', 'msg' => '产品晒单评论成功', 'code' => 'product_share_comment_success');
+//$error[20018] = array('error' => '20018', 'msg' => '产品晒单评论成功', 'code' => 'product_share_comment_success');
 $error[20019] = array('error' => '20019', 'msg' => '产品晒单评论失败', 'code' => 'product_share_comment_failure');
 $error[20020] = array('error' => '20020', 'msg' => '产品晒单评论参数不全', 'code' => 'product_share_comment_parameter_failure');
 
@@ -224,6 +224,8 @@ $error[50017] = array('error' => '50017', 'msg' => '疑难问答回复失败', '
 $error[50018] = array('error' => '50018', 'msg' => '疑难问答回复参数不全', 'code' => 'qa_whether_effective_reply_failure');
 
 $error[50019] = array('error' => '50019', 'msg' => '已评论过此产品', 'code' => 'already_comment_the_product');
+
+$error[50020] = array('error' => '50020', 'msg' => '已晒单过此产品', 'code' => 'already_share_the_product');
 
 //$error[50020] = array('error' => '50020', 'msg' => '已评论过此产品', 'code' => 'already_comment_the_product');
 

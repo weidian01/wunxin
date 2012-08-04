@@ -16,7 +16,7 @@ class Model_Cart extends MY_Model
      */
     public function getUserCartProductByUid($uid)
     {
-        $field = 'uid, pid, pname, product_price, product_num, product_img, product_size, additional_info';
+        $field = 'uid, pid, pname, product_price, product_num, product_size, additional_info';
         $data = $this->db->select($field)->get_where('shopping_cart', array('uid' => $uid, 'status' => 1))->result_array();
 
         return empty ($data) ? null : $data;
@@ -38,8 +38,8 @@ class Model_Cart extends MY_Model
         );
         //*/
 
-        $sql = "INSERT IGNORE INTO wx_shopping_cart(uid, pid, pname, product_price, product_num, product_img, product_size, additional_info, create_time) values ";
-        $sql .= "($uid, {$pInfo['pid']}, '{$pInfo['pname']}', {$pInfo['product_price']}, {$pInfo['product_num']}, '{$pInfo['product_img']}',
+        $sql = "INSERT IGNORE INTO wx_shopping_cart(uid, pid, pname, product_price, product_num, product_size, additional_info, create_time) values ";
+        $sql .= "($uid, {$pInfo['pid']}, '{$pInfo['pname']}', {$pInfo['product_price']}, {$pInfo['product_num']},
         '{$pInfo['product_size']}', '{$pInfo['additional_info']}', '".date('Y-m-d H:i:s', TIMESTAMP)."')";
 
         $this->db->query($sql);
