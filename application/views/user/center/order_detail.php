@@ -7,6 +7,7 @@
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -229,7 +230,7 @@
                                     <td width="90" align="center"><strong><?php echo $pv['product_num'];?></strong></td>
                                     <td width="90" align="center"><strong><?php echo ($pv['sall_price'] * $pv['product_num']) / 100;?></strong></td>
                                     <td width="90" align="center" class="end">
-                                        <a href="#"><img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品"></a>
+                                        <a href="javascript:void(0);" onclick="product.productComment(<?php echo $pv['pid'];?>)"><img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品"></a>
                                         <a href="#"><img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单"></a><br/>
                                         <a href="/user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货"></a>
                                     </td>
@@ -273,9 +274,9 @@
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
-<?php include("/../../float_layer.php");?>
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 <a onclick="kk()">kkkk</a>
 <script type="text/javascript">

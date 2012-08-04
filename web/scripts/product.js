@@ -9,7 +9,8 @@ var product = {};
 product.favoriteProduct = function(pId, bingingId)
 {
     if ( !wx.isEmpty(pId)) {
-        art.dialog({ title:false, follow: document.getElementById(bingingId), content: '<span style="font-weight: bold;color: #a10000;">参数不全</span>' });
+        wx.showPop('参数不全', bingingId);
+        //art.dialog({ title:false, follow: document.getElementById(bingingId), content: '<span style="font-weight: bold;color: #a10000;">参数不全</span>' });
         return false;
     }
 
@@ -17,8 +18,7 @@ product.favoriteProduct = function(pId, bingingId)
         bingingId = '';
     }
 
-    if ( !wx.isLogin() ) {
-        wx.loginLayer();
+    if ( !wx.checkLoginStatus() ) {
         return false;
     }
 
@@ -31,58 +31,81 @@ product.favoriteProduct = function(pId, bingingId)
         return true;
     }
 
+    var status = 4;
     switch (data.error) {
-        case '20012':wx.favoriteProductLayer(4, bingingId); break;
+        case '20012':status = 4; break;
         case '10009':wx.loginLayer(); break;
-        case '20002':wx.favoriteProductLayer(3, bingingId); break;
-        case '20010':wx.favoriteProductLayer(2, bingingId); break;
-        case '20011':wx.favoriteProductLayer(4, bingingId); break;
+        case '20002':status = 3; break;
+        case '20010':status = 2; break;
+        case '20011':status = 4; break;
     }
+
+    wx.favoriteProductLayer(status, bingingId);
 
     return false;
 }
 
 //删除产品收藏
-product.deleteFavoriteProduct = function(pId)
+product.deleteFavoriteProduct = function(pId, bingingId)
 {
     if (confirm('确定删除收藏的产品！')) {
         if (!wx.isEmpty(pId)) {
+            //art.dialog({ title:false, follow: document.getElementById(bingingId), content: '<span style="font-weight: bold;color: #a10000;">参数不全</span>' });
+            wx.showPop('参数不全', bingingId);
             return false;
         }
 
-        if ( !wx.isLogin() ) {
-            return 0;
+        if ( !wx.checkLoginStatus() ) {
+            return false;
         }
 
-        var url = '/product/product_favorite/deleteFavorite';
+        var url = '/product/favorite/deleteFavorite';
         var param = 'fid='+pId;
         var data = wx.ajax(url, param);
 
-        if (data.error == '20013') {
+        if (data.error == '0') {
             wx.pageReload(0);
             return true;
         }
 
+        var prompt = '系统繁忙，请稍后再试';
+        switch (data.error) {
+            case '20015':prompt = '参数不全'; break;
+            case '10009':wx.loginLayer(); break;
+            case '20014':prompt = '系统繁忙，请稍后再试'; break;
+        }
+
+        //art.dialog({ title:false, follow: document.getElementById(bingingId), content: '<span style="font-weight: bold;color: #a10000;">'+prompt+'</span>' });
+        wx.showPop(prompt, bingingId);
         return data;
     }
 }
 
 //清空产品收藏
-product.emptyFavorite = function()
+product.emptyFavorite = function(bindingId)
 {
     if (confirm('您确定要清空收藏夹里的所有产品！')) {
-        if ( !wx.isLogin() ) {
-            return 0;
+        if ( !wx.checkLoginStatus() ) {
+            return false;
         }
 
         var url = '/product/favorite/emptyFavorite';
         var param = '';
         var data = wx.ajax(url, param);
 
-        if (data.error == '20016') {
+        if (data.error == '0') {
             wx.pageReload(0);
             return true;
         }
+
+        var prompt = '系统繁忙，请稍后再试';
+        switch (data.error) {
+            case '10009':wx.loginLayer(); break;
+            case '20017':prompt = '系统繁忙，请稍后再试'; break;
+        }
+
+        //art.dialog({ title:false, follow: document.getElementById(bingingId), content: '<span style="font-weight: bold;color: #a10000;">'+prompt+'</span>' });
+        wx.showPop(prompt, bindingId);
 
         alert('系统繁忙，请稍后再试!');
     }
@@ -96,8 +119,8 @@ product.productComment = function (pId, bindingId)
         return false;
     }
 
-    if ( !wx.isLogin() ) {
-        return 0;
+    if ( !wx.checkLoginStatus() ) {
+        return false;
     }
 
     var url = 'product/comment/isBuyProduct';
@@ -116,7 +139,8 @@ product.productComment = function (pId, bindingId)
         default :prompt = '此商品不存在。';
     }
 
-    art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/>'+prompt+'<br/>' });
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'</span><br/>' });
+    wx.showPop(prompt, bindingId);
 }
 
 //产品评论 pId 产品ID, title 标题, content 内容, rank 商品评分, comfort 合适度评分, exterior外观评分, size_deviation 尺寸偏差
@@ -132,17 +156,20 @@ product.productCommentSubmit = function (bindingId)
     //var pId = document.getElementById('size_deviation').value;
 
     if ( !wx.isEmpty(title) || title.length < 5) {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论标题为空或少于5个字。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论标题为空或少于5个字。</span><br/>' });
+        wx.showPop('评论标题为空或少于5个字。', bindingId);
         return false;
     }
 
     if ( !wx.isEmpty(content) || content.length < 5) {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论内容为空或少于5个字。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论内容为空或少于5个字。</span><br/>' });
+        wx.showPop('评论内容为空或少于5个字。', bindingId);
         return false;
     }
 
     if ( !wx.isEmpty(pId) || !wx.isEmpty(title) || !wx.isEmpty(content) || !wx.isEmpty(rank) || !wx.isEmpty(comfort) || !wx.isEmpty(exterior) || !wx.isEmpty(size_deviation) ) {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">请认真填写评论内容。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">请认真填写评论内容。</span><br/>' });
+        wx.showPop('请认真填写评论内容。', bindingId);
         return false;
     }
 
@@ -156,7 +183,8 @@ product.productCommentSubmit = function (bindingId)
 
     if (data.error == '0') {
         wx.layerClose();
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论成功。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">评论成功。</span><br/>' });
+        wx.showPop('评论成功。', bindingId);
         return true;
     }
 
@@ -169,7 +197,8 @@ product.productCommentSubmit = function (bindingId)
     }
 
     if (data.error == '50019') {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        wx.showPop(prompt, bindingId);
         return false;
     }
 
@@ -197,12 +226,13 @@ product.commentReplySubmit = function (bindingId)
     var content = document.getElementById('content').value;
 
     if ( !wx.isEmpty(content) || content.length < 5) {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">内容为空或小于5个字。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">内容为空或小于5个字。</span><br/>' });
+        wx.showPop('内容为空或小于5个字。', bindingId);
         return false;
     }
 
     if ( !wx.checkLoginStatus() ) {
-        return 0;
+        return false;
     }
 
     var url = 'product/comment/commentReply';
@@ -210,7 +240,8 @@ product.commentReplySubmit = function (bindingId)
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">回复成功。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">回复成功。</span><br/>' });
+        wx.showPop('回复成功。', bindingId);
         $('#comment_reply_html_code').remove();
         return true;
     }
@@ -236,7 +267,8 @@ product.commentIsInvalid = function (commentId, operaType, bindingId)
         case '50009': prompt = '系统繁忙，请稍后再试';break;
     }
 
-    art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    wx.showPop(prompt, bindingId);
 
     return data;
 }
@@ -250,7 +282,7 @@ product.deleteProductComment = function(cId, bindingId)
         }
 
         if ( !wx.checkLoginStatus() ) {
-            return 0;
+            return false;
         }
 
         var url = '/product/comment/deleteComment';
@@ -265,7 +297,8 @@ product.deleteProductComment = function(cId, bindingId)
             case '10009': prompt = '用户未登陆';break;
         }
 
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        wx.showPop(prompt, bindingId);
 
         if (data.error == '0') {
             //wx.pageReload(0);
@@ -283,7 +316,7 @@ product.addQa = function (pId, title, content)
     }
 
     if ( !wx.checkLoginStatus() ) {
-        return 0;
+        return false;
     }
 
     var url = 'product/qa/addQa';
@@ -320,7 +353,8 @@ product.qaIsValid = function (qaId, operaType, bindingId)
         case '50014': prompt = '系统繁忙，请稍后再试';break;
     }
 
-    art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    wx.showPop(prompt, bindingId);
     return data;
 }
 
@@ -332,7 +366,7 @@ product.qaReply = function (qaId, content)
     }
 
     if ( !wx.checkLoginStatus() ) {
-        return 0;
+        return false;
     }
 
     var url = 'product/qa/postProductQAReply';
@@ -346,7 +380,7 @@ product.qaReply = function (qaId, content)
     return data;
 }
 
-product.deleteProductQa = function(qId)
+product.deleteProductQa = function(qId, bindingId)
 {
     if (confirm('确定删除！')) {
         if (!wx.isEmpty(qId)) {
@@ -354,7 +388,7 @@ product.deleteProductQa = function(qId)
         }
 
         if ( !wx.checkLoginStatus() ) {
-            return 0;
+            return false;
         }
 
         var url = '/product/qa/deleteProductQa';
@@ -376,8 +410,122 @@ product.deleteProductQa = function(qId)
             case '10009': prompt = '用户未登陆';break;
         }
 
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+        wx.showPop(prompt, bindingId);
 
         //alert('系统繁忙，请稍后再试!');
     }
+}
+
+//产品晒单
+product.productShare = function (pId, bindingId)
+{
+    if ( !wx.isEmpty(pId) ) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
+        wx.showPop('参数不全。', bindingId);
+        return false;
+    }
+
+    if ( !wx.checkLoginStatus() ) {
+        return false;
+    }
+
+    var url = '/product/share/isBuyProduct';
+    var param = 'pid='+pId;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        wx.productShareLayer(data.data.pid, data.data.pname);
+        return true;
+    }
+
+    var prompt = '系统繁忙，请稍后再试';
+    switch (data.error) {
+        case '50008': prompt = '晒单参数不全';break;
+        case '50002': prompt = '您没有购买过此产品';break;
+        case '50020': prompt = '您已对此产品进行过晒单';break;
+    }
+
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    wx.showPop(prompt, bindingId);
+}
+
+//产品晒单提交
+product.productShareSubmit = function (bindingId)
+{
+    var title = document.getElementById('share_title_id').value;
+    var content = document.getElementById('share_content_id').value;
+    var file = document.getElementById('share_file_id').value;
+
+    if (title.length < 5 || title.length > 50) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">标题小于5或小于50个字符。</span><br/>' });
+        wx.showPop('标题小于5或小于50个字符。', bindingId);
+        return false;
+    }
+
+    if (title.length < 5 || title.length > 80) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">内容小于5或小于80个字符。</span><br/>' });
+        wx.showPop('内容小于5或小于80个字符。', bindingId);
+        return false;
+    }
+
+    if ( !wx.isEmpty(file) ) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">请上传要晒单的图片。</span><br/>' });
+        wx.showPop('请上传要晒单的图片。', bindingId);
+        return false;
+    }
+
+    document.product_share_form.submit();
+}
+
+//晒单评论提交
+product.shareReplySubmit = function (sId, content, bindingId)
+{
+    if ( !wx.isEmpty(sId) || !wx.isEmpty(content) ) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
+        wx.showPop('参数不全。', bindingId);
+        return false;
+    }
+
+    if ( !wx.checkLoginStatus() ) {
+        return false;
+    }
+
+    var url = 'product/share/comment';
+    var param = 'sid='+sId+'&content='+content;
+    var data = wx.ajax(url, param);
+
+    var prompt = '系统繁忙，请稍后再试';
+    switch (data.error) {
+        case '20020': prompt = '晒单参数不全';break;
+        case '20019': prompt = '系统繁忙，请稍后再试';break;
+        case '0': prompt = '评论成功';break;
+    }
+
+    art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    wx.showPop(prompt, bindingId);
+}
+
+//喜欢晒单图片
+product.likeShareImage = function (siId, bindingId)
+{
+    if ( !wx.isEmpty(siId) ) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
+        wx.showPop('参数不全。', bindingId);
+        return false;
+    }
+
+    var url = 'product/share/likeShareImage';
+    var param = 'img_id='+siId;
+    var data = wx.ajax(url, param);
+
+    var prompt = '系统繁忙，请稍后再试';
+    switch (data.error) {
+        case '20009': prompt = '参数不全';break;
+        case '20008': prompt = '系统繁忙，请稍后再试';break;
+        case '0': prompt = '喜欢成功';break;
+    }
+
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    wx.showPop(prompt, bindingId);
 }

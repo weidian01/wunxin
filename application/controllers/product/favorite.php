@@ -74,7 +74,7 @@ class favorite extends MY_Controller
     {
         $fid = $this->input->get_post('fid');
 
-        $response = error(20013);
+        $response = array('error' => '0', 'msg' => '删除收藏成功', 'code' => 'delete_favorite_success');
 
         do {
             if (empty ($fid)) {
@@ -108,7 +108,7 @@ class favorite extends MY_Controller
         } else {
             $this->load->model('product/Model_Product_Favorite', 'favorite');
             $status = $this->favorite->emptyUserProductFavorite($this->uInfo['uid']);
-            $response = $status ? error(20016) : error(20017);
+            $response = $status ? array('error' => '0', 'msg' => '清空收藏夹成功', 'code' => 'empty_favorite_success') : error(20017);
         }
 
         $this->json_output($response);

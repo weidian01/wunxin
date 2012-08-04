@@ -578,6 +578,33 @@ wx.scoreStatSelect = function (id, pointNum)
     $('#'+id+'_n').html(prompt);
 }
 
+//加入购物车浮层 status:1 添加成功， 2 系统繁忙， 3 参数不全
+wx.addToCartLayer = function (status, bindingId)
+{
+
+}
+
+//登陆浮层
+wx.loginLayer = function ()
+{
+
+}
+
+//产品晒单浮层
+wx.productShareLayer = function (pId, pName)
+{
+
+}
+
+wx.showPop = function (content, bindingId, timeOut)
+{
+    var time = timeOut;
+    if ( !wx.isEmpty(timeOut)) {
+        time = 5;
+    }
+    art.dialog({ title:false, follow: document.getElementById(bindingId), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;">'+content+'</span><br/>' });
+}
+
 wx.initLoginStatus();
 
 wx.cartGlobalInit();

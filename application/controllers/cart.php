@@ -25,7 +25,7 @@ class cart extends MY_Controller
     public function getCart()
     {
         $cData = $this->getCartToCookie();
-
+//echo '<pre>';print_r($cData);exit;
         $this->json_output($cData);
     }
 
@@ -178,17 +178,17 @@ class cart extends MY_Controller
 
             $this->load->model('product/Model_Product', 'product');
             foreach ($cData as $cv) {
-                $pInfo = $this->product->getProductAndPhotoByPid($cv['pid']);
+                $pInfo = $this->product->getProductById($cv['pid']);
 
                 $sInfo = array(
                     'pid' => $pInfo['pid'],
                     'pname' => $pInfo['pname'],
                     'product_price' => $pInfo['sell_price'],
-                    'product_img' => $pInfo['img_addr'],
                     'product_num' => $cv['product_num'],
                     'product_size' => $cv['product_size'],
                     'additional_info' => $cv['additional_info'],
                 );
+
                 $this->load->model('Model_Cart', 'cart');
                 $status = $this->cart->addProductToCart($this->uInfo['uid'], $sInfo);
                 /*
