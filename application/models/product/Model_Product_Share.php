@@ -30,7 +30,17 @@ class Model_Product_Share extends MY_Model
         );
 
         $this->db->insert('share', $data);
-        return $this->db->insert_id();
+        $status = $this->db->insert_id();
+
+        if ($status) {
+            //更新产品晒单数量
+            $this->db->where('pid', $sInfo['pid'])->set(array('share_num' => 'share_num+1'), '', false)->update('product');
+
+            //更新订单产品评论状态
+            $this->db->update('order_product', array('share_status' => 1), array('pid' => $sInfo['pid'], 'uid' => $sInfo['uid']));
+        }
+
+        return $status;
     }
 
     /**
@@ -44,7 +54,6 @@ class Model_Product_Share extends MY_Model
         $data = array(
             'share_id' => $siInfo['share_id'],
             'img_addr' => $siInfo['img_addr'],
-            'descr' => $siInfo['descr'],
             'is_cover' => $siInfo['is_cover'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
@@ -54,11 +63,31 @@ class Model_Product_Share extends MY_Model
     }
 
     /**
+     * 更新晒单图片描述信息
+     *
+     * @param array $data
+     * @param $siId
+     * @return boolean
+     */
+    public function updateShareImage(array $data, $siId)
+    {
+        $info = array(
+            'title' => "'".$data['title']."'",
+            'descr' => "'".$data['descr']."'",
+            'is_cover' => $data['is_cover'],
+        );
+
+        return $this->db->where('id', $siId)->set($info, '', false)->update('share_images');
+    }
+
+    /**
      * 获取产品的晒单
      *
      * @param int $pId
      * @param int $limit
      * @param int $offset
+     * @param string $fields
+     * @param string $order
      * @return array
      */
     public function getProductShareByPid($pId, $limit = 20, $offset = 0, $fields = '*', $order = null)
@@ -162,6 +191,8 @@ class Model_Product_Share extends MY_Model
     }
 
     /**
+     * 晒单评论
+     *
      * @param $sid
      * @param $sInfo
      * @return mixed

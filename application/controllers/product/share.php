@@ -11,60 +11,86 @@ class share extends MY_Controller
     /**
      * 晒单
      */
-    public function productShare()
+    public function add()
     {
         $pid = $this->input->get_post('pid');
-        $uid = $this->input->get_post('uid');
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
 
-        //$shareImage = $this->input->get_post();
+        if (empty ($pid) || empty ($title) || empty ($content)) {
+            show_error('参数不全');
+        }
 
-        $response = error(20004);
+        if (!$this->isLogin()) {
+            show_error('用户没有登陆');
+        }
 
-        do {
-            if (empty ($pid) || empty ($uid) || empty ($title) || empty ($content)) {
-                $response = error(20006);
-                break;
+        $this->load->model('order/Model_order', 'order');
+        $data = $this->order->userIsBuyProduct(1, 1); //($uid, $pid);
+        if (empty ($data)) {
+            show_error('没有购买过此商品');
+        }
+
+        if ($data['share_status'] == '1') {
+            show_error('你已对此商品进行过晒单');
+        }
+
+        $data = array(
+            'pid' => $pid,
+            'uid' => $this->uInfo['uid'],
+            'title' => $title,
+            'content' => $content,
+            'ip' => $ip
+        );
+        $this->load->model('product/Model_Product_Share', 'share');
+        $status = $this->share->productShare($data);
+        if (!$status) {
+            show_error('产品晒单失败');
+        }
+
+        //
+        foreach ($_FILES['images'] as $key => $item) {
+            foreach ($item as $k => $v) {
+                $_FILES['image' . $k][$key] = $v;
             }
+        }
+        unset($_FILES['images']);
 
-            if (!$this->isLogin()) {
-                $response = error(10009);
-                break;
+        if ($_FILES['image0']['size'] > 0) {
+            $this->load->helper('directory');
+            $path = intToPath($pid);
+            $config['upload_path'] = UPLOAD . 'product_share' . DS . $path.$status.DS;
+            recursiveMkdirDirectory($config['upload_path']);
+            $config['allowed_types'] = 'gif|jpg|png|jepg';
+            $config['max_size'] = '1000';
+            $config['encrypt_name'] = true;
+            $config['overwrite'] = true;
+            $this->load->library('upload', $config);
+            $product_photo = array();
+            foreach ($_FILES as $key => $item) {
+                if (!$this->upload->do_upload($key)) {
+                    show_error($this->upload->display_errors());
+                } else {
+                    $tmp = $this->upload->data();
+                    $source_file = $config['upload_path'] . $tmp['file_name'];
+                    //copyImg($source_file, 350, 420, str_replace('.', '_M.', $source_file));
+                    //copyImg($source_file, 60, 60, str_replace('.', '_S.', $source_file));
+                    $product_photo[] = $path .$status.DS. $tmp['file_name'];
+                }
             }
+        }
 
-            $this->load->model('order/Model_order', 'order');
-            $data = $this->order->userIsBuyProduct(1, 1); //($uid, $pid);
-            if (empty ($data)) {
-                $response = error(50002);
-                break;
-            }
-
-            $data = array(
-                'pid' => $pid,
-                'uid' => $this->uInfo['uid'],
-                'title' => $title,
-                'content' => $content,
-                'ip' => $ip
-            );
-            $this->load->model('product/Model_Product_Share', 'share');
-            $status = $this->share->productShare($data);
-            if (!$status) {
-                $response = error(20005);
-                break;
-            }
-
+        foreach ($product_photo as $k => $v) {
             $data = array(
                 'share_id' => $status,
-                'img_addr' => $siInfo['img_addr'],
-                'descr' => $siInfo['descr'],
-                'is_cover' => $siInfo['is_cover']
+                'img_addr' => $v,
+                'is_cover' => ($k == '0') ? '1' : '0',
             );
             $this->share->saveProductShareImage($data);
-        } while (false);
+        }
 
-        $this->json_output($response);
+        redirect('/product/share/shareDescribe/'.$status);
     }
 
     /**
@@ -105,6 +131,52 @@ class share extends MY_Controller
         } while (false);
 
         self::json_output($response);
+    }
+
+    public function shareDescribe()
+    {
+        $shareId = $this->uri->segment(4, 0);
+
+        if ( empty ($shareId) ) {
+            show_error('参数错误!');
+        }
+
+        if(! $this->input->is_ajax_request()){
+            $this->load->model('product/Model_Product_Category', 'cate');
+            $this->channel = $this->cate->getCategroyList();
+        }
+
+        $this->load->model('product/Model_Product_Share', 'share');
+        $shareImg = $this->share->getProductShareImage($shareId);
+        $this->load->view('product/share/describe', array('s_img' => $shareImg));
+    }
+
+    /**
+     * 保存晒单照片描述
+     */
+    public function saveShareDescribe()
+    {
+        $number = $this->input->get_post('number');
+        $PhotoCover = $this->input->get_post('PhotoCover');
+
+        $this->load->model('product/Model_Product_Share', 'share');
+
+        for ($i = 1; $i <= $number; $i++) {
+            $id = $this->input->get_post('s_img_'.$i);
+            $title = $this->input->get_post('photo_name_'.$i);
+            $content = $this->input->get_post('photo_desc_'.$i);
+
+
+            $data = array(
+                'title' => $title,
+                'descr' => $content,
+                'is_cover' => $PhotoCover == $id ? '1' : '0',
+            );
+            $this->share->updateShareImage($data, $id);
+        }
+
+        redirect('/');
+        //$this->load->view('product/share/describe');
     }
 
     /**
