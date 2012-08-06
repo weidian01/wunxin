@@ -63,7 +63,7 @@ class share extends MY_Controller
             $config['upload_path'] = UPLOAD . 'product_share' . DS . $path.$status.DS;
             recursiveMkdirDirectory($config['upload_path']);
             $config['allowed_types'] = 'gif|jpg|png|jepg';
-            $config['max_size'] = '1000';
+            $config['max_size'] = '4000';
             $config['encrypt_name'] = true;
             $config['overwrite'] = true;
             $this->load->library('upload', $config);
@@ -133,6 +133,28 @@ class share extends MY_Controller
         self::json_output($response);
     }
 
+    public function getUserShareProduct()
+    {
+        $response = array('error' => '0', 'msg' => '获取成功', 'code' => 'get_success');
+
+        do {
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('product/Model_Product_Share', 'share');
+            $data = $this->share->getUserShareProductList($this->uInfo['uid']);
+
+            $response['data'] = $data;
+        } while (false);
+
+        self::json_output($response);
+    }
+
+    /**
+     * 晒单照片描述
+     */
     public function shareDescribe()
     {
         $shareId = $this->uri->segment(4, 0);

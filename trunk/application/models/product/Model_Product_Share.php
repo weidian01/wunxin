@@ -111,6 +111,26 @@ class Model_Product_Share extends MY_Model
     }
 
     /**
+     * 获取用户可以晒单的产品
+     *
+     * @param $uId
+     * @return null | array
+     */
+    public function getUserShareProductList($uId)
+    {
+        $this->db->select('*');
+        $this->db->from('order_product');
+        $this->db->join('order', 'order.order_sn = order_product.order_sn');
+        $this->db->where('order_product.uid', $uId);
+        $this->db->where('order.is_pay', ORDER_PAY_SUCC);
+        $this->db->where('order.picking_status', PICKING_COMPLETED);
+        $this->db->where('order_product.share_status', 0);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
+
+    /**
      * 获取用户的晒单
      *
      * @param int $uId

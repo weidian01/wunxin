@@ -27,4 +27,24 @@ class Model_Product_Recommend extends MY_Model
 
         return empty ($data) ? null : $data;
     }
+
+    /**
+     * 获取产品销售推荐
+     *
+     * @param int $limit
+     * @param int $offset
+     * @return null | array
+     */
+    public function getProductSalesRecommend($limit = 20, $offset = 0)
+    {
+        $this->db->select('*');
+        $this->db->from('product');
+        $this->db->where('status', 1);
+        $this->db->where('shelves', 1);
+        $this->db->order_by('sales', 'desc');
+        $this->db->limit($limit, $offset);
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+    }
 }

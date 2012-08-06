@@ -165,6 +165,9 @@ class Product extends MY_Controller
         }
     }
 
+    /**
+     * 删除产品
+     */
     public function deleteProduct()
     {
         $pId = $this->input->get_post('pid');
