@@ -38,12 +38,13 @@ class register extends MY_Controller
         $repassword = $this->input->get_post('repassword');
         $verifyCode = $this->input->get_post('verify_code');
         $redirect_url = $this->input->get_post('redirect_url');
-        $redirect_url = is_url($redirect_url) ? $redirect_url : config_item('base_url');
+        $redirect_url = is_url($redirect_url) ? $redirect_url : '/user/login/';
         $source = $this->input->get_post('source');
         $source = $source ? $source : 1;
 
-        $response = error(10034);
+        $response = array('error' => '0', 'msg' => '注册用户成功', 'code' => 'register_user_success');
         $response['redirect_url'] = $redirect_url;
+
         do {
             if (!is_username($username)) {
                 $response = error(10001);
@@ -59,7 +60,7 @@ class register extends MY_Controller
                 break;
             }
 
-            if ('' === $verifyCode || strtolower($verifyCode) !== strtolower($this->getVerifyCode())) {
+            if ('' === $verifyCode || md5(strtolower($verifyCode)) !== ($this->getVerifyCode())) {
                 $response = error(10005);
                 break;
             }
@@ -124,6 +125,21 @@ class register extends MY_Controller
         $this->codeimg->display();
     }
 
+    public function checkVerifyCode()
+    {
+        $verifyCode = $this->input->get_post('verify_code');
+
+        //$vc = md5(strtolower($verifyCode));
+
+        if ('' === $verifyCode || md5(strtolower($verifyCode)) !== ($this->getVerifyCode())) {
+            $response = error(10005);
+        } else {
+            $response = array('error' => '0', 'msg' => '验证成功', 'code' => 'verify_success');
+        }
+
+        self::json_output($response, true);
+    }
+
     public function show()
     {
         echo $this->getVerifyCode();
@@ -139,7 +155,7 @@ class register extends MY_Controller
 
         $this->load->helper('string');
         $rand_str =  str_replace(array('0','O','1','l'), array('o','o','L','L'), random_string('alnum', $lenght));
-        $newdata = array('verifyCode'  => $rand_str);
+        $newdata = array('verifyCode'  => md5(strtolower($rand_str)));
         $this->lib('session');
         $this->session->set_userdata($newdata);
         return $rand_str;

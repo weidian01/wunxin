@@ -108,15 +108,15 @@ cart.addToCart = function (pid, pSize, pNum, additional_info, bindingId)
     var param = 'pid='+pid+'&p_size='+pSize+'&p_num='+pNum+'&additional_info='+additional_info;
     var data = wx.ajax(url, param);
 
-    var status = 2;
+    //1 添加成功， 2 系统繁忙， 3 参数不全
     switch (data.error)
     {
-        case '0': status = 1;break;
-        case '60002': status = 2;break;
-        case '60003': status = 3;break;
+        case '0': wx.addToCartLayer(1, data.pinfo['pname'], bindingId);break;
+        case '60002': wx.showPop('系统繁忙，请稍后再试', bindingId);break;
+        case '60003': wx.showPop('参数不全', bindingId);break;
     }
 
-    wx.addToCartLayer(status, bindingId);
+    //wx.addToCartLayer(status, bindingId);
 
     cart.init();
 }

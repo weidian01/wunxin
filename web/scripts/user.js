@@ -93,20 +93,21 @@ user.submitLoginForm = function ()
     var redirectUrl = document.getElementById('redirect_url_id').value;
     var remember = wx.getRadioCheckBoxValue('remember') ? 1 : 0;
 
-    var userName = user.checkUserName();
-    var passWord = user.checkPassWord();
+    var userName = '';
+    var passWord = '';
 
     //console.log(remember);return ;
 
-    if ( ! userName ) return false;
-    if ( ! passWord ) return false;
+    if ( !(userName = user.checkUserName()) ) return false;
+    if ( !(passWord = user.checkPassWord()) ) return false;
 
     var url = 'user/login/submit';
     var param = 'username='+userName+'&password='+passWord+'&source='+source+'&redirect_url='+redirectUrl+'&remember='+remember;
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
-        window.location.href = data.redirect_url;
+        wx.goToUrl(data.redirect_url);
+        //window.location.href = data.redirect_url;
     }
 
     $('#message_id').html(data.msg);
@@ -159,22 +160,26 @@ user.checkVerifyCode = function ()
     $("#verify_code_notice_id").removeClass("mistake");
     $("#verify_code_notice_id").removeClass("txi");
 
-    if (!wx.isEmpty (verifyCodeCookie)) {
+    if (!wx.isEmpty (verifyCodePage)) {
         $("#verify_code_notice_id").removeClass("txi").addClass("mistake");
         $('#verify_code_notice_id').html('验证码为空！');
         return false;
     }
 
-    if (verifyCodeCookie.toLowerCase() != verifyCodePage.toLowerCase()) {
+    var status = '';
+    var url = '/user/register/checkVerifyCode';
+    var param = {"verify_code":verifyCodePage};
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        $("#verify_code_notice_id").removeClass("mistake").addClass("txi");
+        $('#verify_code_notice_id').html('输入正确！');
+        return verifyCodePage;
+    } else {
         $("#verify_code_notice_id").removeClass("txi").addClass("mistake");
         $('#verify_code_notice_id').html('验证码错误！');
         return false;
     }
-
-    $("#verify_code_notice_id").removeClass("mistake").addClass("txi");
-    $('#verify_code_notice_id').html('输入正确！');
-
-    return verifyCodePage;
 }
 
 //刷新验证码
@@ -228,7 +233,7 @@ user.submitRegisterForm = function ()
     var passWord = user.checkPassWord();
     var rePassWord = user.checkRePassWord();
     var verifyCode = user.checkVerifyCode();
-
+//console.log(verifyCode);
     if (!agree) {
         alert('请同意万象网服务条款');
     }
@@ -242,12 +247,13 @@ user.submitRegisterForm = function ()
     var param = 'username='+userName+'&password='+passWord+'&repassword='+rePassWord+'&source='+source+'&redirect_url='+redirectUrl+'&verify_code='+verifyCode;
     var data = wx.ajax(url, param);
 
-    if (data.error == '10034') {
-        window.location.href = data.redirect_url;
-    }
-
     $('#message_id').html(data.msg);
     $('.tips_box').fadeIn("slow");
+
+    if (data.error == '0') {
+        wx.goToUrl(data.redirect_url);
+        //window.location.href = data.redirect_url;
+    }
 }
 
 //收藏设计师

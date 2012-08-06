@@ -309,9 +309,59 @@ product.deleteProductComment = function(cId, bindingId)
 }
 
 //添加产品问答
-product.addQa = function (pId, title, content)
+product.addProductQa = function (pId, bindingId)
 {
-    if ( !wx.isEmpty(pId) || !wx.isEmpty(title) || !wx.isEmpty(content) ) {
+    if ( !wx.isEmpty(pId) ) {
+        return false;
+    }
+
+    if ( !wx.checkLoginStatus() ) {
+        return false;
+    }
+
+    var url = 'product/qa/checkQaProduct';
+    var param = 'pid='+pId;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        wx.productQaLayer(data.data);
+        return true;
+    }
+
+    var prompt = '已提过问题';
+    switch (data.error) {
+        case '50010': prompt = '参数不全';break;
+        case '20002': prompt = '产品不存在';break;
+        case '10009': wx.loginLayer();break;
+        case '20027': prompt = '已提过问题';break;
+    }
+
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    wx.showPop(prompt, bindingId);
+
+    return true;
+}
+
+//添加产品问答提交
+product.addProductQaSubmit = function (bindingId)
+{
+    var pId = parseInt(document.getElementById('pid_id').value);
+    var title = document.getElementById('title_id').value;
+    var content = document.getElementById('content_id').value;
+    var qaType = parseInt(wx.getRadioCheckBoxValue('q_type'));
+
+    if ( !wx.isEmpty(pId)) {
+        wx.showPop('产品ID为空', bindingId);
+        return false;
+    }
+
+    if ( title == '' || title.length < 5 || title.length > 50) {
+        wx.showPop('问题小于5或大于50个字符', bindingId);
+        return false;
+    }
+
+    if ( content == '' || content.length < 5 || content.length > 100) {
+        wx.showPop('问题描述小于5或大于100个字符', bindingId);
         return false;
     }
 
@@ -320,12 +370,25 @@ product.addQa = function (pId, title, content)
     }
 
     var url = 'product/qa/addQa';
-    var param = 'pid='+pId+'&title='+title+'&content='+content;
+    var param = 'pid='+pId+'&title='+title+'&content='+content+'&qa_type='+qaType;
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
+        wx.layerClose();
+        wx.showPop('提问成功');
         return true;
     }
+
+    var prompt = '系统繁忙，请稍后再试';
+    switch (data.error) {
+        case '50010': prompt = '参数不全';break;
+        case '20002': prompt = '产品不存在';break;
+        case '10009': wx.loginLayer();break;
+        case '20027': prompt = '已提过问题';break;
+        case '50011': prompt = '系统繁忙，请稍后再试';break;
+    }
+
+    wx.showPop(prompt, bindingId);
 
     return data;
 }
@@ -439,6 +502,11 @@ product.productShare = function (pId, bindingId)
         return true;
     }
 
+    if (data.error == '0') {
+        wx.productShareLayer(pId);
+        return true;
+    }
+
     var prompt = '系统繁忙，请稍后再试';
     switch (data.error) {
         case '50008': prompt = '晒单参数不全';break;
@@ -463,7 +531,7 @@ product.productShareSubmit = function (bindingId)
         return false;
     }
 
-    if (title.length < 5 || title.length > 80) {
+    if (content.length < 5 || content.length > 80) {
         //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">内容小于5或小于80个字符。</span><br/>' });
         wx.showPop('内容小于5或小于80个字符。', bindingId);
         return false;

@@ -69,17 +69,18 @@ class cart extends MY_Controller
                 'pname' => $pInfo['pname'],
                 'product_price' => fPrice($pInfo['sell_price']),
                 'product_num' => $pNum,
-                //'product_img' => $pInfo['img_addr'],
                 'size_id' => $size['size_id'],
                 'product_size' => $size['abbreviation'],
                 'additional_info' => $pAdditionalInfo,
             );
-            //echo '<pre>';print_r($cInfo);exit;
+
             $status = $this->setCartToCookie($cInfo);
             if (!$status) {
                 $response = error(60002);
                 break;
             }
+
+            $response['pinfo'] = $pInfo;
         } while (false);
 
         self::json_output($response,true);

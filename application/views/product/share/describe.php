@@ -157,7 +157,7 @@ $(document).ready(function(){
 					<div class="photo_editinfo">
 						<div class="wrap">
 							<div style="border:1px solid #eee;" id="" class="bg3 mod_pe_post2blog_v2 qzone-display">
-								<p>您已成功上传<span id="photo_num2" class="c_tx4">&nbsp; 2 &nbsp;</span>张晒单照片，把它们的购物经历讲出来和好友一起分享吧。</p>
+								<p>您已成功上传<span id="photo_num2" class="c_tx4">&nbsp; <?php echo count($s_img);?> &nbsp;</span>张晒单照片，把它们的购物经历讲出来和好友一起分享吧。</p>
 								<div class="mod_pe_post2blog_v2_list qzone-display">
 									<ul>
                                         <?php foreach ($s_img as $v) {?>

@@ -252,7 +252,7 @@ wx.isUrl = function (url)
     var strRegex = "^((https|http|ftp|rtsp|mms)?://)" + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp的user@
     + "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP形式的URL- 199.194.52.184
     + "|" // 允许IP和DOMAIN（域名）
-    + "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
+    //+ "([0-9a-z_!~*'()-]+\.)*" // 域名- www.
     + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 二级域名
     + "[a-z]{2,6})" // first level domain- .com or .museum
     + "(:[0-9]{1,4})?" // 端口- :80
@@ -348,7 +348,7 @@ wx.checkLoginStatus = function ()
     var auth = wx.getCookie('auth');
 
     if (!wx.isEmpty(auth)) {
-        alert ('暂未登陆，请登陆!');
+        wx.loginLayer();
         return false;
     }
 
@@ -356,7 +356,7 @@ wx.checkLoginStatus = function ()
     var data = wx.ajax(url, '');
 
     if (data.error == '10009') {
-        alert ('暂未登陆，请登陆!');
+        wx.loginLayer();
         return false;
     }
 
@@ -364,15 +364,17 @@ wx.checkLoginStatus = function ()
         return data.user_info;
     }
 
-    alert ('暂未登陆，请登陆!');
+    wx.loginLayer();
     return false;
 }
 
 //跳转到某个地址
 wx.goToUrl = function (url)
 {
-    url = wx.base_url+url;
+    //url = wx.base_url+url;
 
+    url = url.split('#');
+    url = url[0];
     /*
     if (wx.isUrl(url) ) {
         alert ('不是一个正确的URL地址!');
@@ -445,7 +447,7 @@ wx.layerClose = function ()
 }
 
 //收藏产品浮层 status 1 收藏成功， 2 已收藏过此产品， 3 收藏此产品不存在, 4 未知错误，系统繁忙
-wx.favoriteProductLayer = function(status, bingingId){
+wx.favoriteProductLayer = function(status, bindingId){
     var prompt = '该商品已成功放入收藏夹';
     var promptIcon = (status == '1') ? 'topicon' : 'topicon2';
     switch (status){
@@ -455,21 +457,11 @@ wx.favoriteProductLayer = function(status, bingingId){
         case 4: prompt = '系统繁忙，请稍后再试';break;
     }
 
+	var html = '\<div class="topinfo"><div class="pop-close" onclick="wx.layerClose()"></div> <span class="'+promptIcon+'"></span><span class="topicon2" style="display:none;"></span><p>'+prompt+
+     '&nbsp;&nbsp;&nbsp;<a class="popfont1" href="/user/center/productFavorite">查看收藏夹 >></a></p></div><div class="pop-t"><span class="pop-b">看过该商品的人还购买过</span><a class="pop-c" href="#">\
+     更多您可能喜欢的商品 >></a> </div><ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="/images/loading.gif"></div></li></ul>';
 
-	var html = '\<div class="topinfo"> \
-        <div class="pop-close" onclick="wx.layerClose()"></div> <span class="'+promptIcon+'"></span>\
-        <span class="topicon2" style="display:none;"></span> <p>'+prompt+'&nbsp;&nbsp;&nbsp;\
-        <a class="popfont1" href="/user/center/productFavorite">查看收藏夹 >></a></p> </div>\
-        <div class="pop-t"> <span class="pop-b">看过该商品的人还购买过</span> <a class="pop-c" href="#">更多您可能喜欢的商品 >></a> </div>\
-        <ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="/images/loading.gif"></div></li></ul>\
-        ';
-
-    if (wx.isEmpty(bingingId)) {
-        art.dialog({ follow: document.getElementById(bingingId), title:false, content: html
-        });
-    } else {
-        art.dialog({ title:false, content: html });
-    }
+    art.dialog({ follow: document.getElementById(bindingId), title:false, content: html });
 
     var number = 6;
     var url = '/product/recommend/favoriteRecommend';
@@ -481,10 +473,10 @@ wx.favoriteProductLayer = function(status, bingingId){
         var fData = data['data'];
         var fHtml = '';
         for (var i in fData) {
-            fHtml += '<li> <div class="pop-img"> <a href="#">' +
-                '<img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="60" height="60" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'"/></a> ' +
-                '</div> <p><a href="#" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'">'+fData[i].pname.substring(0,15)+'</a><br/>' +
-                '<span class="popfont2" style="font-size: 11px;">￥'+( (fData[i].sell_price) / 100 )+'</span></p></li>';
+            fHtml += '<li><div class="pop-img"><a href="#">\
+              <img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="60" height="60" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'"/></a>\
+              </div> <p><a href="#" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'">'+fData[i].pname.substring(0,15)+'</a><br/>\
+              <span class="popfont2" style="font-size: 11px;">￥'+( (fData[i].sell_price) / 100 )+'</span></p></li>';
         }
         $('.pop-goods').html(fHtml);
     }
@@ -493,57 +485,31 @@ wx.favoriteProductLayer = function(status, bingingId){
 //产品评论浮层
 wx.productCommentLayer = function (pId, pNmae)
 {
-    var html ='<input type="hidden" name="pid" value="'+pId+'" id="pid">\
-    <div class="commentDIV"><div class="tit">我要评论<div class="close-cm" onclick="wx.layerClose()"></div></div>\
-      <div class="cmt-gname"><strong>商品名称：</strong>'+pNmae+'</div><div class="cmtbox">\
-        <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_score" id="p_s_s_id"/>\
-          <dt><strong>商品评分：</strong></dt>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 1)"></dd> \
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 2)"></dd> \
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 3)"></dd> \
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 4)"></dd> \
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 5)"></dd>\
-        </dl>\
-         <dl id="p_e_s"><span id="p_e_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_exterior" id="p_e_s_id"/>\
-          <dt><strong>商品外观：</strong></dt>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 1)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 2)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 3)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 4)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 5)"></dd>\
-        </dl>\
-         <dl id="p_c_s"><span id="p_c_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_comfort" id="p_c_s_id"/>\
-          <dt><strong>商品舒适度：</strong></dt>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 1)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 2)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 3)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 4)"></dd>\
-          <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 5)"></dd>\
-        </dl></div>\
-      <div class="cmtbox"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>\
-        <td width="17%" height="28"><strong>尺码偏差：</strong></td>\
+    var html ='<input type="hidden" name="pid" value="'+pId+'" id="pid"> <div class="commentDIV"><div class="tit">我要评论<div class="close-cm" onclick="wx.layerClose()"></div></div>\
+    <div class="cmt-gname"><strong>商品名称：</strong>'+pNmae+'</div><div class="cmtbox"> <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span>\
+    <input type="hidden" value="5" name="product_score" id="p_s_s_id"/><dt><strong>商品评分：</strong></dt> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 1)"></dd> \
+    <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 2)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 3)"></dd>\
+    <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 4)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 5)"></dd></dl>\
+    <dl id="p_e_s"><span id="p_e_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_exterior" id="p_e_s_id"/>\
+    <dt><strong>商品外观：</strong></dt> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 1)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 2)"></dd>\
+    <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 3)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 4)"></dd>\
+    <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_e_s\', 5)"></dd> </dl>\
+    <dl id="p_c_s"><span id="p_c_s_n">(5分 - 非常满意)</span><input type="hidden" value="5" name="product_comfort" id="p_c_s_id"/>\
+    <dt><strong>商品舒适度：</strong></dt> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 1)"></dd>\
+    <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 2)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 3)"></dd>\
+    <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 4)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_c_s\', 5)"></dd> </dl></div>\
+    <div class="cmtbox"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="17%" height="28"><strong>尺码偏差：</strong></td>\
         <td width="19%"><input class="bdbox" name="size_deviation" type="radio" value="2" />&nbsp;&nbsp;<label class="bdlabel">偏大</label></td>\
         <td width="20%"><input class="bdbox" name="size_deviation" type="radio" value="1" checked="checked"/>&nbsp;&nbsp;<label class="bdlabel">合适</label></td>\
         <td width="44%"><input class="bdbox" name="size_deviation" type="radio" value="3" />&nbsp;&nbsp;<label class="bdlabel">偏小</label></td></tr>\
-    </table></div>\
-     <div class="cmtbox"><div class="cmt-title">\
-        <strong>评论标题：</strong>&nbsp;&nbsp;&nbsp;<span class="popfont2">*</span>&nbsp;&nbsp;&nbsp;请填写评论标题(5-25字) <br/><input class="popinput1" name="title" type="text" id="title"/></div></div>\
-      <div class="cmtbox"><div class="cmt-title">\
-        <strong>商品评论：</strong>&nbsp;&nbsp;&nbsp;<span class="popfont2">*</span>&nbsp;&nbsp;&nbsp;请填写评论标题(5-45字) <br/>\
-        <textarea class="poparea1" name="content" cols="" rows="" id="content"></textarea></div></div>\
-       <div class="cmtbox">\
-         <div class="cmt-tip">欢迎您发表原创、商品质量相关、对其它用户有参考价值的商品评论 发表评论可获积分，若评论被置顶还可以获得50个积分！详见积分规则 </div>\
-        <div class="cmt-btn"><input name="" type="button" class="cmt-button" value="发表评论" onclick="product.productCommentSubmit(\'c_p_submit_button\')" id="c_p_submit_button"/></div>\
-       </div></div>\
-       ';
+    </table></div><div class="cmtbox"><div class="cmt-title">\
+    <strong>评论标题：</strong>&nbsp;&nbsp;&nbsp;<span class="popfont2">*</span>&nbsp;&nbsp;&nbsp;请填写评论标题(5-25字) <br/><input class="popinput1" name="title" type="text" id="title"/></div></div>\
+    <div class="cmtbox"><div class="cmt-title"><strong>商品评论：</strong>&nbsp;&nbsp;&nbsp;<span class="popfont2">*</span>&nbsp;&nbsp;&nbsp;请填写评论标题(5-45字) <br/>\
+    <textarea class="poparea1" name="content" cols="" rows="" id="content"></textarea></div></div><div class="cmtbox">\
+    <div class="cmt-tip">欢迎您发表原创、商品质量相关、对其它用户有参考价值的商品评论 发表评论可获积分，若评论被置顶还可以获得50个积分！详见积分规则 </div>\
+    <div class="cmt-btn"><input name="" type="button" class="cmt-button" value="发表评论" onclick="product.productCommentSubmit(\'c_p_submit_button\')" id="c_p_submit_button"/></div></div></div>';
 
-    art.dialog({
-        opacity: 0.5,	// 透明度
-        padding: 0,
-        title: false,
-        content: html,
-        lock: true
-    });
+    art.dialog({ opacity: 0.5, padding: 0, title: false, content: html, lock: true });
 }
 
 //选择评分星星
@@ -579,138 +545,234 @@ wx.scoreStatSelect = function (id, pointNum)
 }
 
 //加入购物车浮层 status:1 添加成功， 2 系统繁忙， 3 参数不全
-wx.addToCartLayer = function (status, bindingId)
+wx.addToCartLayer = function (pId, pName, bindingId)
 {
+    var cartData = wx.ajax('/cart/getCart', '');
 
+    var totalNum = '';
+    var totalPrice = '';
+
+    for (var ci = 0; ci < cartData.length; ci++) {
+        totalNum += cartData[ci]['product_num'];
+        totalPrice += cartData[ci]['product_price'] * cartData[ci]['product_num'];
+    }
+
+    var html = '<div class="commentDIV"> <div class="tit">商品已成功加入购物车 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="addto-goods">\
+       <div class="p-img-g"><img src="'+wx.img_url+'product/'+idToPath(pId)+'default.jpg" width="109" height="109" /></div> <div class="p-cont-g">\
+       <p><a href="#">'+pName+'</a></p><div class="p-cont-price">购物车共 '+totalNum+' 件宝贝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计：<span class="popfont3">'+totalPrice+'</span>元</div>\
+       <div class="p-cont-btn"> <a class="goshopping" href="javascript:void(0);" onclick="wx.layerClose()">继续购物</a><a class="gocash" href="/cart/">去结算</a> </div></div></div>\
+       <div class="pop-t" style="padding-top:20px;"><span class="pop-b">看过该商品的人还购买过</span><a class="pop-c" href="/">更多您可能喜欢的商品 >></a></div>\
+       <ul class="pop-goods" style="padding:0px 0px 20px 20px;" id="pop-goods">\
+       <li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="/images/loading.gif"></div></li></ul></div>';
+
+    art.dialog({ follow: document.getElementById(bindingId), title:false, content: html,padding:0 });
+
+    var number = 5;
+    var url = '/product/recommend/getSalesRecommend';
+    var param = 'number='+number;
+    var data = wx.ajax(url, param);
+
+    if (wx.isEmpty(data['data'])) {
+        var fData = data['data'];
+        var fHtml = '';
+        for (var i in fData) {
+            fHtml += '<li><div class="pop-img"><a href="#"><img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="70" alt="aaaa" /></a></div>\
+              <p><a href="#" title="'+fData[i].pname+', ￥'+wx.fPrice( (fData[i].sell_price) / 100 )+'">'+fData[i].pname.substring(0,15)+'</a></p>\
+              <span class="popfont2">售价￥'+wx.fPrice( (fData[i].sell_price) / 100 )+'</span></li>';
+        }
+        $('.pop-goods').html(fHtml);
+    }
 }
 
 //登陆浮层
 wx.loginLayer = function ()
 {
-    var html = '\
-            <div class="commentDIV" style="width:510px;">\
-              <div class="tit" style="padding-left:0px;">\
-                <ul class="lgrg">\
-                  <li class="curr" id="login_id" onclick="wx.changeLRLayer(\'login\')">登录</li>\
-                  <li id="register_id" onclick="wx.changeLRLayer(\'register\')">注册</li>\
-                </ul>\
-                <div class="close-cm" onclick="wx.layerClose()"></div>\
-              </div>\
-              <div id="lgrg1">\
-                <div class="lgrgbox"><input type="hidden" name="source_id" id="source_id" value="1" />\
-                <input type="hidden" name="redirect_url_id" id="redirect_url_id" value="'+window.location.href+'" />\
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">\
-                    <tr>\
-                      <td width="28%" align="right"><span class="popfont4"><strong style="color:#666666;">用户名：</strong></span></td>\
-                      <td width="46%"><label>\
-                          <input class="popinput2" type="text" name="username_id" id="username_id" />\
-                        </label></td>\
-                      <td width="26%" id="username_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;">用户名小于6位或大于32位</td>\
-                    </tr>\
-                    <tr>\
-                      <td align="right"><span class="popfont4"><strong style="color:#666666;">密 码：</strong></span></td>\
-                      <td><input class="popinput2" type="password" name="password_id" id="password_id" /></td>\
-                      <td id="password_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;">dsadadsa<!--<a href="#">忘记密码了？</a>--></td>\
-                    </tr>\
-                  </table>\
-                  <div class="mistake" id="message_id" ></div>\
-                  <table width="100%" border="0" cellspacing="0" cellpadding="0">\
-                    <tr>\
-                      <td width="28%" align="right">&nbsp;</td>\
-                      <td width="22%"><input name="input2" type="button" class="cmt-button" value="登 录 " onclick="user.submitLoginForm()"/></td>\
-                      <td width="50%" valign="bottom"><a href="#">新用户注册</a></td>\
-                    </tr>\
-                  </table>\
-                </div>\
-                <div class="cmtbox2">\
-                  <div class="lgrg-tip"> <span class="popfont3">温馨提示：</span>\
-                    <p>1、请输入您的万象用户名及密码进行登录； <br />\
-                      2、如果还未注册万象用户名，请您<a onclick="wx.changeLRLayer(\'register\')">注册</a>万象网会员，注册用户成功后将会开始积分和累积消费金额。 <br />\
-                      如有疑问请进入<a href="#">帮助中心或联系客服</a></p>\
-                  </div><br />\
-                </div>\
-              </div>\
-              <div id="lgrg2" style="display:none;">\
-                <table class="zhuce" width="100%" border="0" cellspacing="0" cellpadding="0">\
-                  <tr>\
-                    <td width="25%" align="right" valign="top"><strong>用&nbsp;户&nbsp;名：</strong></td>\
-                    <td width="43%"><input class="popinput2" type="text" name="textfield" id="textfield" />\
-                      <br />\
-                      <span class="popfont5">请填写有效的Email或手机号</span><span class="mstk" style="display:none;">您输入的Email或手机号有误</span></td>\
-                    <td width="32%" valign="top"><span class="rg-yes"></span><span class="rg-no" style="display:none;"></span></td>\
-                  </tr>\
-                  <tr>\
-                    <td align="right" valign="top"><strong style="color:#666666;">登录密码：</strong></td>\
-                    <td><input class="popinput2" type="text" name="textfield3" id="textfield3" />\
-                      <br />\
-                      <span class="mstk">您输入的Email或手机号有误</span></td>\
-                    <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
-                  </tr>\
-                  <tr>\
-                    <td align="right" valign="top"><strong style="color:#666666;">确认密码：</strong></td>\
-                    <td><input class="popinput2" type="text" name="textfield4" id="textfield4" />\
-                      <br />\
-                      <span class="mstk">您输入的Email或手机号有误</span></td>\
-                    <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
-                  </tr>\
-                  <tr>\
-                    <td align="right" valign="top"><strong style="color:#666666;">验&nbsp;证&nbsp;码：</strong></td>\
-                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">\
-                        <tr>\
-                          <td width="40%"><input class="popinput3" type="text" name="textfield5" id="textfield7" />\
-                            <br/>\
-                            <span class="mstk">请输入验证码</span></td>\
-                          <td width="60%" valign="top"><img src="/images/yzm_03.jpg" alt="" width="120" height="21" /><br/>\
-                            <span class="mstk">看不请</span><a href="#">，换一张</a></td>\
-                        </tr>\
-                      </table></td>\
-                    <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
-                  </tr>\
-                  <tr>\
-                    <td align="right" valign="top">&nbsp;</td>\
-                    <td><strong>请阅读《<a href="#">万象服务条款</a>》 </strong></td>\
-                    <td valign="top">&nbsp;</td>\
-                  </tr>\
-                  <tr>\
-                    <td align="right" valign="top">&nbsp;</td>\
-                    <td><input name="input2" type="button" class="cmt-button" value="注 册 " /></td>\
-                    <td valign="top">&nbsp;</td>\
-                  </tr>\
-                </table>\
-              </div>\
-            </div>\
-        ';
+    var html = '<div class="commentDIV" style="width:510px;"> <div class="tit" style="padding-left:0px;"> <ul class="lgrg"> <li class="curr" id="login_id" onclick="wx.changeLRLayer(\'login\')">登录</li>\
+     <li id="register_id" onclick="wx.changeLRLayer(\'register\')">注册</li> </ul> <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div id="switch_id"> </div> </div>';
 
-    art.dialog({
-        opacity: 0.5,	// 透明度
-        padding: 0,
-        title: false,
-        content: html,
-        lock: true
-    });
+    art.dialog({ opacity: 0.5, padding: 0, title: false, content: html, lock: true });
+
+    wx.changeLRLayer('login');
 }
 
+//改变登陆与注册的层
 wx.changeLRLayer = function (lr)
 {
+    var userName = wx.getCookie('username');
+    userName = ( userName == null ) ? '' : userName;
+
     if (lr == 'login') {
         $('#login_id').addClass('curr');
         $('#register_id').removeClass('curr');
-        document.getElementById('lgrg1').style.display = 'block';
-        document.getElementById('lgrg2').style.display = 'none';
+
+        var Html = '<div id="lgrg1"> <div class="lgrgbox"><input type="hidden" name="source_id" id="source_id" value="1" />\
+            <input type="hidden" name="redirect_url_id" id="redirect_url_id" value="'+window.location.href+'" /> <table width="100%" border="0" cellspacing="0" cellpadding="0">\
+                <tr> <td width="28%" align="right"><span class="popfont4"><strong style="color:#666666;">用户名：</strong></span></td>\
+                  <td width="46%"><label><input class="popinput2" type="text" name="username_id" id="username_id" onblur="user.checkUserName()" maxlength="32" value="'+userName+'"/></label></td>\
+                  <td width="26%"></td> </tr> <tr> <td align="right"><span class="popfont4"><strong style="color:#666666;">密 码：</strong></span></td>\
+                  <td><input class="popinput2" type="password" name="password_id" id="password_id" onkeydown="user.checkLoginIsSubmit(event)" onblur="user.checkPassWord()" maxlength="32"/></td>\
+                  <td><!--<a href="#">忘记密码了？</a>--></td> </tr> </table>\
+              <span class="mistake" id="username_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;font-size:12px;padding-left:140px;"></span>\
+              <span class="mistake" id="password_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;font-size:12px;"></span>\
+              <span class="mistake" id="message_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;font-size:12px;"></span>\
+              <table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="28%" align="right">&nbsp;</td>\
+                  <td width="22%"><input name="input2" type="button" class="cmt-button" value="登 录 " onclick="user.submitLoginForm()"/></td>\
+                  <td width="50%" valign="bottom"><a href="javascript:void(0);" onclick="wx.changeLRLayer(\'register\')">新用户注册</a></td> </tr> </table>\
+            </div>\
+            <div class="cmtbox2"> <div class="lgrg-tip"> <span class="popfont3">温馨提示：</span>\
+            <p>1、请输入您的万象用户名及密码进行登录； <br /> 2、如果还未注册万象用户名，请您<a onclick="wx.changeLRLayer(\'register\')">注册</a>万象网会员，注册用户成功后将会开始积分和累积消费金额。 <br />\
+              如有疑问请进入<a href="#">帮助中心或联系客服</a></p> </div><br /></div></div> ';
     } else {
         $('#register_id').addClass('curr');
         $('#login_id').removeClass('curr');
-        document.getElementById('lgrg1').style.display = 'none';
-        document.getElementById('lgrg2').style.display = 'block';
+
+        var Html = '<div id="lgrg2""><input type="hidden" name="source_id" id="source_id" value="1" /> <input type="hidden" name="redirect_url_id" id="redirect_url_id" value="/user/login/" />\
+                <table class="zhuce" width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="25%" align="right" valign="top"><strong>用&nbsp;户&nbsp;名：</strong></td>\
+                    <td width="43%"> <input class="popinput2" type="text" name="username_id" id="username_id"  onkeydown="user.checkRegisterIsSubmit(event);" onblur="user.checkUserExist()" maxlength="32" value="'+userName+'"/>\
+                      <br /> <span class="popfont5" id="username_notice_id" style="padding-bottom: px;padding-left: 0px;font-size:12px;">请输入邮件地址</span> </td>\
+                    <td width="32%" valign="top"><!--<span class="rg-yes"></span><span class="rg-no" style="display:none;"></span>--></td> </tr> <tr>\
+                    <td align="right" valign="top"><strong style="color:#666666;">登录密码：</strong></td>\
+                    <td><input class="popinput2" type="password" name="password_id" id="password_id" onkeydown="user.checkLoginIsSubmit(event)" onblur="user.checkPassWord()" maxlength="32"/> <br />\
+                      <span class="popfont5" id="password_notice_id" style="padding-bottom: px;padding-left: 0px;font-size:12px;">请输入密码</span></td>\
+                    <td valign="top"><!--<span class="rg-yes" style="display:none;"></span><span class="rg-no"></span>--></td> </tr> <tr>\
+                    <td align="right" valign="top"><strong style="color:#666666;">确认密码：</strong></td>\
+                    <td><input class="popinput2" type="password" name="repassword_id" id="repassword_id"  onkeydown="user.checkRegisterIsSubmit(event);" onblur="user.checkRePassWord()" /> <br />\
+                      <span class="txi" id="repassword_notice_id" style="padding-bottom: px;padding-left: 0px;font-size:12px;">请输入密码</span></td>\
+                    <td valign="top"><!--<span class="rg-yes" style="display:none;"></span><span class="rg-no"></span>--></td> </tr>\
+                  <tr> <td align="right" valign="top"><strong style="color:#666666;">验&nbsp;证&nbsp;码：</strong></td> <td><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr>\
+                  <td width="40%"> <input class="popinput3" type="text" name="verify_code" id="verify_code_id" onkeydown="user.checkRegisterIsSubmit(event);" onblur="user.checkVerifyCode();"/>\
+                            <br/><span class="" id="verify_code_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;font-size:12px;">请输入验证码</span></td>\
+                          <td width="60%" valign="top"><img src="/user/register/verifyCode" alt="" id="verify_code" onclick="user.refreshVerifyCode()"/><br/>\
+                            <span class="mstk">看不请</span><a onclick="user.refreshVerifyCode()" href="javascript:void(0);">，换一张</a></td> </tr> </table></td>\
+                    <td valign="top"><!--<span class="rg-yes" style="display:none;"></span><span class="rg-no"></span>--></td> </tr>\
+                  <tr> <td align="right" valign="top">&nbsp;</td> <td><input id="agree_id" type="checkbox" checked="checked" name="agree"><strong>请阅读《<a href="#">万象服务条款</a>》 </strong></td>\
+                    <td valign="top">&nbsp;</td> </tr>\
+                  <tr> <td align="right" valign="top">&nbsp;</td> <td><input name="input2" type="button" class="cmt-button" value="注 册 "  onclick="user.submitRegisterForm()"/></td>\
+                    <td valign="top">&nbsp;</td> </tr> </table> </div> ';
     }
+
+    $('#switch_id').html(Html);
 }
 
 //产品晒单浮层
-wx.productShareLayer = function (pId, pName)
+wx.productShareLayer = function (pId)
 {
+    var data = wx.ajax('/product/share/getUserShareProduct', '');
 
+    if ( !wx.isEmpty(data['data']) ) {
+        wx.showPop('没有可以晒单的产品');
+        return false;
+    }
+
+    var pHtml = '';
+    var pData = data['data'];
+    for (var i in pData) {//console.log(pData[i]);
+        pHtml += '<dl onmouseover="wx.shareProductLayerBackground(this)" onclick="wx.selectShareProduct('+pData[i].pid+', \''+pData[i].pname.substring(0, 40)+'\')"><dt>\
+            <img src="'+wx.static_url+'upload/product/'+idToPath(pData[i].pid)+'icon.jpg" width="43" height="43"/></dt><dd>'+pData[i].pname.substring(0, 40)+'</dd></dl>';
+    }
+    //console.log(data);
+
+    var html = '<form action="/product/share/add" method="post"  enctype="multipart/form-data" name="product_share_form">\
+        <div class="commentDIV show-o-w"> <div class="tit">发表晒单 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="questbox">\
+        <input type="hidden" name="pid" id="curr_share_product_id" value="'+pData[0].pid+'"/>\
+        <table class="queat-ms2" width="100%" border="0" cellspacing="0" cellpadding="0">\
+        <tr><td align="right" valign="top"><strong>晒单商品</strong> <span class="popfont2">*</span></td>\
+        <td><div class="show-goods" onmouseover="wx.shareProductLayer(1)" onmouseout="wx.shareProductLayer(0)"><span id="curr_share_product_name">'+pData[0].pname.substring(0, 40)+'</span>\
+        <div class="show-goods-box" style="display:none;" id="show_goods_box">'+pHtml+'<div class="more-sdgoods"><!--<a href="#">查看更多晒单商品 >></a>--></div></div> </div> \
+        订单完成后所购商品才能晒单，每个商品只可晒单一次</td> </tr> <tr> <td width="17%" align="right" valign="top"><strong>标题</strong> <span class="popfont2">*</span></td>\
+        <td width="83%"><input name="title" type="text" class="popinput1" id="share_title_id" /> <span class="popfont2">请输入5或50个字符</span></td> </tr> <tr>\
+        <td align="right" valign="top"><strong>内容</strong> <span class="popfont2">*</span></td> <td><textarea name="content" cols="45" rows="5" class="poparea1" id="share_content_id"></textarea>\
+        <div class="word-num"> <div class="word-num-w">请输入5或80个字符</div> <!--<div class="word-num-tip">还能输入10000个字符</div>--> </div></td> </tr>\
+        <tr> <td align="right" valign="top"><strong>上传图片</strong> <span class="popfont2">*</span></td> <td><table width="100%" border="0" cellspacing="0" cellpadding="0">\
+        <tr> <td width="19%" valign="top"><input class="upload-btnp" type="file" name="images[]" id="share_file_id" value="上传"  multiple=""/> </td></tr>\
+        <tr><td width="81%" style="text-align: left;">请上传3-10张图片，每张图片不超过4M，支持的图片格式为 jpg，png，gif；可一次上传多张；</td> </tr> </table></td> </tr>\
+        </table> <div class="post-q-btn" style="text-align: center;"> \
+        <input id="submit_share_product" type="button" class="pop-btn" value="提交问题" onclick="product.productShareSubmit(\'submit_share_product\')"/> </div> </div>\
+        <div class="cmtbox2" style="padding-left:20px;"> <div class="lgrg-tip"> <span class="popfont3">温馨提示：</span>\
+        <p>·您可以将自己的使用感受、选购建议、实物照片、使用场景、拆包过程等与网友们分享； <br /> ·每个商品前5位成功晒单者且图片数在3张及以上的客户可获得10个积分奖励；\
+          ·请保证所上传的图片是原创的及合法的，否则万象有权删除图片； <br /> </p> </div> </div></div> </form>';
+
+    art.dialog({ opacity: 0.5, padding: 0, title: false, content: html, lock: true });
 }
 
+//显示晒单浮层上的选择层
+wx.shareProductLayer = function (t)
+{
+    var status =  (t == 1) ? 'block' : 'none';
+
+    document.getElementById('show_goods_box').style.display = status;
+}
+
+//改变晒单浮层上选择层的背景色等
+wx.shareProductLayerBackground = function (t)
+{
+    $('#show_goods_box dl').each(function (){
+        $(this).css('background-color', '');
+    });
+
+    $(t).css('background-color', '#C4C4C4');
+}
+
+//在晒单浮层上 选择在进行晒单的产品
+wx.selectShareProduct = function (pId, pName)
+{
+    if ( !wx.isEmpty(pId) || !wx.isEmpty(pName) ) {
+        return false;
+    }
+
+    document.getElementById('curr_share_product_id').value = pId;
+    $('#curr_share_product_name').html(pName);
+    document.getElementById('show_goods_box').style.display = 'none';
+}
+
+wx.productQaLayer = function (data)
+{
+    var html = '<input type="hidden" name="pid" value="'+data.pid+'" id="pid_id"/><div class="commentDIV"> <div class="tit">我的提问 <div class="close-cm" onclick="wx.layerClose()"></div> </div>\
+      <div class="addto-goods" style="padding-bottom:5px;">\
+        <div class="p-img-g"><img src="'+wx.static_url+'upload/product/'+idToPath(data.pid)+'icon.jpg" width="109" height="109" /></div>\
+        <div class="p-cont-g2">\
+          <a href="#"><strong>'+data.pname.substring(0, 50)+'</strong></a><br />\
+          售价：<span class="popfont6">'+wx.fPrice(data.sell_price)+'</span> 元<br />\
+          提问数量：<span class="popfont6">'+data.qa_num+'</span> 条\
+          <div class="p-cont-pf">\
+            <!--<div class="p-pf-text">商品评分：</div>\
+            <div class="p-cont-star"><span class="p-star-full"></span><span class="p-star-full"></span><span class="p-star-full"></span><span class="p-star-full"></span><span class="p-star-emp"></span></div>\
+            <div class="p-pf-text"><span class="popfont6">4.2分</span>&nbsp;<a href="#">(12条评论)</a></div>-->\
+          </div>\
+        </div>\
+      </div>\
+      <div class="questbox">\
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:8px;">\
+      <tr>\
+        <td width="17%" height="28"><strong>提问类型</strong>*</td>\
+        <td width="19%"><input class="bdbox" name="q_type" type="radio" value="1" checked="checked"/> <label class="bdlabel">尺码问题</label></td>\
+        <td width="20%"><input class="bdbox" name="q_type" type="radio" value="2" />&nbsp;<label class="bdlabel">颜色问题</label> </td>\
+        <td width="22%"><input class="bdbox" name="q_type" type="radio" value="3" />&nbsp;<label class="bdlabel">商品材质</label></td>\
+        <td width="22%"><input class="bdbox" name="q_type" type="radio" value="4" />&nbsp;<label class="bdlabel">其他</label></td>\
+      </tr>\
+    </table>\
+    <table class="queat-ms" width="100%" border="0" cellspacing="0" cellpadding="0">\
+      <tr>\
+        <td width="16%" valign="top"><strong>您的问题</strong></td>\
+        <td width="84%">\
+          <input name="textfield" type="text" class="popinput4" id="title_id" /><br />\
+          <span class="popfont2">请输入5至50个字符</span></td>\
+      </tr>\
+      <tr>\
+        <td valign="top"><strong>问题描述</strong><span class="popfont2">*</span></td>\
+        <td>\
+          <textarea name="textarea" cols="45" rows="5" class="poparea2" id="content_id"></textarea><br />\
+          <span class="popfont2">请输入5至100个字符</span></td>\
+      </tr>\
+    </table>\
+    <div class="post-q-btn"><input name="" type="button" class="pop-btn" value="提交问题" onclick="product.addProductQaSubmit(\'qa_submit_button\')" id="qa_submit_button"/></div>\
+    </div>\
+    </div>';
+
+    art.dialog({ opacity: 0.5, padding: 0, title: false, content: html, lock: true });
+}
+
+//弹出提示框
 wx.showPop = function (content, bindingId, timeOut)
 {
     var time = timeOut;

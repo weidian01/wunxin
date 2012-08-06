@@ -16,6 +16,7 @@ class qa extends MY_Controller
         $pid = intval( $this->input->get_post('pid') );
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
+        $qaType = $this->input->get_post('qa_type');
         $ip = $this->input->ip_address();
 
         $response = array('error' => '0', 'msg' => '提交疑难问答成功', 'code' => 'qa_delivery_success');
@@ -31,13 +32,29 @@ class qa extends MY_Controller
                 break;
             }
 
+            $this->load->model('product/Model_Product', 'product');
+            $product = $this->product->getProductById($pid);
+            if ( empty ($product) ) {
+                $response = error(20002);
+                break;
+            }
+
+            //是否提问过
+            $this->load->model('product/Model_Product_QA', 'qa');
+            $qaData = $this->qa->getUserProductQa($this->uInfo['uid'], $pid);
+            if ( !empty ($qaData) ) {
+                $response = error(20027);
+                break;
+            }
+
             $data = array(
                 'pid' => $pid,
                 'uid' => $this->uInfo['uid'],
                 'uname' => $this->uInfo['uname'],
                 'title' => $title,
                 'content' => $content,
-                'ip' => $ip
+                'ip' => $ip,
+                'qa_type' => $qaType,
             );
 
             $this->load->model('product/Model_Product_QA', 'qa');
@@ -46,6 +63,48 @@ class qa extends MY_Controller
                 $response = error(50011);
                 break;
             }
+        } while (false);
+
+        self::json_output($response);
+    }
+
+    /**
+     * 检查是否可以对产品提问
+     */
+    public function checkQaProduct()
+    {
+        $pid = intval( $this->input->get_post('pid') );
+
+        $response = array('error' => '0', 'msg' => '检查成功', 'code' => 'check_success');
+
+        do {
+            if (empty ($pid)) {
+                $response = error(50010);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('product/Model_Product', 'product');
+            $product = $this->product->getProductById($pid);
+            if ( empty ($product) ) {
+                $response = error(20002);
+                break;
+            }
+
+            //是否提问过
+            $this->load->model('product/Model_Product_QA', 'qa');
+            $qaData = $this->qa->getUserProductQa($this->uInfo['uid'], $pid);
+            if ( !empty ($qaData) ) {
+                $response = error(20027);
+                break;
+            }
+
+            $response['data'] = $product;
+            $response['data']['qa_num'] = $this->qa->getProductQaCount($pid);
         } while (false);
 
         self::json_output($response);

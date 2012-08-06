@@ -23,6 +23,7 @@ class Model_Product_QA extends MY_Model
             'title' => $qInfo['title'],
             'content' => $qInfo['content'],
             'ip' => $qInfo['ip'],
+            'qa_type' => $qInfo['qa_type'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 
@@ -55,6 +56,8 @@ class Model_Product_QA extends MY_Model
      * @param int $pid
      * @param int $limit
      * @param int $offset
+     * @param string $fields
+     * @param string $order
      * @return array
      */
     public function getProductQAByPid($pid, $limit = 20, $offset = 0, $fields = '*', $order = null)
@@ -89,6 +92,33 @@ class Model_Product_QA extends MY_Model
         $this->db->select('*')->from('product_qa')->where('uid', $uId);
 
         return $this->db->count_all_results();
+    }
+
+    /**
+     * 获取产品提问数量
+     *
+     * @param $pId
+     * @return int
+     */
+    public function getProductQaCount($pId)
+    {
+        $this->db->select('*')->from('product_qa')->where('pid', $pId);
+
+        return $this->db->count_all_results();
+    }
+
+    /**
+     * 获取用户对某个产品的疑难问答
+     *
+     * @param $uId
+     * @param $pId
+     * @return null | array
+     */
+    public function getUserProductQa($uId, $pId)
+    {
+        $data = $this->db->select('*')->get_where('product_qa', array('uid' => $uId, 'pid' =>$pId))->row_array();
+
+        return empty ($data) ? null : $data;
     }
 
     /**

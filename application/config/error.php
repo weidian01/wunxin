@@ -56,7 +56,7 @@ $error[10031] = array('error' => '10031', 'msg' => '删除用户收货地址失�
 $error[10032] = array('error' => '10032', 'msg' => '删除用户收货地址成功', 'code' => 'delete_user_recent_address_success');
 $error[10033] = array('error' => '10033', 'msg' => '删除用户收货地址参数不全', 'code' => 'delete_user_recent_address_parameter_failure');
 
-$error[10034] = array('error' => '10034', 'msg' => '注册用户成功', 'code' => 'register_user_success');
+//$error[10034] = array('error' => '10034', 'msg' => '注册用户成功', 'code' => 'register_user_success');
 
 $error[10035] = array('error' => '10035', 'msg' => '用户可以使用', 'code' => 'you_can_use_the');
 
@@ -115,6 +115,8 @@ $error[20024] = array('error' => '20024', 'msg' => '删除产品问答参数不�
 
 $error[20025] = array('error' => '20025', 'msg' => '删除产品参数不全', 'code' => 'delete_product_parameter_failure');
 $error[20026] = array('error' => '20026', 'msg' => '删除产品失败', 'code' => 'delete_product_failure');
+
+$error[20027] = array('error' => '20027', 'msg' => '已对产品进行过提问', 'code' => 'already_question_answer');
 
 
 

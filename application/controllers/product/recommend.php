@@ -22,4 +22,16 @@ class recommend extends MY_Controller
 //sleep(1);
         self::json_output($response);
     }
+
+    public function getSalesRecommend()
+    {
+        $number = $this->input->get_post('number');
+
+        $this->load->model('product/Model_Product_Recommend', 'recommend');
+        $data = $this->recommend->getProductSalesRecommend($number);
+
+        $response = array('error' => '0', 'msg' => '获取成功', 'code' => 'get_success', 'data' => $data);
+//sleep(1);
+        self::json_output($response);
+    }
 }
