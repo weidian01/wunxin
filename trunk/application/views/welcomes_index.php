@@ -16,6 +16,7 @@
     <![endif]-->
 </head>
 <body>
+<a onclick="wx.loginLayer()">aa</a>
 <?php include 'header.php';?>
 <div class="box2">
     <div class="container">
@@ -502,6 +503,7 @@
 </div>
 <?php include 'footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
 <script type="text/javascript">
     //转播图 代码开始
     var st = new SlideTrans("idContainer2", "idSlider2", <?php echo count($broadcast_recommend);?>, { Vertical:false });

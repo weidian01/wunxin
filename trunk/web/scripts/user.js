@@ -106,7 +106,7 @@ user.submitLoginForm = function ()
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
-        window.location.href=data.redirect_url;
+        window.location.href = data.redirect_url;
     }
 
     $('#message_id').html(data.msg);

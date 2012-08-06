@@ -594,29 +594,30 @@ wx.loginLayer = function ()
                   <li class="curr" id="login_id" onclick="wx.changeLRLayer(\'login\')">登录</li>\
                   <li id="register_id" onclick="wx.changeLRLayer(\'register\')">注册</li>\
                 </ul>\
-                <div class="close-cm"></div>\
+                <div class="close-cm" onclick="wx.layerClose()"></div>\
               </div>\
               <div id="lgrg1">\
-                <div class="lgrgbox">\
+                <div class="lgrgbox"><input type="hidden" name="source_id" id="source_id" value="1" />\
+                <input type="hidden" name="redirect_url_id" id="redirect_url_id" value="'+window.location.href+'" />\
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">\
                     <tr>\
-                      <td width="28%" align="right"><span class="popfont4"><strong>用户名：</strong></span></td>\
+                      <td width="28%" align="right"><span class="popfont4"><strong style="color:#666666;">用户名：</strong></span></td>\
                       <td width="46%"><label>\
-                          <input class="popinput2" type="text" name="textfield" id="textfield" />\
+                          <input class="popinput2" type="text" name="username_id" id="username_id" />\
                         </label></td>\
-                      <td width="26%">&nbsp;</td>\
+                      <td width="26%" id="username_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;">用户名小于6位或大于32位</td>\
                     </tr>\
                     <tr>\
-                      <td align="right"><span class="popfont4"><strong>密 码：</strong></span></td>\
-                      <td><input class="popinput2" type="text" name="textfield2" id="textfield2" /></td>\
-                      <td><a href="#">忘记密码了？</a></td>\
+                      <td align="right"><span class="popfont4"><strong style="color:#666666;">密 码：</strong></span></td>\
+                      <td><input class="popinput2" type="password" name="password_id" id="password_id" /></td>\
+                      <td id="password_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;">dsadadsa<!--<a href="#">忘记密码了？</a>--></td>\
                     </tr>\
                   </table>\
-                  <div class="mistake">您输入的密码错误！</div>\
+                  <div class="mistake" id="message_id" ></div>\
                   <table width="100%" border="0" cellspacing="0" cellpadding="0">\
                     <tr>\
                       <td width="28%" align="right">&nbsp;</td>\
-                      <td width="22%"><input name="input2" type="button" class="cmt-button" value="登 录 " /></td>\
+                      <td width="22%"><input name="input2" type="button" class="cmt-button" value="登 录 " onclick="user.submitLoginForm()"/></td>\
                       <td width="50%" valign="bottom"><a href="#">新用户注册</a></td>\
                     </tr>\
                   </table>\
@@ -624,44 +625,42 @@ wx.loginLayer = function ()
                 <div class="cmtbox2">\
                   <div class="lgrg-tip"> <span class="popfont3">温馨提示：</span>\
                     <p>1、请输入您的万象用户名及密码进行登录； <br />\
-                      2、如果还未注册万象用户名，您可以使用V+用户名进行登录,登录后系统会<br />\
-                      自动为您注册一个与V+帐户相关联的万象帐户。帐户关联后您可共享V+的会<br />\
-                      员积分和累积消费金额。 <br />\
+                      2、如果还未注册万象用户名，请您<a onclick="wx.changeLRLayer(\'register\')">注册</a>万象网会员，注册用户成功后将会开始积分和累积消费金额。 <br />\
                       如有疑问请进入<a href="#">帮助中心或联系客服</a></p>\
-                  </div>\
+                  </div><br />\
                 </div>\
               </div>\
               <div id="lgrg2" style="display:none;">\
                 <table class="zhuce" width="100%" border="0" cellspacing="0" cellpadding="0">\
                   <tr>\
-                    <td width="25%" align="right" valign="top">用&nbsp;户&nbsp;名：</td>\
+                    <td width="25%" align="right" valign="top"><strong>用&nbsp;户&nbsp;名：</strong></td>\
                     <td width="43%"><input class="popinput2" type="text" name="textfield" id="textfield" />\
                       <br />\
                       <span class="popfont5">请填写有效的Email或手机号</span><span class="mstk" style="display:none;">您输入的Email或手机号有误</span></td>\
                     <td width="32%" valign="top"><span class="rg-yes"></span><span class="rg-no" style="display:none;"></span></td>\
                   </tr>\
                   <tr>\
-                    <td align="right" valign="top">登录密码：</td>\
+                    <td align="right" valign="top"><strong style="color:#666666;">登录密码：</strong></td>\
                     <td><input class="popinput2" type="text" name="textfield3" id="textfield3" />\
                       <br />\
                       <span class="mstk">您输入的Email或手机号有误</span></td>\
                     <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
                   </tr>\
                   <tr>\
-                    <td align="right" valign="top">确认密码：</td>\
+                    <td align="right" valign="top"><strong style="color:#666666;">确认密码：</strong></td>\
                     <td><input class="popinput2" type="text" name="textfield4" id="textfield4" />\
                       <br />\
                       <span class="mstk">您输入的Email或手机号有误</span></td>\
                     <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
                   </tr>\
                   <tr>\
-                    <td align="right" valign="top">验&nbsp;证&nbsp;码：</td>\
+                    <td align="right" valign="top"><strong style="color:#666666;">验&nbsp;证&nbsp;码：</strong></td>\
                     <td><table width="100%" border="0" cellspacing="0" cellpadding="0">\
                         <tr>\
                           <td width="40%"><input class="popinput3" type="text" name="textfield5" id="textfield7" />\
                             <br/>\
                             <span class="mstk">请输入验证码</span></td>\
-                          <td width="60%" valign="top"><img src="images/yzm_03.jpg" alt="" width="120" height="21" /><br/>\
+                          <td width="60%" valign="top"><img src="/images/yzm_03.jpg" alt="" width="120" height="21" /><br/>\
                             <span class="mstk">看不请</span><a href="#">，换一张</a></td>\
                         </tr>\
                       </table></td>\
@@ -681,14 +680,28 @@ wx.loginLayer = function ()
               </div>\
             </div>\
         ';
+
+    art.dialog({
+        opacity: 0.5,	// 透明度
+        padding: 0,
+        title: false,
+        content: html,
+        lock: true
+    });
 }
 
 wx.changeLRLayer = function (lr)
 {
     if (lr == 'login') {
-
+        $('#login_id').addClass('curr');
+        $('#register_id').removeClass('curr');
+        document.getElementById('lgrg1').style.display = 'block';
+        document.getElementById('lgrg2').style.display = 'none';
     } else {
-        
+        $('#register_id').addClass('curr');
+        $('#login_id').removeClass('curr');
+        document.getElementById('lgrg1').style.display = 'none';
+        document.getElementById('lgrg2').style.display = 'block';
     }
 }
 
