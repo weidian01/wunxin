@@ -720,6 +720,11 @@ wx.showPop = function (content, bindingId, timeOut)
     art.dialog({ title:false, follow: document.getElementById(bindingId), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;">'+content+'</span><br/>' });
 }
 
+wx.productURL = function(pid)
+{
+    return  wx.base_url + 'product/' + pid;
+}
+
 wx.initLoginStatus();
 
 wx.cartGlobalInit();

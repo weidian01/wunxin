@@ -182,190 +182,25 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="sidebox">
       <div class="side-tit2">T恤销售排行榜</div>
       <div class="side-qh">
-        <div class="side-m current" id="sidet1" onmouseover="rankbox('sidet','rankt','1')">同类别</div>
-        <div class="side-m" id="sidet2" onmouseover="rankbox('sidet','rankt','2')">同品牌</div>
-        <div class="side-m" id="sidet3" onmouseover="rankbox('sidet','rankt','3')">同价位</div>
+        <div class="side-m current" id="sidet1" onmouseover="rankbox('sidet','rank','1')">同类别</div>
+        <div class="side-m" id="sidet2" onmouseover="rankbox('sidet','rank','2')">全部类别</div>
+        <div class="side-m" id="sidet3" onmouseover="rankbox('sidet','rank','3')">同品牌</div>
       </div>
-      <div class="rankbox" id="rankt1">
-        <ul class="bdan">
-          <li class="on">
-            <div class="no1">1</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥353.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">2</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">3</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">4</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">5</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">6</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">7</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">8</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="rankbox" id="rankt2" style="display:none;">
-        <ul class="bdan">
-          <li class="on">
-            <div class="no1">1</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">印花宽松连衣裙7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">2</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">sa1025花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">3</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">4</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">00亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">5</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">6</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">7</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">8</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="rankbox" id="rankt3" style="display:none;">
-        <ul class="bdan">
-          <li class="on">
-            <div class="no1">1</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">2</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">3</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">4</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">5</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">6</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">7</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-          <li>
-            <div class="no1">8</div>
-            <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="#">亿品印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
-            </div>
-          </li>
-        </ul>
-      </div>
+        <?php foreach($salesRank as $key => $rank):?>
+        <div class="rankbox" id="rank<?=$key?>" <?php if($key !== 1):?>style="display:none;"<?php endif;?>>
+          <ul class="bdan">
+            <?php foreach($rank as $k => $item):?>
+            <li<?php if($k == 0):?> class="on"<?php endif;?>>
+              <div class="no1"><?=($k+1)?></div>
+              <div class="bdimg"><img  class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="53" height="54" /></div>
+              <div class="bdancont"><a href="<?=productURL($item['pid'])?>"><?=$item['pname']?></a>
+                <div class="bdprice"> <span class="font4">￥<?=fprice($item['sell_price'])?></span></div>
+              </div>
+            </li>
+            <?php endforeach;?>
+          </ul>
+        </div>
+        <?php endforeach;?>
     </div>
     <div class="sidebox">
       <div class="side-tit">

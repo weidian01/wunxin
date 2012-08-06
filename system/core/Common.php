@@ -689,5 +689,10 @@ function fPrice($price, $type = 1)
 
     return sprintf('%.2f', $p);
 }
+
+function productURL($pid)
+{
+    return config_item('base_url').'product/'.$pid;
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
