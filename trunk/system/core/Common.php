@@ -687,7 +687,7 @@ function fPrice($price, $type = 1)
         default: $p = ( $p /100 );
     }
 
-    return $p;
+    return sprintf('%.2f', $p);
 }
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

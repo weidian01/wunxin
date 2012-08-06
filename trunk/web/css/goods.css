@@ -165,6 +165,12 @@
     display: block;
 }
 
+.rankbox .bdan .on .bdprice {
+    float: left;
+    width: 55px;
+    display: block;
+}
+
 .bdan2 {
     padding: 10px 0px 0px 10px;
     width: 182px;
