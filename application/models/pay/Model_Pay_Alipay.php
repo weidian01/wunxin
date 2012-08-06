@@ -18,7 +18,7 @@ class Model_Pay_Alipay extends MY_Model
      * @param array $orderInfo
      * @return bool|string
      */
-    public function request($orderSn, $pName, $pDesc, $amount, array $orderInfo)
+    public function request($orderSn, $amount, $pName, $pDesc, array $orderInfo)
     {
         if (empty ($orderSn) || empty ($amount) || empty ($pName)  || empty ($pDesc) ) {
             return false;
@@ -69,6 +69,7 @@ class Model_Pay_Alipay extends MY_Model
         $buyer_email = $this->input->get_post('buyer_email');//购买用户的账号
         $buyer_id = $this->input->get_post('buyer_id');//购买用户的账号
         $is_success = $this->input->get_post('is_success');//支付状态
+        $trade_status = $this->input->get_post('trade_status');//支付状态
 
         $rData = array(
             'result' => $is_success,
@@ -77,10 +78,11 @@ class Model_Pay_Alipay extends MY_Model
             'order_sn' => $out_trade_no,
             'pay_user' => $buyer_email,
             'pay_user_id' => $buyer_id,
-            'request_type' => empty ($_POST) ? 1 : 2,
+            'request_type' => ($this->input->server('REQUEST_METHOD') === 'POST') ? 2 : 1,
             'pay_channel' => 'alipay',
             'bank_order_id' => '0',
             'pay_type' => 'alipay',
+            'response' => ($is_success == 'T') ? 'success' : 'fail',
         );
 
         $sort_para = $this->paraFilter($_REQUEST);
