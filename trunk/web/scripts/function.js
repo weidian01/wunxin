@@ -65,4 +65,3 @@ function sprintf() {
     }
     return o.join('');
 }
-

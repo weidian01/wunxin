@@ -56,7 +56,7 @@ class Product extends MY_Controller
         $cate_info = isset($this->channel[$category]) ? $this->channel[$category]:null;
 
         if ($cate_info) {
-            $classes = array_keys($this->cate->getChildren($category));
+            $classes = $class_id = array_keys($this->cate->getChildren($category));
             $classes = implode(',', $classes);
 
             $this->load->model('product/Model_Product_Model', 'mod');
@@ -111,7 +111,7 @@ class Product extends MY_Controller
                 'modelAttr' => $modelAttr,
                 'products' => $products,
                 'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM,
-                'salesRank' => $this->salesRank(3),
+                'salesRank' => $this->salesRank($class_id),
             ));
         } else {
             show_404("分类不存在");
@@ -148,13 +148,13 @@ class Product extends MY_Controller
             {
                 $alike[$k]['color'] = $color[$v['color_id']];
             }
-            $this->salesRank($product['class_id']);
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),
                 'product' => $product,
                 'photo' => $photo,
                 'alike' => $alike,
                 'psize' => $this->product->getProductSize($pid),
+                'salesRank' => $this->salesRank($product['class_id'], $product['brand_id']),
             ));
             //$html = $str = preg_replace('/\s+/', ' ', $this->output->get_output());
             //file_put_contents(WEBROOT . 'product/' . $pid . '.html', $html, LOCK_EX);
@@ -193,8 +193,9 @@ class Product extends MY_Controller
         $this->json_output($response);
     }
 
-    private function salesRank($class_id)
+    private function salesRank($class_id, $brand_id = null)
     {
+        $where = '';
         if(is_array($class_id))
         {
             $where = "class_id IN (".implode(',', $class_id).")";;
@@ -203,10 +204,19 @@ class Product extends MY_Controller
         {
             $where = "class_id = $class_id";
         }
+
         $this->load->model('product/Model_Product', 'product');
+        //同类别
         $rank[1] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", $where,'sales DESC');
+        //所有分类
         $rank[2] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", null,'sales DESC');
-        print_r($rank);
+        //同品牌
+        if($brand_id)
+        {
+            $where .= " AND brand_id = {$brand_id}";
+            $rank[3] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", $where,'sales DESC');
+        }
+        //print_r($rank);
         return $rank;
     }
 }

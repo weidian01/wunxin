@@ -27,11 +27,11 @@ $(function ($) {
                     html += '<div class="bdan2">\
                               <table width="95%" border="0" cellspacing="0" cellpadding="0">\
                                 <tr>\
-                                  <td><a href="#">'+item.pname+'</a></td>\
+                                  <td><a href="'+wx.productURL(item.pid)+'">'+item.pname+'</a></td>\
                                   <td><span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span></td>\
                                 </tr>\
                               </table>\
-                              <div class="bdimg"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/portrait/' + (item.uid ? idToPath(item.uid):'') +'small.jpg" width="53" height="54" /></div>\
+                              <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="53" height="54" /></div>\
                               <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
                                 '+item.content+'</div>\
                             </div>';
@@ -46,7 +46,8 @@ $(function ($) {
 });
 
 function rankbox(a,b,id) {
-    for (var i = 1; i < 3; i++) {
+    var size = $('.bdan').size();
+    for (var i = 1; i <= size; i++) {
         $("#"+ a + i).css({'borderRight':'1px solid #e5e5e5','borderLeft':'1px solid #e5e5e5','borderTop':'1px solid #e5e5e5'})
         document.getElementById(b + i).style.display = (i == id) ? 'block':"none";
     }
@@ -62,8 +63,8 @@ function browseHistoryHTML()
         for (k in list) {
             var item = list[k].split('|');
             html += '<div class="vhis">\
-            <a class="hoverimg" href="#"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/product/' + idToPath(item[0]) + 'default.jpg" width="140" height="140" /></a>\
-            <p><a href="/product/' + item[0] + '">' + item[1] + '</a></p>\
+            <a class="hoverimg" href="'+wx.productURL(item[0])+'"><img class="lazy" src="' + wx.img_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/product/' + idToPath(item[0]) + 'default.jpg" width="140" height="140" /></a>\
+            <p><a href="'+wx.productURL(item[0])+'">' + item[1] + '</a></p>\
             <span class="font4">￥' + sprintf('%.2f',parseFloat(item[2])) + '</span></div>';
         }
         $('.viewhis').append(html)
@@ -80,7 +81,6 @@ $(document).ready(function () {
         $("li", $(this).parent()).find(".bdprice").css("display", "none");
 
         $(this).addClass("on");
-        $(this).find(".bdimg").css("display", "block");
         $(this).find(".bdimg").css("display", "block");
         $(this).find(".bdprice").css("display", "block");
     });

@@ -79,8 +79,8 @@
         {
             var item = list[k].split('|');
             html += '<div class="recordbox"> \
-                <a href="/product/'+item[0]+'"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
-                    <p><a href="/product/'+item[0]+'">'+item[1]+'</a><br/> \
+                <a href="'+wx.productURL(item[0])+'"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
+                    <p><a href="'+wx.productURL(item[0])+'">'+item[1]+'</a><br/> \
                       <span class="font19">￥'+sprintf('%.2f', parseFloat(item[2]))+'</span></p> \
                   </div>';
         }
@@ -185,9 +185,9 @@
             var html = '';
             $.each(data, function (i, item) {
                 html += '<div class="vhis">\
-                    <a class="hoverimg" href="' + wx.base_url + 'product/' + item.pid + '">\
+                    <a class="hoverimg" href="'+wx.productURL(item.pid)+'">\
                     <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) + 'default.jpg" width="140" height="140" /></a>\
-                    <p>' + item.pname + '</p>\
+                    <p><a href="'+wx.productURL(item.pid)+'">' + item.pname + '</a></p>\
                     <span class="font4">￥' + sprintf('%.2f', item.sell_price / 100) + ' </span></div>';
             });
             $('#tlcptj').html(html).parent().show();
@@ -203,7 +203,7 @@
                 html += '<div class="bdan2">\
                           <table width="95%" border="0" cellspacing="0" cellpadding="0">\
                             <tr>\
-                              <td><a href="#'+item.pid+'">'+item.pname+'</a></td>\
+                              <td><a href="'+wx.productURL(item.pid)+'">'+item.pname+'</a></td>\
                               <td><span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span></td>\
                             </tr>\
                           </table>\
@@ -426,33 +426,16 @@
 
     $(document).ready(function () {
 
-        $("#rankt1 ul.bdan li").mouseover(function () {
-            $("#rankt1 ul.bdan li").removeClass('on');
-            $("#rankt1 .bdan").find(".bdimg").css("display", "none");
-            $("#rankt1 .bdan").find(".bdprice").css("display", "none");
+        $(".rankbox ul.bdan li").mouseover(function () {
+            $("li", $(this).parent()).removeClass('on');
+            $("li", $(this).parent()).find(".bdimg").css("display", "none");
+            $("li", $(this).parent()).find(".bdprice").css("display", "none");
+
             $(this).addClass("on");
-            $(this).find(".bdimg").css("display", "block");
             $(this).find(".bdimg").css("display", "block");
             $(this).find(".bdprice").css("display", "block");
         });
-        $("#rankt2 ul.bdan li").mouseover(function () {
-            $("#rankt2 ul.bdan li").removeClass('on');
-            $("#rankt2 .bdan").find(".bdimg").css("display", "none");
-            $("#rankt2 .bdan").find(".bdprice").css("display", "none");
-            $(this).addClass("on");
-            $(this).find(".bdimg").css("display", "block");
-            $(this).find(".bdimg").css("display", "block");
-            $(this).find(".bdprice").css("display", "block");
-        });
-        $("#rankt3 ul.bdan li").mouseover(function () {
-            $("#rankt3 ul.bdan li").removeClass('on');
-            $("#rankt3 .bdan").find(".bdimg").css("display", "none");
-            $("#rankt3 .bdan").find(".bdprice").css("display", "none");
-            $(this).addClass("on");
-            $(this).find(".bdimg").css("display", "block");
-            $(this).find(".bdimg").css("display", "block");
-            $(this).find(".bdprice").css("display", "block");
-        });
+
         $(".ginfo-tle1").click(function () {
             $(".ginfo-tle1").css("background-position", "0px -32px");
             $(".ginfo-tle1").find("span").css({"background-position":"right -98px", "color":"#333333"});
@@ -489,7 +472,8 @@
     }
 
     function rankbox(a,b,id) {
-        for (var i = 1; i < 4; i++) {
+        var size = $('.bdan').size();
+        for (var i = 1; i <= size; i++) {
             $("#"+ a + i).css({'borderRight':'1px solid #e5e5e5','borderLeft':'1px solid #e5e5e5','borderTop':'1px solid #e5e5e5'})
             document.getElementById(b + i).style.display = (i == id) ? 'block':"none";
         }
