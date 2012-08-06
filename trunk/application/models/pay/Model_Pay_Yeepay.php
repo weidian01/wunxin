@@ -18,7 +18,7 @@ class Model_Pay_Yeepay extends MY_Model
      * @param $pDesc
      * @return bool|string
      */
-    public function request($orderSn, $amount, $PaymentChannel, $pName, $pDesc)
+    public function request($orderSn, $amount, $pName, $pDesc, $PaymentChannel)
     {
         if (empty ($orderSn) || empty ($amount) || empty ($pName) || empty ($PaymentChannel) || empty ($pDesc) ) {
             return false;

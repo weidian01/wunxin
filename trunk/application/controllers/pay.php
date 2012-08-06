@@ -16,6 +16,8 @@ class pay extends MY_Controller
         $orderSn = intval( $this->input->get_post('order_sn') );
         $bank = strtoupper( trim($this->input->get_post('bank')) );
 
+        log_message('PAYLOG', $orderSn.'-'.$bank);
+
         if ( empty ($orderSn) ) {
             show_error('订单ID为空!');
         }
@@ -50,11 +52,11 @@ class pay extends MY_Controller
         switch ($bank) {
             case 'ALIPAY':
                 $this->load->model('pay/Model_Pay_Alipay', 'alipay');
-                $html = $this->alipay->request( $orderData['order_sn'], trim($orderProduct[0]['pname']), trim($pDesc), fPrice($orderData['after_discount_price']), $orderData );
+                $html = $this->alipay->request( $orderData['order_sn'], fPrice($orderData['after_discount_price']), trim($orderProduct[0]['pname']), trim($pDesc), $orderData );
                 break;
             default:
                 $this->load->model('pay/Model_Pay_Yeepay', 'yeepay');
-                $html = $this->yeepay->request($orderData['order_sn'], fPrice($orderData['after_discount_price']), $bank, $orderProduct[0]['pname'], $pDesc);
+                $html = $this->yeepay->request($orderData['order_sn'], fPrice($orderData['after_discount_price']), $orderProduct[0]['pname'], $pDesc, $bank);
         }
 
         if (!$html || $html == '') {
@@ -69,6 +71,9 @@ class pay extends MY_Controller
      */
     public function payBack()
     {
+        //log_message('PAYLOG', $_REQUEST);
+        log_message("PAYLOG", print_r($_SERVER,true)."\n".print_r($_GET,true)."\n".print_r($_POST,true)."\n\n\n");
+
         $response = array('error' => '0', 'msg' => '支付成功', 'code' => 'pay_success');
 
         do {
@@ -111,20 +116,18 @@ class pay extends MY_Controller
                 break;
             }
 
+            //是已支付完成
+            if ($orderInfo['is_pay'] == '1') {
+                $response['order_sn'] = $payResult['order_sn'];
+                break;
+            }
+
             //支付金额有误
             if ($orderInfo['after_discount_price'] != $payResult['amount']) {
                 $data = array('is_pay' => 2, 'paid' => 0, 'need_pay' => $payResult['amount'], 'status' => 1, 'defray_type' => $payResult['pay_channel']);
                 $this->order->updateOrderByOrderSn($data, $payResult['order_sn']);
 
                 $response = error(30023);
-                $response['order_sn'] = $payResult['order_sn'];
-                break;
-            }
-
-            if ($orderInfo['is_pay'] == '1') {
-                if ( $payResult['request_type'] == 2 ) {
-                    echo 'success';
-                }
                 $response['order_sn'] = $payResult['order_sn'];
                 break;
             }
@@ -136,11 +139,6 @@ class pay extends MY_Controller
                 $response = error(30024);
                 $response['order_sn'] = $payResult['order_sn'];
                 break;
-            }
-
-            //订单是否支付成功
-            if ( $payResult['request_type'] == 2 ) {
-                echo 'success';
             }
 
             //记录收款单信息
@@ -169,35 +167,32 @@ class pay extends MY_Controller
             }
 
             //更新产品销量
-            $this->load->model('product/Model_Product', 'product');
-            $orderProduct = $this->order->getOrderAllProductByOrderSn($payResult['order_sn']);
-            foreach ($orderProduct as $opv) {
-                $pId = intval($opv['pid']);
-                $pNum = intval($opv['product_num']);
-
-                $this->product->updateProductSales($pId, $pNum);
-            }
-
+            $this->updateProduct($payResult['order_sn']);
 
             $response['order_sn'] = $payResult['order_sn'];
 
         } while (false);
 
-        //获取订单信息
-        $orderInfo = array();
-        if ( !empty ($response['order_sn']) ) {
-            $this->load->model('order/Model_Order', 'order');
-            $orderInfo = $this->order->getOrderByOrderSn($response['order_sn']);
-        }
 
-        //获取销量推荐产品信息
-        $recommend = array();
-        if ($response['error'] == '0') {
-            $this->load->model('product/Model_Product', 'product');
-            $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');//($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
-        }
+        if ( $payResult['request_type'] == 2 ) {
+            echo 'success';
+        } else {
+            //获取订单信息
+            $orderInfo = array();
+            if ( !empty ($response['order_sn']) ) {
+                $this->load->model('order/Model_Order', 'order');
+                $orderInfo = $this->order->getOrderByOrderSn($response['order_sn']);
+            }
 
-        $this->load->view('pay/callback', array('response' => $response, 'order' => $orderInfo, 'recommend' => $recommend));
+            //获取销量推荐产品信息
+            $recommend = array();
+            if ($response['error'] == '0') {
+                $this->load->model('product/Model_Product', 'product');
+                $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');//($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
+            }
+
+            $this->load->view('pay/callback', array('response' => $response, 'order' => $orderInfo, 'recommend' => $recommend));
+        }
     }
 
     /**
@@ -226,6 +221,30 @@ class pay extends MY_Controller
         } while (false);
 
         return $payChannel;
+    }
+
+    /**
+     * 更新产品信息
+     *
+     * @param $orderSn
+     * @return bool
+     */
+    private function updateProduct($orderSn)
+    {
+        if ( empty ($orderSn) ) {
+            return false;
+        }
+        //更新产品销量
+        $this->load->model('product/Model_Product', 'product');
+        $orderProduct = $this->order->getOrderAllProductByOrderSn($orderSn);
+        foreach ($orderProduct as $opv) {
+            $pId = intval($opv['pid']);
+            $pNum = intval($opv['product_num']);
+
+            $this->product->updateProductSales($pId, $pNum);
+        }
+
+        return true;
     }
 
     public function writeLog()

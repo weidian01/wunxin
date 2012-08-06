@@ -587,7 +587,109 @@ wx.addToCartLayer = function (status, bindingId)
 //登陆浮层
 wx.loginLayer = function ()
 {
+    var html = '\
+            <div class="commentDIV" style="width:510px;">\
+              <div class="tit" style="padding-left:0px;">\
+                <ul class="lgrg">\
+                  <li class="curr" id="login_id" onclick="wx.changeLRLayer(\'login\')">登录</li>\
+                  <li id="register_id" onclick="wx.changeLRLayer(\'register\')">注册</li>\
+                </ul>\
+                <div class="close-cm"></div>\
+              </div>\
+              <div id="lgrg1">\
+                <div class="lgrgbox">\
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">\
+                    <tr>\
+                      <td width="28%" align="right"><span class="popfont4"><strong>用户名：</strong></span></td>\
+                      <td width="46%"><label>\
+                          <input class="popinput2" type="text" name="textfield" id="textfield" />\
+                        </label></td>\
+                      <td width="26%">&nbsp;</td>\
+                    </tr>\
+                    <tr>\
+                      <td align="right"><span class="popfont4"><strong>密 码：</strong></span></td>\
+                      <td><input class="popinput2" type="text" name="textfield2" id="textfield2" /></td>\
+                      <td><a href="#">忘记密码了？</a></td>\
+                    </tr>\
+                  </table>\
+                  <div class="mistake">您输入的密码错误！</div>\
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">\
+                    <tr>\
+                      <td width="28%" align="right">&nbsp;</td>\
+                      <td width="22%"><input name="input2" type="button" class="cmt-button" value="登 录 " /></td>\
+                      <td width="50%" valign="bottom"><a href="#">新用户注册</a></td>\
+                    </tr>\
+                  </table>\
+                </div>\
+                <div class="cmtbox2">\
+                  <div class="lgrg-tip"> <span class="popfont3">温馨提示：</span>\
+                    <p>1、请输入您的万象用户名及密码进行登录； <br />\
+                      2、如果还未注册万象用户名，您可以使用V+用户名进行登录,登录后系统会<br />\
+                      自动为您注册一个与V+帐户相关联的万象帐户。帐户关联后您可共享V+的会<br />\
+                      员积分和累积消费金额。 <br />\
+                      如有疑问请进入<a href="#">帮助中心或联系客服</a></p>\
+                  </div>\
+                </div>\
+              </div>\
+              <div id="lgrg2" style="display:none;">\
+                <table class="zhuce" width="100%" border="0" cellspacing="0" cellpadding="0">\
+                  <tr>\
+                    <td width="25%" align="right" valign="top">用&nbsp;户&nbsp;名：</td>\
+                    <td width="43%"><input class="popinput2" type="text" name="textfield" id="textfield" />\
+                      <br />\
+                      <span class="popfont5">请填写有效的Email或手机号</span><span class="mstk" style="display:none;">您输入的Email或手机号有误</span></td>\
+                    <td width="32%" valign="top"><span class="rg-yes"></span><span class="rg-no" style="display:none;"></span></td>\
+                  </tr>\
+                  <tr>\
+                    <td align="right" valign="top">登录密码：</td>\
+                    <td><input class="popinput2" type="text" name="textfield3" id="textfield3" />\
+                      <br />\
+                      <span class="mstk">您输入的Email或手机号有误</span></td>\
+                    <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
+                  </tr>\
+                  <tr>\
+                    <td align="right" valign="top">确认密码：</td>\
+                    <td><input class="popinput2" type="text" name="textfield4" id="textfield4" />\
+                      <br />\
+                      <span class="mstk">您输入的Email或手机号有误</span></td>\
+                    <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
+                  </tr>\
+                  <tr>\
+                    <td align="right" valign="top">验&nbsp;证&nbsp;码：</td>\
+                    <td><table width="100%" border="0" cellspacing="0" cellpadding="0">\
+                        <tr>\
+                          <td width="40%"><input class="popinput3" type="text" name="textfield5" id="textfield7" />\
+                            <br/>\
+                            <span class="mstk">请输入验证码</span></td>\
+                          <td width="60%" valign="top"><img src="images/yzm_03.jpg" alt="" width="120" height="21" /><br/>\
+                            <span class="mstk">看不请</span><a href="#">，换一张</a></td>\
+                        </tr>\
+                      </table></td>\
+                    <td valign="top"><span class="rg-yes" style="display:none;"></span><span class="rg-no"></span></td>\
+                  </tr>\
+                  <tr>\
+                    <td align="right" valign="top">&nbsp;</td>\
+                    <td><strong>请阅读《<a href="#">万象服务条款</a>》 </strong></td>\
+                    <td valign="top">&nbsp;</td>\
+                  </tr>\
+                  <tr>\
+                    <td align="right" valign="top">&nbsp;</td>\
+                    <td><input name="input2" type="button" class="cmt-button" value="注 册 " /></td>\
+                    <td valign="top">&nbsp;</td>\
+                  </tr>\
+                </table>\
+              </div>\
+            </div>\
+        ';
+}
 
+wx.changeLRLayer = function (lr)
+{
+    if (lr == 'login') {
+
+    } else {
+        
+    }
 }
 
 //产品晒单浮层
