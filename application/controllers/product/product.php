@@ -110,7 +110,8 @@ class Product extends MY_Controller
                 'param' => $param,
                 'modelAttr' => $modelAttr,
                 'products' => $products,
-                'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM
+                'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM,
+                'salesRank' => $this->salesRank(3),
             ));
         } else {
             show_404("分类不存在");
@@ -147,7 +148,7 @@ class Product extends MY_Controller
             {
                 $alike[$k]['color'] = $color[$v['color_id']];
             }
-
+            $this->salesRank($product['class_id']);
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),
                 'product' => $product,
@@ -192,8 +193,20 @@ class Product extends MY_Controller
         $this->json_output($response);
     }
 
-    private function rexiao()
+    private function salesRank($class_id)
     {
-
+        if(is_array($class_id))
+        {
+            $where = "class_id IN (".implode(',', $class_id).")";;
+        }
+        else
+        {
+            $where = "class_id = $class_id";
+        }
+        $this->load->model('product/Model_Product', 'product');
+        $rank[1] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", $where,'sales DESC');
+        $rank[2] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", null,'sales DESC');
+        print_r($rank);
+        return $rank;
     }
 }

@@ -192,7 +192,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <div class="no1">1</div>
             <div class="bdimg"><img src="<?=config_item('static_url')?>images/hg_03.jpg" width="53" height="54" /></div>
             <div class="bdancont"><a href="#">印花宽松T恤7500 灰色M</a>
-              <div class="bdprice"> <span class="font4">￥35.00</span></div>
+              <div class="bdprice"> <span class="font4">￥353.00</span></div>
             </div>
           </li>
           <li>

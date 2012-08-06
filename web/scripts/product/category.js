@@ -46,7 +46,7 @@ $(function ($) {
 });
 
 function rankbox(a,b,id) {
-    for (var i = 1; i < 4; i++) {
+    for (var i = 1; i < 3; i++) {
         $("#"+ a + i).css({'borderRight':'1px solid #e5e5e5','borderLeft':'1px solid #e5e5e5','borderTop':'1px solid #e5e5e5'})
         document.getElementById(b + i).style.display = (i == id) ? 'block':"none";
     }
@@ -70,3 +70,32 @@ function browseHistoryHTML()
         $('#viewhistory').show();
     }
 }
+
+
+$(document).ready(function () {
+
+    $(".rankbox ul.bdan li").mouseover(function () {
+        $("li", $(this).parent()).removeClass('on');
+        $("li", $(this).parent()).find(".bdimg").css("display", "none");
+        $("li", $(this).parent()).find(".bdprice").css("display", "none");
+
+        $(this).addClass("on");
+        $(this).find(".bdimg").css("display", "block");
+        $(this).find(".bdimg").css("display", "block");
+        $(this).find(".bdprice").css("display", "block");
+    });
+    $(".ginfo-tle1").click(function () {
+        $(".ginfo-tle1").css("background-position", "0px -32px");
+        $(".ginfo-tle1").find("span").css({"background-position":"right -98px", "color":"#333333"});
+        $(this).css("background-position", "0px 0px");
+        $(this).find("span").css({"background-position":"right -66px", "color":"#ffffff"});
+
+    });
+    $(".dinfo-tle1").click(function () {
+        $(".dinfo-tle1").css("background-position", "0px -32px");
+        $(".dinfo-tle1").find("span").css({"background-position":"right -98px", "color":"#333333"});
+        $(this).css("background-position", "0px 0px");
+        $(this).find("span").css({"background-position":"right -66px", "color":"#ffffff"});
+
+    });
+});
