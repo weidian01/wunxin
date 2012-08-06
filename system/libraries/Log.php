@@ -86,7 +86,7 @@ class CI_Log {
 			return FALSE;
 		}
 
-        $this->_log[$level] = date($this->_date_fmt). " --> " . $msg;
+        $this->_log[$level][] = date($this->_date_fmt). " --> " . $msg;
         //echo "<br>".date($this->_date_fmt).' '. $level .' insert '.$msg . get_called_class() ."<br>";
         return TRUE;
 	}
@@ -115,27 +115,6 @@ class CI_Log {
             @chmod($filepath, FILE_WRITE_MODE);
         }
         return true;
-
-        if(count($this->_log) === 1) return;
-        //this->_log[] = $this->_log[0];
-        $msg = implode("\n", $this->_log);
-        $filepath = $this->_log_path . date('Y-m-d') . '.php';
-        $message = '';
-
-        if (!file_exists($filepath)) {
-            $message .= "<" . "?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?" . ">\n\n";
-        }
-
-        if (!$fp = @fopen($filepath, FOPEN_WRITE_CREATE)) {
-            return FALSE;
-        }
-        $message .= $msg . "\n";
-        flock($fp, LOCK_EX);
-        fwrite($fp, $message);
-        flock($fp, LOCK_UN);
-        fclose($fp);
-
-        @chmod($filepath, FILE_WRITE_MODE);
     }
 
     function __destruct()
