@@ -223,15 +223,17 @@
     {
         //offset > 0 && $('#more_qa').html('<a href="javascript:;">载入中...</a>');
         wx.jsonp(wx.base_url + "product/share/ajaxGetShareByPid", {'pid':pid, 'offset':offset, 'limit':limit}, function (data) {
-            var html = '';
             if(data.total > 0)
             {
+                var html = '';
+                var main = '';
                 $.each(data.share, function (i, o) {
-                    if(offset == 0 && i == 0)
+
+                    if(offset == 0 && !main)
                     {
-                        var main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' + o.title + '<img src="' + wx.img_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：' + o.uname + '</td></tr></table>\
+                        main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' + o.title + '<img src="' + wx.img_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：' + o.uname + '</td></tr></table>\
                                 <div class="sd-main">\
-                                  <div style="text-align:center"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.static_url + 'images/sd_23.jpg" /></div>\
+                                  <div style="text-align:center"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" /></div>\
                                   <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">\
                                     <tr><td align="center" bgcolor="#f3f3f3">达人麻豆</td><td align="center" bgcolor="#f3f3f3">身高/体重</td><td align="center" bgcolor="#f3f3f3">三围</td><td align="center" bgcolor="#f3f3f3">颜色</td><td align="center" bgcolor="#f3f3f3">尺码</td></tr>\
                                     <tr><td align="center">999</td><td align="center">' + o.height + 'cm / ' + o.weight + 'kg</td><td align="center">1 / 2 / 3</td><td align="center">' + o.color + '</td><td align="center">' + o.size + '</td></tr>\
@@ -244,7 +246,7 @@
                     {
                         html += '<div class="sd-cont">\
                                     <div class="sd-cbox">\
-                                        <div class="sdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.static_url + 'images/sdad_27.jpg" width="107" height="143" /></div>\
+                                        <div class="sdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" width="107" height="143" /></div>\
                                         <div class="sdtext"><strong>' + o.title + '</strong><br/>' + o.content + '</div>\
                                     </div>\
                                 </div>';
