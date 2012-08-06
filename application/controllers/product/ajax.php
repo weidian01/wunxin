@@ -40,7 +40,7 @@ class Ajax extends MY_Controller
         {
             $pids = array_keys($response);
             $this->load->model('product/Model_Product_comment', 'comment');
-            $tmp = $this->comment->getCommentByPid($pids, 10, 0, 'pid, uid, uname, title, content', "1=1 GROUP BY pid");
+            $tmp = $this->comment->getCommentByPid($pids, 10, 0, 'pid, uid, uname, title, content', '','pid');
             foreach ($tmp as $key => $item) {
                 $response[$item['pid']] += $item;
             }

@@ -228,11 +228,12 @@ class Model_Product_Comment extends MY_Model
      * @param string $where
      * @return mixed
      */
-    public function getCommentByPid($pid, $limit = 20, $offset = 0, $field = '*', $where = null)
+    public function getCommentByPid($pid, $limit = 20, $offset = 0, $field = '*', $where = null, $group = null)
     {
         list($key, $field) = self::formatField($field);
         $this->db->select($field)->from('product_comment');
         $where && $this->db->where($where);
+        $group && $this->db->group_by($group);
         $this->db->limit($limit, $offset);
         if(is_array($pid))
         {
