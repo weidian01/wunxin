@@ -146,7 +146,7 @@ class Product extends MY_Controller
             }
             foreach($alike as $k=>$v)
             {
-                $alike[$k]['color'] = $color[$v['color_id']];
+                $alike[$k]['color'] = empty($color[$v['color_id']]) ? '' : $color[$v['color_id']];
             }
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),

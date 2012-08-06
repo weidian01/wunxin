@@ -294,17 +294,15 @@ product.deleteProductComment = function(cId, bindingId)
             case '0': prompt = '已删除成功';break;
             case '20021': prompt = '参数不全';break;
             case '20022': prompt = '系统繁忙，请稍后再试';break;
-            case '10009': prompt = '用户未登陆';break;
+            case '10009': wx.loginLayer();break;
         }
-
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
-        wx.showPop(prompt, bindingId);
 
         if (data.error == '0') {
-            //wx.pageReload(0);
+            wx.pageReload(0);
             return true;
         }
-        //alert('删除失败!');
+
+        wx.showPop(prompt, bindingId);
     }
 }
 
@@ -465,6 +463,8 @@ product.deleteProductQa = function(qId, bindingId)
         }
         //*/
 
+        wx.pageReload();
+
         var prompt = '已删除成功';
         switch (data.error) {
             case '0': prompt = '已删除成功';break;
@@ -473,10 +473,7 @@ product.deleteProductQa = function(qId, bindingId)
             case '10009': prompt = '用户未登陆';break;
         }
 
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
         wx.showPop(prompt, bindingId);
-
-        //alert('系统繁忙，请稍后再试!');
     }
 }
 

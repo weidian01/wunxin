@@ -265,7 +265,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="shaidan" id="comment">
         <div class="sd-tit">
           <div class="sdbt"><a name="anchorComment">商品评论&nbsp;<span class="font17" id="totalCount">0</span> <span class="font15">条评论</span></div>
-          <div class="sd-btn"><a href="#">我要评论</a></div>
+          <div class="sd-btn"><a href="javascript:void(0);" onclick="product.productComment(<?=$product['pid']?>)">我要评论</a></div>
           <div class="sd-yh">购买过该商品的用户才能评论&nbsp;&nbsp;</div>
         </div>
         <div class="comm-dex">
@@ -303,7 +303,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="shaidan" id="shaidan">
         <div class="sd-tit">
           <div class="sdbt"><span class="font18">晒单</span>&nbsp;&nbsp;&nbsp;&nbsp;共 <span class="font1" id="share_total">0</span> 单</div>
-          <div class="sd-btn"><a href="#">我要晒单</a></div>
+          <div class="sd-btn"><a href="javascript:void(0);" onclick="product.productShare(<?=$product['pid']?>)">我要晒单</a></div>
           <div class="sd-yh">优先来晒单，有机会获得5元礼品卡哦！</div>
         </div>
         <span id="share_main"></span>
@@ -322,7 +322,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="shaidan" id="qanda">
         <div class="sd-tit" style="margin-bottom:0px;">
           <div class="sdbt">互动问答</div>
-          <div class="sd-btn"><a href="#">我要提问</a></div>
+          <div class="sd-btn"><a href="javascript:void(0);" onclick="product.addProductQa(<?=$product['pid']?>)">我要提问</a></div>
         </div>
         <div class="question">
           <div class="q-text">

@@ -4667,6 +4667,7 @@ create table wx_product_qa
    is_valid             int unsigned default 0 comment '是否有效',
    is_invalid           int unsigned default 0 comment '是否无效',
    reply_num            smallint unsigned default 0 comment '回复数量',
+   qa_type              tinyint unsigned comment '问题类型, 1尺寸问题，2颜色问题，3材质，4其他',
    create_time          datetime comment '提问时间',
    primary key (qa_id)
 )
@@ -4952,10 +4953,11 @@ create table wx_share_images
    id                   int unsigned not null auto_increment comment '自增ID',
    share_id             int unsigned comment '晒单ID',
    img_addr             varchar(128) comment '图片地址',
+   title                varchar(25) comment '标题',
    descr                varchar(256) comment '图片说明',
    is_cover             tinyint unsigned default 0 comment '是否为封面，0否，1是',
    status               tinyint unsigned default 1 comment '状态，0已删除，1正常',
-   is_like              int unsigned comment '是否喜欢，记录喜欢的人数',
+   is_like              int unsigned default 0 comment '是否喜欢，记录喜欢的人数',
    create_time          datetime comment '创建时间',
    primary key (id)
 )

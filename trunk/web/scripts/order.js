@@ -335,3 +335,29 @@ order.pay = function (bindingId)
 
     document.pay_form.submit();
 }
+
+//取消订单
+order.cancelOrder = function (order_sn, bindingId)
+{
+    if ( !wx.isEmpty(order_sn) ) {
+        wx.showPop('参数为空', bindingId);
+        return false;
+    }
+
+    var url = '/order/order/cancelOrder/';
+    var param = 'order_sn='+order_sn
+    var data = wx.ajax(url, param);
+
+    var prompt = '取消成功';
+    switch (data.error) {
+        case '0': prompt = '取消成功';break;
+        case '30026': prompt = '参数不全';break;
+        case '10009': wx.loginLayer();break;
+        case '30022': prompt = '订单不存在';break;
+        case '30027': prompt = '订单已支付成功并在配货中';break;
+        case '30028': prompt = '系统繁忙，请稍后再试';break;
+    }
+
+    wx.showPop(prompt, bindingId);
+    wx.pageReload();
+}

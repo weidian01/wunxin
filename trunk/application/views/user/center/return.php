@@ -149,7 +149,7 @@
 <script type="text/javascript">
     function cancelReturn(rId)
     {
-        if (confirm('确定删除！')) {
+        if (confirm('确定取消！')) {
             if (!wx.isEmpty(rId)) {
                 return false;
             }

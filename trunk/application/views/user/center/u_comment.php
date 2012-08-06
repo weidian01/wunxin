@@ -60,7 +60,6 @@
 </head>
 <body>
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/artDialog.js"></script>
-<script type="text/javascript">art.dialog('简单愉悦的接口，强大的表现力，优雅的内部实现', function(){alert('yes');});</script>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include('/../../header.php');?>
 <!-- #EndLibraryItem -->
