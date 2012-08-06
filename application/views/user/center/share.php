@@ -47,7 +47,7 @@
                         <div class="goods-in">
                             <?php foreach ($v['share_images'] as $pv) {?>
                             <div class="g-i-img">
-                                <a href="#" title="<?php echo $pv['descr'];?>, 有 <?php echo $pv['is_like'];?> 人喜欢.">
+                                <a href="#" title="<?php echo $pv['descr'];?>, 有 <?php echo empty ($pv['is_like']) ? 0 : $pv['is_like'];?> 人喜欢.">
                                     <img src="<?=config_item('static_url')?><?php echo $pv['img_addr'];?>" width="45" height="45"/>
                                 </a>
                             </div>

@@ -104,7 +104,7 @@
                                             </td>
                                             <td>
                                                 <a href="#" class="a_e" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?> &nbsp;&nbsp;
-                                                    <span style="color: #CC0033;font-weight: bold;">￥<?php echo $v['sell_price'];?><span></a></a><br>
+                                                    <span style="color: #CC0033;font-weight: bold;">￥<?php echo fPrice($v['sell_price']);?><span></a></a><br>
                                             </td>
                                             <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:90px;text-align:center;">

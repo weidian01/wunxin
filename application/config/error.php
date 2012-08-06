@@ -156,6 +156,10 @@ $error[30023] = array('error' => '30023', 'msg' => '支付金额有误', 'code' 
 $error[30024] = array('error' => '30024', 'msg' => '系统繁忙，请稍后再试', 'code' => 'the_system_busy, please_try_again_later');
 $error[30025] = array('error' => '30025', 'msg' => '保存收款单信息失败', 'code' => 'save_receivables_single_information_failed');
 
+$error[30026] = array('error' => '30026', 'msg' => '取消订单失败', 'code' => 'cancel_order_parameter_failure');
+$error[30027] = array('error' => '30027', 'msg' => '订单已付款或已配货', 'code' => 'order_already_pay_and_picking');
+$error[30028] = array('error' => '30028', 'msg' => '取消订单失败', 'code' => 'cancel_order_failure');
+
 
 
 /**

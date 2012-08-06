@@ -220,6 +220,48 @@ class order extends MY_Controller
     }
 
     /**
+     * 取消订单
+     */
+    public function cancelOrder()
+    {
+        $orderSn = $this->input->get_post('order_sn');
+
+        $response = array('error' => '0', 'msg' => '取消订单成功', 'code' => 'cancel_order_success');
+
+        do {
+            if ( empty ($orderSn) ) {
+                $response = error(30026);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
+
+            $this->load->model('order/Model_Order', 'order');
+            $data = $this->order->getOrderByOrderSn($orderSn);
+            if ( empty ($data) ) {
+                $response = error(30022);
+                break;
+            }
+
+            if ( $data['is_pay'] == '1' || in_array($data['picking_status'], array('1', '2') ) ) {
+                $response = error(30027);
+                break;
+            }
+
+            $status = $this->order->cancelOrder($orderSn, $this->uInfo['uid']);
+            if ( !$status ) {
+                $response = error(30028);
+                break;
+            }
+        } while (false);
+
+        self::json_output($response);
+    }
+
+    /**
      * 获取城市数据
      */
     public function getCity()

@@ -194,6 +194,18 @@ class Model_Order extends MY_Model
     }
 
     /**
+     * 取消订单
+     *
+     * @param $orderSn
+     * @param $uId
+     * @return boolean
+     */
+    public function cancelOrder($orderSn, $uId)
+    {
+        return $this->db->where('order_sn', $orderSn)->where('uid', $uId)->update('order', array('status' => '0'));
+    }
+
+    /**
      * @name 根据用户id获取订单信息
      *
      * @param int $uid

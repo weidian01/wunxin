@@ -225,24 +225,30 @@
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td width="90" align="center"><strong>￥<?php echo $pv['sall_price'] / 100;?></strong></td>
-                                    <td width="100" align="center"><strong><?php echo $pv['sall_price'] / 100;?></strong></td>
+                                    <td width="90" align="center"><strong>￥<?php echo fPrice($pv['sall_price']);?></strong></td>
+                                    <td width="100" align="center"><strong><?php echo fPrice($pv['sall_price']);?></strong></td>
                                     <td width="90" align="center"><strong><?php echo $pv['product_num'];?></strong></td>
-                                    <td width="90" align="center"><strong><?php echo ($pv['sall_price'] * $pv['product_num']) / 100;?></strong></td>
+                                    <td width="90" align="center"><strong><?php echo fPrice(($pv['sall_price'] * $pv['product_num']));?></strong></td>
                                     <td width="90" align="center" class="end">
-                                        <a href="javascript:void(0);" onclick="product.productComment(<?php echo $pv['pid'];?>)"><img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品"></a>
-                                        <a href="#"><img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单"></a><br/>
-                                        <a href="/user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货"></a>
+                                        <a href="javascript:void(0);" onclick="product.productComment(<?php echo $pv['pid'];?>)">
+                                            <img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品">
+                                        </a>
+                                        <a href="javascript:void(0);" onclick="product.productShare(<?php echo $pv['pid'];?>)">
+                                            <img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单">
+                                        </a><br/>
+                                        <a href="/user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>">
+                                            <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货">
+                                        </a>
                                     </td>
                                 </tr>
                                 <?php } ?>
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td class="end" colspan="6"> 商品总价： <strong> ¥ <?php echo $totalPrice / 100;?>元</strong><br>
+                                    <td class="end" colspan="6"> 商品总价： <strong> ¥ <?php echo fPrice($totalPrice);?>元</strong><br>
                                         运费：+ ¥ 0元<br>
                                         万象币使用：0个<br>
-                                        实际应支付：<strong><span class="f_rz">¥ <?php echo $totalPrice / 100;?>元</span></strong><br>
+                                        实际应支付：<strong><span class="f_rz">¥ <?php echo fPrice($totalPrice);?>元</span></strong><br>
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -250,16 +256,15 @@
                         </div>
                     </div>
                     <div class="submit">
-
                         <?php if ($order_data['status'] == '0') {?>
                             <span class="stat_cancel" style="font-weight: bold;">订单已取消</span>
                         <?php } else {?>
-                            <?php if ($order_data['status'] != '2') {?>
-                            <a class="btn_bb3" onclick=" if( confirm( '您确定要取消订单吗?' ) ) { return true ; } else { return false ; } " href="/home/orders/cancel?order_code=2071112972" style="color: #ffffff;font-weight: bold;">取消订单</a>
+                            <?php if ($order_data['status'] != '2' && $order_data['is_pay'] != '1' && $order_data['picking_status'] == '0') {?>
+                            <a class="btn_bb3" onclick="order.cancelOrder(<?php echo $order_data['order_sn']?>)" href="javascript:void(0);" style="color: #ffffff;font-weight: bold;">取消订单</a>
                             <?php }?>
 
                             <?php if ($order_data['status'] == '2' && $order_data['is_pay'] != '1') {?>
-                            <a class="btn_bb2" href="/shopping/pay?ordercode=2071112972" style="color: #ffffff;font-weight: bold;">立即付款</a>
+                            <a class="btn_bb2" href="/order/order/success/<?php echo $order_data['order_sn']?>" style="color: #ffffff;font-weight: bold;">立即付款</a>
                             <?php }?>
                         <?php }?>
                         <br>
@@ -277,14 +282,8 @@
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
 <!-- #EndLibraryItem -->
-<a onclick="kk()">kkkk</a>
-<script type="text/javascript">
-    function kk()
-    {
-        jQuery.facebox('something cool');
-    }
-</script>
 </body>
 </html>
 

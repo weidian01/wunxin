@@ -486,7 +486,7 @@ wx.favoriteProductLayer = function(status, bindingId){
 wx.productCommentLayer = function (pId, pNmae)
 {
     var html ='<input type="hidden" name="pid" value="'+pId+'" id="pid"> <div class="commentDIV"><div class="tit">我要评论<div class="close-cm" onclick="wx.layerClose()"></div></div>\
-    <div class="cmt-gname"><strong>商品名称：</strong>'+pNmae+'</div><div class="cmtbox"> <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span>\
+    <div class="cmt-gname"><strong>商品名称：</strong>'+pNmae.substring(0, 80)+'</div><div class="cmtbox"> <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span>\
     <input type="hidden" value="5" name="product_score" id="p_s_s_id"/><dt><strong>商品评分：</strong></dt> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 1)"></dd> \
     <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 2)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 3)"></dd>\
     <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 4)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 5)"></dd></dl>\

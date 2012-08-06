@@ -106,7 +106,7 @@
                                             </td>
                                             <td>
                                                 <a href="#" class="a_e" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a>&nbsp;&nbsp;
-                                                <span style="color: #CC0033;font-weight: bold;">￥<?php echo $v['sell_price'];?></span><br>
+                                                <span style="color: #CC0033;font-weight: bold;">￥<?php echo fPrice($v['sell_price']);?></span><br>
                                             </td>
                                             <td style="width:170px;text-align:center;"><?php echo $v['content'];?></td>
                                             <td style="width:70px;text-align:left;">

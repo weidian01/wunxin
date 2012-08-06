@@ -1488,15 +1488,6 @@ a.productimg:hover {
 
 
 
-
-
-
-
-
-
-
-
-
 .aui_outer { text-align:left; }
 table.aui_border, table.aui_dialog { border:0; margin:0; border-collapse:collapse; width:auto; }
 .aui_nw, .aui_n, .aui_ne, .aui_w, .aui_c, .aui_e, .aui_sw, .aui_s, .aui_se, .aui_header, .aui_tdIcon, .aui_main, .aui_footer { padding:0; }
@@ -1659,7 +1650,7 @@ a:active{color:#333; text-decoration:none;}
 .word-num{ height:20px; line-height:20px; padding-right:5px; padding-top:5px;}
 .word-num-w{ float:left; color:#a10000;}
 .word-num-tip{ float:right; color:#888;}
-.upload-btnp{ height:25px; width:55px;}
+.upload-btnp{ height:25px; }
 .show-o-w{ width:538px;}
 
 /*浮层CSS 结束*/
