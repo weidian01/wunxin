@@ -31,14 +31,14 @@ class CI_Log {
 	protected $_threshold	= 1;
 	protected $_date_fmt	= 'Y-m-d H:i:s';
 	protected $_enabled	= TRUE;
-	protected $_levels	= array('ERROR' => '1', 'LOG'=>'2', 'SQL'=>'3', 'DEBUG' => '4',  'INFO' => '5', 'ALL' => '6');
+	protected $_levels	= array('ERROR' => '1', 'PAYLOG'=>'2', 'SQL'=>'3', 'DEBUG' => '4',  'INFO' => '5', 'ALL' => '6');
 
 	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
-        $this->_log[] = md5(uniqid('LOG_', true));
+        //$this->_log[] = md5(uniqid('LOG_', true));
 
 		$config =& get_config();
 
@@ -86,15 +86,38 @@ class CI_Log {
 			return FALSE;
 		}
 
-        $this->_log[] = date($this->_date_fmt). " /* " . $level . " */ --> " . $msg;
+        $this->_log[$level] = date($this->_date_fmt). " --> " . $msg;
         //echo "<br>".date($this->_date_fmt).' '. $level .' insert '.$msg . get_called_class() ."<br>";
         return TRUE;
 	}
 
     private function save()
     {
+        foreach ($this->_log as $level => $msg)
+        {
+            $msg = implode("\n", $msg);
+            $filepath = $this->_log_path . date('Y-m-d') . '-' . $level . '.php';
+            $message = '';
+
+            if (!file_exists($filepath)) {
+                $message .= "<" . "?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?" . ">\n\n";
+            }
+
+            if (!$fp = @fopen($filepath, FOPEN_WRITE_CREATE)) {
+                return FALSE;
+            }
+            $message .= date($this->_date_fmt) . ' --> ' . $msg . "\n";
+            flock($fp, LOCK_EX);
+            fwrite($fp, $message);
+            flock($fp, LOCK_UN);
+            fclose($fp);
+
+            @chmod($filepath, FILE_WRITE_MODE);
+        }
+        return true;
+
         if(count($this->_log) === 1) return;
-        $this->_log[] = $this->_log[0];
+        //this->_log[] = $this->_log[0];
         $msg = implode("\n", $this->_log);
         $filepath = $this->_log_path . date('Y-m-d') . '.php';
         $message = '';
