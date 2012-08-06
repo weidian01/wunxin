@@ -164,9 +164,15 @@ class Model_Product_Share extends MY_Model
      * @param $shareId
      * @return array
      */
-    public function getProductShareImage($shareId)
+    public function getProductShareImage($shareId, $field = '*', $where = null, $order = null)
     {
-        return $this->db->select('*')->get_where('share_images', array('share_id' => $shareId))->result_array();
+        list($key, $field) = self::formatField($field);
+        $this->db->select($field);
+        $this->db->from('share_images');
+        is_array($shareId) ? $this->db->where_in('share_id',$shareId):$this->db->where('share_id',$shareId);
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
+        return $this->db->get()->result_array($key);
     }
 
     /**

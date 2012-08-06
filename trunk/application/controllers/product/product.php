@@ -191,4 +191,9 @@ class Product extends MY_Controller
 
         $this->json_output($response);
     }
+
+    private function rexiao()
+    {
+
+    }
 }

@@ -245,7 +245,7 @@ class comment extends MY_Controller
     public function ajaxAppraise()
     {
         $pid = $this->input->get_post('pid');
-        $response = error(20002);
+        $response = array();
         if ($pid) {
             $this->load->model('product/Model_Product_comment', 'comment');
             $response = $this->comment->getAppraise($pid);

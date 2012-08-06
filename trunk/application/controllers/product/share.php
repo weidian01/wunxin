@@ -257,14 +257,21 @@ class share extends MY_Controller
             $response['share'] = array();
             if($response['total'])
             {
-                $response['share'] = $this->share->getProductShareByPid($pid, $limit, $offset, '*', 'share_id DESC');
+                $response['share'] = $this->share->getProductShareByPid($pid, $limit, $offset, array('share_id'=>'*'), 'share_id DESC');
                 if($response['share'])
                 {
+                    $tmp = current($response['share']);
                     $this->load->model('user/Model_User', 'user');
-                    $uinfo = $this->user->getUserInfoById($response['share'][0]['uid'], array('uid' => 'height, weight'));
-                    $response['share'][0]['height'] = $uinfo['height'];
-                    $response['share'][0]['weight'] = $uinfo['weight'];
+                    $uinfo = $this->user->getUserInfoById($tmp['uid'], array('uid' => 'height, weight'));
+                    $response['share'][$tmp['share_id']]['height'] = $uinfo['height'];
+                    $response['share'][$tmp['share_id']]['weight'] = $uinfo['weight'];
                 }
+                $share_img = $this->share->getProductShareImage(array_keys($response['share']), 'share_id, img_addr, descr' , array('is_cover'=>1));
+                foreach($share_img as $img)
+                {
+                    $response['share'][$img['share_id']] += $img;
+                }
+                //print_r($response);
             }
         }
         self::json_output($response , true);
