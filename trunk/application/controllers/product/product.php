@@ -31,10 +31,11 @@ class Product extends MY_Controller
             foreach ($tmp as $item) {
                 if (strpos($item, '-') === false) continue;
                 list($key, $value) = explode('-', $item);
-                $param[$key] = urldecode($value);
+                $key && $value && $param[$key] = urldecode($value);
             }
             $param && ksort($param); //参数排序
         }
+        //var_dump($param);
         return $param;
     }
 
@@ -123,6 +124,7 @@ class Product extends MY_Controller
      */
     public function info()
     {
+        $this->httpLastModified();
         $pid = (int)$this->uri->rsegment(3, 1);
         $this->load->model('product/Model_Product', 'product');
         $product = $this->product->getProductById($pid);
