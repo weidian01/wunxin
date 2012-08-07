@@ -124,7 +124,7 @@ class recommend_home extends MY_Controller
             show_error('文件上传失败!');
         }
 
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     /**
@@ -180,7 +180,7 @@ class recommend_home extends MY_Controller
             show_error('文件上传失败!');
         }
 
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     /**
@@ -210,7 +210,7 @@ class recommend_home extends MY_Controller
             show_error('添加今日失败');
         }
 
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     /**
@@ -266,7 +266,7 @@ class recommend_home extends MY_Controller
             show_error('文件上传失败!');
         }
 
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     /**
@@ -328,7 +328,7 @@ class recommend_home extends MY_Controller
                 show_error('文件上传失败!');
             }
         }
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     /**
@@ -392,7 +392,7 @@ class recommend_home extends MY_Controller
                 show_error('文件上传失败!');
             }
         }
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     /**
@@ -456,7 +456,7 @@ class recommend_home extends MY_Controller
                 show_error('文件上传失败!');
             }
         }
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     /**
@@ -520,7 +520,7 @@ class recommend_home extends MY_Controller
                 show_error('文件上传失败!');
             }
         }
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     public function designerRecommendSave()
@@ -547,7 +547,7 @@ class recommend_home extends MY_Controller
             show_error('添加设计推荐失败');
         }
 
-        redirect('/administrator/home_recommend/recommendList');
+        redirect('/administrator/recommend_home/recommendList');
     }
 
     public function recommendDelete()
@@ -564,6 +564,6 @@ class recommend_home extends MY_Controller
             show_error('删除今日推荐失败');
         }
 
-        redirect('/administrator/home_recommend/recommendList/');
+        redirect('/administrator/recommend_home/recommendList/');
     }
 }

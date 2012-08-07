@@ -389,6 +389,7 @@ class center extends MY_Controller
         }
 
         $cityData = $this->area->getCityList($provinceId);
+        $cityData = ($cityData == null) ? array() : $cityData;
         $areaId = 0;
         foreach ($cityData as $v) {
             if (trim($data['city']) == $v['name']) { $areaId = $v['id'];}

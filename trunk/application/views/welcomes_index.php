@@ -61,14 +61,14 @@
                 <div class="blt-cont" id="blt1">
                     <ul>
                         <?php foreach ($bulletin as $bv) {?>
-                        <li><a href="#"><?php echo $bv['title'];?></a></li>
+                        <li><a href="#"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
                         <?php }?>
                     </ul>
                 </div>
                 <div class="blt-cont" id="blt2" style="display:none;">
                     <ul>
                         <?php foreach ($news as $nv) {?>
-                        <li><a href="#"><?php echo $nv['title'];?></a></li>
+                        <li><a href="#"><?=mb_substr($nv['title'], 0, 18, 'utf-8');?></a></li>
                         <?php }?>
                     </ul>
                 </div>
@@ -81,36 +81,13 @@
     <div class="container tp">
         <div class="slide" id="tktktkt">
             <ul>
+                <?php foreach ($design_recommend_data as $drdv) {?>
                 <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd1.jpg" width="180" height="226"/></a>
+                    <a href="#" class="designimg" title="<?=$drdv['dname']?>">
+                        <img alt="<?=$drdv['dname']?>" src="<?=config_item('static_url')?>upload/design/<?=str_replace('\\', '/', intToPath($drdv['did']))?>default.jpg" width="180" height="226"/>
+                    </a>
                 </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd5.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd3.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd2.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd5.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd3.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd4.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd1.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd2.jpg" width="180" height="226"/></a>
-                </li>
-                <li class="norm">
-                    <a href="" class="designimg"><img alt="五色上下装搭配" src="/images/sd4.jpg" width="180" height="226"/></a>
-                </li>
+                <?php }?>
             </ul>
             <div class="slide-pre"><a href="javascript:void(0);"></a></div>
             <div class="slide-next"><a href="javascript:void(0);"></a></div>
@@ -121,13 +98,13 @@
 <div class="container tp">
 <div class="slide-ad">
     <div class="ad-btn">
-        <span class="ad-btn1" onmouseover="showAdvert('ad','1')"><a href="#">PROMOTION SITE</a></span>
-        <span class="ad-btn2" onmouseover="showAdvert('ad','2')"><a href="#">SHOP SITE</a></span>
-        <span class="ad-btn3" onmouseover="showAdvert('ad','3')"><a href="#">PROMOTION SITE</a></span>
+        <?php $i = 1;foreach ($AD_recommend as $arvs) {?>
+        <span class="ad-btn<?=$i?>" onmouseover="showAdvert('index_recommend_ad<?=$i?>')"><a href="#"><?=$arvs['title']?></a></span>
+        <?php $i++;}?>
     </div>
     <ul>
         <?php $i = 1;foreach ($AD_recommend as $arv) {?>
-        <li id="ad<?php echo $i;?>" style="<?php echo $i == 1 ? '' : 'display:none;';?>">
+        <li id="index_recommend_ad<?php echo $i;?>" style="<?php echo $i == 1 ? '' : 'display:none;';?>" class="index_recommend_ad">
             <a href="<?php echo $arv['link'];?>">
                 <img alt="<?php echo $arv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200"/>
             </a>
@@ -163,60 +140,56 @@
 </div>
 <div class="prod-bd">
     <div class="men-l">
+        <?php foreach ($man_product_2_recommend_data as $mp2rdv) {?>
         <div class="men-p">
             <div class="pro-pic">
-                <a href="#"><img src="/images/m1.jpg" width="120" height="120" alt="T恤"/></a>
+                <a href="#" title="<?=$mp2rdv['pname']?>, <?=fPrice($mp2rdv['sell_price'])?>">
+                    <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp2rdv['pid']))?>default.jpg" width="120" height="161" alt="T恤"/>
+                </a>
             </div>
-            <div class="men-cont"><span class="font2">CDSB567890</span><br/> Justyle 素色经典短袖T恤<br/> <span class="font3">￥49,000</span></div>
+            <div class="men-cont"><span class="font2"><?=$mp2rdv['style_no']?></span><br/>
+                <a href="" title="<?=$mp2rdv['pname']?>, ￥<?=fPrice($mp2rdv['sell_price'])?>"><?=mb_substr($mp2rdv['pname'], 0, 20, 'utf-8')?></a><br/>
+                    <span class="font3">￥<?=fPrice($mp2rdv['sell_price'])?></span></div>
         </div>
-        <div class="men-p">
-            <div class="pro-pic"><a href="#"><img src="/images/m2.jpg" width="120" height="120" alt="T恤"/></a></div>
-            <div class="men-cont"><span class="font2">CDSB567890</span><br/> 诠渡良品英伦休闲纯色polo衫<br/> <span class="font3">￥49,000</span></div>
-        </div>
-        <div class="men-p">
-            <div class="pro-pic"><a href="#"><img src="/images/m3.jpg" width="120" height="120" alt="T恤"/></a></div>
-            <div class="men-cont"><span class="font2">CDSB567890</span><br/> Justyle 素色经典短袖T恤<br/> <span class="font3">￥49,000</span></div>
-        </div>
-        <div class="men-p">
-            <div class="pro-pic"><a href="#"><img src="/images/m1.jpg" width="120" height="120" alt="T恤"/></a></div>
-            <div class="men-cont"><span class="font2">CDSB567890</span><br/> Justyle 素色经典短袖T恤<br/> <span class="font3">￥49,000</span></div>
-        </div>
+        <?php }?>
     </div>
     <div class="prod-ct">
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '2') { ?>
-        <img src="<?php echo base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?php echo $mr23['title'];?>" width="186" height="280"/>
+        <a href="#" title="<?=$mr23['title']?>">
+            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="210" height="350"/>
+        </a>
         <?php }?>
         <?php }?>
     </div>
     <div class="prod-ct">
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '3') { ?>
-        <img src="<?php echo base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?php echo $mr23['title'];?>" width="186" height="280"/>
+        <a href="#" title="<?=$mr23['title']?>">
+            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="210" height="350"/>
+        </a>
         <?php }?>
         <?php }?>
 
     </div>
+
     <div class="clear"></div>
     <div class="men-bd">
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
-            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
+        <?php foreach ($man_product_1_recommend_data as $mp1rdv) {?>
+        <div class="men-bd-b">
+            <a class="productimg" href="#" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>">
+                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp1rdv['pid']))?>default.jpg" width="160" height="215" alt="<?=$mp1rdv['pname']?>"/>
+            </a>
+            <div class="pro-n"> <p><a href="#" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>"><?=$mp1rdv['pname']?></a></p>
+                <span class="font4">￥<?=fPrice($mp1rdv['sell_price'])?></span></div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
-            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span></div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
-            <div class="pro-n"> <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥802.00</span></div>
-        </div>
+        <?php }?>
     </div>
 </div>
+
+
 <!--男款end-->
+
 <div class="prod-tit titbg2">
     <div class="prod-t-h h-bg"></div>
     <div class="prod-n-more">
@@ -243,37 +216,37 @@
         <div class="floorMain" onmouseout="hideLayer('picmt', 7)">
             <?php foreach ($woman_recommend_1_2_3_4_5_6 as $wr123456) {?>
             <?php if ($wr123456['emission'] == '1') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item1">
+            <a href="<?php echo $wr123456['link'];?>" class="item1" title="<?=$wr123456['title'];?>">
                 <img id="picmt1" onmouseover="showLayer('1','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '2') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item2">
+            <a href="<?php echo $wr123456['link'];?>" class="item2" title="<?=$wr123456['title'];?>">
                 <img id="picmt2" onmouseover="showLayer('2','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '3') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item3">
+            <a href="<?php echo $wr123456['link'];?>" class="item3" title="<?=$wr123456['title'];?>">
                 <img id="picmt3" onmouseover="showLayer('3','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '4') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item4">
+            <a href="<?php echo $wr123456['link'];?>" class="item4" title="<?=$wr123456['title'];?>">
                 <img id="picmt4" onmouseover="showLayer('4','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '5') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item5">
+            <a href="<?php echo $wr123456['link'];?>" class="item5" title="<?=$wr123456['title'];?>">
                 <img id="picmt5" onmouseover="showLayer('5','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '6') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item6">
+            <a href="<?=$wr123456['link'];?>" class="item6" title="<?=$wr123456['title'];?>">
                 <img id="picmt6" onmouseover="showLayer('6','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
@@ -281,31 +254,17 @@
         </div>
     </div>
     <div class="men-bd pad7">
-        <div class="men-bd-b"><a class="productimg" href="#"> <img src="/images/d1.jpg" width="163" height="163" alt="闲短袖T恤"/></a>
+        <?php foreach ($woman_product_recommend_data as $wprdv) {?>
+        <div class="men-bd-b">
+            <a class="productimg" href="#" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>">
+                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($wprdv['pid']))?>default.jpg" width="160" height="215" alt="<?=$wprdv['pname']?>"/>
+            </a>
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+                <p><a href="#" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>"><?=$wprdv['pname']?></a></p>
+                <span class="font4">￥<?=fPrice($wprdv['sell_price'])?></span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
+        <?php }?>
     </div>
 </div>
 <!--女款T恤end-->
@@ -333,34 +292,21 @@
 </div>
 <div class="prod-bd pad5">
     <div class="sweet">
-        <a href="<?php echo $lover_recommend[0]['link']; ?>"><img src="<?php echo str_replace('\\', '/', $lover_recommend[0]['img_addr']);?>" width="948" height="299" alt="<?php echo $lover_recommend[0]['title'];?>"/></a>
+        <a href="<?=$lover_recommend[0]['link']; ?>" title="<?=$lover_recommend[0]['title']; ?>">
+            <img src="<?=str_replace('\\', '/', $lover_recommend[0]['img_addr']);?>" width="948" height="299" alt="<?=$lover_recommend[0]['title'];?>" title="<?=$lover_recommend[0]['title']; ?>"/>
+        </a>
     </div>
     <div class="men-bd pad7">
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
+        <?php foreach ($lover_product_recommend_data as $lprdv) {?>
+        <div class="men-bd-b">
+            <a class="productimg" href="#" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>">
+            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($lprdv['pid']))?>default.jpg" width="160" height="215" alt="<?=$lprdv['pname']?>"/>
+        </a>
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+                <p><a href="#" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>"><?=$lprdv['pname']?></a></p> <span class="font4">￥<?=fPrice($lprdv['sell_price'])?></span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p><span class="font4">￥82.00</span>
-            </div>
-        </div>
+        <?php }?>
     </div>
 </div>
 <!-- 情侣推荐 结束 -->
@@ -392,44 +338,44 @@
         <div class="floorMain" onmouseout="hideLayer('qz', 8)">
             <?php foreach ($family_recommend as $fr) {?>
             <?php if ($fr['emission'] == '1') {?>
-            <a href="<?php echo $fr['link'];?>" class="qv1">
-                <img id="qz1" onmouseover="showLayer('1','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="264" height="300">
+            <a href="<?=$fr['link'];?>" class="qv1" title="<?=$fr['title'];?>">
+                <img id="qz1" onmouseover="showLayer('1','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="264" height="300">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '2') {?>
-            <a href="<?php echo $fr['link'];?>" class="qv2">
-                <img id="qz2" onmouseover="showLayer('2','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="447" height="220">
+            <a href="<?=$fr['link'];?>" class="qv2" title="<?=$fr['title'];?>">
+                <img id="qz2" onmouseover="showLayer('2','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="447" height="220">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '3') {?>
-            <a href="<?php echo $fr['link'];?>" class="qv3">
-                <img id="qz3" onmouseover="showLayer('3','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+            <a href="<?=$fr['link'];?>" class="qv3" title="<?=$fr['title'];?>">
+                <img id="qz3" onmouseover="showLayer('3','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '4') {?>
-            <a href="<?php echo $fr['link'];?>" class="qv4">
-                <img id="qz4" onmouseover="showLayer('4','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+            <a href="<?=$fr['link'];?>" class="qv4" title="<?=$fr['title'];?>">
+                <img id="qz4" onmouseover="showLayer('4','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '5') {?>
-            <a href="<?php echo $fr['link'];?>" class="qv5">
-                <img id="qz5" onmouseover="showLayer('5','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="149" height="80">
+            <a href="<?=$fr['link'];?>" class="qv5" title="<?=$fr['title'];?>">
+                <img id="qz5" onmouseover="showLayer('5','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '6') {?>
-            <a href="<?php echo $fr['link'];?>" class="qv6">
-                <img id="qz6" onmouseover="showLayer('6','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="220">
+            <a href="<?=$fr['link'];?>" class="qv6" title="<?=$fr['title'];?>">
+                <img id="qz6" onmouseover="showLayer('6','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="237" height="220">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '7') {?>
-            <a href="<?php echo $fr['link'];?>" class="qv7">
-                <img id="qz7" onmouseover="showLayer('7','qz', 8)" src="<?php echo base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?php echo $fr['title'];?>" width="237" height="80">
+            <a href="<?=$fr['link'];?>" class="qv7" title="<?=$fr['title'];?>">
+                <img id="qz7" onmouseover="showLayer('7','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="237" height="80">
             </a>
             <?php }?>
 
@@ -437,31 +383,15 @@
         </div>
     </div>
     <div class="men-bd pad7">
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
+        <?php foreach ($family_product_recommend_data as $fprdv) {?>
+        <div class="men-bd-b"><a class="productimg" href="#" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>">
+            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($fprdv['pid']))?>default.jpg" width="160" height="215"/>
+        </a>
             <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
+                <p><a href="#" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>"><?=$fprdv['pname'];?></a></p> <span class="font4">￥<?=fPrice($fprdv['sell_price'])?></span>
             </div>
         </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d3.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d2.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
-        <div class="men-bd-b"><a class="productimg" href="#"><img src="/images/d1.jpg" width="163" height="163"/></a>
-            <div class="pro-n">
-                <p><a href="#">时尚帅气军旅风男士休闲短袖T恤</a></p> <span class="font4">￥82.00</span>
-            </div>
-        </div>
+        <?php }?>
     </div>
 </div>
 <!-- 亲子推荐 结束 -->
@@ -470,30 +400,34 @@
 <div class="brand">
     <div class="left-brand" onmouseout="hideLayer('bdimg', 13)">
         <ul>
-            <li><img id="bdimg1" onmouseover="showLayer('1','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg2" onmouseover="showLayer('2','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg3" onmouseover="showLayer('3','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg4" onmouseover="showLayer('4','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg5" onmouseover="showLayer('5','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg6" onmouseover="showLayer('6','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg7" onmouseover="showLayer('7','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg8" onmouseover="showLayer('8','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg9" onmouseover="showLayer('9','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg10" onmouseover="showLayer('10','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg11" onmouseover="showLayer('11','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
-            <li><img id="bdimg12" onmouseover="showLayer('12','bdimg', 13)" src="/images/br1.jpg" width="90" height="90" alt="brand1"/></li>
+            <?php $i = 1;foreach ($user_recommend as $urv) {?>
+            <li>
+                <img id="bdimg<?=$i?>" onmouseover="showLayer(<?=$i?>,'bdimg', 13)" src="<?=config_item('static_url')?>upload/designer/<?=str_replace('\\', '/', intToPath($urv['uid']))?>icon.jpg"
+                     width="90" height="90" alt="brand1" title="<?=$urv['nickname'];?>" onclick="index.changeUser(<?=$urv['uid']?>)"/>
+            </li>
+            <?php $i++;}?>
         </ul>
     </div>
-    <div class="rgt-p">
+    <div class="rgt-p" id="user_product_id">
+
+        <?php foreach ($user_product as $upv) {?>
         <div class="brand-pro">
-            <div class="brand-proimg"><a href="#"><img src="/images/n1.gif" width="180" height="206"/></a></div>
-            <p>Bessie 梦幻镂空网纱大荷叶领</p>
-            <span class="font4">￥135.90</span></div>
-        <div class="brand-pro">
-            <div class="brand-proimg"><a href="#"><img src="/images/n1.gif" width="180" height="206"/></a></div>
-            <p>Bessie 梦幻镂空网纱大荷叶领</p>
-            <span class="font4">￥135.90</span></div>
-        <div class="brand-ad"><img src="/images/n5.gif" width="169" height="288" alt="广告"/></div>
+            <div class="brand-proimg">
+                <a href="#" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>">
+                <img src="<?=config_item('img_url')?>product/<?=intToPath($upv['pid'])?>default.jpg" width="160" height="186"/>
+            </a>
+            </div>
+            <p><a href="#" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>"><?=$upv['pname'];?></a></p>
+            <span class="font4">￥<?=fPrice($upv['sell_price']);?></span></div>
+        <?php }?>
+        <!--
+        <div class="brand-ad">
+            <img src="http://wunxin.com/upload/designer/1/1/1/icon.jpg" />
+
+            十字 T恤1十字 T恤2 变个魔术十字 T恤1十字 T恤2 变个十字 T恤1十字 T恤2 变个魔术十字 T恤1十字 T恤2 变个十字 T恤1十字 T恤2 变个魔术十字 T恤1十字 T恤2 变个十字 T恤1十字 T恤2 变个魔术十字 T恤1十
+
+        </div>
+         -->
     </div>
 </div>
 <!-- 设计师推荐 结束 -->

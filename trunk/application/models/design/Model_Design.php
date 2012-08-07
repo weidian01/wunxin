@@ -73,13 +73,23 @@ class Model_Design extends MY_Model
      * 获取设计图 -- 通过设计图ID
      *
      * @param $dId
+     * @param $field
+     * @param $where
+     * @param $order
      * @return array
      */
-    public function getDesignByDid($dId)
+    public function getDesignByDid($dId, $field = '*', $where = null, $order = null)
     {
-        $data = $this->db->select('*')->get_where('design', array('did' => $dId, 'status' => 1))->row_array();
+        $this->db->select($field)->from('design');
+        $this->db->where('status', 1);
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
 
-        return empty ($data) ? null : $data;
+        if(is_array($dId))
+        {
+            return  $this->db->where_in('did', $dId)->get()->result_array();
+        }
+        return $this->db->where('did', $dId)->get()->row_array();
     }
 
     /**
@@ -88,6 +98,7 @@ class Model_Design extends MY_Model
      * @param $uId
      * @param $limit
      * @param $offset
+     * @param $field
      * @return null || array
      */
     public function getDesignByUid($uId, $limit = 20, $offset = 0, $field = '*')
