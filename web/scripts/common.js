@@ -432,8 +432,11 @@ wx.initLoginStatus = function ()
 
 //计算图片路径
 function idToPath(id) {
-    var id = String(id);
+    if( (typeof id) == 'undefined') return '#';
+    //alert('开始');alert(typeof id);alert(id)
+    var id = String(id);//alert(id);
     var l = id.match(/(\d{1,2})(\d{0,2})/);
+    //alert(typeof id);alert(id);alert(l);
     return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
 }
 

@@ -20,6 +20,8 @@ $config['img_url']	= 'http://wunxin.com/upload/';
 
 $config['static_url']	= 'http://wunxin.com/';
 
+$config['http_expires']	= 7200;
+
 /*
 |--------------------------------------------------------------------------
 | Index File

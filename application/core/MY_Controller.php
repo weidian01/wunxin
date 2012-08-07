@@ -99,9 +99,10 @@ class MY_Controller extends CI_Controller
         {
             $callback = $_GET['jsoncallback'];
             echo "{$callback}(",json_encode($data),")";
-            die();
+            return ;
         }
-        die(json_encode($data));
+        echo json_encode($data);
+        return;
     }
 
     /**
@@ -173,5 +174,28 @@ class MY_Controller extends CI_Controller
             return true;
         }
         return false;
+    }
+
+    /**
+     * 检查请求是否过期
+     * @return mixed
+     */
+    protected function httpLastModified()
+    {
+        $IF_MODIFIED_SINCE = $this->input->server('HTTP_IF_MODIFIED_SINCE');
+        if($IF_MODIFIED_SINCE !== false
+            && (TIMESTAMP - (strtotime($IF_MODIFIED_SINCE) ) < config_item('http_expires'))) //当前时间减去最后修改时间 不满过期周期
+        {
+            $this->output->set_status_header(304);
+            die;
+        }
+        else
+        {
+            $Last_Modified = gmdate('D, d M Y H:i:s', TIMESTAMP) . ' GMT'; //修改时间
+            $Expires = gmdate('D, d M Y H:i:s', TIMESTAMP + config_item('http_expires')) . ' GMT'; //过期时间
+            $this->output->set_header('Last-Modified: ' . $Last_Modified);
+            $this->output->set_header('Expires: ' . $Expires);
+        }
+        return ;
     }
 }
