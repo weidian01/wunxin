@@ -133,7 +133,7 @@
                     <li>
                         <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
 
-                        <p><?php echo $fv['pname'];?></p>
+                        <p><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>

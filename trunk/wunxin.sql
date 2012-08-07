@@ -3821,7 +3821,7 @@ create table wx_design
    class_id             int unsigned comment '设计图分类',
    uid                  int unsigned comment '用户ID',
    uname                varchar(32) comment '用户名称',
-   dname                varchar(16) comment '设计图名称',
+   dname                varchar(255) comment '设计图名称',
    ddetail              varchar(255) comment '设计图介绍',
    design_img           varchar(128) comment '设计图片',
    design_source        tinyint unsigned default 1 comment '设计图来源,1系统，2活动，3用户，4其他',

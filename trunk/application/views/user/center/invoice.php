@@ -38,8 +38,10 @@
                 </table>
             </div>
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <?php if (empty ($data)) $data = array();
-                foreach ($data as $v) {?>
+                <?php if (empty ($data)) {?>
+                <td colspan="6" style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时没有发票。</td>
+                <?php } else {?>
+                <?php foreach ($data as $v) {?>
                 <tr id="invoice_<?php echo $v['invoice_id'];?>">
                     <td width="8%" height="26" align="center"><a href="#"><?php echo $v['invoice_id'];?></a></td>
                     <td width="28%"><?php echo $v['invoice_payable'];?> </td>
@@ -60,6 +62,7 @@
                         </a>
                     </td>
                 </tr>
+                <?php }?>
                 <?php }?>
                 <!--
                 <tr>

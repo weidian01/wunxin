@@ -55,10 +55,15 @@
                 </table>
             </div>
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <?php if (empty ($data)) $data = array();
+                <?php
                 $notPayNum = 0;
                 $completedNum = 0;
                 $canceledNum = 0;
+
+                if (empty ($data)) {?>
+                <td colspan="7" style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时没有订单，去选择喜欢的<a href="/">产品</a>吧。</td>
+                <?php } else {?>
+                <?php
                 foreach ($data as $v) {
                     if ($v['is_pay'] != '1') { $notPayNum += 1; }
                     if ($v['picking_status'] == '2') { $completedNum += 1; }
@@ -135,7 +140,8 @@
                         <!--<div class="gobuy"><a href="#"></a></div>-->
                     </td>
                 </tr>
-                    <?php }?>
+                <?php }?>
+                <?php }?>
                 <tr>
                     <td colspan="7" align="right">
                         <ul class="ddall">
@@ -162,7 +168,7 @@
                     <li>
                         <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
 
-                        <p><?php echo $fv['pname'];?></p>
+                        <p><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>

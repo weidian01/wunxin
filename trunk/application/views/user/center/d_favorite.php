@@ -163,7 +163,7 @@
                     <li>
                         <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="128" height="128"/>
 
-                        <p><?php echo $fv['dname'];?></p>
+                        <p><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></p>
                         <span class="font2">设计师：<?php echo substr($fv['uname'], 0, 10);?></span><br/>
                         被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span></li>
                     <?php }?>
