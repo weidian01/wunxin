@@ -39,8 +39,10 @@
                 </table>
             </div>
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <?php if (empty ($data)) $data = array();
-                foreach ($data as $v) {?>
+                <?php if (empty ($data)) {?>
+                <td colspan="6" style="text-align: center;font-weight: bold;color: #A10000;" height="50">暂时没有晒单产品，赶快去购买并晒单与朋友分享吧。</td>
+                <?php } else {?>
+                <?php foreach ($data as $v) {?>
                 <tr>
                     <td width="8%" align="center"><!--<a href="#">--><?php echo $v['share_id'];?><!--</a>--></td>
                     <td width="20%">
@@ -68,7 +70,8 @@
                     </td>
                     -->
                 </tr>
-                    <?php }?>
+                <?php }?>
+                <?php }?>
             </table>
         </div>
         <div class="pages" style="float: right;">
@@ -84,7 +87,7 @@
                     <li>
                         <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
 
-                        <p><?php echo $fv['pname'];?></p>
+                        <p><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>
