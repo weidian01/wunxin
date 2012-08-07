@@ -23,12 +23,21 @@ function showbox(a)
 }
 
 //切换显示广告
-function showAdvert(a, id)
+function showAdvert(t)
 {
-    for (var i = 1; i < 4; i++) {
+    //if ( !wx.isEmpty(t) ) return ;
+    //console.log(t);
+    $('.index_recommend_ad').each(function(){
+        $(this).css('display', 'none');
+    });
+    /*
+    for (var i = 1; i <= 3; i++) {
         document.getElementById(a + i).style.display = "none";
     }
-    $('#'+a + id).fadeIn("slow");
+    //*/
+    $('#'+t).fadeIn("slow");
+    //document.getElementById(t).style.display = 'block';
+    //t.style.display = 'block';
 }
 
 //隐藏层
@@ -239,3 +248,32 @@ $(function () {
             });
 });
 //设计图滚动 代码结束
+
+var index = {};
+
+//改变用户 -- 切换用户产品
+index.changeUser = function (uId)
+{
+    if ( !wx.isEmpty(uId) ) {
+        return false;
+    }
+
+    var url = '/index/getUserProduct';
+    var param = 'uid='+uId;
+    var data = wx.ajax('/main/getUserProduct', 'uid='+uId);
+
+    if ( !wx.isEmpty(data) ) {
+        return false;
+    }
+
+    var html = '';
+    for (var i in data) {
+        html += '<div class="brand-pro">\
+            <div class="brand-proimg"><a href="#" title="'+data[i].pname+', ￥'+wx.fPrice(data[i].sell_price)+'">\
+            <img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'default.jpg" width="160" height="186"/></a></div>\
+            <p><a href="#" title="'+data[i].pname+', ￥'+wx.fPrice(data[i].sell_price)+'">'+data[i].pname+'</a></p>\
+            <span class="font4">￥'+wx.fPrice(data[i].sell_price)+'</span></div>';
+    }
+
+    $('#user_product_id').html(html);
+}
