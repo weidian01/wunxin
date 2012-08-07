@@ -219,7 +219,7 @@ class Product extends MY_Controller
             $where .= " AND brand_id = {$brand_id}";
             $rank[3] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", $where,'sales DESC');
         }
-        //print_r($rank);
+        //var_dump($rank);
         return $rank;
     }
 }
