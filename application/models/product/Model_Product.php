@@ -13,14 +13,37 @@ class Model_Product extends MY_Model
      *
      * @param int $pid
      * @param string $field
+     * @param string $where
+     * @param string $order
      * @return bool
      */
-    public function getProductById($pid, $field = '*')
+    public function getProductById($pid, $field = '*', $where = null, $order = null)
     {
-        $data = $this->db->select($field)->get_where('product', array('pid' => $pid,))->row_array();
+        $this->db->select($field)->from('product');
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
 
-        return empty ($data) ? null : $data;
+        if(is_array($pid))
+        {
+            return  $this->db->where_in('pid', $pid)->get()->result_array();
+        }
+        return $this->db->where('pid', $pid)->get()->row_array();
+
+        //$data = $this->db->select($field)->get_where('product', array('pid' => $pid,))->row_array();
+        //return empty ($data) ? null : $data;
     }
+
+    /**
+    list($key, $fields) = self::formatField($fields);
+    $this->db->select($fields)->from('user');
+    $where && $this->db->where($where);
+    if(is_array($uId))
+    {
+        return  $this->db->where_in('uid', $uId)->get()->result_array($key);
+    }
+    return $this->db->where('uid', $uId)->get()->row_array();
+     */
+
 
     /**
      * 获取产品和产品默认图片
@@ -347,12 +370,25 @@ class Model_Product extends MY_Model
      * @param int $limit
      * @param int $offset
      * @param string $field
+     * @param string $where
+     * @param string $orderBy
      * @return array
      */
-    public function getUserProduct($uId, $limit = 20, $offset = 0, $field = '*')
+    public function getUserProduct($uId, $limit = 20, $offset = 0, $field = '*', $where = null, $orderBy = null)
     {
         //return $this->db->get_where('product',array('uid'=>$uId), $limit, $offset)->result_array();
-        return $this->db->select($field)->get_where('product', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
+        $this->db->select($field)->from('product');
+        $this->db->where('uid', $uId);
+        $this->db->where('status', 1);
+        $where && $this->db->where($where);
+        //$orderBy && $this->db->order_by($orderBy);
+        $orderBy && $this->db->order_by($orderBy);
+        $this->db->limit($limit, $offset);
+
+        $data = $this->db->get()->result_array();
+
+        return empty ($data) ? null : $data;
+        //return $this->db->select($field)->get_where('product', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
     }
 
     /**

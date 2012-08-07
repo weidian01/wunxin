@@ -17,9 +17,9 @@
 <h2>添加推荐</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="/administrator/home_recommend/recommendList"><span><br/> 推荐列表 </span></a>
+    <li><a class="shortcut-button" href="/administrator/recommend_home/recommendList"><span><br/> 推荐列表 </span></a>
     </li>
-    <li><a class="shortcut-button" href="/administrator/home_recommend/recommendAdd"><span><br/> 添加推荐 </span></a>
+    <li><a class="shortcut-button" href="/administrator/recommend_home/recommendAdd"><span><br/> 添加推荐 </span></a>
     </li>
 </ul>
 <!-- End .shortcut-buttons-set -->
@@ -47,7 +47,7 @@
 <div class="content-box-content">
 
 <div class="tab-content default-tab" id="tab1">
-    <form action="/administrator/home_recommend/broadcastRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/broadcastRecommendSave" method="post" enctype="multipart/form-data">
         <fieldset>
             <p>
                 <label>名称</label>
@@ -85,7 +85,7 @@
 </div>
 
 <div class="tab-content" id="tab2">
-    <form action="/administrator/home_recommend/dayRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/dayRecommendSave" method="post" enctype="multipart/form-data">
         <fieldset>
             <p>
                 <label>名称</label>
@@ -120,7 +120,7 @@
 </div>
 <!-- End #tab1 -->
 <div class="tab-content" id="tab3">
-    <form action="/administrator/home_recommend/designRecommendSave" method="post">
+    <form action="/administrator/recommend_home/designRecommendSave" method="post">
         <p>
             <label>产品ID</label>
             <input class="text-input small-input" type="text" value="" name="pid"> 输入产品ID，用逗号分隔。如：1,2,3
@@ -141,7 +141,7 @@
 </div>
 
 <div class="tab-content" id="tab4">
-    <form action="/administrator/home_recommend/adRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/adRecommendSave" method="post" enctype="multipart/form-data">
 
         <fieldset>
             <p>
@@ -177,7 +177,7 @@
 </div>
 
 <div class="tab-content" id="tab5">
-    <form action="/administrator/home_recommend/manRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/manRecommendSave" method="post" enctype="multipart/form-data">
         <fieldset>
             <p>
                 <label>排放ID</label>
@@ -232,7 +232,7 @@
 </div>
 
 <div class="tab-content" id="tab6">
-    <form action="/administrator/home_recommend/womanRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/womanRecommendSave" method="post" enctype="multipart/form-data">
 
         <fieldset>
             <p>
@@ -291,7 +291,7 @@
 </div>
 
 <div class="tab-content" id="tab7">
-    <form action="/administrator/home_recommend/loverRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/loverRecommendSave" method="post" enctype="multipart/form-data">
         <fieldset>
             <p>
                 <label>排放ID</label>
@@ -344,7 +344,7 @@
     <div class="clear"></div>
 </div>
 <div class="tab-content" id="tab8">
-    <form action="/administrator/home_recommend/familyRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/familyRecommendSave" method="post" enctype="multipart/form-data">
         <fieldset>
             <p>
                 <label>排放ID</label>
@@ -404,7 +404,7 @@
 </div>
 
 <div class="tab-content" id="tab9">
-    <form action="/administrator/home_recommend/designerRecommendSave" method="post" enctype="multipart/form-data">
+    <form action="/administrator/recommend_home/designerRecommendSave" method="post" enctype="multipart/form-data">
         <fieldset>
             <p>
                 <label>设计师ID</label>
@@ -425,7 +425,7 @@
     <hr/>
     <br/>
     <img src="/images/recommend/designer.png" alt="示例图"><b style="color: red;">示例图</b>
-    <br/><b style="color: red;">Notes: 如果排放ID为8，只需要填写产品ID即可。</b> <br/>
+    <br/><b style="color: red;"><!--Notes: 如果排放ID为8，只需要填写产品ID即可。--></b> <br/>
 
     <div class="clear"></div>
 </div>

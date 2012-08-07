@@ -172,7 +172,8 @@ class design extends MY_Controller
 
         if ($_FILES['design_image']['error'] == 0) {
             $this->load->helper('directory');
-            $directory = generationDesignDirectory($designId);
+            $directory = 'upload/design/'.intToPath($designId);
+            recursiveMkdirDirectory(WEBROOT . $directory);
 
             $config['upload_path'] = WEBROOT . $directory;
             $config['allowed_types'] = 'gif|jpg|png';
@@ -181,7 +182,7 @@ class design extends MY_Controller
             $config['overwrite'] = false;
             $config['max_width'] = '0';
             $config['max_height'] = '0';
-            $config['file_name'] = $designId;
+            $config['file_name'] = 'default';
 
             $this->load->library('upload', $config);
 
@@ -234,7 +235,9 @@ class design extends MY_Controller
             show_error('添加设计图失败!');
         }
         $this->load->helper('directory');
-        $directory = generationDesignDirectory($lastId);
+        //$directory = intToPath($lastId);
+        $directory = 'upload/design/'.intToPath($lastId);
+        recursiveMkdirDirectory(WEBROOT . $directory);
 
         $config['upload_path'] = WEBROOT . $directory;
         $config['allowed_types'] = 'gif|jpg|png';
@@ -243,7 +246,7 @@ class design extends MY_Controller
         $config['overwrite'] = false;
         $config['max_width'] = '0';
         $config['max_height'] = '0';
-        $config['file_name'] = $lastId;
+        $config['file_name'] = 'default';
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('design_image')) {

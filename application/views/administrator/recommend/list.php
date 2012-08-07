@@ -4,22 +4,18 @@
 <noscript>
     <!-- Show a notification if the user has disabled javascript -->
     <div class="notification error png_bg">
-        <div> Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/"
-                                                                                    title="Upgrade to a better browser">upgrade</a>
-            your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852"
-                               title="Enable Javascript in your browser">enable</a> Javascript to navigate the
-            interface
-            properly.
-            Download From <a href="http://www.exet.tk">exet.tk</a></div>
+        <div> Javascript is disabled or is not supported by your browser. Please <a href="http://browsehappy.com/" title="Upgrade to a better browser">upgrade</a>
+            your browser or <a href="http://www.google.com/support/bin/answer.py?answer=23852" title="Enable Javascript in your browser">enable</a> Javascript to navigate the
+            interface properly. Download From <a href="http://www.exet.tk">exet.tk</a></div>
     </div>
 </noscript>
 <!-- Page Head -->
 <h2>推荐列表</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="/administrator/home_recommend/recommendList"><span><br/> 推荐列表 </span></a>
+    <li><a class="shortcut-button" href="/administrator/recommend_home/recommendList"><span><br/> 推荐列表 </span></a>
     </li>
-    <li><a class="shortcut-button" href="/administrator/home_recommend/recommendAdd"><span><br/> 添加推荐 </span></a>
+    <li><a class="shortcut-button" href="/administrator/recommend_home/recommendAdd"><span><br/> 添加推荐 </span></a>
     </li>
 </ul>
 <!-- End .shortcut-buttons-set -->
@@ -31,8 +27,8 @@
     <h3>推荐列表</h3>
     <ul class="content-box-tabs">
         <li><a href="#tab1" class="default-tab">首页转播图</a></li>
-        <li><a href="#tab2">添加今日推荐</a></li>
-        <li><a href="#tab3">添加设计图推荐</a></li>
+        <li><a href="#tab2">今日推荐</a></li>
+        <li><a href="#tab3">设计图推荐</a></li>
         <li><a href="#tab4">广告推荐</a></li>
         <li><a href="#tab5">男款T恤推荐</a></li>
         <li><a href="#tab6">女款T恤推荐</a></li>
@@ -73,7 +69,7 @@
             <td><?php echo $brv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $brv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $brv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $brv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -109,7 +105,7 @@
             <td><?php echo $drv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $drv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $drv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $drv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -142,7 +138,7 @@
             <td><?php echo $derv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $derv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $derv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $derv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -175,12 +171,12 @@
             <td><?php echo $adrv['id'];?></td>
             <td><?php echo $adrv['title'];?></td>
             <td><?php echo $adrv['link'];?></td>
-            <td><img src="<?php echo base_url().$adrv['img_addr'];?>" alt="<?php echo $brv['title'];?>" width="50" height="50"/></td>
+            <td><img src="<?php echo base_url().$adrv['img_addr'];?>" alt="<?php echo $adrv['title'];?>" width="50" height="50"/></td>
             <td><?php echo $adrv['sort'];?></td>
             <td><?php echo $adrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $adrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $adrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $adrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -223,7 +219,7 @@
             <td><?php echo $mrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $mrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $mrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $mrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -265,7 +261,7 @@
             <td><?php echo $wrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $wrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $wrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $wrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -307,7 +303,7 @@
             <td><?php echo $lrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $lrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $lrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $lrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -350,7 +346,7 @@
             <td><?php echo $frv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $frv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $frv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $frv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -382,7 +378,7 @@
             <td><?php echo $derrv['create_time'];?></td>
             <td>
                 <!--<a href="/administrator/article/articleEdit/<?php echo $derrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/home_recommend/recommendDelete/<?php echo $derrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $derrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>

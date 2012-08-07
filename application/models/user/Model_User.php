@@ -55,12 +55,14 @@ class Model_User extends MY_Model
      *
      * @param $uId 用户ID
      * @param $fields 字段
+     * @param $where
      * @return array
      */
-    public function getUserById($uId, $fields = "*")
+    public function getUserById($uId, $fields = "*", $where = null)
     {
         list($key, $fields) = self::formatField($fields);
         $this->db->select($fields)->from('user');
+        $where && $this->db->where($where);
         if(is_array($uId))
         {
             return  $this->db->where_in('uid', $uId)->get()->result_array($key);
@@ -72,12 +74,14 @@ class Model_User extends MY_Model
      * 根据用户id获取用户扩展信息
      * @param $uId
      * @param string $fields
+     * @param $where
      * @return mixed
      */
-    public function getUserInfoById($uId , $fields = "*")
+    public function getUserInfoById($uId , $fields = "*", $where = null)
     {
         list($key, $fields) = self::formatField($fields);
         $this->db->select($fields)->from('user_info');
+        $where && $this->db->where($where);
         if(is_array($uId))
         {
             return $this->db->where_in('uid', $uId)->get()->result_array($key);

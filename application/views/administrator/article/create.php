@@ -70,7 +70,7 @@
                         <p>
                             <label>是否置顶</label>
                             <input type="radio" value="1" <?php echo isset($info['top']) && $info['top'] === '1' ? 'checked="checked"' : '';?> name="top"/> 置顶
-                            <input type="radio" value="0" <?php echo isset($info['top']) && $info['top'] === '1' ? 'checked="checked"' : '';?> name="top"/> 不置顶
+                            <input type="radio" value="0" <?php echo isset($info['top']) && $info['top'] === '0' ? 'checked="checked"' : '';?> name="top"/> 不置顶
                             <br/>
                         </p>
                         <p>

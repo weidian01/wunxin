@@ -58,6 +58,8 @@
     </style>
 </head>
 <body>
+<a href="/">aa</a>
+<a href="/index.php">index</a>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include('/../../header.php');?>
 <!-- #EndLibraryItem -->
@@ -174,4 +176,3 @@
 <!-- #EndLibraryItem -->
 </body>
 </html>
-

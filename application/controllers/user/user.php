@@ -101,9 +101,12 @@ class user extends MY_Controller
                 $response = error(10044);
                 break;
             }
-
-            $destOne = WEBROOT.'upload/designer/'.intToPath($this->uInfo['uid']).'default.jpg';
-            $destTwo = WEBROOT.'upload/designer/'.intToPath($this->uInfo['uid']).'icon.jpg';
+//echo $source;exit;
+            $this->load->helper('directory');
+            $targetPath = WEBROOT.'upload/designer/'.intToPath($this->uInfo['uid']);
+            recursiveMkdirDirectory($targetPath);
+            $destOne = $targetPath.'default.jpg';
+            $destTwo = $targetPath.'icon.jpg';
             if (!copy($source, $destOne) || !copy($source, $destTwo)) {
                 $response = error(10044);
                 break;
