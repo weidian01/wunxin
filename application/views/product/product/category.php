@@ -127,9 +127,9 @@ $(document).ready(function(){
         <?php endforeach;?>
       </table>
     </div>
-    <div class="extend">
-      <div class="kz" id="kza" onclick="more()"></div>
-    </div>
+    <!--div class="extend">
+      <div class="kz" id="kza"></div>
+    </div-->
     <?php endif;?>
     <div class="goodsbox">
       <?php foreach($products as $product):?>
