@@ -854,7 +854,7 @@ table.tab5 td {
 .prod-bd {
     margin: 20px 15px;
     padding: 10px;
-    height: 530px;
+    height: 650px;
     border: 1px solid #007394;
 }
 
@@ -866,7 +866,8 @@ table.tab5 td {
 .men-p {
     float: left;
     width: 265px;
-    height: 145px;
+    height: 161px;
+    padding-bottom: 20px;
 }
 
 .men-p .pro-pic {
@@ -878,7 +879,7 @@ table.tab5 td {
 .men-p .pro-pic a {
     display: block;
     width: 120px;
-    height: 120px;
+    height: 161px;
     overflow: hidden;
     border: 1px solid #eee;
 }
@@ -896,8 +897,8 @@ table.tab5 td {
 
 .prod-ct {
     float: left;
-    width: 186px;
-    padding-right: 10px;
+    width: 195px;
+    padding-right: 0px;
 }
 
 .men-bd {
@@ -907,8 +908,8 @@ table.tab5 td {
 
 a.productimg {
     display: block;
-    width: 163px;
-    height: 163px;
+    width: 160px;
+    height: 215px;
     border: 1px solid #e0e0e0;
 }
 
@@ -938,7 +939,7 @@ a.productimg:hover {
 
 .pad {
     padding: 0px;
-    height: 560px;
+    height: 610px;
     border: 1px solid #940000;
 }
 
@@ -948,13 +949,13 @@ a.productimg:hover {
 
 .pad5 {
     padding: 0px;
-    height: 560px;
+    height: 610px;
     border: 1px solid #097d00;
 }
 
 .pad6 {
     padding: 0px;
-    height: 560px;
+    height: 610px;
     border: 1px solid #ff7200;
 }
 
@@ -1145,7 +1146,7 @@ a.productimg:hover {
 
 .rgt-p .brand-pro {
     float: left;
-    width: 190px;
+    width: 170px;
     padding-left: 16px;
     padding-top: 20px
 }
@@ -1171,7 +1172,7 @@ a.productimg:hover {
 
 .brand-ad {
     float: right;
-    width: 169px;
+    width: 200px;
     background-color: #f7f7f7;
     height: 288px;
     border-left: 1px solid #e0e0e0;

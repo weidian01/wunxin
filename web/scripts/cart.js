@@ -241,7 +241,7 @@ cart.goToOrderConfirm = function ()
         return false;
     }
 
-    wx.goToUrl('order/order/');
+    wx.goToUrl('/order/order/');
 }
 
 
