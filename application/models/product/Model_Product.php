@@ -74,8 +74,8 @@ class Model_Product extends MY_Model
         $order && $this->db->order_by($order);
         $this->db->limit($limit, $offset);
         $data = $this->db->get()->result_array($key);
-
-        return empty ($data) ? null : $data;
+        return $data;
+        //return empty ($data) ? null : $data;
     }
 
     /**
