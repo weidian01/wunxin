@@ -1,12 +1,4 @@
 $(function ($) {
-    $("#kza").toggle(
-        function () {
-            $("#modelAttr").css({height:"180px"});
-        },
-        function () {
-            $("#modelAttr").css({height:"auto"});
-        }
-    );
 
     $(".goods-cbox").hover(
         function () {
@@ -67,7 +59,7 @@ function browseHistoryHTML()
             <p><a href="'+wx.productURL(item[0])+'">' + item[1] + '</a></p>\
             <span class="font4">￥' + sprintf('%.2f',parseFloat(item[2])) + '</span></div>';
         }
-        $('.viewhis').append(html)
+        $('.viewhis').append(html);
         $('#viewhistory').show();
     }
 }
