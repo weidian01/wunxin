@@ -130,7 +130,7 @@ class business_tuan extends MY_Controller
         $data['sell_price'] = $productData['sell_price'];
         $data['status'] = 1;
         $data['tuan_num'] = '';
-        $data['img_addr'] = '';
+        $data['product_images'] = '';
         $data['save'] = (intval($productData['sell_price']) * (100 - $data['discount_rate'])) / 100;
         $data['tuan_price'] = intval($productData['sell_price']  / 100) * $data['discount_rate'];
 

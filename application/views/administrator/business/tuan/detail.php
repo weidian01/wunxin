@@ -71,7 +71,7 @@
                     <td><?php echo $tuan_data['tuan_id'];?></td>
                     <td><?php echo $tuan_data['pid'];?></td>
                     <td><?php echo $tuan_data['pname'];?></td>
-                    <td><?php echo $tuan_data['img_addr'];?></td>
+                    <td><img src="<?php echo base_url(). str_replace('\\', '/', $tuan_data['product_images']);?>" alt="<?php echo $tuan_data['pname'];?>"/></td>
                     <td><?php echo $tuan_data['sell_price'];?></td>
                     <td><?php echo $tuan_data['tuan_price'];?></td>
                     <td><?php echo $tuan_data['status'] ? '正常团购' : '已结束团购';?></td>
