@@ -77,7 +77,7 @@
                         <td><?php echo $v['tuan_id'];?></td>
                         <td><?php echo $v['pid'];?></td>
                         <td><?php echo $v['pname'];?></td>
-                        <td><img src="<?php echo base_url(). str_replace('\\', '/', $v['img_addr']);?>" alt="<?php echo $v['pname'];?>" width="50" height="50"/> </td>
+                        <td><img src="<?php echo base_url(). str_replace('\\', '/', $v['product_images']);?>" alt="<?php echo $v['pname'];?>" width="50" height="50"/> </td>
                         <td><?php echo $v['sell_price'] / 100;?></td>
                         <td><?php echo $v['tuan_price'] / 100;?></td>
                         <td><?php echo $v['status'] ? '正常团购' : '已结束团购';?></td>

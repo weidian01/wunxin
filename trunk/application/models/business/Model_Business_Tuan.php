@@ -19,7 +19,7 @@ class Model_Business_Tuan extends MY_Model
         $info = array(
             'pid' => $data['pid'],
             'pname' => $data['pname'],
-            'img_addr' => $data['img_addr'],
+            'product_images' => $data['product_images'],
             'sell_price' => $data['sell_price'],
             'tuan_price' => $data['tuan_price'],
             'status' => $data['status'],
@@ -120,7 +120,7 @@ class Model_Business_Tuan extends MY_Model
     public function updateTuanProductImage($file, $tId)
     {
         $data = array(
-            'img_addr' => $file,
+            'product_images' => $file,
         );
 
         $this->db->where('tuan_id', $tId);
