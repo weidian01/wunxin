@@ -327,7 +327,7 @@ class center extends MY_Controller
 
         $data = $this->favorite->getUserDesignerFavoriteAndUser($this->uInfo['uid'], $Limit, $offset);
 
-        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(5);
+        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(6);
 //echo '<pre>';print_r($favoriteRecommend);exit;
         $this->load->view('user/center/u_favorite', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -523,7 +523,7 @@ class center extends MY_Controller
         $data = $this->message->getUserDesignerMessageAndDesigner($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(5);
+        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(6);
 //echo '<pre>';print_r($favoriteRecommend);exit;
         $this->load->view('user/center/u_comment', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
