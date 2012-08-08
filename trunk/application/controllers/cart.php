@@ -26,6 +26,7 @@ class cart extends MY_Controller
     {
         $cData = $this->getCartToCookie();
 //echo '<pre>';print_r($cData);exit;
+        //foreach ($cData)
         $this->json_output($cData);
     }
 
@@ -67,7 +68,7 @@ class cart extends MY_Controller
             $cInfo = array(
                 'pid' => $pInfo['pid'],
                 'pname' => $pInfo['pname'],
-                'product_price' => fPrice($pInfo['sell_price']),
+                'product_price' => ($pInfo['sell_price']),
                 'product_num' => $pNum,
                 'size_id' => $size['size_id'],
                 'product_size' => $size['abbreviation'],
@@ -93,7 +94,7 @@ class cart extends MY_Controller
     {
         $id = intval($this->input->get_post('id'));
 
-        $response = error(60008);
+        $response = array('error' => '0', 'msg' => '删除/重新添加产品至购物车中成功', 'code' => 'remove_re_add_product_to_shopping_cart_success');
 
         do {
             if ($id < 0) {
@@ -115,7 +116,7 @@ class cart extends MY_Controller
                 unset ($cData[$id]);
             }
             //echo '<pre>';print_r($cData);exit;
-            $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), 10000000);
+            $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), config_item('cookie_cart_expires'));
 
             //$response = error(60009);
         } while (false);
@@ -132,7 +133,7 @@ class cart extends MY_Controller
         $id = intval($this->input->get_post('id'));
         $num = intval($this->input->get_post('num'));
 
-        $response = error(60004);
+        $response = array('error' => '0', 'msg' => '更改购物车产品数量成功', 'code' => 'change_cart_products_successful');
 
         do {
             if ($num === 0 || $num < 0) {
@@ -150,7 +151,7 @@ class cart extends MY_Controller
                 $cData[$id]['product_num'] = $num;
             }
 
-            $status = $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), 10000000);
+            $status = $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), config_item('cookie_cart_expires'));
             /*/
             if (!false) {
                 $response = error(60005);
@@ -167,7 +168,7 @@ class cart extends MY_Controller
      */
     public function cartStorageToDatabase()
     {
-        $response = error(60017);
+        $response = array('error' => '0', 'msg' => '存储用户购物车中产品到数据库成功', 'code' => 'storage_user_shopping_cart_product_to_database_success');
 
         do {
             $cData = $this->getCartToCookie();
@@ -209,7 +210,7 @@ class cart extends MY_Controller
      */
     public function removeCartProduct()
     {
-        $response = error(60014);
+        $response = array('error' => '0', 'msg' => '取出用户购物车中产品成功', 'code' => 'remove_user_shopping_cart_product_success');
 
         do {
             if (!$this->isLogin()) {
@@ -240,13 +241,26 @@ class cart extends MY_Controller
                 }
             }
 
+            //* 将数据中存在的产品与现有购物车中产品合并
             if (! empty ($cartDatabaseInfo)) {
-                $data = array_merge($data, $cartDatabaseInfo);
+                foreach ($cartDatabaseInfo as $dv) {
+                    $tmpData = array(
+                        'pid' => $dv['pid'],
+                        'pname' => $dv['pname'],
+                        'product_price' => ($dv['product_price']),
+                        'product_num' => ($dv['product_num']),
+                        'size_id' => ($dv['product_size']),
+                        'product_size' => ($dv['product_size']),
+                        'additional_info' => ($dv['additional_info']),
+                    );
+                    $data[] = $tmpData;
+                }
             }
+            //*/
 
             $jData = empty ($data) ? '' : json_encode($data);
 
-            $this->input->set_cookie('cart_info', $jData, 10000000);
+            $this->input->set_cookie('cart_info', $jData, config_item('cookie_cart_expires'));
         } while (false);
 
         $this->json_output($response);
@@ -259,7 +273,7 @@ class cart extends MY_Controller
     {
         //$uId = intval($this->input->get_post('uid'));
 
-        $response = error(60011);
+        $response = array('error' => '0', 'msg' => '清空用户购物车成功', 'code' => 'empty_shopping_cart_success');
 
         $this->input->set_cookie('cart_info', '', -100);
 

@@ -214,7 +214,7 @@ wx.cartGlobalInit = function ()
     var url = 'cart/getCart';
     var param = '';
     var data = wx.ajax(url, param);
-
+//console.log(data);
     if (!wx.isEmpty (data)) {
         $('#cart_product_num').html(' '+totalNum+' ');
         $('#cartbox').html('<h4>购物车中还没有商品，赶紧去选购吧！</h4>');
@@ -224,15 +224,16 @@ wx.cartGlobalInit = function ()
     for (var i in data) {
         html += '<div class="cart-bx">';
         html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="'+data[i].pname+'" title="'+data[i].pname+'"/></div>';
-        html += '<div class="cart-goodsname"><a href="#">'+data[i].pname+'</a><br/><span class="font5">￥'+(data[i].product_price)+'</span></div>';
-        html += '<div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
+        html += '<div class="cart-goodsname"><a href="#" title="'+data[i].pname+'">'+data[i].pname.substring(0,25)+'</a><br/><span class="font5">￥'+wx.fPrice(data[i].product_price)+'</span>';
+        html += '<span> &nbsp;&nbsp;&nbsp; 数量：'+parseInt(data[i].product_num)+'</span>';
+        html += '</div><div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
         html += '</div>';
-        totalPrice += (data[i].product_price * data[i].product_num);
-        totalNum += data[i].product_num;
+        totalPrice += (parseInt(data[i].product_price) * parseInt(data[i].product_num));
+        totalNum += parseInt(data[i].product_num);
     }
 
     html += '<div class="cart-hj">';
-    html += '<div class="sum">合计：<span class="font3">￥'+totalPrice+'</span></div>';
+    html += '<div class="sum">合计：<span class="font3">￥'+wx.fPrice( totalPrice )+'</span></div>';
     html += '<div class="cart-to-js"><a href="/cart/">我要结算</a></div>';
     html += '</div>';
 //console.log(html);
@@ -466,7 +467,7 @@ wx.favoriteProductLayer = function(status, bindingId){
 
     art.dialog({ follow: document.getElementById(bindingId), title:false, content: html });
 
-    var number = 6;
+    var number = 5;
     var url = '/product/recommend/favoriteRecommend';
     var param = 'number='+number;
     var data = wx.ajax(url, param);
@@ -477,9 +478,9 @@ wx.favoriteProductLayer = function(status, bindingId){
         var fHtml = '';
         for (var i in fData) {
             fHtml += '<li><div class="pop-img"><a href="#">\
-              <img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="60" height="60" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'"/></a>\
-              </div> <p><a href="#" title="'+fData[i].pname+', ￥'+( (fData[i].sell_price) / 100 )+'">'+fData[i].pname.substring(0,15)+'</a><br/>\
-              <span class="popfont2" style="font-size: 11px;">￥'+( (fData[i].sell_price) / 100 )+'</span></p></li>';
+              <img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="94" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'"/></a>\
+              </div> <p><a href="#" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'">'+fData[i].pname.substring(0,15)+'</a><br/>\
+              <span class="popfont2" style="font-size: 11px;">￥'+wx.fPrice(fData[i].sell_price)+'</span></p></li>';
         }
         $('.pop-goods').html(fHtml);
     }
@@ -552,8 +553,8 @@ wx.addToCartLayer = function (pId, pName, bindingId)
 {
     var cartData = wx.ajax('/cart/getCart', '');
 
-    var totalNum = '';
-    var totalPrice = '';
+    var totalNum = 0;
+    var totalPrice = 0;
 
     for (var ci = 0; ci < cartData.length; ci++) {
         totalNum += cartData[ci]['product_num'];
@@ -562,7 +563,7 @@ wx.addToCartLayer = function (pId, pName, bindingId)
 
     var html = '<div class="commentDIV"> <div class="tit">商品已成功加入购物车 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="addto-goods">\
        <div class="p-img-g"><img src="'+wx.img_url+'product/'+idToPath(pId)+'default.jpg" width="109" height="109" /></div> <div class="p-cont-g">\
-       <p><a href="#">'+pName+'</a></p><div class="p-cont-price">购物车共 '+totalNum+' 件宝贝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计：<span class="popfont3">'+totalPrice+'</span>元</div>\
+       <p><a href="#">'+pName+'</a></p><div class="p-cont-price">购物车共 '+parseInt(totalNum)+' 件宝贝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计：<span class="popfont3">'+wx.fPrice(totalPrice)+'</span>元</div>\
        <div class="p-cont-btn"> <a class="goshopping" href="javascript:void(0);" onclick="wx.layerClose()">继续购物</a><a class="gocash" href="/cart/">去结算</a> </div></div></div>\
        <div class="pop-t" style="padding-top:20px;"><span class="pop-b">看过该商品的人还购买过</span><a class="pop-c" href="/">更多您可能喜欢的商品 >></a></div>\
        <ul class="pop-goods" style="padding:0px 0px 20px 20px;" id="pop-goods">\
@@ -580,8 +581,8 @@ wx.addToCartLayer = function (pId, pName, bindingId)
         var fHtml = '';
         for (var i in fData) {
             fHtml += '<li><div class="pop-img"><a href="#"><img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="70" alt="aaaa" /></a></div>\
-              <p><a href="#" title="'+fData[i].pname+', ￥'+wx.fPrice( (fData[i].sell_price) / 100 )+'">'+fData[i].pname.substring(0,15)+'</a></p>\
-              <span class="popfont2">售价￥'+wx.fPrice( (fData[i].sell_price) / 100 )+'</span></li>';
+              <p><a href="#" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'">'+fData[i].pname.substring(0,15)+'</a></p>\
+              <span class="popfont2">售价￥'+wx.fPrice(fData[i].sell_price)+'</span></li>';
         }
         $('.pop-goods').html(fHtml);
     }

@@ -10,7 +10,6 @@
         case '30024' : $t = '很遗憾，您的订单支付失败了！原因：系统繁忙，请稍后再试'; break;
         case '30025' : $t = '很遗憾，您的订单支付失败了！原因：记录收款单信息失败'; break;
     }
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
@@ -69,15 +68,24 @@ $(document).ready(function(){
               case '2': $s = ' 只双休日、节假日送货（工作时间不送货）'; break;
               case '3': $s = '只工作日送货（双休日、节假日不送）'; break;
               case '4': $s = '学校地址，白天没人'; break;
+              default:  $s = '工作日、双休日和节假日均送货'; break;
           }echo $s;
           ?><br/>
           <?php echo $order['recent_name'].',';
 
-            if ($order['pay_type'] == '1') {
-                echo '如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
-            } elseif ($order['pay_type'] == '3') {
-                echo '如果<span class="font6"> 72 </span>小时内您无法完成付款，系统会将您的订单取消。';
+            if (($response['error'] == '0')) {
+                echo ' 您于'.date('Y-m-d H:i',strtotime($order['pay_time'])).' 已成功付款，我们将尽快安排发货，可随时登陆万象网
+                    <a href="/user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
+            } else {
+                if ($order['pay_type'] == '1') {
+                    echo ' 如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
+                } elseif ($order['pay_type'] == '3') {
+                    echo ' 如果<span class="font6"> 72 </span>小时内您无法完成付款，系统会将您的订单取消。';
+                } else {
+                    echo ' 如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
+                }
             }
+
           ?></div>
   </div>
   <?php if ($response['error'] != '0') {?>
@@ -239,7 +247,7 @@ $(document).ready(function(){
   </div>
   </form>
       <?php } else {?>
-  <div class="other-shopping" style="height:320px;">
+  <div class="other-shopping" style="height:350px;">
       <div class="tit">购买以上商品的顾客还购买过</div>
       <div class="other-c">
           <div class="other-pre"><a href="#">pre</a></div>
@@ -248,11 +256,20 @@ $(document).ready(function(){
               <div style=" height:230px; width:1800px;">
                   <?php foreach ($recommend as $rv) { ?>
                   <div class="rq">
-                      <div class="rqimg"><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="120" title="<?php echo $rv['pname'];?>"/></div>
-                      <p><?php echo $rv['pname'];?><br/>
+                      <div class="rqimg">
+                          <a href="#" title="<?=$rv['pname'];?>">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="161" title="<?php echo $rv['pname'];?>"/>
+                          </a>
+                      </div>
+                      <p>
+                          <a href="#" title="<?php echo $rv['pname'];?>"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?></a><br/>
                           原价：￥<span class="font7"><?php echo fPrice($rv['market_price']);?></span><br/>
-                          <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span></p>
-                      <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/></div>
+                          <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span>
+                      </p>
+                      <a href="#" title="<?=$rv['pname'];?>">
+                        <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
+                      </a>
+                  </div>
                   <?php }?>
               </div>
           </div>
@@ -264,5 +281,6 @@ $(document).ready(function(){
 <?php include '/../footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/cart.js"></SCRIPT>
 </body>
 </html>

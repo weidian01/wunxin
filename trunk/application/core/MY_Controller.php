@@ -134,7 +134,6 @@ class MY_Controller extends CI_Controller
             'pname' => $pInfo['pname'],
             'product_price' => $pInfo['product_price'],
             'product_num' => $pInfo['product_num'],
-            //'product_img' => $pInfo['product_img'],
             'product_size' => $pInfo['product_size'],
             'additional_info' => $pInfo['additional_info'],
         );
@@ -145,6 +144,7 @@ class MY_Controller extends CI_Controller
 
         $cData = $this->getCartToCookie();
 
+        //产品是否已经存在于购物车中标识
         $isExist = false;
         if (!empty ($cData)) {
             foreach ($cData as &$cv) {

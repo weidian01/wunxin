@@ -244,24 +244,24 @@ $error[60002] = array('error' => '60002', 'msg' => '添加产品到购物车失�
 $error[60003] = array('error' => '60003', 'msg' => '添加产品到购物车参数不全', 'code' => 'add_products_to_cart_parameter_failure');
 
 
-$error[60004] = array('error' => '60004', 'msg' => '更改购物车产品数量成功', 'code' => 'change_cart_products_successful');
+//$error[60004] = array('error' => '60004', 'msg' => '更改购物车产品数量成功', 'code' => 'change_cart_products_successful');
 $error[60005] = array('error' => '60005', 'msg' => '更改购物车产品数量失败', 'code' => 'change_cart_products_failure');
 //$error[60006] = array('error' => '60006', 'msg' => '更改购物车产品数量参数不全', 'code' => 'change_cart_products_parameter_failure');
 $error[60007] = array('error' => '60007', 'msg' => '更改购物车产品数量值错误', 'code' => 'change_cart_products_number_value_failure');
 
-$error[60008] = array('error' => '60008', 'msg' => '删除/重新添加产品至购物车中成功', 'code' => 'remove_re_add_product_to_shopping_cart_success');
+//$error[60008] = array('error' => '60008', 'msg' => '删除/重新添加产品至购物车中成功', 'code' => 'remove_re_add_product_to_shopping_cart_success');
 $error[60009] = array('error' => '60009', 'msg' => '删除/重新添加产品至购物车中失败', 'code' => 'remove_re_add_product_to_shopping_cart_failure');
 $error[60010] = array('error' => '60010', 'msg' => '删除/重新添加产品至购物车中参数错误', 'code' => 'remove_re_add_product_to_shopping_cart_parameter_failure');
 
-$error[60011] = array('error' => '60011', 'msg' => '清空用户购物车成功', 'code' => 'empty_shopping_cart_success');
+//$error[60011] = array('error' => '60011', 'msg' => '清空用户购物车成功', 'code' => 'empty_shopping_cart_success');
 $error[60012] = array('error' => '60012', 'msg' => '清空用户购物车失败', 'code' => 'empty_shopping_cart_failure');
 $error[60013] = array('error' => '60013', 'msg' => '清空用户购物车参数不全', 'code' => 'empty_shopping_cart_parameter_failure');
 
-$error[60014] = array('error' => '60014', 'msg' => '取出用户购物车中产品成功', 'code' => 'remove_user_shopping_cart_product_success');
+//$error[60014] = array('error' => '60014', 'msg' => '取出用户购物车中产品成功', 'code' => 'remove_user_shopping_cart_product_success');
 $error[60015] = array('error' => '60015', 'msg' => '取出用户购物车中产品失败', 'code' => 'remove_user_shopping_cart_product_failure');
 $error[60016] = array('error' => '60016', 'msg' => '取出用户购物车中产品参数不全', 'code' => 'remove_user_shopping_cart_product_parameter_failure');
 
-$error[60017] = array('error' => '60017', 'msg' => '存储用户购物车中产品到数据库成功', 'code' => 'storage_user_shopping_cart_product_to_database_success');
+//$error[60017] = array('error' => '60017', 'msg' => '存储用户购物车中产品到数据库成功', 'code' => 'storage_user_shopping_cart_product_to_database_success');
 $error[60018] = array('error' => '60018', 'msg' => '用户购物车为空', 'code' => 'user_shopping_cart_empty');
 $error[60019] = array('error' => '60019', 'msg' => '存储用户购物车中产品到数据库失败', 'code' => 'storage_user_shopping_cart_product_to_database_failure');
 

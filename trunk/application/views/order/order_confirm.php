@@ -286,7 +286,7 @@ $(document).ready(function(){
               3、收款人邮编：100124<br />
               4、账号：62220606030354<br />
               5、请填写您的姓名、地址、邮编；<br />
-              6、在附言栏注明订单号（您成功提交订单后会收到订单号，也可以在<a href="/user/center/index" target="_blank">我的订单</a>中查询到）、联系电话、客户编号（老客户）；<br />
+              6、在附言栏注明订单号（您成功提交订单后会收到订单号，也可以在<a href="/user/center/index" target="_blank"><b> 我的订单 </b></a>中查询到）、联系电话、客户编号（老客户）；<br />
               我们将在收到您的汇款后为您寄发包裹。</div></td>
         </tr>
       </table>
@@ -330,62 +330,27 @@ $(document).ready(function(){
           <?php foreach ($cart_info as $cv) {?>
         <tr>
           <td width="7%"><img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($cv['pid']))?>icon.jpg" width="60" height="60" /></td>
-          <td width="49%"><a class="gn2" href="#"><?php echo $cv['pname'];?></a><br/>
+          <td width="49%"><a class="gn2" href="#"><?=mb_substr($cv['pname'], 0, 70, 'utf-8');?></a><br/>
             <!-- <span class="font2">GZ26052909-S</span> --></td>
-          <td align="center"><?php echo $cv['product_price'];?></td>
-          <td align="center"><?php echo $cv['product_num'];?></td>
-          <td align="center"><?php echo $cv['product_price'] * $cv['product_num'];?></td>
-          <td align="center"><span class="font6"><?php echo $cv['product_price'] * $cv['product_num'];?></span></td>
+          <td align="center"><?=fPrice($cv['product_price']);?></td>
+          <td align="center"><?=intval($cv['product_num']);?></td>
+          <td align="center"><?=intval(fPrice($cv['product_price'] * $cv['product_num']));?></td>
+          <td align="center"><span class="font6"><?=fPrice($cv['product_price'] * $cv['product_num']);?></span></td>
         </tr>
           <?php }?>
-        <!--
-        <tr>
-          <td><img src="/images/pic_10.jpg" width="52" height="67" /></td>
-          <td><a class="gn2" href="#">Bessie OL气质荷叶边条纹短裙 </a><br/>
-            <span class="font2">GZ26052909-S</span></td>
-          <td align="center">129.00</td>
-          <td align="center">1件</td>
-          <td align="center">--</td>
-          <td align="center"><span class="font6">129.00</span></td>
-        </tr>
-        <tr>
-          <td><img src="/images/pic_13.jpg" alt="" width="53" height="69" /></td>
-          <td><a class="gn2" href="#">Bessie OL气质荷叶边条纹短裙 </a><br/>
-            <span class="font2">GZ26052909-S</span></td>
-          <td align="center">256.00</td>
-          <td align="center">1件</td>
-          <td align="center">--</td>
-          <td align="center"><span class="font6">256.00</span></td>
-        </tr>
-        -->
       </table>
       <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:15px;">
         <tr>
           <!--<td width="21%"><div class="sy"><span class="invo" id="invos" onclick="syinfo('syinv','invos')"></span></div></td>-->
           <td width="79%" align="right">
-              产品数量总计：<?php echo $total_num;?>&nbsp;&nbsp;&nbsp;&nbsp;
-              赠送积分总计：<?php echo $total_price;?>&nbsp;&nbsp;&nbsp;&nbsp;
+              产品数量总计：<?=intval($total_num);?>&nbsp;&nbsp;&nbsp;&nbsp;
+              赠送积分总计：<?=intval(fPrice($total_price));?>&nbsp;&nbsp;&nbsp;&nbsp;
               花费积分总计：0&nbsp;&nbsp;&nbsp;&nbsp;
-              商品金额总计：￥<?php echo $total_price;?></td>
+              商品金额总计：￥<?=fPrice($total_price);?></td>
         </tr>
       </table>
       <div class="order-info">
         <div class="order-fj">
-            <!--<div class="sybox" id="syinv" style="display:none;">
-              <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                <td width="19%" align="right">发票抬头：</td>
-                <td width="81%"><input class="input1" type="text" name="invoice_payable" id="invoice_payable_id" /></td>
-              </tr>
-              <tr>
-                <td align="right">发票类型：</td>
-                <td><select name="invoice_content" id="invoice_content_id">
-                    <option value="1">服装</option>
-                    <option value="2">其他</option>
-                  </select></td>
-              </tr>
-            </table>
-          </div>-->
           <div class="sy2"><span class="ordermark" id="omk" onclick="marksinfo('syinv2','omk')"></span></div>
           <div class="sybox" id="syinv2" style="display:none;">
             <textarea class="tta" name="annotated" rows="6" id="annotated_id"></textarea>
@@ -402,7 +367,7 @@ $(document).ready(function(){
         <div class="order-sum">运费：￥0<br/>
           <!--礼品卡冲抵：￥0.00<br/>
           虚拟账户余额冲抵：￥0.00-->
-          <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥<?php echo $total_price;?></span></div>
+          <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥<?=fPrice($total_price);?></span></div>
         </div>
       </div>
     </div>

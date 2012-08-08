@@ -6,6 +6,7 @@
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -217,6 +218,7 @@
 <?php include '/../footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/cart.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
 <script type="text/javascript">
     cart.init();
 </script>
