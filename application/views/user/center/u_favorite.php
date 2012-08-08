@@ -167,8 +167,10 @@
                 <div class="tuinext"><a href="#"></a></div>
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
-                    <li>
-                        <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($fv['uid'])?>icon.jpg" width="128" height="128"/>
+                    <li style="width: 110px;text-align: center;padding: 0 5px;">
+                        <a href="#" title="<?=$fv['uname']?>">
+                            <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($fv['uid'])?>icon.jpg" width="90" height="90"/>
+                        </a>
 
                     <p><?php echo $fv['uname'];?></p>
                     <span class="font2">用户等级：<?php echo $fv['lid'];?></span><br/>

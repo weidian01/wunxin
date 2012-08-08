@@ -13,6 +13,9 @@
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
+    <style type="text/css">
+        .ucenter_recommend a:hover{border: 1px solid #a10000;}
+    </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include('/../../header.php');?>
@@ -131,9 +134,11 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
+                        <a href="#" title="<?=$fv['pname']?>" class="ucenter_recommend">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        </a>
 
-                        <p><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></p>
+                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>

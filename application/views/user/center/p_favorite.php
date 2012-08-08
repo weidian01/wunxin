@@ -157,9 +157,11 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="128"/>
+                        <a href="#" title="<?=$fv['pname']?>">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        </a>
 
-                        <p><?=mb_substr($fv['pname'], 0, 18, 'utf-8') ;?></p>
+                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8') ;?></a></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>
