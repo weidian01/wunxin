@@ -279,6 +279,8 @@ $config['cookie_prefix']	= "wunxin_";
 $config['cookie_domain']	= "wunxin.com";
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= FALSE;
+$config['cookie_cart_expires']	= 1000000;
+
 
 /*
 |--------------------------------------------------------------------------

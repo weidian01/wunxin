@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>订单提交成功</title>
+<title>恭喜您， <?=($order['is_pay'] == '1')? '您的订单已支付成功' : '您订单提交成功了';?></title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
 <!--<SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>-->
@@ -39,9 +39,9 @@ $(document).ready(function(){
   <div class="other-shopping">
     <div class="tit">订单状态</div>
     <div class="order-c">
-      <p>恭喜您，订单提交成功了！</p>
-      <span class="font9">您的订单号：<?php echo $order['order_sn'];?>
-          应付金额：<span class="font6"><?php echo fPrice($order['after_discount_price']);?></span> 元，
+      <p>恭喜您，<?=($order['is_pay'] == '1') ? '订单已支付成功了' : '订单提交成功了';?>！</p>
+      <span class="font9">您的订单号：<?=$order['order_sn'];?>
+          <?=($order['is_pay'] == '1')? '已' : '应';?>付金额：<span class="font6"><?=fPrice($order['after_discount_price']);?></span> 元，
           支付方式：<?php
           switch ($order['pay_type']) {
               case '1': $ps = '线上支付'; break;
@@ -57,20 +57,29 @@ $(document).ready(function(){
               case '2': $s = ' 只双休日、节假日送货（工作时间不送货）'; break;
               case '3': $s = '只工作日送货（双休日、节假日不送）'; break;
               case '4': $s = '学校地址，白天没人'; break;
+              default:  $s = '工作日、双休日和节假日均送货'; break;
           }echo $s;
           ?><br/>
           <?php echo $order['recent_name'].',';
 
-            if ($order['pay_type'] == '1') {
-                echo '如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
-            } elseif ($order['pay_type'] == '3') {
-                echo '如果<span class="font6"> 72 </span>小时内您无法完成付款，系统会将您的订单取消。';
+            if ($order['is_pay'] == '1') {
+                echo ' 您于'.date('Y-m-d H:i',strtotime($order['pay_time'])).' 已成功付款，我们将尽快安排发货，可随时登陆万象网
+                    <a href="/user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
+            } else {
+                if ($order['pay_type'] == '1') {
+                    echo ' 如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
+                } elseif ($order['pay_type'] == '3') {
+                    echo ' 如果<span class="font6"> 72 </span>小时内您无法完成付款，系统会将您的订单取消。';
+                } else {
+                    echo ' 如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
+                }
             }
+
           ?></div>
   </div>
-  <?php if ($order['pay_type'] == '1') {?>
+  <?php if ($order['is_pay'] != '1') {?>
   <form action="" method="POST" onsubmit="return order.pay()" name="pay_form" id="" target="_blank">
-      <input type="hidden" name="order_sn" value="<?php echo $order['order_sn'];?>" />
+      <input type="hidden" name="order_sn" value="<?=$order['order_sn'];?>" />
   <div class="other-shopping">
     <div class="tit">选择支付方式</div>
     <div class="payment">
@@ -226,133 +235,40 @@ $(document).ready(function(){
     </div>
   </div>
   </form>
-      <?php }?>
-  <!--
-  <div class="other-shopping" style="height:320px;">
-    <div class="tit">购买以上商品的顾客还购买过</div>
-    <div class="other-c">
-      <div class="other-pre"><a href="#">pre</a></div>
-      <div class="other-next"><a href="#">next</a></div>
-      <div class="other-cg">
-        <div style=" height:230px; width:1800px;">
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-        </div>
+      <?php } else {?>
+  <div class="other-shopping" style="height:350px;">
+      <div class="tit">购买以上商品的顾客还购买过</div>
+      <div class="other-c">
+          <div class="other-pre"><a href="#">pre</a></div>
+          <div class="other-next"><a href="#">next</a></div>
+          <div class="other-cg">
+              <div style=" height:230px; width:1800px;">
+                  <?php foreach ($recommend as $rv) { ?>
+                  <div class="rq">
+                      <div class="rqimg">
+                          <a href="#" title="<?=$rv['pname'];?>">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="161" title="<?php echo $rv['pname'];?>"/>
+                          </a>
+                      </div>
+                      <p>
+                          <a href="#" title="<?=$rv['pname'];?>"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?> </a>
+                          <br/>
+                          原价：￥<span class="font7"><?php echo fPrice($rv['market_price']);?></span><br/>
+                          <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span></p>
+                      <a href="#" title="<?=$rv['pname'];?>">
+                          <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
+                      </a>
+                  </div>
+                  <?php }?>
+              </div>
+          </div>
+          <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
       </div>
-      <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
-    </div>
   </div>
--->
+<?php } ?>
 </div>
 <?php include '/../footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
 </body>
 </html>
-
-
-
-
-<!--
-<form id='aliPay_submit' name='aliPay_submit' action='https://mapi.alipay.com/gateway.do?_input_charset=utf-8' method='POST'>
-    <input type='hidden' name='_input_charset' value='utf-8'/>
-    <input type='hidden' name='body' value='潮人必备个性T恤-红色 | 潮人必备个性T恤-白色'/>
-    <input type='hidden' name='logistics_payment' value='SELLER_PAY'/>
-    <input type='hidden' name='logistics_type' value='EXPRESS'/>
-    <input type='hidden' name='notify_url' value='http://wunxin.com/pay/payBack/'/>
-    <input type='hidden' name='out_trade_no' value='105'/>
-    <input type='hidden' name='partner' value='2088002380741030'/>
-    <input type='hidden' name='payment_type' value='1'/>
-    <input type='hidden' name='price' value='567.43'/>
-    <input type='hidden' name='quantity' value='1'/>
-    <input type='hidden' name='receive_address' value='北京市朝阳区高碑乡半壁店村25号'/>
-    <input type='hidden' name='receive_mobile' value='01061116110'/>
-    <input type='hidden' name='receive_name' value='侯积平'/>
-    <input type='hidden' name='receive_phone' value='15101559313'/>
-    <input type='hidden' name='receive_zip' value='100010'/>
-    <input type='hidden' name='return_url' value='http://wunxin.com/pay/payBack/'/>
-    <input type='hidden' name='seller_email' value='hjpking@hotmail.com'/>
-    <input type='hidden' name='service' value='trade_create_by_buyer'/>
-    <input type='hidden' name='subject' value='潮人必备个性T恤-红色'/>
-    <input type='hidden' name='sign' value='5dbf29d06db2ab96934d07f7391dd0b5'/>
-    <input type='hidden' name='sign_type' value='MD5'/>
-    <input type='submit' value='提交'>
-</form>
-
-<form id='alipaysubmit' name='alipaysubmit' action='https://mapi.alipay.com/gateway.do?_input_charset=utf-8' method='POST'>
-    <input type='hidden' name='_input_charset' value='utf-8'/>
-    <input type='hidden' name='body' value='潮人必备个性T恤-红色 | 潮人必备个性T恤-白色'/>
-    <input type='hidden' name='logistics_payment' value='SELLER_PAY'/>
-    <input type='hidden' name='logistics_type' value='EXPRESS'/>
-    <input type='hidden' name='notify_url' value='http://wunxin.com/pay/payBack/'/>
-    <input type='hidden' name='out_trade_no' value='105'/>
-    <input type='hidden' name='partner' value='2088002380741030'/>
-    <input type='hidden' name='payment_type' value='1'/>
-    <input type='hidden' name='price' value='567.43'/>
-    <input type='hidden' name='quantity' value='1'/>
-    <input type='hidden' name='receive_address' value='北京市朝阳区高碑乡半壁店村25号'/>
-    <input type='hidden' name='receive_mobile' value='01061116110'/>
-    <input type='hidden' name='receive_name' value='侯积平'/>
-    <input type='hidden' name='receive_phone' value='15101559313'/>
-    <input type='hidden' name='receive_zip' value='100010'/>
-    <input type='hidden' name='return_url' value='http://wunxin.com/pay/payBack/'/>
-    <input type='hidden' name='seller_email' value='hjpking@hotmail.com'/>
-    <input type='hidden' name='service' value='trade_create_by_buyer'/>
-    <input type='hidden' name='subject' value='潮人必备个性T恤-红色'/>
-    <input type='hidden' name='sign' value='5dbf29d06db2ab96934d07f7391dd0b5'/>
-    <input type='hidden' name='sign_type' value='MD5'/>
-    <input type='submit' value='确认'>
-</form>
--->

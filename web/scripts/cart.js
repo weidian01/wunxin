@@ -13,9 +13,7 @@ var cart = {};
 cart.init = function ()
 {
     var html = '';
-    var url = 'cart/getCart';
-    var param = '';
-    var data = wx.ajax(url, param);
+    var data = wx.ajax('cart/getCart', '');
 
     if (data == '' || data == undefined) {
         html = '<br /><h1 style="text-align: center;">您的购物车中没有商品，请您去 <a href="javascript:void(0);" onclick="wx.goToBack()" style="color: #b5161c;">选购商品</a> 或 ' +
@@ -32,27 +30,27 @@ cart.init = function ()
     html += '<td width="10%" align="center" class="tit">赠送积分</td>';
     html += '<td width="12%" align="center" class="tit">小计</td>';
     html += '</tr>';
-    //console.log(data.length);
+
     var totalPrice = 0;
     var totalIntegral = 0;
     var totalProductNum = 0;
 
     for (var i in data) {
         html += '<tr>';
-        html += '<td width="7%"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50"/></td>';
+        html += '<td width="7%"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="67"/></td>';
         html += '<td width="40%">';
-        html += '<a class="gn" href="#">'+data[i].pname+'</a><br/>';
-        html += '<a href="'+data[i].pid+'">收藏</a>&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a>';
-        html += '</td>';
-        html += '<td align="center">'+(data[i].product_price)+'</td>';
+        html += '<a class="gn" href="#">'+data[i].pname.substring(0, 60)+'</a><br/>';
+        html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
+        html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a></td>';
+        html += '<td align="center">'+wx.fPrice(data[i].product_price)+'</td>';
         html += '<td align="center">'+data[i].product_size+'</td>';
         html += '<td align="center">';
         html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="/images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
         html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].product_num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
         html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="/images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
-        html += '<td align="center"><span class="font2">'+(data[i].product_price * data[i].product_num)+'</span></td>';
-        html += '<td align="center"><span class="font6">'+(data[i].product_price * data[i].product_num)+'</span></td>';
+        html += '<td align="center"><span class="font2">'+parseInt( wx.fPrice(data[i].product_price * data[i].product_num) )+'</span></td>';
+        html += '<td align="center"><span class="font6">'+wx.fPrice(data[i].product_price * data[i].product_num)+'</span></td>';
         html += '</tr>';
         totalIntegral += (data[i].product_price * data[i].product_num);
         totalPrice += (data[i].product_price * data[i].product_num);
@@ -62,10 +60,10 @@ cart.init = function ()
     html += '<tr>';
     html += '<td style="border-bottom:1px solid #a5afc3;">&nbsp;</td>';
     html += '<td colspan="6" style="border-bottom:1px solid #a5afc3;">';
-    html += '<div class="gsum"> 产品数量总计：<span class="font1">'+totalProductNum+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-    html += '赠送积分总计：<span class="font1">'+totalIntegral+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+    html += '<div class="gsum"> 产品数量总计：<span class="font1">'+parseInt(totalProductNum)+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+    html += '赠送积分总计：<span class="font1">'+parseInt(wx.fPrice(totalIntegral))+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     //html += '花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-    html += '商品金额总计：<span class="font1">'+totalPrice+'</span>';
+    html += '商品金额总计：<span class="font1">'+wx.fPrice(totalPrice)+'</span>';
     html += '</div>';
     html += '</td>';
     html += '</tr>';
@@ -124,8 +122,9 @@ cart.addToCart = function (pid, pSize, pNum, additional_info, bindingId)
 //删除购物车中产品
 cart.deleteCartItem = function (id, bindingId)
 {
+    id = parseInt(id);
     //*
-    if (id == '' || id == undefined) {
+    if ( !wx.isEmpty(id) && id !== 0) {
         //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
         wx.showPop('参数不全。', bindingId);
         return false;
@@ -173,35 +172,36 @@ cart.changeQuantity = function (id, type)
 //保存购物车中产品至数据库
 cart.saveCart = function (bindingId)
 {
-    if ( wx.checkLoginStatus() ) {
+    if ( !wx.checkLoginStatus() ) {
         return false;
     }
 
-    var url = 'cart/cartStorageToDatabase';
+    //var url = 'cart/cartStorageToDatabase';
     //var param = '';
-    var data = wx.ajax(url, '');
+    var data = wx.ajax('cart/cartStorageToDatabase', '');
 
     if (data.error == '10009') {
-        alert('请登陆，暂未登陆!');
+        wx.loginLayer();
+        return false;
     }
 
     if (data.error == '60019') {
         //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">保存失败。</span><br/>' });
         wx.showPop('保存失败。', bindingId);
-        //alert('保存失败!');
+        return false;
     }
 
-    if (data.error == '60017') {
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">保存成功。</span><br/>' });
-        wx.showPop('保存成功。', bindingId);
-        //alert('保存成功!');
+    if (data.error == '0') {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">保存成功。</span><br/>' });
+        wx.showPop('购物车中产品寄存成功。', bindingId);
+        return true;
     }
 }
 
 //将购物库中购物车产品取出
 cart.removeCart = function (bindingId)
 {
-    if ( wx.checkLoginStatus() ) {
+    if ( !wx.checkLoginStatus() ) {
         return false;
     }
 
@@ -210,20 +210,21 @@ cart.removeCart = function (bindingId)
     var data = wx.ajax(url, '');
 
     if (data.error == '10009') {
-        //alert('请登陆，暂未登陆!');
+        wx.loginLayer();
+        return false;
     }
 
-    if (data.error == '60014') {
+    if (data.error == '0') {
         //alert('取出产品成功!');
         //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">取出产品成功。</span><br/>' });
-        wx.showPop('取出产品成功。', bindingId);
+        wx.showPop('取出购物车产品成功。', bindingId);
     }
 
     cart.init();
 }
 
 //清空购物车
-cart.emptyCart = function ()
+cart.emptyCart = function (bindingId)
 {
     var url = 'cart/emptyCart';
     wx.ajax(url, '');

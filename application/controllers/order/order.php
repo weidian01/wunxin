@@ -186,17 +186,20 @@ class order extends MY_Controller
         $orderSn = $this->uri->segment(4, 0);
 
         if (empty ($orderSn)) {
-            exit;
+            show_error('参数不全');
         }
 
         $this->load->model('order/Model_Order', 'order');
         $data = $this->order->getOrderByOrderSn($orderSn);
 
         if (empty ($data)) {
-            exit;
+            show_error('未知的订单');
         }
 
-        $this->load->view('order/success', array('order' => $data));
+        $this->load->model('product/Model_Product', 'product');
+        $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');
+
+        $this->load->view('order/success', array('order' => $data, 'recommend' => $recommend));
     }
 
     /**

@@ -188,7 +188,7 @@ class pay extends MY_Controller
             $recommend = array();
             if ($response['error'] == '0') {
                 $this->load->model('product/Model_Product', 'product');
-                $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');//($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
+                $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');
             }
 
             $this->load->view('pay/callback', array('response' => $response, 'order' => $orderInfo, 'recommend' => $recommend));
