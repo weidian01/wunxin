@@ -300,14 +300,14 @@
 
 .viewhis {
     padding: 10px 0px;
-    height: 185px;
+    height: 218px;
 }
 
 .viewhis .vhis {
     float: left;
     padding-left: 21px;
     width: 142px;
-    height: 186px;
+    height: 216px;
     overflow: hidden;
 }
 
@@ -1243,8 +1243,9 @@
 }
 
 .recordbox {
-    padding: 8px 0px 0px 8px;
+    padding: 8px 0px 8px 0px;
     line-height: 20px;
+    text-align: center;
 }
 
 .recordbox p {

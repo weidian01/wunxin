@@ -79,7 +79,7 @@
         {
             var item = list[k].split('|');
             html += '<div class="recordbox"> \
-                <a href="'+wx.productURL(item[0])+'"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="180" height="200" /></a>\
+                <a href="'+wx.productURL(item[0])+'"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="164" height="197" /></a>\
                     <p><a href="'+wx.productURL(item[0])+'">'+item[1]+'</a><br/> \
                       <span class="font19">￥'+sprintf('%.2f', parseFloat(item[2]))+'</span></p> \
                   </div>';
@@ -193,7 +193,7 @@
             $.each(data, function (i, item) {
                 html += '<div class="vhis">\
                     <a class="hoverimg" href="'+wx.productURL(item.pid)+'">\
-                    <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) + 'default.jpg" width="140" height="140" /></a>\
+                    <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) + 'default.jpg" width="140" height="168" /></a>\
                     <p><a href="'+wx.productURL(item.pid)+'">' + item.pname + '</a></p>\
                     <span class="font4">￥' + sprintf('%.2f', item.sell_price / 100) + ' </span></div>';
             });
