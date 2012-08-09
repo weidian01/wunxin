@@ -1486,7 +1486,7 @@ a.productimg:hover {
     text-decoration: none;
 }
 
-
+.clear { clear: both; }
 
 
 .aui_outer { text-align:left; }

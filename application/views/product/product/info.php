@@ -308,7 +308,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="sd-tit">
           <div class="sdbt"><span class="font18">晒单</span>&nbsp;&nbsp;&nbsp;&nbsp;共 <span class="font1" id="share_total">0</span> 单</div>
           <div class="sd-btn"><a href="javascript:void(0);" onclick="product.productShare(<?=$product['pid']?>)">我要晒单</a></div>
-          <div class="sd-yh">优先来晒单，有机会获得5元礼品卡哦！</div>
+          <div class="sd-yh">优先来晒单，有机会获得意外奖励与大图展示哦！</div>
         </div>
         <span id="share_main"></span>
         <div class="sd-other" style="display:none"><!--晒单列表--></div>
@@ -333,10 +333,10 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="50%"><div class="q-t-1">
-                    <p>商品全部来自品牌公司或品牌公司下的授权经销商，商品全部来自品牌公司或品牌公司下的授权经销商，商品全部来自品牌公司或品牌公司下的授权经销商</p>
+                    <p>万象网的商品全部来自于自有品牌、品牌公司与品牌公司下的授权经销商，品牌授权产品与线下实体店铺销售的商品是完全一致。</p>
                   </div></td>
                 <td width="50%"><div class="q-t-2">
-                    <p>商品全部来自品牌公司或品牌公司下的授权经销商，商品全部来自品牌公司或品牌公司下的授权经销商，商品全部来自品牌公司或品牌公司下的授权经销商</p>
+                    <p>全国范围人快递送货上门, 将为你提供优质的服务。</p>
                   </div></td>
               </tr>
             </table>
@@ -356,33 +356,37 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="pad12"><img src="<?=config_item('static_url')?>images/shouhou_15.gif" width="652" height="120" align="退货流程"/></div>
         <div class="tuihuantxt">
           <div class="tuihuan-tit">退换货承诺：</div>
-          <p>自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。</p>
+          <p>自您签收货后7日内可以退换货，15天内可以换货，在商品不影响二次销售的情况下，万象网将为您办理退换货服务，请在 <a href="/">万象网</a> - <a href="/user/center/index" target="_blank">我的订单</a> "申请退换货"
+            申请。注意：商品在非质量问题，运费将由您来承担！
+          </p>
           <div class="tuihuan-tit">退换货方式：</div>
-          <p>自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货。自您签收货后7日内可以退换货</p>
+          <p>万象网针对于国内部分城市提供 “上门退换货” 服务，需要提供上门退换货嗠请联系客服中心; 若您所在地区不在上门退换货范围内，请通过快递方式将商品、内包装、赠品及发货单等物一并寄回。质量问题的退换货，运费将由万象网来承担，
+              如非质量问题退换货将由您来承担，在退回请您先垫付运费寄回， 货物寄到时，万象网将货款与运费支付于您。</p>
           <div class="tuihuan-tit">退换货邮寄地址：</div>
-          <p>南京市江宁区东山工业园南京市江宁区东山工业园&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收件人：王小姐 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：000000<br/>
-            客服热线：400-886-886622&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客服邮箱： <a class="sermail" href="#">servers@wanxiang.com </a><br/>
+          <p>北京市朝阳区半壁店25号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收件人：侯先生 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：100022<br/>
+            客服热线：010-62962388&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客服邮箱： <a class="sermail" href="mailto:servers@wunxin.com">service@wunxin.com </a><br/>
             如有疑问请联系我们，我们将为您竭诚服务！</p>
         </div>
       </div>
     </div>
     <div class="gbox-relation pad9" id="g-relation6" style="display:none;">
       <div class="payment">
+          <!--
         <div class="payment-tit">
           <div class="paytit">支付方式<span class="font1"> <span class="font20">—</span> 货到付款</span></div>
         </div>
-        <div class="pay-zw">配送人员送货上门，客户接单验货后直接支付配送人员货物金额的一种支付方式。<a class="payfont" href="#">点击查看货到付款支持范围</a></div>
+        <div class="pay-zw">配送人员送货上门，客户接单验货后直接支付配送人员货物金额的一种支付方式。<a class="payfont" href="#">点击查看货到付款支持范围</a></div>-->
         <div class="payment-tit">
           <div class="paytit">支付方式<span class="font1"> <span class="font20">—</span> 在线支付</span></div>
         </div>
-        <div class="pay-zw"> 提供银联在线支付、财付通在线支付、工行在线支付、招行在线支付、中国银行在线支付、支付宝在线支付6种在线支付方式，几乎涵盖所有大中型银行发卡的银行卡，覆盖率达98%，选择在线支付即时到账，准确快捷！
+        <div class="pay-zw"> 易宝在线支付、工行在线支付、招行在线支付、中国银行在线支付、支付宝在线支付6种在线支付方式，几乎涵盖所有大中型银行发卡的银行卡，覆盖率达98%，选择在线支付即时到账，准确快捷！
           <ul class="paypic">
-            <li><span><img src="<?=config_item('static_url')?>images/paybg_11.jpg" width="114" height="42" /></span>财付通在线支付</li>
+            <li><span><img src="<?=config_item('static_url')?>images/paybg_11.jpg" width="114" height="42" /></span>易宝在线支付</li>
             <li><span><img src="<?=config_item('static_url')?>images/paybg_06.jpg" width="98" height="48" /></span> 支付宝在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/paybg_08.jpg" width="112" height="46" /></span>财付通在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/paybg_03.jpg" width="120" height="50" /></span>财付通在线支付</li>
+            <li><span><img src="<?=config_item('static_url')?>images/paybg_08.jpg" width="112" height="46" /></span>工商银行在线支付</li>
+            <li><span><img src="<?=config_item('static_url')?>images/paybg_03.jpg" width="120" height="50" /></span>一网通在线支付</li>
           </ul>
-          温馨提示：在线支付付款等待期限为24小时。请您在订购后24小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电400-88665-25555，我们将竭诚为您服务！ </div>
+          温馨提示：在线支付付款等待期限为24小时。请您在订购后24小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电010-62962388，我们将竭诚为您服务！ </div>
         <div class="payment-tit">
           <div class="paytit">支付方式 <span class="font20">—</span> <span class="font1">邮局汇款</span></div>
         </div>
@@ -391,7 +395,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <tr>
               <td width="25%" height="100"><img src="<?=config_item('static_url')?>images/paybg_18.jpg" width="90" height="86" /></td>
               <td width="75%" valign="top"><span class="font21"><strong>邮局汇款：</strong>选择此方式支付货款的客户，请您在下单后尽快到邮局进行汇款。汇款完毕后，请务必进入订单信息填写页面填写并确认汇款信息<br/>
-                <strong>温馨提示：</strong>在线支付付款等待期限为24小时。请您在订购后24小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电400-88665-25555，我们将竭诚为您服务！</span></td>
+                <strong>温馨提示：</strong>在线支付付款等待期限为72小时。请您在订购后72小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电010-62962388，我们将竭诚为您服务！</span></td>
             </tr>
           </table>
         </div>
@@ -402,12 +406,14 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td width="25%" align="center"><img src="<?=config_item('static_url')?>images/paybg_21.jpg" width="82" height="138" /></td>
-              <td width="75%" valign="middle"><span class="font21"><strong>礼品卡支付：</strong>选择此方式支付货款的客户，请您在下单后尽快到邮局进行汇款。汇款完毕后，请务必进入订单信息填写页面填写并确认汇款信息<br/>
+              <td width="75%" valign="middle"><span class="font21"><strong>礼品卡支付：</strong>在进入结算中心 - 提交订单页面，输入您的礼品卡及密码
+                  (注意：礼品卡是需要先<a href="/user/center/bingCard" target="_blank">绑定卡</a>),点击验证进行支付订单，如您的礼品卡余额不足够支付订单，请使用其他方式支付。<br/>
                 <br/>
-                <strong>虚拟账户支付：</strong>在线支付付款等待期限为24小时。请您在订购后24小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电400-88665-25555，我们将竭诚为您服务！</span></td>
+                <strong>虚拟账户支付：</strong>是您在万象网的专属账户; 您在万象网购物多支付的部分或报销运费等金额都会存入你的虚拟账户中，你可以在万象网购物时使用。</span></td>
             </tr>
           </table>
         </div>
+        <!--
         <div class="payment-tit">
           <div class="paytit">支付方式 <span class="font20">—</span> <span class="font1">电话支付</span></div>
         </div>
@@ -423,12 +429,14 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           <div class="paytit">支付方式 <span class="font20">—</span> <span class="font1">温馨提示</span></div>
         </div>
         <div class="pay-zw">如您对我们的帮助中心有疑问或建议，请拨打客服热线：400-899-5688，或发送邮件至 server@wanxiang.com。 </div>
-      </div>
+      </div>-->
     </div>
   </div>
   <!--right end-->
+
 </div>
-<br />
+  <br /><br />
+  <div class="clear"></div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include '/../../footer.php';?>
 <!-- #EndLibraryItem -->

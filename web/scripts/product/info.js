@@ -79,8 +79,9 @@
         {
             var item = list[k].split('|');
             html += '<div class="recordbox"> \
-                <a href="'+wx.productURL(item[0])+'"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="164" height="197" /></a>\
-                    <p><a href="'+wx.productURL(item[0])+'">'+item[1]+'</a><br/> \
+                <a href="'+wx.productURL(item[0])+'" title="'+item[1]+'" target="_blank">' +
+                '<img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="164" height="197" /></a>\
+                    <p><a href="'+wx.productURL(item[0])+'" title="'+item[1]+'" target="_blank">'+item[1]+'</a><br/> \
                       <span class="font19">￥'+sprintf('%.2f', parseFloat(item[2]))+'</span></p> \
                   </div>';
         }
@@ -210,14 +211,13 @@
                 html += '<div class="bdan2">\
                           <table width="95%" border="0" cellspacing="0" cellpadding="0">\
                             <tr>\
-                              <td><a href="'+wx.productURL(item.pid)+'">'+item.pname+'</a></td>\
+                              <td><a href="'+wx.productURL(item.pid)+'" title="'+item.pname+'" target="_blank">'+item.pname.substring(0, 12)+'</a></td>\
                               <td><span class="font4">￥'+wx.fPrice(item.sell_price)+'</span></td>\
                             </tr>\
                           </table>\
-                          <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="50" height="50" title="'+item.pname+'"/></div>\
-                          <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
-                            '+item.content+'</div>\
-                        </div>';
+                          <div class="bdimg"><a href="'+wx.productURL(item.pid)+'" title="'+item.pname+'" target="_blank">' +
+                    '<img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="50" height="50" title="'+item.pname+'"/>\
+                    </a></div> <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>'+item.content+'</div></div>';
             });
             $('#hotComment').html(html).show();
             lazyload(".bdimg img.lazy");
