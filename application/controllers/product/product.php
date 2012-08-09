@@ -180,36 +180,36 @@ class Product extends MY_Controller
         }
     }
 
+    /**
+     * 搜索产品
+     */
     public function search()
     {
         $keyword = $this->input->get('keyword');
-        $products = array();
-        if($keyword == false)
+        $offset = max((int)$this->input->get('offset'), 0);
+        if ($keyword == false) {
+            $products = array();
+        } else {
+            $this->load->database();
+            $keyword = $this->db->escape_like_str($keyword);
+            $this->load->model('product/Model_Product', 'product');
+            $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", "pname LIKE '%{$keyword}%'", $order = null);
+        }
+        if($this->input->is_ajax_request() !== true)
         {
-            echo __METHOD__;
+            $this->load->view('product/product/search', array(
+                'title' => "{$keyword} 搜索",
+                'keyword' => $keyword,
+                'clan'=>$this->channel,
+                'products' => $products,
+                'pageHTML' => '',//$pageHTML,
+                'salesRank' => $this->salesRank(),
+            ));
         }
         else
         {
-            $keyword = $this->db->escape_like_str($keyword);
-            $this->load->model('product/Model_Product', 'product');
-            $products = $this->product->getProductList($limit = 20, $offset = 0, "pid, did, pname, market_price, sell_price", "pname LIKE '%{$keyword}%'", $order = null);
-            //print_r($products);
+            self::json_output($products, true);
         }
-        //print_r($this->channel);
-        $this->load->view('product/product/search', array(
-            'title' => "{$keyword} 搜索",
-            'keyword' => $keyword,
-            //'category' => $category,
-            'nav'=>array(),//$this->cate->getParents(0),
-            //'ancestor'=> 0,//$this->channel[$category]['ancestor'],
-            'clan'=>$this->channel,//$this->cate->getClan($this->channel[$category]['ancestor']),
-            //'param' => $param,
-            //'modelAttr' => $modelAttr,
-            'products' => $products,
-            'pageHTML' => '',//$pageHTML,
-            //'pageNUM' => $pageNUM,
-            'salesRank' => $this->salesRank(),
-        ));
     }
 
     /**
