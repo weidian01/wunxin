@@ -35,9 +35,10 @@ $(function ($) {
 
     /*无限下拉*/
     $(function () {
+        var keyword = $('keyword').val()
         $('#goodsbox').scrollPagination({
             'dataType':'json',
-            'contentPage':'/search?keyword=t', // the url you are fetching the results
+            'contentPage':'/search?keyword='+keyword, // the url you are fetching the results
             'contentData':'offset=32&callback=?', // these are the variables you can pass to the request, for example: children().size() to know which page you are
             'scrollTarget':$(window), // who gonna scroll? in this example, the full window
             'heightOffset':600, // it gonna request when scroll is 10 pixels before the page ends
@@ -82,7 +83,6 @@ $(function ($) {
             });
         };
     });
-
 });
 
 function rankbox(a,b,id) {

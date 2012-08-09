@@ -187,14 +187,17 @@ class Product extends MY_Controller
     {
         $keyword = $this->input->get('keyword');
         $offset = max((int)$this->input->get('offset'), 0);
+        $this->load->model('product/Model_Product', 'product');
         if ($keyword == false) {
-            $products = array();
-        } else {
-            $this->load->database();
-            $keyword = $this->db->escape_like_str($keyword);
-            $this->load->model('product/Model_Product', 'product');
-            $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", "pname LIKE '%{$keyword}%'", $order = null);
+            $like = null;
         }
+        else
+        {
+            $keyword = $this->db->escape_like_str($keyword);
+            $like = "pname LIKE '%{$keyword}%'";
+        }
+        $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", $like, $order = null);
+
         if($this->input->is_ajax_request() !== true)
         {
             $this->load->view('product/product/search', array(
