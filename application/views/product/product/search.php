@@ -86,8 +86,33 @@ $(document).ready(function(){
     <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
     <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
   </div>
+    <style>
+        .goods-list .listHeader { background: url("<?=config_item('static_url')?>images/listbg_1.png") repeat-x scroll 0 -514px transparent; height: 31px; padding-left: 33px; }
+        .goods-list .tab a.cur { background-color: #A2A2A2; border-top-color: #EAEAEA; color: #FFFFFF; }
+        .goods-list .tab a { border-bottom: 1px solid #999999; float: left; font-size: 12px; height: 28px; line-height: 28px; text-align: center; width: 67px; }
+        .goods-list .tab a { border-bottom: 1px solid #999999; border-top: 2px solid #ECEDEC;color: #343434; float: left; font-size: 12px; height: 28px; line-height: 28px; text-align: center; width: 67px; }
+        .goods-list .addons { color: #666666; display: inline; float: right; font-family: Verdana, Geneva, sans-serif; line-height: 32px; margin: 0 10px 0 0; }
+        .goods-list .addons span { margin-right: 10px; }
+        .goods-list .addons a.disabled { color: #999999; }
+        .goods-list .addons a { margin-right: 10px; }
+        .goods-list .addons a:link, .goods-list .addons a:visited { color: #990000; }
+        .goods-list .addons a { margin-right: 10px; }
+
+    </style>
   <!--left end-->
   <div class="goods-list">
+
+      <div id="listHeader" class="listHeader">
+          <div class="tab">
+              <a val="" class="ordby_default cur" name="orderby" href="javascript:void(0)">默认</a>
+              <a val="pr" name="orderby" class="ordby_pr " href="javascript:void(0)">价格</a>
+              <a val="sale" name="orderby" class="ordby_sale " href="javascript:void(0)">销量</a>
+              <a val="new" class="ordby_new " name="orderby" href="javascript:void(0)">最新</a>
+          </div>
+          <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
+              <!--a class="disabled" href="javascript:void(0)">上一页</a> <a href="javascript:jumppage(2)">下一页</a-->
+          </div>
+      </div>
 
     <div class="goodsbox" id="goodsbox">
       <?php foreach($products as $product):?>
