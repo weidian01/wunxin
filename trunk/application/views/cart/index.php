@@ -87,134 +87,55 @@
       <div class="other-next"><a href="#">next</a></div>
       <div class="other-cg">
         <div style=" height:230px; width:1800px;">
+            <?php foreach ($sales as $sv) {?>
           <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
+            <div class="rqimg">
+                <a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank">
+                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($sv['pid'])?>default.jpg" width="130" height="156" />
+                </a>
+            </div>
+            <p><a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank"><?=mb_substr($sv['pname'], 0, 18, 'utf-8')?></a><br/>
+              原价：￥<span class="font7"><?=fPrice($sv['market_price'])?></span><br/>
+              <span class="font6">特惠价：￥<?=fPrice($sv['sell_price'])?></span></p>
+            <a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank">
+                <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" />
+            </a>
+            </div>
+          <?php }?>
         </div>
       </div>
       <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
     </div>
   </div>
   <div class="other-shopping" style="height:320px;">
-    <div class="tit">购买以上商品的顾客还购买过</div>
+    <div class="tit">看过以上商品的顾客还购买过</div>
     <div class="other-c">
       <div class="other-pre"><a href="#">pre</a></div>
       <div class="other-next"><a href="#">next</a></div>
       <div class="other-cg">
         <div style=" height:230px; width:1800px;">
+          <?php foreach ($favorite as $fv) {?>
           <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
-          <div class="rq">
-            <div class="rqimg"><img src="/images/df_03.jpg" width="120" height="120" /></div>
-            <p>Bessie OL气质荷叶边条纹短裙<br/>
-              原价：￥<span class="font7">236.00</span><br/>
-              <span class="font6">特惠价：￥198.00</span></p>
-            <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /></div>
+            <div class="rqimg">
+                <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank">
+                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156" />
+                </a>
+            </div>
+            <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8')?></a><br/>
+              原价：￥<span class="font7"><?=fPrice($fv['market_price'])?></span><br/>
+              <span class="font6">特惠价：￥<?=fPrice($fv['sell_price'])?></span></p>
+              <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"> <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /> </a>
+          </div>
+            <?php }?>
         </div>
       </div>
       <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
     </div>
   </div>
-  <div class="tips">您在购物过程中有任何疑问，请查阅 <a href="#"><span class="font8">帮助中心</span></a> 或 <a href="#"><span class="font8">联系客服</span></a></div>
+  <div class="tips">您在购物过程中有任何疑问，请查阅 <a href="/other/help/" target="_blank"><span class="font8">帮助中心</span></a> 或
+      <a href="/other/help/" target="_blank"><span class="font8">联系客服</span></a></div>
 </div>
-<a href="javascript:cart.addToCart(4, 'S');">add to cart</a>
+<!--<a href="javascript:cart.addToCart(4, 'S');">add to cart</a>-->
 <?php include '/../footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/cart.js"></script>

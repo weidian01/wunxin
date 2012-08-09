@@ -104,7 +104,7 @@
                                             <td style="width:60px;">
                                                 <div class="imgbox">
                                                     <a href="#" class="a_e" title="<?php echo $v['nickname'];?>">
-                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['uid'])?>icon.jpg" alt="" width="60" height="60" title="<?php echo $v['nickname'];?>"/>
+                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['uid'])?>default.jpg" alt="" width="90" height="90" title="<?php echo $v['nickname'];?>"/>
                                                     </a>
                                                 </div>
                                             </td>
@@ -167,7 +167,7 @@
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li style="width: 110px;text-align: center;padding: 0 5px;">
                         <a href="#" title="<?=$fv['uname']?>">
-                            <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($fv['uid'])?>icon.jpg" width="90" height="90"/>
+                            <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($fv['uid'])?>default.jpg" width="90" height="90"/>
                         </a>
 
                     <p><?php echo $fv['uname'];?></p>

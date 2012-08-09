@@ -13,12 +13,12 @@
         <div class="hd-login">
             <ul>
                 <li><a href="javascript:void (0);" onclick="wx.addFavorite()">收藏本站</a></li>
-                <li><a href="/other/help/index/">帮助中心</a></li>
+                <li><a href="/other/help/index/" target="_blank">帮助中心</a></li>
                 <li><a href="#">浏览记录</a></li>
                 <!--<li><a href="/user/center">我的万象</a></li>-->
-                <li><a href="/user/center/index">我的订单</a></li>
-                <li id="user_info_id"><a style="color:#000;" href="/user/register/">注册</a></li>
-                <li id="user_login_out_id"><a href="/user/login/">登录</a></li>
+                <li><a href="/user/center/index" target="_blank">我的订单</a></li>
+                <li id="user_info_id"><a style="color:#000;" href="/user/register/" target="_blank">注册</a></li>
+                <li id="user_login_out_id"><a href="/user/login/" target="_blank">登录</a></li>
             </ul>
         </div>
     </div>
@@ -26,7 +26,7 @@
 
 <div class="box">
     <div class="banner" style="overflow:auto; zoom:1">
-        <div class="logo-img"><img src="/images/logo.jpg" width="334" height="56" alt="万象网"/></div>
+        <div class="logo-img"><a href="/"><img src="/images/logo.jpg" width="334" height="56" alt="万象网"/></a></div>
         <div class="search">
             <div class="s-input">
                 <div class="sch">
@@ -37,11 +37,11 @@
             <div class="hot-keyword">
                 <ul>
                     <li class="kw">热门搜索：</li>
-                    <li><a href="#">七分裤</a></li>
-                    <li><a href="#">雪纺裙</a></li>
-                    <li><a href="#">亲子装</a></li>
-                    <li><a href="#">哈伦裤</a></li>
-                    <li><a href="#">吊带长裙</a></li>
+                    <li><a href="#" target="_blank">七分裤</a></li>
+                    <li><a href="#" target="_blank">雪纺裙</a></li>
+                    <li><a href="#" target="_blank">亲子装</a></li>
+                    <li><a href="#" target="_blank">哈伦裤</a></li>
+                    <li><a href="#" target="_blank">吊带长裙</a></li>
                 </ul>
             </div>
         </div>

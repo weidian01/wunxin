@@ -52,20 +52,20 @@
                     <tr>
                         <td width="8%" height="26" align="center"><?php echo $v['pid'];?></td>
                         <td width="8%" align="center">
-                            <a href="#">
-                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                            <a href="<?=productURL($v['pid'])?>" title="<?=$v['pname']?>" target="_blank">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>default.jpg" alt="" width="60" height="72"/>
                             </a>
                         </td>
-                        <td width="25%" align="center"><a href="#" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a></td>
-                        <td width="8%" align="center">￥<?php echo $v['market_price'] / 100;?></td>
-                        <td width="8%" align="center"><?php echo $v['sales'];?></td>
+                        <td width="25%" align="center"><a href="<?=productURL($v['pid'])?>" title="<?=$v['pname'];?>" target="_blank"><?=$v['pname'];?></a></td>
+                        <td width="8%" align="center">￥<?=fPrice($v['sell_price']);?></td>
+                        <td width="8%" align="center"><?=$v['sales'];?></td>
                         <td width="8%" align="center">
-                            <a href="#" title="产品<?php echo $v['shelves'] == '1' ? '上架' : '已下架';?>"><?php echo $v['shelves'] == '1' ? '上架' : '已下架';?></a><br/>
-                            <a href="#" title="产品审核<?php echo $v['check_status'] == '1' ? '通过' : '未通过';?>"><?php echo $v['check_status'] == '1' ? '通过' : '未通过';?></a>
+                            <a href="#" title="产品<?php echo $v['shelves'] == '1' ? '上架' : '已下架';?>"><?=$v['shelves'] == '1' ? '上架' : '已下架';?></a><br/>
+                            <a href="#" title="产品审核<?php echo $v['check_status'] == '1' ? '通过' : '未通过';?>"><?=$v['check_status'] == '1' ? '通过' : '未通过';?></a>
                         </td>
                         <td width="10%" align="center">
-                            <a href="#" title="共被评论 <?php echo $v['comment_num'];?> 次" style="color: #990000;font-size: 10px;">评论 <?php echo $v['comment_num'];?> 条</a><br/>
-                            <a href="#" title="共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">收藏 <?php echo $v['favorite_num'];?> 次</a>
+                            <a href="#" title="共被评论 <?php echo $v['comment_num'];?> 次" style="color: #990000;font-size: 10px;">评论 <?=$v['comment_num'];?> 条</a><br/>
+                            <a href="#" title="共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">收藏 <?=$v['favorite_num'];?> 次</a>
                         </td>
                         <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="10%" align="center">
@@ -92,13 +92,13 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <a href="#" title="<?=$fv['pname']?>">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        <a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                         </a>
 
-                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
-                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
-                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                        <p><a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                        <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
+                        售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
                     <?php }?>
                 </ul>
             </div>

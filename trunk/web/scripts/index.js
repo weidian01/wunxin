@@ -28,14 +28,14 @@ function showAdvert(t)
     //if ( !wx.isEmpty(t) ) return ;
     //console.log(t);
     $('.index_recommend_ad').each(function(){
-        $(this).css('display', 'none');
+        $(this).hide();
     });
     /*
     for (var i = 1; i <= 3; i++) {
         document.getElementById(a + i).style.display = "none";
     }
     //*/
-    $('#'+t).fadeIn("slow");
+    $('#'+t).fadeIn("fast");
     //document.getElementById(t).style.display = 'block';
     //t.style.display = 'block';
 }
@@ -269,9 +269,9 @@ index.changeUser = function (uId)
     var html = '';
     for (var i in data) {
         html += '<div class="brand-pro">\
-            <div class="brand-proimg"><a href="#" title="'+data[i].pname+', ￥'+wx.fPrice(data[i].sell_price)+'">\
+            <div class="brand-proimg"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+', ￥'+wx.fPrice(data[i].sell_price)+'" target="_blank">\
             <img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'default.jpg" width="160" height="186"/></a></div>\
-            <p><a href="#" title="'+data[i].pname+', ￥'+wx.fPrice(data[i].sell_price)+'">'+data[i].pname+'</a></p>\
+            <p><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+', ￥'+wx.fPrice(data[i].sell_price)+'" target="_blank">'+data[i].pname+'</a></p>\
             <span class="font4">￥'+wx.fPrice(data[i].sell_price)+'</span></div>';
     }
 

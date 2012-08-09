@@ -99,31 +99,31 @@
                                             <!--<td style="width:90px;text-align:center;"><?php echo $v['id'];?></td>-->
                                             <td style="width:20px;">
                                                 <div class="imgbox">
-                                                    <a href="#" title="<?php echo $v['pname'];?>">
+                                                    <a href="<?=productURL($v['pid'])?>" title="<?=$v['pname'];?>" target="_blank">
                                                         <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="#" class="a_e" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a>&nbsp;&nbsp;
-                                                <span style="color: #CC0033;font-weight: bold;">￥<?php echo fPrice($v['sell_price']);?></span><br>
+                                                <a href="<?=productURL($v['pid'])?>" class="a_e" title="<?=$v['pname'];?>" target="_blank"><?=$v['pname'];?></a>&nbsp;&nbsp;
+                                                <span style="color: #CC0033;font-weight: bold;">￥<?=fPrice($v['sell_price']);?></span><br>
                                             </td>
-                                            <td style="width:170px;text-align:center;"><?php echo $v['content'];?></td>
+                                            <td style="width:170px;text-align:center;"><?=$v['content'];?></td>
                                             <td style="width:70px;text-align:left;">
-                                                &nbsp;&nbsp;<a href="#" title="此评论被评论 <?php echo $v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">被评论 <?php echo $v['comment_num'];?> 条</a> <br />
-                                                &nbsp;&nbsp;<a href="#" title="此评论被回复 <?php echo $v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">回复 <?php echo $v['reply_num'];?> 条</a>
+                                                &nbsp;&nbsp;<a href="#" title="此评论被评论 <?=$v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">被评论 <?=$v['comment_num'];?> 条</a> <br />
+                                                &nbsp;&nbsp;<a href="#" title="此评论被回复 <?=$v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">回复 <?=$v['reply_num'];?> 条</a>
                                             </td>
-                                            <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                                            <td style="width:60px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:70px;text-align:center;">
-                                                <a href="javascript:void(0);" onclick="(<?php echo $v['comment_id'];?>)">
+                                                <a href="<?=productURL($v['pid'])?>" target="_blank">
                                                     <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
-                                                </a>
+                                                </a><br/>
                                                 <!--
-                                                <a href="javascript:void(0);" onclick="(<?php echo $v['comment_id'];?>)">
+                                                <a href="javascript:void(0);" onclick="(<?=$v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/comment.png" title="评论此产品">
                                                 </a>
                                                 -->
-                                                <a href="javascript:void(0);" onclick="product.deleteProductComment(<?php echo $v['comment_id'];?>)">
+                                                <a href="javascript:void(0);" onclick="product.deleteProductComment(<?=$v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
                                                 </a> <br />
                                             </td>
@@ -158,13 +158,13 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <a href="#" title="<?=$fv['pname']?>">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        <a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                         </a>
 
-                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
-                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
-                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                        <p><a href="<?=productURL($v['pid'])?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                        <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
+                        售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
                     <?php }?>
                 </ul>
             </div>

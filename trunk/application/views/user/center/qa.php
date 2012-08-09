@@ -50,11 +50,11 @@
                     <tr>
                         <td width="6%" height="26" align="center"><?php echo $v['qa_id'];?></td>
                         <td width="8%" align="center">
-                            <a href="#" title="<?php echo $v['pname'];?>">
-                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                            <a href="<?=productURL($v['pid'])?>" title="<?php echo $v['pname'];?>" target="_blank">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="72"/>
                             </a>
                         </td>
-                        <td width="20%" align="center"><a href="#" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?></a></td>
+                        <td width="20%" align="center"><a href="<?=productURL($v['pid'])?>" title="<?php echo $v['pname'];?>" target="_blank"><?php echo $v['pname'];?></a></td>
                         <td width="8%" align="center">￥<?php echo $v['sell_price'] / 100;?></td>
                         <td width="20%" align="left">
                             <b>问：</b><?php echo $v['content'];?> <br />
@@ -68,7 +68,7 @@
                         </td>
                         <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="8%" align="center">
-                            <a href="javascript:void(0);" onclick="(<?php echo $v['qa_id'];?>)">
+                            <a href="<?=productURL($v['qa_id']);?>" onclick="(<?=$v['qa_id'];?>)" target="_blank">
                                 <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
                             </a><br />
                             <a href="javascript:void(0);" onclick="product.deleteProductQa(<?php echo $v['qa_id'];?>)">
@@ -92,11 +92,11 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <a href="#" title="<?=$fv['pname']?>">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        <a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                         </a>
 
-                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                        <p><a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>

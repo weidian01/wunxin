@@ -29,6 +29,7 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td width="8%" align="center"><b>晒单编号</b></td>
+                        <td width="10%" align="center"><b>晒单产品</b></td>
                         <td width="20%" align="center"><b>晒单图片</b></td>
                         <td width="20%" align="center"><b>晒单标题</b></td>
                         <td width="25%" align="center"><b>晒单内容</b></td>
@@ -45,6 +46,9 @@
                 <?php foreach ($data as $v) {?>
                 <tr>
                     <td width="8%" align="center"><!--<a href="#">--><?php echo $v['share_id'];?><!--</a>--></td>
+                    <td width="8%" align="center"><a href="<?=productURL($v['pid']);?>" target="_blank">
+                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid']);?>icon.jpg" alt="" width="50" height="50"/>
+                        </a></td>
                     <td width="20%">
                         <div class="goods-in">
                             <?php foreach ($v['share_images'] as $pv) {?>
@@ -85,11 +89,11 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <a href="#" title="<?=$fv['pname']?>">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        <a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                         </a>
 
-                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                        <p><a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>

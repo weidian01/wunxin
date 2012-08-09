@@ -103,7 +103,7 @@
                                             <td style="width:60px;">
                                                 <div class="imgbox">
                                                     <a href="#" class="a_e" title="<?php echo $v['dname'];?>">
-                                                        <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" alt="" width="60" height="60"/>
+                                                        <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" alt="" width="60" height="72"/>
                                                     </a>
                                                 </div>
                                             </td>
@@ -162,7 +162,7 @@
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
                         <a href="#" title="<?=$fv['dname']?>">
-                            <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="128" height="172"/>
+                            <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="130" height="156"/>
                         </a>
 
                         <p><a href="#" title="<?=$fv['dname']?>"><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></a></p>

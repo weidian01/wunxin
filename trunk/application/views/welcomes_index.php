@@ -24,7 +24,11 @@
                 <tbody>
                 <tr>
                     <?php foreach ($broadcast_recommend as $brv) {?>
-                    <td class="td_f"><a href="<?php echo $brv['link'];?>" target="_blank"><img src="<?php echo base_url().str_replace('\\', '/', $brv['img_addr']);?>" alt="<?php echo $brv['title'];?>"></a></td>
+                    <td class="td_f">
+                        <a href="<?php echo $brv['link'];?>" target="_blank">
+                            <img src="<?php echo base_url().str_replace('\\', '/', $brv['img_addr']);?>" alt="<?php echo $brv['title'];?>">
+                        </a>
+                    </td>
                     <?php }?>
                 </tr>
                 </tbody>
@@ -47,7 +51,9 @@
                             <ul class="j-sw-c" style="width: 678px; ">
                                 <?php foreach ($day_recommend as $drv) {?>
                                 <li style="display: block; float: left; ">
-                                    <a target="_blank" title="" href="<?php echo $drv['link'];?>"><img alt="<?php echo $drv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120"></a>
+                                    <a target="_blank" title="" href="<?php echo $drv['link'];?>">
+                                        <img alt="<?php echo $drv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120">
+                                    </a>
                                 </li>
                                 <?php }?>
                             </ul>
@@ -61,7 +67,7 @@
                 <div class="blt-cont" id="blt1">
                     <ul>
                         <?php foreach ($bulletin as $bv) {?>
-                        <li><a href="#"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
+                        <li><a href="#" target="_blank"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
                         <?php }?>
                     </ul>
                 </div>
@@ -83,8 +89,8 @@
             <ul>
                 <?php foreach ($design_recommend_data as $drdv) {?>
                 <li class="norm">
-                    <a href="#" class="designimg" title="<?=$drdv['dname']?>">
-                        <img alt="<?=$drdv['dname']?>" src="<?=config_item('static_url')?>upload/design/<?=str_replace('\\', '/', intToPath($drdv['did']))?>default.jpg" width="180" height="226"/>
+                    <a href="#" class="designimg" title="<?=$drdv['dname']?>" target="_blank">
+                        <img alt="<?=$drdv['dname']?>" src="<?=config_item('static_url')?>upload/design/<?=str_replace('\\', '/', intToPath($drdv['did']))?>default.jpg" width="180" height="216"/>
                     </a>
                 </li>
                 <?php }?>
@@ -105,7 +111,7 @@
     <ul>
         <?php $i = 1;foreach ($AD_recommend as $arv) {?>
         <li id="index_recommend_ad<?php echo $i;?>" style="<?php echo $i == 1 ? '' : 'display:none;';?>" class="index_recommend_ad">
-            <a href="<?php echo $arv['link'];?>">
+            <a href="<?php echo $arv['link'];?>" target="_blank">
                 <img alt="<?php echo $arv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200"/>
             </a>
         </li>
@@ -138,17 +144,18 @@
         </ul>
     </div>
 </div>
+<!--男款-->
 <div class="prod-bd">
     <div class="men-l">
         <?php foreach ($man_product_2_recommend_data as $mp2rdv) {?>
         <div class="men-p">
             <div class="pro-pic">
-                <a href="#" title="<?=$mp2rdv['pname']?>, <?=fPrice($mp2rdv['sell_price'])?>">
-                    <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp2rdv['pid']))?>default.jpg" width="120" height="161" alt="T恤"/>
+                <a href="<?=productURL($mp2rdv['pid'])?>" title="<?=$mp2rdv['pname']?>, <?=fPrice($mp2rdv['sell_price'])?>" target="_blank">
+                    <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp2rdv['pid']))?>default.jpg" width="120" height="144" alt="<?=$mp2rdv['pname']?>"/>
                 </a>
             </div>
             <div class="men-cont"><span class="font2"><?=$mp2rdv['style_no']?></span><br/>
-                <a href="" title="<?=$mp2rdv['pname']?>, ￥<?=fPrice($mp2rdv['sell_price'])?>"><?=mb_substr($mp2rdv['pname'], 0, 20, 'utf-8')?></a><br/>
+                <a href="<?=productURL($mp2rdv['pid'])?>" title="<?=$mp2rdv['pname']?>, ￥<?=fPrice($mp2rdv['sell_price'])?>" target="_blank"><?=mb_substr($mp2rdv['pname'], 0, 20, 'utf-8')?></a><br/>
                     <span class="font3">￥<?=fPrice($mp2rdv['sell_price'])?></span></div>
         </div>
         <?php }?>
@@ -156,8 +163,8 @@
     <div class="prod-ct">
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '2') { ?>
-        <a href="#" title="<?=$mr23['title']?>">
-            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="210" height="350"/>
+        <a href="<?=$mr23['pid']?>" title="<?=$mr23['title']?>" target="_blank">
+            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="200" height="320"/>
         </a>
         <?php }?>
         <?php }?>
@@ -165,8 +172,8 @@
     <div class="prod-ct">
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '3') { ?>
-        <a href="#" title="<?=$mr23['title']?>">
-            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="210" height="350"/>
+        <a href="<?=$mr23['link']?>" title="<?=$mr23['title']?>" target="_blank">
+            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="200" height="320"/>
         </a>
         <?php }?>
         <?php }?>
@@ -177,19 +184,18 @@
     <div class="men-bd">
         <?php foreach ($man_product_1_recommend_data as $mp1rdv) {?>
         <div class="men-bd-b">
-            <a class="productimg" href="#" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>">
-                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp1rdv['pid']))?>default.jpg" width="160" height="215" alt="<?=$mp1rdv['pname']?>"/>
+            <a class="productimg" href="<?=productURL($mp1rdv['pid'])?>" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>" target="_blank">
+                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp1rdv['pid']))?>default.jpg" width="160" height="192" alt="<?=$mp1rdv['pname']?>"/>
             </a>
-            <div class="pro-n"> <p><a href="#" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>"><?=$mp1rdv['pname']?></a></p>
+            <div class="pro-n"> <p><a href="<?=productURL($mp1rdv['pid'])?>" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>" target="_blank"><?=$mp1rdv['pname']?></a></p>
                 <span class="font4">￥<?=fPrice($mp1rdv['sell_price'])?></span></div>
         </div>
         <?php }?>
     </div>
 </div>
-
-
 <!--男款end-->
 
+<!--女款T恤-->
 <div class="prod-tit titbg2">
     <div class="prod-t-h h-bg"></div>
     <div class="prod-n-more">
@@ -216,37 +222,37 @@
         <div class="floorMain" onmouseout="hideLayer('picmt', 7)">
             <?php foreach ($woman_recommend_1_2_3_4_5_6 as $wr123456) {?>
             <?php if ($wr123456['emission'] == '1') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item1" title="<?=$wr123456['title'];?>">
+            <a href="<?php echo $wr123456['link'];?>" class="item1" title="<?=$wr123456['title'];?>" target="_blank">
                 <img id="picmt1" onmouseover="showLayer('1','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '2') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item2" title="<?=$wr123456['title'];?>">
+            <a href="<?php echo $wr123456['link'];?>" class="item2" title="<?=$wr123456['title'];?>" target="_blank">
                 <img id="picmt2" onmouseover="showLayer('2','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '3') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item3" title="<?=$wr123456['title'];?>">
+            <a href="<?php echo $wr123456['link'];?>" class="item3" title="<?=$wr123456['title'];?>" target="_blank">
                 <img id="picmt3" onmouseover="showLayer('3','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '4') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item4" title="<?=$wr123456['title'];?>">
+            <a href="<?php echo $wr123456['link'];?>" class="item4" title="<?=$wr123456['title'];?>" target="_blank">
                 <img id="picmt4" onmouseover="showLayer('4','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '5') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item5" title="<?=$wr123456['title'];?>">
+            <a href="<?php echo $wr123456['link'];?>" class="item5" title="<?=$wr123456['title'];?>" target="_blank">
                 <img id="picmt5" onmouseover="showLayer('5','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '6') {?>
-            <a href="<?=$wr123456['link'];?>" class="item6" title="<?=$wr123456['title'];?>">
+            <a href="<?=$wr123456['link'];?>" class="item6" title="<?=$wr123456['title'];?>" target="_blank">
                 <img id="picmt6" onmouseover="showLayer('6','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
             </a>
             <?php }?>
@@ -256,11 +262,11 @@
     <div class="men-bd pad7">
         <?php foreach ($woman_product_recommend_data as $wprdv) {?>
         <div class="men-bd-b">
-            <a class="productimg" href="#" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>">
-                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($wprdv['pid']))?>default.jpg" width="160" height="215" alt="<?=$wprdv['pname']?>"/>
+            <a class="productimg" href="<?=productURL($wprdv['pid'])?>" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>" target="_blank">
+                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($wprdv['pid']))?>default.jpg" width="160" height="192" alt="<?=$wprdv['pname']?>"/>
             </a>
             <div class="pro-n">
-                <p><a href="#" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>"><?=$wprdv['pname']?></a></p>
+                <p><a href="<?=productURL($wprdv['pid'])?>" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>" target="_blank"><?=$wprdv['pname']?></a></p>
                 <span class="font4">￥<?=fPrice($wprdv['sell_price'])?></span>
             </div>
         </div>
@@ -292,18 +298,19 @@
 </div>
 <div class="prod-bd pad5">
     <div class="sweet">
-        <a href="<?=$lover_recommend[0]['link']; ?>" title="<?=$lover_recommend[0]['title']; ?>">
+        <a href="<?=$lover_recommend[0]['link']; ?>" title="<?=$lover_recommend[0]['title']; ?>" target="_blank">
             <img src="<?=str_replace('\\', '/', $lover_recommend[0]['img_addr']);?>" width="948" height="299" alt="<?=$lover_recommend[0]['title'];?>" title="<?=$lover_recommend[0]['title']; ?>"/>
         </a>
     </div>
     <div class="men-bd pad7">
         <?php foreach ($lover_product_recommend_data as $lprdv) {?>
         <div class="men-bd-b">
-            <a class="productimg" href="#" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>">
-            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($lprdv['pid']))?>default.jpg" width="160" height="215" alt="<?=$lprdv['pname']?>"/>
+            <a class="productimg" href="<?=productURL($lprdv['pid'])?>" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>" target="_blank">
+            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($lprdv['pid']))?>default.jpg" width="160" height="192" alt="<?=$lprdv['pname']?>"/>
         </a>
             <div class="pro-n">
-                <p><a href="#" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>"><?=$lprdv['pname']?></a></p> <span class="font4">￥<?=fPrice($lprdv['sell_price'])?></span>
+                <p><a href="<?=productURL($lprdv['pid'])?>" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>" target="_blank"><?=$lprdv['pname']?></a></p>
+                <span class="font4">￥<?=fPrice($lprdv['sell_price'])?></span>
             </div>
         </div>
         <?php }?>
@@ -338,43 +345,43 @@
         <div class="floorMain" onmouseout="hideLayer('qz', 8)">
             <?php foreach ($family_recommend as $fr) {?>
             <?php if ($fr['emission'] == '1') {?>
-            <a href="<?=$fr['link'];?>" class="qv1" title="<?=$fr['title'];?>">
+            <a href="<?=$fr['link'];?>" class="qv1" title="<?=$fr['title'];?>" target="_blank">
                 <img id="qz1" onmouseover="showLayer('1','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="264" height="300">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '2') {?>
-            <a href="<?=$fr['link'];?>" class="qv2" title="<?=$fr['title'];?>">
+            <a href="<?=$fr['link'];?>" class="qv2" title="<?=$fr['title'];?>" target="_blank">
                 <img id="qz2" onmouseover="showLayer('2','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="447" height="220">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '3') {?>
-            <a href="<?=$fr['link'];?>" class="qv3" title="<?=$fr['title'];?>">
+            <a href="<?=$fr['link'];?>" class="qv3" title="<?=$fr['title'];?>" target="_blank">
                 <img id="qz3" onmouseover="showLayer('3','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '4') {?>
-            <a href="<?=$fr['link'];?>" class="qv4" title="<?=$fr['title'];?>">
+            <a href="<?=$fr['link'];?>" class="qv4" title="<?=$fr['title'];?>" target="_blank">
                 <img id="qz4" onmouseover="showLayer('4','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '5') {?>
-            <a href="<?=$fr['link'];?>" class="qv5" title="<?=$fr['title'];?>">
+            <a href="<?=$fr['link'];?>" class="qv5" title="<?=$fr['title'];?>" target="_blank">
                 <img id="qz5" onmouseover="showLayer('5','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '6') {?>
-            <a href="<?=$fr['link'];?>" class="qv6" title="<?=$fr['title'];?>">
+            <a href="<?=$fr['link'];?>" class="qv6" title="<?=$fr['title'];?>" target="_blank">
                 <img id="qz6" onmouseover="showLayer('6','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="237" height="220">
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '7') {?>
-            <a href="<?=$fr['link'];?>" class="qv7" title="<?=$fr['title'];?>">
+            <a href="<?=$fr['link'];?>" class="qv7" title="<?=$fr['title'];?>" target="_blank">
                 <img id="qz7" onmouseover="showLayer('7','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="237" height="80">
             </a>
             <?php }?>
@@ -384,11 +391,12 @@
     </div>
     <div class="men-bd pad7">
         <?php foreach ($family_product_recommend_data as $fprdv) {?>
-        <div class="men-bd-b"><a class="productimg" href="#" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>">
-            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($fprdv['pid']))?>default.jpg" width="160" height="215"/>
+        <div class="men-bd-b"><a class="productimg" href="<?=productURL($fprdv['pid']);?>" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>" target="_blank">
+            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($fprdv['pid']))?>default.jpg" width="160" height="192"/>
         </a>
             <div class="pro-n">
-                <p><a href="#" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>"><?=$fprdv['pname'];?></a></p> <span class="font4">￥<?=fPrice($fprdv['sell_price'])?></span>
+                <p><a href="<?=productURL($fprdv['pid']);?>" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>" target="_blank"><?=$fprdv['pname'];?></a></p>
+                <span class="font4">￥<?=fPrice($fprdv['sell_price'])?></span>
             </div>
         </div>
         <?php }?>
@@ -413,11 +421,11 @@
         <?php foreach ($user_product as $upv) {?>
         <div class="brand-pro">
             <div class="brand-proimg">
-                <a href="#" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>">
+                <a href="<?=productURL($upv['pid'])?>" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>" target="_blank">
                 <img src="<?=config_item('img_url')?>product/<?=intToPath($upv['pid'])?>default.jpg" width="160" height="186"/>
             </a>
             </div>
-            <p><a href="#" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>"><?=$upv['pname'];?></a></p>
+            <p><a href="<?=productURL($upv['pid'])?>" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>" target="_blank"><?=$upv['pname'];?></a></p>
             <span class="font4">￥<?=fPrice($upv['sell_price']);?></span></div>
         <?php }?>
         <!--
