@@ -155,7 +155,7 @@ $(document).ready(function(){
               <a val="new" class="ordby_new " name="orderby" href="javascript:void(0)">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
-              <!--a class="disabled" href="javascript:void(0)">上一页</a> <a href="javascript:jumppage(2)">下一页</a-->
+              <?php if($pageno > 1):?><a class="disabled" href="/category/<?=$category?>/<?=($pageno-1)?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="/category/<?=$category?>/<?=($pageno+1)?>/<?=$query?>">下一页</a><?php endif;?>
           </div>
       </div>
     <div class="goodsbox">

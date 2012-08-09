@@ -47,8 +47,7 @@ class Product extends MY_Controller
         //$this->HTTPLastModified();
 
         $category = (int)$this->uri->rsegment(3, 1);
-        $pageno = (int)$this->uri->rsegment(4, 1);
-        $pageno === 0 && $pageno = 1;
+        $pageno = max((int)$this->uri->rsegment(4, 1), 1);
         $query = $this->uri->rsegment(5, '');
         $param = self::parse_param($query);
         //$this->load->database();
@@ -86,6 +85,7 @@ class Product extends MY_Controller
             if ($num) {
                 $pagesize = 32;
                 $pageNUM = ceil($num / $pagesize);
+                $pageno = $pageno > $pageNUM ? $pageNUM:$pageno;
                 $config['base_url'] = "/category/{$category}";
                 $param && $config['suffix'] = '/' . $query;
                 $config['total_rows'] = $num;
@@ -100,7 +100,7 @@ class Product extends MY_Controller
                 $this->load->library('pagination');
                 $this->pagination->initialize($config);
                 $pageHTML = $this->pagination->create_links();
-                $offset = (abs($pageno) - 1) * $pagesize;
+                $offset = ($pageno - 1) * $pagesize;
                 $products = $this->product->getProductList($pagesize, $offset, "pid, did, pname, market_price, sell_price", $where);
             }
             //$this->cache_view("category/\d+/?\d*");
@@ -115,7 +115,7 @@ class Product extends MY_Controller
                 'modelAttr' => $modelAttr,
                 'productCount' => $num,
                 'products' => $products,
-                'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM,
+                'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM, 'pageno'=>$pageno, 'query'=>$query,
                 'salesRank' => $this->salesRank($class_id),
             ));
         } else {
