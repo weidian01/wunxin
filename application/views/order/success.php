@@ -236,7 +236,7 @@ $(document).ready(function(){
   </div>
   </form>
       <?php } else {?>
-  <div class="other-shopping" style="height:350px;">
+  <div class="other-shopping" style="height:300px;">
       <div class="tit">购买以上商品的顾客还购买过</div>
       <div class="other-c">
           <div class="other-pre"><a href="#">pre</a></div>
@@ -246,23 +246,23 @@ $(document).ready(function(){
                   <?php foreach ($recommend as $rv) { ?>
                   <div class="rq">
                       <div class="rqimg">
-                          <a href="#" title="<?=$rv['pname'];?>">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="161" title="<?php echo $rv['pname'];?>"/>
+                          <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="144" title="<?php echo $rv['pname'];?>"/>
                           </a>
                       </div>
                       <p>
-                          <a href="#" title="<?=$rv['pname'];?>"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?> </a>
+                          <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?> </a>
                           <br/>
                           原价：￥<span class="font7"><?php echo fPrice($rv['market_price']);?></span><br/>
                           <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span></p>
-                      <a href="#" title="<?=$rv['pname'];?>">
+                      <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
                           <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
                       </a>
                   </div>
                   <?php }?>
               </div>
           </div>
-          <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
+          <div class="switch"><!--<a class="curr" href="#">1</a><a href="#">2</a>--></div>
       </div>
   </div>
 <?php } ?>

@@ -74,8 +74,8 @@ cart.init = function ()
 		'<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div> ' +
         '<div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div>' ;
     html += '<div class="post-btn">';
-    html += '<a href="javascript:void(0);" onclick="wx.goToBack()" target="_blank"><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
-    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()" target="_blank"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
+    html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
+    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
     html += '</div>';
     html += '</td>';
     html += '</tr></table>';

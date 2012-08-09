@@ -291,8 +291,10 @@ wx.cartGlobalInit = function ()
 
     for (var i in data) {
         html += '<div class="cart-bx">';
-        html += '<div class="cart-goodsimg"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="'+data[i].pname+'" title="'+data[i].pname+'"/></div>';
-        html += '<div class="cart-goodsname"><a href="#" title="'+data[i].pname+'">'+data[i].pname.substring(0,25)+'</a><br/><span class="font5">￥'+wx.fPrice(data[i].product_price)+'</span>';
+        html += '<div class="cart-goodsimg"><a href="'+wx.productURL(data[i].pid)+'" target="_blank">' +
+            '<img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="'+data[i].pname+'" title="'+data[i].pname+'"/></a></div>';
+        html += '<div class="cart-goodsname"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank">'+data[i].pname.substring(0,25)+'</a><br/>' +
+            '<span class="font5">￥'+wx.fPrice(data[i].product_price)+'</span>';
         html += '<span> &nbsp;&nbsp;&nbsp; 数量：'+parseInt(data[i].product_num)+'</span>';
         html += '</div><div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
         html += '</div>';
