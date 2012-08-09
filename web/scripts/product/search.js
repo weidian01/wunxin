@@ -35,7 +35,7 @@ $(function ($) {
 
     /*无限下拉*/
     $(function () {
-        var keyword = $('keyword').val()
+        var keyword = $('#keyword').val()
         $('#goodsbox').scrollPagination({
             'dataType':'json',
             'contentPage':'/search?keyword='+keyword, // the url you are fetching the results
@@ -55,9 +55,9 @@ $(function ($) {
                 $.each(data, function(i, item){
                     html +='<div class="goods-cb">\
                             <div class="goods-cbox">\
-                            <a href="'+wx.productURL(item.pid)+'"><img style="display: inline;" class="lazy'+mark+'" src="'+wx.static_url+'images/lazy.gif" data-original="'+wx.img_url+'product/'+idToPath(item.pid)+'default.jpg" alt="十字 T恤1" height="220" width="164"></a>\
+                            <a href="'+wx.productURL(item.pid)+'" target="_blank"><img style="display: inline;" class="lazy'+mark+'" src="'+wx.static_url+'images/lazy.gif" data-original="'+wx.img_url+'product/'+idToPath(item.pid)+'default.jpg" alt="十字 T恤1" height="220" width="164"></a>\
                             <p>'+item.pname+'<br>\
-                            <span class="font4">'+sprintf('%.2f',wx.fPrice(item.sell_price))+'</span></p>\
+                            <span class="font4">'+wx.fPrice(item.sell_price)+'</span></p>\
                             </div></div>';
                 })
 
