@@ -44,7 +44,7 @@ class Product extends MY_Controller
      */
     public function category()
     {
-        $this->HTTPLastModified();
+        //$this->HTTPLastModified();
 
         $category = (int)$this->uri->rsegment(3, 1);
         $pageno = (int)$this->uri->rsegment(4, 1);
@@ -113,6 +113,7 @@ class Product extends MY_Controller
                 'clan'=>$this->cate->getClan($this->channel[$category]['ancestor']),
                 'param' => $param,
                 'modelAttr' => $modelAttr,
+                'productCount' => $num,
                 'products' => $products,
                 'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM,
                 'salesRank' => $this->salesRank($class_id),
@@ -196,8 +197,12 @@ class Product extends MY_Controller
             $keyword = $this->db->escape_like_str($keyword);
             $like = "pname LIKE '%{$keyword}%'";
         }
-        $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", $like, $order = null);
-
+        $productCount = $this->product->getProductCount($like);
+        $products = array();
+        if($productCount)
+        {
+            $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", $like, $order = null);
+        }
         if($this->input->is_ajax_request() !== true)
         {
             $this->load->view('product/product/search', array(
@@ -205,6 +210,7 @@ class Product extends MY_Controller
                 'keyword' => $keyword,
                 'clan'=>$this->channel,
                 'products' => $products,
+                'productCount' => $productCount,
                 'pageHTML' => '',//$pageHTML,
                 'salesRank' => $this->salesRank(),
             ));
