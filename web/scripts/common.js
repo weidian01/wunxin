@@ -107,7 +107,7 @@ wx.ajax = function (url, parameter)
 wx.jsonp = function(url, param, func)
 {
     var result = {};
-    $.getJSON(url + "?"+ $.param(param)+"&jsoncallback=?", func);
+    $.getJSON(url + "?"+ $.param(param)+"&callback=?", func);
 }
 
 //获取单选框的值
@@ -433,7 +433,7 @@ wx.initLoginStatus = function ()
 
 //计算图片路径
 function idToPath(id) {
-    if( (typeof id) == 'undefined') return '#';
+    if( (typeof id) == 'undefined' || id == 'undefined' || id == '') return '#';
     //alert('开始');alert(typeof id);alert(id)
     var id = String(id);//alert(id);
     var l = id.match(/(\d{1,2})(\d{0,2})/);

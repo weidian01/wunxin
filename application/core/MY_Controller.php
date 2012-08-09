@@ -95,9 +95,9 @@ class MY_Controller extends CI_Controller
 
     static protected function json_output($data,$JSONP = false)
     {
-        if($JSONP && isset($_GET['jsoncallback']))
+        if($JSONP && isset($_GET['callback']))
         {
-            $callback = $_GET['jsoncallback'];
+            $callback = $_GET['callback'];
             echo "{$callback}(",json_encode($data),")";
             return ;
         }
@@ -180,11 +180,11 @@ class MY_Controller extends CI_Controller
      * 检查请求是否过期
      * @return mixed
      */
-    protected function httpLastModified()
+    protected function HTTPLastModified()
     {
         $IF_MODIFIED_SINCE = $this->input->server('HTTP_IF_MODIFIED_SINCE');
         if($IF_MODIFIED_SINCE !== false
-            && (TIMESTAMP - (strtotime($IF_MODIFIED_SINCE) ) < config_item('http_expires'))) //当前时间减去最后修改时间 不满过期周期
+            && (TIMESTAMP - (strtotime($IF_MODIFIED_SINCE) ) < config_item('http_expires'))) //(当前时间减去最后修改时间) < 不满过期周期
         {
             $this->output->set_status_header(304);
             die;

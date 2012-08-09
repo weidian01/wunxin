@@ -199,7 +199,6 @@ class comment extends MY_Controller
      */
     public function ajaxComment()
     {
-        $this->httpLastModified();
         $pid = intval( $this->input->get_post('pid') );
         $limit = max(10, $this->input->get_post('limit'));
         $pageno = max(1, $this->input->get_post('pageno'));

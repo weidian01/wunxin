@@ -136,10 +136,10 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     </div>
     <div class="d-box" id="dsnbox1">
       <div class="desbox">
-        <div class="d-photo"><img src="<?=config_item('static_url')?>images/d_03.jpg" width="149" height="204" /></div>
+        <div class="d-photo"><img src="<?=config_item('img_url')?>design/<?=intToPath($design['did'])?>/icon.jpg" width="149" height="204" alt="<?=$design['dname']?>"/></div>
         <div class="d-text">
-          <div class="tit">Bud Spencer</div>
-          <p>Bud Spencer (født Carlo Pedersoli den 31. oktober 1929 i Napoli) er en italiensk skuespiller, filminstruktør samt tidligere svømmer (han var den første italiener til at svømme 100m på under et minut). Han er kendt for sin højde på 6'4 1 / 2"(194 cm) og hans tidligere roller i spaghetti western. </p>
+          <div class="tit"><?=$design['dname']?></div>
+          <p><?=$design['ddetail']?></p>
           <p><span class="font16">Show more&nbsp;</span>&nbsp;<img src="<?=config_item('static_url')?>images/smo_03.gif" width="10" height="7" /><br/>
             <span class="font17">&#8226;&nbsp;&nbsp;Copyright violation? Report design.</span><br />
             <span class="font17">&#8226;&nbsp;&nbsp;Copyright violation? Report design.</span><br />
@@ -147,11 +147,11 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </div>
       </div>
       <div class="desbox2">
-        <div class="d-photo2"><img src="<?=config_item('static_url')?>images/d_06.jpg" width="134" height="130" alt="ddd" />
+        <div class="d-photo2"><img src="<?=config_item('img_url')?>designer/<?=intToPath($designer['uid'])?>/icon.jpg" width="134" height="130" alt="ddd" />
           <div class="d-p-name">Bud Spencer</div>
         </div>
         <div class="d-text2">
-          <p>Mange af disse film har dog alternative titler, alt afhængig af land og distributør. Således forefindes der også italienske udgaver, som er specialklippet til udlandet. Hill/Spencers film skabte stor opmærksomhed omkring begge skuespillere, hvoraf interessen var særligt stor i Europa. En søgning på IMDB viser dog at de har lavet i alt 19 film sammen. De to sidste film, foruden de her anførte.</p>
+          <p><?=$designer['introduction']?></p>
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
               <td width="38%">Member since</td>
