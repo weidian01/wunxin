@@ -532,8 +532,9 @@ wx.favoriteProductLayer = function(status, bindingId){
     }
 
 	var html = '\<div class="topinfo"><div class="pop-close" onclick="wx.layerClose()"></div> <span class="'+promptIcon+'"></span><span class="topicon2" style="display:none;"></span><p>'+prompt+
-     '&nbsp;&nbsp;&nbsp;<a class="popfont1" href="/user/center/productFavorite">查看收藏夹 >></a></p></div><div class="pop-t"><span class="pop-b">看过该商品的人还购买过</span><a class="pop-c" href="#">\
-     更多您可能喜欢的商品 >></a> </div><ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="/images/loading.gif"></div></li></ul>';
+     '&nbsp;&nbsp;&nbsp;<a class="popfont1" href="/user/center/productFavorite" target="_blank">查看收藏夹 >></a></p></div><div class="pop-t"><span class="pop-b">看过该商品的人还购买过</span>\
+     &nbsp;&nbsp;&nbsp;&nbsp;<a class="pop-c" href="/" target="_blank"> 更多您可能喜欢的商品 >></a> </div><ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;">\
+     <img alt="aaaa" src="/images/loading.gif"></div></li></ul>';
 
     art.dialog({ follow: document.getElementById(bindingId), title:false, content: html });
 
@@ -547,9 +548,9 @@ wx.favoriteProductLayer = function(status, bindingId){
         var fData = data['data'];
         var fHtml = '';
         for (var i in fData) {
-            fHtml += '<li><div class="pop-img"><a href="#">\
-              <img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="94" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'"/></a>\
-              </div> <p><a href="#" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'">'+fData[i].pname.substring(0,15)+'</a><br/>\
+            fHtml += '<li><div class="pop-img"><a href="'+wx.productURL(fData[i].pid)+'" target="_blank">\
+              <img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="84" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'"/></a>\
+              </div> <p><a href="'+wx.productURL(fData[i].pid)+'" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'" target="_blank">'+fData[i].pname.substring(0,15)+'</a><br/>\
               <span class="popfont2" style="font-size: 11px;">￥'+wx.fPrice(fData[i].sell_price)+'</span></p></li>';
         }
         $('.pop-goods').html(fHtml);
@@ -650,8 +651,9 @@ wx.addToCartLayer = function (pId, pName, bindingId)
         var fData = data['data'];
         var fHtml = '';
         for (var i in fData) {
-            fHtml += '<li><div class="pop-img"><a href="#"><img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="70" alt="aaaa" /></a></div>\
-              <p><a href="#" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'">'+fData[i].pname.substring(0,15)+'</a></p>\
+            fHtml += '<li><div class="pop-img"><a href="'+wx.productURL(fData[i].pid)+'" target="_blank">' +
+                '<img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="70" alt="aaaa" /></a></div>\
+              <p><a href="'+wx.productURL(fData[i].pid)+'" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'" target="_blank">'+fData[i].pname.substring(0,15)+'</a></p>\
               <span class="popfont2">售价￥'+wx.fPrice(fData[i].sell_price)+'</span></li>';
         }
         $('.pop-goods').html(fHtml);

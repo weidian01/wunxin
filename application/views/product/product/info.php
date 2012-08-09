@@ -42,7 +42,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           <div class="picsn" id="img_list">
             <?php $def_photo='';foreach($photo as $item):?>
             <?php if($item['is_default'] == 1){$def_photo = $item['img_addr'];}?>
-            <div class="pic-rn"><a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('img_url')?>product/<?=str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('img_url')?>product/<?=$item['img_addr']?>'}"><img src="<?=config_item('img_url')?>product/<?=str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
+            <div class="pic-rn">
+                <a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('img_url')?>product/<?=str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('img_url')?>product/<?=$item['img_addr']?>'}"><img src="<?=config_item('img_url')?>product/<?=str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
             <?php endforeach;?>
           </div>
         </div>
@@ -137,7 +138,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     </div>
     <div class="d-box" id="dsnbox1">
       <div class="desbox">
-        <div class="d-photo"><img src="<?=config_item('img_url')?>design/<?=intToPath($design['did'])?>/icon.jpg" width="149" height="204" alt="<?=$design['dname']?>"/></div>
+        <div class="d-photo"><img src="<?=config_item('img_url')?>design/<?=intToPath($design['did'])?>/icon.jpg" width="149" height="179" alt="<?=$design['dname']?>"/></div>
         <div class="d-text">
           <div class="tit"><?=$design['dname']?></div>
           <p><?=$design['ddetail']?></p>
@@ -148,7 +149,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </div>
       </div>
       <div class="desbox2">
-        <div class="d-photo2"><img src="<?=config_item('img_url')?>designer/<?=intToPath($designer['uid'])?>/icon.jpg" width="134" height="130" alt="ddd" />
+        <div class="d-photo2"><img src="<?=config_item('img_url')?>designer/<?=intToPath($designer['uid'])?>/icon.jpg" width="90" height="90" alt="ddd" />
           <div class="d-p-name">Bud Spencer</div>
         </div>
         <div class="d-text2">
@@ -181,7 +182,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <div class="box3">
   <div class="side-left">
     <div class="sidebox">
-      <div class="side-tit2">T恤销售排行榜</div>
+      <div class="side-tit2">销售排行榜</div>
       <div class="side-qh">
         <div class="side-m current" id="sidet1" onmouseover="rankbox('sidet','rank','1')">同类别</div>
         <div class="side-m" id="sidet2" onmouseover="rankbox('sidet','rank','2')">全部类别</div>
@@ -193,8 +194,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <?php foreach($rank as $k => $item):?>
             <li<?php if($k == 0):?> class="on"<?php endif;?>>
               <div class="no1"><?=($k+1)?></div>
-              <div class="bdimg"><img  class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="53" height="54" /></div>
-              <div class="bdancont"><a href="<?=productURL($item['pid'])?>"><?=$item['pname']?></a>
+              <div class="bdimg"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><img  class="lazy" src="<?=config_item('static_url')?>images/lazy.gif"
+                                       data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" /></a></div>
+              <div class="bdancont"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><?=$item['pname']?></a>
                 <div class="bdprice"> <span class="font4">￥<?=fprice($item['sell_price'])?></span></div>
               </div>
             </li>

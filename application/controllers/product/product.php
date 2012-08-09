@@ -162,6 +162,7 @@ class Product extends MY_Controller
             {
                 $alike[$k]['color'] = empty($color[$v['color_id']]) ? '' : $color[$v['color_id']];
             }
+            //echo '<pre>';print_r($this->product->getProductSize($pid));exit;
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),
                 'product' => $product,

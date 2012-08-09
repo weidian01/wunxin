@@ -174,7 +174,7 @@
 .bdan2 {
     padding: 10px 0px 0px 10px;
     width: 182px;
-    height: 88px;
+    height: 80px;
     overflow: hidden;
     border-bottom: 1px solid #eee;
     padding-bottom: 3px;
@@ -339,7 +339,7 @@
 
 .viewhis .vew-designer {
     padding-left: 17px;
-    padding-top: 15px;
+    padding-top: 5px;
 }
 
 /*---------------goods info-------------------------------*/
@@ -761,7 +761,7 @@
 .d-box {
     border: 2px solid #700019;
     width: 976px;
-    height: 234px;
+    height: 245px;
     overflow: hidden;
 }
 
@@ -805,7 +805,7 @@
 
 .d-photo2 {
     float: left;
-    width: 138px;
+    width: 100px;
 }
 
 .d-photo2 img {
