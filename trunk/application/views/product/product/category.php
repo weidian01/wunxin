@@ -135,9 +135,9 @@ $(document).ready(function(){
       <?php foreach($products as $product):?>
       <div class="goods-cb">
         <div class="goods-cbox">
-            <a href="<?=productURL($product['pid'])?>"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" /></a>
+            <a href="<?=productURL($product['pid'])?>" target="_blank"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" /></a>
             <p><?=$product['pname']?><br/>
-            <span class="font4">售价 ￥<?=sprintf("%.2f",$product['sell_price']/100)?></span></p>
+            <span class="font4">售价 ￥<?=fPrice($product['sell_price'])?></span></p>
         </div>
       </div>
     <?php endforeach;?>
@@ -163,6 +163,5 @@ $(document).ready(function(){
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/function.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/category.js"></script>
