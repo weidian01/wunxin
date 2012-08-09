@@ -91,7 +91,7 @@
     function clearBrowseHistory()
     {
         wx.setCookie('browseHistory', '', 0);
-        $('#browseHistory .recordbox').fadeOut('fast');
+        $('#browseHistory').fadeOut('fast');
     }
 
     /*保存最近浏览*/
@@ -100,7 +100,14 @@
         var value = id+'|'+name+'|'+price;
         var str = wx.getCookie('browseHistory');
         if(str == null) str = '';
-        var arr = re = str.split(';');
+        if(str)
+        {
+            var arr = re = str.split(';');
+        }
+        else
+        {
+            var arr = re = [];
+        }
         if($.inArray(value, arr) < 0)
         {
             arr.push(value);

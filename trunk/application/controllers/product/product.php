@@ -44,12 +44,14 @@ class Product extends MY_Controller
      */
     public function category()
     {
+        $this->HTTPLastModified();
+
         $category = (int)$this->uri->rsegment(3, 1);
         $pageno = (int)$this->uri->rsegment(4, 1);
         $pageno === 0 && $pageno = 1;
         $query = $this->uri->rsegment(5, '');
         $param = self::parse_param($query);
-        $this->load->database();
+        //$this->load->database();
         //$this->db->cache_on();
         //$this->db->cache_off();
         //获取分类信息
@@ -102,6 +104,7 @@ class Product extends MY_Controller
                 $products = $this->product->getProductList($pagesize, $offset, "pid, did, pname, market_price, sell_price", $where);
             }
             //$this->cache_view("category/\d+/?\d*");
+            //print_r($this->cate->getClan($this->channel[$category]['ancestor']));
             $this->load->view('product/product/category', array(
                 'title' => "{$cate_info['title']} 分类列表",
                 'category' => $category,
@@ -124,12 +127,20 @@ class Product extends MY_Controller
      */
     public function info()
     {
-        $this->httpLastModified();
+        $this->HTTPLastModified();
+
         $pid = (int)$this->uri->rsegment(3, 1);
         $this->load->model('product/Model_Product', 'product');
         $product = $this->product->getProductById($pid);
         if($product)
         {
+            $this->load->model('design/Model_Design', 'design');
+            $design = $this->design->getDesignByDid($product['did'], 'did, dname, ddetail');
+
+            $this->load->model('user/Model_User', 'user');
+            $designer = $this->user->getUserInfoById($product['uid'], 'uid, introduction');
+
+
             //产品图片
             $photo = $this->product->getProductPhoto($pid);
             //相同款式
@@ -156,6 +167,8 @@ class Product extends MY_Controller
                 'photo' => $photo,
                 'alike' => $alike,
                 'psize' => $this->product->getProductSize($pid),
+                'design' => $design,
+                'designer' => $designer,
                 'salesRank' => $this->salesRank($product['class_id'], $product['brand_id']),
             ));
             //$html = $str = preg_replace('/\s+/', ' ', $this->output->get_output());
@@ -165,6 +178,38 @@ class Product extends MY_Controller
         {
             show_404("产品不存在");
         }
+    }
+
+    public function search()
+    {
+        $keyword = $this->input->get('keyword');
+        $products = array();
+        if($keyword == false)
+        {
+            echo __METHOD__;
+        }
+        else
+        {
+            $keyword = $this->db->escape_like_str($keyword);
+            $this->load->model('product/Model_Product', 'product');
+            $products = $this->product->getProductList($limit = 20, $offset = 0, "pid, did, pname, market_price, sell_price", "pname LIKE '%{$keyword}%'", $order = null);
+            //print_r($products);
+        }
+        //print_r($this->channel);
+        $this->load->view('product/product/search', array(
+            'title' => "{$keyword} 搜索",
+            'keyword' => $keyword,
+            //'category' => $category,
+            'nav'=>array(),//$this->cate->getParents(0),
+            //'ancestor'=> 0,//$this->channel[$category]['ancestor'],
+            'clan'=>$this->channel,//$this->cate->getClan($this->channel[$category]['ancestor']),
+            //'param' => $param,
+            //'modelAttr' => $modelAttr,
+            'products' => $products,
+            'pageHTML' => '',//$pageHTML,
+            //'pageNUM' => $pageNUM,
+            'salesRank' => $this->salesRank(),
+        ));
     }
 
     /**
@@ -198,21 +243,28 @@ class Product extends MY_Controller
         $this->json_output($response);
     }
 
-    private function salesRank($class_id, $brand_id = null)
+    /**
+     * 销量榜
+     * @param $class_id
+     * @param null $brand_id
+     * @return array
+     */
+    private function salesRank($class_id = null, $brand_id = null)
     {
         $where = '';
-        if(is_array($class_id))
-        {
-            $where = "class_id IN (".implode(',', $class_id).")";;
-        }
-        else
-        {
-            $where = "class_id = $class_id";
-        }
-
         $this->load->model('product/Model_Product', 'product');
         //同类别
-        $rank[1] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", $where,'sales DESC');
+        if($class_id){
+            if(is_array($class_id))
+            {
+                $where = "class_id IN (".implode(',', $class_id).")";;
+            }
+            else
+            {
+                $where = "class_id = $class_id";
+            }
+            $rank[1] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", $where,'sales DESC');
+        }
         //所有分类
         $rank[2] = $this->product->getProductList($limit = 10, $offset = 0, $field= "pid, pname, sell_price", null,'sales DESC');
         //同品牌

@@ -30,10 +30,9 @@
         <div class="search">
             <div class="s-input">
                 <div class="sch">
-                    <input name="" type="text"/>
+                    <form name="search" method="get" action="<?=config_item('base_url')?>search"><input name="keyword" type="text" value="<?php echo isset($keyword) ? $keyword:'';?>"/></form>
                 </div>
-                <div class="sbtn"><a href="#"> <img src="/images/wx_09.jpg" width="36" height="28"/></div>
-                </a>
+                <div class="sbtn"><a href="javascript:;" onclick="document.forms['search'].submit()"> <img src="/images/wx_09.jpg" width="36" height="28"/></a></div>
             </div>
             <div class="hot-keyword">
                 <ul>
