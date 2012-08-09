@@ -37,9 +37,9 @@ cart.init = function ()
 
     for (var i in data) {
         html += '<tr>';
-        html += '<td width="7%"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="67"/></td>';
+        html += '<td width="7%"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="67"/></a></td>';
         html += '<td width="40%">';
-        html += '<a class="gn" href="#">'+data[i].pname.substring(0, 60)+'</a><br/>';
+        html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname.substring(0, 60)+'</a><br/>';
         html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
         html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a></td>';
         html += '<td align="center">'+wx.fPrice(data[i].product_price)+'</td>';
@@ -74,8 +74,8 @@ cart.init = function ()
 		'<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div> ' +
         '<div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div>' ;
     html += '<div class="post-btn">';
-    html += '<a href="javascript:void(0);" onclick="wx.goToBack()";><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
-    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
+    html += '<a href="javascript:void(0);" onclick="wx.goToBack()" target="_blank"><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
+    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()" target="_blank"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
     html += '</div>';
     html += '</td>';
     html += '</tr></table>';

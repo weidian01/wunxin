@@ -51,9 +51,9 @@
                         <td width="8%" height="26" align="center"><?php echo $v['did'];?></td>
                         <td width="8%" align="center">
                             <a href="#" title="<?php echo $v['dname'];?>">
-                                <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" title="<?php echo $v['dname'];?>" width="60" height="60"/></td>
+                                <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" title="<?php echo $v['dname'];?>" width="60" height="72"/></td>
                             </a>
-                        <td width="15%" align="center"><a href="#" title="<?php echo $v['dname'];?>"><?php echo $v['dname'];?></a></td>
+                        <td width="15%" align="center"><a href="#" title="<?=$v['dname']?>"><?=mb_substr($v['dname'], 0, 60, 'utf-8');?></a></td>
                         <td width="25%" align="center"><?php echo $v['ddetail'];?></td>
                         <td width="15%" align="center">
                             <a href="#" title="此设计图被收藏 <?php echo $v['total_fraction'];?> 次" style="color: #990000;font-size: 10px;">被收藏 <?php echo $v['favorite_num'];?> 次</a> <br />
@@ -87,7 +87,7 @@
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
                         <a href="#" title="<?=$fv['dname']?>">
-                            <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="128" height="172"/>
+                            <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="130" height="156"/>
                         </a>
 
                         <p><a href="#" title="<?=$fv['dname']?>"><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></a></p>

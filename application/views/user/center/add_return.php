@@ -43,7 +43,9 @@
         </div>
         <div class="u-r-box">
             <br/>
-            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pid);?>icon.jpg" alt="" width="60" height="60" style="padding-left: 30px;"/>
+            <a href="<?=productURL($pid)?>" target="_blank" title="">
+                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pid);?>default.jpg" alt="" width="130" height="156" style="padding-left: 30px;"/>
+            </a>
             <br/><br/>
             <span style="padding-left: 5%;"><span style="font-weight: bold;color: #8B8878;">温馨提示:</span> 带红星为必填项，请认真填写。</span>
             <br/><br/>

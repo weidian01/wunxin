@@ -51,17 +51,17 @@
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>
                     <tr>
-                        <td width="6%" height="26" align="center"><?php echo $v['return_id'];?></td>
-                        <td width="8%" align="center"><?php echo $v['order_sn'];?></td>
+                        <td width="6%" height="26" align="center"><?=$v['return_id'];?></td>
+                        <td width="8%" align="center"><?=$v['order_sn'];?></td>
                         <td width="8%" align="center">
-                            <a href="#" title="<?php echo $v['pname'].', ￥'.($v['sell_price'] / 100);?>">
-                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                            <a href="<?=productURL($v['pid']);?>" title="<?=$v['pname'].', ￥'.fPrice($v['sell_price']);?>" target="_blank">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="50" height="50"/>
                             </a>
                             <br />
-                            <a href="#" title="<?php echo $v['pname'];?>">￥<?php echo $v['sell_price'] / 100;?></a>
+                            <a href="<?=productURL($v['pid']);?>" title="<?=$v['pname'];?>" target="_blank">￥<?=fPrice($v['sell_price']);?></a>
                         </td>
-                        <td width="20%" align="center"><a href="#" title="<?php echo $v['pname'].', ￥'.($v['sell_price'] / 100);?>"><?php echo $v['pname'];?></a></td>
-                        <td width="15%" align="<?php echo ($v['status'] == '2') ? 'center' : 'left';?>">
+                        <td width="20%" align="center"><a href="<?=productURL($v['pid']);?>" title="<?=$v['pname'].', ￥'.fPrice($v['sell_price']);?>" target="_blank"><?=$v['pname'];?></a></td>
+                        <td width="15%" align="<?=($v['status'] == '2') ? 'center' : 'left';?>">
                             <?php
                                 //客服操作 0初始，1协商成功，2协商失败
                             switch ($v['cs_operations']){
@@ -134,13 +134,13 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <a href="#" title="<?=$fv['pname']?>" class="ucenter_recommend">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        <a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" class="ucenter_recommend" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                         </a>
 
-                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
-                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
-                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                        <p><a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                        <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
+                        售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
                     <?php }?>
                 </ul>
             </div>

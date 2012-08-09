@@ -102,7 +102,7 @@
                                             <td style="width:60px;">
                                                 <div class="imgbox">
                                                     <a href="#" class="a_e" title="<?php echo $v['dname'];?>">
-                                                        <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" alt="" width="60" height="60"/>
+                                                        <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>default.jpg" alt="" width="60" height="72"/>
                                                     </a>
                                                 </div>
                                             </td>
@@ -118,6 +118,7 @@
                                             </td>
                                             <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:60px;text-align:center;">
+                                                <!--
                                                 <a href="#">
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计图">
                                                 </a>
@@ -126,7 +127,7 @@
                                                     <img src="<?=config_item('static_url')?>images/comment.png" title="评论此设计图">
                                                 </a>
                                                 <br/>
-
+                                                -->
                                                 <a href="javascript:void(0);" onclick="design.deleteComment(<?php echo $v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图评论">
                                                 </a>
@@ -162,7 +163,7 @@
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
                         <a href="#" title="<?=$fv['dname']?>">
-                            <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="128" height="172"/>
+                            <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="130" height="156"/>
                         </a>
 
                         <p><a href="#" title="<?=$fv['dname']?>"><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></a></p>

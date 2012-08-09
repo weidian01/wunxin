@@ -213,12 +213,14 @@
                                             <tbody>
                                             <tr>
                                                 <td style="width:60px;">
-                                                    <a href="#" title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>">
-                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" alt="" width="60" height="60"/>
+                                                    <a href="<?=productURL($pv['pid'])?>" title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>" target="_blank">
+                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>default.jpg" alt="" width="80" height="96"/>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>" class="a_e" href="#"> <?php echo $pv['pname']?> </a><br>
+                                                    <a title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>" class="a_e" href="<?=productURL($pv['pid'])?>" target="_blank">
+                                                        <?php echo $pv['pname']?>
+                                                    </a><br>
                                                     <span class="f_g">尺码：<?php echo $pv['product_size'];?></span>
                                                 </td>
                                             </tr>
@@ -226,9 +228,9 @@
                                         </table>
                                     </td>
                                     <td width="90" align="center"><strong>￥<?php echo fPrice($pv['sall_price']);?></strong></td>
-                                    <td width="100" align="center"><strong><?php echo fPrice($pv['sall_price']);?></strong></td>
+                                    <td width="100" align="center"><strong><?php echo intval(fPrice($pv['sall_price']));?></strong></td>
                                     <td width="90" align="center"><strong><?php echo $pv['product_num'];?></strong></td>
-                                    <td width="90" align="center"><strong><?php echo fPrice(($pv['sall_price'] * $pv['product_num']));?></strong></td>
+                                    <td width="90" align="center"><strong>￥<?php echo fPrice(($pv['sall_price'] * $pv['product_num']));?></strong></td>
                                     <td width="90" align="center" class="end">
                                         <a href="javascript:void(0);" onclick="product.productComment(<?php echo $pv['pid'];?>)">
                                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品">

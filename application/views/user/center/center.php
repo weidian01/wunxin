@@ -76,9 +76,9 @@
                             <?php
                             if (empty ($v['products'])) $v['products'] = array();
                             foreach ($v['products'] as $pv) {?>
-                            <div class="g-i-img" title="<?php echo $pv['pname'];?>">
-                                <a href="#">
-                                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" width="45" height="45" title="<?php echo $pv['pname'];?>"/>
+                            <div class="g-i-img" title="<?php echo $pv['pname'].', ￥'.fPrice($pv['sall_price']);?>">
+                                <a href="<?=productURL($pv['pid']);?>" target="_blank" title="<?=$pv['pname'].', ￥'.$pv['sall_price'];?>">
+                                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" width="50" height="50" title="<?=$pv['pname'].', ￥'.fPrice($pv['sall_price']);?>"/>
                                 </a>
                             </div>
                             <?php }?>
@@ -86,7 +86,7 @@
                         </div>
                     </td>
                     <td width="8%" align="center"><?php echo $v['recent_name'];?></td>
-                    <td width="10%" align="center">￥<?php echo $v['after_discount_price'] / 100;?><br/>
+                    <td width="10%" align="center">￥<?=fPrice($v['after_discount_price']);?><br/>
                         <?php
                         switch($v['pay_type']) {
                             case '1': $pt = '线上支付'; break;
@@ -166,13 +166,13 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <a href="#" title="<?=$fv['pname']?>">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                         </a>
 
-                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
-                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
-                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
+                        <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', '.fPrice($fv['sell_price'])?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                        <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
+                        售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
                     <?php }?>
                 </ul>
             </div>

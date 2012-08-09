@@ -99,27 +99,27 @@
                                         <tr>
                                             <td style="width:60px;">
                                                 <div class="imgbox">
-                                                    <a href="#" class="a_e" title="<?php echo $v['pname'];?>">
+                                                    <a href="<?=productURL($v['pid'])?>" class="a_e" title="<?php echo $v['pname'];?>" target="_blank">
                                                         <img src="<?=config_item('img_url')?>product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="#" class="a_e" title="<?php echo $v['pname'];?>"><?php echo $v['pname'];?> &nbsp;&nbsp;
+                                                <a href="<?=productURL($v['pid'])?>" class="a_e" title="<?php echo $v['pname'];?>" target="_blank"><?php echo $v['pname'];?> &nbsp;&nbsp;
                                                     <span style="color: #CC0033;font-weight: bold;">￥<?php echo fPrice($v['sell_price']);?><span></a></a><br>
                                             </td>
                                             <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:90px;text-align:center;">
                                                 <a href="#" title="产品共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">共收藏 <?php echo $v['favorite_num'];?> 次</td>
                                             <td style="width:90px;text-align:center;">
-                                                <a href="#" class="a_e">
+                                                <a href="<?=productURL($v['pid'])?>" class="a_e" target="_blank">
                                                     <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
                                                 </a><br/>
-                                                <a href="#" class="a_e">
+                                                <a href="<?=productURL($v['pid'])?>" class="a_e" target="_blank">
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此产品">
                                                 </a>
                                                 <br/>
-                                                <a href="#" class="a_e" onclick="product.deleteFavoriteProduct(<?php echo $v['id'];?>)">
+                                                <a href="javascript:void(0);" class="a_e" onclick="product.deleteFavoriteProduct(<?php echo $v['id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的此产品">
                                                 </a>
                                             </td>
@@ -157,11 +157,11 @@
                 <ul>
                     <?php foreach ($favorite_recommend as $fv) {?>
                     <li>
-                        <a href="#" title="<?=$fv['pname']?>">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="128" height="172"/>
+                        <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                         </a>
 
-                        <p><a href="#" title="<?=$fv['pname']?>"><?=mb_substr($fv['pname'], 0, 18, 'utf-8') ;?></a></p>
+                        <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8') ;?></a></p>
                         <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
                         售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
                     <?php }?>
