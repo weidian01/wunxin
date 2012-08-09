@@ -71,10 +71,10 @@
         <div class="other">
             <div class="otherbox">
                 <ul>
-                    <li><a href="#">新品区</a></li>
-                    <li><a href="#">新设计图</a></li>
-                    <li><a href="#">新设计师</a></li>
-                    <li class="end"><a href="#">热门晒单</a></li>
+                    <li><a href="#" target="_blank">新品区</a></li>
+                    <li><a href="#" target="_blank">新设计图</a></li>
+                    <li><a href="#" target="_blank">新设计师</a></li>
+                    <li class="end"><a href="#" target="_blank">热门晒单</a></li>
                 </ul>
             </div>
         </div>

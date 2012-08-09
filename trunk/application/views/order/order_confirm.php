@@ -329,8 +329,12 @@ $(document).ready(function(){
         </tr>
           <?php foreach ($cart_info as $cv) {?>
         <tr>
-          <td width="7%"><img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($cv['pid']))?>icon.jpg" width="60" height="60" /></td>
-          <td width="49%"><a class="gn2" href="#"><?=mb_substr($cv['pname'], 0, 70, 'utf-8');?></a><br/>
+          <td width="7%">
+              <a href="<?=productURL($cv['pid'])?>" target="_blank">
+                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($cv['pid']))?>icon.jpg" width="60" height="60" />
+              </a>
+          </td>
+          <td width="49%"><a class="gn2" href="<?=productURL($cv['pid'])?>" target="_blank"><?=mb_substr($cv['pname'], 0, 70, 'utf-8');?></a><br/>
             <!-- <span class="font2">GZ26052909-S</span> --></td>
           <td align="center"><?=fPrice($cv['product_price']);?></td>
           <td align="center"><?=intval($cv['product_num']);?></td>
