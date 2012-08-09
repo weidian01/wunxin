@@ -78,13 +78,13 @@ class Model_Design extends MY_Model
      * @param $order
      * @return array
      */
+
     public function getDesignByDid($dId, $field = '*', $where = null, $order = null)
     {
         $this->db->select($field)->from('design');
         $this->db->where('status', 1);
         $where && $this->db->where($where);
         $order && $this->db->order_by($order);
-
         if(is_array($dId))
         {
             return  $this->db->where_in('did', $dId)->get()->result_array();
