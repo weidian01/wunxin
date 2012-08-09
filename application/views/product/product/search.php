@@ -108,7 +108,7 @@ $(document).ready(function(){
 
     </style>
   <!--left end-->
-  <div class="goods-list" id="goods-list">
+  <div class="goods-list">
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
