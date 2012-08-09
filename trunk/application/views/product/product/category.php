@@ -56,7 +56,7 @@ $(document).ready(function(){
     </div>
 
     <div class="sidebox">
-      <div class="side-tit2">T恤销售排行榜</div>
+      <div class="side-tit2">销售排行榜</div>
       <div class="side-qh">
         <div class="side-m current" id="sidem1" onmouseover="rankbox('sidem','rank','1')">同类别</div>
         <div class="side-m" id="sidem2" onmouseover="rankbox('sidem','rank','2')">全部类别</div>
@@ -67,8 +67,13 @@ $(document).ready(function(){
           <?php foreach($rank as $k => $item):?>
           <li<?php if($k == 0):?> class="on"<?php endif;?>>
             <div class="no1"><?=($k+1)?></div>
-            <div class="bdimg"><img  class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="53" height="54" /></div>
-            <div class="bdancont"><a href="<?=productURL($item['pid'])?>"><?=$item['pname']?></a>
+            <div class="bdimg">
+                <a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>">
+                <img  class="lazy" src="<?=config_item('static_url')?>images/lazy.gif"
+                      data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" title="<?=$item['pname']?>"/>
+                </a>
+            </div>
+            <div class="bdancont"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><?=mb_substr($item['pname'], 0, 16, 'utf-8')?></a>
               <div class="bdprice"> <span class="font4">￥<?=fprice($item['sell_price'])?></span></div>
             </div>
           </li>

@@ -17,7 +17,7 @@ class share extends MY_Controller
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
-
+echo '<pre>';print_r($_REQUEST);exit;
         if (empty ($pid) || empty ($title) || empty ($content)) {
             show_error('参数不全');
         }
