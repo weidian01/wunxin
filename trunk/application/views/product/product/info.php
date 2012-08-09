@@ -76,7 +76,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="ctxt">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：</div>
           <div class="sizebox">
               <?php foreach($alike as $item):?>
-              <?php if(! isset($item['color']['image'])) continue;?>
+              <?php if(! isset($item['color'])) continue;?>
               <a class="sub-s" href="/product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
                 <span class="selected" style="display:<?php echo ($item['pid'] === $product['pid']) ? 'block':'none';?>">
                 <img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10"/>
