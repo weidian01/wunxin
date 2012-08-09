@@ -20,7 +20,7 @@ $(function ($) {
                               <table width="95%" border="0" cellspacing="0" cellpadding="0">\
                                 <tr>\
                                   <td><a href="'+wx.productURL(item.pid)+'">'+item.pname+'</a></td>\
-                                  <td><span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span></td>\
+                                  <td><span class="font4">￥'+fPrice(item.sell_price)+'</span></td>\
                                 </tr>\
                               </table>\
                               <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="53" height="54" /></div>\
