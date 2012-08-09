@@ -23,7 +23,7 @@ $(function ($) {
                                   <td><span class="font4">￥'+wx.fPrice(item.sell_price)+'</span></td>\
                                 </tr>\
                               </table>\
-                              <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="53" height="54" /></div>\
+                              <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="50" height="50" title="'+item.pname+'"/></div>\
                               <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
                                 '+item.content+'</div>\
                             </div>';
@@ -99,16 +99,17 @@ function browseHistoryHTML()
     var str = wx.getCookie('browseHistory');
     if (str) {
         var list = str.split(';').reverse();
-        html = '';
-        for (k in list) {
+        var html='';
+        for(k in list)
+        {
             var item = list[k].split('|');
-            html += '<div class="vhis">\
-            <a class="hoverimg" href="'+wx.productURL(item[0])+'"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'upload/product/' + idToPath(item[0]) + 'default.jpg" width="140" height="140" /></a>\
-            <p><a href="'+wx.productURL(item[0])+'">' + item[1] + '</a></p>\
-            <span class="font4">￥' + sprintf('%.2f',parseFloat(item[2])) + '</span></div>';
+            html += '<div class="recordbox"> \
+                <a href="'+wx.productURL(item[0])+'"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="' + wx.img_url + 'product/'+idToPath(item[0])+'default.jpg" width="164" height="197" /></a>\
+                    <p><a href="'+wx.productURL(item[0])+'">'+item[1]+'</a><br/> \
+                      <span class="font19">￥'+sprintf('%.2f', parseFloat(item[2]))+'</span></p> \
+                  </div>';
         }
-        $('.viewhis').append(html);
-        $('#viewhistory').show();
+        $('#browseHistory').append(html).show();
     }
 }
 
