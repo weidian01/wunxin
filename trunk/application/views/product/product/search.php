@@ -85,6 +85,14 @@ $(document).ready(function(){
     </div>
     <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
     <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+
+      <div class="sidebox" id="browseHistory" style="display:none">
+        <div class="side-tit2">
+          <div class="viewrecord">最近浏览</div>
+          <div class="clearrecord" onclick="clearBrowseHistory()">清除</div>
+        </div>
+      </div>
+
   </div>
     <style>
         .goods-list .listHeader { background: url("<?=config_item('static_url')?>images/listbg_1.png") repeat-x scroll 0 -514px transparent; height: 31px; padding-left: 33px; }
@@ -129,12 +137,6 @@ $(document).ready(function(){
       <div class="loading font10" id="nomoreresults" style="display:none;text-align:center;">没有更多.</div>
   </div>
   <!--right end-->
-</div>
-<div id="viewhistory" style="display:none" class="box3 pad4">
-  <div class="viewhistory">
-    <div class="tit">最近浏览过的商品</div>
-    <div class="viewhis"><!--最近浏览--></div>
-  </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>

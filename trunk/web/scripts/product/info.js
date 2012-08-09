@@ -74,7 +74,7 @@
     /*设置浏览记录*/
     function browseHistoryHTML(list)
     {
-        html='';
+        var html='';
         for(k in list)
         {
             var item = list[k].split('|');
@@ -214,7 +214,7 @@
                               <td><span class="font4">￥'+wx.fPrice(item.sell_price)+'</span></td>\
                             </tr>\
                           </table>\
-                          <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="53" height="54" /></div>\
+                          <div class="bdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="50" height="50" title="'+item.pname+'"/></div>\
                           <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
                             '+item.content+'</div>\
                         </div>';
