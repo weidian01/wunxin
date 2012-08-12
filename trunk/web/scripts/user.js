@@ -117,10 +117,8 @@ user.submitLoginForm = function ()
 //检测重复密码
 user.checkRePassWord = function ()
 {
-    var passWord = document.getElementById('password_id').value;
-    var rePassWord = document.getElementById('repassword_id').value;
-
     var passWord = user.checkPassWord();
+    var rePassWord = document.getElementById('repassword_id').value;
 
     $('#repassword_notice_id').html('');
     $("#repassword_notice_id").removeClass("mistake");
