@@ -99,7 +99,7 @@
                                 <?php foreach ($color as $item):?>
                                 <optgroup label="<?=$item['china_name']?>">
                                 <?php if(isset($item['children'])):foreach ($item['children'] as $v): ?>
-                                <option value="<?=$v['color_id']?>" <?php if(isset($info['color_id']) && $info['color_id']==$v['color_id'] ){echo 'selected="selected"';}?>><?=$v['china_name']?>/<?=$v['english_name']?></option>
+                                <option style="background-color:<?=$v['code']?>;" value="<?=$v['color_id']?>" <?php if(isset($info['color_id']) && $info['color_id']==$v['color_id'] ){echo 'selected="selected"';}?>><?=$v['china_name']?>/<?=$v['english_name']?></option>
                                 <?php endforeach;endif;?>
                                 </optgroup>
                                 <?php endforeach;?>

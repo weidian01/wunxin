@@ -59,17 +59,11 @@ class Model_Product_Color extends MY_Model
      */
     function getColorById($color_id, $field = '*')
     {
+        $this->db->select($field)->from('color');
         if (is_array($color_id)) {
-            return $this->db
-                ->select($field)
-                ->from('color')
-                ->where_in('color_id', $color_id)->get()
-                ->result_array();
+            return $this->db->where_in('color_id', $color_id)->get()->result_array();
         }
-        return $this->db
-            ->select($field)
-            ->get_where('color', array('color_id' => $color_id))
-            ->row_array();
+        return $this->db->where('color_id',$color_id)->get()->row_array();
     }
 
     /**
@@ -79,12 +73,13 @@ class Model_Product_Color extends MY_Model
      * @param int $limit
      * @return array
      */
-    function getList($limit = 20, $offset = 0)
+    function getList($limit = 20, $offset = 0, $field = '*', $where = null)
     {
-        $data = $this->db
-            ->select()
+        list($key, $field) = self::formatField($field);
+        $where && $this->db->where($where);
+        $data = $this->db->select($field)
             ->get_where('color', null, $limit, $offset)
-            ->result_array();
+            ->result_array($key);
         return $data;
     }
 

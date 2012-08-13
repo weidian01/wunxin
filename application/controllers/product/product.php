@@ -188,6 +188,16 @@ class Product extends MY_Controller
     public function search()
     {
         $keyword = $this->input->get('keyword');
+        $sort = $this->input->get('sort');
+        $by = $this->input->get('by');
+        $dict = array('price'=>'sell_price', 'sales'=>'sales', 'new'=>'create_time');
+        $order = null;
+        if(isset($dict[$sort]))
+        {
+            $by = $by == 'ASC' ? 'ASC':'DESC';
+            $order = "{$dict[$sort]} {$by}";
+        }
+        var_dump($by);
         $offset = max((int)$this->input->get('offset'), 0);
         $this->load->model('product/Model_Product', 'product');
         if ($keyword == false) {
@@ -202,7 +212,7 @@ class Product extends MY_Controller
         $products = array();
         if($productCount)
         {
-            $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", $like, $order = null);
+            $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", $like, $order);
         }
         if($this->input->is_ajax_request() !== true)
         {
@@ -214,6 +224,8 @@ class Product extends MY_Controller
                 'productCount' => $productCount,
                 'pageHTML' => '',//$pageHTML,
                 'salesRank' => $this->salesRank(),
+                'sort' => $sort,
+                'by' => $by,
             ));
         }
         else
