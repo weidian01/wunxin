@@ -57,12 +57,18 @@
                         <td>
                             <input type="checkbox"/>
                         </td>
-                        <td><?=$item['china_name']?></td>
+                        <td>
+                            <?php if($item['parent_id']==0):?>
+                            <a href="<?=site_url("administrator/product_color/index/{$item['color_id']}")?>"><?=$item['china_name']?></a>
+                            <?php else:?>
+                            <?=$item['china_name']?>
+                            <?php endif;?>
+                        </td>
                         <td>
                             <?=$item['english_name']?>
                         </td>
                         <td>
-                            <?=$item['code']?>
+                            <div style="float:left;margin-right:5px;display:block;width:20px;height:20px;background-color:<?=$item['code']?>;"></div> <?=$item['code']?>
                         </td>
                         <td>
                             <?php if($item['image']):?><img width="20" height="20" src="<?=config_item('static_url'),'upload/color/',$item['image']?>"><?php endif;?>

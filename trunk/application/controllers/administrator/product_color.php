@@ -25,25 +25,9 @@ class product_color extends MY_Controller
     public function index()
     {
         $this->load->model('product/Model_Product_Color', 'color');
-        $this->load->library('pagination');
-        $num = $this->color->getNum();
-        $pagesize = 20;
-        $config['base_url'] = site_url('administrator/product_color/index');
-        $config['total_rows'] = $num;
-        $config['per_page'] = $pagesize;
-        $config['use_page_numbers'] = TRUE;
-        $config['uri_segment'] = 4;
-        $config['num_links'] = 10;
-        $config['anchor_class'] = 'class="number" ';
-        $this->pagination->initialize($config);
-
-        $page = $this->uri->segment(4, 1);
-        $data = array();
-        if ($num) {
-            $page = (abs($page) - 1) * $pagesize;
-            $data = $this->color->getList($pagesize, $page);
-        }
-        $this->load->view('administrator/product/color/index', array('list' => $data, 'page' => $this->pagination->create_links()));
+        $pid = max($this->uri->segment(4, 0), 0);
+        $data = $this->color->getList(500, 0, '*', array('parent_id' => $pid));
+        $this->load->view('administrator/product/color/index', array('list' => $data, 'page' => '',/*$this->pagination->create_links()*/));
     }
 
     /**
@@ -52,7 +36,9 @@ class product_color extends MY_Controller
     public function create()
     {
         $this->load->helper('form');
-        $this->load->view('administrator/product/color/create');
+        $this->load->model('product/Model_Product_Color', 'color');
+        $color = $this->color->getList(500, 0, '*', array('parent_id' => 0));
+        $this->load->view('administrator/product/color/create', array('color'=>$color));
     }
 
     /**
@@ -70,11 +56,13 @@ class product_color extends MY_Controller
             show_error('号码信息不存在');
         }
         $this->load->helper('form');
+        $info['color'] = $this->color->getList(500, 0, '*', "parent_id = 0");
         $this->load->view('administrator/product/color/create', $info);
     }
 
     public function save()
     {
+        $data['parent_id'] = $this->input->post('parent_id');
         $data['china_name'] = $this->input->post('china_name');
         $data['english_name'] = $this->input->post('english_name');
         $data['code'] = $this->input->post('code');

@@ -58,12 +58,7 @@ class product extends MY_Controller
         $this->load->model('product/Model_Product_Model', 'mod');
         $model = $this->mod->getModelList(500);
         $this->load->model('product/Model_Product_Color', 'color');
-        $tmp = $this->color->getList(500);
-        $color = array();
-        foreach($tmp as $v)
-        {
-            $color[$v['color_id']] =  $v;
-        }
+        $color = $this->color->getList(500, 0, array('color_id'=>'*'));
         foreach($color as $k=>$item)
         {
             if($item['parent_id'] != 0)
