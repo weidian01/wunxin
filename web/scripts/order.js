@@ -301,7 +301,7 @@ order.orderSubmit = function ()
         return false;
     }
 
-    var url = '/order/order/submit/';
+    var url = 'order/order/submit/';
     var param = 'address_id='+addressId+'&pay_type='+payType+'&delivert_time='+delivertTime+'&annotated='+annotated;//+'&invoice_payable='+invoicePayable+'&invoice_content='+invoiceContent;
     var data = wx.ajax(url, param);
 
