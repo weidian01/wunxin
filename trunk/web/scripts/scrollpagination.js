@@ -28,8 +28,10 @@
     };
 
     $.fn.scrollPagination.loadContent = function (obj, opts) {
-        var target = opts.scrollTarget;
-        var mayLoadContent = $(target).scrollTop() + opts.heightOffset >= $(document).height() - $(target).height();
+        var bottomlimit = (opts.bottomlimit.offset().top + opts.bottomlimit.height())
+        //var target = opts.scrollTarget;
+        var mayLoadContent = opts.scrollTarget.scrollTop() > (bottomlimit - opts.heightOffset);
+        //var mayLoadContent = $(target).scrollTop() + opts.heightOffset >= $(document).height() - $(target).height();
         if (mayLoadContent && opts.loading === false && opts.over === false) {
             if (opts.beforeLoad != null) {
                 opts.beforeLoad();
@@ -80,6 +82,7 @@
         'heightOffset':0,
         'offset':0,
         'loading':false,
-        'over':false
+        'over':false,
+        'bottomlimit':null
     };
 })(jQuery);
