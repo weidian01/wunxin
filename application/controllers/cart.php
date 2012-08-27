@@ -18,9 +18,9 @@ class cart extends MY_Controller
     {
         $this->load->model('product/Model_Product', 'product');
         //($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
-        $salesRecommend = $this->product->getProductList(6, 0, 'pid,pname,market_price,sell_price', array('status' => 1, 'shelves' => 1), 'sales desc');
+        $salesRecommend = $this->product->getProductList(12, 0, 'pid,pname,market_price,sell_price', array('status' => 1, 'shelves' => 1), 'sales desc');
 
-        $favoriteRecommend = $this->product->getProductList(6, 0, 'pid,pname,market_price,sell_price', array('status' => 1, 'shelves' => 1), 'favorite_num desc');
+        $favoriteRecommend = $this->product->getProductList(12, 0, 'pid,pname,market_price,sell_price', array('status' => 1, 'shelves' => 1), 'favorite_num desc');
 
         $this->load->view('cart/index', array('sales' => $salesRecommend, 'favorite' => $favoriteRecommend));
     }

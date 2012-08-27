@@ -13,6 +13,19 @@
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
+    <style>
+        .scroll_horizontal ul,li{margin:0;padding:0;}
+        .scroll_horizontal {position:relative;width:100%;height:235px;padding:10px 0 10px 0;background:#fff;}
+        .scroll_horizontal .box{overflow:hidden;position:relative;width:840px;height:235px;margin:0 auto;}
+        .scroll_horizontal .plus,
+        .scroll_horizontal .minus{position:absolute;top:50px;width:30px;height:60px;background:#f90;cursor:pointer;}
+        .scroll_horizontal .plus{left:20px;}
+        .scroll_horizontal .minus{right:20px;}
+        .scroll_horizontal .plus:hover,
+        .scroll_horizontal .minus:hover{background:#f60;}
+        .scroll_horizontal ul{position:absolute;top:0;left:0;width:9999px;list-style-type:none;}
+        .scroll_horizontal li{float:left;width:140px;text-align:center;display: block;}
+    </style>
 </head>
 <body>
 <?php include '/../header.php';?>
@@ -80,57 +93,55 @@
       </tr>
     </table>
   </div>
-  <div class="other-shopping" style="height:320px;">
-    <div class="tit">购买以上商品的顾客还购买过</div>
-    <div class="other-c">
-      <div class="other-pre"><a href="#">pre</a></div>
-      <div class="other-next"><a href="#">next</a></div>
-      <div class="other-cg">
-        <div style=" height:230px; width:1800px;">
-            <?php foreach ($sales as $sv) {?>
-          <div class="rq">
-            <div class="rqimg">
-                <a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank">
-                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($sv['pid'])?>default.jpg" width="130" height="156" />
-                </a>
+  <div class="other-shopping">
+    <div class="tit">购买以上商品的顾客还购买过1</div>
+        <div id="pic_list_1" class="scroll_horizontal">
+            <div class="box">
+                <ul class="list">
+                    <?php foreach ($sales as $sv):?>
+                  <li class="rq">
+                    <div class="rqimg">
+                        <a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($sv['pid'])?>default.jpg" width="130" height="156" />
+                        </a>
+                    </div>
+                    <p><a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank"><?=mb_substr($sv['pname'], 0, 18, 'utf-8')?></a><br/>
+                      原价：￥<span class="font7"><?=fPrice($sv['market_price'])?></span><br/>
+                      <span class="font6">特惠价：￥<?=fPrice($sv['sell_price'])?></span></p>
+                    <a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank">
+                        <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" />
+                    </a>
+                    </li>
+                  <?php endforeach;?>
+                </ul>
             </div>
-            <p><a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank"><?=mb_substr($sv['pname'], 0, 18, 'utf-8')?></a><br/>
-              原价：￥<span class="font7"><?=fPrice($sv['market_price'])?></span><br/>
-              <span class="font6">特惠价：￥<?=fPrice($sv['sell_price'])?></span></p>
-            <a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank">
-                <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" />
-            </a>
-            </div>
-          <?php }?>
+            <div class="plus"></div>
+            <div class="minus"></div>
         </div>
-      </div>
-      <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
-    </div>
   </div>
-  <div class="other-shopping" style="height:320px;">
-    <div class="tit">看过以上商品的顾客还购买过</div>
-    <div class="other-c">
-      <div class="other-pre"><a href="#">pre</a></div>
-      <div class="other-next"><a href="#">next</a></div>
-      <div class="other-cg">
-        <div style=" height:230px; width:1800px;">
-          <?php foreach ($favorite as $fv) {?>
-          <div class="rq">
-            <div class="rqimg">
-                <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank">
-                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156" />
-                </a>
-            </div>
-            <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8')?></a><br/>
-              原价：￥<span class="font7"><?=fPrice($fv['market_price'])?></span><br/>
-              <span class="font6">特惠价：￥<?=fPrice($fv['sell_price'])?></span></p>
-              <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"> <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /> </a>
+  <div class="other-shopping">
+    <div class="tit">看过以上商品的顾客还购买过2</div>
+      <div id="pic_list_2" class="scroll_horizontal">
+          <div class="box">
+              <ul class="list">
+                  <?php foreach ($favorite as $fv):?>
+                  <li class="rq">
+                    <div class="rqimg">
+                        <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank">
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156" />
+                        </a>
+                    </div>
+                    <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8')?></a><br/>
+                      原价：￥<span class="font7"><?=fPrice($fv['market_price'])?></span><br/>
+                      <span class="font6">特惠价：￥<?=fPrice($fv['sell_price'])?></span></p>
+                      <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"> <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车" /> </a>
+                  </li>
+                  <?php endforeach;?>
+              </ul>
           </div>
-            <?php }?>
-        </div>
+          <div class="plus"></div>
+          <div class="minus"></div>
       </div>
-      <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
-    </div>
   </div>
   <div class="tips">您在购物过程中有任何疑问，请查阅 <a href="/other/help/" target="_blank"><span class="font8">帮助中心</span></a> 或
       <a href="/other/help/" target="_blank"><span class="font8">联系客服</span></a></div>
@@ -140,8 +151,13 @@
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/cart.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <script type="text/javascript">
-    cart.init();
+    $(function () {
+        cart.init();
+        $("#pic_list_1").scrollShow("right",{step:6, time:5000});
+        $("#pic_list_2").scrollShow("right",{step:6, time:5000});
+    });
 </script>
 </body>
 </html>

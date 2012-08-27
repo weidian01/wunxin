@@ -6,6 +6,7 @@
     <title>我的订单 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/jcarousel/tango/skin.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
@@ -19,6 +20,20 @@
         .path, .path ul li { height: 30px; line-height: 30px; }
         .path { padding-left: 20px; background-position: 0px -179px; }
         .path ul li { float: left; padding-right: 12px; padding-left: 5px; display: block; background-position: right -91px; }
+    </style>
+
+    <style>
+    .scroll_horizontal ul,li{margin:0;padding:0;}
+    .scroll_horizontal {position:relative;width:100%;height:235px;padding:10px 0 10px 0;background:#fff;}
+    .scroll_horizontal .box{overflow:hidden;position:relative;width:700px;height:235px;margin:0 auto;}
+    .scroll_horizontal .plus,
+    .scroll_horizontal .minus{position:absolute;top:50px;width:30px;height:60px;background:#f90;cursor:pointer;}
+    .scroll_horizontal .plus{left:20px;}
+    .scroll_horizontal .minus{right:20px;}
+    .scroll_horizontal .plus:hover,
+    .scroll_horizontal .minus:hover{background:#f60;}
+    .scroll_horizontal ul{position:absolute;top:0;left:0;width:9999px;list-style-type:none;}
+    .scroll_horizontal li{float:left;width:140px;text-align:center;display: block;}
     </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
@@ -157,32 +172,43 @@
         </div>
         <div class="pages" style="float: right;">
                 <?php echo $page_html; ?>
-            </div>
+        </div>
+
         <div class="u-r-box">
             <div class="tui-tit">为您推荐</div>
-            <div class="tui">
-                <div class="tuipre"><a href="#"></a></div>
-                <div class="tuinext"><a href="#"></a></div>
-                <ul>
-                    <?php foreach ($favorite_recommend as $fv) {?>
-                    <li>
-                        <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
-                        </a>
 
-                        <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', '.fPrice($fv['sell_price'])?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
-                        <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
-                        售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
-                    <?php }?>
-                </ul>
-            </div>
+                <div id="pic_list_1" class="scroll_horizontal">
+                    <div class="box">
+                        <ul class="list">
+                            <?php foreach ($favorite_recommend as $fv):?>
+                            <li>
+                                <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
+                                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
+                                </a>
+
+                                <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', '.fPrice($fv['sell_price'])?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                                <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
+                                售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
+                            <?php endforeach;?>
+                        </ul>
+                    </div>
+                    <div class="plus"></div>
+                    <div class="minus"></div>
+                </div>
+
         </div>
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        $("#pic_list_1").scrollShow("right",{step:5, time:5000});
+    });
+</script>
 
