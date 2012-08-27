@@ -52,7 +52,7 @@ class center extends MY_Controller
         //echo '<pre>';print_r($data);exit;
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
 
         $this->load->view('user/center/center', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
