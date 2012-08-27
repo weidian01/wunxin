@@ -30,8 +30,14 @@ minus:是否使用minus按钮
 			time:2600,
 			auto:true,
 			plus:true,
-			minus:true
+			minus:true,
+            num:10,
+            itemWidth:'140',
+            boxHeight:'235'
 		},settings);
+
+        $('.box', this).css({'height': settings.boxHeight+'px', 'width':(settings.itemWidth * settings.num)+'px'});
+        $('li', this).css('width', settings.itemWidth+'px')
 
 		var scroll_obj=this;
 		var scroll_box=scroll_obj.find(".box");

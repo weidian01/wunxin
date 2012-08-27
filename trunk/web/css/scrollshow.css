@@ -1,0 +1,11 @@
+.scroll_horizontal ul,li{margin:0;padding:0;}
+.scroll_horizontal {position:relative;width:100%;height:auto;padding:10px 0 0px 0;background:#fff;}
+.scroll_horizontal .box{overflow:hidden;position:relative;width:100%;margin:0 auto;border:solid red 0px;}
+.scroll_horizontal .plus,
+.scroll_horizontal .minus{position:absolute;top:50px;width:30px;height:60px;background:#f90;cursor:pointer;}
+.scroll_horizontal .plus{left:20px;}
+.scroll_horizontal .minus{right:20px;}
+.scroll_horizontal .plus:hover,
+.scroll_horizontal .minus:hover{background:#f60;}
+.scroll_horizontal ul{position:absolute;top:0;left:0;width:9999px;list-style-type:none;}
+.scroll_horizontal li{float:left;width:140px;text-align:center;display: block;overflow:hidden;}
