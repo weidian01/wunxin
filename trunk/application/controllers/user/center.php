@@ -98,7 +98,7 @@ class center extends MY_Controller
         $data = $this->return->getUserReturnAndProduct($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
         //echo '<pre>';print_r($favoriteRecommend);exit;
 
         $this->load->view('user/center/return', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
@@ -260,7 +260,7 @@ class center extends MY_Controller
         $data = $this->share->getProductShareAndImagesByUid($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
 
         $this->load->view('user/center/share', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -293,7 +293,7 @@ class center extends MY_Controller
 
         $data = $this->favorite->getUserFavoriteAndProduct($this->uInfo['uid'], $Limit, $offset);
 
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
 
 //echo '<pre>';print_r($favoriteRecommend);exit;
         $this->load->view('user/center/p_favorite', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
@@ -327,7 +327,7 @@ class center extends MY_Controller
 
         $data = $this->favorite->getUserDesignerFavoriteAndUser($this->uInfo['uid'], $Limit, $offset);
 
-        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(6);
+        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(10);
 //echo '<pre>';print_r($favoriteRecommend);exit;
         $this->load->view('user/center/u_favorite', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -489,7 +489,7 @@ class center extends MY_Controller
         $data = $this->comment->getUserCommentAndDesign($this->uInfo['uid'], $Limit, $offset);
 //echo '<pre>';print_r($data);exit;
         $this->load->model('design/Model_Design_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(5);
+        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(10);
 
         $this->load->view('user/center/d_comment', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -523,7 +523,7 @@ class center extends MY_Controller
         $data = $this->message->getUserDesignerMessageAndDesigner($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('user/Model_Designer_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(6);
+        $favoriteRecommend = $this->favorite->getUserFavoriteRecommend(10);
 //echo '<pre>';print_r($favoriteRecommend);exit;
         $this->load->view('user/center/u_comment', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -557,7 +557,7 @@ class center extends MY_Controller
         $data = $this->qa->getUserProductQaAndProduct($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
 
         $this->load->view('user/center/qa', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -633,7 +633,7 @@ class center extends MY_Controller
         $data = $this->design->getDesignByUid($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('design/Model_Design_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(5);
+        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(10);
 
         $this->load->view('user/center/design', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -667,7 +667,7 @@ class center extends MY_Controller
         $data = $this->product->getUserProduct($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
 
         $this->load->view('user/center/product', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -750,7 +750,7 @@ class center extends MY_Controller
         $data = $this->sp->getUserSystemProposal($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
 
 //echo '<pre>';print_r($data);exit;
         $this->load->view('user/center/system_proposal', array('data' => $data, 'page_html' => $pageHtml, 'favorite_recommend' => $favoriteRecommend));
