@@ -13,6 +13,7 @@
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
+    <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include('/../../header.php');?>
@@ -86,29 +87,31 @@
 
         <div class="u-r-box">
             <div class="tui-tit">产品推荐</div>
-            <div class="tui">
-                <div class="tuipre"><a href="#"></a></div>
-                <div class="tuinext"><a href="#"></a></div>
-                <ul>
-                    <?php foreach ($favorite_recommend as $fv) {?>
-                    <li>
-                        <a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
-                        </a>
+            <div id="pic_list_1" class="scroll_horizontal">
+                <div class="box">
+                    <ul class="list">
+                        <?php foreach ($favorite_recommend as $fv):?>
+                        <li>
+                            <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
+                            </a>
 
-                        <p><a href="<?=productURL($fv['pid'])?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
-                        <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
-                        售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
-                    <?php }?>
-                </ul>
+                            <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', '.fPrice($fv['sell_price'])?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                            <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
+                            售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+                <div class="plus"></div>
+                <div class="minus"></div>
             </div>
         </div>
-
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <script type="text/javascript">
     function deleteProduct(pId)
     {
@@ -129,6 +132,9 @@
             alert('删除失败!');
         }
     }
+    $(function () {
+        $("#pic_list_1").scrollShow("right",{step:5, time:5000, num:5, boxHeight:220});
+    });
 </script>
 <!-- #EndLibraryItem -->
 </body>

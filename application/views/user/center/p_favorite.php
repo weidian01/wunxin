@@ -56,10 +56,9 @@
         .btn_s1_z7 { background: url("/images/btn_s1_z7.png") repeat-x scroll 0 0 transparent; border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block; font-size: 12px;
             height: 20px; line-height: 20px; margin: 0; padding: 0; text-align: center; width: 102px;font-weight: bold; }
     </style>
+    <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<a href="/">aa</a>
-<a href="/index.php">index</a>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include('/../../header.php');?>
 <!-- #EndLibraryItem -->
@@ -151,30 +150,37 @@
 
         <div class="u-r-box">
             <div class="tui-tit">产品收藏热度榜</div>
-            <div class="tui">
-                <div class="tuipre"><a href="#"></a></div>
-                <div class="tuinext"><a href="#"></a></div>
-                <ul>
-                    <?php foreach ($favorite_recommend as $fv) {?>
-                    <li>
-                        <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
-                        </a>
+            <div id="pic_list_1" class="scroll_horizontal">
+                <div class="box">
+                    <ul class="list">
+                        <?php foreach ($favorite_recommend as $fv):?>
+                        <li>
+                            <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
+                            </a>
 
-                        <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8') ;?></a></p>
-                        <span class="font2">市场价：￥<span class="font7"><?php echo $fv['market_price'] / 100;?></span></span><br/>
-                        售价：<span class="font1">￥<?php echo $fv['sell_price'] / 100;?></span></li>
-                    <?php }?>
-                </ul>
+                            <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', '.fPrice($fv['sell_price'])?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
+                            <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
+                            售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+                <div class="plus"></div>
+                <div class="minus"></div>
             </div>
         </div>
-
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/product.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        $("#pic_list_1").scrollShow("right",{step:5, time:5000, num:5, boxHeight:220});
+    });
+</script>

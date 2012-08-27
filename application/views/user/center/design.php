@@ -13,6 +13,7 @@
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
+    <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include('/../../header.php');?>
@@ -80,29 +81,32 @@
 
         <div class="u-r-box">
             <div class="tui-tit">推荐设计图</div>
-            <div class="tui">
-                <div class="tuipre"><a href="#"></a></div>
-                <div class="tuinext"><a href="#"></a></div>
-                <ul>
-                    <?php foreach ($favorite_recommend as $fv) {?>
-                    <li>
-                        <a href="#" title="<?=$fv['dname']?>">
-                            <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="130" height="156"/>
-                        </a>
 
-                        <p><a href="#" title="<?=$fv['dname']?>"><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></a></p>
-                        <span class="font2">设计师：<?php echo substr($fv['uname'], 0, 10);?></span><br/>
-                        被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span></li>
-                    <?php }?>
-                </ul>
+            <div id="pic_list_1" class="scroll_horizontal">
+                <div class="box">
+                    <ul class="list">
+                        <?php foreach ($favorite_recommend as $fv):?>
+                        <li>
+                            <a href="#" title="<?=$fv['dname']?>">
+                                <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="130" height="156"/>
+                            </a>
+                            <p><a href="#" title="<?=$fv['dname']?>"><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></a></p>
+                            <span class="font2">设计师：<?php echo substr($fv['uname'], 0, 10);?></span><br/>
+                            被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span>
+                        </li>
+                        <?php endforeach;?>
+                    </ul>
+                </div>
+                <div class="plus"></div>
+                <div class="minus"></div>
             </div>
         </div>
-
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include("/../../footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <script type="text/javascript">
     function deleteDesign(dId)
     {
@@ -123,6 +127,9 @@
             alert('删除失败!');
         }
     }
+    $(function () {
+        $("#pic_list_1").scrollShow("right",{step:5, time:5000, num:5, boxHeight:220});
+    });
 </script>
 <!-- #EndLibraryItem -->
 </body>

@@ -13,19 +13,7 @@
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
-    <style>
-        .scroll_horizontal ul,li{margin:0;padding:0;}
-        .scroll_horizontal {position:relative;width:100%;height:235px;padding:10px 0 10px 0;background:#fff;}
-        .scroll_horizontal .box{overflow:hidden;position:relative;width:840px;height:235px;margin:0 auto;}
-        .scroll_horizontal .plus,
-        .scroll_horizontal .minus{position:absolute;top:50px;width:30px;height:60px;background:#f90;cursor:pointer;}
-        .scroll_horizontal .plus{left:20px;}
-        .scroll_horizontal .minus{right:20px;}
-        .scroll_horizontal .plus:hover,
-        .scroll_horizontal .minus:hover{background:#f60;}
-        .scroll_horizontal ul{position:absolute;top:0;left:0;width:9999px;list-style-type:none;}
-        .scroll_horizontal li{float:left;width:140px;text-align:center;display: block;}
-    </style>
+    <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <?php include '/../header.php';?>
@@ -155,8 +143,8 @@
 <script type="text/javascript">
     $(function () {
         cart.init();
-        $("#pic_list_1").scrollShow("right",{step:6, time:5000});
-        $("#pic_list_2").scrollShow("right",{step:6, time:5000});
+        $("#pic_list_1").scrollShow("right",{step:6, time:5000, num:6});
+        $("#pic_list_2").scrollShow("right",{step:6, time:5000, num:6});
     });
 </script>
 </body>
