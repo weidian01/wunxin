@@ -360,7 +360,7 @@ class center extends MY_Controller
 
         $data = $this->favorite->getUserDesignFavoriteAndDesign($this->uInfo['uid'], $Limit, $offset);
 
-        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(5);
+        $favoriteRecommend = $this->favorite->getUserFavoriteDesignRecommend(10);
         //echo '<pre>';print_r($favoriteRecommend);exit;
         $this->load->view('user/center/d_favorite', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
@@ -455,7 +455,7 @@ class center extends MY_Controller
         $data = $this->comment->getUserCommentAndProduct($this->uInfo['uid'], $Limit, $offset);
 
         $this->load->model('product/Model_Product_Favorite', 'favorite');
-        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(5);
+        $favoriteRecommend = $this->favorite->getFavoriteProductRecommend(10);
 
         $this->load->view('user/center/p_comment', array('data' => $data, 'page_html' => $pageHtml, 'total_num' => $totalNum, 'favorite_recommend' => $favoriteRecommend));
     }
