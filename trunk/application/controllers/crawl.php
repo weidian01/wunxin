@@ -94,7 +94,7 @@ class crawl extends MY_Controller
             $urls = sprintf($url, $i);
             //echo $urls."<br/>";continue;
             $crawl->crawlOne($urls, $i);
-            usleep(100000);
+            usleep(300000);
         }
 
         return ;
