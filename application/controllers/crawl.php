@@ -77,7 +77,7 @@ class crawl extends MY_Controller
      */
     public function agitation()
     {
-        $limit = 2;
+        $limit = 1;
         $start = 1;
         $end   = 81;
 
@@ -107,7 +107,7 @@ class crawl extends MY_Controller
             //*抓取漏抓的页面
             if (empty ($urlArray)) continue;
             //*/
-            usleep(100000);
+            sleep(1);
             $crawl->crawlList($urlArray);
             unset ($crawl);
         }
