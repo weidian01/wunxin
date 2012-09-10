@@ -42,8 +42,8 @@ class crawl extends MY_Controller
         $end   = 119;
 
         $this->load->helper('crawl_tools');
-        //$config = array('dir' => '/data/m_data/nervermore/');
-        $config = array('dir' => 'G:\\wamp\\www\\wunxin\\m_data\\nervermore\\');
+        $config = array('dir' => '/data/m_data/nervermore/');
+        //$config = array('dir' => 'G:\\wamp\\www\\wunxin\\m_data\\nervermore\\');
 
         $url = 'http://nervermore.tmall.com/search.htm?pageNum=';
 
