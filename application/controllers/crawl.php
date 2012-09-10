@@ -77,7 +77,6 @@ class crawl extends MY_Controller
      */
     public function agitation()
     {
-        $limit = 1;
         $start = 1;
         $end   = 82;
 
@@ -96,34 +95,6 @@ class crawl extends MY_Controller
             $crawl->crawlOne($urls, $i);
             usleep(300000);
         }
-
-        return ;
-        for ($i = $start; $i < $end; $i = $i + $limit)
-        {
-            $crawl = new crawl_tools($config);
-            echo $i."\n";
-            echo $i+$limit."\n";
-            $urlArray = array();
-
-            for ($ii = $i; $ii <= $i+$limit; $ii++)
-            {
-                //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($ii).'index.html';
-                if (file_exists(($fileName))) continue;
-                //*/
-
-                $urlArray[$ii] = sprintf($url, $ii);
-            }
-            //echo '<pre>';print_r($urlArray);continue;
-
-            //*抓取漏抓的页面
-            if (empty ($urlArray)) continue;
-            //*/
-            $crawl->crawlOne($urlArray);
-            sleep(1);
-            unset ($crawl);
-        }
-
     }
 
     /**

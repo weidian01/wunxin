@@ -119,6 +119,31 @@ class MY_Model extends CI_Model
         return array($key, $fields);
     }
 
+    /**
+     * 获取文件内容
+     *
+     * @param $fileName
+     * @param string $outCharset
+     * @return bool|string
+     */
+    public function getFileContent($fileName, $outCharset = 'utf-8')
+    {
+        if (empty ($fileName) || !file_exists($fileName)) return false;
+
+        $content = file_get_contents($fileName);
+
+        $encode = mb_detect_encoding($content, array('ASCII','UTF-8','GB2312','GBK','BIG5'));
+        //var_dump($encode);exit;
+        if($encode == 'EUC-CN')$encode='GBK';
+        if ($encode !== 'UTF-8') {
+            $content = iconv($encode, $outCharset.'//IGNORE', $content);
+        }
+        //
+
+        return $content;
+    }
+
+
     function __destruct()
     {
         --self::$obj_num;
