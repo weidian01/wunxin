@@ -110,7 +110,7 @@ class crawl extends MY_Controller
         $config = array('dir' => '/data/m_data/agitation/');
         $crawl = new crawl_tools($config);
 
-        $this->load->model('order/model_crawl_analysis', 'ca');
+        $this->load->model('other/model_crawl_analysis', 'ca');
 
         $field = 'id, pname, plink';
         //($field = '*', $limit = 20, $offset = 0, $where = null, $order = null)
