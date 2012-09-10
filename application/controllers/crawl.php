@@ -73,53 +73,45 @@ class crawl extends MY_Controller
     }
 
     /**
-     * ffdy.cc
+     * http://agitation.tmall.com
      */
-    public function ffdy_cc()
+    public function agitation()
     {
-        for ($t = 1; $t <= 4; $t++)
+        $limit = 2;
+        $start = 1;
+        $end   = 81;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/agitation/class/');
+
+        $url = 'http://agitation.tmall.com/search.htm?spm=a1z10.3.17.70.fe468b&search=y&viewType=grid&orderType=_coefp&pageNum=%d#anchor';
+
+        for ($i = $start; $i < $end; $i = $i + $limit)
         {
-            $limit = 100;
-            $start = 10000;
-            $end   = 35500;
+            $crawl = new crawl_tools($config);
+            echo $i."\n";
+            echo $i+$limit."\n";
+            $urlArray = array();
 
-            $this->load->helper('crawl_tools');
-            $config = array('dir' => '/data/m_data/ffdy/');
-
-            $url = 'http://www.ffdy.cc/movie/%d.html';
-            switch ($t) {
-                case 1: $url = 'http://www.ffdy.cc/movie/%d.html';break;
-                case 2: $url = 'http://www.ffdy.cc/teleplay/%d.html';break;
-                case 3: $url = 'http://www.ffdy.cc/anime/%d.html';break;
-                case 4: $url = 'http://www.ffdy.cc/zy/%d.html';break;
-            }
-
-            for ($i = $start; $i < $end; $i = $i + $limit)
+            for ($ii = $i; $ii <= $i+$limit; $ii++)
             {
-                $crawl = new crawl_tools($config);
-                echo $i."\n";
-                echo $i+$limit."\n";
-                $urlArray = array();
-
-                for ($ii = $i; $ii < $i+$limit; $ii++)
-                {
-                    //* 抓取漏抓的页面
-                    $fileName = $config['dir'].intToPath($ii).'index.html';
-                    if (file_exists(($fileName))) continue;
-                    //*/
-
-                    $urlArray[$ii] = sprintf($url, $ii);
-                }
-                //echo '<pre>';print_r($urlArray);continue;
-
-                //*抓取漏抓的页面
-                if (empty ($urlArray)) continue;
+                //* 抓取漏抓的页面
+                $fileName = $config['dir'].intToPath($ii).'index.html';
+                if (file_exists(($fileName))) continue;
                 //*/
 
-                $crawl->crawlList($urlArray);
-                unset ($crawl);
+                $urlArray[$ii] = sprintf($url, $ii);
             }
+            //echo '<pre>';print_r($urlArray);continue;
+
+            //*抓取漏抓的页面
+            if (empty ($urlArray)) continue;
+            //*/
+
+            $crawl->crawlList($urlArray);
+            unset ($crawl);
         }
+
     }
 
     /**
