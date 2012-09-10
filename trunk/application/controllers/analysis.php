@@ -21,7 +21,6 @@ class analysis extends MY_Controller
      */
     public function tu_cc()
     {
-        //header("Content-type: text/html; charset=utf-8");
         $path = '/data/m_data/2tucc/';
         //$path = 'G:\\wamp\\www\\dy1010\\';
         $limit = 13140;
@@ -43,17 +42,17 @@ class analysis extends MY_Controller
     }
 
     /**
-     * 分析放放电影
+     * 分析http://agitation.tmall.com 分页
      */
-    public function ffdy_cc()
+    public function agitation_class()
     {
         //error_reporting(E_ALL ^ E_NOTICE);
-        $path = '/data/m_data/ffdy/';
-        //$path = 'D:\wamp\www\dy1010\\';
-        $limit = 40000;
-        $start = 10000;
+        $path = '/data/m_data/agitation/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $limit = 82;
+        $start = 1;
 
-        $this->load->model('analysis/ffdy_cc', 'ffdyCc');
+        $this->load->model('analysis/model_analysis_agitation', 'agitation');
 
         for ($i = $start; $i <= $limit; $i++) {
             $fileName = $path.intToPath($i).'index.html';
@@ -62,8 +61,8 @@ class analysis extends MY_Controller
             if (!file_exists($fileName)) continue;
 
             $data = array('file_name' => $fileName, 'source_id' => $i);
-            $this->ffdyCc->analysis($data);
-            $this->ffdyCc->save();
+            $this->agitation->analysis_class($data);
+            $this->agitation->save_class();
             //echo $fileName;exit;
         }
     }
