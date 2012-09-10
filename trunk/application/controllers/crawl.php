@@ -79,13 +79,25 @@ class crawl extends MY_Controller
     {
         $limit = 1;
         $start = 1;
-        $end   = 81;
+        $end   = 82;
 
         $this->load->helper('crawl_tools');
         $config = array('dir' => '/data/m_data/agitation/class/');
 
         $url = 'http://agitation.tmall.com/search.htm?spm=a1z10.3.17.70.fe468b&search=y&viewType=grid&orderType=_coefp&pageNum=%d#anchor';
 
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            //echo $urls."<br/>";continue;
+            $crawl->crawlOne($urls);
+            sleep(1);
+        }
+
+        return ;
         for ($i = $start; $i < $end; $i = $i + $limit)
         {
             $crawl = new crawl_tools($config);
@@ -107,7 +119,7 @@ class crawl extends MY_Controller
             //*抓取漏抓的页面
             if (empty ($urlArray)) continue;
             //*/
-            $crawl->crawlList($urlArray);
+            $crawl->crawlOne($urlArray);
             sleep(1);
             unset ($crawl);
         }
