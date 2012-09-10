@@ -16,43 +16,57 @@ class crawl extends MY_Controller
         set_time_limit(0);
     }
 
+    public function index()
+    {
+        $this->load->helper('html_dom');
+        echo __METHOD__;
+        $html = file_get_contents('http://nervermore.tmall.com/search.htm?pageNum=1');
+
+//        <div class="desc">
+//        <a data-spm-anchor-id="a1z10.3.17.33" data-spm-wangpu-module-id="17-5399066998" target="_blank" href="http://detail.tmall.com/item.htm?spm=a1z10.3.17.33.2e72c8&amp;id=13785149680&amp;" class="permalink" style="">
+//        大力水手 情侣装 情侣 T恤 短袖 纯棉 夏装 2012韩版卡通休闲宽松
+//        </a>
+//        </div>
+        preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>.*?\s<\/a>\s<\/div>/s', $html, $matches);
+        echo '<pre>';print_r($matches);
+    }
+
     /**
      * http://nervermore.tmall.com
      */
     public function nervermore()
     {
+        set_time_limit(0);
         $limit = 10;
         $start = 1;
-        $end   = 120;
+        $end   = 119;
 
         $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/nervermore/');
+        //$config = array('dir' => '/data/m_data/nervermore/');
+        $config = array('dir' => 'G:\\wamp\\www\\wunxin\\m_data\\nervermore\\');
 
-        $url = 'http://nervermore.tmall.com/search.htm?spm=a1z10.3.17.92.190cef&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+        $url = 'http://nervermore.tmall.com/search.htm?pageNum=';
 
-        for ($i = $start; $i < $end; $i = $i + $limit)
+        for ($i = $start; $i <= $end; $i++)
         {
-            $crawl = new crawl_tools($config);
-            echo $i."\n";
-            echo $i+$limit."\n";
+            $html = file_get_contents($url.$i);
+            preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>.*?\s<\/a>\s<\/div>/s', $html, $matches);
+            //echo '<pre>';print_r($matches);
+            //$crawl = new crawl_tools($config);
             $urlArray = array();
 
-            for ($ii = $i; $ii < $i+$limit; $ii++)
+            foreach($matches[1] as $item)
             {
+                $uri = parse_url($item);
+                parse_str($uri['query'], $pram);
                 //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($ii).'index.html';
+                $fileName = $config['dir'].intToPath($pram['id']).'index.html';
                 if (file_exists(($fileName))) continue;
                 //*/
-
-
-        	    $urlArray[$ii] = sprintf($url, $ii);
+        	    $urlArray[$pram['id']] = $item;
             }
-            //echo '<pre>';print_r($urlArray);continue;
-
-            //*抓取漏抓的页面
+            echo '<pre>';print_r($urlArray);die;//continue;
             if (empty ($urlArray)) continue;
-            //*/
-
             $crawl->crawlList($urlArray);
             unset ($crawl);
         }
