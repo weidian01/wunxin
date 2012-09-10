@@ -98,231 +98,33 @@ class crawl extends MY_Controller
     }
 
     /**
-     * iverycd.com
+     * http://agitation.tmall.com
      */
-    public function iverycd_com()
+    public function agitation()
     {
         //http://www.iverycd.com/details/354587/
-        $limit = 100;
-        $start = 11;
-        $end   = 354900;
-
-        $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/iverycd/');
-
-        $url = 'http://www.iverycd.com/details/%d/';
-
-        for ($i = $start; $i < $end; $i = $i + $limit)
-        {
-            //$this->load->library('crawl_tools', $config);
-            $crawl = new crawl_tools($config);
-            echo $i."\n";
-            //echo $i+$limit."\n";
-            $urlArray = array();
-
-            for ($ii = $i; $ii < $i+$limit; $ii++)
-            {
-                //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($ii).'index.html';
-                if (file_exists(($fileName))) continue;
-                //*/
-
-        	    $urlArray[$ii] = sprintf($url, $ii);
-            }
-            //echo '<pre>';print_r($urlArray);continue;
-
-            //*抓取漏抓的页面
-            if (empty ($urlArray)) continue;
-            //*/
-
-            $crawl->crawlList($urlArray);
-            $crawl ='';unset ($crawl);
-        }
-    }
-
-    /**
-     * yyets.com
-     */
-    public function yyets_com()
-    {
-        $limit = 100;
-        $start = 24001;
-        $end   = 28000;
-
-        $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/yyets/');
-
-        $url = 'http://www.yyets.com/php/resource/%d';
-
-        for ($i = $start; $i < $end; $i = $i + $limit)
-        {
-            //$this->load->library('crawl_tools', $config);
-            $crawl = new crawl_tools($config);
-            echo $i."\n";
-            //echo $i+$limit."\n";
-            $urlArray = array();
-
-            for ($ii = $i; $ii < $i+$limit; $ii++)
-            {
-                //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($ii).'index.html';
-                if (file_exists(($fileName))) continue;
-                //*/
-
-        	    $urlArray[$ii] = sprintf($url, $ii);
-            }
-            //echo '<pre>';print_r($urlArray);continue;
-
-            //*抓取漏抓的页面
-            if (empty ($urlArray)) continue;
-            //*/
-
-            $crawl->crawlList($urlArray);
-            $crawl ='';unset ($crawl);
-        }
-    }
-
-    /**
-     * 抓取simplecd 分页页面
-     */
-    public function simplecd_me_page()
-    {
-        $limit = 30;
         $start = 1;
-        $end   = 20400;
+        $end   = 82;
 
         $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/simplecd/page/');
+        $config = array('dir' => '/data/m_data/agitation/');
+        $crawl = new crawl_tools($config);
 
-        $url = 'http://simplecd.me/category/?page=%d';
+        $this->load->model('order/model_crawl_analysis', 'ca');
 
-        for ($i = $start; $i <= $end; $i = $i + $limit)
-        {
-            //$this->load->library('crawl_tools', $config);
-            $crawl = new crawl_tools($config);
-            echo $i."\n";
-            //echo $i+$limit."\n";
-            $urlArray = array();
+        $field = 'id, pname, plink';
+        //($field = '*', $limit = 20, $offset = 0, $where = null, $order = null)
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'agitation'));
 
-            for ($ii = $i; $ii < $i+$limit; $ii++)
-            {
-                //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($ii).'index.html';
-                if (file_exists($fileName) && filesize($fileName) > 15000) continue;
-                //*/
+        foreach ($data as $v) {
+            echo $v['id']."\n";
 
-        	    $urlArray[$ii] = sprintf($url, $ii);
-            }
-            //echo '<pre>';print_r($urlArray);continue;
+            if (empty ($v['plink'])) continue;
 
-            //*抓取漏抓的页面
-            if (empty ($urlArray)) continue;
-            //*/
-
-            $crawl->crawlList($urlArray);
-            $crawl ='';unset ($crawl);
+            $crawl->crawlOne($v['plink'], $v['id']);
+            usleep(300000);
         }
-    }
 
-    /**
-     * 抓取simplecd 页面 simplecd.me
-     */
-    public function simplecd_me()
-    {
-        $limit = 30;
-        $start = 0;
-        $end   = 420000;
-
-        $this->load->model('tools');
-        $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/simplecd/');
-
-        //$url = 'http://www.2tu.cc/Html/GP%d.html';
-
-        for ($i = $start; $i < $end; $i = $i + $limit)
-        {
-            $crawl = new crawl_tools($config);
-            //echo $i."\n";
-            //echo $i+$limit."\n";
-            $urlArray = array();
-
-            echo $limit.'--'.$i."\n";//continue;
-            $field = 'id, source_link';
-            $data = $this->tools->getSimpleCdLinkList($field, $limit, $i);
-//print_r($data);
-            if ( empty ($data) ) continue;
-            //print_r($data);exit;
-
-            foreach ($data as $v)
-            {
-                if (empty ($v['source_link'])) continue;
-
-                //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($v['id']).'index.html';
-                if (file_exists($fileName) && filesize($fileName) > 15000) continue;
-                //*/
-
-        	    $urlArray[$v['id']] = 'http://simplecd.me'.$v['source_link'];//sprintf($url, $ii);
-            }
-            //echo '<pre>';print_r($urlArray);exit;//continue;
-
-            //*抓取漏抓的页面
-            if (empty ($urlArray)) continue;
-            //*/
-
-            $crawl->crawlList($urlArray);
-            unset ($crawl);
-        }
-    }
-
-    /**
-     * 抓取simplecd 下载链接页面 simplecd.me
-     */
-    public function simplecd_me_download_link()
-    {
-        $limit = 30;
-        $start = 0;
-        $end   = 4200000;
-
-        $this->load->model('tools');
-        $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/simplecd/download_link/');
-
-        //$url = 'http://www.2tu.cc/Html/GP%d.html';
-
-        for ($i = $start; $i < $end; $i = $i + $limit)
-        {
-            $crawl = new crawl_tools($config);
-            //echo $i."\n";
-            //echo $i+$limit."\n";
-            $urlArray = array();
-
-            echo $limit.'--'.$i."\n";//continue;
-            $field = 'id, source_download_link';
-            $data = $this->tools->getSimpleCdDownloadLinkList($field, $limit, $i);
-
-            if ( empty ($data) ) continue;
-            //print_r($data);exit;
-
-            foreach ($data as $v)
-            {
-                if (empty ($v['source_download_link'])) continue;
-
-                //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($v['id']).'index.html';
-                if (file_exists($fileName) && filesize($fileName) > 15000) continue;
-                //*/
-
-        	    $urlArray[$v['id']] = $v['source_download_link'];//sprintf($url, $ii);
-            }
-            //echo '<pre>';print_r($urlArray);exit;//continue;
-
-            //*抓取漏抓的页面
-            if (empty ($urlArray)) continue;
-            //*/
-
-            $crawl->crawlList($urlArray);
-            unset ($crawl);
-        }
+        unset ($data);
     }
 }
