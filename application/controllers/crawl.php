@@ -75,7 +75,7 @@ class crawl extends MY_Controller
     /**
      * http://agitation.tmall.com
      */
-    public function agitation()
+    public function agitation_class()
     {
         $start = 1;
         $end   = 82;
