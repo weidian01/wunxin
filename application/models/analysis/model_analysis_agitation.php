@@ -33,7 +33,7 @@ class model_analysis_agitation extends MY_Model
         }
         $this->data = $link;
         unset ($link);
-        echo '<pre>';print_r($matches);exit;
+        //echo '<pre>';print_r($matches);exit;
     }
 
     /**
