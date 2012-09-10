@@ -25,9 +25,10 @@ class crawl_tools
      * 抓取单个URL的内容，并写入文件
      *
      * @param $url
+     * @param int $id
      * @return bool|string
      */
-    public function crawlOne($url)
+    public function crawlOne($url, $id = 0)
     {
         if (empty($url)) return false;
 
@@ -36,7 +37,7 @@ class crawl_tools
         $context = stream_context_create($opts);
         $content =file_get_contents($url, false, $context);
 
-        return $this->writeContent($content);
+        return $this->writeContent($content, $id);
     }
 
     /**
