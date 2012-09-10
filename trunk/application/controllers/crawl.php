@@ -107,7 +107,7 @@ class crawl extends MY_Controller
             //*抓取漏抓的页面
             if (empty ($urlArray)) continue;
             //*/
-
+            usleep(100000);
             $crawl->crawlList($urlArray);
             unset ($crawl);
         }
