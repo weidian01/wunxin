@@ -52,7 +52,7 @@ class crawl extends MY_Controller
             $html = file_get_contents($url.$i);
             preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>.*?\s<\/a>\s<\/div>/s', $html, $matches);
             //echo '<pre>';print_r($matches);
-            //$crawl = new crawl_tools($config);
+            $crawl = new crawl_tools($config);
             $urlArray = array();
 
             foreach($matches[1] as $item)
@@ -65,7 +65,7 @@ class crawl extends MY_Controller
                 //*/
         	    $urlArray[$pram['id']] = $item;
             }
-            echo '<pre>';print_r($urlArray);die;//continue;
+            //echo '<pre>';print_r($urlArray);die;//continue;
             if (empty ($urlArray)) continue;
             $crawl->crawlList($urlArray);
             unset ($crawl);
