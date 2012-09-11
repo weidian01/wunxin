@@ -17,28 +17,11 @@ class analysis extends MY_Controller
     }
 
     /**
-     * 分析迅播电影
+     * nervermore
      */
-    public function tu_cc()
+    public function nervermore()
     {
-        $path = '/data/m_data/2tucc/';
-        //$path = 'G:\\wamp\\www\\dy1010\\';
-        $limit = 13140;
-        $start = 1;
 
-        $this->load->model('analysis/tu_cc', 'tuCc');
-
-        for ($i = $start; $i <= $limit; $i++) {
-            $fileName = $path.intToPath($i).'index.html';
-
-            if (!file_exists($fileName)) continue;
-
-            $data = array('file_name' => $fileName, 'source_id' => $i);
-            $this->tuCc->analysis($data);
-
-            $this->tuCc->save();
-            echo $fileName,"<br>\n";//die;
-        }
     }
 
     /**
@@ -68,30 +51,27 @@ class analysis extends MY_Controller
     }
 
     /**
-     * 分析爱电驴
+     * 分析http://metrue.taobao.com 分页
      */
-    public function iverycd_com()
+    public function metrue_class()
     {
         //error_reporting(E_ALL ^ E_NOTICE);
-        $path = '/data/m_data/iverycd/';
-        //$path = 'D:\wamp\www\dy1010\\';
-        $limit = 400000;
-        $start = 11;
+        $path = '/data/m_data/metrue/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $limit = 82;
+        $start = 1;
 
-        $this->load->model('analysis/iverycd_com', 'iverycdCom');
+        $this->load->model('analysis/model_analysis_metrue', 'metrue');
 
         for ($i = $start; $i <= $limit; $i++) {
-
             $fileName = $path.intToPath($i).'index.html';
             echo $i.'--'.$fileName."\n";//continue;
 
             if (!file_exists($fileName)) continue;
 
             $data = array('file_name' => $fileName, 'source_id' => $i);
-            //var_dump(memory_get_usage());
-            $this->iverycdCom->analysis($data);
-            $this->iverycdCom->save();
-            //var_dump(memory_get_usage());exit;
+            $this->metrue->analysis_class($data);
+            $this->metrue->save_class();
             //echo $fileName;exit;
         }
     }
