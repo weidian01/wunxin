@@ -112,8 +112,13 @@ class crawl extends MY_Controller
         //($field = '*', $limit = 20, $offset = 0, $where = null, $order = null)
         $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'agitation'));
 
+        $i = 1;
         foreach ($data as $v) {
             echo $v['id']."\n";
+
+            if ($i == 100) {
+                sleep(30);
+            }
 
             if (empty ($v['plink'])) continue;
 
