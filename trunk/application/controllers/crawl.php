@@ -93,7 +93,7 @@ class crawl extends MY_Controller
             $urls = sprintf($url, $i);
             //echo $urls."<br/>";continue;
             $crawl->crawlOne($urls, $i);
-            usleep(300000);
+            sleep(1);
         }
     }
 
@@ -118,7 +118,7 @@ class crawl extends MY_Controller
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(300000);
+            sleep(1);
         }
 
         unset ($data);
