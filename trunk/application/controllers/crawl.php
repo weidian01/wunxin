@@ -117,13 +117,13 @@ class crawl extends MY_Controller
             echo $v['id']."\n";
 
             if ($i == 100) {
-                sleep(30);
+                sleep(60);
             }
 
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(1);
+            sleep(10);
         }
 
         unset ($data);
