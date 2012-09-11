@@ -102,10 +102,6 @@ class crawl extends MY_Controller
      */
     public function agitation()
     {
-        //http://www.iverycd.com/details/354587/
-        $start = 1;
-        $end   = 82;
-
         $this->load->helper('crawl_tools');
         $config = array('dir' => '/data/m_data/agitation/');
         $crawl = new crawl_tools($config);
@@ -123,6 +119,58 @@ class crawl extends MY_Controller
 
             $crawl->crawlOne($v['plink'], $v['id']);
             usleep(300000);
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * http://metrue.taobao.com
+     */
+    public function metrue_class()
+    {
+        $start = 1;
+        $end   = 16;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/metrue/class/');
+
+        $url = 'http://metrue.taobao.com/search.htm?spm=a1z10.3.17.50.dac1bb&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            //echo $urls."<br/>";continue;
+            $crawl->crawlOne($urls, $i);
+            usleep(500000);
+        }
+    }
+
+    /**
+     * http://metrue.taobao.com
+     */
+    public function metrue()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/metrue/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        //($field = '*', $limit = 20, $offset = 0, $where = null, $order = null)
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'metrue'));
+
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            usleep(500000);
         }
 
         unset ($data);
