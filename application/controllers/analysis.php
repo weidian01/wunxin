@@ -75,4 +75,30 @@ class analysis extends MY_Controller
             //echo $fileName;exit;
         }
     }
+
+    /**
+     * 分析http://lixiangniandaijn.tmall.com 分页
+     */
+    public function lixiangniandaijn_class()
+    {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/lixiangniandaijn/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $end = 16;
+        $start = 1;
+
+        $this->load->model('analysis/model_analysis_lixiangniandaijn', 'lixiangniandaijn');
+
+        for ($i = $start; $i <= $end; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->lixiangniandaijn->analysis_class($data);
+            $this->lixiangniandaijn->save_class();
+            //echo $fileName;exit;
+        }
+    }
 }
