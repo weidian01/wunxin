@@ -210,7 +210,7 @@ class crawl extends MY_Controller
             $urls = sprintf($url, $i);
             //echo $urls."<br/>";continue;
             $crawl->crawlOne($urls, $i);
-            usleep(500000);
+            usleep(300000);
         }
     }
 
@@ -240,7 +240,7 @@ class crawl extends MY_Controller
             }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(300000);
+            usleep(500000);
             $i++;
         }
 
