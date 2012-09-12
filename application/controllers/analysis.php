@@ -82,8 +82,8 @@ class analysis extends MY_Controller
     public function lixiangniandaijn_class()
     {
         //error_reporting(E_ALL ^ E_NOTICE);
-        $path = '/data/m_data/lixiangniandaijn/class/';
-        //$path = 'D:\wamp\www\wunxin\\';
+        //$path = '/data/m_data/lixiangniandaijn/class/';
+        $path = 'D:\wamp\www\wunxin\\';
         $end = 9;
         $start = 1;
 

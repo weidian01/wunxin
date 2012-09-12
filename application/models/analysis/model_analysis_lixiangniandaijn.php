@@ -33,7 +33,7 @@ class model_analysis_lixiangniandaijn extends MY_Model
         foreach ($matches[1] as $k=>$v) {
             $link[] = array('pname' => trim($matches[2][$k]), 'plink' => $v);
         }
-        echo count($link)."\n";return;
+        //echo count($link)."\n<br>"; echo $content; return;
         $this->data = $link;
         unset ($link);
         //echo '<pre>';print_r($matches);exit;
@@ -54,7 +54,7 @@ class model_analysis_lixiangniandaijn extends MY_Model
                 'create_time' => date('Y-m-d H:i:s'),
             );
 
-            $this->db->insert('taobao_product_link', $data, true);
+            $this->db->insert('taobao_product_link', $data);
             //return $this->db->insert_id();
         }
     }
