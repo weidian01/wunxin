@@ -168,8 +168,65 @@ class crawl extends MY_Controller
         $this->load->model('other/model_crawl_analysis', 'ca');
 
         $field = 'id, pname, plink';
-        //($field = '*', $limit = 20, $offset = 0, $where = null, $order = null)
         $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'metrue'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            if ($i == 100) {
+                $i = 1;
+                sleep(30);
+            }
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            usleep(300000);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * http://lixiangniandaijn.tmall.com
+     */
+    public function lixiangniandaijn_class()
+    {
+        $start = 1;
+        $end   = 9;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/lixiangniandaijn/class/');
+
+        $url = 'http://lixiangniandaijn.tmall.com/search.htm?spm=a1z10.3.17.82.8da7d2&search=y&viewType=grid&orderType=_coefp&pageNum=%d#anchor';
+
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            //echo $urls."<br/>";continue;
+            $crawl->crawlOne($urls, $i);
+            usleep(300000);
+        }
+    }
+
+    /**
+     * http://lixiangniandaijn.tmall.com
+     */
+    public function lixiangniandaijn()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/lixiangniandaijn/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'lixiangniandaijn'));
 
         $i = 1;
         foreach ($data as $v) {
