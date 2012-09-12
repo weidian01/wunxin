@@ -117,6 +117,7 @@ class crawl extends MY_Controller
             echo $v['id']."\n";
 
             if ($i == 100) {
+                $i = 1;
                 sleep(60);
             }
 
@@ -124,6 +125,7 @@ class crawl extends MY_Controller
 
             $crawl->crawlOne($v['plink'], $v['id']);
             //sleep(2);
+            $i++;
         }
 
         unset ($data);
@@ -169,13 +171,20 @@ class crawl extends MY_Controller
         //($field = '*', $limit = 20, $offset = 0, $where = null, $order = null)
         $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'metrue'));
 
+        $i = 1;
         foreach ($data as $v) {
             echo $v['id']."\n";
 
             if (empty ($v['plink'])) continue;
 
+            if ($i == 100) {
+                $i = 1;
+                sleep(30);
+            }
+
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(500000);
+            usleep(300000);
+            $i++;
         }
 
         unset ($data);

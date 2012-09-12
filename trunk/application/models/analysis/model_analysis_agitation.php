@@ -25,7 +25,9 @@ class model_analysis_agitation extends MY_Model
         //来源网站ID
         $this->data['source_id'] = $arr['source_id'];
 
-        preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>(.*?)\s<\/a>\s<\/div>/s', $content, $matches);
+        preg_match("/<ul class=\"shop-list\">(.*)<\/ul>/sU", $content, $codeBlock);
+
+        preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>(.*?)\s<\/a>\s<\/div>/s', $codeBlock[1], $matches);
 
         $link = array();
         foreach ($matches[1] as $k=>$v) {
