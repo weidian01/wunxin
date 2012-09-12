@@ -1159,9 +1159,10 @@ class CI_DB_active_record extends CI_DB_driver {
 	 *
 	 * @param	string	the table to insert data into
 	 * @param	array	an associative array of insert values
+     * @param	boolean $ignore
 	 * @return	object
 	 */
-	function insert($table = '', $set = NULL)
+	function insert($table = '', $set = NULL, $ignore = false)
 	{
 		if ( ! is_null($set))
 		{
