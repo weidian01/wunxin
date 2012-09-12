@@ -31,6 +31,7 @@ class model_analysis_metrue extends MY_Model
         foreach ($matches[1] as $k=>$v) {
             $link[] = array('pname' => trim($matches[2][$k]), 'plink' => $v);
         }
+        echo count($link)."\n";return;
         $this->data = $link;
         unset ($link);
         //echo '<pre>';print_r($matches);exit;
