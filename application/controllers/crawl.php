@@ -34,42 +34,60 @@ class crawl extends MY_Controller
     /**
      * http://nervermore.tmall.com
      */
-    public function nervermore()
+    public function nervermore_class()
     {
-        set_time_limit(0);
-        $limit = 10;
         $start = 1;
-        $end   = 119;
+        $end   = 82;
 
         $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/nervermore/');
-        //$config = array('dir' => 'G:\\wamp\\www\\wunxin\\m_data\\nervermore\\');
+        $config = array('dir' => '/data/m_data/nervermore/class/');
 
-        $url = 'http://nervermore.tmall.com/search.htm?pageNum=';
+        $url = 'http://agitation.tmall.com/search.htm?spm=a1z10.3.17.70.fe468b&search=y&viewType=grid&orderType=_coefp&pageNum=%d#anchor';
 
-        for ($i = $start; $i <= $end; $i++)
-        {
-            $html = file_get_contents($url.$i);
-            preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>.*?\s<\/a>\s<\/div>/s', $html, $matches);
-            //echo '<pre>';print_r($matches);
-            $crawl = new crawl_tools($config);
-            $urlArray = array();
+        $crawl = new crawl_tools($config);
 
-            foreach($matches[1] as $item)
-            {
-                $uri = parse_url($item);
-                parse_str($uri['query'], $pram);
-                //* 抓取漏抓的页面
-                $fileName = $config['dir'].intToPath($pram['id']).'index.html';
-                if (file_exists(($fileName))) continue;
-                //*/
-        	    $urlArray[$pram['id']] = $item;
-            }
-            //echo '<pre>';print_r($urlArray);die;//continue;
-            if (empty ($urlArray)) continue;
-            $crawl->crawlList($urlArray);
-            unset ($crawl);
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            //echo $urls."<br/>";continue;
+            $crawl->crawlOne($urls, $i);
+            sleep(1);
         }
+    }
+
+    /**
+     * http://nervermore.tmall.com
+     */
+    public function nervermore()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/nervermore/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        //($field = '*', $limit = 20, $offset = 0, $where = null, $order = null)
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'nervermore'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if ($i == 100) {
+                $i = 1;
+                sleep(60);
+            }
+
+            if (empty ($v['plink'])) continue;
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            //sleep(2);
+            $i++;
+        }
+
+        unset ($data);
     }
 
     /**
@@ -289,6 +307,122 @@ class crawl extends MY_Controller
 
         $field = 'id, pname, plink';
         $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'shanguoyanyi'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            if ($i == 100) {
+                $i = 1;
+                sleep(30);
+            }
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            usleep(500000);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * http://lekuchuangxiang.tmall.com
+     */
+    public function lekuchuangxiang_class()
+    {
+        $start = 1;
+        $end   = 58;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/lekuchuangxiang/class/');
+
+        $url = 'http://lekuchuangxiang.tmall.com/search.htm?spm=a1z10.3.17.82.26642&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            //echo $urls."<br/>";continue;
+            $crawl->crawlOne($urls, $i);
+            usleep(300000);
+        }
+    }
+
+    /**
+     * http://lekuchuangxiang.tmall.com
+     */
+    public function lekuchuangxiang()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/lekuchuangxiang/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'lekuchuangxiang'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            if ($i == 100) {
+                $i = 1;
+                sleep(30);
+            }
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            usleep(500000);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * http://tiexueyy.taobao.com
+     */
+    public function tiexueyy_class()
+    {
+        $start = 1;
+        $end   = 22;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/tiexueyy/class/');
+
+        $url = 'http://tiexueyy.taobao.com/search.htm?spm=a1z10.3.17.74.dc655d&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            //echo $urls."<br/>";continue;
+            $crawl->crawlOne($urls, $i);
+            usleep(300000);
+        }
+    }
+
+    /**
+     * http://tiexueyy.taobao.com
+     */
+    public function tiexueyy()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/tiexueyy/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'tiexueyy'));
 
         $i = 1;
         foreach ($data as $v) {
