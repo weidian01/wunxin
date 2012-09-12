@@ -54,7 +54,7 @@ class model_analysis_shanguoyanyi extends MY_Model
                 'create_time' => date('Y-m-d H:i:s'),
             );
 
-            $this->db->insert('taobao_product_link', $data, true);
+            $this->db->insert('taobao_product_link', $data);
             //return $this->db->insert_id();
         }
     }
