@@ -51,7 +51,7 @@ class model_analysis_agitation extends MY_Model
                 'create_time' => date('Y-m-d H:i:s'),
             );
 
-            $this->db->insert('taobao_product_link', $data);
+            $this->db->insert('taobao_product_link', $data, true);
             //return $this->db->insert_id();
         }
     }

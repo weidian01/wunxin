@@ -545,11 +545,13 @@ class CI_DB_mysql_driver extends CI_DB {
 	 * @param	string	the table name
 	 * @param	array	the insert keys
 	 * @param	array	the insert values
+     * @param	boolean $ignore
 	 * @return	string
 	 */
-	function _insert($table, $keys, $values)
+	function _insert($table, $keys, $values, $ignore)
 	{
-		return "INSERT INTO ".$table." (".implode(', ', $keys).") VALUES (".implode(', ', $values).")";
+        $ignore = $ignore ? 'IGNORE' : '';
+		return "INSERT $ignore INTO ".$table." (".implode(', ', $keys).") VALUES (".implode(', ', $values).")";
 	}
 
 	// --------------------------------------------------------------------
