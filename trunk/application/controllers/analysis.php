@@ -56,8 +56,8 @@ class analysis extends MY_Controller
     public function metrue_class()
     {
         //error_reporting(E_ALL ^ E_NOTICE);
-        //$path = '/data/m_data/metrue/class/';
-        $path = 'D:\wamp\www\wunxin\\';
+        $path = '/data/m_data/metrue/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
         $end = 16;
         $start = 1;
 
