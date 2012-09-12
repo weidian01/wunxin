@@ -19,9 +19,27 @@ class analysis extends MY_Controller
     /**
      * nervermore
      */
-    public function nervermore()
+    public function nervermore_class()
     {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/nervermore/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $limit = 82;
+        $start = 1;
 
+        $this->load->model('analysis/model_analysis_nervermore', 'nervermore');
+
+        for ($i = $start; $i <= $limit; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->nervermore->analysis_class($data);
+            $this->nervermore->save_class();
+            //echo $fileName;exit;
+        }
     }
 
     /**
@@ -124,6 +142,52 @@ class analysis extends MY_Controller
             $data = array('file_name' => $fileName, 'source_id' => $i);
             $this->shanguoyanyi->analysis_class($data);
             $this->shanguoyanyi->save_class();
+            //echo $fileName;exit;
+        }
+    }
+
+    public function lekuchuangxiang_class()
+    {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/lekuchuangxiang/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $end = 8;
+        $start = 1;
+
+        $this->load->model('analysis/model_analysis_lekuchuangxiang', 'lekuchuangxiang');
+
+        for ($i = $start; $i <= $end; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->lekuchuangxiang->analysis_class($data);
+            $this->lekuchuangxiang->save_class();
+            //echo $fileName;exit;
+        }
+    }
+
+    public function tiexueyy_class()
+    {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/tiexueyy/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $end = 8;
+        $start = 1;
+
+        $this->load->model('analysis/model_analysis_tiexueyy', 'tiexueyy');
+
+        for ($i = $start; $i <= $end; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->lekuchuangxiang->analysis_class($data);
+            $this->lekuchuangxiang->save_class();
             //echo $fileName;exit;
         }
     }

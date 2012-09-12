@@ -3,15 +3,15 @@
  * Created by JetBrains PhpStorm.
  * User: Administrator
  * Date: 12-9-12
- * Time: 下午5:06
+ * Time: 下午6:10
  * To change this template use File | Settings | File Templates.
  */
-class model_analysis_shanguoyanyi extends MY_Model
+class model_analysis_tiexueyy extends MY_Model
 {
     public $data = array();
 
     /**
-     * 分析shanguoyanyi分页
+     * 分析tiexueyy分页
      *
      * @param array $arr
      * @return bool
@@ -33,14 +33,14 @@ class model_analysis_shanguoyanyi extends MY_Model
         foreach ($matches[1] as $k=>$v) {
             $link[] = array('pname' => trim($matches[2][$k]), 'plink' => $v);
         }
-        echo count($link)."\n";return;
+        //echo count($link)."\n";return;
         $this->data = $link;
         unset ($link);
         //echo '<pre>';print_r($matches);exit;
     }
 
     /**
-     * 保存shanguoyanyi分页
+     * 保存lekuchuangxiang分页
      */
     public function save_class()
     {
@@ -48,7 +48,7 @@ class model_analysis_shanguoyanyi extends MY_Model
 
         foreach ($this->data as $v) {
             $data = array(
-                'shop_domain' => 'shanguoyanyi',
+                'shop_domain' => 'tiexueyy',
                 'pname' => $v['pname'],
                 'plink' => $v['plink'],
                 'create_time' => date('Y-m-d H:i:s'),
