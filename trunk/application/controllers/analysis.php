@@ -101,4 +101,30 @@ class analysis extends MY_Controller
             //echo $fileName;exit;
         }
     }
+
+    /**
+     * 分析http://shanguoyanyi.tmall.com 分页
+     */
+    public function shanguoyanyi_class()
+    {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/shanguoyanyi/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $end = 8;
+        $start = 1;
+
+        $this->load->model('analysis/model_analysis_shanguoyanyi', 'shanguoyanyi');
+
+        for ($i = $start; $i <= $end; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->shanguoyanyi->analysis_class($data);
+            $this->shanguoyanyi->save_class();
+            //echo $fileName;exit;
+        }
+    }
 }

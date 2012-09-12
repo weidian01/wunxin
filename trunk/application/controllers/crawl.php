@@ -190,6 +190,7 @@ class crawl extends MY_Controller
     }
 
     /**
+     * 理想年代
      * http://lixiangniandaijn.tmall.com
      */
     public function lixiangniandaijn_class()
@@ -215,6 +216,7 @@ class crawl extends MY_Controller
     }
 
     /**
+     * 理想年代
      * http://lixiangniandaijn.tmall.com
      */
     public function lixiangniandaijn()
@@ -227,6 +229,66 @@ class crawl extends MY_Controller
 
         $field = 'id, pname, plink';
         $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'lixiangniandaijn'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            if ($i == 100) {
+                $i = 1;
+                sleep(30);
+            }
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            usleep(500000);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * 衫国演义
+     * http://shanguoyanyi.taobao.com
+     */
+    public function shanguoyanyi_class()
+    {
+        $start = 1;
+        $end   = 8;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/shanguoyanyi/class/');
+
+        $url = 'http://shanguoyanyi.taobao.com/search.htm?spm=a1z10.3.17.73.b29057&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            //echo $urls."<br/>";continue;
+            $crawl->crawlOne($urls, $i);
+            usleep(300000);
+        }
+    }
+
+    /**
+     * 衫国演义
+     * http://shanguoyanyi.taobao.com
+     */
+    public function shanguoyanyi()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/shanguoyanyi/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'shanguoyanyi'));
 
         $i = 1;
         foreach ($data as $v) {
