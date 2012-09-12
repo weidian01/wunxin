@@ -25,13 +25,15 @@ class model_analysis_metrue extends MY_Model
         //来源网站ID
         $this->data['source_id'] = $arr['source_id'];
 
-        preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>(.*?)\s<\/a>\s<\/div>/s', $content, $matches);
+        preg_match("/<ul class=\"shop-list\">(.*)<\/ul>/sU", $content, $codeBlock);
+
+        preg_match_all('/<div class="desc">\s<a.*?href="(.*?)".*?>(.*?)\s<\/a>\s<\/div>/s', $codeBlock[1], $matches);
 
         $link = array();
         foreach ($matches[1] as $k=>$v) {
             $link[] = array('pname' => trim($matches[2][$k]), 'plink' => $v);
         }
-        echo count($link)."\n";return;
+        //echo count($link)."\n";return;
         $this->data = $link;
         unset ($link);
         //echo '<pre>';print_r($matches);exit;
