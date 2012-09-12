@@ -6,7 +6,7 @@
  * Time: 下午11:00
  * To change this template use File | Settings | File Templates.
  */
-class model_analysis_metrue
+class model_analysis_metrue extends MY_Model
 {
     public $data = array();
 
