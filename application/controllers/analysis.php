@@ -84,7 +84,7 @@ class analysis extends MY_Controller
         //error_reporting(E_ALL ^ E_NOTICE);
         $path = '/data/m_data/lixiangniandaijn/class/';
         //$path = 'D:\wamp\www\wunxin\\';
-        $end = 16;
+        $end = 9;
         $start = 1;
 
         $this->load->model('analysis/model_analysis_lixiangniandaijn', 'lixiangniandaijn');

@@ -48,7 +48,7 @@ class model_analysis_lixiangniandaijn extends MY_Model
 
         foreach ($this->data as $v) {
             $data = array(
-                'shop_domain' => 'metrue',
+                'shop_domain' => 'lixiangniandaijn',
                 'pname' => $v['pname'],
                 'plink' => $v['plink'],
                 'create_time' => date('Y-m-d H:i:s'),
