@@ -50,10 +50,20 @@ class analysis extends MY_Controller
         }
         foreach($links as $item)
         {
-            p($item);
+            $html = $this->get_content($website, $item['id']);
+            p($html);
             die;
         }
 
+    }
+
+    private function get_content($website, $id)
+    {
+        $path = "/data/m_data/".$website.'/';
+        $fileName = $path.intToPath($i).'index.html';
+        if (!file_exists($fileName)) return false;
+        $file_content = file_get_contents($fileName);
+        return iconv('GBK', "UTF-8\\//IGNORE", $file_content);
     }
 
     /**
