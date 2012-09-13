@@ -52,7 +52,7 @@ class analysis extends MY_Controller
         {
             $html = $this->get_content($website, $item['id']);
             $matches = array();
-            preg_match($match['name'], $html, $matches, PREG_OFFSET_CAPTURE);
+            preg_match($match['name'], $html, $matches);
             p($matches);
             p($html);
             die;
