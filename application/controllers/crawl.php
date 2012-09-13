@@ -321,6 +321,7 @@ class crawl extends MY_Controller
     }
 
     /**
+     * 共搜索到 1389 个符合条件的商品。58页
      * http://lekuchuangxiang.tmall.com
      */
     public function lekuchuangxiang()
