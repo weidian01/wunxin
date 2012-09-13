@@ -86,7 +86,7 @@ class crawl extends MY_Controller
 
         $this->load->helper('crawl_tools');
         $config = array('dir' => '/data/m_data/nervermore/class/');
-        $url = 'http://agitation.tmall.com/search.htm?spm=a1z10.3.17.70.fe468b&search=y&viewType=grid&orderType=_coefp&pageNum=%d#anchor';
+        $url = 'http://nervermore.tmall.com/search.htm?spm=a1z10.3.17.92.524ec4&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
         $crawl = new crawl_tools($config);
 
         $num = 1;
