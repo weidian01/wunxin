@@ -234,12 +234,15 @@ class crawl extends MY_Controller
             if ($i == 50) { $i = 1; sleep(20); }
 
             $fileName = $config['dir'].intToPath($i).'index.html';
-            if (file_exists($fileName) && filesize($fileName) > 30978) {continue;}
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
 
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
