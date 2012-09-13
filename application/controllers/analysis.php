@@ -23,11 +23,11 @@ class analysis extends MY_Controller
 
     private $match = array(
         'agitation'=>array(
-            'name' => '//',
-            'size' => '//',
-            'color' => '//',
-            'price' => '//',
-            'attribute' => '//',
+            'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
+            'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)</span></a></li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)" class="tb-txt">/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)</strong><span class="yuan">元</span>/',                                                              //多个
+            'attribute' => '//',                                                          //
             'intro' => '//',
         ),
     );
@@ -51,6 +51,9 @@ class analysis extends MY_Controller
         foreach($links as $item)
         {
             $html = $this->get_content($website, $item['id']);
+            $matches = array();
+            preg_match($match['name'], $html, $matches, PREG_OFFSET_CAPTURE);
+            p($matches);
             p($html);
             die;
         }
