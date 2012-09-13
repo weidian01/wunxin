@@ -63,7 +63,7 @@ class analysis extends MY_Controller
         $fileName = $path.intToPath($id).'index.html';
         if (!file_exists($fileName)) return false;
         $file_content = file_get_contents($fileName);
-        return iconv('GBK', "UTF-8\\//IGNORE", $file_content);
+        return iconv('GBK', "UTF-8//IGNORE", $file_content);
     }
 
     /**
