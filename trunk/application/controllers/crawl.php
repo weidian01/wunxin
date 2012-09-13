@@ -89,12 +89,15 @@ class crawl extends MY_Controller
         $url = 'http://agitation.tmall.com/search.htm?spm=a1z10.3.17.70.fe468b&search=y&viewType=grid&orderType=_coefp&pageNum=%d#anchor';
         $crawl = new crawl_tools($config);
 
+        $num = 1;
         for ($i = $start; $i<= $end; $i++) {
             echo $i."\n";
+            if ($num == 30) {$num = 1; sleep(20);}
 
             $urls = sprintf($url, $i);
             $crawl->crawlOne($urls, $i);
             sleep(2);
+            $num++;
         }
     }
 
@@ -123,7 +126,7 @@ class crawl extends MY_Controller
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(2);
+            sleep(3);
             $i++;
         }
 
