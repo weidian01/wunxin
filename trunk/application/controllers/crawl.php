@@ -233,6 +233,9 @@ class crawl extends MY_Controller
             echo $v['id']."\n";
             if ($i == 50) { $i = 1; sleep(20); }
 
+            $fileName = $config['dir'].intToPath($i).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {continue;}
+
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
@@ -495,6 +498,60 @@ class crawl extends MY_Controller
 
         $field = 'id, pname, plink';
         $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'jktee'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            if ($i == 50) { $i = 1; sleep(20); }
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            sleep(3);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * 共搜索到 151 个符合条件的商品。8页
+     * http://qianxibopin.tmall.com
+     */
+    public function qianxibopin_class()
+    {
+        $start = 1;
+        $end   = 8;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/qianxibopin/class/');
+        $url = 'http://qianxibopin.tmall.com/search.htm?spm=a1z10.3.17.39.325fc9&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            $crawl->crawlOne($urls, $i);
+            sleep(2);
+        }
+    }
+
+    /**
+     * 共搜索到 151 个符合条件的商品。8页
+     * http://qianxibopin.tmall.com
+     */
+    public function qianxibopin()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/qianxibopin/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'qianxibopin'));
 
         $i = 1;
         foreach ($data as $v) {

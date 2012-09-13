@@ -327,4 +327,31 @@ class analysis extends MY_Controller
             //echo $fileName;exit;
         }
     }
+
+    /**
+     * 共搜索到 151 个符合条件的商品。8页
+     * http://qianxibopin.tmall.com
+     */
+    public function qianxibopin_class()
+    {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/qianxibopin/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $end = 8;
+        $start = 1;
+
+        $this->load->model('analysis/model_analysis_qianxibopin', 'qianxibopin');
+
+        for ($i = $start; $i <= $end; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->qianxibopin->analysis_class($data);
+            $this->qianxibopin->save_class();
+            //echo $fileName;exit;
+        }
+    }
 }

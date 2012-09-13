@@ -84,3 +84,11 @@
 /usr/local/php/bin/php /data/www/wunxin/web/index.php crawl jktee
 
 
+10. http://qianxibopin.tmall.com
+   抓取
+#抓取分页
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl qianxibopin_class
+#分析分布
+/usr/local/php/bin/php /data/www/wunxin/web/index.php analysis qianxibopin_class
+#抓取产品页
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl qianxibopin
