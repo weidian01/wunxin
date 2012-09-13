@@ -34,12 +34,14 @@ class analysis extends MY_Controller
 
     public function parse_content()
     {
+
         $website = $this->input->get('website');
         $match = isset($this->match[$website]) ? $this->match[$website] : false;
         if(!$match)
         {
             die("no Not Found {$website}");
         }
+        $this->load->database();
         $links = $this->db->get_where('taobao_product_link', array('shop_domain' => $website))->result_array('id');
         p($links);
     }
