@@ -64,7 +64,23 @@
 /usr/local/php/bin/php /data/www/wunxin/web/index.php crawl tiexueyy
 
 
+8. http://diqigongshe.tmall.com
+   抓取
+#抓取分页
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl diqigongshe_class
+#分析分布
+/usr/local/php/bin/php /data/www/wunxin/web/index.php analysis diqigongshe_class
+#抓取产品页
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl diqigongshe
 
 
+9. http://jktee.tmall.com
+   抓取
+#抓取分页
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl jktee_class
+#分析分布
+/usr/local/php/bin/php /data/www/wunxin/web/index.php analysis jktee_class
+#抓取产品页
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl jktee
 
 

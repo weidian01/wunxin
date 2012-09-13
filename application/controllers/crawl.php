@@ -183,7 +183,7 @@ class crawl extends MY_Controller
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(2);
+            sleep(3);
             $i++;
         }
 
@@ -236,7 +236,7 @@ class crawl extends MY_Controller
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(2);
+            sleep(3);
             $i++;
         }
 
@@ -289,7 +289,7 @@ class crawl extends MY_Controller
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(2);
+            sleep(3);
             $i++;
         }
 
@@ -343,7 +343,7 @@ class crawl extends MY_Controller
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(2);
+            sleep(3);
             $i++;
         }
 
@@ -397,7 +397,115 @@ class crawl extends MY_Controller
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
+            sleep(3);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * 第七公社  共搜索到 614 个符合条件的商品。31页
+     * http://diqigongshe.tmall.com
+     */
+    public function diqigongshe_class()
+    {
+        $start = 1;
+        $end   = 22;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/diqigongshe/class/');
+        $url = 'http://diqigongshe.tmall.com/search.htm?spm=a1z10.3.17.46.4ac2fa&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            $crawl->crawlOne($urls, $i);
             sleep(2);
+        }
+    }
+
+    /**
+     * 第七公社  共搜索到 614 个符合条件的商品。31页
+     * http://diqigongshe.tmall.com
+     */
+    public function diqigongshe()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/diqigongshe/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'diqigongshe'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            if ($i == 50) { $i = 1; sleep(20); }
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            sleep(3);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * 共搜索到 527 个符合条件的商品。27页
+     * http://jktee.tmall.com
+     */
+    public function jktee_class()
+    {
+        $start = 1;
+        $end   = 27;
+
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/jktee/class/');
+        $url = 'http://jktee.tmall.com/search.htm?spm=a1z10.3.17.34.e632f9&search=y&viewType=grid&orderType=_hotsell&pageNum=%d#anchor';
+        $crawl = new crawl_tools($config);
+
+        for ($i = $start; $i<= $end; $i++) {
+            echo $i."\n";
+
+            $urls = sprintf($url, $i);
+            $crawl->crawlOne($urls, $i);
+            sleep(2);
+        }
+    }
+
+    /**
+     * 共搜索到 527 个符合条件的商品。27页
+     * http://jktee.tmall.com
+     */
+    public function jktee()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/jktee/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, pname, plink';
+        $data = $this->ca->getTableProductLink($field, 10000, 0, array('shop_domain' => 'jktee'));
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['plink'])) continue;
+
+            if ($i == 50) { $i = 1; sleep(20); }
+
+            $crawl->crawlOne($v['plink'], $v['id']);
+            sleep(3);
             $i++;
         }
 
