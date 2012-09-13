@@ -698,7 +698,7 @@ function productURL($pid)
 function p($variable, $dump=false)
 {
     echo '<pre>';
-    echo $dump ? var_dump($variable):print_r($variable);
+    $dump ? var_dump($variable):print_r($variable);
     echo '</pre>';
 }
 /* End of file Common.php */
