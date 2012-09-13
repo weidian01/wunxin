@@ -63,9 +63,9 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
-            if ($i == 100) {
+            if ($i == 50) {
                 $i = 1;
-                sleep(60);
+                sleep(20);
             }
 
             if (empty ($v['plink'])) continue;
