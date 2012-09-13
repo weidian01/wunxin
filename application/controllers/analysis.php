@@ -56,18 +56,18 @@ class analysis extends MY_Controller
             //产品名称
             $matches = array();
             preg_match($match['name'], $html, $matches);
-            isset($matches[1]) && $info['name'] = $matches[1];
+            isset($matches[1]) && $info['name'] = trim($matches[1]);
 
             //产品价格
             $matches = array();
             preg_match($match['price'], $html, $matches);
-            isset($matches[1]) && $info['price'] = $matches[1];
+            isset($matches[1]) && $info['price'] = trim($matches[1]);
 
             //产品尺寸
             $matches = array();
             preg_match_all($match['size'], $html, $matches);
-            print_r($matches);
-            //isset($matches[1]) && $info['size'] = $matches[1];
+
+            isset($matches[1]) && $info['size'] = implode(',', $matches[1]);
 
             p($info);
             p($html);
