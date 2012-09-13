@@ -63,6 +63,13 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if ($i == 50) { $i = 1; sleep(60); }
 
             if (empty ($v['plink'])) continue;
@@ -121,12 +128,18 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if ($i == 50) { $i = 1; sleep(20); }
 
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
@@ -178,12 +191,18 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if (empty ($v['plink'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
@@ -234,7 +253,6 @@ class crawl extends MY_Controller
             if ($i == 50) { $i = 1; sleep(20); }
 
             $fileName = $config['dir'].intToPath($v['id']).'index.html';
-
             if (file_exists($fileName) && filesize($fileName) > 30978) {
                 continue;
             } else {
@@ -291,12 +309,18 @@ class crawl extends MY_Controller
         $i = 1;
         foreach ($data as $v) {
             echo $v['id']."\n";
+
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
             if (empty ($v['plink'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
@@ -345,12 +369,19 @@ class crawl extends MY_Controller
         $i = 1;
         foreach ($data as $v) {
             echo $v['id']."\n";
+
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if (empty ($v['plink'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
@@ -399,12 +430,18 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if (empty ($v['plink'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
@@ -453,12 +490,18 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if (empty ($v['plink'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
@@ -507,12 +550,18 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if (empty ($v['plink'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
@@ -561,12 +610,18 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
+            if (file_exists($fileName) && filesize($fileName) > 30978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
             if (empty ($v['plink'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            sleep(3);
             $i++;
         }
 
