@@ -69,7 +69,7 @@ class crawl extends MY_Controller
 
             $crawl->crawlOne($v['plink'], $v['id']);
             $i++;
-            sleep(2);
+            sleep(3);
         }
 
         unset ($data);
