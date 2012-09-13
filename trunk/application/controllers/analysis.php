@@ -273,4 +273,58 @@ class analysis extends MY_Controller
             //echo $fileName;exit;
         }
     }
+
+    /**
+     * 第七公社  共搜索到 614 个符合条件的商品。31页
+     * http://diqigongshe.tmall.com
+     */
+    public function diqigongshe_class()
+    {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/diqigongshe/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $end = 31;
+        $start = 1;
+
+        $this->load->model('analysis/model_analysis_diqigongshe', 'diqigongshe');
+
+        for ($i = $start; $i <= $end; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->diqigongshe->analysis_class($data);
+            $this->diqigongshe->save_class();
+            //echo $fileName;exit;
+        }
+    }
+
+    /**
+     * 共搜索到 527 个符合条件的商品。27页
+     * http://jktee.tmall.com
+     */
+    public function jktee_class()
+    {
+        //error_reporting(E_ALL ^ E_NOTICE);
+        $path = '/data/m_data/jktee/class/';
+        //$path = 'D:\wamp\www\wunxin\\';
+        $end = 31;
+        $start = 1;
+
+        $this->load->model('analysis/model_analysis_jktee', 'jktee');
+
+        for ($i = $start; $i <= $end; $i++) {
+            $fileName = $path.intToPath($i).'index.html';
+            echo $i.'--'.$fileName."\n";//continue;
+
+            if (!file_exists($fileName)) continue;
+
+            $data = array('file_name' => $fileName, 'source_id' => $i);
+            $this->jktee->analysis_class($data);
+            $this->jktee->save_class();
+            //echo $fileName;exit;
+        }
+    }
 }
