@@ -16,6 +16,30 @@ class analysis extends MY_Controller
         set_time_limit(0);
     }
 
+    public function nervermore()
+    {
+        ;
+    }
+
+    private $match = array(
+        'agitation'=>array(
+            'name' => '//',
+            'size' => '//',
+            'color' => '//',
+            'price' => '//',
+            'attribute' => '//',
+            'intro' => '//',
+        ),
+    );
+
+    public function parse_content()
+    {
+        $website = $this->input->get('website');
+        $match = $this->match[$website];
+        print_r($match);
+
+    }
+
     /**
      * 共搜索到 1601 个符合条件的商品。 81页
      * 分析http://agitation.tmall.com 分页
