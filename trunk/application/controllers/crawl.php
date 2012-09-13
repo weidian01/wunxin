@@ -63,10 +63,7 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
-            if ($i == 50) {
-                $i = 1;
-                sleep(20);
-            }
+            if ($i == 50) { $i = 1; sleep(60); }
 
             if (empty ($v['plink'])) continue;
 
@@ -97,7 +94,7 @@ class crawl extends MY_Controller
 
             $urls = sprintf($url, $i);
             $crawl->crawlOne($urls, $i);
-            sleep(1);
+            sleep(2);
         }
     }
 
@@ -121,15 +118,12 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
-            if ($i == 100) {
-                $i = 1;
-                sleep(60);
-            }
+            if ($i == 50) { $i = 1; sleep(20); }
 
             if (empty ($v['plink'])) continue;
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            //sleep(2);
+            sleep(2);
             $i++;
         }
 
@@ -154,11 +148,11 @@ class crawl extends MY_Controller
 
         for ($i = $start; $i<= $end; $i++) {
             echo $i."\n";
+            //if ($num == 20) {$num=1;sleep(10);}
 
             $urls = sprintf($url, $i);
-            //echo $urls."<br/>";continue;
             $crawl->crawlOne($urls, $i);
-            usleep(500000);
+            sleep(2);
         }
     }
 
@@ -183,13 +177,10 @@ class crawl extends MY_Controller
 
             if (empty ($v['plink'])) continue;
 
-            if ($i == 100) {
-                $i = 1;
-                sleep(30);
-            }
+            if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(500000);
+            sleep(2);
             $i++;
         }
 
@@ -215,7 +206,7 @@ class crawl extends MY_Controller
 
             $urls = sprintf($url, $i);
             $crawl->crawlOne($urls, $i);
-            usleep(300000);
+            sleep(2);
         }
     }
 
@@ -237,16 +228,12 @@ class crawl extends MY_Controller
         $i = 1;
         foreach ($data as $v) {
             echo $v['id']."\n";
+            if ($i == 50) { $i = 1; sleep(20); }
 
             if (empty ($v['plink'])) continue;
 
-            if ($i == 100) {
-                $i = 1;
-                sleep(30);
-            }
-
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(500000);
+            sleep(2);
             $i++;
         }
 
@@ -272,7 +259,7 @@ class crawl extends MY_Controller
 
             $urls = sprintf($url, $i);
             $crawl->crawlOne($urls, $i);
-            usleep(300000);
+            sleep(2);
         }
     }
 
@@ -294,16 +281,12 @@ class crawl extends MY_Controller
         $i = 1;
         foreach ($data as $v) {
             echo $v['id']."\n";
-
             if (empty ($v['plink'])) continue;
 
-            if ($i == 100) {
-                $i = 1;
-                sleep(30);
-            }
+            if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(500000);
+            sleep(2);
             $i++;
         }
 
@@ -326,10 +309,11 @@ class crawl extends MY_Controller
 
         for ($i = $start; $i<= $end; $i++) {
             echo $i."\n";
+            //if ($num == 30) {$num = 1;sleep(20);}
 
             $urls = sprintf($url, $i);
             $crawl->crawlOne($urls, $i);
-            usleep(300000);
+            sleep(2);
         }
     }
 
@@ -350,16 +334,12 @@ class crawl extends MY_Controller
         $i = 1;
         foreach ($data as $v) {
             echo $v['id']."\n";
-
             if (empty ($v['plink'])) continue;
 
-            if ($i == 100) {
-                $i = 1;
-                sleep(30);
-            }
+            if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(500000);
+            sleep(2);
             $i++;
         }
 
@@ -385,7 +365,7 @@ class crawl extends MY_Controller
 
             $urls = sprintf($url, $i);
             $crawl->crawlOne($urls, $i);
-            usleep(300000);
+            sleep(2);
         }
     }
 
@@ -410,13 +390,10 @@ class crawl extends MY_Controller
 
             if (empty ($v['plink'])) continue;
 
-            if ($i == 100) {
-                $i = 1;
-                sleep(30);
-            }
+            if ($i == 50) { $i = 1; sleep(20); }
 
             $crawl->crawlOne($v['plink'], $v['id']);
-            usleep(500000);
+            sleep(2);
             $i++;
         }
 
