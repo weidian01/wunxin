@@ -234,7 +234,10 @@ class crawl extends MY_Controller
             if ($i == 50) { $i = 1; sleep(20); }
 
             $fileName = $config['dir'].intToPath($i).'index.html';
-            echo $fileName;exit;
+var_dump(file_exists($fileName));
+
+            var_dump(filesize($fileName));
+            echo "\n";exit;
             if (file_exists($fileName) && filesize($fileName) > 30978) {
                 continue;
             } else {
