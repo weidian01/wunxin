@@ -35,7 +35,7 @@ class crawl extends MY_Controller
         $num = 1;
         for ($i = $start; $i<= $end; $i++) {
             echo $i."\n";
-            if ($i == 50) {$num=1;sleep(10);}
+            if ($num == 30) {$num=1;sleep(10);}
 
             $urls = sprintf($url, $i);
             $crawl->crawlOne($urls, $i);
