@@ -41,7 +41,7 @@ class analysis extends MY_Controller
             die("no Not Found {$website}");
         }
         $links = $this->db->get_where('taobao_product_link', array('shop_domain' => $website))->result_array('id');
-        echo '<pre>';print_r($links);
+        p($links);
     }
 
     /**
