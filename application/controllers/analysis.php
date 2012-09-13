@@ -37,13 +37,23 @@ class analysis extends MY_Controller
 
         $website = $this->input->get('website');
         $match = isset($this->match[$website]) ? $this->match[$website] : false;
-        if(!$match)
+        if(!$match)//店铺步存在
         {
-            die("no Not Found {$website}");
+            die("Not Found {$website} !");
         }
         $this->load->database();
         $links = $this->db->get_where('taobao_product_link', array('shop_domain' => $website))->result_array('id');
-        p($links);
+        if(!$links)//店铺产品为空
+        {
+            $this->db->close();
+            die("This Shop({$website}) Is Empty !");
+        }
+        foreach($links as $item)
+        {
+            p($item);
+            die;
+        }
+
     }
 
     /**
