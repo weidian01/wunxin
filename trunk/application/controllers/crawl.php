@@ -455,7 +455,7 @@ class crawl extends MY_Controller
     public function diqigongshe_class()
     {
         $start = 1;
-        $end   = 22;
+        $end   = 31;
 
         $this->load->helper('crawl_tools');
         $config = array('dir' => '/data/m_data/diqigongshe/class/');
