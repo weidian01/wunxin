@@ -268,8 +268,8 @@ class analysis extends MY_Controller
             if (!file_exists($fileName)) continue;
 
             $data = array('file_name' => $fileName, 'source_id' => $i);
-            $this->lekuchuangxiang->analysis_class($data);
-            $this->lekuchuangxiang->save_class();
+            $this->tiexueyy->analysis_class($data);
+            $this->tiexueyy->save_class();
             //echo $fileName;exit;
         }
     }
