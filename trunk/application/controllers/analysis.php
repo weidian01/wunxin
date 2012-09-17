@@ -25,7 +25,7 @@ class analysis extends MY_Controller
         'agitation'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -151,7 +151,7 @@ class analysis extends MY_Controller
 
             //产品颜色
             $matches = array();
-            preg_match_all($match['color'], $html, $matches);//p($matches);
+            preg_match_all($match['color'], $html, $matches);p($matches);
             isset($matches[1]) && $info['color'] = implode(',', $matches[1]);
 
             //产品属性
@@ -168,9 +168,9 @@ class analysis extends MY_Controller
                 $info['attribute'] = $attr;
             }
             $this->save($info, $website);
-            //p($html);
+            p($html);
             //die;
-            echo $item['id'],'<br>';//die;
+            echo $item['id'],'<br>';die;
         }
 
     }
