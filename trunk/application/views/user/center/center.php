@@ -23,7 +23,7 @@
     <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
-<?php include('/../../header.php');?>
+<?php include(FCPATH.'application/views/header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box">
   <div class="path">
