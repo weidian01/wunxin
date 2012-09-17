@@ -27,7 +27,7 @@ class analysis extends MY_Controller
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
             'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
-            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
         ),
         'openyourmind'=>array(//ok
@@ -43,7 +43,7 @@ class analysis extends MY_Controller
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
             'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
-            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
         ),
         'metrue'=>array(  //ok
