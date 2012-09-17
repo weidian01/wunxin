@@ -119,23 +119,25 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   </div>
 </div>
 <div class="box3">
-    <!-- Baidu Button BEGIN -->
-        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
-            <a class="bds_qzone"></a>
-            <a class="bds_tsina"></a>
-            <a class="bds_tqq"></a>
-            <a class="bds_renren"></a>
-            <span class="bds_more">更多</span>
-    		<a class="shareCount"></a>
-        </div>
-    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6460583" ></script>
-    <script type="text/javascript" id="bdshell_js"></script>
-    <script type="text/javascript">
-    	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
-    </script>
-    <!-- Baidu Button END -->
-    <!--
+
+
   <div class="share">
+      <!-- Baidu Button BEGIN -->
+          <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+              <a class="bds_qzone"></a>
+              <a class="bds_tsina"></a>
+              <a class="bds_tqq"></a>
+              <a class="bds_renren"></a>
+              <span class="bds_more">更多</span>
+      		<a class="shareCount"></a>
+          </div>
+      <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6460583" ></script>
+      <script type="text/javascript" id="bdshell_js"></script>
+      <script type="text/javascript">
+      	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+      </script>
+      <!-- Baidu Button END -->
+      <!--
     <ul>
       <li><a class="douban" href="#"></a></li>
       <li><a class="renren" href="#"></a></li>
@@ -146,8 +148,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <li><a class="sina" href="#"></a></li>
       <li style="width:48px;">分享到：</li>
     </ul>
+      -->
   </div>
-  -->
+
   <div class="designer">
     <div class="ginfo-title" style="border-bottom:0px;">
       <div class="dinfo-tle1" style="background-position:0px 0px;"><span onclick="showtab('dsnbox','1','4')" style="background-position:right -66px; color:#fff;">设计师介绍</span></div>
