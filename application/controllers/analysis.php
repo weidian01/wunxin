@@ -181,8 +181,8 @@ class analysis extends MY_Controller
 
     private function get_content($website, $id)
     {
-        $path = "G:/wamp/www/wunxin/m_data/{$website}/";
-        //$path = "/data/m_data/".$website.'/';
+        //$path = "G:/wamp/www/wunxin/m_data/{$website}/";
+        $path = "/data/m_data/".$website.'/';
         $fileName = $path.intToPath($id).'index.html';
         if (!file_exists($fileName)) return false;
         $file_content = file_get_contents($fileName);
