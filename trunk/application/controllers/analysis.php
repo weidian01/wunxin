@@ -22,12 +22,68 @@ class analysis extends MY_Controller
     }
 
     private $match = array(
-        'agitation'=>array(
+        'agitation'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)" class="tb-txt">/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
-            'attribute' => '//',                                                          //
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'intro' => '//',
+        ),
+        'openyourmind'=>array(//ok
+            'name' => '/<h3>(.*?)<\/h3>/',
+            'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
+            'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'intro' => '//',
+        ),
+        'nervermore'=>array(  //ok
+            'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
+            'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'intro' => '//',
+        ),
+        'metrue'=>array(  //ok
+            'name' => '/<h3>(.*?)<\/h3>/',
+            'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
+            'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'intro' => '//',
+        ),
+        'lixiangniandaijn'=>array( //ok
+            'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
+            'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'intro' => '//',
+        ),
+        'shop35062198'=>array(  //ok
+            'name' => '/<h3>(.*?)<\/h3>/',
+            'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
+            'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'intro' => '//',
+        ),
+        'lekuchuangxiang'=>array( //ok
+            'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
+            'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'intro' => '//',
+        ),
+        'tiexueyy'=>array( //ok
+            'name' => '/<h3>(.*?)<\/h3>/',
+            'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
+            'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
         ),
     );
@@ -41,16 +97,20 @@ class analysis extends MY_Controller
         {
             die("Not Found {$website} !");
         }
+        $shop_domain = array('shop_domain' => $website);
         $this->load->database();
-        $links = $this->db->get_where('taobao_product_link', array('shop_domain' => $website))->result_array('id');
+        $links = $this->db->get_where('taobao_product_link', $shop_domain)->result_array('id');
         if(!$links)//店铺产品为空
         {
             $this->db->close();
             die("This Shop({$website}) Is Empty !");
         }
+        //p($links);
         foreach($links as $item)
         {
             $info = array();
+            $info['shop'] = $website;
+            $info['link_id'] = $item['id'];
             $html = $this->get_content($website, $item['id']);
 
             //产品名称
@@ -66,19 +126,63 @@ class analysis extends MY_Controller
             //产品尺寸
             $matches = array();
             preg_match_all($match['size'], $html, $matches);
-
             isset($matches[1]) && $info['size'] = implode(',', $matches[1]);
 
-            p($info);
+            //产品颜色
+            $matches = array();
+            preg_match_all($match['color'], $html, $matches);//p($matches);
+            isset($matches[1]) && $info['color'] = implode(',', $matches[1]);
+
+            //产品属性
+            $matches = array();
+            preg_match($match['attribute'][0], $html, $matches);//p($matches);
+            if(isset($matches[1]) && $matches[1])
+            {
+                preg_match_all($match['attribute'][1], $matches[1], $out, PREG_SET_ORDER);
+                $attr = array();
+                foreach($out as $item)
+                {
+                    $attr[$item[1]] = self::font_foramt($item[2]);
+                }
+                $info['attribute'] = $attr;
+            }
+            $this->save($info, $website);
             p($html);
             die;
         }
 
     }
 
+    function save($info, $website)
+    {
+        $attribute = $info['attribute'];unset($info['attribute']);
+        $this->db->insert('taobao_product_data', $info, true);
+        $id = $this->db->insert_id();
+        if($id)
+        {
+            foreach($attribute as $key => $item)
+            {
+                $data = array();
+                $data['link_id'] = $id;
+                $data['key'] = $key;
+                $data['name'] = $item;
+                $data['shop'] = $website;
+                $this->db->insert('taobao_product_attr', $data, true);
+            }
+        }
+    }
+
+    static function font_foramt($str)
+    {
+        $str = str_replace('&nbsp;', '', $str);
+        return preg_replace_callback('/&#(\d+);/', 'foo', $str);
+    }
+
+
     private function get_content($website, $id)
     {
-        $path = "/data/m_data/".$website.'/';
+        $path = "G:/wamp/www/wunxin/m_data/{$website}/";
+        //$path = "/data/m_data/".$website.'/';
         $fileName = $path.intToPath($id).'index.html';
         if (!file_exists($fileName)) return false;
         $file_content = file_get_contents($fileName);
@@ -354,4 +458,8 @@ class analysis extends MY_Controller
             //echo $fileName;exit;
         }
     }
+}
+
+function foo($v) {
+    return iconv('ucs-2', 'UTF-8', pack('n', $v[1]));
 }
