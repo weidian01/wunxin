@@ -161,9 +161,9 @@ class analysis extends MY_Controller
             {
                 preg_match_all($match['attribute'][1], $matches[1], $out, PREG_SET_ORDER);
                 $attr = array();
-                foreach($out as $item)
+                foreach($out as $v)
                 {
-                    $attr[$item[1]] = self::font_foramt($item[2]);
+                    $attr[$v[1]] = self::font_foramt($v[2]);
                 }
                 $info['attribute'] = $attr;
             }
