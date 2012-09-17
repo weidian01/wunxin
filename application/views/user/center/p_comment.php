@@ -18,7 +18,7 @@
 </head>
 <body>
 <!-- #BeginLibraryItem "/Library/header.lbi" (pId, title, content, rank, comfort, exterior, size_deviation)-->
-<?php include('/../../header.php');?>
+<?php include(APPPATH.'views/header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -134,7 +134,7 @@
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
-<?php include("/../../footer.php");?>
+<?php include(APPPATH."views/footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
