@@ -97,7 +97,7 @@ class analysis extends MY_Controller
         {
             die("Not Found {$website} !");
         }
-        $shop_domain = array('shop_domain' => $website,'link_id'=>65);
+        $shop_domain = array('shop_domain' => $website,'id'=>65);
         $this->load->database();
         $links = $this->db->get_where('taobao_product_link', $shop_domain)->result_array('id');
         if(!$links)//店铺产品为空
