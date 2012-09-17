@@ -30,18 +30,18 @@ class analysis extends MY_Controller
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
         ),
-        'openyourmind'=>array(//ok
+        /*'openyourmind'=>array(//ok
             'name' => '/<h3>(.*?)<\/h3>/',
             'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
             'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
             'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
-        ),
+        ),*/
         'nervermore'=>array(  //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -49,7 +49,7 @@ class analysis extends MY_Controller
         'metrue'=>array(  //ok
             'name' => '/<h3>(.*?)<\/h3>/',
             'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
             'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -57,7 +57,7 @@ class analysis extends MY_Controller
         'lixiangniandaijn'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -65,7 +65,7 @@ class analysis extends MY_Controller
         'shop35062198'=>array(  //ok
             'name' => '/<h3>(.*?)<\/h3>/',
             'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
             'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -73,7 +73,7 @@ class analysis extends MY_Controller
         'lekuchuangxiang'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -81,7 +81,7 @@ class analysis extends MY_Controller
         'tiexueyy'=>array( //ok
             'name' => '/<h3>(.*?)<\/h3>/',
             'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>/',            //多个
+            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
             'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -152,7 +152,11 @@ class analysis extends MY_Controller
             //产品颜色
             $matches = array();
             preg_match_all($match['color'], $html, $matches);p($matches);
-            isset($matches[1]) && $info['color'] = implode(',', $matches[1]);
+            if(isset($matches[1]) && $matches[1])
+            {
+                $c = array_combine($matches[1], $matches[2]);
+                $info['color'] = json_encode($c);
+            }
 
             //产品属性
             $matches = array();
