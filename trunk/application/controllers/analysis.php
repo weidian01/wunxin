@@ -25,7 +25,7 @@ class analysis extends MY_Controller
         'agitation'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value=".*?" title="(.*?)".*?>'),            //多个
+            'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value=".*?" title="(.*?)".*?>', '<img id="J_ImgBooth" src="(.*?)_460x460.jpg"  data-hasZoom="700" />'),            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -159,9 +159,10 @@ class analysis extends MY_Controller
             }
             else
             {
-                $matches = array();
-                preg_match_all($match['color'][1], $html, $matches);
-                $info['color'] = $matches[1];
+                $key = $name = array();
+                preg_match_all($match['color'][1], $html, $key);
+                preg_match_all($match['color'][2], $html, $name);
+                $info['color'] = array_combine($key[1], $name[2]);
             }
 
             //产品属性
