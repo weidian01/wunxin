@@ -52,7 +52,7 @@
     </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
-<?php include('/../../header.php');?>
+<?php include(APPPATH.'views/header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -173,7 +173,7 @@
         </div>
     </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
-<?php include("/../../footer.php");?>
+<?php include(APPPATH."views/footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript">
     function SaveHead(dId)
