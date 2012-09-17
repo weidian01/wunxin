@@ -1,0 +1,2209 @@
+(function(f, c, d) {
+    var h = {
+        mix: function(n, m, l, q) {
+            if (!m || !n) {
+                return n
+            }
+            if (l === d) {
+                l = true
+            }
+            var k, o, j;
+            if (q && (j = q.length)) {
+                for (k = 0; k < j; k++) {
+                    o = q[k];
+                    if (o in m) {
+                        e(o, n, m, l)
+                    }
+                }
+            } else {
+                for (o in m) {
+                    e(o, n, m, l)
+                }
+            }
+            return n
+        }
+    },
+    e = function(l, k, j, i) {
+        if (i || !(l in k)) {
+            k[l] = j[l]
+        }
+    },
+    a = (f && f[c]) || {},
+    b = 0,
+    g = "";
+    f = a.__HOST || (a.__HOST = f || {});
+    c = f[c] = h.mix(a, h, false);
+    c.mix(c, {
+        __APP_MEMBERS: ["namespace"],
+        __APP_INIT_METHODS: ["__init"],
+        version: "1.1.6",
+        merge: function() {
+            var m = {},
+            k, j = arguments.length;
+            for (k = 0; k < j; k++) {
+                c.mix(m, arguments[k])
+            }
+            return m
+        },
+        augment: function() {
+            var k = arguments,
+            j = k.length - 2,
+            n = k[0],
+            m = k[j],
+            o = k[j + 1],
+            l = 1;
+            if (!c.isArray(o)) {
+                m = o;
+                o = d;
+                j++
+            }
+            if (!c.isBoolean(m)) {
+                m = d;
+                j++
+            }
+            for (; l < j; l++) {
+                c.mix(n.prototype, k[l].prototype || k[l], m, o)
+            }
+            return n
+        },
+        extend: function(m, l, j, o) {
+            if (!l || !m) {
+                return m
+            }
+            var i = Object.create ?
+            function(p, q) {
+                return Object.create(p, {
+                    constructor: {
+                        value: q
+                    }
+                })
+            }: function(q, s) {
+                function p() {}
+                p.prototype = q;
+                var r = new p();
+                r.constructor = s;
+                return r
+            },
+            n = l.prototype,
+            k;
+            m.prototype = k = i(n, m);
+            m.superclass = i(n, l);
+            if (j) {
+                c.mix(k, j)
+            }
+            if (o) {
+                c.mix(m, o)
+            }
+            return m
+        },
+        __init: function() {
+            this.Config = this.Config || {};
+            this.Env = this.Env || {};
+            this.Config.debug = ""
+        },
+        namespace: function() {
+            var n = arguments,
+            k = n.length,
+            t = null,
+            q, m, s, r = (n[k - 1] === true && k--);
+            for (q = 0; q < k; q++) {
+                s = (g + n[q]).split(".");
+                t = r ? f: this;
+                for (m = (f[s[0]] === t) ? 1 : 0; m < s.length; ++m) {
+                    t = t[s[m]] = t[s[m]] || {}
+                }
+            }
+            return t
+        },
+        app: function(k, o) {
+            var m = c.isString(k),
+            n = m ? f[k] || {}: k,
+            l = 0,
+            j = c.__APP_INIT_METHODS.length;
+            c.mix(n, this, true, c.__APP_MEMBERS);
+            for (; l < j; l++) {
+                c[c.__APP_INIT_METHODS[l]].call(n)
+            }
+            c.mix(n, c.isFunction(o) ? o() : o);
+            m && (f[k] = n);
+            return n
+        },
+        log: function(k, i, j) {
+            if (c.Config.debug) {
+                if (j) {
+                    k = j + ": " + k
+                }
+                if (f.console !== d && console.log) {
+                    console[i && console[i] ? i: "log"](k)
+                }
+            }
+        },
+        error: function(i) {
+            if (c.Config.debug) {
+                throw i
+            }
+        },
+        guid: function(i) {
+            return (i || g) + b++
+        }
+    });
+    c.__init();
+    return c
+})(this, "KISSY"); (function(f, e) {
+    var k = f.__HOST,
+    b = Object.prototype.toString,
+    h = Array.prototype.indexOf,
+    j = Array.prototype.lastIndexOf,
+    a = Array.prototype.filter,
+    d = String.prototype.trim,
+    c = "",
+    g = /^\s+|\s+$/g,
+    i = {};
+    f.mix(f, {
+        type: function(l) {
+            return l == null ? String(l) : i[b.call(l)] || "object"
+        },
+        isNull: function(l) {
+            return l === null
+        },
+        isUndefined: function(l) {
+            return l === e
+        },
+        isEmptyObject: function(m) {
+            for (var l in m) {
+                return false
+            }
+            return true
+        },
+        isPlainObject: function(l) {
+            return l && b.call(l) === "[object Object]" && "isPrototypeOf" in l
+        },
+        clone: function(p) {
+            var n = p,
+            l, m;
+            if (p && ((l = f.isArray(p)) || f.isPlainObject(p))) {
+                n = l ? [] : {};
+                for (m in p) {
+                    if (p.hasOwnProperty(m)) {
+                        n[m] = f.clone(p[m])
+                    }
+                }
+            }
+            return n
+        },
+        trim: d ?
+        function(l) {
+            return (l == e) ? c: d.call(l)
+        }: function(l) {
+            return (l == e) ? c: l.toString().replace(g, c)
+        },
+        substitute: function(n, m, l) {
+            if (!f.isString(n) || !f.isPlainObject(m)) {
+                return n
+            }
+            return n.replace(l || /\\?\{([^{}]+)\}/g,
+            function(p, o) {
+                if (p.charAt(0) === "\\") {
+                    return p.slice(1)
+                }
+                return (m[o] !== e) ? m[o] : c
+            })
+        },
+        each: function(m, q, p) {
+            var o, s, n = 0,
+            r = m ? m.length: e,
+            l = r === e || f.type(m) === "function";
+            p = p || k;
+            if (l) {
+                for (o in m) {
+                    if (q.call(p, m[o], o, m) === false) {
+                        break
+                    }
+                }
+            } else {
+                for (s = m[0]; n < r && q.call(p, s, n, m) !== false; s = m[++n]) {}
+            }
+            return m
+        },
+        indexOf: h ?
+        function(m, l) {
+            return h.call(l, m)
+        }: function(o, m) {
+            for (var n = 0,
+            l = m.length; n < l; ++n) {
+                if (m[n] === o) {
+                    return n
+                }
+            }
+            return - 1
+        },
+        lastIndexOf: (j) ?
+        function(m, l) {
+            return j.call(l, m)
+        }: function(n, l) {
+            for (var m = l.length - 1; m >= 0; m--) {
+                if (l[m] === n) {
+                    break
+                }
+            }
+            return m
+        },
+        unique: function(m, p) {
+            if (p) {
+                m.reverse()
+            }
+            var l = m.slice(),
+            o = 0,
+            r,
+            q;
+            while (o < l.length) {
+                q = l[o];
+                while ((r = f.lastIndexOf(q, l)) !== o) {
+                    l.splice(r, 1)
+                }
+                o += 1
+            }
+            if (p) {
+                l.reverse()
+            }
+            return l
+        },
+        inArray: function(m, l) {
+            return f.indexOf(m, l) > -1
+        },
+        filter: a ?
+        function(l, n, m) {
+            return a.call(l, n, m)
+        }: function(l, o, n) {
+            var m = [];
+            f.each(l,
+            function(r, q, p) {
+                if (o.call(n, r, q, p)) {
+                    m.push(r)
+                }
+            });
+            return m
+        },
+        now: function() {
+            return new Date().getTime()
+        }
+    });
+    f.each("Boolean Number String Function Array Date RegExp Object".split(" "),
+    function(l, m) {
+        i["[object " + l + "]"] = (m = l.toLowerCase());
+        f["is" + l] = function(n) {
+            return f.type(n) == m
+        }
+    })
+})(KISSY); (function(d, a) {
+    var c = d.__HOST,
+    s = c.document,
+    p = s.documentElement,
+    t = "",
+    l = "&",
+    g = encodeURIComponent("[]"),
+    k = false,
+    h = [],
+    q = false,
+    f = 500,
+    j = 40,
+    i = /^#?([\w-]+)$/,
+    n = /^(\w+)\[\]$/,
+    m = /\S/;
+    d.mix(d, {
+        isWindow: function(e) {
+            return d.type(e) === "object" && "setInterval" in e
+        },
+        makeArray: function(e) {
+            if (e === null || e === a) {
+                return []
+            }
+            if (d.isArray(e)) {
+                return e
+            }
+            if (typeof e.length !== "number" || d.isString(e) || d.isFunction(e)) {
+                return [e]
+            }
+            return b(e)
+        },
+        param: function(z, v) {
+            if (!d.isPlainObject(z)) {
+                return t
+            }
+            v = v || l;
+            var u = [],
+            x,
+            y;
+            for (x in z) {
+                y = z[x];
+                x = encodeURIComponent(x);
+                if (r(y)) {
+                    u.push(x, "=", encodeURIComponent(y + t), v)
+                } else {
+                    if (d.isArray(y) && y.length) {
+                        for (var w = 0,
+                        e = y.length; w < e; ++w) {
+                            if (r(y[w])) {
+                                u.push(x, g + "=", encodeURIComponent(y[w] + t), v)
+                            }
+                        }
+                    }
+                }
+            }
+            u.pop();
+            return u.join(t)
+        },
+        unparam: function(B, D) {
+            if (typeof B !== "string" || (B = d.trim(B)).length === 0) {
+                return {}
+            }
+            var z = {},
+            e = B.split(D || l),
+            w,
+            C,
+            u,
+            v,
+            x = 0,
+            y = e.length;
+            for (; x < y; ++x) {
+                w = e[x].split("=");
+                C = decodeURIComponent(w[0]);
+                try {
+                    u = decodeURIComponent(w[1] || t)
+                } catch(A) {
+                    u = w[1] || t
+                }
+                if ((v = C.match(n)) && v[1]) {
+                    z[v[1]] = z[v[1]] || [];
+                    z[v[1]].push(u)
+                } else {
+                    z[C] = u
+                }
+            }
+            return z
+        },
+        globalEval: function(v) {
+            if (v && m.test(v)) {
+                var u = s.getElementsByTagName("head")[0] || p,
+                e = s.createElement("script");
+                e.text = v;
+                u.insertBefore(e, u.firstChild);
+                u.removeChild(e)
+            }
+        },
+        later: function(B, A, x, u, w) {
+            A = A || 0;
+            u = u || {};
+            var v = B,
+            z = d.makeArray(w),
+            y,
+            e;
+            if (d.isString(B)) {
+                v = u[B]
+            }
+            if (!v) {
+                d.error("method undefined")
+            }
+            y = function() {
+                v.apply(u, z)
+            };
+            e = (x) ? setInterval(y, A) : setTimeout(y, A);
+            return {
+                id: e,
+                interval: x,
+                cancel: function() {
+                    if (this.interval) {
+                        clearInterval(e)
+                    } else {
+                        clearTimeout(e)
+                    }
+                }
+            }
+        },
+        ready: function(e) {
+            if (!q) {
+                this._bindReady()
+            }
+            if (k) {
+                e.call(c, this)
+            } else {
+                h.push(e)
+            }
+            return this
+        },
+        _bindReady: function() {
+            var D = this,
+            y = s.documentElement.doScroll,
+            u = y ? "onreadystatechange": "DOMContentLoaded",
+            B = "complete",
+            v = function() {
+                D._fireReady()
+            };
+            q = true;
+            if (s.readyState === B) {
+                return v()
+            }
+            if (s.addEventListener) {
+                function x() {
+                    s.removeEventListener(u, x, false);
+                    v()
+                }
+                s.addEventListener(u, x, false);
+                c.addEventListener("load", v, false)
+            } else {
+                function A() {
+                    if (s.readyState === B) {
+                        s.detachEvent(u, A);
+                        v()
+                    }
+                }
+                s.attachEvent(u, A);
+                c.attachEvent("onload", v);
+                var w = false;
+                try {
+                    w = c.frameElement == null
+                } catch(C) {}
+                if (y && w) {
+                    function z() {
+                        try {
+                            y("left");
+                            v()
+                        } catch(e) {
+                            setTimeout(z, 1)
+                        }
+                    }
+                    z()
+                }
+            }
+        },
+        _fireReady: function() {
+            if (k) {
+                return
+            }
+            k = true;
+            if (h) {
+                var u, e = 0;
+                while (u = h[e++]) {
+                    u.call(c, this)
+                }
+                h = null
+            }
+        },
+        available: function(w, e) {
+            w = (w + t).match(i)[1];
+            if (!w || !d.isFunction(e)) {
+                return
+            }
+            var u = 1,
+            v = d.later(function() {
+                if (s.getElementById(w) && (e() || 1) || ++u > f) {
+                    v.cancel()
+                }
+            },
+            j, true)
+        }
+    });
+    function r(u) {
+        var e = typeof u;
+        return u === null || (e !== "object" && e !== "function")
+    }
+    function b(e) {
+        return Array.prototype.slice.call(e)
+    }
+    try {
+        b(p.childNodes)
+    } catch(o) {
+        b = function(e) {
+            for (var u = [], v = e.length - 1; v >= 0; v--) {
+                u[v] = e[v]
+            }
+            return u
+        }
+    }
+    if (location && (location.search || t).indexOf("ks-debug") !== -1) {
+        d.Config.debug = true
+    }
+    d._bindReady()
+})(KISSY); (function(f, b) {
+    var e = f.__HOST,
+    q = e.document,
+    h = q.getElementsByTagName("head")[0] || q.documentElement,
+    r = "",
+    m = "cssfullpath",
+    p = 1,
+    g = 2,
+    i = 3,
+    d = 4,
+    k = f.mix,
+    n = q.createElement("script").readyState ?
+    function(t, u) {
+        var s = t.onreadystatechange;
+        t.onreadystatechange = function() {
+            var v = t.readyState;
+            if (v === "loaded" || v === "complete") {
+                t.onreadystatechange = null;
+                s && s();
+                u.call(this)
+            }
+        }
+    }: function(s, t) {
+        s.addEventListener("load", t, false)
+    },
+    c = /\.css(?:\?|$)/i,
+    j;
+    j = {
+        add: function(v, x, u) {
+            var t = this,
+            y = t.Env.mods,
+            w, z, s;
+            if (f.isString(v) && !u && f.isPlainObject(x)) {
+                z = {};
+                z[v] = x;
+                v = z
+            }
+            if (f.isPlainObject(v)) {
+                f.each(v,
+                function(B, A) {
+                    B.name = A;
+                    if (y[A]) {
+                        k(B, y[A], false)
+                    }
+                });
+                k(y, v)
+            } else {
+                u = u || {};
+                w = y[v] || {};
+                v = u.host || w.host || v;
+                w = y[v] || {};
+                k(w, {
+                    name: v,
+                    status: g
+                });
+                if (!w.fns) {
+                    w.fns = []
+                }
+                x && w.fns.push(x);
+                s = w.requires;
+                k((y[v] = w), u);
+                y[v]["requires"] = s;
+                if ((w.attach !== false) && t.__isAttached(w.requires)) {
+                    t.__attachMod(w)
+                }
+            }
+            return t
+        },
+        use: function(z, A, v) {
+            z = z.replace(/\s+/g, r).split(",");
+            v = v || {};
+            var C = this,
+            B = C.Env.mods,
+            u = (v || 0).global,
+            w,
+            x = z.length,
+            y,
+            t,
+            s;
+            if (u) {
+                C.__mixMods(u)
+            }
+            if (C.__isAttached(z)) {
+                A && A(C);
+                return
+            }
+            for (w = 0; w < x && (y = B[z[w]]); w++) {
+                if (y.status === d) {
+                    continue
+                }
+                if (v.order && w > 0) {
+                    if (!y.requires) {
+                        y.requires = []
+                    }
+                    y._requires = y.requires.concat();
+                    t = z[w - 1];
+                    if (!f.inArray(t, y.requires) && !(f.inArray(y.name, B[t].requires || []))) {
+                        y.requires.push(t)
+                    }
+                }
+                C.__attach(y,
+                function() {
+                    if (y._requires) {
+                        y.requires = y._requires;
+                        delete y._requires
+                    }
+                    if (!s && C.__isAttached(z)) {
+                        s = true;
+                        A && A(C)
+                    }
+                },
+                u)
+            }
+            return C
+        },
+        __attach: function(v, z, y) {
+            var t = this,
+            x = v.requires || [],
+            u = 0,
+            s = x.length;
+            for (; u < s; u++) {
+                t.__attach(t.Env.mods[x[u]], w, y)
+            }
+            t.__buildPath(v);
+            t.__load(v, w, y);
+            function w() {
+                var A = v.requires || [];
+                if (t.__isAttached(A)) {
+                    if (v.status === g) {
+                        t.__attachMod(v)
+                    }
+                    if (v.status === d) {
+                        z()
+                    }
+                }
+            }
+        },
+        __mixMods: function(v) {
+            var u = this.Env.mods,
+            t = v.Env.mods,
+            s;
+            for (s in t) {
+                this.__mixMod(u, t, s, v)
+            }
+        },
+        __mixMod: function(x, v, t, w) {
+            var u = x[t] || {},
+            s = u.status;
+            f.mix(u, f.clone(v[t]));
+            if (s) {
+                u.status = s
+            }
+            if (w) {
+                this.__buildPath(u, w.Config.base)
+            }
+            x[t] = u
+        },
+        __attachMod: function(t) {
+            var s = this;
+            if (t.fns) {
+                f.each(t.fns,
+                function(u) {
+                    u && u(s)
+                });
+                t.fns = b
+            }
+            t.status = d
+        },
+        __isAttached: function(s) {
+            var v = this.Env.mods,
+            u, t = (s = f.makeArray(s)).length - 1;
+            for (; t >= 0 && (u = v[s[t]]); t--) {
+                if (u.status !== d) {
+                    return false
+                }
+            }
+            return true
+        },
+        __load: function(x, z, t) {
+            var B = this,
+            s = x.fullpath,
+            A = f.Env._loadQueue,
+            u = A[s],
+            w;
+            x.status = x.status || 0;
+            if (x.status < p && u) {
+                x.status = u.nodeName ? p: g
+            }
+            if (f.isString(x[m])) {
+                B.getScript(x[m]);
+                x[m] = g
+            }
+            if (x.status < p && s) {
+                x.status = p;
+                w = B.getScript(s, {
+                    success: function() {
+                        KISSY.log(x.name + " is loaded.", "info");
+                        y()
+                    },
+                    error: function() {
+                        x.status = i;
+                        v()
+                    },
+                    charset: x.charset
+                });
+                if (!c.test(s)) {
+                    A[s] = w
+                }
+            } else {
+                if (x.status === p) {
+                    n(u, y)
+                } else {
+                    z()
+                }
+            }
+            function y() {
+                v();
+                if (x.status !== i) {
+                    if (t) {
+                        B.__mixMod(B.Env.mods, t.Env.mods, x.name, t)
+                    }
+                    if (x.status !== d) {
+                        x.status = g
+                    }
+                    z()
+                }
+            }
+            function v() {
+                A[s] = g
+            }
+        },
+        __buildPath: function(t, u) {
+            var s = this.Config;
+            v("path", "fullpath");
+            if (t[m] !== g) {
+                v("csspath", m)
+            }
+            function v(x, w) {
+                if (!t[w] && t[x]) {
+                    t[w] = (u || s.base) + t[x]
+                }
+                if (t[w] && s.debug) {
+                    t[w] = t[w].replace(/-min/g, "")
+                }
+            }
+        },
+        getScript: function(s, z, w) {
+            var A = c.test(s),
+            v = q.createElement(A ? "link": "script"),
+            u = z,
+            x,
+            y,
+            t;
+            if (f.isPlainObject(u)) {
+                z = u.success;
+                x = u.error;
+                y = u.timeout;
+                w = u.charset
+            }
+            if (A) {
+                v.href = s;
+                v.rel = "stylesheet"
+            } else {
+                v.src = s;
+                v.async = true
+            }
+            if (w) {
+                v.charset = w
+            }
+            if (A) {
+                f.isFunction(z) && z.call(v)
+            } else {
+                n(v,
+                function() {
+                    if (t) {
+                        t.cancel();
+                        t = b
+                    }
+                    f.isFunction(z) && z.call(v);
+                    if (h && v.parentNode) {
+                        h.removeChild(v)
+                    }
+                })
+            }
+            if (f.isFunction(x)) {
+                t = f.later(function() {
+                    t = b;
+                    x()
+                },
+                (y || this.Config.timeout) * 1000)
+            }
+            h.insertBefore(v, h.firstChild);
+            return v
+        }
+    };
+    k(f, j);
+    var a = /^(.*)(seed|kissy)(-min)?\.js[^/] * /i,l=/ (seed | kissy)( - min) ? \.js / ;
+    function o(B) {
+        var s = B.src,
+        y = B.getAttribute("data-combo-prefix") || "??",
+        C = B.getAttribute("data-combo-sep") || ",",
+        w = s.split(C),
+        t,
+        v = w[0],
+        A = v.indexOf(y);
+        if (A == -1) {
+            t = s.replace(a, "$1")
+        } else {
+            t = v.substring(0, A);
+            var z = v.substring(A + 2, v.length);
+            if (z.match(l)) {
+                t += z.replace(a, "$1")
+            } else {
+                for (var x = 1; x < w.length; x++) {
+                    var u = w[x];
+                    if (u.match(l)) {
+                        t += u.replace(a, "$1");
+                        break
+                    }
+                }
+            }
+        }
+        return t
+    }
+    f.__initLoader = function() {
+        var s = q.getElementsByTagName("script"),
+        t = s[s.length - 1],
+        u = o(t);
+        this.Env.mods = {};
+        this.Env._loadQueue = {};
+        if (!this.Config.base) {
+            this.Config.base = u
+        }
+        if (!this.Config.timeout) {
+            this.Config.timeout = 10
+        }
+    }; f.__initLoader(); f.each(j,
+    function(t, s) {
+        f.__APP_MEMBERS.push(s)
+    }); f.__APP_INIT_METHODS.push("__initLoader")
+})(KISSY); (function(a) {
+    var b = {
+        core: {
+            path: "packages/core-min.js",
+            charset: "utf-8"
+        }
+    };
+    a.each(["sizzle", "dd", "datalazyload", "flash", "switchable", "suggest", "calendar", "uibase", "overlay", "imagezoom"],
+    function(c) {
+        b[c] = {
+            path: c + "/" + c + "-pkg-min.js",
+            requires: ["core"],
+            charset: "utf-8"
+        }
+    });
+    b.calendar.csspath = "calendar/default-min.css";
+    b.overlay.requires = ["uibase"];
+    a.add(b)
+})(KISSY);
+/*pub-1|2012-09-14 16:45:50*/
+var TB = KISSY.app("TB");
+TB.add("mod~global",
+function() {
+    var E = KISSY;
+    TB.loginHttp = "https";
+    TB._isLoginStatusReady = false;
+    TB._loginStatusReadyFnList = [];
+    TB._isMemberInfoReady = false;
+    TB._memberInfoReadyFnList = [];
+    TB.userInfo = {
+        memberInfo: {}
+    };
+    TB.environment = {
+        isTmall: window.location.hostname.indexOf("tmall.com") > -1 || window.location.hostname.indexOf("tmall.net") > -1,
+        isDaily: window.location.hostname.indexOf("daily.taobao.net") > -1 || window.location.hostname.indexOf("daily.tmall.net") > -1 || window.location.hostname.indexOf("test.tmall.net") > -1,
+        isHttps: window.location.href.indexOf("https://") === 0
+    };
+    var G = {
+        commonJS: {
+            tDog: {
+                off: false,
+                timestamp: "20120608"
+            },
+            tLabs: {
+                off: false,
+                timestamp: "20120608"
+            },
+            mpp: {
+                off: false,
+                timestamp: "20120608"
+            },
+            miniCart: {
+                off: false
+            },
+            miniBag: {
+                off: false,
+                timestamp: "20120914",
+                blacklist: ["taohua.com", "chaoshi.tmall.com", "buy.tmall.com", "cart.tmall.com", "refund.tmall.com", "rights.tmall.com", "obuy.tmall.com", "taobao.com", "daily.taohua.net", "chaoshi.daily.tmall.net", "buy.daily.tmall.net", "cart.daily.tmall.net", "refund.daily.tmall.net", "rights.daily.tmall.net", "obuy.daily.tmall.net", "daily.taobao.net"]
+            },
+            checkB2BUser: {
+                off: false
+            }
+        }
+    };
+    var K = !"0" [0],
+    R = K && !window.XMLHttpRequest,
+    T = !!window.ActiveXObject;
+    var D = window,
+    h = document,
+    j = h.domain,
+    I;
+    var C = j.indexOf("tmall.com") > -1,
+    X = !(j.indexOf("taobao.com") > -1 || C),
+    P = X ? ".daily.taobao.net": ".taobao.com";
+    var L = X ? "assets.daily.taobao.net": "a.tbcdn.cn",
+    Q = E.unparam(location.search.substring(1)),
+    V = "g_config" in D ? ("appId" in D.g_config ? parseInt(D.g_config["appId"]) : undefined) : undefined;
+    var Y = (h.location.href.indexOf("https://") === 0);
+    var J = " ",
+    N = "hover",
+    g = "",
+    A = "mini-cart";
+    var d = {};
+    var B = {
+        siteNav: function() {
+            if (!I) {
+                return
+            }
+            I.setAttribute("role", "navigation");
+            E.each(f("sn-menu", "*", I),
+            function(i) {
+                TB.Global._addMenu(i)
+            });
+            var S = f("cart", "li", I)[0];
+            W(S, "click",
+            function(k) {
+                var i = k.target || k.srcElement;
+                if (i.nodeName != "A" && i.parentNode.nodeName === "A") {
+                    i = i.parentNode
+                }
+                if (i.nodeName === "A" && i.href.indexOf("myCart.htm") > -1) {
+                    H(k);
+                    O(S, "hover");
+                    TB.Cart && TB.Cart.redirect(i, i.href);
+                    if (D.MiniCart) {
+                        D.MiniCart._clicked = false
+                    }
+                }
+            });
+            TB.Global.memberInfoReady(function(k) {
+                if (k.isLogin && k.memberInfo.mallSeller) {
+                    var i = a("j_MyTaobao", I);
+                    var l = a("j_SellerCenter", I);
+                    M(i, "hidden");
+                    O(l, "hidden")
+                }
+            })
+        },
+        tDog: function() {
+            if (G.commonJS.tDog.off) {
+                return
+            }
+            window.g_config = window.g_config || {};
+            window.g_config.toolbar = false;
+            window.g_config.webww = true;
+            if ((V && V != -1) || "tstart" in Q || "tdog" in Q) {
+                var S = "http://" + L + "/p/header/webww-min.js?t=" + G.commonJS.tDog.timestamp,
+                i = 0;
+                E.ready(function() {
+                    if (E.DOM) {
+                        E.getScript(S)
+                    } else {
+                        if (i < 10) {
+                            setTimeout(arguments.callee, 1000);
+                            i++
+                        } else {
+                            E.use("core",
+                            function() {
+                                E.getScript(S)
+                            })
+                        }
+                    }
+                })
+            }
+        },
+        tLabs: function() {
+            if (G.commonJS.tLabs.off) {
+                return
+            }
+            if (location.href.indexOf("tms.taobao.com") !== -1) {
+                return
+            }
+            E.ready(function() {
+                var i = "http://" + L + "/p/tlabs/1.0.0/tlabs-min.js?t=" + G.commonJS.tLabs.timestamp,
+                S = e("_nk_") || e("tracknick");
+                S = encodeURIComponent(U(unescape(S.replace(/\\u/g, "%u"))));
+                E.getScript(i,
+                function() {
+                    if (typeof TLabs !== "undefined") {
+                        TLabs.init({
+                            nick: S
+                        })
+                    }
+                })
+            })
+        },
+        POCMonitor: function() {
+            var n = D._poc || [],
+            m,
+            k = 0,
+            S = [["_setStartTime", (D.g_config || 0).startTime || D.HUBBLE_st || D.g_ks_monitor_st], ["_setAccount", (D.g_config || 0).appId]],
+            l = 10000;
+            while ((m = n[k++])) {
+                if (m[0] === "_setRate") {
+                    l = m[1]
+                } else {
+                    if (m[0] === "_setAccount") {
+                        S[0] = m
+                    } else {
+                        if (m[0] === "_setStartTime") {
+                            S[1] = m
+                        } else {
+                            S.push(m)
+                        }
+                    }
+                }
+            }
+            if (S[0][1] && parseInt(Math.random() * l) === 0) {
+                D._poc = S;
+                E.getScript("http://a.tbcdn.cn/p/poc/m.js?t=20120608")
+            }
+        },
+        initHeaderLinks: function() {
+            if (!TB.environment.isDaily) {
+                return
+            }
+            var k = I ? I.getElementsByTagName("a") : [];
+            for (var S = 0; S < k.length; S++) {
+                if (k[S].href.indexOf("register") === -1 && k[S].href.indexOf(".php")) {
+                    k[S].href = k[S].href.replace("taobao.com", "daily.taobao.net").replace("tmall.com", "daily.tmall.net")
+                }
+            }
+        },
+        initLogout: function() {
+            var S = h.getElementById("#J_Logout");
+            if (!S) {
+                return
+            }
+            W(S, "click",
+            function(k) {
+                k.halt();
+                var i = S.href;
+                new Image().src = "//taobao.alipay.com/user/logout.htm";
+                setTimeout(function() {
+                    location.href = i
+                },
+                20)
+            })
+        },
+        test: function() {
+            var S = false;
+            var i = function() {
+                if (S) {
+                    return
+                }
+                S = true;
+                if (location.href.indexOf("__cloudyrun__") > -1) {
+                    E.getScript("http://assets.daily.taobao.net/p/cloudyrun/1.0/cloudyrun-taobao-pkg.js?t=" + ( + new Date()))
+                }
+            };
+            E.ready(i);
+            setTimeout(i, 4000)
+        },
+        assist: function() {
+            if (e("test_accouts") && document.domain.indexOf("taobao.net") > -1) {
+                E.ready(function() {
+                    E.getScript("http://assets.daily.taobao.net/p/assist/login/login.js")
+                })
+            }
+        },
+        mpp: function() {
+            if (G.commonJS.mpp.off) {
+                return
+            }
+            E.getScript("http://" + L + "/p/tstart/1.0/build/tb-mpp-min.js?t=" + G.commonJS.mpp.timestamp, {
+                success: function() {
+                    E.ready(function() {
+                        if (!TB.Global.isLogin()) {
+                            return
+                        }
+                        Mpp.Notify.register({
+                            appId: 1010,
+                            type: 1,
+                            callback: function() {
+                                E.getScript("http://" + (X ? "webww.daily.taobao.net:8080": "webwangwang.taobao.com") + "/getOtherSystem.do?callback=TB.Global.setUserMsg&t=" + E.now())
+                            }
+                        })
+                    })
+                }
+            })
+        },
+        checkB2BUser: function() {
+            if (i() || G.commonJS.checkB2BUser.off) {
+                return
+            }
+            TB.Global.memberInfoReady(function(k) {
+                if (k.isLogin) {
+                    if (k.memberInfo.cookies && k.memberInfo.cookies.uc1) {
+                        var l = E.unparam(k.memberInfo.cookies.uc1.value);
+                        if (l && l.cbu) {
+                            E.ready(function() {
+                                S()
+                            })
+                        }
+                    }
+                }
+            });
+            function S() {
+                E.getScript("http://a.tbcdn.cn/apps/tmall/tml/1.0/tml/overlay/css/overlay-min.css?t=20120903");
+                var m = document.createElement("div");
+                m.className = "tml-ext-mask tml-mask-b2b";
+                m.innerHTML = "<!--[if lte IE 6.5]><iframe></iframe><![endif]-->";
+                document.body.appendChild(m);
+                var n = "http://member1" + P + "/member/changeNick2B.jhtml?t=" + E.now() + "&from=tmall&url=" + encodeURIComponent(window.location.href);
+                var k = ['<div class="tml-contentbox">', '   <div class="tml-stdmod-header"></div>', '   <div class="tml-stdmod-body">', '       <iframe height="335" width="100%" marginwidth="0" framespacing="0" marginheight="0" frameborder="0" allowtransparency="true" scrolling="no" src="' + n + '"></iframe>', "   </div>", '   <div class="tml-stdmod-footer"></div>', "</div>", '<div class="tml-dialog-skin"></div>', '<i class="tml-dialog-cat"></i>'].join("");
+                var l = document.createElement("div");
+                l.className = "tml-dialog-hasmask tml-dialog tml-ext-position tml-dialog-b2b";
+                l.innerHTML = k;
+                document.body.appendChild(l);
+                document.documentElement.style.overflow = "hidden"
+            }
+            function i() {
+                if ((document.location.host + document.location.pathname) === "www.tmall.com/") {
+                    return true
+                }
+                var k = ["/go/act/", "list.tmall.com", "list.daily.tmall.net"];
+                if (!k) {
+                    return false
+                }
+                for (var l = 0; l < k.length; l++) {
+                    if (window.location.href.indexOf(k[l]) > -1) {
+                        return true
+                    }
+                }
+                return false
+            }
+        }
+    };
+    var c = ["tDog", "tLabs", "test", "mpp"];
+    for (var b = 0; b < c.length; b++) { (function(i) {
+            var S = B[i];
+            B[i] = function() {
+                setTimeout(S, 1000)
+            }
+        })(c[b])
+    }
+    TB.Global = {
+        init: function(i) {
+            if (i && i.disableMiniBag) {
+                G.commonJS.miniBag.off = true
+            }
+            I = h.getElementById("site-nav");
+            this._subMenus = [];
+            for (var S in B) {
+                B[S]()
+            }
+            TB.Global.miniBag()
+        },
+        writeLoginInfo: function(i) {
+            I = h.getElementById("site-nav");
+            if (!I) {
+                return
+            }
+            var S = {
+                isApp: false,
+                passCookie: true,
+                loginServer: "http://login.tmall.com",
+                logoutServer: "http://login.taobao.com/member/logout.jhtml",
+                registerServer: "http://register.tmall.com/",
+                spaceServer: "http://jianghu.taobao.com/admin/home.htm"
+            };
+            i = E.merge(S, i);
+            TB.environment.isApp = i.isApp;
+            TB.environment.passCookie = i.passCookie;
+            var k = TB.Global;
+            k.loginStatusReady(function(u) {
+                var r = i.loginServer;
+                var m = window.location.href;
+                if (/^http.*(\/member\/login\.jhtml)$/i.test(m)) {
+                    m = ""
+                }
+                var l = i.redirectUrl || m;
+                if (l) {
+                    r += "?redirect_url=" + encodeURIComponent(l)
+                }
+                var t = i.spaceServer;
+                var n = i.registerServer;
+                var q = i.logoutServer + "?f=top&redirectURL=http://login.tmall.com/?redirect_url=" + encodeURIComponent("" + encodeURIComponent(l));
+                if (TB.environment.isDaily) {
+                    r = "http://login.daily.taobao.net/?redirect_url=" + encodeURIComponent(l);
+                    t = "http://jianghu.daily.taobao.net/admin/home.htm";
+                    n += "?isDaily=1";
+                    q = "http://login.daily.taobao.net/member/logout.jhtml?f=top&redirectURL=http://login.daily.taobao.net/member/login.jhtml?redirect_url%3D" + encodeURIComponent("" + encodeURIComponent(l))
+                }
+                t += "?t=" + E.now();
+                var o = document.getElementById("login-info");
+                if (!o) {
+                    return
+                }
+                var p = "";
+                if (u.isLogin) {
+                    p = '<span class="sn-mobile"><a title="\u5929\u732b\u65e0\u7ebf" target="_top" class="sn-mobile-link" href="http://mobile.tmall.com/?scm=1027.1.1.1">\u624b\u673a\u7248</a></span>\u60a8\u597d\uff0c<a target="_top" href="' + t + '" class="j_UserNick sn-user-nick">' + u.nick + '</a>\uff01<a class="j_Identity sn-identity hidden" target="_top"></a><a class="j_Point sn-point hidden" target="_top" href="http://jifen.tmall.com/?from=top&scm=1027.1.1.4">\u79ef\u5206<span class="j_PointValue sn-point-value">0</span></a><span class="j_Message sn-message hidden"><a target="_top" href="http://vip.tmall.com/vip/message_box.htm?from=messagebox&scm=1027.1.1.5" class="j_MessageText sn-msg-text">\u6d88\u606f</a><a target="_top" href="http://vip.tmall.com/vip/message_box.htm?from=messagebox&scm=1027.1.1.5" class="j_MessageNum sn-msg-num">0</a><span class="sn-msg-box  j_MesssageBox hidden"><span class="sn-msg-hd"></span><span class="sn-msg-bd"><a href="#" class="j_MessageTitle sn-msg-title">\u52a0\u5165Tmall\u4ff1\u4e50\u90e8</a><b class="j_CloseMessage sn-msg-close">&times;</b></span></span></span><a class="sn-logout" target="_top" href="' + q + '" id="J_Logout">\u9000\u51fa</a>';
+                    o.innerHTML = p;
+                    if (R) {
+                        var s = a("j_UserNick", I);
+                        if (s.offsetWidth > 90) {
+                            s.style.width = 90
+                        }
+                    }
+                    k.memberInfoReady(function(AF) {
+                        var AD = AF.memberInfo;
+                        if (!AD || !AD.login) {
+                            return
+                        }
+                        if (AD.activeStatus != -99) {
+                            var z = a("j_Identity", I);
+                            if (AD.activeStatus >= 1) {
+                                M(z, "sn-vip" + AD.activeStatus);
+                                z.href = "http://vip.tmall.com/vip/index.htm?from=top&scm=1027.1.1.2";
+                                z.title = "T" + AD.activeStatus + "\u5929\u732b\u8fbe\u4eba"
+                            } else {
+                                M(z, "sn-vip-unactivated");
+                                z.href = "http://vip.tmall.com/vip/index.htm?layer=activation&from=top&scm=1027.1.1.3";
+                                z.title = "\u52a0\u5165Tmall\u4ff1\u4e50\u90e8\uff0c\u6210\u4e3a\u5929\u732b\u8fbe\u4eba"
+                            }
+                            O(z, "hidden")
+                        }
+                        if (AD.availablePoints != -99) {
+                            var AE = a("j_PointValue", I);
+                            AE.innerHTML = y(AD.availablePoints);
+                            var AC = a("j_Point", I);
+                            O(AC, "hidden")
+                        }
+                        if (AD.newMessage > 0 && AD.lastMessage && AD.lastMessageUrl) {
+                            a("j_MessageText", I).href = AD.lastMessageUrl + "&spm=2001.1.6.1";
+                            a("j_MessageNum", I).href = AD.lastMessageUrl + "&spm=2001.1.6.1"
+                        }
+                        if ((AD.newMessage || AD.newMessage == 0) && AD.newMessage != -99) {
+                            var AA = a("j_MessageNum", I);
+                            if (AD.newMessage <= 99) {
+                                AA.innerHTML = AD.newMessage
+                            } else {
+                                AA.innerHTML = "99+"
+                            }
+                            var v = a("j_Message", I);
+                            O(v, "hidden")
+                        }
+                        if (AD.newMessage > 0 && AD.messagePopup && AD.lastMessage) {
+                            var x = a("j_MesssageBox", I);
+                            var w = a("j_MessageTitle", I);
+                            var AB = a("j_CloseMessage", I);
+                            w.innerHTML = AD.lastMessage;
+                            w.href = AD.lastMessageUrl;
+                            W(AB, "click",
+                            function(AH) {
+                                var AG = "http://tmm.taobao.com/member/close_message_popup.do";
+                                if (TB.environment.isDaily) {
+                                    AG = "http://tmm.daily.taobao.net/member/close_message_popup.do"
+                                }
+                                AG += "?callback=_closeMessageCallback&t=" + E.now();
+                                window._closeMessageCallback = function() {
+                                    M(x, "hidden")
+                                };
+                                E.getScript(AG)
+                            });
+                            O(x, "hidden")
+                        }
+                        function y(AG) {
+                            var AH = "";
+                            if (AG >= 0 && AG < 10000) {
+                                AH = AG
+                            } else {
+                                if (AG == 10000) {
+                                    AH = "1\u4e07"
+                                } else {
+                                    if (AG < 100000) {
+                                        AH = parseInt(AG / 1000) / 10 + "\u4e07";
+                                        if (AG % 1000 > 0) {
+                                            AH += "+"
+                                        }
+                                    } else {
+                                        if (AG < 1000000) {
+                                            AH = parseInt(AG / 10000) + "\u4e07";
+                                            if (AG % 10000 > 0) {
+                                                AH += "+"
+                                            }
+                                        } else {
+                                            if (AG < 10000000) {
+                                                AH = parseInt(AG / 1000000) + "\u767e\u4e07";
+                                                if (AG % 1000000 > 0) {
+                                                    AH += "+"
+                                                }
+                                            } else {
+                                                if (AG < 100000000) {
+                                                    AH = parseInt(AG / 10000000) + "\u5343\u4e07";
+                                                    if (AG % 10000000 > 0) {
+                                                        AH += "+"
+                                                    }
+                                                } else {
+                                                    AH = parseInt(AG / 100000000) + "\u4ebf";
+                                                    if (AG % 100000000 > 0) {
+                                                        AH += "+"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            return AH
+                        }
+                    });
+                    k._initMemberInfo()
+                } else {
+                    p = '<span class="sn-mobile"><a title="\u5929\u732b\u65e0\u7ebf" target="_top" class="sn-mobile-link" href="http://mobile.tmall.com/?scm=1027.1.1.1">\u624b\u673a\u7248</a></span>\u55b5\uff0c\u6b22\u8fce\u6765\u5929\u732b\uff01<a class="sn-login" href="' + r + '" target="_top">\u8bf7\u767b\u5f55</a><a class="sn-register" href="' + n + '" target="_top">\u514d\u8d39\u6ce8\u518c</a>';
+                    o.innerHTML = p;
+                    k._fireMemberInfoReadyFnList()
+                }
+            });
+            k._initLoginStatus()
+        },
+        _initLoginStatus: function() {
+            var i = TB.Global;
+            if (TB.environment.isApp && TB.environment.passCookie) {
+                TB.userInfo.nick = U(unescape(e("_nk_").replace(/\\u/g, "%u")));
+                TB.userInfo.isLogin = !!((e("login") == "true" || e("_l_g_")) && TB.userInfo.nick);
+                TB.userInfo.trackId = e("t");
+                i._fireLoginStatusReadyFnList()
+            } else {
+                var S = "http://www.taobao.com/go/app/tmall/login-api.php";
+                if (TB.environment.isDaily) {
+                    S = "http://www.daily.taobao.net/go/app/tmall/login-api.php"
+                }
+                S += "?" + Math.random();
+                E.getScript(S,
+                function() {
+                    TB.userInfo.nick = U(unescape((userCookie._nk_).replace(/\\u/g, "%u")));
+                    TB.userInfo.isLogin = !!(userCookie._l_g_ && TB.userInfo.nick);
+                    TB.userInfo.trackId = userCookie.t;
+                    i._fireLoginStatusReadyFnList()
+                })
+            }
+        },
+        loginStatusReady: function(S) {
+            if (TB._isLoginStatusReady) {
+                S.call(window, TB.userInfo)
+            } else {
+                if (TB._loginStatusReadyFnList) {
+                    TB._loginStatusReadyFnList.push(S)
+                }
+            }
+        },
+        _fireLoginStatusReadyFnList: function() {
+            if (TB._isLoginStatusReady) {
+                return
+            }
+            TB._isLoginStatusReady = true;
+            if (TB._loginStatusReadyFnList) {
+                for (var S = 0; S < TB._loginStatusReadyFnList.length; S++) {
+                    TB._loginStatusReadyFnList[S].call(window, TB.userInfo)
+                }
+            }
+        },
+        _initMemberInfo: function() {
+            var S = TB.Global;
+            var i = "http://tmm.taobao.com/member/query_member_top.do";
+            if (TB.environment.isDaily) {
+                i = "http://tmm.daily.taobao.net/member/query_member_top.do"
+            }
+            i += "?callback=_initMemberInfoCallback&t=" + E.now();
+            window._initMemberInfoCallback = function(k) {
+                TB.userInfo.memberInfo = k;
+                S._fireMemberInfoReadyFnList()
+            };
+            E.getScript(i)
+        },
+        memberInfoReady: function(S) {
+            if (TB._isMemberInfoReady) {
+                S.call(window, TB.userInfo)
+            } else {
+                if (TB._memberInfoReadyFnList) {
+                    TB._memberInfoReadyFnList.push(S)
+                }
+            }
+        },
+        _fireMemberInfoReadyFnList: function() {
+            if (TB._isMemberInfoReady) {
+                return
+            }
+            TB._isMemberInfoReady = true;
+            if (TB._memberInfoReadyFnList) {
+                for (var S = 0; S < TB._memberInfoReadyFnList.length; S++) {
+                    TB._memberInfoReadyFnList[S].call(window, TB.userInfo)
+                }
+            }
+        },
+        _addMenu: function(l) {
+            if (!l) {
+                return
+            }
+            var i = this,
+            n = f("menu-hd", "*", l)[0],
+            m = f("menu-bd", "*", l)[0];
+            if (!m || !n) {
+                return
+            }
+            n.tabIndex = 0;
+            i._subMenus.push(m);
+            m.setAttribute("role", "menu");
+            m.setAttribute("aria-hidden", "true");
+            if (!m.getAttribute("id")) {
+                m.setAttribute("id", E.guid("menu-"))
+            }
+            n.setAttribute("aria-haspopup", m.getAttribute("id"));
+            n.setAttribute("aria-label", "\u53f3\u952e\u5f39\u51fa\u83dc\u5355\uff0ctab\u952e\u5bfc\u822a\uff0cesc\u5173\u95ed\u5f53\u524d\u83dc\u5355");
+            var k = false;
+            if (!Y && R) {
+                k = h.createElement("iframe");
+                k.src = "about: blank";
+                k.className = "menu-bd";
+                l.insertBefore(k, m)
+            }
+            W(l, "mouseover",
+            function(p) {
+                var o = p.relatedTarget;
+                while (o && o !== l) {
+                    o = o.parentNode
+                }
+                if (o !== l) {
+                    E.each(i._subMenus,
+                    function(q) {
+                        if (q !== m) {
+                            O(q.parentNode, N);
+                            q.setAttribute("aria-hidden", "true")
+                        }
+                    });
+                    M(l, N);
+                    m.setAttribute("aria-hidden", "false");
+                    if (!k) {
+                        return
+                    }
+                    k.style.height = parseInt(m.offsetHeight) + 25 + "px";
+                    k.style.width = parseInt(m.offsetWidth) + 1 + "px"
+                }
+            });
+            W(l, "mouseout",
+            function(p) {
+                var o = p.relatedTarget;
+                while (o && o !== l) {
+                    o = o.parentNode
+                }
+                if (o !== l) {
+                    O(l, N);
+                    m.setAttribute("aria-hidden", "true");
+                    E.each(m.getElementsByTagName("input"),
+                    function(q) {
+                        if (q.getAttribute("type") !== "hidden") {
+                            q.blur()
+                        }
+                    })
+                }
+            });
+            W(l, "keydown",
+            function(p) {
+                var o = p.keyCode;
+                if (o == 27 || o == 37 || o == 38) {
+                    O(l, N);
+                    m.setAttribute("aria-hidden", "true");
+                    n.focus();
+                    H(p)
+                } else {
+                    if (o == 39 || o == 40) {
+                        M(l, N);
+                        m.setAttribute("aria-hidden", "false");
+                        H(p)
+                    }
+                }
+            });
+            var S;
+            W(l, T ? "focusin": "focus",
+            function() {
+                if (S) {
+                    clearTimeout(S);
+                    S = null
+                }
+            },
+            !T);
+            W(l, T ? "focusout": "blur",
+            function() {
+                S = setTimeout(function() {
+                    O(l, N);
+                    m.setAttribute("aria-hidden", "true")
+                },
+                100)
+            },
+            !T)
+        },
+        run: function() {},
+        isLogin: function() {
+            var i = e("tracknick"),
+            S = e("_nk_") || i;
+            return !! (e("_l_g_") && S || e("ck1") && i)
+        },
+        getCartElem: function() {
+            return I && f("cart", "li", I)[0]
+        },
+        miniBag: function() {
+            var S = E.makeArray(arguments);
+            var i = arguments.callee;
+            if (!E.Cookie) {
+                if (window.TShop) {
+                    TShop.use("tb-core",
+                    function() {
+                        i.apply(self, S)
+                    })
+                } else {
+                    E.use("core",
+                    function() {
+                        i.apply(self, S)
+                    })
+                }
+                return
+            }
+            TB.Global.loginStatusReady(function(k) {
+                var l = E.unparam(E.Cookie.get("cq"));
+                if (!k.isLogin) {
+                    l.ccp = "1";
+                    E.Cookie.set("cq", E.param(l), 365);
+                    TB.Global.initMiniBag()
+                } else {
+                    if (k.isLogin && l && l.ccp === "1") {
+                        window._syncCallback = function(n) {
+                            TB.Global.initMiniBag();
+                            l.ccp = "0";
+                            E.Cookie.set("cq", E.param(l), 365);
+                            if (n && E.isPlainObject(n.sss) && n.sss.quantity && n.sss.token) {
+                                new Image().src = "http://" + (TB.environment.isDaily ? "cart.daily.taobao.net": "cart.taobao.com") + "/sss.htm?quantity=" + n.sss.quantity + "&tk=" + n.sss.token
+                            }
+                        };
+                        var m = "http://" + (TB.environment.isDaily ? "cart.daily.tmall.net": "cart.tmall.com") + "/cart/syncCart.htm?callback=_syncCallback&t=" + E.now();
+                        E.getScript(m, {
+                            error: function() {
+                                TB.Global.initMiniBag()
+                            },
+                            timeout: 5
+                        })
+                    } else {
+                        TB.Global.initMiniBag()
+                    }
+                }
+            })
+        },
+        initMiniBag: function() {
+            if (i() || G.commonJS.miniBag.off) {
+                TB.Global.initMiniCart();
+                return
+            }
+            var S = "http://" + L + "/apps/tmallbuy/razer/mini/core.js";
+            E.getScript(S + "?t=" + G.commonJS.miniBag.timestamp);
+            function i() {
+                var k = G.commonJS.miniBag.blacklist;
+                if (!k) {
+                    return false
+                }
+                for (var l = 0; l < k.length; l++) {
+                    if (document.location.href.indexOf(k[l]) > -1) {
+                        return true
+                    }
+                }
+                return Q.frm && Q.frm == "tmalltiyan"
+            }
+        },
+        initMiniCart: function() {
+            if (G.commonJS.miniCart.off || !TB.Global.getCartElem()) {
+                return
+            }
+            var S, i = "http://" + (TB.environment.isDaily ? "count.config-vip.taobao.net:8888": "count.tbcdn.cn") + "/counter3";
+            TB.Global.memberInfoReady(function(k) {
+                if (k.isLogin) {
+                    S = (k.memberInfo.cookies && k.memberInfo.cookies.unb) ? k.memberInfo.cookies.unb.value: k.trackId
+                } else {
+                    S = k.trackId
+                }
+                i += "?keys=TCART_234_" + S + "_q&callback=_loadCartNumCallback&t=" + E.now();
+                window._loadCartNumCallback = function(m) {
+                    var l = m["TCART_234_" + S + "_q"] || 0;
+                    TB.Global.setCartNum(l)
+                };
+                E.getScript(i)
+            })
+        },
+        setCartNum: function(i) {
+            if (!E.isNumber(i)) {
+                return
+            }
+            var S = TB.Global.getCartElem();
+            if (!S) {
+                return
+            }
+            var k = S.getElementsByTagName("a")[0],
+            l = '<span class="mini-cart-line"></span><s></s>\u8d2d\u7269\u8f66';
+            if (i < 0) {
+                k.innerHTML = l;
+                O(S, A);
+                return
+            }
+            k.innerHTML = l + '<span class="mc-count' + (i < 10 ? " mc-pt3": g) + '">' + i + "</span>\u4ef6";
+            k.href = "http://" + (TB.environment.isDaily ? "cart.daily.tmall.net": "ju.atpanel.com/?url=http://cart.tmall.com") + "/cart/myCart.htm?from=btop&ad_id=&am_id=&cm_id=&pm_id=150042785330be233161";
+            M(S, A);
+            M(S, "menu");
+            M(k, "menu-hd");
+            k.id = "mc-menu-hd"
+        },
+        updateLoginInfo: function() {
+            TB._isLoginStatusReady = false;
+            TB._isMemberInfoReady = false;
+            TB.Global.writeLoginInfo({
+                isApp: false
+            })
+        },
+        setUserMsg: function(l) {
+            if (l.success && l.success === "true") {
+                var k = E.DOM;
+                if (!k) {
+                    return
+                }
+                var n = k.get(".login-info", I),
+                m = k.offset(n),
+                i = k.get("#gb-msg-notice"),
+                S;
+                if (!i) {
+                    i = k.create('<div id="gb-msg-notice"><div class="gb-msg-inner gb-msg-info"><p class="gb-msg-content">' + l.result["messages"][0] + '</p><div class="gb-msg-icon gb-msg-close" title="\u5173\u95ed"></div></div><div class="gb-msg-icon gb-msg-tri"><div class="gb-msg-icon gb-msg-tri-inner"></div></div></div>');
+                    k.append(i, I.parentNode);
+                    k.offset(i, {
+                        left: m.left + 30,
+                        top: m.top + k.height(n) + 1
+                    });
+                    E.Event.on(i, "click",
+                    function(p) {
+                        var o = p.target;
+                        if (k.hasClass(o, "gb-msg-close")) {
+                            k.hide(i)
+                        }
+                    })
+                } else {
+                    S = k.get(".gb-msg-content", i);
+                    k.html(S, l.result["messages"][0]);
+                    k.show(i)
+                }
+            }
+        }
+    };
+    TB.Cart = E.merge({},
+    {
+        domain: (document.domain.indexOf("taobao.com") > -1 || document.domain.indexOf("tmall.com") > -1) ? "taobao.com": "daily.taobao.net",
+        API: "http://cart.%domain%/check_cart_login.htm",
+        cache: {},
+        popup: null,
+        redirect: function(m, l) {
+            var k = E.makeArray(arguments);
+            var n = arguments.callee;
+            var S = this;
+            if (!E.DOM || !E.Event) {
+                E.getScript("http://a.tbcdn.cn/s/kissy/1.1.6/packages/core-min.js",
+                function() {
+                    n.apply(S, k)
+                });
+                return
+            }
+            this._addStyleSheetOnce();
+            var i = E.guid();
+            this.cache[i] = E.makeArray(arguments);
+            E.getScript(this.API.replace("%domain%", this.domain) + "?callback=TB.Cart.redirectCallback&guid=" + i, {
+                timeout: 4,
+                error: function() {
+                    location.href = l
+                }
+            })
+        },
+        redirectCallback: function(k) {
+            var i = k.guid;
+            var S = E.trim(this.cache[i][1]);
+            if (!k.needLogin) {
+                location.href = S;
+                return
+            }
+            if (!i) {
+                throw Error("[error] guid not found in callback data")
+            }
+            if (!this.popup) {
+                this.popup = this._initPopup()
+            }
+            var l = "";
+            if (k.ck && k.mk) {
+                l = "ck=" + k.ck + "&mk=" + k.mk;
+                S = S.replace("myCart.htm?", "myCart.htm?" + l + "&")
+            }
+            this._initLoginIframe(S)
+        },
+        hidePopup: function(S) {
+            S && S.preventDefault && S.preventDefault();
+            E.DOM.css(this.popup, "visibility", "hidden")
+        },
+        showPopup: function() {
+            this._centerPopup();
+            E.DOM.css(this.popup, "visibility", "visible")
+        },
+        _centerPopup: function() {
+            var S = (E.DOM.viewportHeight() - parseInt(E.DOM.css(this.popup, "height"), 10)) / 2;
+            S = S < 0 ? 0 : S;
+            E.DOM.css(this.popup, "top", S)
+        },
+        _addStyleSheetOnce: function() {
+            if (!this._stylesheetAdded) {
+                E.DOM.addStyleSheet("#g-cartlogin{position:fixed;_position:absolute;border:1px solid #aaa;left:50%;top:120px;margin-left:-206px;width:412px;height:272px;z-index:10001;background:#fafafa;-moz-box-shadow:rgba(0,0,0,0.2) 3px 3px 3px;-webkit-box-shadow:3px 3px 3px rgba(0,0,0,0.2);filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=3,OffY=3,Color=#16000000,Positive=true);} #g_minicart_login_close{position:absolute;right:5px;top:5px;width:17px;height:17px;background:url(http://img01.taobaocdn.com/tps/i1/T1krl0Xk8zXXXXXXXX-194-382.png) no-repeat -100px -69px;text-indent:-999em;overflow:hidden;}#g-cartlogin-close{cursor:pointer;position:absolute;right:5px;top:5px;width:17px;height:17px;line-height:0;overflow:hidden;background:url(http://img03.taobaocdn.com/tps/i1/T1k.tYXadGXXXXXXXX-146-77.png) no-repeat -132px 0;text-indent:-999em;}");
+                this._stylesheetAdded = true
+            }
+        },
+        _initPopup: function() {
+            var S = E.DOM.create('<div id="g-cartlogin"></div>');
+            E.DOM.append(S, E.DOM.get("body"));
+            return S
+        },
+        _initLoginIframe: function(S) {
+            var i = "https://login." + this.domain + "/member/login.jhtml?from=globalcart&style=mini&redirectURL=" + encodeURIComponent(S) + "&full_redirect=true";
+            this.popup.innerHTML = '<iframe src="' + i + '" width="410" height="270" frameborder="0" scrolling="0"></iframe><span title="\u5173\u95ed" id="g-cartlogin-close">\u5173\u95ed</span>';
+            E.Event.on("#g-cartlogin-close", "click", this.hidePopup, this);
+            this.showPopup()
+        }
+    });
+    function e(i) {
+        if (D.userCookie && !E.isUndefined(D.userCookie[i])) {
+            return D.userCookie[i]
+        }
+        if (E.isUndefined(d[i])) {
+            var S = h.cookie.match("(?:^|;)\\s*" + i + "=([^;]*)");
+            d[i] = (S && S[1]) ? decodeURIComponent(S[1]) : g
+        }
+        return d[i]
+    }
+    function U(i) {
+        var k = h.createElement("div"),
+        S = h.createTextNode(i);
+        k.appendChild(S);
+        return k.innerHTML
+    }
+    function f(r, s, S) {
+        var l = S.getElementsByTagName(s || "*"),
+        p = [],
+        n = 0,
+        m = 0,
+        o = l.length,
+        k,
+        q;
+        r = J + r + J;
+        for (; n < o; ++n) {
+            k = l[n];
+            q = k.className;
+            if (q && (J + q + J).indexOf(r) > -1) {
+                p[m++] = k
+            }
+        }
+        return p
+    }
+    function a(S, i) {
+        if (!i) {
+            i = document
+        }
+        return f(S, "*", i)[0]
+    }
+    function W(l, k, i, S) {
+        if (!l) {
+            return
+        }
+        if (l.addEventListener) {
+            l.addEventListener(k, i, !!S)
+        } else {
+            if (l.attachEvent) {
+                l.attachEvent("on" + k, i)
+            }
+        }
+    }
+    function Z(l, k, i, S) {
+        if (!l) {
+            return
+        }
+        if (l.removeEventListener) {
+            l.removeEventListener(k, i, !!S)
+        } else {
+            if (l.detachEvent) {
+                l.detachEvent("on" + k, i)
+            }
+        }
+    }
+    function M(k, S) {
+        var i = J + k.className + J;
+        if (i.indexOf(J + S + J) === -1) {
+            i += S;
+            k.className = E.trim(i)
+        }
+    }
+    function O(k, S) {
+        var i = J + k.className + J;
+        if (i.indexOf(J + S + J) !== -1) {
+            i = i.replace(J + S + J, J);
+            k.className = E.trim(i)
+        }
+    }
+    function F(S) {
+        if (D.userCookie && D.userCookie.version == "2") {
+            return E.unparam(S, "&amp;")
+        }
+        return E.unparam(S)
+    }
+    function H(S) {
+        if (S.preventDefault) {
+            S.preventDefault()
+        } else {
+            S.returnValue = false
+        }
+    }
+});
+/*pub-1|2012-09-13 11:52:14*/
+(function() {
+    var G = KISSY,
+    E, A, J = window.g_config,
+    I = J.assetsHost || "http://a.tbcdn.cn",
+    K = "1.1.6",
+    B = {
+        "1.1.6": ["datalazyload", "suggest", "switchable", "uibase", "overlay2", "imagezoom", "flash", "template"]
+    },
+    C = J.kissyVersion || K,
+    H = J.kissyWidgets || B[C],
+    L = "/s/kissy/" + C + "/??",
+    F = "t=" + (J.t || "20120621"),
+    D = "packages/core-min.js,",
+    M = [];
+    G.each(H,
+    function(N) {
+        M.push(N + "/" + N + "-pkg-min.js")
+    });
+    A = {
+        "tb-core": {
+            fullpath: I + L + D + M.join(",") + "?t=20110119.js"
+        },
+        "tshop-mods": {
+            fullpath: I + "/??apps/malldetail/" + J.ver + "/head/head.js,p/shop/1.0/mods/s/rank/rank-min.js,p/shop/1.0/mods/s/service/service-min.js,p/shop/1.0/mods/s/isv/isv-min.js,p/shop/1.0/mods/s/compatible/compatible-min.js,p/shop/1.0/mods/s/countdown/countdown-min.js,p/shop/1.0/mods/s/load-module/load-module-min.js,p/shop/1.0/mods/s/search/search-min.js,p/shop/1.0/mods/s/rechargeCenter/rechargeCenter-min.js,apps/malldetail/" + J.ver + "/init.js?" + F,
+            requires: ["tb-core"]
+        }
+    };
+    G.each(["mod~c2c-head", "mod~b2c-head", "mod~rank", "mod~service", "mod~slide", "mod~load-module", "mod~search", "mod~rechargeCenter", "mod~rechargeAlimama", "isv", "init"],
+    function(N) {
+        A[N] = {
+            requires: ["tshop-mods"]
+        }
+    });
+    E = G.app("TShop");
+    E.add(A);
+    E.namespace("mods", "widgets");
+    G.mix(E, {
+        timeStamp: F,
+        isDetail: function() {
+            return 1 === window.g_config["appId"]
+        },
+        isMall: function() {
+            return "b" === window.g_config["type"]
+        },
+        isBid: function() {
+            return "auction" === window.g_config["pageType"]
+        },
+        addTimeStamp: function() {
+            var N = G.now();
+            return function(O) {
+                return O + (O.indexOf("?") === -1 ? "?": "&") + "t=" + N
+            }
+        } ()
+    });
+    G.mix(E, {
+        dataReady: function(R, P, N, O) {
+            var Q = N || 100,
+            T = O || 100;
+            if (!G.isFunction(P)) {
+                return
+            }
+            var S = 1,
+            U = G.later(function() {
+                if ((R) && (P() || 1) || ++S > Q) {
+                    U.cancel()
+                }
+            },
+            T, true)
+        }
+    })
+})();
+/*pub-1|2012-09-13 11:52:14*/
+(function() {
+    var S = KISSY,
+    map = {},
+    doc = document,
+    win = window,
+    cfg = win.g_config,
+    T = win.TShop,
+    assetsHost = cfg.assetsHost || "http://a.tbcdn.cn";
+    map["tshop-core"] = {
+        fullpath: assetsHost + "/apps/malldetail/" + cfg.ver + "/??widgets/ajaxlistloader.js,common/loader.js,common/tbskip.js,common/hubble.js?" + T.timeStamp,
+        requires: ["tb-core"]
+    };
+    S.each(["loader", "hubble", "tbskip", "widget~ajax-list-loader"],
+    function(m) {
+        map[m] = {
+            requires: ["tshop-core"]
+        }
+    });
+    map["static-mods"] = {
+        fullpath: assetsHost + "/apps/malldetail/" + cfg.ver + "/??tabbar/tabbar.js,tabbar/deal-record.js,tabbar/newRecommend.js,tabbar/other-info.js,tabbar/trydetail.js,tabbar/tabbarAttr.js,tabbar/reviewsTmall.js,other/sellerinfo.js,other/ishare.js,recommend/common.js,other/focusTime.js,other/init.js?" + T.timeStamp,
+        requires: ["static-sku"]
+    };
+    map["static-sku"] = {
+        fullpath: assetsHost + "/apps/malldetail/" + cfg.ver + "/sku/??setup.js,util.js,areaSeletor.js,flashplayer.js,popupv2.js,stat.js,countdown.js,fastlogin.js,paymethods.js,combohandler.js,buylink.js,popupsimulate.js,navclip.js,codeexchange.js,updateminicart.js,promotion.js,ifclocation.js,calculator.js,common.js,regionSelectPopup.js,houseHoldRegionService.js,3c.js,channelCustom.js,areaSell.js,price.js,service.js,stock.js,share.js,freight.js,sellCount.js,sku.js,basketrecommend.js?" + T.timeStamp,
+        requires: ["tshop-core"]
+    };
+    S.each(["tabbar", "deal-record", "relative", "reviews", "reviewsTmall", "tabbarAttr", "other-info", "top", "focusTime", "switch", "guide", "b-sellerinfo", "b-newRecommend", "tabbar-float", "trydetail", "footinit", "itemlist"],
+    function(modName) {
+        map["mod~" + modName] = {
+            requires: ["static-mods"]
+        }
+    });
+    map["mod~sku"] = {
+        requires: ["static-sku"]
+    };
+    map["mod~combos"] = {
+        fullpath: assetsHost + "/apps/malldetail/" + cfg.ver + "/other/combos.js?" + T.timeStamp,
+        cssfullpath: assetsHost + "/apps/malldetail/" + cfg.ver + "/other/combos.css?" + T.timeStamp,
+        requires: ["tb-core"]
+    };
+    map.tml = {
+        fullpath: assetsHost + "/apps/tmall/tml/1.0/tml/??minilogin-min.js,overlay-min.js?" + T.timeStamp,
+        cssfullpath: assetsHost + "/apps/tmall/tml/1.0/tml/??overlay/css/overlay-min.css,overlay/css/overlay-for-1.1.6-min.css?" + T.timeStamp,
+        requires: ["tb-core"]
+    };
+    map.ishare = {
+        fullpath: assetsHost + "/??p/mall/2.0/js/zeroclipboard.js,apps/tmall/tml/1.0/tml/share-min.js?" + T.timeStamp,
+        cssfullpath: assetsHost + "/apps/tmall/tml/1.0/tml/share/css/share-min.css?" + T.timeStamp,
+        requires: ["tml"]
+    };
+    map["mod~recommendwaterfall"] = {
+        fullpath: assetsHost + "/apps/malldetail/" + cfg.ver + "/recommend/waterfall.js?" + T.timeStamp,
+        cssfullpath: assetsHost + "/apps/malldetail/" + cfg.ver + "/recommend/waterfall.css?" + T.timeStamp,
+        requires: ["tb-core"]
+    };
+    T.add(map);
+    if (T.isBid()) {
+        T.add({
+            bid: {
+                fullpath: assetsHost + "/apps/auctionplatform/20111110/market/detail/module/bid_module.js?" + T.timeStamp,
+                cssfullpath: assetsHost + "/??apps/auctionplatform/20111110/market/detail/module/bid_module.css,apps/malldetail/" + cfg.ver + "/css/auction.css?" + T.timeStamp,
+                requires: ["tb-core"]
+            }
+        })
+    }
+    if (location.href.indexOf("&ks-debug") > -1) {
+        S.each(T.Env.mods,
+        function(m) {
+            if (m && m.fullpath) {
+                m.fullpath = m.fullpath.replace(/-min/g, "")
+            }
+        })
+    }
+    S.mix(T, {
+        sendClick: function(type) {
+            new Image().src = "http://www.atpanel.com/jsclick?cache=" + S.now() + "&auc_detail=" + type
+        },
+        sendAtpanel: function(file, params) {
+            var params = params ? "&" + S.param(params) : "";
+            var rn = this.getUrlParams("rn");
+            if (rn) {
+                params += "&rn=" + rn
+            }
+            new Image().src = "http://www.atpanel.com/" + file + "?cache=" + S.now() + params
+        },
+        sendAcAtpanel: function(file, params) {
+            var params = params ? "&" + S.param(params) : "";
+            var rn = this.getUrlParams("rn");
+            if (rn) {
+                params += "&rn=" + rn
+            }
+            new Image().src = "http://ac.atpanel.com/" + file + "?cache=" + S.now() + params
+        },
+        sendImg: function(url) {
+            if (!url) {
+                return
+            }
+            url = url + (url.indexOf("?") != -1 ? "&": "?");
+            new Image().src = url + "_tm_cache=" + S.now()
+        },
+        renderDesc: function(html) {
+            var descEl = doc.getElementById("J_DivItemDesc"),
+            d,
+            rate = cfg.p || 1,
+            enableLazyLoad = cfg.enable || true,
+            re = /(<img[^>]*)(src *= *("[^"]*"|'[^']*'|[^ >]*))/g,
+            imgCount,
+            count = 0,
+            SPACEBALL = "http://a.tbcdn.cn/kissy/1.0.0/build/imglazyload/spaceball.gif";
+            imgCount = html.match(re) ? html.match(re).length: 0;
+            html = html.replace(re,
+            function(m, p1, p2, p3) {
+                count++;
+                if (!T.isMall() && rate && (rate > 0) && ((count / imgCount) > rate)) {
+                    return [p1, 'src="' + SPACEBALL + '"'].join("")
+                }
+                if (!enableLazyLoad || count < 6) {
+                    return m
+                }
+                return [p1, 'src="' + SPACEBALL + '" data-ks-lazyload=', p3].join("")
+            });
+            win.g_hubble_item_desc_beforeRender = new Date(); (function() {
+                /*@cc_on
+                descEl.innerHTML = html;
+                return;
+                @*/
+                d = descEl.cloneNode(false);
+                d.innerHTML = html;
+                descEl.parentNode.replaceChild(d, descEl)
+            })();
+            win.g_hubble_item_desc_rendered = new Date();
+            T.use("tb-core",
+            function() {
+                S.DataLazyload(doc.getElementById("J_DivItemDesc"), {
+                    mod: "manual",
+                    diff: 200
+                })
+            })
+        },
+        scrollToElem: function(elem) {
+            var DOM = S.DOM,
+            pos = DOM.offset(elem).top;
+            doc[S.UA.webkit ? "body": "documentElement"].scrollTop = pos - 130
+        },
+        inBucket: function(pecent) {
+            var bucketCount = 20;
+            var pecent = parseFloat(pecent, 10);
+            var needBucketCount = Math.round(bucketCount * (pecent / 100));
+            var trackid = S.Cookie.get("t") || "";
+            var bucket_id = this.getUrlParams("bucket_id") || "";
+            var curBucket_id;
+            function hashCode(str) {
+                var h = 0,
+                off = 0;
+                var len = str.length;
+                for (var i = 0; i < len; i++) {
+                    h = 31 * h + str.charCodeAt(off++);
+                    if (h > 2147483647 || h < 2147483648) {
+                        h = h & 4294967295
+                    }
+                }
+                return h
+            }
+            function bucket(h, len) {
+                return (h & 65535) % len
+            }
+            curBucket_id = (bucket_id > 0) ? bucket_id: bucket(hashCode(trackid), bucketCount);
+            S.log("bucket_id:" + curBucket_id, "info");
+            return curBucket_id <= needBucketCount
+        },
+        getUrlParams: function(keyArray) {
+            var url = win.location.href.split("?")[1];
+            var params = {};
+            var arr = {};
+            if (!url) {
+                return ""
+            }
+            url = url.replace(/#.*$/, "").split("&");
+            for (var i = 0,
+            j = url.length; i < j; i++) {
+                var num = url[i].indexOf("=");
+                if (num > 0) {
+                    var key = decodeURIComponent(url[i].substring(0, num));
+                    var val = url[i].substr(num + 1) || "";
+                    try {
+                        val = decodeURIComponent(val)
+                    } catch(ex) {
+                        val = val
+                    }
+                    params[key] = val
+                }
+            }
+            if (typeof keyArray == "string") {
+                return params[keyArray] || ""
+            } else {
+                for (var i = 0,
+                j = keyArray.length; i < j; i++) {
+                    var key = keyArray[i];
+                    arr[key] = params[key] || ""
+                }
+            }
+            return arr
+        },
+        MiniLogin: function(callback) {
+            var win = window;
+            var isDaily = (win.g_config.assetsHost.indexOf("taobao.net") != -1);
+            var proxyURL = "http://detail." + (isDaily ? "daily.tmall.net": "tmall.com") + "/cross/x_cross_iframe.htm?type=minilogin&" + T.timeStamp;
+            var show = function(callback) {
+                S.MiniLogin.config({
+                    proxyURL: proxyURL
+                });
+                S.MiniLogin.show(callback)
+            };
+            if (!S.MiniLogin) {
+                T.use("tml",
+                function(T) {
+                    window.TML.use("minilogin",
+                    function(TML, MiniLogin) {
+                        S.MiniLogin = MiniLogin || TML.MiniLogin;
+                        show(callback)
+                    })
+                })
+            } else {
+                show(callback)
+            }
+        }
+    });
+    TB.namespace("Detail")
+})(); (function() {
+    function f(b) {
+        var c, a = b.concat([]);
+        for (b = 0; c = a[b]; b++) {
+            c = c.split("/");
+            if (c[0] == h) {
+                c.splice(0, 1);
+                a[b] = c.join("/")
+            } else if (c[0] !== ".") a[b] = g + "/" + c.join("/")
+        }
+        return a
+    }
+    var g = "tml",
+    h = "kissy";
+    window.TML = {
+        add: function(b, c, a) {
+            if (a && a.requires) {
+                if (typeof a.requires === "string") a.requires = [a.requires];
+                a.requires = f(a.requires)
+            }
+            KISSY.add(g + "/" + b,
+            function() {
+                var d = [TML],
+                e;
+                for (e = 1; e < arguments.length; e++) d.push(arguments[e]);
+                return c.apply(this, d)
+            },
+            a)
+        },
+        use: function(b, c) {
+            b = f(b.split(","));
+            KISSY.use(b.join(","),
+            function() {
+                var a = [TML],
+                d;
+                for (d = 1; d < arguments.length; d++) a.push(arguments[d]);
+                return c.apply(this, a)
+            })
+        },
+        version: "1.0"
+    };
+    KISSY.config && KISSY.config({
+        packages: [{
+            name: "tml",
+            tag: "20120705",
+            path: "http://a.tbcdn.cn/apps/tmall/tml/1.0/",
+            charset: "utf-8"
+        }]
+    })
+})();

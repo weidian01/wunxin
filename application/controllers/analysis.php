@@ -97,7 +97,7 @@ class analysis extends MY_Controller
         {
             die("Not Found {$website} !");
         }
-        $shop_domain = array('shop_domain' => $website,'id'=>4);
+        $shop_domain = array('shop_domain' => $website);
         $this->load->database();
         $links = $this->db->get_where('taobao_product_link', $shop_domain)->result_array('id');
         if(!$links)//店铺产品为空
@@ -178,6 +178,7 @@ class analysis extends MY_Controller
                 $info['attribute'] = $attr;
             }
             $this->save($info, $website);
+            $html = str_replace('TShop.renderDesc(desc);', 'alert(desc);TShop.renderDesc(desc);', $html);
             p($html);
             //die;
             echo $item['id'],'<br>';//die;
