@@ -151,7 +151,7 @@ class analysis extends MY_Controller
 
             //产品颜色
             $matches = array();
-            preg_match_all($match['color'], $html, $matches);//p($matches);
+            preg_match_all($match['color'], $html, $matches);p($matches);
             if(isset($matches[1]) && $matches[1])
             {
                 $info['color'] = array_combine($matches[1], $matches[2]);
