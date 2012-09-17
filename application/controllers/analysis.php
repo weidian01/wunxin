@@ -168,9 +168,9 @@ class analysis extends MY_Controller
                 $info['attribute'] = $attr;
             }
             $this->save($info, $website);
-            p($html);
+            //p($html);
             //die;
-            echo $item['id'],'<br>';die;
+            echo $item['id'],'<br>';//die;
         }
 
     }
