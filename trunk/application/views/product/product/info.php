@@ -121,9 +121,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <div class="box3">
 
 
-  <div class="share">
+  <div class="share" style="float: right;">
       <!-- Baidu Button BEGIN -->
-      <!--
+
           <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
               <a class="bds_qzone"></a>
               <a class="bds_tsina"></a>
@@ -137,9 +137,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <script type="text/javascript">
       	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
       </script>
-      -->
-      <!-- Baidu Button END -->
 
+      <!-- Baidu Button END -->
+      <!--
     <ul>
       <li><a class="douban" href="#"></a></li>
       <li><a class="renren" href="#"></a></li>
@@ -150,7 +150,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <li><a class="sina" href="#"></a></li>
       <li style="width:48px;">分享到：</li>
     </ul>
-
+-->
   </div>
 
   <div class="designer">
