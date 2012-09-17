@@ -186,7 +186,7 @@ class analysis extends MY_Controller
             //$html = str_replace('TShop.renderDesc(desc);', 'alert(desc);TShop.renderDesc(desc);', $html);
             //p($html);
             //die;
-            echo $item['id'],'<br>';die;
+            echo $item['id'],'<br>';//die;
         }
 
     }
