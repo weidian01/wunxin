@@ -24,7 +24,7 @@ $(document).ready(function(){
 </head>
 <body>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
-<?php include('/../../header.php');?>
+<?php include(APPPATH.'views/header.php');?>
 
 <!-- #EndLibraryItem -->
 <div class="box">
@@ -191,7 +191,7 @@ $(document).ready(function(){
   </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
-<?php include("/../../footer.php");?>
+<?php include(APPPATH."views/footer.php");?>
 <!-- #EndLibraryItem -->
 </body>
 </html>

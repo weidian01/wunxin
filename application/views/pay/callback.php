@@ -38,7 +38,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<?php include '/../header.php';?>
+<?php include APPPATH.'views/header.php';?>
 <div class="box pad8">
   <div class="process">
     <ul>
@@ -278,7 +278,7 @@ $(document).ready(function(){
   </div>
 <?php } ?>
 </div>
-<?php include '/../footer.php';?>
+<?php include APPPATH.'views/footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/cart.js"></SCRIPT>

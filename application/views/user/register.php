@@ -23,7 +23,7 @@
     </script>
 </head>
 <body>
-<?php include '/../header.php';?>
+<?php include APPPATH.'views/header.php';?>
 <div class="tips_box" style="display: none;"><!-- a href="#" class="xclose" title="关闭">关闭</a-->
 	<p>提示信息！ <strong id="message_id"></strong></p>
 </div>
@@ -105,7 +105,7 @@
         </form>
     </div>
 </div>
-<?php include '/../footer.php';?>
+<?php include APPPATH.'views/footer.php';?>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
 </body>

@@ -16,7 +16,7 @@
     <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<?php include '/../header.php';?>
+<?php include APPPATH.'views/header.php';?>
 <div class="box pad4">
   <div class="process">
     <ul>
@@ -135,7 +135,7 @@
       <a href="/other/help/" target="_blank"><span class="font8">联系客服</span></a></div>
 </div>
 <!--<a href="javascript:cart.addToCart(4, 'S');">add to cart</a>-->
-<?php include '/../footer.php';?>
+<?php include APPPATH.'views/footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/cart.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
