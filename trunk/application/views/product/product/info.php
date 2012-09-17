@@ -18,7 +18,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 </head>
 <body>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
-<?php include('/../../header.php');?>
+<?php include(APPPATH.'views/header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box">
   <div class="path">
@@ -438,7 +438,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   <br /><br />
   <div class="clear"></div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
-<?php include '/../../footer.php';?>
+<?php include APPPATH.'views/footer.php';?>
 <!-- #EndLibraryItem -->
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/artDialog.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>

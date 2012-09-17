@@ -139,7 +139,7 @@ $(document).ready(function(){
     </style>
 </head>
 <body>
-<?php include '/../../header.php';?>
+<?php include APPPATH.'views/header.php';?>
 
 <div class="box2">
     <div class="container">
@@ -228,7 +228,7 @@ $(document).ready(function(){
 </div>
 </div>
 
-<?php include '/../../footer.php';?>
+<?php include APPPATH.'views/footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript">
     function checkShareImage()

@@ -22,7 +22,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<?php include '/../header.php';?>
+<?php include APPPATH.'views/header.php';?>
 <form action="/order/order/submit/" method="POST" onsubmit="order.orderSubmit()" id="order_form_id" name="order_form_id">
 <div class="box pad8" style="overflow:hidden;">
   <div class="process">
@@ -381,7 +381,7 @@ $(document).ready(function(){
   </div>
 </div>
 </form>
-<?php include '/../footer.php';?>
+<?php include APPPATH.'views/footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
 <script type="text/javascript">
