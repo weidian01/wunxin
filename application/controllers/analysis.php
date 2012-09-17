@@ -144,6 +144,11 @@ class analysis extends MY_Controller
             preg_match($match['price'], $html, $matches);
             isset($matches[1]) && $info['price'] = trim($matches[1]);
 
+            //产品简介
+            $matches = array();
+            preg_match($match['intro'], $html, $matches);
+            isset($matches[1]) && $info['intro'] = trim($matches[1]);
+
             //产品尺寸
             $matches = array();
             preg_match_all($match['size'], $html, $matches);
