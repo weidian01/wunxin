@@ -28,7 +28,7 @@ class analysis extends MY_Controller
             'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value=".*?" title="(.*?)".*?>'),            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
-            'intro' => "/<script>\(function\(url\).*?\('(.*?)'\);<\/script>/",
+            'intro' => "/<script>\(function\(url\).*?new Date\(\);\}\)\('(.*?)'\);<\/script>/",
         ),
         /*'openyourmind'=>array(//ok
             'name' => '/<h3>(.*?)<\/h3>/',
@@ -183,8 +183,8 @@ class analysis extends MY_Controller
                 $info['attribute'] = $attr;
             }
             $this->save($info, $website);
-            $html = str_replace('TShop.renderDesc(desc);', 'alert(desc);TShop.renderDesc(desc);', $html);
-            p($html);
+            //$html = str_replace('TShop.renderDesc(desc);', 'alert(desc);TShop.renderDesc(desc);', $html);
+            //p($html);
             //die;
             echo $item['id'],'<br>';die;
         }
