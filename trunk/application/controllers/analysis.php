@@ -111,12 +111,33 @@ class analysis extends MY_Controller
             $info = array();
             $info['shop'] = $website;
             $info['link_id'] = $item['id'];
+            $info['type'] = 0;
             $html = $this->get_content($website, $item['id']);
 
             //产品名称
             $matches = array();
             preg_match($match['name'], $html, $matches);
             isset($matches[1]) && $info['name'] = trim($matches[1]);
+            if(isset($info['name']))
+            {
+                if ($info['type'] === 0) {
+                    $findme = '卫衣';
+                    $pos = strpos($info['name'], $findme);
+                    $pos !== false && $info['type'] = 1;
+                }
+
+                if ($info['type'] === 0) {
+                    $findme = '裤';
+                    $pos = strpos($info['name'], $findme);
+                    $pos !== false && $info['type'] = 2;
+                }
+
+                if ($info['type'] === 0) {
+                    $findme = '裙';
+                    $pos = strpos($info['name'], $findme);
+                    $pos !== false && $info['type'] = 3;
+                }
+            }
 
             //产品价格
             $matches = array();
