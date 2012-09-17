@@ -162,7 +162,7 @@ class analysis extends MY_Controller
                 $key = $name = array();
                 preg_match_all($match['color'][1], $html, $key);
                 preg_match_all($match['color'][2], $html, $name);
-                $info['color'] = array_combine($key[1], $name[2]);
+                $info['color'] = array_combine($key[1], $name[1]);
             }
 
             //产品属性
