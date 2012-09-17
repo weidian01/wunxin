@@ -170,7 +170,7 @@ class analysis extends MY_Controller
             $this->save($info, $website);
             //p($html);
             //die;
-            echo $item['id'],'<br>';
+            echo $item['id'],'<br>';die;
         }
 
     }
