@@ -154,8 +154,8 @@ class analysis extends MY_Controller
             preg_match_all($match['color'], $html, $matches);p($matches);
             if(isset($matches[1]) && $matches[1])
             {
-                $c = array_combine($matches[1], $matches[2]);
-                $info['color'] = json_encode($c);
+                $info['color'] = array_combine($matches[1], $matches[2]);
+                //$info['color'] = json_encode($c);
             }
 
             //产品属性
@@ -182,10 +182,21 @@ class analysis extends MY_Controller
     function save($info, $website)
     {
         $attribute = $info['attribute'];unset($info['attribute']);
+        $color = $info['color'];unset($info['color']);
         $this->db->insert('taobao_product_data', $info, true);
         $id = $this->db->insert_id();
         if($id)
         {
+            foreach($color as $k => $c)
+            {
+                $img = array();
+                $img['link_id'] = $id;
+                $img['key'] = $k;
+                $img['name'] = $c;
+                $img['shop'] = $website;
+                $this->db->insert('taobao_product_img', $img, true);
+            }
+
             foreach($attribute as $key => $item)
             {
                 $data = array();
