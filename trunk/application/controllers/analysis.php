@@ -25,7 +25,7 @@ class analysis extends MY_Controller
         'agitation'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',            //多个
+            'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value=".*?" title="(.*?)".*?>'),            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => '//',
@@ -151,11 +151,17 @@ class analysis extends MY_Controller
 
             //产品颜色
             $matches = array();
-            preg_match_all($match['color'], $html, $matches);p($matches);
+            preg_match_all($match['color'][0], $html, $matches);
             if(isset($matches[1]) && $matches[1])
             {
                 $info['color'] = array_combine($matches[1], $matches[2]);
                 //$info['color'] = json_encode($c);
+            }
+            else
+            {
+                $matches = array();
+                preg_match_all($match['color'][1], $html, $matches);
+                $info['color'] = $matches[1];
             }
 
             //产品属性
