@@ -52,7 +52,7 @@ class analysis extends MY_Controller
             'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;".*?>/s','<li data-value=".*?" title="(.*?)".*?>'),            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
             'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
-            'intro' => '/\(function\(\)\{var s=document.*?s\.src="(.*?)";document.*?<\/script>/',
+            'intro' => '/\(function\(\)\{var s=document.*?s\.src="(.*?)";document.*?<\/script>/s',
         ),
         'lixiangniandaijn'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
