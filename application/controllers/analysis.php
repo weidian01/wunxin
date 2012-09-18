@@ -62,13 +62,13 @@ class analysis extends MY_Controller
             'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
             'intro' => "/<script>\(function\(url\).*?new Date\(\);\}\)\('(.*?)'\);<\/script>/",
         ),
-        'shop35062198'=>array(  //ok
+        'shanguoyanyi'=>array(  //ok
             'name' => '/<h3>(.*?)<\/h3>/',
             'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
-            'color' => '/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s',
+            'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;".*?>/s','<li data-value=".*?" title="(.*?)".*?>'),            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
             'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
-            'intro' => '//',
+            'intro' => '/\(function\(\)\{var s=document.*?s\.src="(.*?)";document.*?<\/script>/s',
         ),
         'lekuchuangxiang'=>array( //ok
             'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
