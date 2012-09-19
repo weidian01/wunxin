@@ -97,6 +97,15 @@
 11.抓取淘宝产品图片
 /usr/local/php/bin/php /data/www/wunxin/web/index.php crawl crawl_image
 
+12.抓取淘宝产品简介
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl crawl_intro_analysis
+
+13.分析淘宝产品简介图片
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl analysis_intro
+
+14.抓取淘宝产品简介图片
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl crawl_intro_image
+
 
 
 

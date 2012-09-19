@@ -670,7 +670,7 @@ class crawl extends MY_Controller
     public function crawl_intro_analysis()
     {
         $this->load->helper('crawl_tools');
-        $config = array('dir' => '/data/m_data/intro_image/');
+        $config = array('dir' => '/data/m_data/intro/');
         $crawl = new crawl_tools($config);
 
         $this->load->model('other/model_crawl_analysis', 'ca');
@@ -683,6 +683,16 @@ class crawl extends MY_Controller
 
             if (empty ($v['intro'])) continue;
 
+            $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
+            if (file_exists($fileName) && filesize($fileName) > 10978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
+            $crawl->crawlOne($v['img_addr'], $v['id']);
+
+            /*
             //if ($i == 50) { $i = 1; sleep(20); }
 
             $intro = $crawl->crawlOne($v['intro'], $v['id']);
@@ -705,8 +715,50 @@ class crawl extends MY_Controller
                 );
                 $this->db->insert('taobao_product_intro_img', $iData);
             }
+            //*/
+            //sleep(3);
+        }
+    }
 
-            sleep(3);
+    /**
+     * 分析淘宝产品简介图片
+     */
+    public function analysis_intro()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/intro/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, intro, shop';
+        $data = $this->ca->getTaobaoProduct($field, 200000, 0);
+
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
+
+            if (file_exists($fileName) && filesize($fileName) > 10978) {
+                continue;
+            }
+
+            $content = file_get_contents($fileName);
+
+            preg_match_all("/<img.*src=['|\"](.*)['|\"].*>/sU", $content, $imgList);
+
+            if (empty ($imgList)) {
+                exit($v['intro']);
+            }
+
+            foreach ($imgList as $vs) {
+                $iData = array(
+                    'link_id' => $v['id'],
+                    'img_addr' => $vs,
+                    'shop_domain' => $v['shop'],
+                );
+                $this->db->insert('taobao_product_intro_img', $iData);
+            }
         }
     }
 
@@ -721,7 +773,7 @@ class crawl extends MY_Controller
 
         $this->load->model('other/model_crawl_analysis', 'ca');
 
-        $field = 'id, link_id, key, name, shop';
+        $field = 'id, link_id, img_addr, shop_domain';
         $data = $this->ca->getTaobaoProductIntroImg($field, 200000, 0);
 
         $i = 1;
@@ -729,17 +781,17 @@ class crawl extends MY_Controller
             echo $v['id']."\n";
 
             $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
-            if (file_exists($fileName) && filesize($fileName) > 20978) {
+            if (file_exists($fileName) && filesize($fileName) > 10978) {
                 continue;
             } else {
                 sleep(3);
             }
 
-            if (empty ($v['name'])) continue;
+            if (empty ($v['img_addr'])) continue;
 
             if ($i == 50) { $i = 1; sleep(20); }
 
-            $crawl->crawlOne($v['name'], $v['id']);
+            $crawl->crawlOne($v['img_addr'], $v['id']);
             $i++;
         }
 
