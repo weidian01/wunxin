@@ -744,7 +744,8 @@ class crawl extends MY_Controller
             }
 
             $content = file_get_contents($fileName);
-
+			echo $fileName."\n";
+echo $content;
             preg_match_all("/<img.*src=['|\"](.*)['|\"].*>/sU", $content, $imgList);
 
             if (empty ($imgList)) {
