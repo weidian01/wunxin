@@ -684,7 +684,7 @@ class crawl extends MY_Controller
             if (empty ($v['intro'])) continue;
 
             $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
-            if (file_exists($fileName) && filesize($fileName) > 1000) {
+            if (file_exists($fileName)) {
                 continue;
             } else {
                 sleep(3);
