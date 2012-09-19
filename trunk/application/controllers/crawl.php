@@ -737,7 +737,7 @@ class crawl extends MY_Controller
         foreach ($data as $v) {
             echo $v['id']."\n";
 
-            $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
+            $fileName = $config['dir'].intToPath($v['id']).'index.html';
 
             if (file_exists($fileName) && filesize($fileName) > 10978) {
                 continue;
