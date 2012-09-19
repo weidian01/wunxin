@@ -757,8 +757,9 @@ class crawl extends MY_Controller
                     'img_addr' => $vs,
                     'shop_domain' => $v['shop'],
                 );
-				print_r($iData);exit;
+				
                 $this->db->insert('taobao_product_intro_img', $iData);
+				exit;
             }
         }
     }
