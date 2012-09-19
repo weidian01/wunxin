@@ -92,3 +92,21 @@
 /usr/local/php/bin/php /data/www/wunxin/web/index.php analysis qianxibopin_class
 #抓取产品页
 /usr/local/php/bin/php /data/www/wunxin/web/index.php crawl qianxibopin
+
+
+11.抓取淘宝产品图片
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl crawl_image
+
+
+
+
+
+
+
+抓取淘宝店产品图片
+/usr/local/php/bin/php /data/www/wunxin/web/index.php crawl crawl_image
+
+
+
+
+

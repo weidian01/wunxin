@@ -627,4 +627,122 @@ class crawl extends MY_Controller
 
         unset ($data);
     }
+
+    /**
+     * 抓取淘宝让产品所有图片
+     */
+    public function crawl_image()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/images/', 'crawl_type' => 'image');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, link_id, key, name, shop';
+        $data = $this->ca->getTaobaoProductImg($field, 200000, 0);
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
+            if (file_exists($fileName) && filesize($fileName) > 20978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
+            if (empty ($v['name'])) continue;
+
+            if ($i == 50) { $i = 1; sleep(20); }
+
+            $crawl->crawlOne($v['name'], $v['id']);
+            $i++;
+        }
+
+        unset ($data);
+    }
+
+    /**
+     * 抓取淘宝产品并分析图片
+     */
+    public function crawl_intro_analysis()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/intro_image/');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, intro, shop';
+        $data = $this->ca->getTaobaoProduct($field, 200000, 0);
+
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            if (empty ($v['intro'])) continue;
+
+            //if ($i == 50) { $i = 1; sleep(20); }
+
+            $intro = $crawl->crawlOne($v['intro'], $v['id']);
+
+            if (empty ($intro)) {
+                exit($v['intro']);
+            }
+
+            preg_match_all("/<img.*src=['|\"](.*)['|\"].*>/sU", $intro, $imgList);
+
+            if (empty ($imgList)) {
+                exit($v['intro']);
+            }
+
+            foreach ($imgList as $vs) {
+                $iData = array(
+                    'link_id' => $v['id'],
+                    'img_addr' => $vs,
+                    'shop_domain' => $v['shop'],
+                );
+                $this->db->insert('taobao_product_intro_img', $iData);
+            }
+
+            sleep(3);
+        }
+    }
+
+    /**
+     * 抓取淘宝产品简介图片
+     */
+    public function crawl_intro_image()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/intro_image/', 'crawl_type' => 'image');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, link_id, key, name, shop';
+        $data = $this->ca->getTaobaoProductIntroImg($field, 200000, 0);
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
+            if (file_exists($fileName) && filesize($fileName) > 20978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
+            if (empty ($v['name'])) continue;
+
+            if ($i == 50) { $i = 1; sleep(20); }
+
+            $crawl->crawlOne($v['name'], $v['id']);
+            $i++;
+        }
+
+        unset ($data);
+    }
 }

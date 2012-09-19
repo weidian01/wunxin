@@ -26,9 +26,10 @@ class crawl_tools
      *
      * @param $url
      * @param int $id
+     * @param bool $isReturn
      * @return bool|string
      */
-    public function crawlOne($url, $id = 0)
+    public function crawlOne($url, $id = 0, $isReturn = false)
     {
         if (empty($url)) return false;
 
@@ -36,6 +37,10 @@ class crawl_tools
 
         $context = stream_context_create($opts);
         $content =file_get_contents($url, false, $context);
+
+        if ($isReturn) {
+            return $content;
+        }
 
         return $this->writeContent($content, $id);
     }
