@@ -744,20 +744,20 @@ class crawl extends MY_Controller
             }
 
             $content = file_get_contents($fileName);
-			echo $fileName."\n";
-echo $content;
+			//echo $fileName."\n";echo $content;
             preg_match_all("/<img.*src=['|\"](.*)['|\"].*>/sU", $content, $imgList);
 
             if (empty ($imgList)) {
                 exit($v['intro']);
             }
-print_r($imgList);exit;
+			//print_r($imgList);exit;
             foreach ($imgList[1] as $vs) {
                 $iData = array(
                     'link_id' => $v['id'],
                     'img_addr' => $vs,
                     'shop_domain' => $v['shop'],
                 );
+				print_r($iData);exit;
                 $this->db->insert('taobao_product_intro_img', $iData);
             }
         }
