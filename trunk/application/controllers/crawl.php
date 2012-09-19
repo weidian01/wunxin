@@ -790,7 +790,7 @@ class crawl extends MY_Controller
 
             if (empty ($v['img_addr'])) continue;
 
-            if ($i == 50) { $i = 1; sleep(20); }
+            if ($i == 5000) { $i = 1; sleep(10); }
 
             $crawl->crawlOne($v['img_addr'], $v['id']);
             $i++;
