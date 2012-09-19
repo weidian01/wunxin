@@ -739,16 +739,16 @@ class crawl extends MY_Controller
 
             $fileName = $config['dir'].intToPath($v['id']).'index.html';
 
-            if (file_exists($fileName) && filesize($fileName) > 10978) {
-                continue;
-            }
+            //if (file_exists($fileName) && filesize($fileName) > 10978) {
+                //continue;
+            //}
 
             $content = file_get_contents($fileName);
 			//echo $fileName."\n";echo $content;
             preg_match_all("/<img.*src=['|\"](.*)['|\"].*>/sU", $content, $imgList);
 
             if (empty ($imgList)) {
-                exit($v['intro']);
+                continue;//exit($v['intro']);
             }
 			//print_r($imgList);exit;
             foreach ($imgList[1] as $vs) {
@@ -760,7 +760,6 @@ class crawl extends MY_Controller
 				
                 $this->db->insert('taobao_product_intro_img', $iData);
             }
-			exit;
         }
     }
 
