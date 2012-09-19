@@ -690,7 +690,7 @@ class crawl extends MY_Controller
                 sleep(3);
             }
 
-            $crawl->crawlOne($v['img_addr'], $v['id']);
+            $crawl->crawlOne($v['intro'], $v['id']);
 
             /*
             //if ($i == 50) { $i = 1; sleep(20); }
