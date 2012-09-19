@@ -759,8 +759,8 @@ class crawl extends MY_Controller
                 );
 				
                 $this->db->insert('taobao_product_intro_img', $iData);
-				exit;
             }
+			exit;
         }
     }
 
