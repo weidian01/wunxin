@@ -750,8 +750,8 @@ class crawl extends MY_Controller
             if (empty ($imgList)) {
                 exit($v['intro']);
             }
-
-            foreach ($imgList as $vs) {
+print_r($imgList);exit;
+            foreach ($imgList[1] as $vs) {
                 $iData = array(
                     'link_id' => $v['id'],
                     'img_addr' => $vs,
