@@ -67,7 +67,7 @@ class analysis extends MY_Controller
             'size' => '/<li data-value=".*?".*?>\s?<a href="#">\s?<span>(.*?)<\/span>\s?<\/a>.*?<\/li>/',   //多个
             'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;".*?>/s','<li data-value=".*?" title="(.*?)".*?>'),            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong>/',                                                              //多个
-            'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?)[：|:](.*?)<\/li>/'),                                                          //
+            'attribute' => array('/<ul class="attributes-list".*?>\s.*?(.*?)<\/ul>/s','/<li.*?>(.*?)(?:：|:)(.*?)<\/li>/'),                                                          //
             'intro' => '/\(function\(\)\{var s=document.*?s\.src="(.*?)";document.*?<\/script>/s',
         ),
         'lekuchuangxiang'=>array( //ok
@@ -75,7 +75,7 @@ class analysis extends MY_Controller
             'size' => '/<li data-value=".*?"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
             'color' => array('/<li data-value=".*?" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value=".*?" title="(.*?)".*?>'),            //多个
             'price' => '/<strong id="J_StrPrice" >(.*?)<\/strong><span class="yuan">元<\/span>/',                                                              //多个
-            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?):(.*?)<\/li>/'),                                                          //
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?)(?:：|:)(.*?)<\/li>/'),                                                          //
             'intro' => "/<script>\(function\(url\).*?new Date\(\);\}\)\('(.*?)'\);<\/script>/",
         ),
         'tiexueyy'=>array( //ok
