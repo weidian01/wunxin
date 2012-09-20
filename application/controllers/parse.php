@@ -69,8 +69,7 @@ class parse extends MY_Controller
                     }
                 }
             }
-
-            die;
+            echo $data_id,'<br>';
         }
     }
 
