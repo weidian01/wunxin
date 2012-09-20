@@ -18,7 +18,7 @@ class import extends MY_Controller
     function product()
     {
         $this->load->database();
-        $this->db->select('i.id as img_id, i.shop as warehouse, d.id as data_id, d.name as pname, d.price as sell_price');
+        $this->db->select('i.id as img_id, i.shop as warehouse, d.id as data_id, d.name as pname, d.price as sell_price, d.type as size_type');
         $this->db->from('taobao_product_img i');
         $this->db->join('taobao_product_data d', 'i.link_id = d.id', 'left');
         $r = $this->db->get()->result_array();
