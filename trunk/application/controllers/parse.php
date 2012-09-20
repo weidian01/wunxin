@@ -58,6 +58,8 @@ class parse extends MY_Controller
                     echo '<br>';
                 }
             }
+
+            die;
         }
     }
 
