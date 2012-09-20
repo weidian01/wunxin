@@ -26,8 +26,8 @@ class parse extends MY_Controller
             $file_path = $item['shop'];
             $html = $this->get_content($file_path, $html_id);
             $match = array(
-            'size' => '/<li data-value="(.*?)"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => array('/<li data-value="([0-9:]*?)" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value="(.*?)" title="(.*?)".*?>'),            //多个
+            'size' => '/<li data-value="([0-9:]*?)"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
+            'color' => array('/<li data-value="([0-9:]*?)" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value="([0-9:]*?)" title="(.*?)".*?>'),            //多个
             );
 
             $info = array();
@@ -41,7 +41,6 @@ class parse extends MY_Controller
             preg_match_all($match['color'][0], $html, $matches);
             if(isset($matches[1]) && $matches[1])
             {
-                p($matches);
                 $info['color'] = array_combine($matches[1], $matches[2]);
                 //$info['color'] = json_encode($c);
             }
