@@ -18,7 +18,7 @@ class parse extends MY_Controller
     function size()
     {
         $this->load->database();
-        $list = $this->db->get_where('taobao_product_data', array())->result_array();
+        $list = $this->db->get_where('taobao_product_data', array('id'=>60))->result_array();
         foreach($list as $item)
         {
             $data_id = $item['id'];
