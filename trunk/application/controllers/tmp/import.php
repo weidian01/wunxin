@@ -6,7 +6,7 @@
  * Time: 下午2:08
  * To change this template use File | Settings | File Templates.
  */
-class inport extends MY_Controller
+class import extends MY_Controller
 {
     public function __construct()
     {
