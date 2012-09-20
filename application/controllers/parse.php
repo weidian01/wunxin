@@ -50,7 +50,7 @@ class parse extends MY_Controller
                 preg_match_all($match['color'][1], $html, $tmp);
                 $info['color'] = array_combine($tmp[1], $tmp[2]);
             }
-            p($matches);die;
+            p($matches);die($html);
             foreach($info['color'] as $ck => $color)
             {
                 foreach($info['size'] as $sk => $size)
