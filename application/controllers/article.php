@@ -13,7 +13,7 @@ class article extends MY_Controller
         parent::__construct();
 
         if (!$this->isLogin()) {
-            redirect("user/login");
+            //redirect("user/login");
         }
 
         if(! $this->input->is_ajax_request()){
@@ -24,7 +24,7 @@ class article extends MY_Controller
 
     public function info()
     {
-        $articleId = $this->input->get_post('id');
+        $articleId = $this->uri->segment(3, 0);//$this->input->get_post('id');
 
         if (empty ($articleId)) {
             show_error('文章ID为空');
@@ -37,6 +37,24 @@ class article extends MY_Controller
             //show_error('文章不存在');
         }
 
-        $this->load->view('article');
+        $this->load->view('other/article', array('data' => $data));
+    }
+
+    public function dynamic()
+    {
+        $articleId = $this->uri->segment(3, 0);//$this->input->get_post('id');
+
+        if (empty ($articleId)) {
+            show_error('文章ID为空');
+        }
+
+        $this->load->model('article/Model_Article', 'article');
+        $data = $this->article->getNewsById($articleId);
+
+        if (empty ($data)) {
+            //show_error('文章不存在');
+        }
+
+        $this->load->view('other/dynamic', array('data' => $data));
     }
 }

@@ -472,11 +472,12 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/artDialog.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
 <script>
 product.class_id = <?=$product['class_id']?>;
 product.pid = <?=$product['pid']?>;
 product.pname = '<?=$product['pname']?>';
-product.sell_price = <?=$product['sell_price']?>/100;
+product.sell_price = <?=$product['sell_price'];?>/100;
 </script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/info.js"></script>
 </body>

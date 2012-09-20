@@ -67,14 +67,14 @@
                 <div class="blt-cont" id="blt1">
                     <ul>
                         <?php foreach ($bulletin as $bv) {?>
-                        <li><a href="#" target="_blank"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
+                        <li><a href="/article/info/<?=$bv['id'];?>" target="_blank"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
                         <?php }?>
                     </ul>
                 </div>
                 <div class="blt-cont" id="blt2" style="display:none;">
                     <ul>
                         <?php foreach ($news as $nv) {?>
-                        <li><a href="#"><?=mb_substr($nv['title'], 0, 18, 'utf-8');?></a></li>
+                        <li><a href="/article/dynamic/<?=$nv['id'];?>" target="_blank"><?=mb_substr($nv['title'], 0, 18, 'utf-8');?></a></li>
                         <?php }?>
                     </ul>
                 </div>
