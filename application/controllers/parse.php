@@ -58,7 +58,14 @@ class parse extends MY_Controller
                     $key =  ";{$sk};{$ck};";
                     if (true === strpos($html, $key))
                     {
-
+                        $this->db->select('id');
+                        $this->db->from('taobao_product_img');
+                        $this->db->where(array('link_id'=>$data_id, 'key'=>trim($color)));
+                        $r = $this->db->get()->row_array();
+                        if(isset($r['id']) && $r['id'])
+                        {
+                            $this->db->insert('taobao_product_size',array('img_id' => $r['id'], "size"=>$size));
+                        }
                     }
                 }
             }
