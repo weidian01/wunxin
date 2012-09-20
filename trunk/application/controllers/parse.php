@@ -22,7 +22,7 @@ class parse extends MY_Controller
         foreach($list as $item)
         {
             $data_id = $item['id'];
-            $html_id = $item['link_id'];
+            echo $html_id = $item['link_id'];
             $file_path = $item['shop'];
             $html = $this->get_content($file_path, $html_id);
             $match = array(
