@@ -27,7 +27,7 @@ class parse extends MY_Controller
             $html = $this->get_content($file_path, $html_id);
             $match = array(
             'size' => '/<li data-value="(.*?)"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
-            'color' => array('/<li data-value="(.*?)"\stitle="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value="(.*?)" title="(.*?)".*?>'),            //多个
+            'color' => array('/<li data-value="([0-9:]*?)" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value="(.*?)" title="(.*?)".*?>'),            //多个
             );
 
             $info = array();
