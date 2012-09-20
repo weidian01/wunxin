@@ -35,7 +35,7 @@ class parse extends MY_Controller
             $matches = array();
             preg_match_all($match['size'], $html, $matches);
             isset($matches[1]) && $info['size'] = array_combine($matches[1], $matches[2]);
-            p($matches);
+
             //产品颜色
             $matches = array();
             preg_match_all($match['color'][0], $html, $matches);
@@ -50,7 +50,7 @@ class parse extends MY_Controller
                 preg_match_all($match['color'][1], $html, $tmp);
                 $info['color'] = array_combine($tmp[1], $tmp[2]);
             }
-            p($matches);die($html);
+
             foreach($info['color'] as $ck => $color)
             {
                 foreach($info['size'] as $sk => $size)
