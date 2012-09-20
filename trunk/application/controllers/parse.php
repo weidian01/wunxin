@@ -34,7 +34,7 @@ class parse extends MY_Controller
             //产品尺寸
             $matches = array();
             preg_match_all($match['size'], $html, $matches);
-            isset($matches[1]) && $info['size'] = implode(',', $matches[1]);
+            isset($matches[1]) && $info['size'] = array_combine($matches[1], $matches[2]);
 
             //产品颜色
             $matches = array();
