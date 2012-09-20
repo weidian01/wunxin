@@ -48,7 +48,7 @@ class parse extends MY_Controller
             {
                 $tmp = array();
                 preg_match_all($match['color'][1], $html, $tmp);
-                $info['color'] = array_flip($tmp[1], $tmp[2]);
+                $info['color'] = array_combine($tmp[1], $tmp[2]);
             }
             p($info);die;
         }
