@@ -41,6 +41,7 @@ class parse extends MY_Controller
             preg_match_all($match['color'][0], $html, $matches);
             if(isset($matches[1]) && $matches[1])
             {
+                p($matches);
                 $info['color'] = array_combine($matches[1], $matches[2]);
                 //$info['color'] = json_encode($c);
             }
