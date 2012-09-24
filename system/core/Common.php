@@ -631,40 +631,50 @@ function url($string, $prefix='base')
 
 function copyImg($source_file, $new_width, $new_height, $new_file_name=null, $quality = 90)
 {
-    list($width, $height) = getimagesize($source_file);
-    $type = strtolower(substr(strrchr($source_file, "."),1));
+//    list($width, $height) = getimagesize($source_file);
+//    $type = strtolower(substr(strrchr($source_file, "."),1));
+    list($width, $height, $type) = getimagesize($source_file);
+    $type = image_type_to_extension($type);
+
     switch($type){
-        case 'bmp':
+        case '.bmp':
             $source = imagecreatefromwbmp($source_file);
             break;
-        case 'gif':
+        case '.gif':
             $source = imagecreatefromgif($source_file);
             break;
-        case 'png':
+        case '.png':
             $source = imagecreatefrompng($source_file);
             break;
-        case 'jpeg':
-        case 'jpg':
+        case '.jpeg':
+        case '.jpg':
             $source = imagecreatefromjpeg($source_file);
             break;
     }
+
     $thumb = imagecreatetruecolor($new_width, $new_height);	//$source = imagecreatefromjpeg($source_file);
-    imagecopyresampled($thumb, $source, 0, 0, 0, 0, $new_width, $new_height, $width, $height);	// Output
-    switch ($type) {
-        case 'bmp':
-            imagewbmp($thumb, $new_file_name, $quality);
-            break;
-        case 'gif':
-            imagegif($thumb, $new_file_name, $quality);
-            break;
-        case 'png':
-            imagepng($thumb, $new_file_name, $quality);
-            break;
-        case 'jpeg':
-        case 'jpg':
-            imagejpeg($thumb, $new_file_name, $quality);
-            break;
+    if(! $new_width && !$new_height)
+    {
+        imagecopyresampled($thumb, $source, 0, 0, 0, 0, $new_width, $new_height, $width, $height);	// Output
     }
+
+//    switch ($type) {
+//        case 'bmp':
+//            imagewbmp($thumb, $new_file_name, $quality);
+//            break;
+//        case 'gif':
+//            imagegif($thumb, $new_file_name, $quality);
+//            break;
+//        case 'png':
+//            imagepng($thumb, $new_file_name, $quality);
+//            break;
+//        case 'jpeg':
+//        case 'jpg':
+//            imagejpeg($thumb, $new_file_name, $quality);
+//            break;
+//    }
+
+    imagejpeg($thumb, $new_file_name, $quality);
 	return true;
 }
 
