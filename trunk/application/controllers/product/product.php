@@ -197,7 +197,7 @@ class Product extends MY_Controller
             $by = $by == 'ASC' ? 'ASC':'DESC';
             $order = "{$dict[$sort]} {$by}";
         }
-        var_dump($by);
+        //var_dump($by);
         $offset = max((int)$this->input->get('offset'), 0);
         $this->load->model('product/Model_Product', 'product');
         if ($keyword == false) {
