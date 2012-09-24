@@ -652,10 +652,14 @@ function copyImg($source_file, $new_width, $new_height, $new_file_name=null, $qu
             break;
     }
 
-    $thumb = imagecreatetruecolor($new_width, $new_height);	//$source = imagecreatefromjpeg($source_file);
-    if(! $new_width && !$new_height)
+    if(!$new_width && !$new_height)
     {
+        $thumb = imagecreatetruecolor($new_width, $new_height);	//$source = imagecreatefromjpeg($source_file);
         imagecopyresampled($thumb, $source, 0, 0, 0, 0, $new_width, $new_height, $width, $height);	// Output
+    }
+    else
+    {
+        $thumb = $source;
     }
 
 //    switch ($type) {
