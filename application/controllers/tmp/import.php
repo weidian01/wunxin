@@ -70,6 +70,7 @@ class import extends MY_Controller
                 recursiveMkdirDirectory($target_path);
                 $target_file = $target_path . (md5($v['pid']) . '.jpg');
                 copyImg($source_file, 0, 0, $target_file);
+                $this->db->insert('product_photo', array('pid'=>$v['pid'], 'img_addr'=>(md5($v['pid']) . '.jpg'), 'is_default'=>1, 'create_time'=>date('Y-m-d H:i:s')));
                 $this->db->insert('product',$v);
             }
             die;
