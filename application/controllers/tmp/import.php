@@ -65,9 +65,14 @@ class import extends MY_Controller
                     $v['uid'] = 1003;
                     $v['uname'] = '第七公社';
                 }
-
+                $source_file = '/data/m_data/images/' . intToPath($v['pid']) . $v['pid'] . '.jpg';
+                $target_path = '/data/www/wunxin/web/upload/product/' . intToPath($v['pid']);
+                recursiveMkdirDirectory($target_path);
+                $target_file = $target_path . (md5($v['pid']) . '.jpg');
+                copyImg($source_file, 0, 0, $target_file);
                 $this->db->insert('product',$v);
             }
+            die;
         }
     }
 
