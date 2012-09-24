@@ -43,7 +43,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <?php $def_photo='';foreach($photo as $item):?>
             <?php if($item['is_default'] == 1){$def_photo = $item['img_addr'];}?>
             <div class="pic-rn">
-                <a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('img_url')?>product/<?=str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('img_url')?>product/<?=$item['img_addr']?>'}"><img src="<?=config_item('img_url')?>product/<?=str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
+                <a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('img_url')?>product/<?=$item['img_addr']?>'}"><img src="<?=config_item('img_url')?>product/<?=str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
             <?php endforeach;?>
           </div>
         </div>
@@ -51,8 +51,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="picqh2" id="button_next"></div>
     </div>
     <div class="big-pic">
-        <a href="<?=config_item('img_url')?>product/<?=$def_photo?>" rel='gal1' class="jqzoom" title="preview" >
-        <img src="<?=config_item('img_url')?>product/<?=str_replace('.','_M.', $def_photo)?>" width="350" height="420" />
+        <a href="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="preview" >
+        <img src="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $def_photo)?>" width="350" height="420" />
         </a>
     </div>
   </div>
