@@ -74,7 +74,7 @@ class import extends MY_Controller
                 $this->db->insert('product_photo', array('pid'=>$v['pid'], 'img_addr'=>(md5($v['pid']) . '.jpg'), 'is_default'=>1, 'create_time'=>date('Y-m-d H:i:s')));
                 $this->db->insert('product',$v);
             }
-            die;
+            //die;
         }
     }
 
