@@ -49,6 +49,7 @@ class import extends MY_Controller
                 $v['style_no'] = md5($v['data_id']);
                 $v['create_time'] = date('Y-m-d H:i:s');
                 $v['gender'] = $v['sex'];
+                $v['sell_price'] = $v['sell_price'] * 100;
                 $v['market_price'] = $v['sell_price']*1.1;
                 $v['keyword'] = $v['descr'] = $v['pname'];
                 unset($v['img_id'], $v['data_id'], $v['sex']);
