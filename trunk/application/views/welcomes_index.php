@@ -476,6 +476,61 @@
     }
     st.Run();
     //转播图 代码结束
+
+
+    /*右下角提示框
+    artDialog.notice = function (options) {
+        var opt = options || {},
+            api, aConfig, hide, wrap, top,
+            duration = 800;
+
+        var config = {
+            id: 'Notice',
+            left: '100%',
+            top: '100%',
+            fixed: true,
+            drag: false,
+            resize: false,
+            follow: null,
+            lock: false,
+            init: function(here){
+                api = this;
+                aConfig = api.config;
+                wrap = api.DOM.wrap;
+                top = parseInt(wrap[0].style.top);
+                hide = top + wrap[0].offsetHeight;
+
+                wrap.css('top', hide + 'px')
+                    .animate({top: top + 'px'}, duration, function () {
+                        opt.init && opt.init.call(api, here);
+                    });
+            },
+            close: function(here){
+                wrap.animate({top: hide + 'px'}, duration, function () {
+                    opt.close && opt.close.call(this, here);
+                    aConfig.close = $.noop;
+                    api.close();
+                });
+
+                return false;
+            }
+        };
+
+        for (var i in opt) {
+            if (config[i] === undefined) config[i] = opt[i];
+        };
+
+        return artDialog(config);
+    };
+
+    art.dialog.notice({
+        title: false,//'万象网管',
+        width: 220,// 必须指定一个像素宽度值或者百分比，否则浏览器窗口改变可能导致artDialog收缩
+        content: '尊敬的顾客朋友，您IQ卡余额不足10元，请及时充值',
+        icon: 'face-sad',
+        time: 50
+    });
+    //*/
 </script>
 </body>
 </html>
