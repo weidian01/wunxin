@@ -62,7 +62,7 @@ $db['default']['database'] = 'wunxin';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'wx_';
-$db['default']['pconnect'] = TRUE;
+$db['default']['pconnect'] = false;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = APPPATH.'cache/db/';
@@ -71,7 +71,7 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-$db['default']['save_queries'] = TRUE;
+$db['default']['save_queries'] = false;
 
 
 /* End of file database.php */

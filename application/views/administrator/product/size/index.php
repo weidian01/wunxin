@@ -64,7 +64,7 @@
                             <?=$item['descr']?>
                         </td>
                         <td>
-                            <?php if($item['type'] == 1):?>T恤<?php elseif($item['type'] == 2):?>卫衣<?php else:?>裤子<?php endif;?>
+                            <?php if($item['type'] == 1):?>T恤<?php elseif($item['type'] == 2):?>卫衣<?php elseif($item['type'] == 3):?>衬衫<?php else:?>裤子<?php endif;?>
                         </td>
                         <td><a href="<?php echo site_url("administrator/product_size/edit/{$item['size_id']}")?>"><img
                             src="/images/icons/pencil.png" alt="Edit"/></a>

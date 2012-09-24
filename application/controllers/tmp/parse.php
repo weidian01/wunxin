@@ -82,4 +82,88 @@ class parse extends MY_Controller
         $file_content = file_get_contents($fileName);
         return iconv('GBK', "UTF-8//IGNORE", $file_content);
     }
+
+    function sex()
+    {
+        $this->load->database();
+        $list = $this->db->get_where('taobao_product_data', array())->result_array();
+        foreach($list as $item)
+        {
+            $sex = 0;
+            if(false !== strpos($item['name'], '男'))
+            {
+                $sex = 1;
+            }
+            if(false !== strpos($item['name'], '女'))
+            {
+                $sex = 2;
+            }
+            if(false !== strpos($item['name'], '情侣'))
+            {
+                $sex = 3;
+            }
+            if(false !== strpos($item['name'], '亲子'))
+            {
+                $sex = 4;
+            }
+
+            if($sex == 0)
+            {
+                $n = $v = false;
+                if(false !== strpos($item['size'], '男'))
+                {
+                    $n = true;
+                }
+                if(false !== strpos($item['size'], '女'))
+                {
+                    $v = true;
+                }
+
+                if($n && $v)
+                {
+                    $sex = 5;
+                }
+                elseif($n)
+                {
+                    $sex = 1;
+                }elseif($v)
+                {
+                    $sex = 2;
+                }
+            }
+            $this->db->where('id', $item['id']);
+            $this->db->update('taobao_product_data', array('sex'=>$sex));
+
+        }
+    }
+
+
+    function type()
+    {
+        $this->load->database();
+        $list = $this->db->get_where('taobao_product_data', array())->result_array();
+        foreach($list as $item)
+        {
+            $type = 0;
+            if(false !== strpos($item['name'], '恤'))
+            {
+                $type = 1;
+            }
+            if(false !== strpos($item['name'], '卫衣'))
+            {
+                $type = 2;
+            }
+            if(false !== strpos($item['name'], '衬衫'))
+            {
+                $type = 3;
+            }
+            if(false !== strpos($item['name'], '裤'))
+            {
+                $type = 4;
+            }
+            $this->db->where('id', $item['id']);
+            $this->db->update('taobao_product_data', array('type'=>$type));
+
+        }
+    }
 }
