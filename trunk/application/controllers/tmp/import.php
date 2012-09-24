@@ -18,10 +18,91 @@ class import extends MY_Controller
     function product()
     {
         $this->load->database();
-        $this->db->select('i.id as img_id, i.shop as warehouse, d.id as data_id, d.name as pname, d.price as sell_price, d.type as size_type');
+        $this->db->select('i.id as img_id, i.shop as warehouse, d.id as data_id, d.name as pname, d.price as sell_price, d.type as size_type, d.sex, l.plink as product_taobao_addr');
         $this->db->from('taobao_product_img i');
         $this->db->join('taobao_product_data d', 'i.link_id = d.id', 'left');
+        $this->db->join('taobao_product_link l', 'l.id = d.link_id', 'left');
         $r = $this->db->get()->result_array();
-        p($r);
+        foreach($r as $v)
+        {
+            $attr = $this->db->get_where('taobao_product_attr', array('link_id'=>$v['data_id'], '`key` !='=>'颜色', '`key` != '=>'尺码', '`key`  !='=>'品牌'))->result_array();
+            $size = $this->db->get_where('taobao_product_size', array('img_id'=>$v['img_id']))->result_array();
+            foreach($attr as $va)
+            {
+                $tmp_attr = $this->getmodel($v['size_type'], $va['key'], $v['sex']);
+                $tmp_attr['pid'] = $v['img_id'];
+                $tmp_attr['attr_value'] = $va['name'];
+                $this->db->insert('product_attr', $tmp_attr);
+            }
+            //p($size);
+            foreach($size as $vs)
+            {
+                $tmp_size = $this->getsize($v['size_type'], $vs['size']);
+                $tmp_size['pid'] = $v['img_id'];
+                $this->db->insert('product_size', $tmp_size);
+            }
+
+            //将产品信息插入到产品表 wx_product
+            {
+                $v['pid'] = $v['img_id'];
+                $v['style_no'] = md5($v['data_id']);
+                $v['create_time'] = date('Y-m-d H:i:s');
+                $v['gender'] = $v['sex'];
+                $v['market_price'] = $v['sell_price']*1.1;
+                $v['keyword'] = $v['descr'] = $v['pname'];
+                unset($v['img_id'], $v['data_id'], $v['sex']);
+                if($v['warehouse'] == 'lixiangniandaijn')
+                {
+                    $v['brand_id'] = 1;
+                    $v['uid'] = 1001;
+                    $v['uname'] = '理想年代';
+                } elseif ($v['warehouse'] == 'lekuchuangxiang') {
+                    $v['brand_id'] = 2;
+                    $v['uid'] = 1002;
+                    $v['uname'] = '乐酷创想';
+                } elseif ($v['warehouse'] == 'diqigongshe') {
+                    $v['brand_id'] = 3;
+                    $v['uid'] = 1003;
+                    $v['uname'] = '第七公社';
+                }
+
+                $this->db->insert('product',$v);
+            }
+        }
+    }
+
+    private function getmodel($type, $key, $sex)
+    {
+//        <option value="1" >T恤</option>
+//        <option value="2" >卫衣</option>
+//        <option value="3" >衬衫</option>
+//        <option value="4" >裤子</option>
+        if($type==0)
+        {
+            $type == 1;
+        }
+
+        if($sex == 1)
+        {
+            $model_id = $type * 2 - 1;
+        }
+        elseif($sex == 2)
+        {
+            $model_id = $type * 2;
+        }
+        else
+        {
+            $model_id = $type * 2 - 1;
+        }
+
+        $this->db->select('attr_id, model_id');
+        return $this->db->get_where('product_model_attr', array('model_id'=>$model_id, 'attr_name'=>$key))->row_array();
+    }
+
+    private function getsize($type, $name)
+    {
+        $name = strtoupper($name);
+        $this->db->select('size_id, abbreviation');
+        return $this->db->get_where('size', array('type'=>$type, 'name'=>$name))->row_array();
     }
 }
