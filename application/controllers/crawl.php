@@ -798,4 +798,42 @@ class crawl extends MY_Controller
 
         unset ($data);
     }
+
+    /**
+     * 抓取淘宝产品附加图片
+     */
+    public function crawl_product_images()
+    {
+        $this->load->helper('crawl_tools');
+        $config = array('dir' => '/data/m_data/append_image/', 'crawl_type' => 'image');
+        $crawl = new crawl_tools($config);
+
+        $this->load->model('other/model_crawl_analysis', 'ca');
+
+        $field = 'id, link_id, key, name, shop';
+        $data = $this->ca->getTaobaoProductImages($field, 200000, 0);
+
+        $i = 1;
+        foreach ($data as $v) {
+            echo $v['id']."\n";
+
+            $fileName = $config['dir'].intToPath($v['id']).$v['id'].'.jpg';
+            if (file_exists($fileName) && filesize($fileName) > 10978) {
+                continue;
+            } else {
+                sleep(3);
+            }
+
+            if (empty ($v['name'])) continue;
+
+            if ($i == 500) { $i = 1; sleep(10); }
+
+            $crawl->crawlOne($v['name'], $v['id']);
+            $i++;
+        }
+
+        unset ($data);
+
+
+    }
 }
