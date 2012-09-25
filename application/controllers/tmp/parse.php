@@ -166,4 +166,50 @@ class parse extends MY_Controller
 
         }
     }
+
+
+    private $match = array(
+        'lixiangniandaijn'=>array( //ok
+            0=>'/<ul id="J_UlThumb" class="tb-thumb tb-clearfix">(.*?)<\/ul>/s',
+            1=>'/<img src="(.*?)_60x60.jpg" \/>/',
+        ),
+        'lekuchuangxiang'=>array( //ok
+            0=>'/<ul id="J_UlThumb" class="tb-thumb tb-clearfix">(.*?)<\/ul>/s',
+            1=>'/<img src="(.*?)_60x60.jpg" \/>/',
+        ),
+        'diqigongshe'=>array( //ok
+            0=>'/<ul id="J_UlThumb" class="tb-thumb tb-clearfix">(.*?)<\/ul>/s',
+            1=>'/<img src="(.*?)_60x60.jpg" \/>/',
+        ),
+    );
+
+    function img()
+    {
+        $this->load->database();
+        $range = array('lixiangniandaijn','lekuchuangxiang','diqigongshe');
+        foreach($range as $shop)
+        {
+            $list = $this->db->get_where('wx_taobao_product_link', array('shop_domain'=>$shop))->result_array();
+            $match = $this->match[$shop];
+            foreach($list as $v)
+            {
+                $html = $this->get_content($shop, $v['id']);
+                $matches = array();
+                preg_match($match[0], $html, $matches);
+                //isset($matches[1]) && $info['intro'] = trim($matches[1]);
+                if(isset($matches[1]) && $matches[1])
+                {
+                    preg_match_all($match[1], $matches[1], $out);
+                    if(isset($out[1]) && $out[1])
+                    {
+                        foreach($out[1] as $img)
+                        {
+                            $this->db->insert('taobao_product_img_2',array('link_id'=>$v['id'], 'name'=>$img, 'shop'=>$shop));
+                        }
+                    }
+                }
+                echo $v['id'], "\n";
+            }
+        }
+    }
 }
