@@ -620,7 +620,6 @@ function authcode($string, $operation = 'DECODE', $expiry = 0, $key = '')
 	} else {
 		return $keyc.str_replace('=', '', base64_encode($result));
 	}
-
 }
 
 function url($string, $prefix='base')
@@ -629,14 +628,47 @@ function url($string, $prefix='base')
     return $url . $string;
 }
 
-function copyImg($source_file, $new_width, $new_height, $new_file_name=null, $quality = 90)
+/**
+ * @param $source_file         源文件
+ * @param $new_width           输出文件宽度
+ * @param $new_height          输出文件高度
+ * @param null $new_file_name  输出文件地址
+ * @param int $quality         品质0-100
+ * @param int $keep_ratio      高宽比 0表示原样输出
+ * @return bool
+ */
+function copyImg($source_file, $new_width, $new_height, $new_file_name=null, $quality = 90, $keep_ratio = 0)
 {
-//    list($width, $height) = getimagesize($source_file);
-//    $type = strtolower(substr(strrchr($source_file, "."),1));
     list($width, $height, $type) = getimagesize($source_file);
-    $type = image_type_to_extension($type);
 
-    switch($type){
+    $_new_width = $new_width;
+    $_new_height = $new_height;
+    $skewing_x = $skewing_y = 0;
+
+    if ($keep_ratio != 0) {
+        $ratio = round(($height / $width) * 10);
+        if ($ratio < 12) {
+            if ($new_width > 0) {
+                $_new_width = (int)($new_height / ($height / $width));
+            } else {
+                $new_width = (int)($height / $keep_ratio);
+                $_new_width = $width;
+                $new_height = $_new_height = $height;
+            }
+            $skewing_x = (int)(($_new_width - $new_width) / 2);
+        } elseif ($ratio > 12) {
+            if ($new_height > 0) {
+                $_new_height = (int)($new_width * ($height / $width));
+            } else {
+                $new_height = (int)($width * $keep_ratio);
+                $_new_height = $height;
+                $new_width = $_new_width = $width;
+            }
+            $skewing_y = (int)(($_new_height - $new_height) / 2);
+        }
+    }
+    //var_dump($new_width, $new_height, $_new_width, $_new_height);
+    switch (image_type_to_extension($type)) {
         case '.bmp':
             $source = imagecreatefromwbmp($source_file);
             break;
@@ -652,41 +684,23 @@ function copyImg($source_file, $new_width, $new_height, $new_file_name=null, $qu
             break;
     }
 
-    if($new_width && $new_height)
-    {
-        $thumb = imagecreatetruecolor($new_width, $new_height);	//$source = imagecreatefromjpeg($source_file);
-        imagecopyresampled($thumb, $source, 0, 0, 0, 0, $new_width, $new_height, $width, $height);	// Output
-    }
-    else
-    {
+    if ($new_width && $new_height) {
+        $thumb = imagecreatetruecolor($new_width, $new_height);
+        imagecopyresampled($thumb, $source, -($skewing_x), -($skewing_y), 0, 0, $_new_width, $_new_height, $width, $height);
+    } else {
         $thumb = $source;
     }
 
-//    switch ($type) {
-//        case 'bmp':
-//            imagewbmp($thumb, $new_file_name, $quality);
-//            break;
-//        case 'gif':
-//            imagegif($thumb, $new_file_name, $quality);
-//            break;
-//        case 'png':
-//            imagepng($thumb, $new_file_name, $quality);
-//            break;
-//        case 'jpeg':
-//        case 'jpg':
-//            imagejpeg($thumb, $new_file_name, $quality);
-//            break;
-//    }
-
     imagejpeg($thumb, $new_file_name, $quality);
-	return true;
+    return true;
 }
 
-function intToPath($id) {
-	$id = (int)$id;
-    if($id < 1)return false;
-    preg_match("/(\d{1,2})(\d{0,2})/","{$id}", $matches);
-	return $matches[1] . '/' . $matches[1].$matches[2] . '/' . $id . '/';
+function intToPath($id)
+{
+    $id = (int)$id;
+    if ($id < 1) return false;
+    preg_match("/(\d{1,2})(\d{0,2})/", "{$id}", $matches);
+    return $matches[1] . '/' . $matches[1] . $matches[2] . '/' . $id . '/';
 }
 
 /* 格式化产品价格 数据库中存储的价格为分 $type为获取单位：1 元， 2 角， 3 分*/
@@ -709,11 +723,19 @@ function productURL($pid)
     return config_item('base_url').'product/'.$pid;
 }
 
-function p($variable, $dump=false)
+function p($variable)
 {
     echo '<pre>';
-    $dump ? var_dump($variable):print_r($variable);
+    print_r($variable);
     echo '</pre>';
 }
+
+function d($variable)
+{
+    echo '<pre>';
+    var_dump($variable);
+    echo '</pre>';
+}
+
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
