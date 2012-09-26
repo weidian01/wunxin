@@ -135,7 +135,7 @@ class import extends MY_Controller
             $images = $this->db->get_where('taobao_product_img_2', array('link_id'=>$i['link_id']))->result_array();
             foreach($images as $img)
             {
-                $source_file = '/data/m_data/images/' . intToPath($img['id']) . $img['id'] . '.jpg';
+                $source_file = '/data/m_data/append_image/' . intToPath($img['id']) . $img['id'] . '.jpg';
                 $target_path = '/data/www/wunxin/web/upload/product/' . intToPath($i['img_id']);
                 recursiveMkdirDirectory($target_path);
                 $img_name = md5("{$i['img_id']}-{$img['id']}");
