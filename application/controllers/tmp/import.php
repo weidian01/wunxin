@@ -144,8 +144,8 @@ class import extends MY_Controller
                 copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
                 copyImg($source_file, 350, 420, str_replace($img_name.'.jpg', $img_name.'_M.jpg', $target_file), $quality = 100, 1.2);
                 copyImg($source_file, 60, 60, str_replace($img_name.'.jpg', $img_name.'_S.jpg', $target_file), $quality = 90, 1.2);
-                copyImg($source_file, 164, 197, str_replace($img_name.'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
-                copyImg($source_file, 50, 50, str_replace($img_name.'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
+                //copyImg($source_file, 164, 197, str_replace($img_name.'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
+                //copyImg($source_file, 50, 50, str_replace($img_name.'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
                 $this->db->insert('product_photo', array('pid'=>$i['img_id'], 'img_addr'=>($img_name . '.jpg'), 'is_default'=>0, 'create_time'=>date('Y-m-d H:i:s')));
             }
             echo $i['img_id'],"\n";
