@@ -71,12 +71,12 @@ class import extends MY_Controller
                 $target_path = '/data/www/wunxin/web/upload/product/' . intToPath($v['pid']);
                 recursiveMkdirDirectory($target_path);
                 $target_file = $target_path . (md5($v['pid']) . '.jpg');
-                copyImg($source_file, 0, 0, $target_file);
-                copyImg($source_file, 0, 0, $target_file, $quality = 90, 1.2);
-                copyImg($source_file, 350, 420, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_M.jpg', $target_file));
-                copyImg($source_file, 60, 60, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_S.jpg', $target_file));
-                copyImg($source_file, 164, 197, str_replace(md5($v['pid']).'.jpg', 'default.jpg', $target_file));
-                copyImg($source_file, 50, 50, str_replace(md5($v['pid']).'.jpg', 'icon.jpg', $target_file));
+                //copyImg($source_file, 0, 0, $target_file);
+                copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
+                copyImg($source_file, 350, 420, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_M.jpg', $target_file), $quality = 100, 1.2);
+                copyImg($source_file, 60, 60, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_S.jpg', $target_file), $quality = 90, 1.2);
+                copyImg($source_file, 164, 197, str_replace(md5($v['pid']).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
+                copyImg($source_file, 50, 50, str_replace(md5($v['pid']).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
                 $this->db->insert('product_photo', array('pid'=>$v['pid'], 'img_addr'=>(md5($v['pid']) . '.jpg'), 'is_default'=>1, 'create_time'=>date('Y-m-d H:i:s')));
                 $this->db->insert('product',$v);
             }
