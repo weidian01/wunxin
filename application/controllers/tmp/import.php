@@ -119,4 +119,16 @@ class import extends MY_Controller
         $this->db->select('size_id, abbreviation');
         return $this->db->get_where('size', array('type'=>$type, 'name'=>$name))->row_array();
     }
+
+    function img()
+    {
+        $this->load->helper('directory');
+        $this->load->database();
+        $this->db->select('d.link_id as link_id, i.id as img_id');
+        $this->db->from('wx_taobao_product_img i');
+        $this->db->join('wx_taobao_product_data d', 'i.link_id=d.id', 'left');
+        //select d.link_id as link_id, i.id as img_id from `wx_taobao_product_img` i left join `wx_taobao_product_data` d on i.link_id=d.id
+        $r = $this->db->get()->result_array();
+        p($r);
+    }
 }
