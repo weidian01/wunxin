@@ -81,7 +81,7 @@ class import extends MY_Controller
                 $this->db->insert('product',$v);
             }
             echo $v['pid'],"\n";
-            die;
+            //die;
         }
     }
 
