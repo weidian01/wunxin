@@ -72,6 +72,7 @@ class import extends MY_Controller
                 recursiveMkdirDirectory($target_path);
                 $target_file = $target_path . (md5($v['pid']) . '.jpg');
                 copyImg($source_file, 0, 0, $target_file);
+                copyImg($source_file, 0, 0, $target_file, $quality = 90, 1.2);
                 copyImg($source_file, 350, 420, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_M.jpg', $target_file));
                 copyImg($source_file, 60, 60, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_S.jpg', $target_file));
                 copyImg($source_file, 164, 197, str_replace(md5($v['pid']).'.jpg', 'default.jpg', $target_file));
@@ -80,7 +81,7 @@ class import extends MY_Controller
                 $this->db->insert('product',$v);
             }
             echo $v['pid'],"\n";
-            //die;
+            die;
         }
     }
 
