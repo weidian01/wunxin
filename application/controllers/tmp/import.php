@@ -130,5 +130,11 @@ class import extends MY_Controller
         //select d.link_id as link_id, i.id as img_id from `wx_taobao_product_img` i left join `wx_taobao_product_data` d on i.link_id=d.id
         $r = $this->db->get()->result_array();
         p($r);
+        foreach($r as $i)
+        {
+            $images = $this->db->get_where('taobao_product_img_2', array('link_id'=>$i['link_id']));
+            p($images);
+            die;
+        }
     }
 }
