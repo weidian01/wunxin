@@ -132,7 +132,7 @@ class import extends MY_Controller
         //p($r);
         foreach($r as $i)
         {
-            $images = $this->db->get_where('taobao_product_img_2', array('link_id'=>$i['link_id']));
+            $images = $this->db->get_where('taobao_product_img_2', array('link_id'=>$i['link_id']))->result_array();
             p($images);
             die;
         }
