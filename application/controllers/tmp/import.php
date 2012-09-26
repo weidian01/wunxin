@@ -133,7 +133,22 @@ class import extends MY_Controller
         foreach($r as $i)
         {
             $images = $this->db->get_where('taobao_product_img_2', array('link_id'=>$i['link_id']))->result_array();
-            p($images);
+            foreach($images as $img)
+            {
+                $source_file = '/data/m_data/images/' . intToPath($img['id']) . $img['id'] . '.jpg';
+                $target_path = '/data/www/wunxin/web/upload/product/' . intToPath($i['img_id']);
+                recursiveMkdirDirectory($target_path);
+                $img_name = md5("{$i['img_id']}-{$img['id']}");
+                $target_file = $target_path . ($img_name . '.jpg');
+                //copyImg($source_file, 0, 0, $target_file);
+                copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
+                copyImg($source_file, 350, 420, str_replace($img_name.'.jpg', $img_name.'_M.jpg', $target_file), $quality = 100, 1.2);
+                copyImg($source_file, 60, 60, str_replace($img_name.'.jpg', $img_name.'_S.jpg', $target_file), $quality = 90, 1.2);
+                copyImg($source_file, 164, 197, str_replace($img_name.'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
+                copyImg($source_file, 50, 50, str_replace($img_name.'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
+                $this->db->insert('product_photo', array('pid'=>$img['id'], 'img_addr'=>($img_name . '.jpg'), 'is_default'=>0, 'create_time'=>date('Y-m-d H:i:s')));
+            }
+            echo $i['img_id'],"\n";
             die;
         }
     }
