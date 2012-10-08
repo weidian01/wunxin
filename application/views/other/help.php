@@ -39,6 +39,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     </div>
   </div>
 </div>
+<div class="clear"></div>
+</div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>

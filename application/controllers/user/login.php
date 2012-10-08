@@ -131,6 +131,11 @@ class login extends MY_Controller
         self::json_output($response);
     }
 
+    public function qqLoginCallBack()
+    {
+
+    }
+
     /**
      * 设置用户登陆cookie
      *
