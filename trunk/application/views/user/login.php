@@ -95,7 +95,21 @@
                         </td>
                     </tr>
                 </table>
+                <!--
+                <div class="other_login">
+                    <h4>其他登陆方式：</h4>
+                    <ul>
+                        <li><span class="icon_qq"></span><a href="#" style="text-decoration: none;">QQ</a></li>
+                        <li><span class="icon_sina"></span><a href="#" style="text-decoration: none;">新浪</a></li>
+                        <li><span class="icon_renren"></span><a href="#" style="text-decoration: none;">人人网</a></li>
+                        <li><span class="icon_163"></span><a href="#" style="text-decoration: none;">网易</a></li>
+                        <li><span class="icon_kx"></span><a href="#" style="text-decoration: none;">开心网</a></li>
+                        <li><span class="icon_douban"></span><a href="#" style="text-decoration: none;">豆瓣</a></li>
+                    </ul>
+                </div>
+                -->
             </div>
+
         </form>
 
         <div class="login-lef" style="text-align:left"><span class="font13">还不是万象网会员？立即注册</span>

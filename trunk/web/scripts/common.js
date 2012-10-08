@@ -887,3 +887,4 @@ wx.initLoginStatus();
 
 wx.cartGlobalInit();
 
+//var A=window.open(this.BASEURL+"/?c=login.qqlogin&a=gologin"+"&goback="+encodeURIComponent(window.location.href),"TencentLogin","directories=no, menubar=no, toolbar=no, location=no, scrollbars=no, resizable=no, status=no, width=600, height=500,top=50, left=200");
