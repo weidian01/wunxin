@@ -73,8 +73,10 @@ class product_color extends MY_Controller
             show_error('录入信息不全');
 
         if ($_FILES['image']['size'] > 0) {
+            $path = UPLOAD.'color';
+            recursiveMkdirDirectory($path);
+            $config['upload_path'] = $path;
 
-            $config['upload_path'] = UPLOAD.'color';
             $config['allowed_types'] = 'gif|jpg|png|jepg';
             $config['max_size'] = '100';
             $config['max_width'] = '1024';
