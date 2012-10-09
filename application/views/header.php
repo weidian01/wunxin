@@ -39,11 +39,15 @@
             <div class="hot-keyword">
                 <ul>
                     <li class="kw">热门搜索：</li>
-                    <li><a href="#" target="_blank">七分裤</a></li>
+                    <?php foreach ($this->search_keyword as $sk):?>
+                    <li><a href="/search?keyword=<?=$sk['title'];?>" target="_blank"><?=$sk['title'];?></a></li>
+                    <?php endforeach;?>
+                    <!--
                     <li><a href="#" target="_blank">雪纺裙</a></li>
                     <li><a href="#" target="_blank">亲子装</a></li>
                     <li><a href="#" target="_blank">哈伦裤</a></li>
                     <li><a href="#" target="_blank">吊带长裙</a></li>
+                    -->
                 </ul>
             </div>
         </div>

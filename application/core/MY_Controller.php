@@ -11,6 +11,14 @@ class MY_Controller extends CI_Controller
     function __construct()
     {
         parent::__construct();
+
+        if(! $this->input->is_ajax_request()){
+            $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+            $this->search_keyword = $this->recommend->getRecommendCategoryList(10, 5);
+
+            $this->load->model('product/Model_Product_Category', 'cate');
+            $this->channel = $this->cate->getCategroyList();
+        }
     }
 
     /**

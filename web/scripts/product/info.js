@@ -157,17 +157,21 @@
         var p_size = $('#product_size > input:eq(0)').val();
         if((typeof p_size) == 'undefined')
         {
-            alert('请选择产品尺码');
+            wx.showPop('请选择产品尺码', 'add_to_cart');
+            //alert('请选择产品尺码');
             return;
         }
         wx.jsonp(wx.base_url + "cart/addToCart", {'pid':product.pid, 'p_num':p_num, 'p_size':p_size},function(data){
+            //console.log(data);
             if(data.error == 0)
             {
-                alert('成功将产品添加到购物车中');
+                //alert('成功将产品添加到购物车中');
+                wx.addToCartLayer(product.pid, product.pname, 'add_to_cart');
                 wx.cartGlobalInit();
             }
             else
             {
+                //art.dialog({ follow: document.getElementById(bindingId), title:false, content: data.msg,padding:0 });
                 alert(data.msg);
             }
         });

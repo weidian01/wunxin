@@ -224,7 +224,7 @@ class qa extends MY_Controller
         $response  = error(20002);
         if($pid > 0)
         {
-            $response = $this->qa->getProductQAByPid($pid, $limit, $offset, 'qa_id, uid, uname, qa_title, qa_content, reply_content, reply_time, create_time', 'qa_id ASC');
+            $response = $this->qa->getProductQAByPid($pid, $limit, $offset, 'qa_id, uid, uname, title, content, reply_content, reply_time, create_time', 'qa_id ASC');
         }
         self::json_output($response , true);
     }

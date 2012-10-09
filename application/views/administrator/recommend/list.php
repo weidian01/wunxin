@@ -35,6 +35,7 @@
         <li><a href="#tab7">情侣T恤推荐</a></li>
         <li><a href="#tab8">亲子T恤推荐</a></li>
         <li><a href="#tab9">设计师推荐</a></li>
+        <li><a href="#tab10">搜索关键字推荐</a></li>
 
     </ul>
     <div class="clear"></div>
@@ -386,6 +387,37 @@
     </table>
     <div class="clear"></div>
 </div>
+
+<div class="tab-content" id="tab10">
+    <table>
+        <thead>
+        <tr>
+            <th><input class="check-all" type="checkbox"/></th>
+            <th>ID</th>
+            <th>关键字</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if (!isset ($search_keyword_recommend)) $search_keyword_recommend = array();
+        foreach ($search_keyword_recommend as $skrv) { if (empty ($skrv)) continue;?>
+        <tr>
+            <td><input type="checkbox"/></td>
+            <td><?php echo $skrv['id'];?></td>
+            <td><?php echo $skrv['title'];?></td>
+            <td><?php echo $skrv['create_time'];?></td>
+            <td>
+                <!--<a href="/administrator/article/articleEdit/<?php echo $skrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="/administrator/recommend_home/recommendDelete/<?php echo $skrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+            </td>
+        </tr>
+            <?php }?>
+        </tbody>
+    </table>
+    <div class="clear"></div>
+</div>
+
 
 <!-- End #tab2 -->
 </div>

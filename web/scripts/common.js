@@ -652,8 +652,8 @@ wx.addToCartLayer = function (pId, pName, bindingId)
     }
 
     var html = '<div class="commentDIV"> <div class="tit">商品已成功加入购物车 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="addto-goods">\
-       <div class="p-img-g"><img src="'+wx.img_url+'product/'+idToPath(pId)+'default.jpg" width="109" height="109" /></div> <div class="p-cont-g">\
-       <p><a href="#">'+pName+'</a></p><div class="p-cont-price">购物车共 '+parseInt(totalNum)+' 件宝贝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计：<span class="popfont3">'+wx.fPrice(totalPrice)+'</span>元</div>\
+       <div class="p-img-g"><a href="'+wx.productURL(pId)+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(pId)+'default.jpg" width="109" height="109" /></a></div> <div class="p-cont-g">\
+       <p><a href="'+wx.productURL(pId)+'" target="_blank">'+pName+'</a></p><div class="p-cont-price">购物车共 '+parseInt(totalNum)+' 件宝贝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计：<span class="popfont3">'+wx.fPrice(totalPrice)+'</span>元</div>\
        <div class="p-cont-btn"> <a class="goshopping" href="javascript:void(0);" onclick="wx.layerClose()">继续购物</a><a class="gocash" href="/cart/">去结算</a> </div></div></div>\
        <div class="pop-t" style="padding-top:20px;"><span class="pop-b">看过该商品的人还购买过</span><a class="pop-c" href="/">更多您可能喜欢的商品 >></a></div>\
        <ul class="pop-goods" style="padding:0px 0px 20px 20px;" id="pop-goods">\
@@ -671,7 +671,7 @@ wx.addToCartLayer = function (pId, pName, bindingId)
         var fHtml = '';
         for (var i in fData) {
             fHtml += '<li><div class="pop-img"><a href="'+wx.productURL(fData[i].pid)+'" target="_blank">' +
-                '<img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="70" alt="aaaa" /></a></div>\
+                '<img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="84" alt="aaaa" /></a></div>\
               <p><a href="'+wx.productURL(fData[i].pid)+'" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'" target="_blank">'+fData[i].pname.substring(0,15)+'</a></p>\
               <span class="popfont2">售价￥'+wx.fPrice(fData[i].sell_price)+'</span></li>';
         }
@@ -738,9 +738,9 @@ wx.changeLRLayer = function (lr)
                   <td width="40%"> <input class="popinput3" type="text" name="verify_code" id="verify_code_id" onkeydown="user.checkRegisterIsSubmit(event);" onblur="user.checkVerifyCode();"/>\
                             <br/><span class="" id="verify_code_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;font-size:12px;">请输入验证码</span></td>\
                           <td width="60%" valign="top"><img src="/user/register/verifyCode" alt="" id="verify_code" onclick="user.refreshVerifyCode()"/><br/>\
-                            <span class="mstk">看不请</span><a onclick="user.refreshVerifyCode()" href="javascript:void(0);">，换一张</a></td> </tr> </table></td>\
+                            <span class="mstk">看不请，</span><a onclick="user.refreshVerifyCode()" href="javascript:void(0);">换一张</a></td> </tr> </table></td>\
                     <td valign="top"><!--<span class="rg-yes" style="display:none;"></span><span class="rg-no"></span>--></td> </tr>\
-                  <tr> <td align="right" valign="top">&nbsp;</td> <td><input id="agree_id" type="checkbox" checked="checked" name="agree"><strong>请阅读《<a href="#">万象服务条款</a>》 </strong></td>\
+                  <tr> <td align="right" valign="top">&nbsp;</td> <td><input id="agree_id" type="checkbox" checked="checked" name="agree"><strong>请阅读《<!--<a href="#">-->万象服务条款<!--</a>-->》 </strong></td>\
                     <td valign="top">&nbsp;</td> </tr>\
                   <tr> <td align="right" valign="top">&nbsp;</td> <td><input name="input2" type="button" class="cmt-button" value="注 册 "  onclick="user.submitRegisterForm()"/></td>\
                     <td valign="top">&nbsp;</td> </tr> </table> </div> ';
