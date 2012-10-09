@@ -1,4 +1,4 @@
-<?php include('/../left.php'); ?>
+<?php include(APPPATH.'views/administrator/left.php');?>
 <div id="main-content">
 <!-- Main Content Section with everything -->
 <noscript>
@@ -428,7 +428,7 @@
 <!-- End .content-box -->
 <div class="clear"></div>
 
-<?php require(dirname(__FILE__) . '/../footer.php'); ?>
+<?php include(APPPATH.'views/administrator/footer.php');?>
 <!-- End #footer -->
 </div>
 <!-- End #main-content -->
