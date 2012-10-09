@@ -44,7 +44,7 @@
                             <select name="parent_id">
                                 <option value="0">顶级分类</option>
                                 <?php foreach($color as $v):?>
-                                <option <?php if($parent_id == $v['color_id']):?>selected="selected"<?php endif;?> value="<?=$v['color_id']?>"><?=$v['china_name']?></option>
+                                <option <?php if(isset ($parent_id) && $parent_id == $v['color_id']):?>selected="selected"<?php endif;?> value="<?=$v['color_id']?>"><?=$v['china_name']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
