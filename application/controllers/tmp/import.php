@@ -164,8 +164,8 @@ class import extends MY_Controller
         $r = $this->db->get()->result_array();
 
         foreach ($r as $v) {
-            $source_file = '/data/m_data/images/' . intToPath($v['pid']) . $v['pid'] . '.jpg';
-            $target_path = '/data/www/wunxin/web/upload/product/' . intToPath($v['pid']);
+            echo $source_file = '/data/m_data/images/' . intToPath($v['pid']) . $v['pid'] . '.jpg';
+            echo $target_path = '/data/www/wunxin/web/upload/product/' . intToPath($v['pid']);
             recursiveMkdirDirectory($target_path);
             $target_file = $target_path . (md5($v['pid']) . '.jpg');
             //copyImg($source_file, 0, 0, $target_file);
