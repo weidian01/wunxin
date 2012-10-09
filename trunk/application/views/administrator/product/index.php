@@ -80,7 +80,7 @@
                         <input type="checkbox"/>
                     </td>
                     <td><?=$item['pid']?></td>
-                    <td><?=$item['pname']?></td>
+                    <td><a href="<?=productURL($item['pid'])?>" target="_blank"><?=$item['pname']?></a></td>
                     <td><?=fPrice($item['sell_price'])?></td>
                     <td><?=fPrice($item['market_price'])?></td>
                     <td><?=fPrice($item['cost_price'])?></td>
