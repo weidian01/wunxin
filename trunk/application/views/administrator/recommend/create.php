@@ -39,6 +39,7 @@
         <li><a href="#tab7">情侣T恤推荐</a></li>
         <li><a href="#tab8">亲子T恤推荐</a></li>
         <li><a href="#tab9">设计师推荐</a></li>
+        <li><a href="#tab10">搜索关键字推荐</a></li>
 
     </ul>
     <div class="clear"></div>
@@ -425,6 +426,33 @@
     <hr/>
     <br/>
     <img src="/images/recommend/designer.png" alt="示例图"><b style="color: red;">示例图</b>
+    <br/><b style="color: red;"><!--Notes: 如果排放ID为8，只需要填写产品ID即可。--></b> <br/>
+
+    <div class="clear"></div>
+</div>
+
+<div class="tab-content" id="tab10">
+    <form action="/administrator/recommend_home/keywordRecommendSave" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <p>
+                <label>关键字</label>
+                <input class="text-input small-input" type="text" value="" name="keyword">输入搜索关键字，如：T恤，卫衣
+                <br>
+            </p>
+
+            <p>
+                <label>排序</label>
+                <input class="text-input small-input" type="text" value="" name="sort">
+                <br>
+            </p>
+            <input class="button" type="submit" value="Submit"/>
+        </fieldset>
+
+        <div class="clear"></div>
+    </form>
+    <hr/>
+    <br/>
+    <img src="/images/recommend/search_keyword.png" alt="示例图"><b style="color: red;">示例图</b>
     <br/><b style="color: red;"><!--Notes: 如果排放ID为8，只需要填写产品ID即可。--></b> <br/>
 
     <div class="clear"></div>

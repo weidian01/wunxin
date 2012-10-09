@@ -45,6 +45,7 @@ class recommend_home extends MY_Controller
         $family_recommend = $this->recommend->getRecommendCategoryList(7, 1000);
         $designer_recommend = $this->recommend->getRecommendCategoryList(8, 1000);
         $broadcast_recommend = $this->recommend->getRecommendCategoryList(9, 1000);
+        $searchKeyWord_recommend = $this->recommend->getRecommendCategoryList(10, 1000);
 
         $data = array(
             'day_recommend' => $day_recommend,
@@ -56,6 +57,7 @@ class recommend_home extends MY_Controller
             'family_recommend' => $family_recommend,
             'designer_recommend' => $designer_recommend,
             'broadcast_recommend' => $broadcast_recommend,
+            'search_keyword_recommend' => $searchKeyWord_recommend,
         );
 
         $this->load->view('/administrator/recommend/list', $data);
@@ -545,6 +547,33 @@ class recommend_home extends MY_Controller
         $lastId = $this->recommend->recommendAdd($data);
         if (!$lastId) {
             show_error('添加设计推荐失败');
+        }
+
+        redirect('/administrator/recommend_home/recommendList');
+    }
+
+    public function keywordRecommendSave()
+    {
+        $keyword = $this->input->get_post('keyword');
+        $sort = $this->input->get_post('sort');
+        if (empty ($keyword)) {
+            show_error('参数错误');
+        }
+
+        $data = array(
+            'cid' => 10,
+            'title' => $keyword,
+            'link' => '',
+            'img_addr' => '',
+            'pid' => '',
+            'sort' => $sort,
+            'emission' => '',
+        );
+
+        $this->load->model('recommend/Model_Home_Recommend', 'recommend');
+        $lastId = $this->recommend->recommendAdd($data);
+        if (!$lastId) {
+            show_error('添加搜索关键词失败');
         }
 
         redirect('/administrator/recommend_home/recommendList');

@@ -60,16 +60,23 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="goods-name">
 
       <h1><?=$product['pname']?> <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
-      <span class="font3">2012新品 </span></div>
-    <p>商品编号：CY0569852310000<br/>
+      <!--<span class="font3"><?=date('Y');?>新品 </span>--></div>
+    <p><!--商品编号：CY0569852310000<br/>-->
 
       特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?=sprintf('%.2f', $product['sell_price']/100)?></span><br/>
       原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?=sprintf('%.2f', $product['market_price']/100)?></span></p>
 
     <div class="pf">
       <div class="pftxt">商品评分：</div>
-      <div class="pfstar"><span class="emptystar"></span><span class="emptystar"></span><span class="emptystar"></span><span class="emptystar"></span><span class="emptystar"></span>
-        <div class="pfen"><span>0</span>分&nbsp;&nbsp;&nbsp;<a href="#anchorComment">（<span>0</span>条评论）</a></div>
+      <div class="pfstar">
+          <span class="emptystar"></span>
+          <span class="emptystar"></span>
+          <span class="emptystar"></span>
+          <span class="emptystar"></span>
+          <span class="emptystar"></span>
+        <div class="pfen">
+            <span>0</span>分&nbsp;&nbsp;&nbsp;<a href="#anchorComment">（<span>0</span>条评论）</a>
+        </div>
       </div>
     </div>
     <div class="size">
@@ -115,7 +122,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </div>
       </div>
       <div class="addcart">
-          <a class="addcart-btn" href="javascript:;" onclick="addToCart();"></a>
+          <a class="addcart-btn" href="javascript:;" onclick="addToCart();" id="add_to_cart"></a>
+          <!--<a class="addcart-btn" href="javascript:;" onclick="wx.addToCartLayer(<?=$product['pid'];?>, '<?=$product['pname'];?>', 'add_to_cart');" id="add_to_cart"></a>-->
           <a class="sc-btn" href="javascript:;" onclick="product.favoriteProduct(<?=$product['pid']?>, 'but_favorite')" id="but_favorite"></a>
 
           <div class="share" style="float: right;">
@@ -160,11 +168,12 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 
 
 
+    <!--
   <div class="designer">
     <div class="ginfo-title" style="border-bottom:0px;">
       <div class="dinfo-tle1" style="background-position:0px 0px;"><span onclick="showtab('dsnbox','1','4')" style="background-position:right -66px; color:#fff;">设计师介绍</span></div>
       <div class="dinfo-tle1"><span onclick="showtab('dsnbox','2','4');getDesignByUser(<?=$product['uid']?>)">设计师作品</span></div>
-      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','3','4');getProductByUser(<?=$product['uid']?>)">设计师作品</span></div>
+      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','3','4');getProductByUser(<?=$product['uid']?>)">设计师产品</span></div>
     </div>
     <div class="d-box" id="dsnbox1">
       <div class="desbox">
@@ -198,12 +207,14 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       </div>
     </div>
     <div class="d-box" id="dsnbox2" style="display:none;">
-      <div class="viewhis"><!--设计师作品--></div>
+      <div class="viewhis"><!--设计师作品</div>
     </div>
     <div class="d-box" id="dsnbox3" style="display:none;">
-      <div class="viewhis"><!--设计师产品--></div>
+      <div class="viewhis"><!--设计师产品</div>
     </div>
   </div>
+    -->
+    <br/>
   <div class="viewhistory pad11" style="display:none">
     <div class="tit"><span class="font18">同类产品推荐</span></div>
     <div class="viewhis" id="tlcptj"></div>
