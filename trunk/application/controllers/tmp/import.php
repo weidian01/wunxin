@@ -176,7 +176,7 @@ class import extends MY_Controller
             copyImg($source_file, 50, 50, str_replace(md5($v['pid']).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
 //die;
 
-
+            echo $v['pid']."\n";
             //copyImg();
         }
 
