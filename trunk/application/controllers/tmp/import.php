@@ -158,7 +158,7 @@ class import extends MY_Controller
         $this->load->database();
 
         //id, pid, img_addr, is_default, create_time
-        $this->db->select('count(*)');
+        $this->db->select('id, pid, img_addr, is_default, create_time');
         $this->db->from('wx_product_photo');
         $this->db->where('is_default', '1');
         $r = $this->db->get()->result_array();
