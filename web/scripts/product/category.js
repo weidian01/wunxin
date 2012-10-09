@@ -13,27 +13,28 @@ $(function ($) {
     $('.goodsbox img.lazy').lazyload({effect:"fadeIn"});
 
     (function(){
-            wx.jsonp(wx.base_url + "product/ajax/hotComment", {}, function (data) {
-                var html = '';
-                $.each(data, function (i, item) {
-                    html += '<div class="bdan2">\
-                              <table width="95%" border="0" cellspacing="0" cellpadding="0">\
-                                <tr>\
-                                  <td><a href="'+wx.productURL(item.pid)+'" target="_blank" title="'+item.pname+'">'+item.pname.substring(0, 10)+'</a></td>\
-                                  <td><span class="font4">￥'+wx.fPrice(item.sell_price)+'</span></td>\
-                                </tr>\
-                              </table>\
-                              <div class="bdimg">\
-                              <a href="'+wx.productURL(item.pid)+'" target="_blank" title="'+item.pname+'">\
-                              <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="50" height="50" title="'+item.pname+'"/>\
-                              </a></div>\
-                              <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
-                                '+item.content+'</div>\
-                            </div>';
-                });
-                $('#hotComment').html(html).show();
-                $('img.lazy').lazyload({effect:"fadeIn"});
+        wx.jsonp(wx.base_url + "product/ajax/hotComment", {}, function (data) {
+            var html = '';
+            console.log(data);
+            $.each(data, function (i, item) {
+                html += '<div class="bdan2">\
+                          <table width="95%" border="0" cellspacing="0" cellpadding="0">\
+                            <tr>\
+                              <td><a href="'+wx.productURL(item.pid)+'" target="_blank" title="'+item.pname+'">'+item.pname.substring(0, 10)+'</a></td>\
+                              <td><span class="font4">￥'+wx.fPrice(item.sell_price)+'</span></td>\
+                            </tr>\
+                          </table>\
+                          <div class="bdimg">\
+                          <a href="'+wx.productURL(item.pid)+'" target="_blank" title="'+item.pname+'">\
+                          <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="50" height="50" title="'+item.pname+'"/>\
+                          </a></div>\
+                          <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>\
+                            '+item.content+'</div>\
+                        </div>';
             });
+            $('#hotComment').html(html).show();
+            $('img.lazy').lazyload({effect:"fadeIn"});
+        });
      })()
 
 
