@@ -279,6 +279,7 @@
 .goods-cb .goods-cbox p {
     line-height: 18px;
     padding: 5px 0px;
+    display: block; height: 36px;overflow:hidden;
 }
 
 .viewhistory {
