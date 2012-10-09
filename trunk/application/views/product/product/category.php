@@ -170,7 +170,7 @@ $(document).ready(function(){
             <a href="<?=productURL($product['pid'])?>" target="_blank">
                 <img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" /></a>
             <p><?=$product['pname']?></p>
-            <span class="font4">售价 ￥<?=fPrice($product['sell_price'])?></span>
+            <span class="font19">售价 ￥<?=fPrice($product['sell_price'])?></span>
         </div>
       </div>
     <?php endforeach;?>
