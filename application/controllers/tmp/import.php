@@ -172,7 +172,7 @@ class import extends MY_Controller
             copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
             copyImg($source_file, 350, 420, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_M.jpg', $target_file), $quality = 100, 1.2);
             copyImg($source_file, 60, 60, str_replace(md5($v['pid']).'.jpg', md5($v['pid']).'_S.jpg', $target_file), $quality = 90, 1.2);
-            copyImg($source_file, 164, 220, str_replace(md5($v['pid']).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
+            copyImg($source_file, 164, 197, str_replace(md5($v['pid']).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
             copyImg($source_file, 50, 50, str_replace(md5($v['pid']).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
 //die;
 
