@@ -9,6 +9,11 @@
  */
 class product extends MY_Controller
 {
+    public $searchType = array(
+        1 => '商品ID',
+        2 => '商品名称',
+    );
+
     public function __construct()
     {
         parent::__construct();
@@ -45,6 +50,35 @@ class product extends MY_Controller
         }
         //print_r($data);
         $this->load->view('administrator/product/index', array('list' => $data, 'page' => $this->pagination->create_links()));
+    }
+
+    /**
+     * 搜索产品
+     */
+    public function search()
+    {
+        $keyword = $this->input->get_post('keyword');
+        $sType = $this->input->get_post('s_type');
+
+        if (empty ($keyword) || empty ($sType)) {
+            show_error('搜索参数不全');
+        }
+
+        $this->load->model('product/Model_Product', 'product');
+        switch ($sType) {
+            case 1:
+                $data = $this->product->getProductById($keyword);
+                $productData[] = empty ($data) ? null : $data;
+                break;
+            case 2:
+                $productData = $this->product->getProductList(1000, 0,'*',' pname like \'%'.$keyword.'%\'');//($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
+                break;
+            default:
+                $data = $this->product->getProductById($keyword);
+                $productData[] = empty ($data) ? null : $data;
+        }
+
+        $this->load->view('/administrator/product/index', array('list' => $productData, 'searchType' => $this->searchType, 'sType' => $sType, 'keyword' => $keyword));
     }
 
     /**
