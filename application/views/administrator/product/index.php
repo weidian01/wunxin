@@ -20,7 +20,27 @@
     <li><a class="shortcut-button" href="<?=site_url('administrator/product/index')?>"><span>产品列表</span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
-<div class="clear"></div>
+    <div class="clear">
+        <form action="<?=url('administrator/product/search');?>" method="post">
+            <p>
+                <label><b>输入关键字</b></label>
+                <input class="text-input small-input" type="text" id="small-input" name="keyword"
+                       value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+                <select name="s_type" class="small-input">
+                    <?php if (!isset ($searchType)) { $searchType = array(); }
+                    foreach ($searchType as $sk => $sv) { ?>
+                        <?php if (!isset($sType)) $sType = '';
+                        if ($sType == $sk) { ?>
+                            <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                            <?php } else { ?>
+                            <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                            <?php } ?>
+                        <?php }?>
+                </select>
+                <input type="submit" value="搜索">
+            </p>
+        </form>
+    </div>
 <!-- End .clear -->
 <div class="content-box">
     <!-- Start Content Box -->
@@ -43,6 +63,7 @@
                     <th>
                         <input class="check-all" type="checkbox"/>
                     </th>
+                    <th>商品ID</th>
                     <th>商品名称</th>
                     <th>售价</th>
                     <th>市场价</th>
@@ -53,15 +74,16 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach ($list as $item): ?>
+                <?php if (empty ($list) || !is_array($list)) $list = array();foreach ($list as $item): ?>
                 <tr>
                     <td>
                         <input type="checkbox"/>
                     </td>
+                    <td><?=$item['pid']?></td>
                     <td><?=$item['pname']?></td>
-                    <td><?=$item['sell_price']?></td>
-                    <td><?=$item['market_price']?></td>
-                    <td><?=$item['cost_price']?></td>
+                    <td><?=fPrice($item['sell_price'])?></td>
+                    <td><?=fPrice($item['market_price'])?></td>
+                    <td><?=fPrice($item['cost_price'])?></td>
                     <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
                     <td><?=$item['stock']?></td>
                     <td><a href="<?php echo site_url("administrator/product/edit/{$item['pid']}")?>"><img
