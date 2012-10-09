@@ -62,6 +62,7 @@ class product_color extends MY_Controller
 
     public function save()
     {
+        $this->load->helper('directory');
         $data['parent_id'] = $this->input->post('parent_id');
         $data['china_name'] = $this->input->post('china_name');
         $data['english_name'] = $this->input->post('english_name');
