@@ -39,7 +39,8 @@
             <div class="hot-keyword">
                 <ul>
                     <li class="kw">热门搜索：</li>
-                    <?php foreach ($this->search_keyword as $sk):?>
+                    <?php if (empty($this->search_keyword) || !is_array($this->search_keyword)) $this->search_keyword = array();
+                    foreach ($this->search_keyword as $sk):?>
                     <li><a href="/search?keyword=<?=$sk['title'];?>" target="_blank"><?=$sk['title'];?></a></li>
                     <?php endforeach;?>
                     <!--
