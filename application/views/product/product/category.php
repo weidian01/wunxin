@@ -167,11 +167,11 @@ $(document).ready(function(){
       <?php foreach($products as $product):?>
       <div class="goods-cb">
         <div class="goods-cbox">
-            <a href="<?=productURL($product['pid'])?>" target="_blank">
+            <a href="<?=productURL($product['pid'])?>" target="_blank" title="<?=$product['pname']?>">
                 <img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" />
             </a>
             <span class="font19">￥<?=fPrice($product['sell_price'])?></span>
-            <p><?=$product['pname']?></p>
+            <p><a href="<?=productURL($product['pid'])?>" target="_blank" title="<?=$product['pname']?>"><?=$product['pname']?></a></p>
 
         </div>
       </div>
