@@ -85,7 +85,7 @@
                     <td><?=fPrice($item['market_price'])?></td>
                     <td><?=fPrice($item['cost_price'])?></td>
                     <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
-                    <td><?=$item['stock']?></td>
+                    <td><?=empty ($item['stock']) ? '0' : $item['stock']?></td>
                     <td><a href="<?php echo site_url("administrator/product/edit/{$item['pid']}")?>"><img
                         src="/images/icons/pencil.png" alt="Edit"/></a> <a
                         href="<?php echo site_url("administrator/product/del/{$item['pid']}")?>"><img
