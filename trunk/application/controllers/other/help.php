@@ -33,4 +33,29 @@ class help extends MY_Controller
 
         $this->load->view('other/help', array('data' => $data));
     }
+
+    public function is_valid()
+    {
+        $id = intval($this->input->get_post('id'));
+        $type = intval($this->input->get_post('type'));
+
+        $response = array('error' => '0', 'msg' => '登陆成功', 'code' => 'login_success');
+
+        do {
+            if (empty ($id) ) {
+                $response = error(99006);
+                break;
+            }
+
+            $this->load->model('other/Model_Help', 'help');
+            $status = $this->help->isValid($id, $type);
+
+            if (!$status) {
+                $response = error(99007);
+                break;
+            }
+        } while (false);
+
+        echo self::json_output($response);
+    }
 }

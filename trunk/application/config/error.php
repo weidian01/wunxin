@@ -295,8 +295,12 @@ $error[99002] = array('error' => '99002', 'msg' => '添加系统建议与意见�
 $error[99003] = array('error' => '99003', 'msg' => '添加系统建议与意见参数不全', 'code' => 'add_system_proposal_parameter_failure');
 $error[99004] = array('error' => '99004', 'msg' => '参数为空', 'code' => 'parameter_failure');
 $error[99005] = array('error' => '99005', 'msg' => '获取成功', 'code' => 'get_success');
+$error[99006] = array('error' => '99006', 'msg' => '参数不全', 'code' => 'parameter_failure');
+$error[99007] = array('error' => '99007', 'msg' => '提交失败', 'code' => 'submit_failure');
+
 
 $error[99999] = array('error' => '99999', 'msg' => '未知错误', 'code' => 'unknown_error');
+
 
 
 
