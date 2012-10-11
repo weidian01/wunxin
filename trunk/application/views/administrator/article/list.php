@@ -77,7 +77,7 @@
                         <td><a href="/other/help/index/<?php echo $v['id'];?>"><?php echo $v['title'];?></a></td>
                         <td><?php echo mb_substr($v['keywords'], 0, 20, 'utf-8');?></td>
                         <td><?php echo mb_substr($v['descr'], 0, 20, 'utf-8');?></td>
-                        <td><?php echo mb_substr(strip_tags($v['content']), 0, 20, 'utf-8');?></td>
+                        <td><?php echo mb_substr(strip_tags(htmlspecialchars_decode($v['content'])), 0, 20, 'utf-8');?></td>
                         <td><?php echo $v['visiblity'] ? '显示' : '不显示';?></td>
                         <td><?php echo $v['top'] ? '置顶' : '不置顶';?></td>
                         <td><?php echo $v['sort'];?></td>
