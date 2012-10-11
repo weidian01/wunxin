@@ -47,7 +47,8 @@ class main extends MY_Controller
         $design_recommend = $this->recommend->query('select * from wx_recommend where cid=2 order by sort desc limit 1');
         $tmpDesignId = explode(',', $design_recommend[0]['pid']);
         $this->load->model('design/Model_Design', 'design');
-        $design_recommend_data = $this->design->getDesignByDid($tmpDesignId, 'did, dname');
+        //$design_recommend_data = $this->design->getDesignByDid($tmpDesignId, 'did, dname');
+        $design_recommend_data = $this->product->getProductById($tmpDesignId, 'pid,pname,market_price,sell_price');
         //echo '<pre>';print_r($design_recommend);exit;
 
         //广告推荐
