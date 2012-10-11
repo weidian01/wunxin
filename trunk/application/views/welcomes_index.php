@@ -89,8 +89,8 @@
             <ul>
                 <?php foreach ($design_recommend_data as $drdv) {?>
                 <li class="norm">
-                    <a href="#" class="designimg" title="<?=$drdv['dname']?>" target="_blank">
-                        <img alt="<?=$drdv['dname']?>" src="<?=config_item('static_url')?>upload/design/<?=str_replace('\\', '/', intToPath($drdv['did']))?>default.jpg" width="180" height="216"/>
+                    <a href="<?=productURL($drdv['pid'])?>" class="designimg" title="<?=$drdv['pname']?>" target="_blank">
+                        <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="180" height="216"/>
                     </a>
                 </li>
                 <?php }?>
