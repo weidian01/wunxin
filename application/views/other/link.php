@@ -6,7 +6,8 @@
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css" />
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/comm.js"></script>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
 <!--[if lt IE 7]>
 <script type="text/javascript">
 EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
@@ -123,33 +124,36 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </dl>
     </div>
     <div class="sqlinksLef sqlinksRig">
-        <form action="/link/yqlinkop.ashx" id="yqlinksform" method="post"><h3>申请信息：</h3><span class="blank20"></span>
+        <form action="/other/link/apply" id="yqlinksform" method="post">
+            <h3>申请信息：</h3>
+            <span class="blank20"></span>
             <div class="xxLinks"><span class="linksLabel">网站名称：</span>
-                <div class="linksShuru"><input id="siteName" name="siteName" type="text" class="validate"></div>
+                <div class="linksShuru"><input id="siteName" name="site_name" type="text" class="validate"></div>
             </div>
             <div class="xxLinks"><span class="linksLabel">网站地址：</span>
-                <div class="linksShuru"><input id="siteUrl" name="siteUrl" type="text" class="validate" value=""></div>
+                <div class="linksShuru"><input id="siteUrl" name="site_addr" type="text" class="validate" value=""></div>
             </div>
             <div class="xxLinks"><span class="linksLabel">电子邮箱：</span>
-                <div class="linksShuru"><input id="siteEmail" name="siteEmail" type="text" class="validate"></div>
+                <div class="linksShuru"><input id="siteEmail" name="email" type="text" class="validate"></div>
             </div>
             <div class="xxLinks">
                 <span class="linksLabel">网站介绍：</span>
                 <div class="linksShuru">
-                    <textarea id="siteDescription" name="siteDescription" class="validate" style="resize: none;"></textarea>
+                    <textarea id="siteDescription" name="site_intro" class="validate" style="resize: none;"></textarea>
                 </div>
             </div>
-            <div class="xxLinks"><span class="linksLabel">验&nbsp;证&nbsp;码：</span>
+            <div class="xxLinks"><span class="linksLabel">验&nbsp;证&nbsp;码：&nbsp;&nbsp;</span>
                 <div class="linksShuru">
-                    <input id="input_validatecode" name="input_validatecode" type="text" style="width:50px;">
-                    <img id="img_validatecode" src="/link/validatecode.ashx" border="0" width="100px" height="25px" style="cursor: pointer; vertical-align:bottom;" alt="点击刷新验证码" title="点击刷新验证码">
+                    <input id="input_validatecode" name="verify_code" type="text" style="width:128px;">
+                    <br/>
+                    <img id="verify_code" src="/user/register/verifyCode" border="0" alt="点击刷新验证码" title="点击刷新验证码" onclick="user.refreshVerifyCode()">
                     <span class="FSVerification" style="cursor: pointer;"> 看不清？
-                        <a href="javascript:void(0);" style="color: #A00002;">换一张</a>
+                        <a href="javascript:void(0);" style="color: #A00002;" onclick="user.refreshVerifyCode()">换一张</a>
                     </span>
                 </div>
             </div>
             <span class="clear"></span>
-            <input id="submit" type="button" value="" class="tijiaosq" onclick="yqlinksubmit();">
+            <input id="submit" type="submit" value="" class="tijiaosq" onclick="yqlinksubmit();">
         </form>
     </div>
 </div>
@@ -158,7 +162,6 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <br/>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>
