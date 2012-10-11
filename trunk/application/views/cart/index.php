@@ -7,6 +7,7 @@
     <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
