@@ -20,9 +20,29 @@ class Model_Help extends MY_Model
         return empty ($data) ? null : $data;
     }
 
-
+    /**
+     * 获取分类列表
+     *
+     * @param $cId
+     */
     public function getCategoryList($cId)
     {
         $this->db->select('*')->form('article')->where('');
+    }
+
+    /**
+     * 文章是否有效
+     *
+     * @param $id
+     * @param $type
+     * @return mixed
+     */
+    public function isValid($id, $type)
+    {
+        $field = $type ? 'is_valid' : 'is_invalid';
+
+        $data = array($field => $field.'+1');
+        $this->db->where('id', $id);
+        return $this->db->set($data, '', false)->update('article');
     }
 }
