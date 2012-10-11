@@ -122,7 +122,7 @@ class register extends MY_Controller
         $code = $this->setVerifyCode();
         //$this->input->set_cookie('verify_code', $code, 60);
         $this->lib('Codeimg', array('code'=>$code));
-        $this->Codeimg->display();
+        $this->codeimg->display();
     }
 
     public function checkVerifyCode()
