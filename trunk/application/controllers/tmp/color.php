@@ -89,10 +89,10 @@ class color extends MY_Controller
                 echo '<select name="color_id" onchange="set_color(',$p['pid'],', this.value)">';
                 echo '<option value="0">选择产品色系</option>';
                 foreach ($color as $item):
-                echo '<optgroup label="',$item['china_name'],'">';
+                echo '<optgroup label="',$item['china_name'],'" >';
                     if(isset($item['children'])):
                         foreach ($item['children'] as $v):
-                            echo '<option style="background-color:',$v['code'],';" value="',$v['color_id'],'"';
+                            echo '<option style="background-color:#',$v['code'],';" value="',$v['color_id'],'"';
                                 if(isset($p['color_id']) && $p['color_id']==$v['color_id'] ):
                                     echo 'selected="selected"';
                                 endif;
