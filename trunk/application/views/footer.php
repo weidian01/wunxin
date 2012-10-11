@@ -4,26 +4,26 @@
       <div class="help-info">
         <div class="help-tit"><img src="/images/help_02.gif" width="72" height="18" alt="关于万象" /></div>
         <ul>
-          <li><a href="/other/help/index/" target="_blank">万象介绍</a></li>
+          <li><a href="/other/help/index/" target="_blank">万象网介绍</a></li>
           <li><a href="/other/help/index/" target="_blank">联系客服</a></li>
-          <li><a href="/other/help/index/" target="_blank">联系万象</a></li>
+          <li><a href="/other/help/index/" target="_blank">联系万象网</a></li>
           <li><a href="/other/help/index/" target="_blank">友情链接</a></li>
         </ul>
       </div>
       <div class="help-info">
         <div class="help-tit"><img src="/images/help_05.gif" width="71" height="18" alt="新手上路" /></div>
         <ul>
-          <li><a target="_blank" href="/other/help/index/15">购物流程</a></li>
+          <li><a target="_blank" href="/other/help/index/15">购物流程演示</a></li>
           <li><a target="_blank" href="/other/help/index/20">新用户注册</a></li>
           <li><a target="_blank" href="/other/help/index/19">用户登陆</a></li>
-          <li><a target="_blank" href="/other/help/index/16">常见问题</a></li>
+          <li><a target="_blank" href="/other/help/index/16">常见问题列表</a></li>
           <li><a target="_blank" href="/other/help/index/18">索取目录</a></li>
         </ul>
       </div>
       <div class="help-info">
         <div class="help-tit"><img src="/images/help_08.gif" width="70" height="18" alt="支付方式" /></div>
         <ul>
-          <li><a target="_blank" href="/other/help/index/31">网上支付</a></li>
+          <li><a target="_blank" href="/other/help/index/31">网上支付演示</a></li>
           <li><a target="_blank" href="/other/help/index/32">邮政汇款</a></li>
           <li><a target="_blank" href="/other/help/index/30">交易须知</a></li>
         </ul>
