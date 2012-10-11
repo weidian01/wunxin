@@ -12,14 +12,15 @@ class help extends MY_Controller
     {
         parent::__construct();
 
+        /*
         if (!$this->isLogin()) {
             //return ;
         }
-
         if(! $this->input->is_ajax_request()){
             $this->load->model('product/Model_Product_Category', 'cate');
             $this->channel = $this->cate->getCategroyList();
         }
+        //*/
     }
 
     public function index()
