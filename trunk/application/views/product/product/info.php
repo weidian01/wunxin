@@ -480,7 +480,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include APPPATH.'views/footer.php';?>
 <!-- #EndLibraryItem -->
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/artDialog.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
