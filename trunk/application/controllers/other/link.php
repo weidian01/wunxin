@@ -10,6 +10,9 @@ class link extends MY_Controller
 {
     public function index()
     {
-
+        $data = array(
+            'title' => '友情链接',
+        );
+        $this->load->view('/other/link', $data);
     }
 }
