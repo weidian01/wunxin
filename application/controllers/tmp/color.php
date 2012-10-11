@@ -84,7 +84,7 @@ class color extends MY_Controller
             echo  '<td>',$p['pname'],'</td>';
             echo  '<td>',fPrice($p['market_price']),'</td>';
             echo  '<td>',fPrice($p['sell_price']),'</td>';
-            echo  '<td style="width:200px">',"<img src=\"",config_item('static_url'),'upload/product/',intToPath($p['pid']),'icon.jpg" alt="',$p['pname'],'" width="60" height="60"/>','</td>';
+            echo  '<td style="width:200px">',"<img src=\"",config_item('static_url'),'upload/product/',intToPath($p['pid']),'default.jpg" alt="',$p['pname'],'" width="164" height="220"/>','</td>';
             echo  '<td>';
                 echo '<select name="color_id" onchange="set_color(',$p['pid'],', this.value)">';
                 echo '<option value="0">选择产品色系</option>';
