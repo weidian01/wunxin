@@ -118,7 +118,7 @@ class Codeimg
     {
         // 3dcha parameters
         $fontsize = 24;
-        $fontfile = dirname(__FILE__) . '\\3DCaptcha.ttf';
+        $fontfile = dirname(__FILE__) . '/3DCaptcha.ttf';
 
         $details = imagettfbbox($fontsize, 0, $fontfile, $this->captchaText);
         $image2d_x = $details[4] + 4;
