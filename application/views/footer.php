@@ -4,9 +4,9 @@
       <div class="help-info">
         <div class="help-tit"><img src="/images/help_02.gif" width="72" height="18" alt="关于万象" /></div>
         <ul>
-          <li><a href="/other/help/index/" target="_blank">万象网介绍</a></li>
-          <li><a href="/other/help/index/" target="_blank">联系客服</a></li>
-          <li><a href="/other/help/index/" target="_blank">联系万象网</a></li>
+          <li><a href="/other/help/index/33" target="_blank">万象网介绍</a></li>
+          <li><a href="/other/help/index/27" target="_blank">联系客服</a></li>
+          <li><a href="/other/help/index/34" target="_blank">联系万象网</a></li>
           <li><a href="/other/help/index/" target="_blank">友情链接</a></li>
         </ul>
       </div>
