@@ -6,7 +6,6 @@
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css" />
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/comm.js"></script>
 <!--[if lt IE 7]>
 <script type="text/javascript">
 EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
@@ -35,7 +34,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
          这条帮助是否解决了您的问题？<br />
          <input name="helpuseful" type="radio" value="1" />&nbsp;已解决&nbsp;&nbsp;
          <input name="helpuseful" type="radio" value="0" />&nbsp;未解决<br />
-       <a class="huse-tj" href="javascript:void(0);" onclick="">提交</a>
+       <a class="huse-tj" href="javascript:void(0);" onclick="submitIsValid(<?=$data['id'];?>)">提交</a>
      </div>
     </div>
   </div>
@@ -45,6 +44,29 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<script type="text/javascript">
+    function submitIsValid(id)
+    {
+        var type = wx.getRadioCheckBoxValue('helpuseful');
+        if (wx.isEmpty(id)) {
+            //alert('参数不全！');
+            wx.showPop('参数不全！');
+            return;
+        }
+
+        if (wx.isEmpty(type)) {
+            //alert('请选择是否解决问题！');
+            wx.showPop('请选择是否解决问题！');
+            return;
+        }
+
+
+        var url = '/other/help/is_valid';
+        var param = 'id='+id+'&type='+type;
+        var data = wx.ajax(url, param);
+        wx.showPop('感谢您的参与！');
+    }
+</script>
 <!-- #EndLibraryItem -->
 </body>
 </html>
