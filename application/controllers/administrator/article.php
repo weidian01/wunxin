@@ -103,7 +103,7 @@ class article extends MY_Controller
         $descr = $this->input->get_post('descr');
         $visiblity = $this->input->get_post('visiblity');
         $top = $this->input->get_post('top');
-        $content = $this->input->get_post('content');
+        $content = htmlspecialchars( stripslashes($_REQUEST['content']));//$this->input->get_post('content');$this->input->get_post('content');
 
         if (empty ($title) || empty ($keyword) || empty ($descr) || empty ($content)) {
             show_error('参数不全');
