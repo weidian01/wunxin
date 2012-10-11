@@ -35,7 +35,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
          这条帮助是否解决了您的问题？<br />
          <input name="helpuseful" type="radio" value="1" />&nbsp;已解决&nbsp;&nbsp;
          <input name="helpuseful" type="radio" value="0" />&nbsp;未解决<br />
-       <a class="huse-tj" href="javascript:void(0);" onclick="submitIsValid(<?=$data['id'];?>)">提交</a>
+       <a class="huse-tj" href="javascript:void(0);" onclick="submitIsValid(<?=$data['id'];?>)" id="is_valid_id">提交</a>
      </div>
     </div>
   </div>
@@ -52,13 +52,13 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         var type = wx.getRadioCheckBoxValue('helpuseful');
         if (wx.isEmpty(id)) {
             //alert('参数不全！');
-            wx.showPop('参数不全！');
+            wx.showPop('参数不全！', 'is_valid_id');
             return;
         }
 
         if (wx.isEmpty(type)) {
             //alert('请选择是否解决问题！');
-            wx.showPop('请选择是否解决问题！');
+            wx.showPop('请选择是否解决问题！', 'is_valid_id');
             return;
         }
 
@@ -66,7 +66,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         var url = '/other/help/is_valid';
         var param = 'id='+id+'&type='+type;
         var data = wx.ajax(url, param);
-        wx.showPop('感谢您的参与！');
+        wx.showPop('感谢您的参与！', 'is_valid_id');
     }
 </script>
 <!-- #EndLibraryItem -->
