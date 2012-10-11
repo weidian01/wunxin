@@ -154,7 +154,7 @@
                     <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp2rdv['pid']))?>default.jpg" width="120" height="144" alt="<?=$mp2rdv['pname']?>"/>
                 </a>
             </div>
-            <div class="men-cont"><span class="font2"><?=$mp2rdv['style_no']?></span><br/>
+            <div class="men-cont"><!--<span class="font2"><?=$mp2rdv['style_no']?></span><br/>-->
                 <a href="<?=productURL($mp2rdv['pid'])?>" title="<?=$mp2rdv['pname']?>, ￥<?=fPrice($mp2rdv['sell_price'])?>" target="_blank"><?=mb_substr($mp2rdv['pname'], 0, 20, 'utf-8')?></a><br/>
                     <span class="font3">￥<?=fPrice($mp2rdv['sell_price'])?></span></div>
         </div>
