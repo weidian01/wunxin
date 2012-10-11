@@ -96,7 +96,7 @@ class color extends MY_Controller
                                 if(isset($p['color_id']) && $p['color_id']==$v['color_id'] ):
                                     echo 'selected="selected"';
                                 endif;
-                                echo '>',$v['china_name'],$v['english_name'];
+                                echo '>',$v['china_name'];
                                 echo '</option>';
                         endforeach;
                     endif;
