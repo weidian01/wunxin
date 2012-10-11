@@ -17,7 +17,7 @@
     <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<script type=text/javascript src="<?=config_item('static_url')?>scripts/artDialog.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
 <!-- #EndLibraryItem -->

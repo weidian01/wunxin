@@ -7,7 +7,6 @@
     <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
-    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -138,6 +137,7 @@
 <!--<a href="javascript:cart.addToCart(4, 'S');">add to cart</a>-->
 <?php include APPPATH.'views/footer.php';?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/cart.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
