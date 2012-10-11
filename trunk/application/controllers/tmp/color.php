@@ -47,7 +47,7 @@ class color extends MY_Controller
             $this->pagination->initialize($config);
             $pageHTML = $this->pagination->create_links();
             $offset = ($pageno - 1) * $pagesize;
-            $products = $this->product->getProductList($pagesize, $offset, "pid, color_id, pname, market_price, sell_price", $where);
+            $products = $this->product->getProductList($pagesize, $offset, "pid, color_id, pname, market_price, sell_price,product_taobao_addr", $where);
         }
 
         $this->load->model('product/Model_Product_Color', 'color');
@@ -81,7 +81,7 @@ class color extends MY_Controller
             echo  '<tr>';
             echo  '<td>',$p['pid'],'</td>';
             echo  '<td>',$p['color_id'] ? $p['color_id']:'null' ,'</td>';
-            echo  '<td>',$p['pname'],'</td>';
+            echo  '<td>','<a href="',$p['product_taobao_addr'],'" target="_blank">',$p['pname'],'</a>','</td>';
             echo  '<td>',fPrice($p['market_price']),'</td>';
             echo  '<td>',fPrice($p['sell_price']),'</td>';
             echo  '<td style="width:200px">',"<img src=\"",config_item('static_url'),'upload/product/',intToPath($p['pid']),'default.jpg" alt="',$p['pname'],'" width="164" height="220"/>','</td>';
