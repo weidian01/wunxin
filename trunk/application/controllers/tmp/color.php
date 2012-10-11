@@ -117,7 +117,7 @@ function set_color(pid, cid)
 {
     $.get("/tmp/color/set", { 'pid': pid, 'cid': cid },
       function(data){
-        art.dialog({ title:false, follow: false, time: 2, content: data });
+        art.dialog({ title:false, time: 2, content: data });
     });
 }
 </script>
