@@ -86,7 +86,7 @@
                         <td><?php echo $v['create_time'];?></td>
                         <td>
                             <a href="/administrator/article/articleEdit/<?php echo $v['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>
-                            <a href="/administrator/article/articleDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除文章"><img src="/images/icons/cross.png" alt="删除文章"/></a>
+                            <a href="/administrator/article/articleDelete/<?php echo $v['id'].'/'.isset ($current_page) ? $current_page : '1';?>" title="删除文章"><img src="/images/icons/cross.png" alt="删除文章"/></a>
                         </td>
                     </tr>
                         <?php }?>
