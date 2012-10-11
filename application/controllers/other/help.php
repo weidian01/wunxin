@@ -34,6 +34,9 @@ class help extends MY_Controller
         $this->load->model('other/Model_Help', 'help');
         $data = $this->help->getHelpById($id);
 //echo '<pre>';print_r($data);exit;
+        if (empty ($data)) {
+            show_error('帮助文章不存在！');
+        }
 
         $this->load->view('other/help', array('data' => $data));
     }
@@ -43,7 +46,7 @@ class help extends MY_Controller
         $id = intval($this->input->get_post('id'));
         $type = intval($this->input->get_post('type'));
 
-        $response = array('error' => '0', 'msg' => '登陆成功', 'code' => 'login_success');
+        $response = array('error' => '0', 'msg' => '反馈成功', 'code' => 'report_success');
 
         do {
             if (empty ($id) ) {
