@@ -13,7 +13,7 @@
         <div class="hd-login">
             <ul>
                 <li><a href="javascript:void (0);" onclick="wx.addFavorite()">收藏本站</a></li>
-                <li><a href="/other/help/index/" target="_blank">帮助中心</a></li>
+                <li><a href="/other/help/index/16" target="_blank">帮助中心</a></li>
                 <!--<li><a href="#">浏览记录</a></li>-->
                 <!--<li><a href="/user/center">我的万象</a></li>-->
                 <li><a href="/user/center/index" target="_blank">我的订单</a></li>

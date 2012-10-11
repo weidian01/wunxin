@@ -34,7 +34,6 @@
         <li><a class="<?php echo $data['id'] == '24' ? 'h-curr' : '';?>" href="/other/help/index/24">安全与保密</a></li>
         <li><a class="<?php echo $data['id'] == '25' ? 'h-curr' : '';?>" href="/other/help/index/25">服务条款</a></li>
         <li><a class="<?php echo $data['id'] == '28' ? 'h-curr' : '';?>" href="/other/help/index/28">商品验收与签收</a></li>
-        <li><a class="<?php echo $data['id'] == '27' ? 'h-curr' : '';?>" href="/other/help/index/27">联系客服</a></li>
         <li><a class="<?php echo $data['id'] == '26' ? 'h-curr' : '';?>" href="/other/help/index/26">付款时效和退款时效</a></li>
       </ul>
     </div>
@@ -43,5 +42,15 @@
         <ul>
           <li><a class="<?php echo $data['id'] == '14' ? 'h-curr' : '';?>" href="/other/help/index/14">身体各部位测量方法</a></li>
         </ul>
+    </div>
+    <div class="u-tit2">关于万象</div>
+    <div class="u-menu">
+      <ul>
+          <li><a class="<?php echo $data['id'] == '27' ? 'h-curr' : '';?>" href="/other/help/index/27">万象介绍</a></li>
+          <li><a class="<?php echo $data['id'] == '27' ? 'h-curr' : '';?>" href="/other/help/index/27">联系客服</a></li>
+          <li><a class="<?php echo $data['id'] == '27' ? 'h-curr' : '';?>" href="/other/help/index/27">联系万象</a></li>
+          <li><a class="<?php echo $data['id'] == '27' ? 'h-curr' : '';?>" href="/other/help/index/27">联系客服</a></li>
+
+      </ul>
     </div>
   </div>
