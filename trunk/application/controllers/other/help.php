@@ -27,6 +27,10 @@ class help extends MY_Controller
     {
         $id = $this->uri->segment(4, 0);
 
+        if (empty ($id)) {
+            show_error('参数不全！');
+        }
+
         $this->load->model('other/Model_Help', 'help');
         $data = $this->help->getHelpById($id);
 //echo '<pre>';print_r($data);exit;
