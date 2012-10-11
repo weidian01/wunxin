@@ -121,7 +121,7 @@ class register extends MY_Controller
     {
         $code = $this->setVerifyCode();
         //$this->input->set_cookie('verify_code', $code, 60);
-        $this->lib('codeimg', array('code'=>$code));
+        $this->lib('captcha', array('code'=>$code));
         $this->codeimg->display();
     }
 

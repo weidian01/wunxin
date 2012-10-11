@@ -15,4 +15,15 @@ class link extends MY_Controller
         );
         $this->load->view('/other/link', $data);
     }
+
+    public function apply()
+    {
+        $siteName = $this->input->get_post('site_name');
+        $siteAddr = $this->input->get_post('site_addr');
+        $email = $this->input->get_post('email');
+        $siteIntro = $this->input->get_post('site_intro');
+        $verifyCode = $this->input->get_post('verify_code');
+
+
+    }
 }
