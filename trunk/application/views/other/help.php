@@ -6,6 +6,7 @@
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css" />
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+
 <!--[if lt IE 7]>
 <script type="text/javascript">
 EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
@@ -43,6 +44,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
+<script type="text/javascript" src="http://wunxin.com/scripts/artDialog.js"></script>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <script type="text/javascript">
     function submitIsValid(id)
