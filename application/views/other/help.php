@@ -30,7 +30,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="help_box">
       <div class="h-title"><?php echo $data['title'];?></div>
       <div class="h-cont">
-        <?php echo $data['content'];?>
+        <?php echo htmlspecialchars_decode($data['content']);?>
      <div class="help-rst">
        这条帮助是否解决了您的问题？<br />
        <input name="helpuseful" type="radio" value="" />&nbsp;已解决&nbsp;&nbsp;<input name="helpuseful" type="radio" value="" />&nbsp;未解决<br />
