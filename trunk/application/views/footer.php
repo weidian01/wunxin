@@ -64,12 +64,12 @@
   </div>
   -->
   <div class="pubcertify">
-      <a rel="nofollow" class="pubcertify-mast" href="#" target="_blank">mastcard认证</a>
-      <a rel="nofollow" class="pubcertify-visa" href="" target="_blank">visacard认证</a>
-      <a rel="nofollow" class="pubcertify-visashop" href="" target="_blank">推荐商家</a>
-      <a rel="nofollow" class="pubcertify-safe" href="" target="_blank">安全购物</a>
+      <a rel="nofollow" class="pubcertify-mast" href="http://www.mastercard.com/" target="_blank">mastcard认证</a>
+      <a rel="nofollow" class="pubcertify-visa" href="http://www.visa.com/" target="_blank">visacard认证</a>
+      <a rel="nofollow" class="pubcertify-visashop" href="http://www.visa.com/globalgateway/gg_selectcountry.jsp?retcountry=1" target="_blank">推荐商家</a>
+      <a rel="nofollow" class="pubcertify-safe" href="http://www.verisign.com/" target="_blank">安全购物</a>
       <!--<a rel="nofollow" class="pubcertify-gscer" target="_blank" href="">北京工商</a>-->
-      <a href="" target="_blank" class="pubcertify-credit" rel="nofollow">信</a>
+      <a href="http://www.szfw.org" target="_blank" class="pubcertify-credit" rel="nofollow">信</a>
   </div>
   <div class="copyright">
     <p>
