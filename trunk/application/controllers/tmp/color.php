@@ -86,7 +86,7 @@ class color extends MY_Controller
             echo  '<td>',fPrice($p['sell_price']),'</td>';
             echo  '<td style="width:200px">',"<img src=\"",config_item('static_url'),'upload/product/',intToPath($p['pid']),'default.jpg" alt="',$p['pname'],'" width="164" height="220"/>','</td>';
             echo  '<td>';
-                echo '<select name="color_id" onchange="set_color(',$p['pid'],', this.value)">';
+                echo '<select name="color_id" onchange="set_color(',$p['pid'],', this.value)" id="color_id_'.$p['pid'].'">';
                 echo '<option value="0">选择产品色系</option>';
                 foreach ($color as $item):
                 echo '<optgroup label="',$item['china_name'],'" >';
@@ -117,7 +117,7 @@ function set_color(pid, cid)
 {
     $.get("/tmp/color/set", { 'pid': pid, 'cid': cid },
       function(data){
-        art.dialog({ title:false, follow: document.getElementById(bindingId), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;">'+data+'</span><br/>' });
+        art.dialog({ title:false, follow: document.getElementById('color_id_'+pid), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;">'+data+'</span><br/>' });
         //alert(data);
     });
 }
