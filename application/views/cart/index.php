@@ -30,6 +30,7 @@
       <div style="text-align: center;">
           <img src="/images/loading.gif" alt="加载购物中......"><span>加载购物中......</span>
       </div>
+      <!--
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping_cart_item" style="display: none;">
       <tr>
         <td colspan="2" align="center" class="tit">商品/商品号</td>
@@ -80,9 +81,10 @@
           <div class="post-btn"><a href="#"><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32" /></a>&nbsp;&nbsp;<a href="#"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算" /></a></div></td>
       </tr>
     </table>
+    -->
   </div>
   <div class="other-shopping">
-    <div class="tit">购买以上商品的顾客还购买过1</div>
+    <div class="tit">购买以上商品的顾客还购买过</div>
         <div id="pic_list_1" class="scroll_horizontal">
             <div class="box">
                 <ul class="list">
@@ -108,7 +110,7 @@
         </div>
   </div>
   <div class="other-shopping">
-    <div class="tit">看过以上商品的顾客还购买过2</div>
+    <div class="tit">看过以上商品的顾客还购买过</div>
       <div id="pic_list_2" class="scroll_horizontal">
           <div class="box">
               <ul class="list">
@@ -131,8 +133,8 @@
           <div class="minus"></div>
       </div>
   </div>
-  <div class="tips">您在购物过程中有任何疑问，请查阅 <a href="/other/help/" target="_blank"><span class="font8">帮助中心</span></a> 或
-      <a href="/other/help/" target="_blank"><span class="font8">联系客服</span></a></div>
+  <div class="tips">您在购物过程中有任何疑问，请查阅 <a href="/other/help/index/16" target="_blank"><span class="font8">帮助中心</span></a> 或
+      <a href="/other/help/index/27" target="_blank"><span class="font8">联系客服</span></a></div>
 </div>
 <!--<a href="javascript:cart.addToCart(4, 'S');">add to cart</a>-->
 <?php include APPPATH.'views/footer.php';?>
