@@ -83,7 +83,7 @@ table.tab5 td{line-height:30px; padding:3px 0px}
 .cart-num #cartbox .cart-hj .cart-to-js a{display:block; width:73px; height:29px; line-height:29px; text-decoration:none; background:url(/images/cartbtn.gif) no-repeat; padding-left:40px; color:#fff; font-size:14px}
 .other{float:right; width:272px; height:36px; background:url(/images/wx_26.jpg) no-repeat left top; padding-left:48px}
 .otherbox{width:272px; background-color:#333; height:34px; line-height:34px}
-.otherbox ul li{float:left; padding:0px 10px; background:url(/images/ge_03.gif) no-repeat right center}
+.otherbox ul li{float:left; padding:0px 9px; background:url(/images/ge_03.gif) no-repeat right center}
 .navbox .other .otherbox ul li a{color:#ff9f00}
 .otherbox ul li.end{background:none}
 .box2{margin:0px auto; background-color:#eae8e4}
