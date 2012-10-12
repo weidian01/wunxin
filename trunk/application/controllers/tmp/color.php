@@ -117,7 +117,7 @@ function set_color(pid, cid)
 {
     $.get("/tmp/color/set", { 'pid': pid, 'cid': cid },
       function(data){
-        art.dialog({ title:false, follow: document.getElementById('color_id_'+pid), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;">'+data+'</span><br/>' });
+        art.dialog({ title:false, follow: document.getElementById('color_id_'+pid), time: 3, content: '<br/><span style="color: #A10000;font-weight: bold;">'+data+'</span><br/>' });
         //alert(data);
     });
 }
