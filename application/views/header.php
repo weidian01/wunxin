@@ -34,7 +34,7 @@
                         <input id="keyword" name="keyword" type="text" value="<?php echo isset($keyword) ? $keyword:'';?>"/>
                     </form>
                 </div>
-                <div class="sbtn"><a href="javascript:;" onclick="document.forms['search'].submit()"> <img src="/images/wx_09.jpg" width="36" height="28"/></a></div>
+                <div class="sbtn"><a href="javascript:;" onclick="document.forms['search'].submit()"> <img src="/images/wx_09.jpg" width="37" height="28"/></a></div>
             </div>
             <div class="hot-keyword">
                 <ul>
