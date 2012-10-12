@@ -20,7 +20,7 @@ plus:是否使用plus按钮
 minus:是否使用minus按钮
 ------------------------------ */
 (function($){
-	$.fn.scrollShow=function(direction,settings){
+	$.fn.scrollShow=function(direction, settings){
 		if(this.length<1){return;};
 
 		// 默认值
@@ -33,7 +33,7 @@ minus:是否使用minus按钮
 			minus:true,
             num:10,
             itemWidth:'140',
-            boxHeight:'235'
+            boxHeight:'255'
 		},settings);
 
         $('.box', this).css({'height': settings.boxHeight+'px', 'width':(settings.itemWidth * settings.num)+'px'});
