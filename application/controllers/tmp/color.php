@@ -109,14 +109,16 @@ class color extends MY_Controller
 
         echo '</table>';
         echo $pagehtml;
-        echo '<SCRIPT type=text/javascript src="http://wunxin.com/scripts/jquery.js"></SCRIPT>';
+        echo '<SCRIPT type=text/javascript src="http://wunxin.com/scripts/jquery.js"></SCRIPT>
+        <SCRIPT type=text/javascript src="http://wunxin.com/scripts/artdialog.js"></SCRIPT>';
 echo <<< END
 <script>
 function set_color(pid, cid)
 {
     $.get("/tmp/color/set", { 'pid': pid, 'cid': cid },
       function(data){
-        alert(data);
+        art.dialog({ title:false, follow: document.getElementById(bindingId), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;">'+data+'</span><br/>' });
+        //alert(data);
     });
 }
 </script>
