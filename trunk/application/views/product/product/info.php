@@ -90,7 +90,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
                 <img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10"/>
                 </span>
                 <?php if(true)://根据产品默认图片显示图片?>
-                <span class="coview"><img src="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).'icon.jpg'?>" width="35" height="35"></span>
+                <span class="coview"><img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" width="35" height="35"></span>
                 <?php else://根据产品颜色显示图片?>
                 <span class="coview" style="background:<?if ($item['color']['image']):?>url(<?=config_item('static_url')?>upload/color/<?=$item['color']['image']?>)<?php else:?><?=$item['color']['code']?><?php endif;?>"></span>
                 <?php endif;?>
