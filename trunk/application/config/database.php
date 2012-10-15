@@ -54,9 +54,9 @@ $db['default']['username'] = 'root';
 $db['default']['password'] = 'wunxin';
 $db['default']['database'] = 'test';
 //*/
-$db['default']['hostname'] = '211.100.40.57';//'127.0.0.1';//
+$db['default']['hostname'] = '127.0.0.1';//'211.100.40.57';//
 $db['default']['username'] = 'root';
-$db['default']['password'] = '123456';//'';//;
+$db['default']['password'] = '';//;'123456';//
 $db['default']['database'] = 'wunxin';
 
 
@@ -71,7 +71,7 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-$db['default']['save_queries'] = false;
+$db['default']['save_queries'] = true;
 
 
 /* End of file database.php */
