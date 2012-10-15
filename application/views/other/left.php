@@ -48,7 +48,7 @@
       <ul>
           <li><a class="<?php echo $data['id'] == '33' ? 'h-curr' : '';?>" href="/other/help/index/33">万象网介绍</a></li>
           <li><a class="<?php echo $data['id'] == '27' ? 'h-curr' : '';?>" href="/other/help/index/27">联系客服</a></li>
-          <li><a class="<?php echo $data['id'] == '34' ? 'h-curr' : '';?>" href="/other/help/index/34">联系万象网</a></li>
+          <li><a class="<?php echo $data['id'] == '34' ? 'h-curr' : '';?>" href="/other/help/index/34">联系我们</a></li>
       </ul>
     </div>
   </div>
