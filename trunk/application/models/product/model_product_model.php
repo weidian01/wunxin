@@ -64,6 +64,7 @@ class Model_Product_Model extends MY_Model
                     'attr_value' => $attr['attr_value'],
                     'sort' => $attr['sort'],
                     'search' => $attr['search'],
+                    'display' => $attr['display'],
                 ));
             }
             else
@@ -75,6 +76,7 @@ class Model_Product_Model extends MY_Model
                     'attr_value' => $attr['attr_value'],
                     'sort' => $attr['sort'],
                     'search' => $attr['search'],
+                    'display' => $attr['display'],
                 ));
                 $attr_id[] = $this->db->insert_id();
             }
@@ -147,7 +149,7 @@ class Model_Product_Model extends MY_Model
             $where['search'] = $search;
         }
         return $this->db
-            ->select('attr_id, model_id, type, attr_name, attr_value, sort, search')
+            ->select('attr_id, model_id, type, attr_name, attr_value, sort, search, display')
             ->order_by('sort', 'desc')
             ->get_where('product_model_attr', $where)
             ->result_array();

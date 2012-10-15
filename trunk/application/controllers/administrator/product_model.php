@@ -85,6 +85,7 @@ class product_model extends MY_Controller
         $attr_value = $this->input->post('attr_value');
         $attr_sort = $this->input->post('sort');
         $attr_search = $this->input->post('search');
+        $attr_display = $this->input->post('display');
 
         //echo '<pre>';print_r($this->input->post());
         $attrs = array();
@@ -99,6 +100,7 @@ class product_model extends MY_Controller
             $attrs[$key]['attr_value'] = $attr_value[$key];
             $attrs[$key]['sort'] = (int)$attr_sort[$key];
             $attrs[$key]['search'] = $attr_search[$key] ? 1:0;
+            $attrs[$key]['display'] = $attr_display[$key] ? 1:0;
 
         }
 

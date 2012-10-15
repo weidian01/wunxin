@@ -44,8 +44,25 @@ class Product extends MY_Controller
 
         $category = (int)$this->uri->rsegment(3, 1);
         $pageno = max((int)$this->uri->rsegment(4, 1), 1);
-        $query = $this->uri->rsegment(5, '');
+        $query = $this->uri->rsegment(7, '');
         $param = self::parse_param($query);
+        $orderby = $this->uri->rsegment(5, 'default');
+
+        $rank = $this->uri->rsegment(6, '1');
+        switch ($orderby) {
+            case 'price':
+                $order = $rank == '0' ? "sell_price ASC" : "sell_price DESC" ;
+                break;
+            case 'sale':
+                $order = $rank == '0' ? "sales ASC" : "sales DESC" ;
+                break;
+            case 'new':
+                $order = $rank == '0' ? "create_time ASC" : "create_time DESC" ;
+                break;
+            default:
+                $order = null;
+        }
+
         //$this->load->database();
         //$this->db->cache_on();
         //$this->db->cache_off();
@@ -83,7 +100,7 @@ class Product extends MY_Controller
                 $pageNUM = ceil($num / $pagesize);
                 $pageno = $pageno > $pageNUM ? $pageNUM:$pageno;
                 $config['base_url'] = "/category/{$category}";
-                $param && $config['suffix'] = '/' . $query;
+                $config['suffix'] = $param ? "/{$orderby}/{$rank}/{$query}" : "/{$orderby}/{$rank}";
                 $config['total_rows'] = $num;
                 $config['per_page'] = $pagesize;
                 $config['use_page_numbers'] = TRUE;
@@ -93,11 +110,12 @@ class Product extends MY_Controller
                 $config['cur_tag_close'] = '</span>';
                 $config['prev_link'] = '上一页';
                 $config['next_link'] = '下一页';
+                //print_r($config);
                 $this->load->library('pagination');
                 $this->pagination->initialize($config);
                 $pageHTML = $this->pagination->create_links();
                 $offset = ($pageno - 1) * $pagesize;
-                $products = $this->product->getProductList($pagesize, $offset, "pid, did, pname, market_price, sell_price", $where);
+                $products = $this->product->getProductList($pagesize, $offset, "pid, did, pname, market_price, sell_price", $where, $order);
             }
             //$this->cache_view("category/\d+/?\d*");
             //print_r($this->cate->getClan($this->channel[$category]['ancestor']));
@@ -113,7 +131,10 @@ class Product extends MY_Controller
                 'products' => $products,
                 'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM, 'pageno'=>$pageno, 'query'=>$query,
                 'salesRank' => $this->salesRank($class_id),
+                'orderby'=>$orderby,
+                'orderrank'=>$rank,
             ));
+            //print_r($modelAttr);
         } else {
             show_404("分类不存在");
         }
@@ -124,7 +145,7 @@ class Product extends MY_Controller
      */
     public function info()
     {
-        $this->HTTPLastModified();
+        //$this->HTTPLastModified();
 
         $pid = (int)$this->uri->rsegment(3, 1);
         $this->load->model('product/Model_Product', 'product');
@@ -169,6 +190,7 @@ class Product extends MY_Controller
                 'designer' => $designer,
                 'salesRank' => $this->salesRank($product['class_id'], $product['brand_id']),
             ));
+            //print_r($alike);
             //$html = $str = preg_replace('/\s+/', ' ', $this->output->get_output());
             //file_put_contents(WEBROOT . 'product/' . $pid . '.html', $html, LOCK_EX);
         }
