@@ -134,7 +134,7 @@ class Product extends MY_Controller
                 'orderby'=>$orderby,
                 'orderrank'=>$rank,
             ));
-            //print_r($modelAttr);
+            print_r($modelAttr);
         } else {
             show_404("分类不存在");
         }
