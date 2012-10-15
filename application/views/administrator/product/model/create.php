@@ -50,7 +50,7 @@
                         <label>扩展属性 <a href="javascript:add_attr();">添加</a></label>
                         <table id="attrs">
                             <tr>
-                                <th>属性名</th><th>类型</th><th>属性值</th><th>排序</th><th>是否可搜索</th><th>删除</th>
+                                <th>属性名</th><th>类型</th><th>属性值</th><th>排序</th><th>是否可搜索</th><th>默认显示</th><th>删除</th>
                             </tr>
                             <?php if (isset($attrs)):foreach ($attrs as $key => $attr): ?>
                             <tr>
@@ -78,6 +78,12 @@
                                 </td>
                                 <td>
                                     是<input type="radio" name="search[<?=$key?>]" value="1" <?php if($attr['search']=='1'):?>checked<?php endif;?>> 否<input type="radio" name="search[<?=$key?>]" value="0" <?php if($attr['search']=='0'):?>checked<?php endif;?>>
+                                </td>
+                                <td>
+                                    <select name="display[]">
+                                        <option value="1"<?php if($attr['display']=='1'):?>selected="selected"<?php endif;?>>显示</option>
+                                        <option value="0" <?php if($attr['display']=='0'):?>selected="selected"<?php endif;?>>隐藏</option>
+                                    </select>
                                 </td>
                                 <td>
                                     <img src="<?=config_item('static_url')?>images/icons/cross.png" onclick="del_attr(this)" alt="Delete"/>
@@ -117,7 +123,7 @@
 <script>
     function add_attr() {
         var size = $("#attrs tr").size() - 1;
-        $("#attrs").append('<tr><td><input class="text-input" type="text" name="attr_name[]" value=""><input type="hidden" name="attr_id[]" value=""></td><td><select name="type[]"><option value="1">单选</option><option value="2">复选</option><option value="3">下拉</option><option value="4">文本</option></select></td><td><input class="text-input" type="text" name="attr_value[]" value=""></td><td><input class="text-input" type="text" name="sort[]" value=""></td><td>是<input type="radio" name="search['+size+']" value="1"> 否<input type="radio" name="search['+size+']" value="0" checked></td><td><img src="<?=config_item('static_url')?>images/icons/cross.png" onclick="del_attr(this)" alt="Delete"/></td></tr>');
+        $("#attrs").append('<tr><td><input class="text-input" type="text" name="attr_name[]" value=""><input type="hidden" name="attr_id[]" value=""></td><td><select name="type[]"><option value="1">单选</option><option value="2">复选</option><option value="3">下拉</option><option value="4">文本</option></select></td><td><input class="text-input" type="text" name="attr_value[]" value=""></td><td><input class="text-input" type="text" name="sort[]" value=""></td><td>是<input type="radio" name="search['+size+']" value="1"> 否<input type="radio" name="search['+size+']" value="0" checked></td><td><select name="display[]"><option value="1">显示</option><option value="0">隐藏</option></select></td><td><img src="<?=config_item('static_url')?>images/icons/cross.png" onclick="del_attr(this)" alt="Delete"/></td></tr>');
     }
 
     function del_attr(obj)

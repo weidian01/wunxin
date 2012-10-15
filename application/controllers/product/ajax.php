@@ -44,6 +44,13 @@ class Ajax extends MY_Controller
             foreach ($tmp as $key => $item) {
                 $response[$item['pid']] += $item;
             }
+            foreach($response as $k=>$v)
+            {
+                if(!isset($v['uid']))
+                {
+                    unset($response[$k]);
+                }
+            }
             //print_r($response);
         }
         self::json_output($response, true);

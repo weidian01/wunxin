@@ -69,8 +69,7 @@ $(document).ready(function(){
             <div class="no1"><?=($k+1)?></div>
             <div class="bdimg">
                 <a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>">
-                <img  class="lazy" src="<?=config_item('static_url')?>images/lazy.gif"
-                      data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" title="<?=$item['pname']?>"/>
+                <img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" title="<?=$item['pname']?>"/>
                 </a>
             </div>
             <div class="bdancont"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><?=mb_substr($item['pname'], 0, 16, 'utf-8')?></a>
@@ -126,13 +125,13 @@ $(document).ready(function(){
               <?php foreach($tmp as $k=>$v):?>
                   <?php $str .= "!{$k}-{$v}";?>
               <?php endforeach;?>
-              <div class="slect-item"><span><?=urldecode($item)?></span><a href="/category/<?echo $category,'/1/',$str?>" class="close"></a></div>
+              <div class="slect-item"><span><?=urldecode($item)?></span><a href="/category/<?echo $category,"/1/{$orderby}/{$orderrank}/",$str?>" class="close"></a></div>
             <?php endforeach;?>
           </td>
         </tr>
         <?php endif;?>
         <?php foreach($modelAttr as $item):?>
-          <tr>
+          <tr <?php if($item['display']==0):?>class="attr_hidden"<?php endif;?>>
             <td width="10%" align="right"><?=$item['attr_name']?>：</td>
             <td width="90%"><ul class="sitem">
                 <?php foreach($item['attr_value'] as $tiem):?>
@@ -140,27 +139,27 @@ $(document).ready(function(){
                     <?php foreach($tmp as $k=>$v):?>
                         <?php $str .= "!{$k}-{$v}";?>
                     <?php endforeach;?>
-                    <li><a href="/category/<?echo $category,'/1/!',$item['attr_id'],'-',$tiem,$str?>"><?=$tiem?></a></li>
+                    <li><a href="/category/<?echo $category,"/1/{$orderby}/{$orderrank}/!",$item['attr_id'],'-',$tiem,$str?>"><?=$tiem?></a></li>
                 <?php endforeach;?>
               </ul></td>
           </tr>
         <?php endforeach;?>
       </table>
     </div>
-    <!--div class="extend">
-      <div class="kz" id="kza"></div>
-    </div-->
+    <div class="extend">
+      <div class="kz" id="kza"><img src="/images/arrow_down.gif"> <span>更多</span></div>
+    </div>
     <?php endif;?>
        <div class="clear" style="height: 10px"></div>
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a val="" class="ordby_default cur" name="orderby" href="javascript:void(0)">默认</a>
-              <a val="pr" name="orderby" class="ordby_pr " href="javascript:void(0)">价格</a>
-              <a val="sale" name="orderby" class="ordby_sale " href="javascript:void(0)">销量</a>
-              <a val="new" class="ordby_new " name="orderby" href="javascript:void(0)">最新</a>
+              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="/category/<?=$category?>/1/default/1">默认</a>
+              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="/category/<?=$category?>/1/price/<?php if($orderby=='price' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">价格</a>
+              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="/category/<?=$category?>/1/sale/<?php if($orderby=='sale' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">销量</a>
+              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> class="ordby_new " name="orderby" href="/category/<?=$category?>/1/new/<?php if($orderby=='new' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
-              <?php if($pageno > 1):?><a class="disabled" href="/category/<?=$category?>/<?=($pageno-1)?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="/category/<?=$category?>/<?=($pageno+1)?>/<?=$query?>">下一页</a><?php endif;?>
+              <?php if($pageno > 1):?><a class="disabled" href="/category/<?=$category?>/<?=($pageno-1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="/category/<?=$category?>/<?=($pageno+1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">下一页</a><?php endif;?>
           </div>
       </div>
     <div class="goodsbox">
