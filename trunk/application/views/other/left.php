@@ -46,7 +46,7 @@
     <div class="u-tit2">关于万象</div>
     <div class="u-menu">
       <ul>
-          <li><a class="<?php echo $data['id'] == '33' ? 'h-curr' : '';?>" href="/other/help/index/33">万象网介绍</a></li>
+          <li><a class="<?php echo $data['id'] == '33' ? 'h-curr' : '';?>" href="/other/help/index/33">关于我们</a></li>
           <li><a class="<?php echo $data['id'] == '27' ? 'h-curr' : '';?>" href="/other/help/index/27">联系客服</a></li>
           <li><a class="<?php echo $data['id'] == '34' ? 'h-curr' : '';?>" href="/other/help/index/34">联系我们</a></li>
       </ul>
