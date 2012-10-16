@@ -54,9 +54,9 @@
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($category as $item): ?>
                                 <option
-                                    value="<?=$item['class_id']?>" <?php if (isset($info['parent_id']) && $info['parent_id'] == $item['class_id']) {
+                                    value="<?=$item['id']?>" <?php if (isset($info['parent_id']) && $info['parent_id'] == $item['id']) {
                                     echo 'selected="selected"';
-                                }?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                }?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['name']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>

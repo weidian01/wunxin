@@ -27,7 +27,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3>添加新限时抢购</h3>
+            <h3><?php echo $type == 'edit' ? '编辑限时抢购' : '添加限时抢购'; ?></h3>
 
             <div class="clear"></div>
         </div>
@@ -35,16 +35,27 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/business_tuan/tuanEditSave' : '/administrator/business_tuan/tuanSave';?>" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="tuan_id" value="<?php echo isset($info['tuan_id']) ? $info['tuan_id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/business_limit_buy/edit_save' : '/administrator/business_limit_buy/save';?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?=isset($info['id']) ? $info['id'] : ''?>">
                     <fieldset>
                         <p>
                             <label>分类</label>
-                            <select>
-                                <option value="">男</option>
-                                <option value="">女</option>
-                            </select>
-                            <br/>
+                            <select name="cid">
+                                <?php foreach ($category as $item): ?>
+                                <option value="<?=$item['id']?>" <?php if (isset($info['cid']) && $info['cid'] == $item['id']) { echo 'selected="selected"'; }?>>
+                                    <?php echo str_repeat("&nbsp;", $item['floor']), $item['name']?>
+                                </option>
+                                <?php endforeach;?>
+                            </select><br/>
+                        </p>
+                        <p>
+                            <label>销售状态</label>
+                            <select name="sales_status">
+                                <option value="1" <?=(isset ($info['sales_status']) && $info['sales_status']  == '1') ? 'selected="selected"' : '';?>>疯抢</option>
+                                <option value="2" <?=(isset ($info['sales_status']) && $info['sales_status']  == '2') ? 'selected="selected"' : '';?>>包邮</option>
+                                <option value="3" <?=(isset ($info['sales_status']) && $info['sales_status']  == '3') ? 'selected="selected"' : '';?>>热卖</option>
+                                <option value="4" <?=(isset ($info['sales_status']) && $info['sales_status']  == '4') ? 'selected="selected"' : '';?>>新品</option>
+                            </select><br/>
                         </p>
                         <p>
                             <label>产品ID</label>
@@ -58,24 +69,24 @@
                         </p>
                         <p>
                             <label>产品图片</label>
-                            <input class="text-input small-input" type="file" value="<?php echo isset($info['img_addr']) ? $info['img_addr'] : ''?>" name="img_addr"/>
-                            <?php echo isset ($info['img_addr']) ? '<img src="'.base_url(). str_replace('\\', '/', $info['img_addr']) .'" alt="'.$info['pname'].'" width="50" height="50"/>' : '';?>
+                            <input class="text-input small-input" type="file" name="product_image"/>
+                            <?php echo isset ($info['product_image']) ? '<img src="'.base_url(). str_replace('\\', '/', $info['product_image']) .'" alt="'.$info['pname'].'" width="50" height="50"/>' : '';?>
                             如不上传，则使用产品默认图片
                         </p>
                         <p>
                             <label>抢购价格</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['discount_rate']) ? $info['discount_rate'] : ''?>" name="discount_rate" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?php echo isset($info['limit_buy_price']) ? $info['limit_buy_price'] : ''?>" name="limit_buy_price" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             价格单位为元,如：350.38
                             <br/>
                         </p>
-                        <!--<p>
-                            <label>团购价格</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['tuan_price']) ? $info['tuan_price'] : ''?>" name="tuan_price" onkeyup="value=value.replace(/[^\d]/g, '')"/>
-                            <br/>
-                        </p>-->
                         <p>
                             <label>库存量</label>
                             <input class="text-input small-input" type="text" value="<?php echo isset($info['inventory']) ? $info['inventory'] : ''?>" name="inventory" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <br/>
+                        </p>
+                        <p>
+                            <label>排序</label>
+                            <input class="text-input small-input" type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
