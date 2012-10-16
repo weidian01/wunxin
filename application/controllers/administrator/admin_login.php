@@ -44,7 +44,7 @@ class Admin_login extends MY_Controller
 
         if ($status) {
             $this->load->helper('cookie');
-            set_cookie('admin_auth', authcode("{$status['am_uid']}\t{$status['am_uname']}\t{$status['password']}", 'ENCODE'), 0);
+            set_cookie('admin_auth', authcode("{$status['am_uid']}\t{$status['am_uname']}\t{$status['password']}", 'ENCODE'), 3600);
 
             $ip = $this->input->ip_address();
             $this->adminuser->adminUserLoginLog($status['am_uid'], $ip);
