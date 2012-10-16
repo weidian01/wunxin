@@ -79,9 +79,9 @@
             <div class="otherbox">
                 <ul>
                     <li><a href="#" target="_blank">新品区</a></li>
-                    <li><a href="#" target="_blank">新设计图</a></li>
-                    <li><a href="#" target="_blank">新设计师</a></li>
-                    <li class="end"><a href="#" target="_blank">热门晒单</a></li>
+                    <li><a href="#" target="_blank">折扣区</a></li>
+                    <li><a href="#" target="_blank">热闹评论</a></li>
+                    <li class="end"><a href="#" target="_blank">热销区</a></li>
                 </ul>
             </div>
         </div>
