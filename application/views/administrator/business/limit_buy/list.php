@@ -43,6 +43,7 @@
                         <th><input class="check-all" type="checkbox"/></th>
                         <th>ID</th>
                         <th>分类</th>
+                        <th>销售状态</th>
                         <th>产品ID</th>
                         <th>产品名称</th>
                         <th>图片</th>
@@ -52,6 +53,7 @@
                         <th>关注人数</th>
                         <th>库存量</th>
                         <th>抢购数量</th>
+                        <th>排序</th>
                         <th>开始时间</th>
                         <th>结束时间</th>
                         <th>创建时间</th>
@@ -75,7 +77,18 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?php echo $v['id'];?></td>
-                        <td><?php echo $v['cid'];?></td>
+                        <td><?php foreach ($category as $vs) {
+                            if ($vs['id'] == $v['cid']) echo $vs['name'];
+                        }?></td>
+                        <td><?php
+                            switch ($v['sales_status']) {
+								case '1':$names = '疯抢';break;
+								case '2':$names = '包邮';break;
+								case '3':$names = '热卖';break;
+								case '4':$names = '新品';break;
+								default: $names = '疯抢';
+						}
+                            echo $names;?></td>
                         <td><?php echo $v['pid'];?></td>
                         <td><?php echo $v['pname'];?></td>
                         <td><img src="<?php echo base_url(). str_replace('\\', '/', $v['product_image']);?>" alt="<?php echo $v['pname'];?>" width="50" height="50"/> </td>
@@ -85,12 +98,13 @@
                         <td><?php echo $v['attention_num'];?></td>
                         <td><?php echo $v['inventory'];?></td>
                         <td><?php echo $v['limit_buy_num'];?></td>
+                        <td><?php echo $v['sort'];?></td>
                         <td><?php echo $v['start_time'];?></td>
                         <td><?php echo $v['end_time'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/business_tuan/tuanView/<?php echo $v['id'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"></a>
-                            <a href="/administrator/business_tuan/tuanEdit/<?php echo $v['id'];?>" title="编辑团购"><img src="/images/icons/pencil.png" alt="编辑团购"/></a>
+                            <a href="/administrator/business_limit_buy/edit/<?php echo $v['id'];?>" title="编辑"><img src="/images/icons/pencil.png" alt="编辑"></a>
+                            <a href="/administrator/business_limit_buy/del/<?php echo $v['id'];?>" title="删除"><img src="/images/icons/cross.png" alt="删除"/></a>
                         </td>
                     </tr>
                         <?php }?>
