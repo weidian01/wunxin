@@ -71,12 +71,13 @@
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'business') === 0):?>current<?php endif;?>">业务管理</a>
                     <ul>
-                        <li><a href="/administrator/business_ad_position/positionList" title="">广告管理</a></li>
-                        <li><a href="/administrator/business_ad/adList" title="">广告管理</a></li>
-                        <li><a href="/administrator/business_card_model/cardModelList" title="">礼物卡管理</a></li>
-                        <li><a href="/administrator/business_tuan/tuanList" title="">团购管理</a></li>
-                        <li><a href="/administrator/business_integral_redemption/redemptionList" title="">积分换购产品管理</a></li>
-                        <li><a href="/administrator/business_mail_subscribe/mailSubscribeList" title="">邮件订阅管理</a></li>
+                        <li><a href="/administrator/business_ad_position/positionList" title="广告管理">广告管理</a></li>
+                        <li><a href="/administrator/business_ad/adList" title="广告管理">广告管理</a></li>
+                        <li><a href="/administrator/business_card_model/cardModelList" title="礼物卡管理">礼物卡管理</a></li>
+                        <li><a href="/administrator/business_tuan/tuanList" title="团购管理">团购管理</a></li>
+                        <li><a href="/administrator/business_limit_buy/lists" title="限时抢购">限时抢购</a></li>
+                        <li><a href="/administrator/business_integral_redemption/redemptionList" title="积分换购产品管理">积分换购产品管理</a></li>
+                        <li><a href="/administrator/business_mail_subscribe/mailSubscribeList" title="邮件订阅管理">邮件订阅管理</a></li>
                     </ul>
                 </li>
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'activity') === 0):?>current<?php endif;?>">活动管理</a>
