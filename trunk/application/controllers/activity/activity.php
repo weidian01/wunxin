@@ -8,5 +8,11 @@
  */
 class activity extends MY_Controller
 {
-
+    public function qiang()
+    {
+        $data = array(
+            'title' => '限时抢购',
+        );
+        $this->load->view('activity/qiang_gou', $data);
+    }
 }
