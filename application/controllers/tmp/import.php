@@ -203,7 +203,7 @@ class import extends MY_Controller
             $datedir = '/upload/attached/'.date('Y/m/d/');
             $target_file = $datedir . intToPath($v['intor_img_id']);
             $target = $target_path.$target_file;
-            $filename = $v['intor_img_id'] . '.jpg'
+            $filename = $v['intor_img_id'] . '.jpg';
 
             if(file_exists($target . $filename))
             {
