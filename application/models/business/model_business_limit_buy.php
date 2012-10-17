@@ -12,17 +12,34 @@ class model_business_limit_buy extends MY_Model
     {
         $data = $this->db
             ->select()
-            ->order_by('sort', 'desc')
+            ->order_by('id', 'desc')
             ->get_where('limit_buy')
             ->result_array();
 
         return $data;
     }
 
-    public function getListAndProduct()
+    public function getCategoryAndLimitBuyList()
     {
-        //$this->db->select();
+        $categoryList = $this->db->select()->order_by('sort', 'desc')->get_where('limit_buy_category', null, 5, 0)->result_array();
 
+        foreach ($categoryList as $k=>$v) {
+            $tmpData = $this->db->select()->order_by('sort', 'desc')->get_where('limit_buy', array('cid' => $v['id'], 'end_time >' => date('Y-m-d H:i:s')), 4, 0)->result_array();
+            $categoryList[$k]['item'] = $tmpData;
+        }
+
+        return $categoryList;
+        //echo '<pre>';print_r($categoryList);
+    }
+
+    public function getBeforeLimitBuy()
+    {
+        return $this->db->select()->order_by('sort', 'desc')->get_where('limit_buy', array('end_time <' => date('Y-m-d H:i:s')), 8, 0)->result_array();
+    }
+
+    public function getDefaultLimitBuy()
+    {
+        return $this->db->select()->order_by('sort', 'desc')->get_where('limit_buy', array('cid =' => '0'), 5, 0)->result_array();
     }
 
     public function delete($id)
