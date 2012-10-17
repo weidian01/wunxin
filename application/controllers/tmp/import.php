@@ -191,6 +191,7 @@ class import extends MY_Controller
 
         $this->db->select('*');
         $this->db->from('taobao_product_relation');
+        $this->db->order('id ASC');
         $r = $this->db->get()->result_array();
 
 
@@ -218,7 +219,7 @@ class import extends MY_Controller
 
             copy($source_file, $target . $filename);
 
-            echo $target;die;
+            echo $v['id'],"\n";
         }
     }
 
