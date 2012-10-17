@@ -198,18 +198,19 @@ class import extends MY_Controller
 
         foreach($r as $v)
         {
-            $source_file = '/data/m_data/intro_image/' . intToPath($v['pid']) . $v['pid'] . '.jpg';
+            $source_file = '/data/m_data/intro_image/' . intToPath($v['intor_img_id']) . $v['intor_img_id'] . '.jpg';
             $target_path = '/data/www/wunxin/web';
             $datedir = '/upload/attached/'.date('Y/m/d/');
             $target_file = $datedir . intToPath($v['intor_img_id']);
             $target = $target_path.$target_file;
-            echo $target;die;
+
             copy($source_file, $target);
+
             if(file_exists($target))
             {
                 continue;
             }
-
+            echo $target;die;
         }
     }
 
