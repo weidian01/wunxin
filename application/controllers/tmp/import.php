@@ -191,7 +191,7 @@ class import extends MY_Controller
 
         $this->db->select('*');
         $this->db->from('taobao_product_relation');
-        $this->db->order('id ASC');
+        $this->db->order_by('id ASC');
         $r = $this->db->get()->result_array();
 
 
