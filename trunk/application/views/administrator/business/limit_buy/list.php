@@ -86,7 +86,7 @@
 								case '2':$names = '包邮';break;
 								case '3':$names = '热卖';break;
 								case '4':$names = '新品';break;
-								default: $names = '疯抢';
+								default: $names = '默认';
 						}
                             echo $names;?></td>
                         <td><?php echo $v['pid'];?></td>

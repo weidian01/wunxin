@@ -15,18 +15,8 @@
     </script>
     <![endif]-->
     <style type="text/css">
-        .wrapper {
-            margin: 0 auto;
-            width: 980px;
-        }
-        .clearfix:after {
-            clear: both;
-            content: ".";
-            display: block;
-            font-size: 0;
-            height: 0;
-            visibility: hidden;
-        }
+        .wrapper {margin: 0 auto;width: 980px;}
+        .clearfix:after {clear: both;content: ".";display: block;font-size: 0;height: 0;visibility: hidden;}
         a{ color:#333; text-decoration:none;}
         a:hover,.cate_item h3 a:hover,.cate_item p a:hover,.subcate li a:hover,.mod_hd .more:hover{ color:#cc0000; text-decoration:underline;}
         .recommendmod h3 a:hover,.snapmod h4 a:hover{ text-decoration:none;}
@@ -139,9 +129,9 @@
 
         /*bulkmod 精品团购*/
         .bulkmod{ height:341px; position:relative; border:1px solid #f1f1f1; border-top:0 none; background:#fff;width: 980px; overflow: hidden;}
-        .slider_list{ width:960px; margin:0px; height:341px; overflow:hidden;}
+        .slider_list{ width:960px; margin:0px; /*height:341px;*/ overflow:hidden;}
         .bulklist{ height:341px;}
-        .bulklist li{ width:200px; height:305px; float:left; padding:16px 23px 20px;}
+        .bulklist li{ width:166px; /*height:305px;*/ float:left; padding:16px 14px 16px;}
         .bulklist .tit{ height:60px; line-height:20px; overflow:hidden;}
         .bulklist .pic{ display:block; margin:10px 0; border:1px solid #e6e6e6;}
         .bulklist .pic img{ display:block;}
@@ -182,6 +172,72 @@
         /*2012-3-22 18:43:49*/
         .mycart_empty{ width:358px; height:40px; position:absolute; top:0px; right:0; border:1px solid #0056b3; background:#fff; line-height:40px; text-align:center;}
     </style>
+    <script type="text/javascript">
+        function clock(hot_id, startTime, endTime, nowTime, goods_num){
+       		var promoStatus = promoStatus;
+       		var startTime = startTime;
+       		var endTime = endTime;
+       		var nowTime = nowTime;
+       		if (goods_num <= 0){
+       			//var lastTime = '<em>剩余时间：</em><b class="n00">0</b><b class="n00">0</b> <span>时</span> <b class="n00">0</b><b class="n00">0</b> <span>分</span> <b class="n00">0</b><b class="n00">0</b> <span>秒</span>';
+       			$("#promo_status_"+hot_id).attr("class", "ended");
+       			//$('#promo_time_'+hot_id).html(lastTime);
+       			return false;
+       		}
+       		if (leave <= 0){
+       			var lastTime = '<span>剩余时间：</span><b class="n00">0</b><b class="n00">0</b> <span>时</span> <b class="n00">0</b><b class="n00">0</b> <span>分</span> <b class="n00">0</b><b class="n00">0</b> <span>秒</span>';
+       			$("#promo_status_"+hot_id).attr("class", "ended");
+       		}else{
+       			if (startTime > nowTime){
+       				var leave = startTime - nowTime;
+       				$("#promo_status_"+hot_id).attr("class", "qiangbtn_blue");
+       				var lastTime = '<span>开抢倒计时：</span>';
+       			}else{
+       				var leave = endTime - nowTime;
+       				$("#promo_status_"+hot_id).attr("class", "qiangbtn_red");
+       				var lastTime = '<span>剩余时间：</span>';
+       			}
+
+       			var hour = Math.floor(leave / 3600);
+       			hour = hour < 10 ? "0" + hour : hour;
+       			hour = hour.toString();
+       			var hourLen = hour.length;
+       			for (var i = 0; i < hourLen; i++){
+       				lastTime += '<b class="n'+ hour.substr(i, 1) +'">'+hour.substr(i, 1)+'</b>';
+       			}
+
+       			lastTime += '<span>时</span>';
+
+       			var minute = Math.floor(leave / 60) - (hour * 60);
+       			minute = minute < 10 ? "0" + minute : minute;
+       			minute = minute.toString();
+       			var minuteLen = minute.length;
+       			for (var j = 0; j < minuteLen; j++){
+       				lastTime += '<b class="n'+ minute.substr(j, 1) +'">'+minute.substr(j, 1)+'</b>';
+       			}
+       			lastTime += '<span>分</span>';
+
+       			var second = leave - (hour * 3600) - (minute * 60);
+       			second = second < 10 ? "0" + second : second;
+       			second = second.toString();
+       			var secondLen = second.length;
+       			for (var k = 0; k < secondLen; k++){
+       				lastTime += '<b class="n'+ second.substr(k, 1) +'">'+second.substr(k, 1)+'</b>';
+       			}
+       			lastTime += '<span>秒</span>';
+
+       		}
+
+       		$('#promo_time_'+hot_id).html(lastTime);
+       		if (startTime > nowTime){
+       			startTime -- ;
+       		}else{
+       			endTime -- ;
+       		}
+
+       		setTimeout("clock('"+hot_id+"', '"+startTime+"', '"+endTime+"', '"+nowTime+"', '"+goods_num+"')", 1000);
+       	}
+    </script>
 </head>
 <body>
 <?php include APPPATH.'views/header.php';?>
@@ -199,154 +255,85 @@
         </ul>
     </div>
     -->
-    	<div class="wrapper">
+    <div class="wrapper">
 		<div class="ad_div" style="text-align: center;">
-			<div>
-                <a title="真情9月 数码平板1折起" target="_blank" href="http://go.zol.com/topic/3239389.html">
-                    <img width="980" height="90" alt="真情9月 数码平板1折起" src="/images/301.jpg">
-                </a>
-            </div>
+			<div><a title="" target="_blank" href=""><img width="980" height="90" alt="真情9月 数码平板1折起" src="/images/301.jpg"></a></div>
 		</div>
 	</div>
 
     <ul class="recommendmod">
-        <li class="recommend_1">
-            <a title="" class="pic" href="" target="_blank"><img width="125" height="150" title="" alt="" src="http://img8.zol-img.com/module/27_module_images/326.gif">
+        <?php $dli = 1;foreach ($default_lb as $dlv):?>
+        <li class="recommend_<?=$dli;?>">
+            <a title="<?=$dlv['pname']?>" class="pic" href="<?=productURL($dlv['pid']);?>" target="_blank">
+                <img width="125" height="150" title="" alt="" src="
+                <?php echo empty ($dlv['product_image']) ?
+                    config_item('img_url').'product/'.intToPath($dlv['pid']).'default.jpg' :
+                    config_item('base_url').str_replace('\\', '/', $dlv['product_image']);?>">
             </a>
-            <h3><a href="http://www.zol.com/detail/mid/taidian/7057744.html" target="_blank">1G主频超薄9.9金刚玻璃平板333元疯抢</a></h3>
-            <p class="price">抢购价：<em><span>¥</span>333</em></p>
-            <p>市场价： <del>¥ 490</del> </p>
-            <p>立省：<b>157</b>元</p>
-            <a class="qiangbtn_small" href="http://www.zol.com/detail/mid/taidian/7057744.html" target="_blank">立即抢购</a>
+            <h3><a href="<?=productURL($dlv['pid']);?>" target="_blank" title="<?=$dlv['pname']?>"><?=$dlv['pname']?></a></h3>
+            <p class="price">抢购价：<em><span>¥</span><?=fPrice($dlv['limit_buy_price']);?></em></p>
+            <p>市场价：<del>¥ <?=fPrice($dlv['sell_price']);?></del></p>
+            <p>立省：<b><?=fPrice($dlv['sell_price'] - $dlv['limit_buy_price']);?></b>元</p>
+            <p>余量：<b><?=($dlv['inventory'] - $dlv['limit_buy_num']);?></b>件</p>
+            <a class="qiangbtn_small" href="<?=productURL($dlv['pid']);?>" target="_blank" title="<?=$dlv['pname']?>">立即抢购</a>
         </li>
-        <li class="recommend_2">
-            <a title="" class="pic" href="" target="_blank"><img width="125" height="150" title="" alt="" src="http://img7.zol-img.com/module/27_module_images/325.gif"></a>
-            <h3><a href="http://www.zol.com/detail/notebook/shenzhou/5916679.html" target="_blank">酷睿I5笔记本震撼价 2799元包邮</a></h3>
-            <p class="price">抢购价：<em><span>¥</span>2799</em></p>
-            <p>市场价： <del>¥ 3111</del> </p>
-            <p>立省：<b>312</b>元</p>
-            <a class="qiangbtn_small" href="http://www.zol.com/detail/notebook/shenzhou/5916679.html" target="_blank">立即抢购</a>
-        </li>
-        <li class="recommend_3">
-            <a title="#" class="pic" href="#" target="_blank"> <img width="125" height="150" title="" alt="" src="http://img9.zol-img.com/module/27_module_images/323.gif"></a>
-            <h3><a href="http://www.zol.com/detail/mice/MOTOSPEED/7241251.html" target="_blank">远东猎豹游戏鼠标原价199疯抢79元包邮促销</a>
-            </h3>
-            <p class="price">抢购价：<em><span>¥</span>79</em></p>
-            <p>市场价： <del>¥ 199</del> </p>
-            <p>立省：<b>120</b>元</p>
-            <a class="qiangbtn_small" href="http://www.zol.com/detail/mice/MOTOSPEED/7241251.html" target="_blank">立即抢购</a>
-        </li>
-        <li class="recommend_4">
-            <a title="" class="pic" href="#" target="_blank"><img width="125" height="150" title="" alt="" src="http://img8.zol-img.com/module/27_module_images/322.gif"></a>
-            <h3><a href="http://www.zol.com/detail/usb_flash_drive/Kingston/5576757.html" target="_blank">金士顿 DT101G2（8GB）u盘旋转式优盘</a></h3>
-            <p class="price">抢购价：<em><span>¥</span>42</em></p>
-            <p>市场价： <del>¥ 66</del> </p>
-            <p>立省：<b>24</b>元</p>
-            <a class="qiangbtn_small" href="http://www.zol.com/detail/usb_flash_drive/Kingston/5576757.html" target="_blank">立即抢购</a>
-        </li>
-        <li class="recommend_5">
-            <a title="" class="pic" href="#" target="_blank">
-                <img width="148" height="178" title="发烧友首选 芝奇DDR3 1600内存套装 4GB*2 带散热片 超频潜力高" alt="发烧友首选 芝奇DDR3 1600内存套装 4GB*2 带散热片 超频潜力高" src="http://img6.zol-img.com/module/27_module_images/324.gif">
-            </a>
-            <h3><a href="http://www.zol.com/detail/memory/G.SKILL/4333581.html" target="_blank">发烧友首选 芝奇DDR3 1600内存套装 4GB*2带散热片 超频潜力高</a></h3>
-            <p class="price">抢购价：<em><span>¥</span>259</em></p>
-            <p>市场价： <del>¥ 499</del> </p>
-            <p>立省：<b>240</b>元</p>
-            <a class="qiangbtn_small" href="http://www.zol.com/detail/memory/G.SKILL/4333581.html" target="_blank">立即抢购</a>
-        </li>
+        <?php $dli++;endforeach;?>
     </ul>
 
-    <div class="wrapper category_1">
+    <?php $i = 1;foreach ($info as $k => $v):?>
+    <div class="wrapper category_<?=$i?>">
 		<div class="mod_hd mt20">
-			<h3>笔记本电脑<span>抢购</span></h3>
-			<a class="more" href="http://qiang.zol.com/notebook/" target="_blank">查看更多&gt;&gt;</a>
+			<h3><?=$v['name'];?><span>抢购</span></h3>
+			<!--<a class="more" href="#" target="_blank">查看更多&gt;&gt;</a>-->
 		</div>
     <ul class="snaplist clearfix">
-        <li class="">
+        <?php $count = count($v['item']);foreach ($v['item'] as $ik => $iv):?>
+        <li class="<?=($count == ($ik+1)) ? 'last' : '';?>">
             <div class="snapmod">
-                <a class="pic" target="_blank" href="#"><img width="125" height="150" title="" alt="" src="http://2e.zol-img.com.cn/product/95_200x150/968/ceOxjenVu9Vo.jpg"></a>
-                <h4><a title="" target="_blank" href="http://www.zol.com/detail/notebook/lenovo/6904387.html">《限时抢购》联想新品Y480N-IFI（A）4G/1T/2G/DOS可代装WIN7系统包邮</a></h4>
-                <p class="price">抢购价：<em><span>¥</span>5304-5448</em></p>
-                <p>市场价： <del>¥ 6630-6810</del> </p>
-                <p>立省：<b>1326</b>元</p>
+                <a class="pic" target="_blank" href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>">
+                    <img width="164" height="197" title="<?=$iv['pname']?>" alt="<?=$iv['pname']?>" src="
+                    <?php echo empty ($iv['product_image']) ?
+                        config_item('img_url').'product/'.intToPath($iv['pid']).'default.jpg' :
+                        config_item('base_url').str_replace('\\', '/', $iv['product_image']);?>">
+                </a>
+                <h4><a title="<?=$iv['pname']?>" target="_blank" href="<?=productURL($iv['pid']);?>"><?=$iv['pname']?></a></h4>
+                <p class="price">抢购价：<em><span>¥</span><?=fPrice($iv['limit_buy_price']);?></em></p>
+                <p>市场价： <del>¥ <?=fPrice($iv['sell_price']);?></del> </p>
+                <p>立省：<b><?=fPrice($iv['sell_price']-$iv['limit_buy_price']);?></b>元</p>
+                <p>余量：<b><?=($iv['inventory'] - $iv['limit_buy_num']);?></b>件</p>
                 <div class="snap_att clearfix">
-                    <a id="promo_status_20654" class="qiangbtn_red" target="_blank" href="#">立即抢购</a>
-                    <span>已有<em>9846</em>人关注</span>
+                    <a id="promo_status_<?=$iv['id']?>" class="qiangbtn_red" target="_blank" href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>">立即抢购</a>
+                    <span>已有<em><?=empty($iv['attention_num']) ? '0' : $iv['attention_num'];?></em>人关注</span>
                 </div>
             </div>
-            <div id="promo_time_20654" class="countdown"><span>剩余时间：</span><b class="n1">1</b><b
+            <div id="promo_time_<?=$iv['id']?>" class="countdown">
+                <script type="text/javascript">
+                    <?php //echo '<pre>';print_r($iv);exit;?>
+                clock(<?=$iv['id']?>, <?=strtotime($iv['start_time'])?>, <?=strtotime($iv['end_time'])?>, <?=time();?>, <?=$iv['id']?>);
+                //clock(hot_id, startTime, endTime, nowTime, goods_num)
+                </script>
+                <!--
+                <span>剩余时间：</span><b class="n1">1</b><b
                 class="n8">8</b><span>时</span><b class="n5">5</b><b class="n3">3</b><span>分</span><b class="n2">2</b><b
-                class="n0">0</b><span>秒</span></div>
-            <i class="ico_baoyou">包邮</i>
-        </li>
-        <li class="">
-            <div class="snapmod">
-                <a class="pic" target="_blank" href="#"><img width="125" height="150" title="" alt="" src="http://2d.zol-img.com.cn/product/90_200x150/51/ceBeNOxixyGrM.jpg"></a>
-                <h4><a title="" target="_blank" href="#">《限时抢购》联想G480A-IFI（H）3210/4G/500G/1G金属灰 包邮</a></h4>
-                <p class="price">抢购价：<em><span>¥</span>3949-4104</em></p>
-
-                <p>市场价：
-                    <del>¥ 4937-5130</del>
-                </p>
-                <p>立省：<b>988</b>元</p>
-
-                <div class="snap_att clearfix">
-                    <a id="promo_status_20742" class="qiangbtn_red" target="_blank" href="http://www.zol.com/detail/notebook/lenovo/6482324.html">立即抢购</a>
-                    <span>已有<em>916</em>人关注</span>
+                class="n0">0</b><span>秒</span>
+                -->
                 </div>
-            </div>
-            <div id="promo_time_20742" class="countdown">
-                <br/><span>剩余时间：</span><b class="n1">1</b><b class="n8">8</b><span>时</span><b class="n5">5</b><b class="n3">3</b><span>分</span><b class="n2">2</b><b
-                class="n0">0</b><span>秒</span></div>
-            <i class="ico_baoyou">包邮</i>
+            <i class="<?php switch($iv['sales_status']){
+                case '1' : $class = 'ico_fengqiang';$cName = '疯抢';break;
+                case '2' : $class = 'ico_baoyou';$cName = '包邮';break;
+                case '3' : $class = 'ico_remai';$cName = '热卖';break;
+                case '4' : $class = 'ico_xinpin';$cName = '新品';break;
+                default: $class = 'ico_fengqiang';$cName = '疯抢';
+            }
+                echo $class;
+                ?>"><?=$cName?></i>
         </li>
-        <li>
-            <div class="snapmod">
-                <a class="pic" target="_blank" href="#"><img width="125" height="150" title="" alt="" src="http://2a.zol-img.com.cn/product/81_200x150/650/ce4ixojbOBTXg.jpg"></a>
-                <h4><a title="" target="_blank" href="#">【限时抢购】惠普g4-1302TX二代i3 1G独显 SRS环绕音响</a></h4>
-                <p class="price">抢购价：<em><span>¥</span>2849</em></p>
-                <p>市场价：<del>¥ 3202</del></p>
-                <p>立省：<b>353</b>元</p>
-                <div class="snap_att clearfix">
-                    <a id="promo_status_20651" class="qiangbtn_red" target="_blank"
-                       href="http://www.zol.com/detail/notebook/HP/6446429.html">立即抢购</a>
-                    <span>已有<em>1041</em>人关注</span>
-                </div>
-            </div>
-            <div id="promo_time_20651" class="countdown"><span>剩余时间：</span><b class="n2">2</b><b
-                class="n9">9</b><span>时</span><b class="n4">4</b><b class="n0">0</b><span>分</span><b class="n3">3</b><b
-                class="n4">4</b><span>秒</span></div>
-            <i class="ico_remai">热卖</i>
-        </li>
-        <li class="last">
-            <div class="snapmod">
-                <a class="pic" target="_blank" href="#"><img width="125" height="150" title="" alt="" src="http://2c.zol-img.com.cn/product/96_200x150/268/ceL6hYzwW2bKw.jpg"></a>
-                <h4><a title="限时抢购微星GX60  ATI  7970M, 2GB GDDR5 内存8G 杀手网卡硬盘750G 7200转可以三屏包鼠送 包顺丰" target="_blank"
-                       href="http://www.zol.com/detail/notebook/msiweixing/6989569.html">限时抢购微星GX60 ATI 7970M, 2GB GDDR5
-                    内存8G 杀手网卡硬盘750G 7200转可以三屏包鼠送 包顺丰</a></h4>
-
-                <p class="price">抢购价：<em><span>¥</span>8999</em></p>
-
-                <p>市场价：
-                    <del>¥ 9999</del>
-                </p>
-                <p>立省：<b>1000</b>元</p>
-
-                <div class="snap_att clearfix">
-                    <a id="promo_status_20672" class="qiangbtn_red" target="_blank"
-                       href="http://www.zol.com/detail/notebook/msiweixing/6989569.html">立即抢购</a>
-                    <span>已有<em>1090</em>人关注</span>
-                </div>
-            </div>
-            <div id="promo_time_20672" class="countdown"><span>剩余时间：</span><b class="n5">5</b><b
-                class="n7">7</b><span>时</span><b class="n4">4</b><b class="n0">0</b><span>分</span><b class="n3">3</b><b
-                class="n6">6</b><span>秒</span></div>
-            <i class="ico_fengqiang">疯抢</i>
-        </li>
-
+        <?php endforeach;?>
     </ul>
 	</div>
-            	<div class="wrapper category_2">
+    <?php $i++; endforeach;?>
+<!--
+    <div class="wrapper category_2">
 		<div class="mod_hd mt20">
 			<h3>数码影像<span>抢购</span></h3>
 			<a class="more" href="http://qiang.zol.com/digital/" target="_blank">查看更多&gt;&gt;</a>
@@ -553,78 +540,32 @@
 
 		</ul>
 	</div>
-                       	<div class="wrapper category_6">
+	-->
+    <div class="wrapper category_6">
 		<div class="mod_hd mt20">
 			<h3><span class="red">往期</span><span>抢购</span></h3>
-			<a class="more" href="http://tuan.zol.com" target="_blank">查看更多&gt;&gt;</a>
+			<!--<a class="more" href="http://tuan.zol.com" target="_blank">查看更多&gt;&gt;</a>-->
 		</div>
 		<div class="bulkmod">
-			<div class="slider_list clearfix" id="slideInner"><ul class="bulklist clearfix" style="width: 2240px;">
-            	                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5581.html" title="仅1829元！酷派 9120双网双待1.2GHz双核极4.3寸大屏包邮！" target="_blank">仅1829元！疯抢原价2299元酷派 9120双网双待1.2GHz双核极速处理器享万种应用 7.7mm超级纤薄 4.3英寸超清多点触控屏 </a>
-					<a class="pic" href="http://tuan.zol.com/5581.html"><img width="125" height="150" title="仅1829元！酷派 9120双网双待1.2GHz双核极4.3寸大屏包邮！" alt="仅1829元！酷派 9120双网双待1.2GHz双核极4.3寸大屏包邮！" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9603.jpg"></a>
+			<div class="slider_list clearfix" id="slideInner">
+                <ul class="bulklist clearfix" style="width: 2240px;">
+                <?php foreach ($before_lb as $blv):?>
+                <li class="slides" style="text-align: center;">
+					<a class="tit" href="<?=productURL($blv['pid']);?>" title="<?=$blv['pname'];?>" target="_blank"><?=$blv['pname'];?></a>
+					<a class="pic" href="<?=productURL($blv['pid']);?>">
+                        <img width="164" height="197" title="<?=$blv['pname'];?>" alt="<?=$blv['pname'];?>" src="
+                        <?php echo empty ($iv['product_image']) ?
+                                config_item('img_url').'product/'.intToPath($blv['pid']).'default.jpg' :
+                                config_item('base_url').str_replace('\\', '/', $blv['product_image']);?>">
+                    </a><br/>
 					<div class="bulkatt clearfix">
-						<span><em>82</em>人已团购</span>
-						<a title="仅1829元！酷派 9120双网双待1.2GHz双核极4.3寸大屏包邮！" target="_blank" class="seebtn" href="http://tuan.zol.com/5581.html">去看看</a>
+						<span><em><?=empty ($blv['limit_buy_num']) ? '0' : $blv['limit_buy_num'];?></em>人已抢购</span>
+						<a title="<?=$blv['pname'];?>" target="_blank" class="seebtn" href="<?=productURL($blv['pid']);?>">去看看</a>
 					</div>
 				</li>
-                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5553.html" title="与苹果媲美！3699元包邮清华同方U45F铝制金属本 i3低耗便携本" target="_blank">与苹果媲美！仅3699元包邮清华同方U45F铝制金属本~仅1.8KG超轻薄，20.5mm杂志一样的厚度 酷睿i3处理器 非常适合移动</a>
-					<a class="pic" href="http://tuan.zol.com/5553.html"><img width="125" height="150" title="与苹果媲美！3699元包邮清华同方U45F铝制金属本 i3低耗便携本" alt="与苹果媲美！3699元包邮清华同方U45F铝制金属本 i3低耗便携本" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9547.jpg"></a>
-					<div class="bulkatt clearfix">
-						<span><em>69</em>人已团购</span>
-						<a title="与苹果媲美！3699元包邮清华同方U45F铝制金属本 i3低耗便携本" target="_blank" class="seebtn" href="http://tuan.zol.com/5553.html">去看看</a>
-					</div>
-				</li>
-                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5602.html" title="厂家直销！3960元神舟K580P-i7D4震撼开团！四核i7 2G独显" target="_blank">厂家直销！3960元的神舟K580P-i7D4震撼开团！顶级I7四核处理器 超大8G内存 GT555M独显 2GB超大显存 发烧玩家必备首选</a>
-					<a class="pic" href="http://tuan.zol.com/5602.html"><img width="125" height="150" title="厂家直销！3960元神舟K580P-i7D4震撼开团！四核i7 2G独显" alt="厂家直销！3960元神舟K580P-i7D4震撼开团！四核i7 2G独显" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9595.jpg"></a>
-					<div class="bulkatt clearfix">
-						<span><em>6</em>人已团购</span>
-						<a title="厂家直销！3960元神舟K580P-i7D4震撼开团！四核i7 2G独显" target="_blank" class="seebtn" href="http://tuan.zol.com/5602.html">去看看</a>
-					</div>
-				</li>
-                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5565.html" title="直降288元！苹果iPad 2国行 双核A5处理器 9.7英寸IPS高清" target="_blank">仅2777！包邮顺丰！国行苹果iPad 2 火爆团购！挑战最低价！9.7英寸IPS高清屏 A5双核1G处理器 多点触控 快速流畅的无</a>
-					<a class="pic" href="http://tuan.zol.com/5565.html"><img width="125" height="150" title="直降288元！苹果iPad 2国行 双核A5处理器 9.7英寸IPS高清" alt="直降288元！苹果iPad 2国行 双核A5处理器 9.7英寸IPS高清" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9551.jpg"></a>
-					<div class="bulkatt clearfix">
-						<span><em>25</em>人已团购</span>
-						<a title="直降288元！苹果iPad 2国行 双核A5处理器 9.7英寸IPS高清" target="_blank" class="seebtn" href="http://tuan.zol.com/5565.html">去看看</a>
-					</div>
-				</li>
-                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5567.html" title="仅449元！亿格瑞i5智能客厅安卓机！购买送空中鼠标 HDMI高清线！" target="_blank">仅售449元！原价699元正品亿格瑞（EGREAT）i5 客厅电脑智能安卓机！有效支持网络播放！购买送价值199元AK62 空中鼠标</a>
-					<a class="pic" href="http://tuan.zol.com/5567.html"><img width="125" height="150" title="仅449元！亿格瑞i5智能客厅安卓机！购买送空中鼠标 HDMI高清线！" alt="仅449元！亿格瑞i5智能客厅安卓机！购买送空中鼠标 HDMI高清线！" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9520.jpg"></a>
-					<div class="bulkatt clearfix">
-						<span><em>56</em>人已团购</span>
-						<a title="仅449元！亿格瑞i5智能客厅安卓机！购买送空中鼠标 HDMI高清线！" target="_blank" class="seebtn" href="http://tuan.zol.com/5567.html">去看看</a>
-					</div>
-				</li>
-                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5613.html" title="25元（2条包邮）即可购买原价85元超细纤维美肤大浴巾一条。加厚加大！" target="_blank">【金秋特惠，再次开团！】仅25元（2条包邮）即可购买原价85元超细纤维美肤大浴巾一条！加厚加大超吸水，纳米科技、柔</a>
-					<a class="pic" href="http://tuan.zol.com/5613.html"><img width="125" height="150" title="25元（2条包邮）即可购买原价85元超细纤维美肤大浴巾一条。加厚加大！" alt="25元（2条包邮）即可购买原价85元超细纤维美肤大浴巾一条。加厚加大！" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9613.jpg"></a>
-					<div class="bulkatt clearfix">
-						<span><em>57</em>人已团购</span>
-						<a title="25元（2条包邮）即可购买原价85元超细纤维美肤大浴巾一条。加厚加大！" target="_blank" class="seebtn" href="http://tuan.zol.com/5613.html">去看看</a>
-					</div>
-				</li>
-                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5545.html" title="258元抢购芝奇DDR3 1600 8G单条内存" target="_blank">仅258元！原价352元的芝奇 RipjawsX 8GB DDR3 1600（F3-12800CL10S-8GBXL），超值“白菜价，火红霸气的外形，扎实的</a>
-					<a class="pic" href="http://tuan.zol.com/5545.html"><img width="125" height="150" title="258元抢购芝奇DDR3 1600 8G单条内存" alt="258元抢购芝奇DDR3 1600 8G单条内存" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9559.jpg"></a>
-					<div class="bulkatt clearfix">
-						<span><em>67</em>人已团购</span>
-						<a title="258元抢购芝奇DDR3 1600 8G单条内存" target="_blank" class="seebtn" href="http://tuan.zol.com/5545.html">去看看</a>
-					</div>
-				</li>
-                				<li class="slides">
-					<a class="tit" href="http://tuan.zol.com/5593.html" title="仅1349元！华为U8950D 荣耀加强版 双核1.2G主频 4.5寸屏" target="_blank">仅1349元！原价1899元 华为U8950D 荣耀+ 强劲双核1.2G主频 双卡安卓4.0 4.5寸IPS大屏 惊人分辨率带来完美视觉体验 8</a>
-					<a class="pic" href="http://tuan.zol.com/5593.html"><img width="125" height="150" title="仅1349元！华为U8950D 荣耀加强版 双核1.2G主频 4.5寸屏" alt="仅1349元！华为U8950D 荣耀加强版 双核1.2G主频 4.5寸屏" src="http://img.zol-img.com/zol_tuan/tuan_pic/other/10_200x150/tuan_9587.jpg"></a>
-					<div class="bulkatt clearfix">
-						<span><em>412</em>人已团购</span>
-						<a title="仅1349元！华为U8950D 荣耀加强版 双核1.2G主频 4.5寸屏" target="_blank" class="seebtn" href="http://tuan.zol.com/5593.html">去看看</a>
-					</div>
-				</li>
-                                			</ul></div>
+                <?php endforeach;?>
+            </ul>
+        </div>
 			<!--
 			<div class="left_turn left_turn_no">左翻</div>
 			<div class="right_turn">右翻</div>
@@ -636,7 +577,5 @@
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
-<script type="text/javascript">
-</script>
 </body>
 </html>

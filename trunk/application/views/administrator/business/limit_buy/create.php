@@ -40,7 +40,8 @@
                     <fieldset>
                         <p>
                             <label>分类</label>
-                            <select name="cid">
+                            <select name="cid" style="width: 400px;">
+                                <option value="0">默认</option>
                                 <?php foreach ($category as $item): ?>
                                 <option value="<?=$item['id']?>" <?php if (isset($info['cid']) && $info['cid'] == $item['id']) { echo 'selected="selected"'; }?>>
                                     <?php echo str_repeat("&nbsp;", $item['floor']), $item['name']?>
@@ -50,7 +51,7 @@
                         </p>
                         <p>
                             <label>销售状态</label>
-                            <select name="sales_status">
+                            <select name="sales_status" style="width: 400px;">
                                 <option value="1" <?=(isset ($info['sales_status']) && $info['sales_status']  == '1') ? 'selected="selected"' : '';?>>疯抢</option>
                                 <option value="2" <?=(isset ($info['sales_status']) && $info['sales_status']  == '2') ? 'selected="selected"' : '';?>>包邮</option>
                                 <option value="3" <?=(isset ($info['sales_status']) && $info['sales_status']  == '3') ? 'selected="selected"' : '';?>>热卖</option>
@@ -76,7 +77,7 @@
                         <p>
                             <label>抢购价格</label>
                             <input class="text-input small-input" type="text" value="<?php echo isset($info['limit_buy_price']) ? $info['limit_buy_price'] : ''?>" name="limit_buy_price" onkeyup="value=value.replace(/[^\d]/g, '')"/>
-                            价格单位为元,如：350.38
+                            价格单位为分,如：350.38元，填写：35038
                             <br/>
                         </p>
                         <p>

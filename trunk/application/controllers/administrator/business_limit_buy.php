@@ -60,7 +60,7 @@ class business_limit_buy extends MY_Controller
         $data['sort'] = $this->input->get_post('sort');
         $data['sales_status'] = $this->input->get_post('sales_status');
 
-        if (empty ($data['cid']) ||
+        if (//empty ($data['cid']) ||
             empty ($data['pid']) ||
             empty ($data['pname']) ||
             empty ($data['start_time']) ||
@@ -151,7 +151,7 @@ class business_limit_buy extends MY_Controller
         $data['sales_status'] = $this->input->get_post('sales_status');
 
         if (empty ($id) ||
-            empty ($data['cid']) ||
+            //empty ($data['cid']) ||
             empty ($data['pid']) ||
             empty ($data['pname']) ||
             empty ($data['start_time']) ||
