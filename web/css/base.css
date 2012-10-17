@@ -426,5 +426,54 @@ a:active{color:#333; text-decoration:none;}
 .word-num-tip{ float:right; color:#888;}
 .upload-btnp{ height:25px; }
 .show-o-w{ width:538px;}
-
 /*浮层CSS 结束*/
+
+/*右侧导航浮动菜单开始*/
+#sideBar .open{background-position:-300px -40px}
+#sideBar .box{position:absolute; right:0; top:0; height:100%; border-left:1px solid #DCDCDC; background:#F8F8F8; z-index:1}
+#sideBar dl{width:63px}
+#sideBar dl dt{height:25px; margin:0 -1px; padding:5px 0 0 6px; background:#FF731E; font-weight:bold; color:#FFF; line-height:normal}
+#sideBar dl.side02 dt{background:#85BE13}
+#sideBar dl.side03 dt{background:#EF4782}
+#sideBar dl dt s{display:inline-block; width:20px; height:20px; background:url(/images/comBg630.png) -200px -80px; vertical-align:middle}
+#sideBar dl.side02 dt s{background-position:-240px -80px}
+#sideBar dl.side03 dt s{background-position:-280px -80px}
+#sideBar dl dd{padding:2px 0 10px 6px}
+#sideBar dl dd a{display:inline-block; width:50px; margin:2px 0; color:#666}
+#sideBar dl dd a:hover{color:#F60}
+#sideTools{position:fixed; top:0px; right:-52px; width:86px; z-index:10010}
+#sideTools p{margin-top:5px}
+#sideTools p.miniNav{margin-top:0}
+#sideTools p a{display:block; width:86px; height:36px; background:#AEB2BD; text-decoration:none; cursor:pointer; overflow:hidden}
+#sideTools p a:link, #sideTools p a:visited{background:#AEB2BD}
+#sideTools p a:hover{background:#676767; text-decoration:none}
+#sideTools p a:active{background:#676767}
+#sideTools p a s{display:inline-block; float:left; width:34px; height:36px; background:url(/images/comBg630.png) 0 -340px; vertical-align:middle}
+#sideTools p a span{display:inline-block; float:left; width:50px; height:36px; color:#FFF; line-height:36px; overflow:hidden}
+#sideTools p.miniNav a s{background-position:0 -340px}
+#sideTools p.miniNav a.on{background:#676767}
+#sideTools p.miniNav a:hover s{background-position:-160px -340px}
+#sideTools p.miniNav a.on s{background-position:-160px -340px}
+#sideTools p.iRpt a s{background-position:-40px -340px}
+#sideTools p.iRpt a:hover s{background-position:-200px -340px}
+#sideTools p.iOnline a s{background-position:-80px -340px}
+#sideTools p.iOnline a:hover s{background-position:-240px -340px}
+#sideTools p.iToTop a s{background-position:-120px -340px}
+#sideTools p.iToTop a:hover s{background-position:-280px -340px}
+#sideTools p.iToTop a span{text-align:center}
+#sideTools .stMore{width:86px; height:0; background:#676767; border-top:1px solid #585858; overflow:hidden}
+#sideTools .stMore dl{padding-bottom:0px}
+#sideTools .stMore dl dt{height:30px; font-weight:bold; color:#FD741C; line-height:30px}
+#sideTools .stMore dl dt s{display:inline-block; width:20px; height:16px; margin:0 2px 0 10px; background:url(/images/comBg630.png) -320px -300px; vertical-align:middle}
+#sideTools .stMore dl.side01{border-top:1px solid #7E7E7E}
+#sideTools .stMore dl.side02 dt{color:#86BE15}
+#sideTools .stMore dl.side02 dt s{background-position:-320px -320px}
+#sideTools .stMore dl.side03{border-bottom:1px solid #585858}
+#sideTools .stMore dl.side03 dt{color:#ED4882}
+#sideTools .stMore dl.side03 dt s{background-position:-320px -340px}
+#sideTools .stMore dl dd{margin-left:31px}
+#sideTools .stMore dl dd a{display:block; margin-bottom:2px; color:#FFF}
+#sideTools .stMoreClose{display:block; width:86px; height:16px; background:#676767}
+#sideTools .stMoreClose a{display:block; width:86px; height:14px; border-top:1px solid #7E7E7E; text-decoration:none; cursor:pointer}
+#sideTools .stMoreClose a i{display:inline-block; width:14px; height:14px; margin-left:36px; background:url(/images/comBg630.png) -320px -360px}
+/*右侧导航浮动菜单结束*/
