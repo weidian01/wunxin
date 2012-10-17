@@ -194,7 +194,7 @@ class import extends MY_Controller
         $r = $this->db->get()->result_array();
 
 
-        #recursiveMkdirDirectory($target_path);
+        #
 
         foreach($r as $v)
         {
@@ -203,13 +203,15 @@ class import extends MY_Controller
             $datedir = '/upload/attached/'.date('Y/m/d/');
             $target_file = $datedir . intToPath($v['intor_img_id']);
             $target = $target_path.$target_file;
+            $filename = $v['intor_img_id'] . '.jpg'
 
-            copy($source_file, $target);
-
-            if(file_exists($target))
+            if(file_exists($target . $filename))
             {
                 continue;
             }
+
+            recursiveMkdirDirectory($target);
+            copy($source_file, $target . $filename);
             echo $target;die;
         }
     }
