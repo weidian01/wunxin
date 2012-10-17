@@ -527,7 +527,7 @@ function idToPath(id) {
     var id = String(id);//alert(id);
     var l = id.match(/(\d{1,2})(\d{0,2})/);
     //alert(typeof id);alert(id);alert(l);
-    return l[1] + '/' + l[1] + l[2] + '/' + id + '/';
+    return l[0] + '/' + l[1] + l[2] + '/' + id + '/';
 }
 
 //关闭浮层
