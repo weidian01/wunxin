@@ -194,7 +194,7 @@ class import extends MY_Controller
         $r = $this->db->get()->result_array();
 
 
-        recursiveMkdirDirectory($target_path);
+        #recursiveMkdirDirectory($target_path);
 
         foreach($r as $v)
         {
