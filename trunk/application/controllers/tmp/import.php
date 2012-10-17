@@ -211,7 +211,13 @@ class import extends MY_Controller
             }
 
             recursiveMkdirDirectory($target);
+
+            $data = array('new_addr' => $target_file . $filename,);
+            $this->db->where('id', $v['id']);
+            $this->db->update('taobao_product_relation', $data);
+
             copy($source_file, $target . $filename);
+
             echo $target;die;
         }
     }
