@@ -274,7 +274,7 @@
             <p class="price">抢购价：<em><span>¥</span><?=fPrice($dlv['limit_buy_price']);?></em></p>
             <p>市场价：<del>¥ <?=fPrice($dlv['sell_price']);?></del></p>
             <p>立省：<b><?=fPrice($dlv['sell_price'] - $dlv['limit_buy_price']);?></b>元</p>
-            <p>余量：<b><?=($dlv['inventory'] - $dlv['limit_buy_num']);?></b>件</p>
+            <p>余量：<b><?=intval($dlv['inventory'] - $dlv['limit_buy_num']);?></b>件</p>
             <a class="qiangbtn_small" href="<?=productURL($dlv['pid']);?>" target="_blank" title="<?=$dlv['pname']?>">立即抢购</a>
         </li>
         <?php $dli++;endforeach;?>
@@ -300,7 +300,7 @@
                 <p class="price">抢购价：<em><span>¥</span><?=fPrice($iv['limit_buy_price']);?></em></p>
                 <p>市场价： <del>¥ <?=fPrice($iv['sell_price']);?></del> </p>
                 <p>立省：<b><?=fPrice($iv['sell_price']-$iv['limit_buy_price']);?></b>元</p>
-                <p>余量：<b><?=($iv['inventory'] - $iv['limit_buy_num']);?></b>件</p>
+                <p>余量：<b><?=intval($iv['inventory'] - $iv['limit_buy_num']);?></b>件</p>
                 <div class="snap_att clearfix">
                     <a id="promo_status_<?=$iv['id']?>" class="qiangbtn_red" target="_blank" href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>">立即抢购</a>
                     <span>已有<em><?=empty($iv['attention_num']) ? '0' : $iv['attention_num'];?></em>人关注</span>
