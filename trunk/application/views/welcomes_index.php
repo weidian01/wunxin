@@ -532,5 +532,28 @@
     });
     //*/
 </script>
+<a id="searchKeywords"></a>
+<script>
+var  snimgSrc = "" ;
+var bigscreen = false;
+var img = new Image();
+if (screen.width>=1200) {
+bigscreen = true;
+img.setAttribute("width", '570');
+img.setAttribute("height", '420');
+img.src = "http://image1.suning.cn/images/9/20120819zqA1_1s_1200.jpg";
+snimgSrc= "<map name='Map' id='Map'><area target='_blank' shape='rect' coords='5,3,566,278' href='http://sale.suning.com/images/advertise/001/win8surface/index.html' title='电脑微软' name='dac_index_promo010301'><area target='_blank' shape='rect' coords='11,280,289,410' href='http://sale.suning.com/images/advertise/001/10e18years/index.html' title='这个E18  红包由你发' name='dac_index_promo010302'><area target='_blank' shape='rect' coords='292,281,567,411' href='http://sale.suning.com/images/advertise/001/10percent10/index.html' title='争分夺秒，感动常在 ' name='dac_index_promo010303'></map>";
+} else {
+img.setAttribute("width", '370');
+img.setAttribute("height", '420');
+img.src = "http://image1.suning.cn/images/9/20120819zqA1_1s.jpg";
+snimgSrc= "<map name='Map' id='Map'><area target='_blank' shape='rect' coords='3,5,366,279'  href='http://sale.suning.com/images/advertise/001/win8surface/index.html' title='电脑微软' name='dac_index_promo010301'><area target='_blank' shape='rect' coords='5,282,186,409' href='http://sale.suning.com/images/advertise/001/10e18years/index.html' title='这个E18  红包由你发' name='dac_index_promo010302'><area target='_blank' shape='rect' coords='191,285,364,410' href='http://sale.suning.com/images/advertise/001/10percent10/index.html' title='争分夺秒，感动常在 ' name='dac_index_promo010303'></map>";
+}
+img.setAttribute("usemap", '#Map');
+</script>
+
+<style type="text/css">
+
+</style>
 </body>
 </html>
