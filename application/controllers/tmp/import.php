@@ -183,4 +183,34 @@ class import extends MY_Controller
 //print_r($r);
 
     }
+
+    function intro_img()
+    {
+        $this->load->helper('directory');
+        $this->load->database();
+
+        $this->db->select('*');
+        $this->db->from('taobao_product_relation');
+        $r = $this->db->get()->result_array();
+
+
+        recursiveMkdirDirectory($target_path);
+
+        foreach($r as $v)
+        {
+            $source_file = '/data/m_data/intro_image/' . intToPath($v['pid']) . $v['pid'] . '.jpg';
+            $target_path = '/data/www/wunxin/web';
+            $datedir = '/upload/attached/'.date('Y/m/d/');
+            $target_file = $datedir . intToPath($v['intor_img_id']);
+            $target = $target_path.$target_file;
+            echo $target;die;
+            copy($source_file, $target);
+            if(file_exists($target))
+            {
+                continue;
+            }
+
+        }
+    }
+
 }
