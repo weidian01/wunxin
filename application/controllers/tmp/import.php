@@ -206,16 +206,16 @@ class import extends MY_Controller
             $target = $target_path.$target_file;
             $filename = $v['intor_img_id'] . '.jpg';
 
+            $data = array('new_addr' => $target_file . $filename,);
+            $this->db->where('id', $v['id']);
+            $this->db->update('taobao_product_relation', $data);
+
             if(file_exists($target . $filename))
             {
                 continue;
             }
 
             recursiveMkdirDirectory($target);
-
-            $data = array('new_addr' => $target_file . $filename,);
-            $this->db->where('id', $v['id']);
-            $this->db->update('taobao_product_relation', $data);
 
             copy($source_file, $target . $filename);
 
