@@ -476,4 +476,20 @@ a:active{color:#333; text-decoration:none;}
 #sideTools .stMoreClose{display:block; width:86px; height:16px; background:#676767}
 #sideTools .stMoreClose a{display:block; width:86px; height:14px; border-top:1px solid #7E7E7E; text-decoration:none; cursor:pointer}
 #sideTools .stMoreClose a i{display:inline-block; width:14px; height:14px; margin-left:36px; background:url(/images/comBg630.png) -320px -360px}
+
+#sideTools .stMore1{width:86px; height:0; background:#676767; border-top:1px solid #585858; overflow:hidden}
+#sideTools .stMore1 dl{padding-bottom:0px}
+#sideTools .stMore1 dl dt{height:30px; font-weight:bold; color:#4ca7fd; line-height:30px}
+#sideTools .stMore1 dl dt s{display:inline-block; width:20px; height:16px; margin:0 2px 0 10px; background:url(/images/comBg630.png) -320px -280px; vertical-align:middle}
+#sideTools .stMore1 dl.side01{border-top:1px solid #7E7E7E}
+#sideTools .stMore1 dl.side02 dt{color:#FFFFFF}
+#sideTools .stMore1 dl.side02 dt s{background-position:-320px -380px}
+#sideTools .stMore1 dl.side03{border-bottom:1px solid #585858}
+#sideTools .stMore1 dl.side03 dt{color:#f2e04a}
+#sideTools .stMore1 dl.side03 dt s{background-position:-320px -400px}
+#sideTools .stMore1 dl dd{margin-left:31px}
+#sideTools .stMore1 dl dd a{display:block; margin-bottom:2px; color:#FFF}
+#sideTools .stMoreClose1{display:block; width:86px; height:16px; background:#676767}
+#sideTools .stMoreClose1 a{display:block; width:86px; height:14px; border-top:1px solid #7E7E7E; text-decoration:none; cursor:pointer}
+#sideTools .stMoreClose1 a i{display:inline-block; width:14px; height:14px; margin-left:36px; background:url(/images/comBg630.png) -320px -360px}
 /*右侧导航浮动菜单结束*/

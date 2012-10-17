@@ -287,6 +287,7 @@ function sideToolsAct() {
     var n = u.height();
     var y = u.find(".stMore");
     var t = u.find(".miniNav a");
+
     var w = u.find(".stMoreClose");
     var r = false;
     var o;
@@ -304,6 +305,7 @@ function sideToolsAct() {
             }, 300)
         }
     });
+
     t.click(function () {
         p()
     });
@@ -347,6 +349,54 @@ function sideToolsAct() {
             r = false
         }
     }
+
+    var t1 = u.find(".iOnline a");
+    var y1 = u.find(".stMore1");
+    var w1 = u.find(".stMoreClose1");
+    t1.click(function () {
+        p1()
+    });
+    w1.click(function () {
+        p1()
+    });
+    function p1() {
+        var c = y1.height();
+        if (!r) {
+            t1.addClass("on");
+            y1.show().height("auto");
+            var e = y1.height();
+            y1.height(0).hide();
+            var b = (q - n - e + 14) / 2;
+            var a = u.css("right");
+            if (a < 0) {
+                u.animate({right:0}, 1)
+            }
+            if (b < 0) {
+                b = 0
+            }
+            y1.show().animate({height:e + "px"}, 400);
+            if (v) {
+                u.css({top:$(document).scrollTop() + 42})
+            } else {
+                u.stop().animate({top:b + "px"}, 350)
+            }
+            w1.show();
+            r = true
+        } else {
+            t1.removeClass("on");
+            y1.animate({height:0}, 180);
+            if (v) {
+                u.css({top:$(document).scrollTop() + 42})
+            } else {
+                u.stop().animate({top:(q - n) / 2 + "px"}, 350, function () {
+                    y1.hide()
+                })
+            }
+            w1.hide();
+            r = false
+        }
+    }
+
     function s() {
         if (v) {
             var a = (q - n) / 2;
