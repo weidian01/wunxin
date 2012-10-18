@@ -61,14 +61,10 @@
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
 <div class="answer_sheet">
-<h2 style="font-weight:bold; font-size:14px;">首页改版问卷调研</h2>
+<h2 style="font-weight:bold; font-size:14px;">万象网问卷调研</h2>
 
 <div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
-<form action="/ques/Index/subAnswerForm.html" method="post" enctype="multipart/form-data" id="questionnaire"
-      novalidate="novalidate">
-<input type="hidden" name="qid" value="2">
-<input type="hidden" name="_count" value="13">
-<input type="hidden" name="current_url" value="/ques/Index/questionnaire/qid/2">
+
 <table border="0">
     <tbody>
     <tr>
@@ -78,39 +74,29 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_31" name="answer[31]" value="很不满意">
-                很不满意
+                <input type="radio" id="binding_id_1_1" name="answer1" onclick="reportAnswer(1, 1)"> 很不满意
             </div>
         </td>
     </tr>
     <tr>
         <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_31" name="answer[31]" value="不太满意">
-                不太满意
-            </div>
+            <div style="margin:0 20px 5px 15px;"><input type="radio" id="binding_id_1_2" name="answer1" onclick="reportAnswer(1, 2)"> 不太满意</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;"><input type="radio" id="binding_id_1_3" name="answer1" onclick="reportAnswer(1, 3)">一般</div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;"><input type="radio" id="binding_id_1_4" name="answer1" onclick="reportAnswer(1, 4)"> 比较满意</div>
         </td>
     </tr>
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_31" name="answer[31]" value="一般">
-                一般
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_31" name="answer[31]" value="比较满意">
-                比较满意
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_31" name="answer[31]" value="非常满意">
+                <input type="radio" id="binding_id_1_5" name="answer1" onclick="reportAnswer(1, 5)">
                 非常满意
             </div>
         </td>
@@ -128,7 +114,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_32" name="answer[32]" value="很不满意">
+                <input type="radio" id="binding_id_2_1" name="answer2" onclick="reportAnswer(2, 1)">
                 很不满意
             </div>
         </td>
@@ -136,7 +122,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_32" name="answer[32]" value="不太满意">
+                <input type="radio" id="binding_id_2_2" name="answer2" onclick="reportAnswer(2, 2)">
                 不太满意
             </div>
         </td>
@@ -144,7 +130,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_32" name="answer[32]" value="一般">
+                <input type="radio" id="binding_id_2_3" name="answer2" onclick="reportAnswer(2, 3)">
                 一般
             </div>
         </td>
@@ -152,7 +138,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_32" name="answer[32]" value="比较满意">
+                <input type="radio" id="binding_id_2_4" name="answer2" onclick="reportAnswer(2, 4)">
                 比较满意
             </div>
         </td>
@@ -160,7 +146,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_32" name="answer[32]" value="非常满意">
+                <input type="radio" id="binding_id_2_5" name="answer2" onclick="reportAnswer(2, 5)">
                 非常满意
             </div>
         </td>
@@ -178,7 +164,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_33" name="answer[33]" value="太长">
+                <input type="radio" id="binding_id_3_1" name="answer3" onclick="reportAnswer(3, 1)">
                 太长
             </div>
         </td>
@@ -186,7 +172,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_33" name="answer[33]" value="刚好">
+                <input type="radio" id="binding_id_3_2" name="answer3" onclick="reportAnswer(3, 2)">
                 刚好
             </div>
         </td>
@@ -194,7 +180,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_33" name="answer[33]" value="稍短">
+                <input type="radio" id="binding_id_3_3" name="answer3" onclick="reportAnswer(3, 3)">
                 稍短
             </div>
         </td>
@@ -202,7 +188,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_33" name="answer[33]" value="不关心">
+                <input type="radio" id="binding_id_3_4" name="answer3" onclick="reportAnswer(3, 4)">
                 不关心
             </div>
         </td>
@@ -220,7 +206,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_34" name="answer[34]" value="很不满意">
+                <input type="radio" id="binding_id_4_1" name="answer4" onclick="reportAnswer(4, 1)">
                 很不满意
             </div>
         </td>
@@ -228,7 +214,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_34" name="answer[34]" value="不太满意">
+                <input type="radio" id="binding_id_4_2" name="answer4" onclick="reportAnswer(4, 2)">
                 不太满意
             </div>
         </td>
@@ -236,7 +222,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_34" name="answer[34]" value="一般">
+                <input type="radio" id="binding_id_4_3" name="answer4" onclick="reportAnswer(4, 3)">
                 一般
             </div>
         </td>
@@ -244,7 +230,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_34" name="answer[34]" value="比较满意">
+                <input type="radio" id="binding_id_4_4" name="answer4" onclick="reportAnswer(4, 4)">
                 比较满意
             </div>
         </td>
@@ -252,7 +238,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_34" name="answer[34]" value="非常满意">
+                <input type="radio" id="binding_id_4_5" name="answer4" onclick="reportAnswer(4, 5)">
                 非常满意
             </div>
         </td>
@@ -260,367 +246,16 @@
     </tbody>
 </table>
 
-
 <div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
 <table border="0">
     <tbody>
     <tr>
-        <th colspan="3" align="left">5.您在万象网一般购买哪些商品？（多选）<span style="font-weight: 100;" id="answer_35"></span></th>
+        <th colspan="1" align="left">5.您性别？（单选）<span style="font-weight: 100;" id="answer_43"></span></th>
     </tr>
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="机票、酒店、充值、缴费">
-                机票、酒店、充值、缴费
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="手机、数码">
-                手机、数码
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="电脑、办公">
-                电脑、办公
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="生活电器">
-                生活电器
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="家用电器">
-                家用电器
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="厨卫电器">
-                厨卫电器
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="家居生活">
-                家居生活
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="酒水产品">
-                酒水产品
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="美妆个护">
-                美妆个护
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="服饰鞋帽">
-                服饰鞋帽
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="运动户外">
-                运动户外
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="汽车用品">
-                汽车用品
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="皮具箱包">
-                皮具箱包
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="钟表首饰">
-                钟表首饰
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="母婴用品">
-                母婴用品
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="玩具乐器">
-                玩具乐器
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="图书">
-                图书
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_35" name="answer[35][]" value="其他">
-                其他<span><input style="float:none;display:none;margin-left:10px" type="text" id="cqita_35"
-                               name="cqita_35" size="40"><span id="casf_35" style="display:none">还可以输入<input
-                style="float:none;width:13px;border:0" type="text" id="ctxtCount_35" size="1" value="70">字</span></span>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
-<table border="0">
-    <tbody>
-    <tr>
-        <th colspan="2" align="left">6.您对万象网首页现有促销板块比较喜欢的有哪些？（多选）<span style="font-weight: 100;" id="answer_36"></span>
-        </th>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_36" name="answer[36][]" value="热销">
-                热销
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_36" name="answer[36][]" value="新品">
-                新品
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_36" name="answer[36][]" value="流行时尚">
-                流行时尚
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_36" name="answer[36][]" value="超值日用">
-                超值日用
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_36" name="answer[36][]" value="独家首发">
-                独家首发
-            </div>
-        </td>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_36" name="answer[36][]" value="限时抢购">
-                限时抢购
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_36" name="answer[36][]" value="热门团购">
-                热门团购
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
-<table border="0">
-    <tbody>
-    <tr>
-        <th align="left">7.您还希望万象网增加什么功能或内容？（必答问答）<span style="font-weight: 100;" id="answer_41"></span>
-        </th>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <textarea rows="5" id="in_41" cols="88" name="answer[41]"></textarea>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
-<table border="0">
-    <tbody>
-    <tr>
-        <th colspan="1" align="left">8.您访问万象网首页的频率是？（单选）<span style="font-weight: 100;" id="answer_37"></span></th>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_37" name="answer[37]" value="每天一次以上"> 每天一次以上
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td> <div style="margin:0 20px 5px 15px;"> <input type="radio" id="in_37" name="answer[37]" value="每周3~4次"> 每周3~4次 </div> </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_37" name="answer[37]" value="每周2次">
-                每周2次
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_37" name="answer[37]" value="每周1次">
-                每周1次
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_37" name="answer[37]" value="两周1次">
-                两周1次
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_37" name="answer[37]" value="一月1次或者更少">
-                一月1次或者更少
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_37" name="answer[37]" value="第一次进入苏宁易购首页">
-                第一次进入万象网首页
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-
-<div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
-<table border="0">
-    <tbody>
-    <tr>
-        <th colspan="1" align="left">9.您访问频率最多的购物网站是？（多选）<span style="font-weight: 100;" id="answer_38"></span></th>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="淘宝">
-                淘宝
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="京东">
-                京东
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="天猫">
-                天猫
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="苏宁易购">
-                苏宁易购
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="亚马逊">
-                亚马逊
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="当当">
-                当当
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="易讯">
-                易讯
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="1号店">
-                1号店
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="checkbox" id="in_38" name="answer[38][]" value="其他">
-                其他<span><input style="float:none;display:none;margin-left:10px" type="text" id="cqita_38"
-                               name="cqita_38" size="40"><span id="casf_38" style="display:none">还可以输入<input
-                style="float:none;width:13px;border:0" type="text" id="ctxtCount_38" size="1" value="70">字</span></span>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-<div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
-<table border="0">
-    <tbody>
-    <tr>
-        <th colspan="1" align="left">10.您性别？（单选）<span style="font-weight: 100;" id="answer_43"></span></th>
-    </tr>
-    <tr>
-        <td>
-            <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_43" name="answer[43]" value="男">
+                <input type="radio" id="binding_id_5_1" name="answer5" onclick="reportAnswer(5, 1)">
                 男
             </div>
         </td>
@@ -628,7 +263,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_43" name="answer[43]" value="女">
+                <input type="radio" id="binding_id_5_2" name="answer5" onclick="reportAnswer(5, 2)">
                 女
             </div>
         </td>
@@ -641,12 +276,12 @@
 <table border="0">
     <tbody>
     <tr>
-        <th colspan="1" align="left">11.您的年龄段为？（单选）<span style="font-weight: 100;" id="answer_39"></span></th>
+        <th colspan="1" align="left">6.您的年龄段为？（单选）<span style="font-weight: 100;" id="answer_39"></span></th>
     </tr>
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_39" name="answer[39]" value="18岁以下">
+                <input type="radio" id="binding_id_6_1" name="answer6" onclick="reportAnswer(6, 1)">
                 18岁以下
             </div>
         </td>
@@ -654,7 +289,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_39" name="answer[39]" value="18-24岁">
+                <input type="radio" id="binding_id_6_2" name="answer6" onclick="reportAnswer(6, 2)">
                 18-24岁
             </div>
         </td>
@@ -662,7 +297,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_39" name="answer[39]" value="25-30岁">
+                <input type="radio" id="binding_id_6_3" name="answer6" onclick="reportAnswer(6, 3)">
                 25-30岁
             </div>
         </td>
@@ -670,7 +305,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_39" name="answer[39]" value="31-35岁">
+                <input type="radio" id="binding_id_6_4" name="answer6" onclick="reportAnswer(6, 4)">
                 31-35岁
             </div>
         </td>
@@ -678,7 +313,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_39" name="answer[39]" value="36-40岁">
+                <input type="radio" id="binding_id_6_5" name="answer6" onclick="reportAnswer(6, 5)">
                 36-40岁
             </div>
         </td>
@@ -686,7 +321,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_39" name="answer[39]" value="40岁以上">
+                <input type="radio" id="binding_id_6_6" name="answer6" onclick="reportAnswer(6, 6)">
                 40岁以上
             </div>
         </td>
@@ -699,12 +334,12 @@
 <table border="0">
     <tbody>
     <tr>
-        <th colspan="1" align="left">12.您的月收入范围为？（单选）<span style="font-weight: 100;" id="answer_40"></span></th>
+        <th colspan="1" align="left">7.您的月收入范围为？（单选）<span style="font-weight: 100;"></span></th>
     </tr>
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_40" name="answer[40]" value="2500以下">
+                <input type="radio" id="binding_id_7_1" name="answer7" onclick="reportAnswer(7, 1)">
                 2500以下
             </div>
         </td>
@@ -712,7 +347,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_40" name="answer[40]" value="2500~5000">
+                <input type="radio" id="binding_id_7_2" name="answer7" onclick="reportAnswer(7, 2)">
                 2500~5000
             </div>
         </td>
@@ -720,7 +355,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_40" name="answer[40]" value="5000~8000">
+                <input type="radio" id="binding_id_7_3" name="answer7" onclick="reportAnswer(7, 3)">
                 5000~8000
             </div>
         </td>
@@ -728,7 +363,7 @@
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <input type="radio" id="in_40" name="answer[40]" value="8000以上">
+                <input type="radio" id="binding_id_7_4" name="answer7" onclick="reportAnswer(7, 4)">
                 8000以上
             </div>
         </td>
@@ -736,80 +371,202 @@
     </tbody>
 </table>
 
-
 <div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
 <table border="0">
     <tbody>
     <tr>
-        <th align="left">13.您愿意留下您的联系方式吗，以便我们诚邀你参加用户体验相关活动？ （可选问答）</th>
+        <th colspan="1" align="left">8.您对万象网购物可以接受的配送时限最长是多少？（单选）<span style="font-weight: 100;"></span></th>
     </tr>
     <tr>
         <td>
             <div style="margin:0 20px 5px 15px;">
-                <textarea rows="5" id="in_42" cols="88" name="answer[42]"></textarea>
+                <input type="radio" id="binding_id_8_1" name="answer8" onclick="reportAnswer(8, 1)">
+                一天以内
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_8_2" name="answer8" onclick="reportAnswer(8, 2)">
+                1~2天
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_8_3" name="answer8" onclick="reportAnswer(8, 3)">
+                3~5天
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_8_4" name="answer8" onclick="reportAnswer(8, 4)">
+                6~7天
             </div>
         </td>
     </tr>
     </tbody>
 </table>
+
 <div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
-<ul>
-    <li>
-        <p>为了方便与您联系，请填写好下列信息，标<em> * </em>为必填项，请您放心填写，我们一定会保护好您的个人隐私。</p>
-    </li>
-    <li>
-        <label><em>* </em>姓&nbsp;&nbsp;&nbsp;名：</label>
-        <input type="text" name="name" id="name">
-        <span id="name_span"></span></li>
-    <li>
-        <label><em>* </em>手&nbsp;&nbsp;&nbsp;机：</label>
-        <input type="text" name="mobile" id="mobile">
-    </li>
-    <li class="tel_num_ipt">
-        <div style="width:84px;height:24px;float:left">
-            <label>座&nbsp;&nbsp;&nbsp;机：</label>
-        </div>
-        <div class="tel_num_ipt_all" style="position:relative;float:left">
-            <label for="area_code" style="width:24px;display:block;position:absolute;left:5px;cursor:text;">区号</label>
-            <input class="area_code" name="area_code" id="area_code" type="text" maxlength="4">
-        </div>
-        <div class="tel_num_ipt_all" style="position:relative;float:left">
-            <label for="phone_num" style="width:24px;display:block;position:absolute;left:5px;cursor:text;">号码</label>
-            <input class="phone_num" name="phone_num" id="phone_num" type="text" maxlength="8">
-        </div>
-        <div class="tel_num_ipt_all" style="position:relative;float:left">
-            <label for="extension_num"
-                   style="width:40px;height:24px;display:block;position:absolute;left:0px;cursor:text;">分机号</label>
-            <input class="extension_num" name="extension_num" id="extension_num" type="text" maxlength="6">
-        </div>
-        <span id="tel_span">（分机号可不填）</span></li>
-    <li>
-        <label>E-mail：</label>
-        <input type="text" name="email" id="email">
-        <span id="email_span"></span></li>
-    <li>
-        <label>QQ：</label>
-        <input type="text" name="qq" id="qq">
-        <span id="qq_span"></span></li>
-    <li>
-        <label>微博链接：</label>
-        <input type="text" name="weibo" id="weibo">
-        <span id="weibo_span"></span></li>
-    <li>
-        <label>MSN：</label>
-        <input type="text" name="msn">
-    </li>
-    <li>
-        <label>其他联系方式：</label>
-        <input type="text" name="othertel">
-    </li>
-</ul>
-<input type="submit" class="btn_ques" value="提交">
-<input type="hidden" name="__hash__" value="63232f8677af3123b73180556fe59609_3f015e5c2874ca8c31c01a05845dc06e"></form>
+<table border="0">
+    <tbody>
+    <tr>
+        <th colspan="1" align="left">9.万象网最初吸引您的地方是什么？（单选）<span style="font-weight: 100;"></span></th>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_9_1" name="answer9" onclick="reportAnswer(9, 1)">
+                商品价格实惠
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_9_2" name="answer9" onclick="reportAnswer(9, 2)">
+                商品新颖，个性化强
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_9_3" name="answer9" onclick="reportAnswer(9, 3)">
+                商品质量好
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_9_4" name="answer9" onclick="reportAnswer(9, 4)">
+                免运费
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_9_5" name="answer9" onclick="reportAnswer(9, 5)">
+                售后服务好
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
+<table border="0">
+    <tbody>
+    <tr>
+        <th colspan="1" align="left">10.您认为万象网站的结算操作简便性如何？（单选）<span style="font-weight: 100;"></span></th>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_10_1" name="answer10" onclick="reportAnswer(10, 1)">
+                操作较繁琐
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_10_2" name="answer10" onclick="reportAnswer(10, 2)">
+                还可以
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_10_3" name="answer10" onclick="reportAnswer(10, 3)">
+                操作很方便
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_10_4" name="answer10" onclick="reportAnswer(10, 4)">
+                没什么感觉
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<div style="border-bottom:1px dashed #CDCDCD; margin:14px 0;"></div>
+<table border="0">
+    <tbody>
+    <tr>
+        <th colspan="1" align="left">11.您对万象网的咨询互动性的看法？（单选）<span style="font-weight: 100;"></span></th>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_11_1" name="answer11" value="2500以下" onclick="reportAnswer(11, 1)">
+                现在的状况就很好
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_11_2" name="answer11" value="2500~5000" onclick="reportAnswer(11, 2)">
+                信息延迟，很费时间，最好能改进
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin:0 20px 5px 15px;">
+                <input type="radio" id="binding_id_11_3" name="answer11" value="5000~8000" onclick="reportAnswer(11, 3)">
+                没什么感觉
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<input type="button" class="btn_ques" value="提交" id="submit_id" onclick="submits()">
 </div>
+<br/>
 <?php include(APPPATH."views/footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
 <script type="text/javascript">
+    function submits()
+    {
+        wx.showPop('感谢您的参与！', 'submit_id');
+    }
+    function reportAnswer(id, answerId)
+    {
+        console.log(id,answerId);
+        if (!wx.isEmpty(id) || !wx.isEmpty(answerId)) {
+            //wx.showPop('参数为空');
+            return ;
+        }
+        var url = 'activity/activity/reportAnswer';
+        var param = 'id='+id+'&report_id='+answerId;
+        var data = wx.ajax(url, param);
+
+        var msg = '';
+        switch (data.error) {
+            case '0': msg = '感谢您的参与！'; break;
+            case '70013': msg = '参数不全！'; break;
+            case '70014': msg = '问题不存在！'; break;
+        }
+
+console.log('binding_id_'+id+'_'+answerId);
+        //wx.showPop(msg, 'binding_id_'+id+'_'+answerId, 1);
+    }
 </script>
 <!-- #EndLibraryItem -->
 </body>
