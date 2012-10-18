@@ -283,7 +283,7 @@ class import extends MY_Controller
             $replacement = '';
             $html = preg_replace($pattern, $replacement, $v['pcontent']);
 
-            $html = preg_replace('/<img title="超.*?</', '<', $replacement, $html);
+            $html = preg_replace('/<img title="超.*?</', '<', $html);
 
             $data['pcontent'] = strip_tags($html, '<img><br>');
             $this->db->where('pid', $v['pid']);
