@@ -254,7 +254,10 @@ class import extends MY_Controller
 
             if(isset($matches[1]) && $matches[1])
             {
-                echo $html = str_replace($search, $replace, $matches[1]);
+                $html = str_replace($search, $replace, $matches[1]);
+                $data = array('pcontent' => $html);
+                $this->db->where('pid', $v['id']);
+                $this->db->update('product', $data);
             }
 
             die;
