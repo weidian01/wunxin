@@ -223,4 +223,41 @@ class import extends MY_Controller
         }
     }
 
+    function product_intro()
+    {
+        $this->load->database();
+
+        $this->db->select('id, link_id');
+        $this->db->from('taobao_product_img');
+        $this->db->order_by('id ASC');
+        $r = $this->db->get()->result_array();
+
+        foreach($r as $v)
+        {
+            $this->db->select('*');
+            $this->db->from('taobao_product_relation');
+            $this->db->where('pid', $v['id']);
+            $this->db->order_by('id ASC');
+            $images = $this->db->get()->result_array();
+            if(!$images)
+            {
+                continue;
+            }
+            $search = $replace = array();
+            foreach($images as $img)
+            {
+                $search[] = $img['img_addr'];
+                $replace[] = $img['new_addr'];
+            }
+            $html = file_get_contents('/data/m_data/intro/'.intToPath($v['link_id']).'.index.html');
+            preg_match('/var desc=\'(.*)\';/', $html, $matches);
+
+            print_r($matches);
+
+            echo $html = str_replace($search, $replace, $html);
+
+            die;
+        }
+    }
+
 }
