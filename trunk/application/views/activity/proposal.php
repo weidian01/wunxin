@@ -31,37 +31,44 @@
 <?php include(APPPATH.'views/header.php');?>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
-    <?php include ('center_left.php');?>
-    <div class="u-right">
-        <div class="u-r-box">
+    <?php //include ('center_left.php');?>
+    <div class="u-right" style="padding-left:0px;width: 980px;">
+        <div class="u-r-box" style="width: 978px;">
             <div class="u-r-tit">系统建议与意见
+                <!--
                 <span style="float:right;text-align: right;">
                     <a style="color: #8B8878;font-size: 12px;" href="/user/center/mySystemProposal">我的建议与意见&nbsp;&nbsp;</a>
                 </span>
+                -->
             </div>
         </div>
-        <div class="u-r-box">
+        <div class="u-r-box" style="width: 978px;">
             <br/>
             <table width="100%" border="0">
                 <tbody>
                 <tr>
                     <td align="right"> 姓名： </td>
-                    <td> <label> <input type="text" id="uname" name="uname" class="input_1"> </label> </td>
+                    <td> <label> <input type="text" id="uname" name="uname" class="input_1"> </label> <span class="" id="uname_notice_id"></span></td>
                 </tr>
                 <tr><td colspan="2"></td> </tr>
                 <tr>
                     <td align="right"> 电话： </td>
-                    <td> <input type="text" id="phone" name="phone" class="input_1"> <span class="err">请填写电话联系方式，以便于我们在第一时间联系到您</span></td>
+                    <td> <input type="text" id="phone" name="phone" class="input_1"> <span class="err">请填写电话联系方式，以便于我们在第一时间联系到您</span>
+                        <span class="" id="phone_notice_id"></span>
+                    </td>
                 </tr><br/>
                 <tr>
                     <td align="right"> <label> </label> Email： </td>
-                    <td> <input type="text" id="mail" name="mail" class="input_1"> <span class="err"></span> <span class="" id="mail_notice_id"></span></td>
+                    <td> <input type="text" id="mail" name="mail" class="input_1"> <span class="err"></span>
+                        <span class="" id="mail_notice_id"></span>
+                    </td>
                 </tr>
                 <tr><td colspan="2"></td> </tr>
                 <tr>
                     <td align="right"> 标题： </td>
                     <td>
                         <input type="text" id="title" name="title" class="input_1" style="width: 350px;">
+                        <span class="" id="title_notice_id"></span>
                     </td>
                 </tr>
                 <tr>
@@ -117,10 +124,10 @@
         $("#content_notice_id").removeClass("mistake");
         $("#content_notice_id").removeClass("txi");
 
-        if (!wx.isEmpty (content)) {
-            $("#content_notice_id").addClass("mistake");
-            $('#content_notice_id').html('内容为空,请认真填写内容！');
-            return false;
+        if (wx.isEmpty(phone) && !wx.isMobile(phone)) {
+            //$("#phone_notice_id").addClass("mistake");
+            //$('#phone_notice_id').html('手机号码！');
+            //return false;
         }
 
         $('#mail_notice_id').html('');
@@ -132,13 +139,20 @@
             return false;
         }
 
+        if (!wx.isEmpty (content)) {
+            $("#content_notice_id").addClass("mistake");
+            $('#content_notice_id').html('内容为空,请认真填写内容！');
+            return false;
+        }
+
         var url = '/other/systemProposal/addSystemProposal';
         var param = 'uname='+uname+'&phone='+phone+'&mail='+mail+'&title='+title+'&content='+content;
         var data = wx.ajax(url, param);
 
         if (data.error == '0') {
+            //wx.showPop('感谢你提供的建议与意见！ 我们将会认真阅读并响应！');
             alert('感谢你提供的建议与意见！ 我们将会认真阅读并响应！');
-            wx.goToUrl('/user/center/mySystemProposal');
+            wx.goToUrl('/');
             return;
         }
 

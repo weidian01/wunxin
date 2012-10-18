@@ -41,4 +41,50 @@ class activity extends MY_Controller
     {
         $this->load->view('activity/survey');
     }
+
+    /**
+     * 回答问卷
+     */
+    public function reportAnswer()
+    {
+        $id = intval($this->input->get_post('id'));
+        $reportId = intval($this->input->get_post('report_id'));
+        $response = array('error' => '0', 'msg' => '回答成功', 'code' => 'answer_success');
+
+        do {
+            if (empty ($id) || empty ($reportId)) {
+                $response = error(70013);
+                break;
+            }
+
+            $this->load->database();
+            $data = $this->db->get_where('survey', array('id' => $id))->row_array();
+            //$data = $this->db->row_result();
+            //echo '<pre>';print_r($data);exit;
+
+            if (empty ($data)) {
+                $response = error(70014);
+                break;
+            }
+
+            $info = array(
+               'answer_id' => $id,
+               'report_id' => $reportId,
+               'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
+            );
+
+
+            $this->db->insert('survey_log', $info);
+        } while (false);
+
+        self::json_output($response);
+    }
+
+    /**
+     * 系统建议与意见
+     */
+    public function proposal()
+    {
+        $this->load->view('activity/proposal');
+    }
 }

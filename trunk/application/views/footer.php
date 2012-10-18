@@ -115,7 +115,11 @@
             <dt><s></s>QQ客服</dt>
             <dd>
                 <a href="http://wpa.qq.com/msgrd?v=3&uin=610338260&site=qq&menu=yes">
-                    <img border="0" src="http://wpa.qq.com/pa?p=2:610338260:45" alt="点击咨询" title="点击咨询">
+                    售前客服
+                </a>
+
+                <a href="http://wpa.qq.com/msgrd?v=3&uin=610338260&site=qq&menu=yes">
+                    售后客服
                 </a>
             </dd>
         </dl>
@@ -134,7 +138,7 @@
     </div>
     <em class="stMoreClose1" style="display: none; "><a title="关闭导航"><i></i></a></em>
 
-    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="javascript:void(0)"><s></s><span>调查问卷</span></a></p>
+    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="/activity/activity/survey"><s></s><span>调查问卷</span></a></p>
      <p class="iToTop"><a name="dac_index_ycdhsh06" href="javascript:void(0);" onclick="backToTop();"><s></s><span>回顶部</span></a></p>
  </div>
 <!-- 右侧导航浮动菜单结束 -->

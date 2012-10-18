@@ -285,6 +285,9 @@ $error[70010] = array('error' => '70010', 'msg' => '退订邮件列表参数不�
 $error[70011] = array('error' => '70011', 'msg' => '删除礼物卡参数不全', 'code' => 'delete_gift_card_parameter_failure');
 $error[70012] = array('error' => '70012', 'msg' => '删除礼物卡失败', 'code' => 'delete_gift_card_failure');
 
+$error[70013] = array('error' => '70013', 'msg' => '参数不全', 'code' => 'parameter_failure');
+$error[70014] = array('error' => '70014', 'msg' => '问题不存在', 'code' => 'the_problem_does_not_exist');
+
 
 
 /**
