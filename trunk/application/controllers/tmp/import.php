@@ -259,8 +259,8 @@ class import extends MY_Controller
                 $this->db->where('pid', $v['id']);
                 $this->db->update('product', $data);
             }
-
-            die;
+            echo $v['id'],"\n";
+            //die;
         }
     }
 
