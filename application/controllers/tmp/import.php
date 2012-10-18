@@ -232,7 +232,7 @@ class import extends MY_Controller
         $this->db->order_by('id ASC');
         $this->db->where('id', 9507);
         $r = $this->db->get()->result_array();
-        print_r($r);
+        //print_r($r);
         foreach($r as $v)
         {
             $this->db->select('*');
@@ -252,12 +252,13 @@ class import extends MY_Controller
             }
             $html = file_get_contents('/data/m_data/intro/'.intToPath($v['link_id']).'index.html');
             preg_match('/var desc=\'(.*)\';/', $html, $matches);
-            print_r($matches);
-            print_r($search);
-            print_r($replace);
+            //print_r($matches);
+            //print_r($search);
+            //print_r($replace);
             if(isset($matches[1]) && $matches[1])
             {
-                echo $html = str_replace($search, $replace, $matches[1]);
+                $html = str_replace($search, $replace, $matches[1]);
+                $html = iconv('GBK', 'UTF-8//IGNORE', $html);
                 $data = array('pcontent' => $html);
                 $this->db->where('pid', $v['id']);
                 $this->db->update('product', $data);
