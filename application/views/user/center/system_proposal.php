@@ -35,7 +35,7 @@
                         <td width="8%" align="center">姓名</td>
                         <td width="20%" align="center">电话</td>
                         <td width="15%" align="center">邮件地址</td>
-                        <td width="8%" align="center">问答时间</td>
+                        <td width="8%" align="center">创建时间</td>
                     </tr>
                 </table>
             </div>

@@ -8,6 +8,9 @@
  */
 class activity extends MY_Controller
 {
+    /**
+     * 限时抢购
+     */
     public function qiang()
     {
         $this->load->model('business/model_business_limit_buy_category', 'category');
@@ -29,5 +32,13 @@ class activity extends MY_Controller
             'default_lb' => $defaultLimitBuy,
         );
         $this->load->view('activity/qiang_gou', $data);
+    }
+
+    /**
+     * 问卷调查
+     */
+    public function survey()
+    {
+        $this->load->view('activity/survey');
     }
 }
