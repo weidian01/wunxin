@@ -456,6 +456,8 @@ a:active{color:#333; text-decoration:none;}
 #sideTools p.miniNav a.on s{background-position:-160px -340px}
 #sideTools p.iRpt a s{background-position:-40px -340px}
 #sideTools p.iRpt a:hover s{background-position:-200px -340px}
+#sideTools p.proposal a s{background-position:-0px -380px}
+#sideTools p.proposal a:hover s{background-position:-40px -380px}
 #sideTools p.iOnline a s{background-position:-80px -340px}
 #sideTools p.iOnline a:hover s{background-position:-240px -340px}
 #sideTools p.iToTop a s{background-position:-120px -340px}
@@ -479,10 +481,10 @@ a:active{color:#333; text-decoration:none;}
 
 #sideTools .stMore1{width:86px; height:0; background:#676767; border-top:1px solid #585858; overflow:hidden}
 #sideTools .stMore1 dl{padding-bottom:0px}
-#sideTools .stMore1 dl dt{height:30px; font-weight:bold; color:#4ca7fd; line-height:30px}
+#sideTools .stMore1 dl dt{height:30px; font-weight:bold; color:#e1e2e2; line-height:30px}
 #sideTools .stMore1 dl dt s{display:inline-block; width:20px; height:16px; margin:0 2px 0 10px; background:url(/images/comBg630.png) -320px -280px; vertical-align:middle}
 #sideTools .stMore1 dl.side01{border-top:1px solid #7E7E7E}
-#sideTools .stMore1 dl.side02 dt{color:#FFFFFF}
+#sideTools .stMore1 dl.side02 dt{color:#8ED02C}
 #sideTools .stMore1 dl.side02 dt s{background-position:-320px -380px}
 #sideTools .stMore1 dl.side03{border-bottom:1px solid #585858}
 #sideTools .stMore1 dl.side03 dt{color:#f2e04a}

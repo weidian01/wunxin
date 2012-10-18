@@ -92,12 +92,14 @@
                  <a target="_blank" href="/cart/">购物车</a>
              </dd>
          </dl>
+         <!--
          <dl class="side02">
              <dt><s></s>生活</dt>
              <dd>
                  <a target="_blank" href="">手机充值</a>
              </dd>
          </dl>
+         -->
          <dl class="side03">
              <dt><s></s>服务</dt>
              <dd>
@@ -112,7 +114,7 @@
     <p class="iOnline"><a name="dac_index_ycdhsh05" href="javascript:void(0);"><s></s><span>客服咨询</span></a></p>
     <div class="stMore1" style="height: 0px; display: none; ">
         <dl class="side01">
-            <dt><s></s>QQ客服</dt>
+            <dt><s></s>QQ</dt>
             <dd>
                 <a href="http://wpa.qq.com/msgrd?v=3&uin=610338260&site=qq&menu=yes">
                     售前客服
@@ -124,7 +126,7 @@
             </dd>
         </dl>
         <dl class="side02">
-            <dt><s></s>邮件客服</dt>
+            <dt><s></s>邮件</dt>
             <dd>
                 <a target="_blank" href="mailto:hjpking@gmail.com?subject=咨询">邮件咨询</a>
             </dd>
@@ -138,8 +140,8 @@
     </div>
     <em class="stMoreClose1" style="display: none; "><a title="关闭导航"><i></i></a></em>
 
-    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="/activity/activity/survey"><s></s><span>调查问卷</span></a></p>
-    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="/activity/activity/survey"><s></s><span>建议与意见</span></a></p>
+    <p class="proposal"><a target="_blank" name="dac_index_ycdhsh08" href="/activity/activity/proposal"><s></s><span>帮助完善</span></a></p>
+    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="/activity/activity/survey"><s></s><span>问卷调查</span></a></p>
      <p class="iToTop"><a name="dac_index_ycdhsh06" href="javascript:void(0);" onclick="backToTop();"><s></s><span>回顶部</span></a></p>
  </div>
 <!-- 右侧导航浮动菜单结束 -->
