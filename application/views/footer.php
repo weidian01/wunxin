@@ -139,6 +139,7 @@
     <em class="stMoreClose1" style="display: none; "><a title="关闭导航"><i></i></a></em>
 
     <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="/activity/activity/survey"><s></s><span>调查问卷</span></a></p>
+    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="/activity/activity/survey"><s></s><span>建议与意见</span></a></p>
      <p class="iToTop"><a name="dac_index_ycdhsh06" href="javascript:void(0);" onclick="backToTop();"><s></s><span>回顶部</span></a></p>
  </div>
 <!-- 右侧导航浮动菜单结束 -->
