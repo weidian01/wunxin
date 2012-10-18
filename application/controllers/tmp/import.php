@@ -232,7 +232,7 @@ class import extends MY_Controller
         $this->db->order_by('id ASC');
         $this->db->where('id', 97890);
         $r = $this->db->get()->result_array();
-
+        print_r($r);
         foreach($r as $v)
         {
             $this->db->select('*');
