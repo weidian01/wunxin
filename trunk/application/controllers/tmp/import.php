@@ -252,7 +252,7 @@ class import extends MY_Controller
             }
             echo $html = file_get_contents('/data/m_data/intro/'.intToPath($v['link_id']).'index.html');
             preg_match('/var desc=\'(.*)\';/', $html, $matches);
-
+            print_r($matches);
             if(isset($matches[1]) && $matches[1])
             {
                 $html = str_replace($search, $replace, $matches[1]);
