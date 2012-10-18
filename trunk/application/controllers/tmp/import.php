@@ -283,9 +283,11 @@ class import extends MY_Controller
             $replacement = '';
             $html = preg_replace($pattern, $replacement, $v['pcontent']);
 
-            $html = preg_replace('/<img title="超.*?</', '<', $html);
 
-            $data['pcontent'] = strip_tags($html, '<img><br>');
+            $html = strip_tags($html, '<img><br>');
+
+            $data['pcontent'] = preg_replace('/<img title="超.*?</', '<', $html);
+
             $this->db->where('pid', $v['pid']);
             $this->db->update('product', $data);
             echo $v['pid'],"\n";
