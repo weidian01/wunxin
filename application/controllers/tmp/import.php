@@ -250,7 +250,7 @@ class import extends MY_Controller
                 $search[] = $img['img_addr'];
                 $replace[] = $img['new_addr'];
             }
-            $html = file_get_contents('/data/m_data/intro/'.intToPath($v['link_id']).'index.html');
+            echo $html = file_get_contents('/data/m_data/intro/'.intToPath($v['link_id']).'index.html');
             preg_match('/var desc=\'(.*)\';/', $html, $matches);
 
             if(isset($matches[1]) && $matches[1])
