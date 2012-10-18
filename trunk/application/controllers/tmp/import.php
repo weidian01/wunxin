@@ -230,7 +230,7 @@ class import extends MY_Controller
         $this->db->select('id, link_id');
         $this->db->from('taobao_product_img');
         $this->db->order_by('id ASC');
-        $this->db->where('id', 97890);
+        $this->db->where('id', 9507);
         $r = $this->db->get()->result_array();
         print_r($r);
         foreach($r as $v)
