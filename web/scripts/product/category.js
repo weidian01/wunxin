@@ -41,12 +41,12 @@ $(function ($) {
         function () {
             $('span',this).text('收起');
             $('img',this).attr('src','/images/arrow_up.gif');
-            $('.attr_hidden').slideUp();
+            $('.attr_hidden').slideUp('fast');//.show();
         },
         function () {
             $('span',this).text('更多');
             $('img',this).attr('src','/images/arrow_down.gif');
-            $('.attr_hidden').slideDown();
+            $('.attr_hidden').slideDown('fast');//.hide();
         }
     );
 
