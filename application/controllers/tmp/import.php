@@ -264,4 +264,26 @@ class import extends MY_Controller
         }
     }
 
+
+    function filtration_pcontent()
+    {
+        $this->load->database();
+
+        $this->db->select('pid, pcontent');
+        $this->db->from('product');
+        $this->db->order_by('pid ASC');
+        $r = $this->db->get()->result_array();
+
+        foreach ($r as $v) {
+            $pattern = '/<a.*?a>/i';
+            $replacement = '';
+            $html = preg_replace($pattern, $replacement, $v['pcontent']);
+
+            $data['pcontent'] = strip_tags($html, '<img><br>');
+            $this->db->where('pid', $v['pid']);
+            $this->db->update('product', $data);
+            echo $v['pid'],"\n";
+        }
+    }
+
 }
