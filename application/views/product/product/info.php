@@ -62,9 +62,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <h1><?=$product['pname']?> <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
       <!--<span class="font3"><?=date('Y');?>新品 </span>--></div>
     <p><!--商品编号：CY0569852310000<br/>-->
-
       特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?=sprintf('%.2f', $product['sell_price']/100)?></span><br/>
-      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?=sprintf('%.2f', $product['market_price']/100)?></span></p>
+      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?=sprintf('%.2f', $product['market_price']/100)?></span>
+    </p>
 
     <div class="pf">
       <div class="pftxt">商品评分：</div>
@@ -79,6 +79,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </div>
       </div>
     </div>
+    <p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：<?=$product['brand']['name']?></p>
     <div class="size">
       <div class="goods-type">
         <div class="ctxt">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：</div>
