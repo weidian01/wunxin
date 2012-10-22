@@ -10,6 +10,6 @@ class business_discount extends MY_Controller
 {
     public function lists()
     {
-
+        $this->load->view('');
     }
 }

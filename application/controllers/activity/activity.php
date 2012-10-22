@@ -87,4 +87,9 @@ class activity extends MY_Controller
     {
         $this->load->view('activity/proposal');
     }
+
+    public function discount()
+    {
+        $this->load->view('activity/discount');
+    }
 }

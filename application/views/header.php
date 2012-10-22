@@ -79,7 +79,7 @@
             <div class="otherbox">
                 <ul>
                     <li><a href="#" target="_blank">最新到货</a></li>
-                    <li><a href="#" target="_blank">特价热卖</a></li>
+                    <li><a href="/activity/activity/discount" target="_blank">特价热卖</a></li>
                     <li><a href="#" target="_blank">热门评论</a></li>
                     <li class="end"><a href="/activity/activity/qiang" target="_blank">限时抢购</a></li>
                 </ul>
