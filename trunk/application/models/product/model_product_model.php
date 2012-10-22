@@ -141,18 +141,19 @@ class Model_Product_Model extends MY_Model
      * @param null $search null 全部 1 可搜索的属性 0不可搜索的属性
      * @return mixed
      */
-    function getModelAttr($model_id, $search=null)
+    function getModelAttr($model_id, $search=null, $field="*")
     {
         $where = array('model_id' => $model_id);
         if($search !== null)
         {
             $where['search'] = $search;
         }
+        list($key, $field) = self::formatField($field);
         return $this->db
-            ->select('attr_id, model_id, type, attr_name, attr_value, sort, search, display')
+            ->select($field)
             ->order_by('sort', 'desc')
             ->get_where('product_model_attr', $where)
-            ->result_array();
+            ->result_array($key);
     }
 
     /**
@@ -202,6 +203,16 @@ class Model_Product_Model extends MY_Model
                 }
             }
         }
+        return $data;
+    }
+
+    function getAttrByPID($pid, $field="*")
+    {
+        list($key, $field) = self::formatField($field);
+        $data = $this->db
+            ->select($field)
+            ->get_where('product_attr', array('pid'=>$pid))
+            ->result_array($key);
         return $data;
     }
 }

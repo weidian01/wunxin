@@ -1342,6 +1342,9 @@
 }
 
 .attr_hidden{display: none;}
+.model_attr li{float: left;display:block;height:30px;border: 0px solid red;margin-bottom:1px;line-height:30px }
+.model_attr li.title{background-color:#e0e0e0;width: 80px;text-align:right;}
+.model_attr li.content{background-color:#f3f3f3;width: 173px;text-align:left;margin-right:1px;text-indent:5px;}
 
 
 

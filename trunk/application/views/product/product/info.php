@@ -280,25 +280,14 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     </div>
     <div class="gbox-relation" id="g-relation1">
       <div class="goods-tp">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="11%" align="right" bgcolor="#e0e0e0" style="padding-left:0px;">货号：</td>
-            <td width="25%" bgcolor="#f3f3f3">CY256302500</td>
-            <td width="11%" align="right" bgcolor="#E0E0E0">上市时间：</td>
-            <td width="22%" bgcolor="#f3f3f3">2012-05-02</td>
-            <td width="9%" align="right" bgcolor="#E0E0E0">面料：</td>
-            <td width="22%" bgcolor="#f3f3f3">纯棉</td>
-          </tr>
-          <tr>
-            <td align="right" bgcolor="#e0e0e0" style="padding-left:0px;">性别：</td>
-            <td bgcolor="#f3f3f3">女</td>
-            <td align="right" bgcolor="#E0E0E0">颜色：</td>
-            <td bgcolor="#f3f3f3">粉色</td>
-            <td align="right" bgcolor="#E0E0E0">产地：</td>
-            <td bgcolor="#f3f3f3">上海</td>
-          </tr>
-        </table>
+          <ul class="model_attr">
+            <?php foreach($modelAttr as $attr):?>
+              <li class="title"><?=$attr['attr_name']?>：</li>
+              <li class="content"><?=$attr['attr_value']?></li>
+              <?endforeach;?>
+          </ul>
       </div>
+        <div class="clear"></div>
       <div class="goods-detail">
         <!--div class="detail-tit">
           <div class="titles"></div>

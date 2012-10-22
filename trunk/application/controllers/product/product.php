@@ -183,6 +183,24 @@ class Product extends MY_Controller
             $this->load->model('product/Model_Product_Brand', 'brand');
             $product['brand'] = $this->brand->getBrandByID($product['brand_id'], 'name');
 
+            $this->load->model('product/Model_Product_Model', 'mod');
+            $modelAttr = $this->mod->getModelAttr($product['model_id'], null, 'attr_id, attr_name, attr_value'); //echo APPPATH;
+            $productAttr = $this->mod->getAttrByPID($product['pid'], 'attr_id, attr_value');
+            foreach ($modelAttr as $k => $v) {
+                $modelAttr[$k]['attr_value'] = '';
+                foreach($productAttr as $key => $attr){
+                    if($attr['attr_id'] == $v['attr_id'])
+                    {
+                        $modelAttr[$k]['attr_value'] .= $attr['attr_value'];
+                        unset($productAttr[$key]);
+                    }
+                }
+                if($modelAttr[$k]['attr_value'] == '')
+                {
+                    unset($modelAttr[$k]);
+                }
+            }
+            //print_r($modelAttr);
             //echo '<pre>';print_r($this->product->getProductSize($pid));exit;
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),
@@ -193,6 +211,7 @@ class Product extends MY_Controller
                 'design' => $design,
                 'designer' => $designer,
                 'salesRank' => $this->salesRank($product['class_id'], $product['brand_id']),
+                'modelAttr'=>$modelAttr,
             ));
             //print_r($alike);
             //$html = $str = preg_replace('/\s+/', ' ', $this->output->get_output());
