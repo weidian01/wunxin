@@ -75,8 +75,9 @@
                         <li><a href="/administrator/business_ad/adList" title="广告管理">广告管理</a></li>
                         <li><a href="/administrator/business_card_model/cardModelList" title="礼物卡管理">礼物卡管理</a></li>
                         <li><a href="/administrator/business_tuan/tuanList" title="团购管理">团购管理</a></li>
-                        <li><a href="/administrator/business_limit_buy/lists" title="限时抢购">限时抢购</a></li>
-                        <li><a href="/administrator/business_discount/lists" title="限时抢购">特价热卖</a></li>
+                        <!--<li><a href="/administrator/business_limit_buy/lists" title="限时抢购">限时抢购</a></li>
+                        <li><a href="/administrator/business_discount/lists" title="限时抢购">特价热卖</a></li>-->
+                        <li><a href="/administrator/business_promotion/lists" title="促销活动">促销活动</a></li>
                         <li><a href="/administrator/business_integral_redemption/redemptionList" title="积分换购产品管理">积分换购产品管理</a></li>
                         <li><a href="/administrator/business_mail_subscribe/mailSubscribeList" title="邮件订阅管理">邮件订阅管理</a></li>
                     </ul>

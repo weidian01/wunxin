@@ -49,7 +49,7 @@ class product extends MY_Controller
             $data = $this->product->getProductList($pagesize, $page);
         }
         //print_r($data);
-        $this->load->view('administrator/product/index', array('list' => $data, 'page' => $this->pagination->create_links()));
+        $this->load->view('administrator/product/index', array('list' => $data, 'searchType' => $this->searchType, 'page' => $this->pagination->create_links()));
     }
 
     /**
