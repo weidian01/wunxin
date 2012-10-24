@@ -962,6 +962,7 @@ function sideToolsAct() {
     var t1 = u.find(".iOnline a");
     var y1 = u.find(".stMore1");
     var w1 = u.find(".stMoreClose1");
+
     t1.click(function () {
         p1()
     });
