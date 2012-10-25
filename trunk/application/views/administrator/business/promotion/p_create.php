@@ -23,7 +23,7 @@
 </ul>
 <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="<?=url('administrator/business_promotion/p_create/'.$promotion_id);?>" method="post">
+        <form action="<?=url('administrator/business_promotion_product/p_create/'.$promotion_id);?>" method="post">
             <p>
                 <label><b>输入关键字</b></label>
                 <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
@@ -94,7 +94,7 @@
                     <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
                     <td><?=empty ($item['stock']) ? '0' : $item['stock']?></td>
                     <td>
-                        <a href="javascript:void(0);" onclick="wx.showPop('中国人', null, 1000000)"><b>加入活动</b></a>
+                        <a href="/administrator/business_promotion_product/joinPromotion/<?=$promotion['promotion_id'].'/'.$item['pid'];?>"><b>加入活动</b></a>
                     </td>
                 </tr>
                     <?php endforeach;?>

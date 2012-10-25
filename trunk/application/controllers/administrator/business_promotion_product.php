@@ -26,12 +26,16 @@ class business_promotion_product extends MY_Controller
     public function lists()
     {
         $promotionId = intval($this->uri->segment(5, 0));
+        $categoryId = intval($this->uri->segment(6, 0));
         //echo $promotionId;
         $where = null;
         if (!empty ($promotionId)) {
             $where = array('promotion_id' => $promotionId);
         }
-
+        if (!empty ($categoryId)) {
+            $where == null ? ( $where = array('cid' => $categoryId) ) : ( $where['cid'] = $categoryId );
+        }
+//echo '<pre>';print_r($where);//exit;
         $Limit = 20;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
@@ -64,6 +68,7 @@ class business_promotion_product extends MY_Controller
             'current_page' => $currentPage,
             'promotion' => $promotion,
             'category' => $category,
+            'promotion_id' => $promotionId,
         );
         $this->load->view('/administrator/business/promotion/p_list', $vData);
     }
@@ -138,4 +143,110 @@ class business_promotion_product extends MY_Controller
         $this->load->view('administrator/business/promotion/p_create', $info);
     }
 
+    /**
+     * 添加产品加入促销活动
+     */
+    public function joinPromotion()
+    {
+        $promotionId = intval($this->uri->segment(4, 0));
+        $productId = intval($this->uri->segment(5, 0));
+        if (!$promotionId) {
+            show_error('促销活动id为空！');
+        }
+        if (!$productId) {
+            show_error('产品ID为空！');
+        }
+
+        $this->load->model('/business/model_business_promotion', 'promotion');
+        $promotion = $this->promotion->getPromotion($promotionId);
+        if ( empty ($promotion) ) {
+            show_error('促销活动不存在！');
+        }
+
+        $this->load->model('/product/model_product', 'product');
+        $pData = $this->product->getProductById($productId);
+        if ( empty ($pData) ) {
+            show_error('促销产品不存在！');
+        }
+
+        $this->load->model('business/model_business_promotion_category', 'category');
+        $category = $this->category->getCategoryListByPromotionId($promotionId);
+
+//echo '<pre>';print_r($category);exit;
+        $info = array(
+            'type' => 'add',
+            'promotion' => $promotion,
+            'product' => $pData,
+            'category' => $category,
+        );
+        $this->load->view('administrator/business/promotion/join_promotion', $info);
+    }
+
+    public function save()
+    {
+        $data['promotion_id'] = intval($this->input->get_post('promotion_id'));
+        $data['pid'] = intval($this->input->get_post('pid'));
+        $data['pname'] = $this->input->get_post('pname');
+        $data['cid'] = intval($this->input->get_post('cid'));
+        $data['promotion_price'] = intval($this->input->get_post('promotion_price'));
+        $data['start_time'] = $this->input->get_post('start_time');
+        $data['end_time'] = $this->input->get_post('end_time');
+        $data['inventory'] = intval($this->input->get_post('inventory'));
+        $data['sort'] = intval($this->input->get_post('sort'));
+        $data['sales_status'] = intval($this->input->get_post('sales_status'));
+
+        if (empty ($data['promotion_id']) ||
+            empty ($data['pid']) ||
+            empty ($data['pname']) ||
+            empty ($data['cid']) ||
+            empty ($data['promotion_price']) ||
+            empty ($data['start_time']) ||
+            empty ($data['end_time']) ||
+            empty ($data['inventory']) ||
+            empty ($data['sales_status']) ) {
+            show_error('参数为空！');
+        }
+
+        $this->load->model('/business/model_business_promotion', 'promotion');
+        $promotion = $this->promotion->getPromotion($data['promotion_id']);
+        if ( empty ($promotion) ) {
+            show_error('促销活动不存在！');
+        }
+
+        $this->load->model('/product/model_product', 'product');
+        $pData = $this->product->getProductById($data['pid']);
+        if ( empty ($pData) ) {
+            show_error('促销产品不存在！');
+        }
+
+        $this->load->model('/business/model_business_promotion_product', 'pp');
+        $status = $this->pp->addProduct($data);
+        if (!$status) {
+            show_error('添加促销产品失败！');
+        }
+
+        $this->load->helper('url');
+        redirect('administrator/business_promotion_product/lists/1/'.$data['promotion_id']);
+    }
+
+    /**
+     * 删除促销产品
+     */
+    public function delete()
+    {
+        $id = $this->uri->segment(4, 0);
+        if (!$id) {
+            show_error('促销产品id为空');
+        }
+
+        $this->load->model('/business/model_business_promotion_product', 'product');
+
+        $status = $this->product->deleteProduct($id);
+        if (!$status) {
+            show_error('删除促销活动失败！');
+        }
+
+        $this->load->helper('url');
+        redirect('administrator/business_promotion_product/lists');
+    }
 }
