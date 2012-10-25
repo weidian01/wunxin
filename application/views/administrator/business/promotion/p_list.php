@@ -76,7 +76,11 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?=$v['id'];?></td>
-                        <td><?=$promotion[$v['promotion_id']]['name'];?></td>
+                        <td>
+                            <a href="/administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$v['promotion_id'];?>">
+                                <?=$promotion[$v['promotion_id']]['name'];?>
+                            </a>
+                        </td>
                         <td><?=$v['pid'];?></td>
                         <td>
                             <a href="<?=productURL($v['pid'])?>" target="_blank">
@@ -86,7 +90,11 @@
                         <td><?=$v['pname'];?></td>
                         <td><?=fPrice($v['sell_price']);?></td>
                         <td><?=fPrice($v['promotion_price']);?></td>
-                        <td><?=$category[$v['cid']]['name'];?></td>
+                        <td>
+                            <a href="/administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.( empty ($promotion_id) ? '0' : $promotion_id).'/'.$v['cid'];?>">
+                                <?=$category[$v['cid']]['name'];?>
+                            </a>
+                        </td>
                         <td><?=$v['start_time'];?></td>
                         <td><?=$v['end_time'];?></td>
                         <td><?=$v['inventory'];?></td>
@@ -95,8 +103,8 @@
                         <td><?=$v['sort'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/business_promotion/edit/<?php echo $v['id'];?>" title="编辑"><img src="/images/icons/pencil.png" alt="编辑"></a>
-                            <a href="/administrator/business_promotion/delete/<?php echo $v['id'];?>" title="删除"><img src="/images/icons/cross.png" alt="删除"/></a>
+                            <a href="/administrator/business_promotion_product/edit/<?php echo $v['id'];?>" title="编辑"><img src="/images/icons/pencil.png" alt="编辑"></a>
+                            <a href="/administrator/business_promotion_product/delete/<?php echo $v['id'];?>" title="删除"><img src="/images/icons/cross.png" alt="删除"/></a>
                         </td>
                     </tr>
                         <?php }?>

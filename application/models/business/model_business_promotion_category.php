@@ -71,6 +71,7 @@ class model_business_promotion_category extends MY_Model
     /**
      * 获取分类列表
      *
+     * @param $promotionId
      * @param int $limit
      * @param int $offset
      * @param string $field
@@ -78,14 +79,22 @@ class model_business_promotion_category extends MY_Model
      * @param null $order
      * @return mixed
      */
-    public function getCategoryAllList($limit = 20, $offset = 0, $field = '*', $where = null, $order = null)
+    public function getCategoryListByPromotionId($promotionId, $limit = 20, $offset = 0, $field = '*', $where = null, $order = null)
     {
         $this->db->select($field)->from('promotion_product_category');
         $where && $this->db->where($where);
         $order && $this->db->order_by($order);
         $this->db->limit($limit, $offset);
 
-        return $this->db->get()->result_array();
+        if(is_array($promotionId))
+        {
+            $data = $this->db->where_in('promotion_id', $promotionId)->get()->result_array();
+        } else {
+            $data = $this->db->where('promotion_id', $promotionId)->get()->result_array();
+        }
+
+        //return $data;
+        return $this->sortdata($data);
     }
 
     /**

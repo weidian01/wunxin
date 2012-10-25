@@ -61,7 +61,11 @@
                         </td>
                         <td><?=$item['cid'];?></td>
                         <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['name'];?></td>
-                        <td><a href="/administrator/business_promotion_category/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$item['promotion_id'];?>"><?=$promotion[$item['promotion_id']]['name']?></a></td>
+                        <td>
+                            <a href="/administrator/business_promotion_category/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$item['promotion_id'];?>">
+                                <?=$promotion[$item['promotion_id']]['name']?>
+                            </a>
+                        </td>
                         <td><?=$item['floor']?></td>
                         <td><?=$item['sort']?></td>
                         <td>
