@@ -55,5 +55,7 @@ define('PICKING_NOT', 0); //未配货
 define('PICKING_CONDUCT', 1); //配货中
 define('PICKING_COMPLETED', 2);  //配货完成
 
+
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

@@ -39,7 +39,7 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?=url('administrator/business_promotion_product/save')?>" method="post">
+                <form action="<?=url('administrator/business_promotion_product/save')?>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="promotion_id" value="<?=isset ($promotion['promotion_id']) ? $promotion['promotion_id'] : '';?>"/>
                     <input type="hidden" name="pid" value="<?=isset ($product['pid']) ? $product['pid'] : '';?>"/>
                     <fieldset>
@@ -63,10 +63,10 @@
                             <label>产品图片</label>
                             <input class="text-input small-input datepicker" type="file" name="product_image"/>
                         </p>
-                        <p>
+                        <!--p>
                             <label>促销价格</label>
                             <input class="text-input small-input datepicker" type="promotion_price" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>分
-                        </p>
+                        </p-->
                         <p>
                             <label>开始时间</label>
                             <input class="text-input small-input datepicker" type="text" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
@@ -86,12 +86,26 @@
                         <p>
                             <label>销售状态</label>
                             <select name="sales_status" style="width: 400px;">
-                                <option value="1" >疯抢</option>
-                                <option value="2" >包邮</option>
-                                <option value="3" >热卖</option>
-                                <option value="4" >新品</option>
+                                <?php foreach ($sales_status as $ssk=>$ssv):?>
+                                <option value="<?=$ssk?>" ><?=$ssv?></option>
+                                <?php endforeach;?>
                             </select><br/>
                         </p>
+                        <!-- start 此处处理添加不同类型活动的表单 start -->
+                        <?php if ($promotion['promotion_type'] == PT_DISCOUNT):?>
+                            <p>
+                                <label>折扣</label>
+                                <input class="text-input small-input datepicker" value="<?=isset($info['rule']) ? $info['rule'] : ''?>"
+                                       type="text" name="discount" onkeyup="value=value.replace(/[^\d]/g, '')"/>折， 例：7.5折，填写75。
+                            </p>
+                        <?php  elseif ($promotion['promotion_type'] == PT_LIMIT_BUY):?>
+                            <p>
+                                <label>折扣</label>
+                                <input class="text-input small-input datepicker" value="<?=isset($info['rule']) ? $info['rule'] : ''?>"
+                                       type="text" name="discount" onkeyup="value=value.replace(/[^\d]/g, '')"/>折， 例：7.5折，填写75。
+                            </p>
+                        <?php endif;?>
+                        <!-- end 此处处理添加不同类型活动的表单 end -->
                         <p>
                             <input class="button" type="submit" value="Submit"/>
                         </p>

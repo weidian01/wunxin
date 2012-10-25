@@ -8,16 +8,6 @@
  */
 class business_promotion extends MY_Controller
 {
-    public $promotionType = array(
-        '1' => '限时抢购',
-        '2' => '特价热卖',
-    );
-
-    public $promotion_range = array(
-        '1' => '全系统',
-        '2' => '特定产品',
-    );
-
     public $searchType = array(
         1 => '商品ID',
         2 => '商品名称',
@@ -61,8 +51,9 @@ class business_promotion extends MY_Controller
             'data' => $data,
             'page_html' => $pageHtml,
             'current_page' => $currentPage,
-            'promotion_type' => $this->promotionType,
-            'promotion_range' => $this->promotion_range,
+            'promotion_type' => config_item('promotion_type'),
+            'promotion_range' => config_item('promotion_range'),
+            'promotion_juxtaposed' => config_item('promotion_juxtaposed')
         );
         $this->load->view('/administrator/business/promotion/list', $vData);
     }
@@ -74,8 +65,9 @@ class business_promotion extends MY_Controller
     {
         $data = array(
             'type' => 'add',
-            'promotion_type' => $this->promotionType,
-            'promotion_range' => $this->promotion_range,
+            'promotion_type' => config_item('promotion_type'),
+            'promotion_range' => config_item('promotion_range'),
+            'promotion_juxtaposed' => config_item('promotion_juxtaposed')
         );
         $this->load->view('/administrator/business/promotion/create', $data);
     }
@@ -96,8 +88,6 @@ class business_promotion extends MY_Controller
         $promotionId = intval($this->input->get_post('promotion_id'));
 
         if ( empty ($data['name']) ||
-            empty ($data['promotion_range']) ||
-            empty ($data['promotion_type']) ||
             empty ($data['start_time']) ||
             empty ($data['end_time']) ||
             empty ($data['descr']) ) {
@@ -142,8 +132,9 @@ class business_promotion extends MY_Controller
         $info = array(
             'type' => 'add',
             'info' => $data,
-            'promotion_type' => $this->promotionType,
-            'promotion_range' => $this->promotion_range,
+            'promotion_type' => config_item('promotion_type'),
+            'promotion_range' => config_item('promotion_range'),
+            'promotion_juxtaposed' => config_item('promotion_juxtaposed')
         );
         $this->load->view('/administrator/business/promotion/create', $info);
     }

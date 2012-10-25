@@ -66,8 +66,11 @@
                         <p>
                             <label>是否并列</label>
                             <select name="is_juxtaposed" style="width: 400px;">
-                                <option value="0">不并列</option>
-                                <option value="1">并列</option>
+                                <?php foreach ($promotion_juxtaposed as $pjk=>$pjv): ?>
+                                <option value="<?=$pjk;?>" <?php if (isset($info['is_juxtaposed']) && $info['promotion_type'] == $pjk) { echo 'selected="selected"'; }?>>
+                                    <?=$pjv;?>
+                                </option>
+                                <?php endforeach;?>
                             </select><br/>
                         </p>
                         <p>
