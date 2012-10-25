@@ -74,7 +74,7 @@
                         <td><?=$v['name']?></td>
                         <td><?=$promotion_range[$v['promotion_range']];?></td>
                         <td><?=$promotion_type[$v['promotion_type']];?></td>
-                        <td><?=empty ($v['is_juxtaposed']) ? '不并列' : '并列';?></td>
+                        <td><?=$promotion_juxtaposed[$v['is_juxtaposed']];?></td>
                         <td><?=$v['priority'];?></td>
                         <td><?=$v['start_time'];?></td>
                         <td><?=$v['end_time'];?></td>

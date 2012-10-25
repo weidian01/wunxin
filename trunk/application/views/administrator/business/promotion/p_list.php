@@ -84,12 +84,12 @@
                         <td><?=$v['pid'];?></td>
                         <td>
                             <a href="<?=productURL($v['pid'])?>" target="_blank">
-                                <img src="<?=empty ($v['product_image']) ? config_item('img_url').'product/'.intToPath($v['pid']).'icon.jpg' : $v['product_image'];?>" />
+                                <img src="<?=empty ($v['product_image']) ? config_item('img_url').'product/'.intToPath($v['pid']).'icon.jpg' : str_replace('\\', '/', $v['product_image']);?>" width="60" height="60"/>
                             </a>
                         </td>
                         <td><?=$v['pname'];?></td>
-                        <td><?=fPrice($v['sell_price']);?></td>
-                        <td><?=fPrice($v['promotion_price']);?></td>
+                        <td>￥<?=fPrice($v['sell_price']);?></td>
+                        <td>￥<?=fPrice($v['promotion_price']);?></td>
                         <td>
                             <a href="/administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.( empty ($promotion_id) ? '0' : $promotion_id).'/'.$v['cid'];?>">
                                 <?=$category[$v['cid']]['name'];?>
@@ -98,8 +98,8 @@
                         <td><?=$v['start_time'];?></td>
                         <td><?=$v['end_time'];?></td>
                         <td><?=$v['inventory'];?></td>
-                        <td><?=$v['sales_status'];?></td>
-                        <td><?=$v['role'];?></td>
+                        <td><?=$sales_status[$v['sales_status']];?></td>
+                        <td><?=$v['rule'];?></td>
                         <td><?=$v['sort'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>

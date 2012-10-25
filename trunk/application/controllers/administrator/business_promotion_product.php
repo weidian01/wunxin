@@ -35,7 +35,7 @@ class business_promotion_product extends MY_Controller
         if (!empty ($categoryId)) {
             $where == null ? ( $where = array('cid' => $categoryId) ) : ( $where['cid'] = $categoryId );
         }
-//echo '<pre>';print_r($where);//exit;
+
         $Limit = 20;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $Limit;
@@ -54,7 +54,6 @@ class business_promotion_product extends MY_Controller
         $config['anchor_class'] = 'class="number"';
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
-//echo '<pre>';print_r($data);exit;
 
         $this->load->model('/business/model_business_promotion', 'promotion');
         $promotion = $this->promotion->getPromotionList(10000);
@@ -69,6 +68,7 @@ class business_promotion_product extends MY_Controller
             'promotion' => $promotion,
             'category' => $category,
             'promotion_id' => $promotionId,
+            'sales_status' => config_item('sales_status'),
         );
         $this->load->view('/administrator/business/promotion/p_list', $vData);
     }
@@ -90,7 +90,7 @@ class business_promotion_product extends MY_Controller
         $this->load->model('/business/model_business_promotion', 'promotion');
         $pData = $this->promotion->getPromotion($id);
 
-        if ($pData['promotion_range'] == '1') {
+        if ($pData['promotion_range'] == PR_ALL) {
             show_error('此活动针对所有产品，不需要添加产品！');
         }
 
@@ -172,12 +172,12 @@ class business_promotion_product extends MY_Controller
         $this->load->model('business/model_business_promotion_category', 'category');
         $category = $this->category->getCategoryListByPromotionId($promotionId);
 
-//echo '<pre>';print_r($category);exit;
         $info = array(
             'type' => 'add',
             'promotion' => $promotion,
             'product' => $pData,
             'category' => $category,
+            'sales_status' => config_item('sales_status'),
         );
         $this->load->view('administrator/business/promotion/join_promotion', $info);
     }
@@ -199,7 +199,6 @@ class business_promotion_product extends MY_Controller
             empty ($data['pid']) ||
             empty ($data['pname']) ||
             empty ($data['cid']) ||
-            empty ($data['promotion_price']) ||
             empty ($data['start_time']) ||
             empty ($data['end_time']) ||
             empty ($data['inventory']) ||
@@ -209,24 +208,83 @@ class business_promotion_product extends MY_Controller
 
         $this->load->model('/business/model_business_promotion', 'promotion');
         $promotion = $this->promotion->getPromotion($data['promotion_id']);
-        if ( empty ($promotion) ) {
-            show_error('促销活动不存在！');
-        }
 
         $this->load->model('/product/model_product', 'product');
         $pData = $this->product->getProductById($data['pid']);
-        if ( empty ($pData) ) {
-            show_error('促销产品不存在！');
+
+        if ( empty ($promotion) || empty ($pData) ) {
+            show_error('促销活动不存在 或 促销产品不存在！');
         }
 
+        //不同促销活动规则处理
+        $tmpData = $this->ruleProcess($promotion['promotion_type'], $pData['sell_price']);
+        if (empty ($tmpData['rule']) || empty ($tmpData['price'])){
+            show_error('活动规则处理错误，请注意填写！');
+        }
+
+        $data['rule'] = $tmpData['rule'];
+        $data['promotion_price'] = $tmpData['price'];
+        $data['sell_price'] = $pData['sell_price'];
+
         $this->load->model('/business/model_business_promotion_product', 'pp');
-        $status = $this->pp->addProduct($data);
-        if (!$status) {
+        $lastId = $this->pp->addProduct($data);
+        if (!$lastId) {
             show_error('添加促销产品失败！');
+        }
+
+//var_dump($_FILES);exit;
+        if ($_FILES['product_image']['error'] == '0') {//echo 'f';
+            $this->load->helper('directory');
+            $directory = DS.'upload' . DS . 'activity' . DS . 'promotion' . DS . date('Ymd') . DS;
+            recursiveMkdirDirectory($directory);
+
+            $config['upload_path'] = WEBROOT . $directory;
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = '2000';
+            $config['remove_spaces'] = true;
+            $config['overwrite'] = false;
+            $config['max_width'] = '0';
+            $config['max_height'] = '0';
+            $config['file_name'] = $lastId;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('product_image')) {
+                $uData = $this->upload->data();
+
+                $file = $directory . $uData['file_name'];
+                $this->pp->updateImage($file, $lastId);
+            } else {
+                show_error('文件上传失败!');
+            }
         }
 
         $this->load->helper('url');
         redirect('administrator/business_promotion_product/lists/1/'.$data['promotion_id']);
+    }
+
+    /**
+     * 规则处理
+     */
+    private function ruleProcess($promotionType, $productPrice)
+    {
+        $rule = '';
+        switch ($promotionType) {
+            case PT_DISCOUNT:
+                $rule = $this->input->get_post('discount');
+                $this->load->model('promotion/model_discount', 'p');
+                break;
+            case PT_LIMIT_BUY:
+                $rule = $this->input->get_post('discount');
+                $this->load->model('promotion/model_limit_buy', 'p');
+                break;
+        }
+//var_dump($this->p);
+        $this->p->init($rule);
+        $price = $this->p->compute($productPrice);
+
+        $info = array('rule' => $rule, 'price' => $price);
+        return $info;
     }
 
     /**

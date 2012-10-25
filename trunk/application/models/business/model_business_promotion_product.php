@@ -68,7 +68,6 @@ class model_business_promotion_product extends MY_Model
             'promotion_id' => $data['promotion_id'],
             'cid' => $data['cid'],
             'pid' => $data['pid'],
-            'product_image' => $data['product_image'],
             'pname' => $data['pname'],
             'sell_price' => $data['sell_price'],
             'promotion_price' => $data['promotion_price'],
@@ -77,11 +76,21 @@ class model_business_promotion_product extends MY_Model
             'inventory' => $data['inventory'],
             'sort' => $data['sort'],
             'sales_status' => $data['sales_status'],
-            'role' => $data['role'],
+            'rule' => $data['rule'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
         $this->db->insert('promotion_product', $info);
         return $this->db->insert_id();
+    }
+
+    public function updateImage($file, $lastId)
+    {
+        $data = array(
+            'product_image' => $file,
+        );
+
+        $this->db->where('id', $lastId);
+        return $this->db->update('promotion_product', $data);
     }
 }

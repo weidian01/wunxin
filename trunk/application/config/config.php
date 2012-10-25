@@ -457,5 +457,41 @@ $config['alipay_request_url'] = 'https://mapi.alipay.com/gateway.do?';
 
 $config['pay_back_url'] = $config['base_url'].'pay/payBack/';
 
+//促销活动类型配置
+define('PT_DISCOUNT', '1');
+define('PT_LIMIT_BUY', '2');
+$config['promotion_type'] = array(
+    PT_DISCOUNT => '特价热卖',
+    PT_LIMIT_BUY => '限时抢购',
+);
+
+//促销活动范围配置
+define('PR_ALL', '0');
+define('PR_PRODUCT', '1');
+$config['promotion_range'] = array(
+    PR_ALL => '全系统',
+    PR_PRODUCT => '特定产品',
+);
+
+//促销活动是否并列配置
+define('PJ_NO', '0');
+define('PJ_YES', '1');
+$config['promotion_juxtaposed'] = array(
+    PJ_NO => '不并列',
+    PJ_YES => '并列',
+);
+
+//销售状态配置
+define('SS_BERSERK', 1);
+define('SS_FREE', 2);
+define('SS_HOT', 3);
+define('SS_NEW', 4);
+$config['sales_status'] = array(
+    SS_BERSERK => '疯抢',
+    SS_FREE => '包邮',
+    SS_HOT => '热卖',
+    SS_NEW => '新品',
+);
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
