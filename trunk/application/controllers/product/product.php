@@ -42,7 +42,7 @@ class Product extends MY_Controller
     {
         //$this->HTTPLastModified();
 
-        $category = (int)$this->uri->rsegment(3, 1);
+        $category = (int)$this->uri->rsegment(3, 0);
         $pageno = max((int)$this->uri->rsegment(4, 1), 1);
         $query = $this->uri->rsegment(7, '');
         $param = self::parse_param($query);
@@ -68,7 +68,14 @@ class Product extends MY_Controller
         //$this->db->cache_off();
         //获取分类信息
         $this->load->model('product/Model_Product_Category', 'cate');
-        $cate_info = isset($this->channel[$category]) ? $this->channel[$category]:null;
+        if($category === 0)
+        {
+            $cate_info = true;
+        }
+        else
+        {
+            $cate_info = isset($this->channel[$category]) ? $this->channel[$category]:null;
+        }
 
         if ($cate_info) {
             $classes = $class_id = array_keys($this->cate->getChildren($category));
@@ -81,8 +88,10 @@ class Product extends MY_Controller
             }
             $pids = $this->mod->getPidByAttr($param);
 
-            $where = "class_id in ({$classes}) AND status=1 ";
-            $where .= ($param && $pids) ? 'AND pid IN (' . implode(',', $pids) . ')' : '';
+            $where = '';
+            $category && $where = "class_id in ({$classes}) AND";
+            $where .= ' status=1';
+            $where .=   ($param && $pids) ? 'AND pid IN (' . implode(',', $pids) . ')' : '';
             if($param && !$pids) //参数有,产品id无 即使通过参数没有搜索到任何产品
             {
                 $num = 0;
@@ -134,7 +143,7 @@ class Product extends MY_Controller
                 'orderby'=>$orderby,
                 'orderrank'=>$rank,
             ));
-            //print_r($modelAttr);
+            print_r($this->cate->getParents($category));
         } else {
             show_404("分类不存在");
         }
