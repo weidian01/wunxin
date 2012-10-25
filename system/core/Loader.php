@@ -228,7 +228,7 @@ class CI_Loader {
 	 * @param	bool	database connection
 	 * @return	void
 	 */
-	public function model($model, $name = '', $db_conn = FALSE)
+	public function model($model, $name = '', $db_conn = FALSE, $return = FALSE)
 	{
 		if (is_array($model))
 		{
@@ -263,6 +263,8 @@ class CI_Loader {
 
 		if (in_array($name, $this->_ci_models, TRUE))
 		{
+            if($return)
+                return new $model();
 			return;
 		}
 
@@ -300,9 +302,12 @@ class CI_Loader {
 
 			$model = ucfirst($model);
 
-			$CI->$name = new $model();
-
 			$this->_ci_models[] = $name;
+
+            if($return)
+                return new $model();
+
+            $CI->$name = new $model();
 			return;
 		}
 
