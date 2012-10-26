@@ -68,7 +68,15 @@
             <br/>
 
             <?php foreach ($product as $k=>$v){ ?>
-            <div style="width: 980px"><img width="980" height="38" border="0" src="/images/hightarea.jpg" alt=""></div>
+            <?php switch ($k){
+				case '0': $fileName = 'hightarea';break;
+				case '1': $fileName = 'salearea';break;
+				case '2': $fileName = 'suitarea';break;
+				case '3': $fileName = 'hightarea';break;
+				case '4': $fileName = 'salearea';break;
+				default:$fileName = 'hightarea';
+			}?>
+            <div style="width: 980px"><img width="980" height="38" border="0" src="/images/<?=$fileName;?>.jpg" alt=""></div>
             <div id="m" class="olist">
                 <ul>
                     <?php foreach ($v['item'] as $ik=>$iv){ ?>
