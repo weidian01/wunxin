@@ -136,7 +136,7 @@
         .slider_list{ width:960px; margin:0px; /*height:341px;*/ overflow:hidden;}
         .bulklist{ height:341px;}
         .bulklist li{ width:166px; /*height:305px;*/ float:left; padding:16px 14px 16px;}
-        .bulklist .tit{ height:45px; line-height:20px; overflow:hidden;display: block;}
+        .bulklist .tit{ height:42px; line-height:20px; overflow:hidden;display: block;}
         .bulklist .pic{ display:block; margin:10px 0; border:1px solid #e6e6e6;}
         .bulklist .pic img{ display:block;}
         .bulkatt{ height:30px; line-height:30px;}
