@@ -58,10 +58,14 @@
         .recommendmod .recommend_2{ top:250px; left:0;}
         .recommendmod .recommend_3{ top:66px; left:330px;}
         .recommendmod .recommend_4{ top:250px; left:330px;}
-        .recommendmod .recommend_5{ top:66px; left:700px; width:280px;}
+        .recommendmod .recommend_5{ top:66px; left:690px;}
+        .recommendmod .recommend_6{ top:250px; left:690px;}
+        /*
+        .recommendmod .recommend_5{ top:66px; left:0px; width:280px;}
         .recommendmod .recommend_5 .pic{ float:none; width:300px; margin-right:0;}
         .recommendmod .recommend_5 h3{ margin-top:8px;}
         .recommend_5 .qiangbtn_small{ margin:10px 0 0;}
+        */
         .qiangbtn_small{ width:79px; height:24px; display:block; margin:10px 0 0 160px; background-position:0 -307px; text-indent:-9999em;}
         .qiangbtn_small:hover{ background-position:0 -332px;}
 

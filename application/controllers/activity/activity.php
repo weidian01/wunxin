@@ -42,7 +42,7 @@ class activity extends MY_Controller
             'end_time >=' => date('Y-m-d H:i:s', TIMESTAMP),
             'cid' => '0',
         );
-        $defaultLimitBuy = $this->product->getProductList(5, 0, '*', $defaultWhere, 'sort desc');
+        $defaultLimitBuy = $this->product->getProductList(6, 0, '*', $defaultWhere, 'sort desc');
 
         $data = array(
             'promotion' => $promotion,
