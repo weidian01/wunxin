@@ -138,10 +138,12 @@ class Model_Promotion extends MY_Model
         return $this->products;
     }
 
-    private function get_promotion_product($pid, $promotion_id)
+    private function get_promotion_product($pid, $promotion_id, $settlement = FALSE)
     {
         $this->db->select('*')->from('promotion_product');
-        $this->db->where(array('promotion_id' => $promotion_id, 'pid' => $pid));
+        $where = array('promotion_id' => $promotion_id, 'pid' => $pid);
+        $where['pay_type'] = $settlement ? 0 : 1;
+        $this->db->where($where);
         return $this->db->get()->row_array();
     }
 

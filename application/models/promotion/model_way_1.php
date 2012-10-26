@@ -10,7 +10,7 @@
  * 折扣, 限时折扣
  */
 
-require __DIR__.DIRECTORY_SEPARATOR.'Model_way.php';
+require __DIR__.DIRECTORY_SEPARATOR.'model_way.php';
 class Model_Way_1 extends Model_Way
 {
     /**
