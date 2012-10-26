@@ -37,9 +37,9 @@ class Model_Promotion extends MY_Model
         $this->db->where(array('start_time <=' => $date, 'end_time >=' => $date));
         $this->db->order_by('priority', 'DESC');
         $promotion = $this->db->get()->result_array();
-        print_r($promotion);
+
         foreach ($promotion as $p) {
-            if ($promotion['pay_type'])
+            if ($p['pay_type'])
                 $this->promotion['product'][] = $p;
             else
                 $this->promotion['order'][] = $p;
