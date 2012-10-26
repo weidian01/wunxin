@@ -128,8 +128,8 @@ class Model_Promotion extends MY_Model
 
                 if ($price) {
                     uasort($price, "self::cmp");
-                    $this->products[$key]['price'] = $price[0]['price'];
-                    $this->products[$key]['remark'] = $price[0]['remark'];
+                    //$this->products[$key]['price'] = $price[0]['price'];
+                    //$this->products[$key]['remark'] = $price[0]['remark'];
                     $this->products[$key]['promotion'] = $price;
                 } else {
                     $this->products[$key]['price'] = $p['sell_price'];
