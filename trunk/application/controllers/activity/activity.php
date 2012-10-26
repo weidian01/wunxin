@@ -13,23 +13,43 @@ class activity extends MY_Controller
      */
     public function qiang()
     {
-        $this->load->model('business/model_business_limit_buy_category', 'category');
-        $category = $this->category->getCategoryList();
+        $promotionId = intval($this->uri->segment(4, 0));
+        if (!$promotionId) {
+            show_error('活动ID不存在！');
+        }
 
-        $this->load->model('business/model_business_limit_buy', 'lb');
-        $clbData = $this->lb->getCategoryAndLimitBuyList();
+        $date = date('Y-m-d H:i:s');
+        $this->load->model('business/model_business_promotion', 'promotion');
+        $promotion = $this->promotion->getPromotion($promotionId, 2, 0, '*', array('start_time <=' => $date, 'end_time >=' => $date));
+        if (empty ($promotion)) {
+            show_error('活动不存在！');
+        }
 
-        $beforeLimitBuy = $this->lb->getBeforeLimitBuy();
+        $this->load->model('business/model_business_promotion_product', 'product');
+        $product = $this->product->getProductByPromotionId($promotionId);
+
+        //getProductList($limit = 20, $offset = 0, $field = '*', $where = null, $order = null)
+        $beforeWhere = array(
+            'promotion_id' => $promotionId,
+            'end_time <' => date('Y-m-d H:i:s', TIMESTAMP)
+        );
+        $beforeLimitBuy = $this->product->getProductList(5, 0, '*', $beforeWhere, 'sort desc');
         //echo '<pre>';print_r($beforeLimitBuy);exit;
 
-        $defaultLimitBuy = $this->lb->getDefaultLimitBuy();
+        $defaultWhere = array(
+            'promotion_id' => $promotionId,
+            'start_time <=' => date('Y-m-d H:i:s', TIMESTAMP),
+            'end_time >=' => date('Y-m-d H:i:s', TIMESTAMP),
+            'cid' => '0',
+        );
+        $defaultLimitBuy = $this->product->getProductList(5, 0, '*', $defaultWhere, 'sort desc');
 
         $data = array(
-            'title' => '限时抢购',
-            'category' => $category,
-            'info' => $clbData,
+            'promotion' => $promotion,
+            'product' => $product,
             'before_lb' => $beforeLimitBuy,
             'default_lb' => $defaultLimitBuy,
+            'sales_status' => config_item('sales_status'),
         );
         $this->load->view('activity/qiang_gou', $data);
     }
@@ -88,8 +108,31 @@ class activity extends MY_Controller
         $this->load->view('activity/proposal');
     }
 
+    /**
+     * 特价热卖
+     */
     public function discount()
     {
-        $this->load->view('activity/discount');
+        $promotionId = intval($this->uri->segment(4, 0));
+        if (!$promotionId) {
+            show_error('活动ID不存在！');
+        }
+
+        $date = date('Y-m-d H:i:s');
+        $this->load->model('business/model_business_promotion', 'promotion');
+        $promotion = $this->promotion->getPromotion($promotionId, 2, 0, '*', array('start_time <=' => $date, 'end_time >=' => $date));
+        if (empty ($promotion)) {
+            show_error('活动不存在！');
+        }
+
+        $this->load->model('business/model_business_promotion_product', 'product');
+        $product = $this->product->getProductByPromotionId($promotionId, 20);
+        //$this->product->getProductList();//($limit = 20, $offset = 0, $field = '*', $where = null, $order = null)
+//echo '<pre>';print_r($product);exit;
+        $info = array(
+            'promotion' => $promotion,
+            'product' => $product,
+        );
+        $this->load->view('activity/discount', $info);
     }
 }
