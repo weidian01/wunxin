@@ -60,7 +60,6 @@ class Model_Promotion extends MY_Model
 
     function compute()
     {
-
         foreach($this->products as $key=>$p)
         {
             $price = NULL;
@@ -68,21 +67,25 @@ class Model_Promotion extends MY_Model
             {
                 if($promotion['promotion_range'] == 0)
                 {
-                    $rule = $promotion['rule'];
+                    $rule['rule'] = $promotion['rule'];
+                    $rule['start_time'] = strtotime($promotion['start_time']);
+                    $rule['end_time'] = strtotime($promotion['end_time']);
                 }
                 else
                 {
                     $tmp = $this->get_promotion_product($p['pid'], $promotion['promotion_id']);
                     if(!$tmp)
                         continue;
-                    $rule = $tmp['rule'];
+                    $rule['rule'] = $tmp['rule'];
+                    $rule['start_time'] = strtotime($tmp['start_time']);
+                    $rule['end_time'] = strtotime($tmp['end_time']);
                 }
                 switch($promotion['promotion_type'])
                 {
-                    case 1:
+                    case 1://折扣
                         $way = $this->load->model('promotion/Model_way_1', 'way', FALSE, TRUE);
                         break;
-                    case 2:
+                    case 2://第 N 件 X 折
                         $way = $this->load->model('promotion/Model_way_2', 'way', FALSE, TRUE);
                         break;
                     case 3:
@@ -99,24 +102,21 @@ class Model_Promotion extends MY_Model
                     {
                         if(!isset($price['share']['price']))
                         {
-                            $price['share']['price'] = $way->compute($p['sell_price']);
+                            $price['share']['price'] = $way->compute($p['sell_price'], 1);
                             $price['share']['remark'] = $promotion['name'];
 
                         }
                         else
                         {
-                            $price['share']['price'] = $way->compute($price['share']['price']);
+                            $price['share']['price'] = $way->compute($price['share']['price'], 1);
                             $price['share']['remark'] .= '+'.$promotion['name'];
                         }
                     }
                     else
                     {
-                        $price[] = array('price'=>$way->compute($p['sell_price']), 'remark'=>$promotion['name']);
+                        $price[] = array('price'=>$way->compute($p['sell_price'], 1), 'remark'=>$promotion['name']);
                     }
-
                 }
-
-
             }
 
             if($price)
