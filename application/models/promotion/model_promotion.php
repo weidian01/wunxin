@@ -80,9 +80,9 @@ class Model_Promotion extends MY_Model
     function compute()
     {
         if ($this->is_promotion_product()) {
-            foreach ($this->promotion['product'] as $key => $p) {
+            foreach ($this->products as $key => $p) {
                 $price = NULL;
-                foreach ($this->promotion as $promotion) {
+                foreach ($this->promotion['product'] as $promotion) {
                     if ($promotion['promotion_range'] == 0) {
                         $rule['rule'] = $promotion['rule'];
                         $rule['start_time'] = strtotime($promotion['start_time']);
