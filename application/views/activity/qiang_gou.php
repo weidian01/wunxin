@@ -257,8 +257,7 @@
         <?php $dli = 1;foreach ($default_lb as $dlv):?>
         <li class="recommend_<?=$dli;?>">
             <a title="<?=$dlv['pname']?>" class="pic" href="<?=productURL($dlv['pid']);?>" target="_blank">
-                <!--width="125" height="150" -->
-                <img class="lazy"  title="<?=$dlv['pname']?>" alt="<?=$dlv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
+                <img class="lazy" width="125" height="150" title="<?=$dlv['pname']?>" alt="<?=$dlv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
                 <?php echo empty ($dlv['product_image']) ?
                     config_item('img_url').'product/'.intToPath($dlv['pid']).'default.jpg' :
                     config_item('base_url').str_replace('\\', '/', $dlv['product_image']);?>">
