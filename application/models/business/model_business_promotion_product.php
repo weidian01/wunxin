@@ -84,6 +84,13 @@ class model_business_promotion_product extends MY_Model
         return $this->db->insert_id();
     }
 
+    /**
+     * 更新图片地址
+     *
+     * @param $file
+     * @param $lastId
+     * @return mixed
+     */
     public function updateImage($file, $lastId)
     {
         $data = array(
@@ -92,5 +99,34 @@ class model_business_promotion_product extends MY_Model
 
         $this->db->where('id', $lastId);
         return $this->db->update('promotion_product', $data);
+    }
+
+    /**
+     * 通过活动ID，获取活动分类和产品
+     *
+     * @param $promotionId
+     * @param int $limit
+     * @param $offset
+     * @return array
+     */
+    public function getProductByPromotionId($promotionId, $limit = 4, $offset = 0)
+    {
+        $return = array();
+        $this->db->select('*')->from('promotion_product_category');
+        $category = $this->db->where('promotion_id', $promotionId)->limit(5, 0)->order_by('sort', 'desc')->get()->result_array();
+
+        if (!empty ($category)) {
+            foreach ($category as $k=>$v) {
+                $tmp = array(
+                    'promotion_id' => $promotionId,
+                    'cid' => $v['cid'],
+                    'start_time <=' => date('Y-m-d H:i:s', TIMESTAMP),
+                    'end_time >=' => date('Y-m-d H:i:s', TIMESTAMP),
+                );
+                $category[$k]['item'] = $this->db->select('*')->from('promotion_product')->where($tmp)->limit($limit, $offset)->get()->result_array();
+            }
+        }
+
+        return empty ($category) ? $return : $category;
     }
 }

@@ -51,6 +51,7 @@
                         <p>
                             <label>分类</label>
                             <select name="cid" class="small-input">
+                                <option value="0">默认</option>
                                 <?php foreach ($category as $item): ?>
                                 <option
                                     value="<?=$item['cid']?>" <?php if (isset($info['parent_id']) && $info['parent_id'] == $item['cid']) {

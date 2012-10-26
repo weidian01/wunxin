@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?php echo $title;?> -- 万象网</title>
+    <title><?=$promotion['name'];?> -- 万象网</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/index.js"></SCRIPT>
-    <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/lrscroll.js"></script>
-    <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/lrscroll.js"></SCRIPT>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -51,7 +51,7 @@
         .recommendmod h3 a{ font:14px/24px "Microsoft YaHei","微软雅黑";}
         .recommendmod p{ height:20px; color:#999; line-height:20px;}
         .recommendmod .price{ padding:2px 0 7px;}
-        .recommendmod .price em{ position:relative; top:2px; font-size:22px; font-weight:bold; font-family:"Microsoft YaHei","微软雅黑"; color:#cc0000;}
+        .recommendmod .price em{ position:relative; top:2px; font-size:18px; font-weight:bold; font-family:"Microsoft YaHei","微软雅黑"; color:#cc0000;}
         .recommendmod .price span{ padding-right:5px; font-size:18px;}
         .recommendmod b{ padding-right:5px; color:#cc0000; font-weight:normal; }
         .recommendmod .recommend_1{ top:66px; left:0;}
@@ -245,7 +245,11 @@
 
     <div class="wrapper">
 		<div class="ad_div" style="text-align: center;">
-			<div><a title="" target="_blank" href=""><img width="980" height="90" alt="真情9月 数码平板1折起" src="/images/301.jpg"></a></div>
+			<div>
+                <a title="" target="_blank" href="">
+                    <img class="lazy" width="980" height="90" alt="真情9月 数码平板1折起" src="<?=config_item('static_url')?>images/lazy.gif" data-original="/images/301.jpg">
+                </a>
+            </div>
 		</div>
 	</div>
 
@@ -253,22 +257,22 @@
         <?php $dli = 1;foreach ($default_lb as $dlv):?>
         <li class="recommend_<?=$dli;?>">
             <a title="<?=$dlv['pname']?>" class="pic" href="<?=productURL($dlv['pid']);?>" target="_blank">
-                <img width="125" height="150" title="<?=$dlv['pname']?>" alt="<?=$dlv['pname']?>" src="
+                <img class="lazy" width="125" height="150" title="<?=$dlv['pname']?>" alt="<?=$dlv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
                 <?php echo empty ($dlv['product_image']) ?
                     config_item('img_url').'product/'.intToPath($dlv['pid']).'default.jpg' :
                     config_item('base_url').str_replace('\\', '/', $dlv['product_image']);?>">
             </a>
             <h3><a href="<?=productURL($dlv['pid']);?>" target="_blank" title="<?=$dlv['pname']?>"><?=$dlv['pname']?></a></h3>
-            <p class="price">抢购价：<em><span>¥</span><?=fPrice($dlv['limit_buy_price']);?></em></p>
+            <p class="price">抢购价：<em><span>¥</span><?=fPrice($dlv['promotion_price']);?></em></p>
             <p>市场价：<del>¥ <?=fPrice($dlv['sell_price']);?></del></p>
-            <p>立省：<b><?=fPrice($dlv['sell_price'] - $dlv['limit_buy_price']);?></b>元</p>
-            <p>余量：<b><?=intval($dlv['inventory'] - $dlv['limit_buy_num']);?></b>件</p>
+            <p>立省：<b><?=fPrice($dlv['sell_price'] - $dlv['promotion_price']);?></b>元</p>
+            <p>余量：<b><?=intval($dlv['inventory'] - $dlv['sales_num']);?></b>件</p>
             <a class="qiangbtn_small" href="<?=productURL($dlv['pid']);?>" target="_blank" title="<?=$dlv['pname']?>">立即抢购</a>
         </li>
         <?php $dli++;endforeach;?>
     </ul>
 
-    <?php $i = 1;foreach ($info as $k => $v):?>
+    <?php $i = 1;foreach ($product as $k => $v):?>
     <div class="wrapper category_<?=$i?>">
 		<div class="mod_hd mt20">
 			<h3><?=$v['name'];?><span>抢购</span></h3>
@@ -279,19 +283,19 @@
         <li class="<?=($count == ($ik+1)) ? 'last' : '';?>">
             <div class="snapmod">
                 <a class="pic" target="_blank" href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>">
-                    <img width="164" height="197" title="<?=$iv['pname']?>" alt="<?=$iv['pname']?>" src="
+                    <img class="lazy" width="164" height="197" title="<?=$iv['pname']?>" alt="<?=$iv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
                     <?php echo empty ($iv['product_image']) ?
                         config_item('img_url').'product/'.intToPath($iv['pid']).'default.jpg' :
                         config_item('base_url').str_replace('\\', '/', $iv['product_image']);?>">
                 </a>
                 <h4><a title="<?=$iv['pname']?>" target="_blank" href="<?=productURL($iv['pid']);?>"><?=$iv['pname']?></a></h4>
-                <p class="price">抢购价：<em><span>¥</span><?=fPrice($iv['limit_buy_price']);?></em></p>
+                <p class="price">抢购价：<em><span>¥</span><?=fPrice($iv['promotion_price']);?></em></p>
                 <p>市场价： <del>¥ <?=fPrice($iv['sell_price']);?></del> </p>
-                <p>立省：<b><?=fPrice($iv['sell_price']-$iv['limit_buy_price']);?></b>元</p>
-                <p>余量：<b><?=intval($iv['inventory'] - $iv['limit_buy_num']);?></b>件</p>
+                <p>立省：<b><?=fPrice($iv['sell_price']-$iv['promotion_price']);?></b>元</p>
+                <p>余量：<b><?=intval($iv['inventory'] - $iv['sales_num']);?></b>件</p>
                 <div class="snap_att clearfix">
                     <a id="promo_status_<?=$iv['id']?>" class="qiangbtn_red" target="_blank" href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>">立即抢购</a>
-                    <span>已有<em><?=empty($iv['attention_num']) ? '0' : $iv['attention_num'];?></em>人关注</span>
+                    <!--<span>已有<em><?=empty($iv['attention_num']) ? '0' : $iv['attention_num'];?></em>人关注</span>-->
                 </div>
             </div>
             <div id="promo_time_<?=$iv['id']?>" class="countdown">
@@ -307,14 +311,14 @@
                 -->
                 </div>
             <i class="<?php switch($iv['sales_status']){
-                case '1' : $class = 'ico_fengqiang';$cName = '疯抢';break;
-                case '2' : $class = 'ico_baoyou';$cName = '包邮';break;
-                case '3' : $class = 'ico_remai';$cName = '热卖';break;
-                case '4' : $class = 'ico_xinpin';$cName = '新品';break;
-                default: $class = 'ico_fengqiang';$cName = '疯抢';
+                case SS_BERSERK : $class = 'ico_fengqiang';break;
+                case SS_FREE : $class = 'ico_baoyou';break;
+                case SS_HOT : $class = 'ico_remai';break;
+                case SS_NEW : $class = 'ico_xinpin';break;
+                default: $class = 'ico_fengqiang';;
             }
                 echo $class;
-                ?>"><?=$cName?></i>
+                ?>"><?=$sales_status[$iv['sales_status']]?></i>
         </li>
         <?php endforeach;?>
     </ul>
@@ -333,7 +337,7 @@
                 <li class="slides" style="text-align: center;">
 					<a class="tit" href="<?=productURL($blv['pid']);?>" title="<?=$blv['pname'];?>" target="_blank"><?=$blv['pname'];?></a>
 					<a class="pic" href="<?=productURL($blv['pid']);?>">
-                        <img width="164" height="197" title="<?=$blv['pname'];?>" alt="<?=$blv['pname'];?>" src="
+                        <img class="lazy" width="164" height="197" title="<?=$blv['pname'];?>" alt="<?=$blv['pname'];?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
                         <?php echo empty ($iv['product_image']) ?
                                 config_item('img_url').'product/'.intToPath($blv['pid']).'default.jpg' :
                                 config_item('base_url').str_replace('\\', '/', $blv['product_image']);?>">
@@ -357,5 +361,8 @@
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
+<script type="text/javascript">
+    $('.contentbg img.lazy').lazyload({effect:"fadeIn"});
+</script>
 </body>
 </html>
