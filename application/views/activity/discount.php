@@ -79,8 +79,8 @@
             <div style="width: 980px"><img width="980" height="38" border="0" src="/images/<?=$fileName;?>.jpg" alt=""></div>
             <div id="m" class="olist">
                 <ul>
-                    <?php $i = 1;foreach ($v['item'] as $ik=>$iv){ ?>
-                    <li <?=$i == 0 ? ' class="first-li"' : ''?>>
+                    <?php $i = 1;foreach ($v['item'] as $ik=>$iv) { ?>
+                    <li <?=$i == 1 ? ' class="first-li"' : ''?>>
                         <a href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>" class="pic-goods" target="_blank" style="text-align: center;">
                             <img width="164" height="197" class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?php echo empty ($iv['product_image']) ?
                                 config_item('img_url').'product/'.intToPath($iv['pid']).'default.jpg' :
@@ -93,7 +93,7 @@
                             <span class="price">特价:￥<?=fPrice($iv['promotion_price'])?></span>
                         </p>
                     </li>
-                    <?php $i++;if ($i == 5) $i = 1;};?>
+                    <?php $i++;if ($i == 6) {$i = 1;} }?>
                 </ul>
             </div>
             <br/>
