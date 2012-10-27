@@ -1,3 +1,4 @@
+<div class="clear"></div>
 <div class="help-center">
   <div class="help-center-box">
     <div class="w980">
@@ -88,7 +89,7 @@
              <dt><s></s>购物</dt>
              <dd>
                  <a target="_blank" href="/activity/activity/qiang/4">限时抢购</a>
-                 <a target="_blank" href="/activity/activity/discount/">特价热卖</a>
+                 <a target="_blank" href="/activity/activity/discount/2">特价热卖</a>
                  <a target="_blank" href="/cart/">购物车</a>
              </dd>
          </dl>

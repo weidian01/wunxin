@@ -135,4 +135,42 @@ class activity extends MY_Controller
         );
         $this->load->view('activity/discount', $info);
     }
+
+    public function hot_comment()
+    {
+        $cData = array();
+        $limit = 10;//intval($this->input->get_post('limit'));
+        $offset = intval($this->input->get_post('offset'));
+
+        $productId = array();
+        $this->load->model('product/Model_Product', 'product');
+        $pid = $this->product->getProductList($limit, $offset, "pid,pname,comment_num", null, 'comment_num desc');
+        if (!empty ($pid)) {
+            foreach ($pid as $v) {
+                $productId[] = $v['pid'];
+            }
+
+            $this->load->model('product/Model_Product_comment', 'comment');
+            $commentData = $this->comment->getProductCommentById($productId, 73);
+
+            $cData = array();
+            foreach ($commentData as $cv) {
+                $cData[$cv['pid']][] = $cv;
+            }
+        }
+
+
+        if($this->input->is_ajax_request() !== true) {
+            $info = array(
+                'title' => '热门评论',
+                'comment_data' => $cData,
+            );
+            $this->load->view('activity/hot_comment', $info);
+        } else {
+
+
+            self::json_output($cData, true);
+        }
+        //echo '<pre>';print_r($cData);exit;
+    }
 }

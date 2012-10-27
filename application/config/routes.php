@@ -45,6 +45,7 @@ $route['product/(:num)'] = "product/product/info/$1";
 $route['newproduct'] = "product/newproduct/index";
 $route['search(.*)'] = "product/product/search/$1";
 $route['link'] = "other/link/index";
+$route['comment/hot'] = "activity/activity/hot_comment";
 $route['404_override'] = '';
 
 /* End of file routes.php */

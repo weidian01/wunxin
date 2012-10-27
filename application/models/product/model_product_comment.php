@@ -220,12 +220,39 @@ class Model_Product_Comment extends MY_Model
     }
 
     /**
-     * 通过产品id获取评论信息
+     * 通过产品ID获取产品评论
+     *
      * @param $pid
      * @param int $limit
      * @param int $offset
      * @param string $field
-     * @param string $where
+     * @param null $where
+     * @param null $order
+     * @return mixed
+     */
+    public function getProductCommentById($pid, $limit = 20, $offset = 0, $field = '*', $where = null, $order = null)
+    {
+        $this->db->select($field)->from('product_comment');
+        $this->db->limit($limit, $offset);
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
+
+        if(is_array($pid))
+        {
+            return  $this->db->where_in('pid', $pid)->get()->result_array();
+        }
+        return $this->db->where('pid', $pid)->get()->row_array();
+    }
+
+    /**
+     * 通过产品id获取评论信息
+     *
+     * @param $pid
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param null $where
+     * @param null $group
      * @return mixed
      */
     public function getCommentByPid($pid, $limit = 20, $offset = 0, $field = '*', $where = null, $group = null)
