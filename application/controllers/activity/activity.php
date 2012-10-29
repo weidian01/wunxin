@@ -138,13 +138,11 @@ class activity extends MY_Controller
 
     public function hot_comment()
     {
-        $cData = array();
-        $limit = 10;//intval($this->input->get_post('limit'));
+        $limit = 30;
         $offset = $this->input->get_post('offset');
         $offset = empty ($offset) ? 1 : $offset ;
         $offset = ($offset - 1) * $limit;
 
-        $productId = array();
         $this->load->model('product/Model_Product', 'product');
         $this->load->model('product/Model_Product_comment', 'comment');
         $pid = $this->product->getProductList($limit, $offset, "pid,pname,comment_num", array('comment_num >=' => 2), 'comment_num desc');
@@ -153,16 +151,8 @@ class activity extends MY_Controller
                 $commentData = $this->comment->getProductCommentById($v['pid'], 2);
                 $pid[$k]['comment'] = $commentData;
             }
-
-            /*
-            $cData = array();
-            foreach ($commentData as $cv) {
-                $cData[$cv['pid']][] = $cv;
-            }
-            /*/
         }
 
-//var_dump($this->input->is_ajax_request());//exit;
         if($this->input->is_ajax_request() !== true) {
             $info = array(
                 'title' => '热门评论',
@@ -170,11 +160,8 @@ class activity extends MY_Controller
             );
             $this->load->view('activity/hot_comment', $info);
         } else {
-            //echo '<pre>';print_r($cData);exit;
-            //
             $html = '';
-            foreach ($pid as $ck=>$cv) {
-                //$html .= '<div>123</div>';
+            foreach ($pid as $cv) {
                 //*
                 $html .= '<div class="poster_grid" >
                     <div class="new_poster">
@@ -193,9 +180,9 @@ class activity extends MY_Controller
                         <div class="comm_box twiiter_box"><p class="posterContent">'.$cv['pname'].'</p>
 
                             <p class="comm_num l20_f">
-                                <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num">'.count($cv).'</span></a>
+                                <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num">'.$cv['comment_num'].'</span></a>
                                 <a href="javascript:void(0)" class="left_f poster_likes likes " isshowlike="1">
-                                    <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num">'.(count($cv) * 8).'</span>
+                                    <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num">'.($cv['comment_num'] * 8).'</span>
                                 </a>
                                 <a class="love_pro none_f">这是你自己分享的哦！</a></p>
                             <div class="clear_f"></div>
@@ -214,19 +201,12 @@ class activity extends MY_Controller
                             <div class="clear_f"></div>
                         </div>';
                         }
-                        $html .= '<div class="comm_share c_f"><a target="_blank" href="'.productURL($cv['pid']).'"> 查看全部<?=count($v);?>条评论...</a></div>
+                        $html .= '<div class="comm_share c_f"><a target="_blank" href="'.productURL($cv['pid']).'"> 查看全部'.$cv['comment_num'].'条评论...</a></div>
                     </div>
                 </div>';
                 //*/
-
             }
-            //var_dump($html);exit;
-            //echo '<div>123</div>';exit;
             echo $html;
-            //*/
-//echo '<pre>';print_r($pid);
-            //self::json_output($pid, true);
         }
-        //echo '<pre>';print_r($cData);exit;
     }
 }
