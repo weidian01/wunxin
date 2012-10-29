@@ -70,7 +70,8 @@ class Product extends MY_Controller
         $this->load->model('product/Model_Product_Category', 'cate');
         if($category === 0)
         {
-            $cate_info = true;
+            //print_r($this->channel);
+            $cate_info = array('model_id'=>0, 'title'=>'全部产品');
         }
         else
         {
@@ -91,7 +92,7 @@ class Product extends MY_Controller
             $where = '';
             $category && $where = "class_id in ({$classes}) AND";
             $where .= ' status=1';
-            $where .=   ($param && $pids) ? 'AND pid IN (' . implode(',', $pids) . ')' : '';
+            $where .=   ($param && $pids) ? ' AND pid IN (' . implode(',', $pids) . ')' : '';
             if($param && !$pids) //参数有,产品id无 即使通过参数没有搜索到任何产品
             {
                 $num = 0;
@@ -131,9 +132,9 @@ class Product extends MY_Controller
             $this->load->view('product/product/category', array(
                 'title' => "{$cate_info['title']} 分类列表",
                 'category' => $category,
-                'nav'=>$this->cate->getParents($category),
-                'ancestor'=> $this->channel[$category]['ancestor'],
-                'clan'=>$this->cate->getClan($this->channel[$category]['ancestor']),
+                'nav'=> $this->cate->getParents($category),
+                'ancestor'=> $category ? $this->channel[$category]['ancestor'] : 0,
+                'clan'=> $category ? $this->cate->getClan($this->channel[$category]['ancestor']) : $this->channel,
                 'param' => $param,
                 'modelAttr' => $modelAttr,
                 'productCount' => $num,
@@ -143,7 +144,7 @@ class Product extends MY_Controller
                 'orderby'=>$orderby,
                 'orderrank'=>$rank,
             ));
-            print_r($this->cate->getParents($category));
+            //print_r($this->channel);
         } else {
             show_404("分类不存在");
         }

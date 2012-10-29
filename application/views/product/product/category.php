@@ -45,11 +45,11 @@ $(document).ready(function(){
 <div class="box3">
   <div class="side-left">
     <div class="sidebox">
-      <div class="side-tit"><?=$this->channel[$ancestor]['cname']?></div>
+      <div class="side-tit"><?php echo isset($this->channel[$ancestor]['cname']) ? $this->channel[$ancestor]['cname']:'全部分类';?></div>
       <div class="menu">
         <ul>
             <?php unset($clan[$ancestor]);foreach($clan as $item):?>
-            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']-1);?><a href="/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
+            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
         </ul>
       </div>
@@ -113,7 +113,7 @@ $(document).ready(function(){
     </style>
 
   <div class="goods-list">
-    <?php if(! isset($this->channel[$category]['is_parent'])):?>
+    <?php if(! isset($this->channel[$category]['is_parent']) &&  $category > 0):?>
     <div id="modelAttr" class="select">
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
         <?php if(isset($param) && $param):?>

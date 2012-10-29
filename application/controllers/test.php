@@ -30,6 +30,7 @@ class test extends MY_Controller
         {
             die('not promotion!');
         }
+        print_r($this->promotion->promotion());
         print_r($this->promotion->result());
     }
 }
