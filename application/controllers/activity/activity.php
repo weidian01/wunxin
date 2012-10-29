@@ -146,33 +146,34 @@ class activity extends MY_Controller
 
         $productId = array();
         $this->load->model('product/Model_Product', 'product');
-        $pid = $this->product->getProductList($limit, $offset, "pid,pname,comment_num", null, 'comment_num desc');
+        $this->load->model('product/Model_Product_comment', 'comment');
+        $pid = $this->product->getProductList($limit, $offset, "pid,pname,comment_num", array('comment_num >=' => 2), 'comment_num desc');
         if (!empty ($pid)) {
-            foreach ($pid as $v) {
-                $productId[] = $v['pid'];
+            foreach ($pid as $k => $v) {
+                $commentData = $this->comment->getProductCommentById($v['pid'], 2);
+                $pid[$k]['comment'] = $commentData;
             }
 
-            $this->load->model('product/Model_Product_comment', 'comment');
-            $commentData = $this->comment->getProductCommentById($productId, 73);
-
+            /*
             $cData = array();
             foreach ($commentData as $cv) {
                 $cData[$cv['pid']][] = $cv;
             }
+            /*/
         }
 
 //var_dump($this->input->is_ajax_request());//exit;
         if($this->input->is_ajax_request() !== true) {
             $info = array(
                 'title' => '热门评论',
-                'comment_data' => $cData,
+                'comment_data' => $pid,
             );
             $this->load->view('activity/hot_comment', $info);
         } else {
             //echo '<pre>';print_r($cData);exit;
             //
             $html = '';
-            foreach ($cData as $ck=>$cv) {
+            foreach ($pid as $ck=>$cv) {
                 //$html .= '<div>123</div>';
                 //*
                 $html .= '<div class="poster_grid" >
@@ -181,7 +182,7 @@ class activity extends MY_Controller
                             <div class="no"></div>
                             <a target="_blank" href="" class="pic_load">
                                 <img width="164" height="197" src="'.config_item('static_url').'images/lazy.gif"
-                                     data-original="'.config_item('static_url').'upload/product/'.intToPath($ck).'default.jpg" class="goods_pic" alt="产品"/>
+                                     data-original="'.config_item('static_url').'upload/product/'.intToPath($cv['pid']).'default.jpg" class="goods_pic" alt="产品"/>
                             </a>
                             <div class="like_merge" style="display: none;">
                                 <a href="javascript:void(0)" class="right_f poster_forward">
@@ -189,19 +190,18 @@ class activity extends MY_Controller
                                 </a>
                             </div>
                         </div>
-                        <div class="comm_box twiiter_box"><p class="posterContent">天空是蓝色的</p>
+                        <div class="comm_box twiiter_box"><p class="posterContent">'.$cv['pname'].'</p>
 
                             <p class="comm_num l20_f">
-                                <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num"><?=count($v);?></span></a>
+                                <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num">'.count($cv).'</span></a>
                                 <a href="javascript:void(0)" class="left_f poster_likes likes " isshowlike="1">
-                                    <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num"><?=count($v) * 8;?></span>
+                                    <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num">'.(count($cv) * 8).'</span>
                                 </a>
                                 <a class="love_pro none_f">这是你自己分享的哦！</a></p>
-
                             <div class="clear_f"></div>
                         </div>';
 
-                        $i = 0;foreach ($cv as $comment_value) {
+                        $i = 0;foreach ($cv['comment'] as $comment_value) {
                         $html .= '<div class="comm_share commentHover">
                             <a target="_blank" href="javascript:void(0);" class="avatar32_f trans07 userInfoTips">
                                 <img src="'.config_item('static_url').'images/lazy.gif"
@@ -214,7 +214,7 @@ class activity extends MY_Controller
                             <div class="clear_f"></div>
                         </div>';
                         }
-                        $html .= '<div class="comm_share c_f"><a target="_blank" href="'.productURL($ck).'"> 查看全部<?=count($v);?>条评论...</a></div>
+                        $html .= '<div class="comm_share c_f"><a target="_blank" href="'.productURL($cv['pid']).'"> 查看全部<?=count($v);?>条评论...</a></div>
                     </div>
                 </div>';
                 //*/
@@ -224,8 +224,8 @@ class activity extends MY_Controller
             //echo '<div>123</div>';exit;
             echo $html;
             //*/
-
-            //self::json_output($cData, true);
+//echo '<pre>';print_r($pid);
+            //self::json_output($pid, true);
         }
         //echo '<pre>';print_r($cData);exit;
     }
