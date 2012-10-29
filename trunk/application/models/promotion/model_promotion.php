@@ -30,7 +30,7 @@ class Model_Promotion extends MY_Model
     /**
      * 获取当前促销信息
      */
-    function get_promotion()
+    private function get_promotion()
     {
         $date = date('Y-m-d H:i:s');
         $this->db->select('*')->from('promotion');
@@ -141,7 +141,21 @@ class Model_Promotion extends MY_Model
 
     function result()
     {
+        //print_r($this->promotion);
         return $this->products;
+    }
+
+    function promotion()
+    {
+        $return = array();
+        foreach($this->promotion as $type)
+        {
+            foreach($type as $p)
+            {
+                $return[$p['promotion_id']] = $p;
+            }
+        }
+        return $return;
     }
 
     private function get_promotion_product($pid, $promotion_id)
