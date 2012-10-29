@@ -30,9 +30,16 @@ class cart extends MY_Controller
      */
     public function getCart()
     {
-        $cData = $this->getCartToCookie();
-//echo '<pre>';print_r($cData);exit;
+        $cData = array();
+        $cData['cart'] = $this->getCartToCookie();
+
         //foreach ($cData)
+
+        //*
+        $cData['activity'] = array(array('a'), array('a'),array('a'),array('a'));
+        //*/
+
+        //echo '<pre>';print_r($cData);exit;
         $this->json_output($cData);
     }
 
