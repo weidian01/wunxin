@@ -140,7 +140,9 @@ class activity extends MY_Controller
     {
         $cData = array();
         $limit = 10;//intval($this->input->get_post('limit'));
-        $offset = intval($this->input->get_post('offset'));
+        $offset = $this->input->get_post('offset');
+        $offset = empty ($offset) ? 1 : $offset ;
+        $offset = ($offset - 1) * $limit;
 
         $productId = array();
         $this->load->model('product/Model_Product', 'product');
@@ -159,7 +161,7 @@ class activity extends MY_Controller
             }
         }
 
-
+//var_dump($this->input->is_ajax_request());//exit;
         if($this->input->is_ajax_request() !== true) {
             $info = array(
                 'title' => '热门评论',
@@ -167,9 +169,63 @@ class activity extends MY_Controller
             );
             $this->load->view('activity/hot_comment', $info);
         } else {
+            //echo '<pre>';print_r($cData);exit;
+            //
+            $html = '';
+            foreach ($cData as $ck=>$cv) {
+                //$html .= '<div>123</div>';
+                //*
+                $html .= '<div class="poster_grid" >
+                    <div class="new_poster">
+                        <div class="np_pic hover_pic">
+                            <div class="no"></div>
+                            <a target="_blank" href="" class="pic_load">
+                                <img width="164" height="197" src="'.config_item('static_url').'images/lazy.gif"
+                                     data-original="'.config_item('static_url').'upload/product/'.intToPath($ck).'default.jpg" class="goods_pic" alt="产品"/>
+                            </a>
+                            <div class="like_merge" style="display: none;">
+                                <a href="javascript:void(0)" class="right_f poster_forward">
+                                    <em class="lm_shouji">&nbsp;</em>收进杂志&nbsp;<span class="poster_forward_num line_num">265</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="comm_box twiiter_box"><p class="posterContent">天空是蓝色的</p>
 
+                            <p class="comm_num l20_f">
+                                <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num"><?=count($v);?></span></a>
+                                <a href="javascript:void(0)" class="left_f poster_likes likes " isshowlike="1">
+                                    <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num"><?=count($v) * 8;?></span>
+                                </a>
+                                <a class="love_pro none_f">这是你自己分享的哦！</a></p>
 
-            self::json_output($cData, true);
+                            <div class="clear_f"></div>
+                        </div>';
+
+                        $i = 0;foreach ($cv as $comment_value) {
+                        $html .= '<div class="comm_share commentHover">
+                            <a target="_blank" href="javascript:void(0);" class="avatar32_f trans07 userInfoTips">
+                                <img src="'.config_item('static_url').'images/lazy.gif"
+                                     data-original="'.config_item('static_url').'upload/designer/'.intToPath($comment_value['uid']).'default.jpg">
+                            </a>
+                            <p class="ml40_f">
+                                <a target="_blank" href="javascript:void(0);" class="fb_f">'.$comment_value['uname'].'</a> <span class="gray_f">'.$comment_value['title'].'</span>
+                                <a href="javascript:void(0)" class="comment_reply v_hidden" style="visibility: hidden;">回复</a>
+                            </p>
+                            <div class="clear_f"></div>
+                        </div>';
+                        }
+                        $html .= '<div class="comm_share c_f"><a target="_blank" href="'.productURL($ck).'"> 查看全部<?=count($v);?>条评论...</a></div>
+                    </div>
+                </div>';
+                //*/
+
+            }
+            //var_dump($html);exit;
+            //echo '<div>123</div>';exit;
+            echo $html;
+            //*/
+
+            //self::json_output($cData, true);
         }
         //echo '<pre>';print_r($cData);exit;
     }
