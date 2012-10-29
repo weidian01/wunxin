@@ -283,6 +283,7 @@ wx.cartGlobalInit = function ()
     var param = '';
     var data = wx.ajax(url, param);
 //console.log(data);
+    data = data['cart'];
     if (!wx.isEmpty (data)) {
         $('#cart_product_num').html(' '+totalNum+' ');
         $('#cartbox').html('<h4>购物车中还没有商品，赶紧去选购吧！</h4>');

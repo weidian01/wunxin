@@ -22,65 +22,142 @@ cart.init = function ()
         return ;
     }
 
-    html += '<table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping_cart_item"><tr>';
-    html += '<td colspan="2" align="center" class="tit">商品/商品号</td>';
+    html += '<table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping_cart_item">';
+
+    //*
+    var activity = data['activity'];//console.log(wx.isEmpty(activity));
+    if (wx.isEmpty(activity)) {
+        html += '<tr style="width: 980px;"><td colspan="6" style="padding: 5px 0;"><h2>您还可以免费参加以下促销活动\
+                    <a id="cart_top_free_prom_tab" showui="1" onclick="cartToggle(\'cart_top_free_prom_tab\',\'cart_top_free_prom_box\');" class="cartHide" href="javascript:void(0)">隐藏</a></h2></td></tr>\
+                <tr><td colspan="6" style="padding: 5px 0;"><div id="freePromotionList"><div class="free_scroll" id="free_promotion_container"><div class="promotion-box"><div class="emptybox">\
+                <div id="cart_top_free_prom_box" class="clearfix sale_list scroll_horizontal" style="display: block;">\
+                    <a href="javascript:void(0)" target="_self" hidefocus="true" class="on" id="pronext"></a>\
+                    <a href="javascript:void(0)" target="_self" hidefocus="true" class="end" id="proprev"></a>\
+                    <div class="promotion-list"><div id="top_promotion" class="pro-con">';
+        for (var ii in data['activity']) {
+            html += '<dl><dt title="亲情回馈买就送鼻贴" class="pro-title promo_title">\
+                    <span surl=" http://www.yihaodian.com/ctg/p/pt47806-pl44565" vn="2-44565-47806" class="zdsp"></span><b>亲情回馈买就送鼻贴</b></dt>\
+                <dd class="fl"><a class="img60" href="/product/4801146_2" target="_blank">\
+                    <img src="http://d12.yihaodianimg.com/t1/2012/1018/225/55/51cb6e501a748b41c77fecedee40a191_60x60.jpg"></a></dd>\
+                <dd class="proname"><a href="/product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>\
+                <dd><del>￥5.7</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>\
+                <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>\
+                <dd class="zeng"></dd>\
+            </dl>';
+        }
+        html += '</div></div></div></div></div></div></div></td></tr>';
+    }
+    //*/
+
+    html += '<tr><td colspan="2" align="center" class="tit">商品/商品号</td>';
     html += '<td width="9%" align="center" class="tit">单价</td>';
     html += '<td width="9%" align="center" class="tit">尺码</td>';
     html += '<td width="13%" align="center" class="tit">数量</td>';
     html += '<td width="10%" align="center" class="tit">赠送积分</td>';
-    html += '<td width="12%" align="center" class="tit">小计</td>';
-    html += '</tr>';
+    html += '<td width="12%" align="center" class="tit">小计</td></tr>';
 
     var totalPrice = 0;
     var totalIntegral = 0;
     var totalProductNum = 0;
 
+    data = data['cart'];
     for (var i in data) {
         html += '<tr>';
-        html += '<td width="7%"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="67"/></a></td>';
-        html += '<td width="40%">';
-        html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname.substring(0, 60)+'</a><br/>';
+        html += '<td width="7%" style="padding-left: 8px;"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="60"/></a></td>';
+        html += '<td width="40%" style="padding-left: 8px;">';
+        html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname+'</a><br/>';
         html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
         html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a></td>';
-        html += '<td align="center">'+wx.fPrice(data[i].product_price)+'</td>';
-        html += '<td align="center">'+data[i].product_size+'</td>';
-        html += '<td align="center">';
+        html += '<td align="center" style="padding-left: 8px;">'+wx.fPrice(data[i].product_price)+'</td>';
+        html += '<td align="center" style="padding-left: 8px;">'+data[i].product_size+'</td>';
+        html += '<td align="center" style="padding-left: 8px;">';
         html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="/images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
         html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].product_num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
         html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="/images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
-        html += '<td align="center"><span class="font2">'+parseInt( wx.fPrice(data[i].product_price * data[i].product_num) )+'</span></td>';
-        html += '<td align="center"><span class="font6">'+wx.fPrice(data[i].product_price * data[i].product_num)+'</span></td>';
+        html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].product_price * data[i].product_num) )+'</span></td>';
+        html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].product_price * data[i].product_num)+'</span></td>';
         html += '</tr>';
         totalIntegral += (data[i].product_price * data[i].product_num);
         totalPrice += (data[i].product_price * data[i].product_num);
         totalProductNum += (data[i].product_num);
     }
 
-    html += '<tr>';
-    html += '<td style="border-bottom:1px solid #a5afc3;">&nbsp;</td>';
-    html += '<td colspan="6" style="border-bottom:1px solid #a5afc3;">';
+    html += '<tr><td style="border-bottom:1px solid #a5afc3;">&nbsp;</td><td colspan="6" style="border-bottom:1px solid #a5afc3;">';
     html += '<div class="gsum"> 产品数量总计：<span class="font1">'+parseInt(totalProductNum)+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     html += '赠送积分总计：<span class="font1">'+parseInt(wx.fPrice(totalIntegral))+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     //html += '花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-    html += '商品金额总计：<span class="font1">'+wx.fPrice(totalPrice)+'</span>';
-    html += '</div>';
-    html += '</td>';
-    html += '</tr>';
+    html += '商品金额总计：<span class="font1">'+wx.fPrice(totalPrice)+'</span></div></td></tr>';
 
-    html += '<tr>';
-    html += '<td colspan="7">';
-    html += '<div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>' +
-		'<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div> ' +
-        '<div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div>' ;
-    html += '<div class="post-btn">';
+    html += '<tr><td colspan="7"><div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>\
+		<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div>\
+        <div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div><div class="post-btn">';
     html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
-    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a>';
-    html += '</div>';
-    html += '</td>';
-    html += '</tr></table>';
+    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
 
     $('#shopping_cart').html(html);
+}
+
+/*
+ * 获取活动模板
+ * param type int 1 赠送， 2 折扣， 3 减
+ */
+cart.getActivityTemplate = function(type, aId, aTitle, aDesc, DiscountPrice, pId)
+{
+    var typeName = '';
+    var activityImg = '';
+    var imageAddress = '';
+    switch (type) {
+        case '1' :
+            typeName = 'zeng';
+            activityImg = '';
+            imageAddress = '';
+            aTitle = '<span surl="http://www.wunxin.com/activity/'+aId+'" class="zdsp"></span><b>'+aTitle+'</b>';
+            break;
+        case '2' :
+            typeName = 'zhe';
+            activityImg = '';
+            imageAddress = '';
+            aTitle = '<b>'+aTitle+'</b>';
+            break;
+        case '3' :
+            typeName = 'jian';
+            activityImg = '';
+            imageAddress = '';
+            aTitle = '<b>'+aTitle+'</b>';
+            break;
+    }
+
+    var link = '';
+    if (wx.isEmpty(pId)) {
+        link = wx.productURL(pId);
+
+    } else {
+        link = 'http://www.wunxin.com/activity/'+aId;
+    }
+
+
+
+    var html = '<dl><dt title="亲情回馈买就送鼻贴" class="pro-title promo_title">'+aTitle+'</dt>\
+        <dd class="fl"><a class="img60" href="/product/4801146_2" target="_blank">\
+            <img src="/images/"></a></dd>\
+        <dd class="proname"><a href="'+link+'" target="_blank">'+aDesc+'</a></dd>\
+        <dd><del>￥'+DiscountPrice+'</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>\
+        <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>\
+        <dd class="'+typeName+'"></dd>\
+    </dl>';
+    return html;
+
+    html += '<dl>\
+        <dt title="水具任选2款5折" class="pro-title promo_title">指定产品<b>水具任选2款5折</b></dt>\
+        <dd class="fl"><a class="img60" href="javascript:void(0);"><img src="http://image.yihaodianimg.com/statics/../images/v2/cart2/discounticon.gif" style="width:56px;height:56px"></a></dd>\
+        <dd class="proname">指定商品单笔买满2件每件5折</dd><dd>&nbsp;</dd>\
+        <dd>\
+            <a href="http://www.yihaodian.com/ctg/p/pt40699-pl38443" target="_blank" class="view_detail">查看详情</a>\
+            <a class="a-red" onclick="ajaxChooseGift(40699,38443,2,4706427,1);return false;" href="javascript:void(0);" style="color: #ffffff;"> <s></s>立即参加 </a>\
+        </dd>\
+        <dd class="zhe"></dd>\
+    </dl>';
 }
 
 //添加产品到购物车

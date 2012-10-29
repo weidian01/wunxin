@@ -128,7 +128,7 @@
                 </div>
                 <?php $i++; if ($i == 2) { break; } }?>
 
-                <?php if (count($v) > 2){ ?>
+                <?php if ($v['comment_num'] > 2){ ?>
                 <div class="comm_share c_f"><a target="_blank" href="<?=productURL($v['pid']);?>"> 查看全部<?=$v['comment_num'];?>条评论...</a></div>
                 <?php }?>
             </div>

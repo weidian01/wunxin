@@ -138,30 +138,30 @@ class activity extends MY_Controller
 
     public function hot_comment()
     {
-        $limit = 30;
+        $limit = 20;
         $offset = $this->input->get_post('offset');
         $offset = empty ($offset) ? 1 : $offset ;
         $offset = ($offset - 1) * $limit;
 
         $this->load->model('product/Model_Product', 'product');
         $this->load->model('product/Model_Product_comment', 'comment');
-        $pid = $this->product->getProductList($limit, $offset, "pid,pname,comment_num", array('comment_num >=' => 2), 'comment_num desc');
-        if (!empty ($pid)) {
-            foreach ($pid as $k => $v) {
-                $commentData = $this->comment->getProductCommentById($v['pid'], 2);
-                $pid[$k]['comment'] = $commentData;
+        $pData = $this->product->getProductList($limit, $offset, "pid,pname,comment_num", array('comment_num >=' => 2), 'comment_num desc');
+        if (!empty ($pData)) {
+            foreach ($pData as $k => $v) {
+                $commentData = $this->comment->getProductCommentById($v['pid'], 2, 0, '*', null, 'create_time desc');
+                $pData[$k]['comment'] = $commentData;
             }
         }
 
         if($this->input->is_ajax_request() !== true) {
             $info = array(
                 'title' => '热门评论',
-                'comment_data' => $pid,
+                'comment_data' => $pData,
             );
             $this->load->view('activity/hot_comment', $info);
         } else {
             $html = '';
-            foreach ($pid as $cv) {
+            foreach ($pData as $cv) {
                 //*
                 $html .= '<div class="poster_grid" >
                     <div class="new_poster">
@@ -201,6 +201,7 @@ class activity extends MY_Controller
                             <div class="clear_f"></div>
                         </div>';
                         }
+                        if ($cv['comment_num'] > 2)
                         $html .= '<div class="comm_share c_f"><a target="_blank" href="'.productURL($cv['pid']).'"> 查看全部'.$cv['comment_num'].'条评论...</a></div>
                     </div>
                 </div>';
