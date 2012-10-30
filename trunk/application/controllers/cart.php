@@ -35,8 +35,15 @@ class cart extends MY_Controller
 
         //foreach ($cData)
 
-        //*
-        $cData['activity'] = array(array('a'), array('a'),array('a'),array('a'));
+
+
+        //* 活动信息
+        $cData['activity'] = array(
+            array('type' => '1', 'a_id' => 1, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '1', 'discount_price' => 321, 'status' => 0),
+            array('type' => '2', 'a_id' => 2, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '2', 'discount_price' => 334, 'status' => 1),
+            array('type' => '3', 'a_id' => 3, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
+            array('type' => '3', 'a_id' => 3, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
+        );
         //*/
 
         //echo '<pre>';print_r($cData);exit;

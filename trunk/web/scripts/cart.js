@@ -27,14 +27,17 @@ cart.init = function ()
     //*
     var activity = data['activity'];//console.log(wx.isEmpty(activity));
     if (wx.isEmpty(activity)) {
-        html += '<tr style="width: 980px;"><td colspan="6" style="padding: 5px 0;"><h2>您还可以免费参加以下促销活动\
-                    <a id="cart_top_free_prom_tab" showui="1" onclick="cartToggle(\'cart_top_free_prom_tab\',\'cart_top_free_prom_box\');" class="cartHide" href="javascript:void(0)">隐藏</a></h2></td></tr>\
-                <tr><td colspan="6" style="padding: 5px 0;"><div id="freePromotionList"><div class="free_scroll" id="free_promotion_container"><div class="promotion-box"><div class="emptybox">\
-                <div id="cart_top_free_prom_box" class="clearfix sale_list scroll_horizontal" style="display: block;">\
+        html += '<tr style="width: 980px;"><td colspan="7" style="padding: 5px 0;"><h2>您还可以免费参加以下促销活动\
+                    <a id="cart_top_free_prom_tab" showui="1" onclick="cart.switchActivity();" class="cartHide" href="javascript:void(0)" style="padding-right: 20px;">隐藏</a></h2></td></tr>\
+                <tr id="activity_list"><td colspan="7" style="padding: 5px 0;"><div id="freePromotionList"><div class="free_scroll" id="free_promotion_container">\
+                <div class="promotion-box"><div class="emptybox"><div id="cart_top_free_prom_box" class="clearfix sale_list scroll_horizontal" style="display: block;">\
                     <a href="javascript:void(0)" target="_self" hidefocus="true" class="on" id="pronext"></a>\
                     <a href="javascript:void(0)" target="_self" hidefocus="true" class="end" id="proprev"></a>\
                     <div class="promotion-list"><div id="top_promotion" class="pro-con">';
-        for (var ii in data['activity']) {
+        for (var ii in activity) {
+            html += cart.getActivityTemplate(activity[ii]['type'], activity[ii]['a_id'], activity[ii]['a_title'],
+                activity[ii]['a_desc'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status']);
+            /*
             html += '<dl><dt title="亲情回馈买就送鼻贴" class="pro-title promo_title">\
                     <span surl=" http://www.yihaodian.com/ctg/p/pt47806-pl44565" vn="2-44565-47806" class="zdsp"></span><b>亲情回馈买就送鼻贴</b></dt>\
                 <dd class="fl"><a class="img60" href="/product/4801146_2" target="_blank">\
@@ -44,6 +47,7 @@ cart.init = function ()
                 <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>\
                 <dd class="zeng"></dd>\
             </dl>';
+            //*/
         }
         html += '</div></div></div></div></div></div></div></td></tr>';
     }
@@ -101,62 +105,80 @@ cart.init = function ()
 /*
  * 获取活动模板
  * param type int 1 赠送， 2 折扣， 3 减
+ * param aId int 活动ID
+ * param aTitle int 活动标题
+ * param aDesc int 活动描述
+ * param pId int 产品ID
+ * param DiscountPrice int 产品价格
  */
-cart.getActivityTemplate = function(type, aId, aTitle, aDesc, DiscountPrice, pId)
+cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice, activityStatus)
 {
-    var typeName = '';
-    var activityImg = '';
-    var imageAddress = '';
+    var typeName = 'zeng';
+    var zengPid = '';
+    var pInfo = '&nbsp;';
+    var activityImage = '';
+    //var activityStatus = wx.isEmpty(activityStatus) ? activityStatus : ;
+
     switch (type) {
         case '1' :
             typeName = 'zeng';
-            activityImg = '';
-            imageAddress = '';
-            aTitle = '<span surl="http://www.wunxin.com/activity/'+aId+'" class="zdsp"></span><b>'+aTitle+'</b>';
+            zengPid = '<span surl="http://www.wunxin.com/" class="zdsp">&nbsp;</span>&nbsp;';
+            pInfo = '<del>￥'+DiscountPrice+'</del>&nbsp;&nbsp;<strong class="red">免费</strong>';
+            activityImage = '/upload/product/'+idToPath(pId)+'default.jpg';
             break;
         case '2' :
             typeName = 'zhe';
-            activityImg = '';
-            imageAddress = '';
-            aTitle = '<b>'+aTitle+'</b>';
+            activityImage = '/images/discounticon.gif';
             break;
         case '3' :
             typeName = 'jian';
-            activityImg = '';
-            imageAddress = '';
-            aTitle = '<b>'+aTitle+'</b>';
+            activityImage = '/images/cashicon.gif';
             break;
     }
 
-    var link = '';
-    if (wx.isEmpty(pId)) {
-        link = wx.productURL(pId);
-
+    if (activityStatus) {
+        activityStatus = '<a href="javascript:void(0);" target="_blank" class="view_detail">查看详情</a>\
+        <a class="a-red" href="javascript:void(0);" style="color: #ffffff;" onclick="cart.joinActivity('+aId+');"> <s></s>立即参加 </a>';
     } else {
-        link = 'http://www.wunxin.com/activity/'+aId;
+        activityStatus = '<a class="a-gray" href="javascript:void(0);"><s></s>已领完</a>';
     }
 
-
-
-    var html = '<dl><dt title="亲情回馈买就送鼻贴" class="pro-title promo_title">'+aTitle+'</dt>\
-        <dd class="fl"><a class="img60" href="/product/4801146_2" target="_blank">\
-            <img src="/images/"></a></dd>\
-        <dd class="proname"><a href="'+link+'" target="_blank">'+aDesc+'</a></dd>\
-        <dd><del>￥'+DiscountPrice+'</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>\
-        <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>\
-        <dd class="'+typeName+'"></dd>\
-    </dl>';
+    var html = '<dl>\
+            <dt title="'+aTitle+'" class="pro-title promo_title">'+zengPid+'<b>'+aTitle+'</b></dt>\
+            <dd class="fl"><a class="img60" href="javascript:void(0)" target="_blank"><img src="'+activityImage+'" width="56" height="56" alt="'+aTitle+'"></a></dd>\
+            <dd class="proname"><a href="javascript:void(0)" target="_blank" title="'+aDesc+'">'+aDesc+'</a></dd>\
+            <dd>'+pInfo+'</dd>\
+            <dd>'+activityStatus+'</dd>\
+            <dd class="'+typeName+'"></dd>\
+        </dl>';
     return html;
-
-    html += '<dl><dt title="水具任选2款5折" class="pro-title promo_title">指定产品<b>水具任选2款5折</b></dt>\
+    /*
+    html += '<dl>\
+        <dt title="水具任选2款5折" class="pro-title promo_title"><b>水具任选2款5折</b></dt>\
         <dd class="fl"><a class="img60" href="javascript:void(0);"><img src="http://image.yihaodianimg.com/statics/../images/v2/cart2/discounticon.gif" style="width:56px;height:56px"></a></dd>\
-        <dd class="proname">指定商品单笔买满2件每件5折</dd><dd>&nbsp;</dd>\
+        <dd class="proname">指定商品单笔买满2件每件5折</dd>\
+        <dd>&nbsp;</dd>\
         <dd>\
             <a href="http://www.yihaodian.com/ctg/p/pt40699-pl38443" target="_blank" class="view_detail">查看详情</a>\
             <a class="a-red" onclick="ajaxChooseGift(40699,38443,2,4706427,1);return false;" href="javascript:void(0);" style="color: #ffffff;"> <s></s>立即参加 </a>\
         </dd>\
         <dd class="zhe"></dd>\
     </dl>';
+    //*/
+}
+
+//加入活动
+cart.joinActivity = function (activityId)
+{
+
+}
+
+cart.switchActivity = function ()
+{
+    $("#activity_list").toggle('fast');
+    //$('#activity_list').toggle(showOrHide);
+
+    //console.log(displayStatus);
 }
 
 //添加产品到购物车
