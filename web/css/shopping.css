@@ -15,7 +15,7 @@ h1.shoppingitem{padding:8px 6px;font-size:26px;font-family:"&#24494; &#36719; &#
 input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-align:center}
 .gsum{padding:6px 15px;text-align:right}
 .empty{float:left;height:30px;padding-top:4px;width:90px}
-.empty a{display:block;height:30px;line-height:30px;padding-left:25px;background:url(/images/shoppingbg.png) no-repeat -50px 7px;_background-position:-50px 9px}
+.empty a{display:block;height:30px;line-height:30px;padding-left:23px;background:url(/images/shoppingbg.png) no-repeat -50px 7px;_background-position:-50px 9px}
 .empty a:hover{background:url(/images/shoppingbg.png) no-repeat -50px -25px;_background-position:-50px -23px}
 .storage{float:left;padding-left:20px;padding-top:7px;width:200px;overflow:hidden}
 .st-d{float:left;width:66px;height:21px;padding-right:6px}
@@ -112,7 +112,7 @@ input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-al
 
 
 
-#freePromotionList{padding-left:20px; }
+
 
 .buyCarModelBox_yhd, .buyCarModelBox_ysc {border: 1px solid #CCCCCC;}
 .free_scroll{margin:0px;}
@@ -133,12 +133,12 @@ a{text-decoration:none}
 .sale_list{background:none repeat scroll 0 0 #FFF;padding:4px 0 16px;}
 .sale_list{position:relative;z-index:1}
 #pronext.on{background:url("/images/bg_sprite.png") no-repeat scroll -22px -40px transparent;}
-#pronext{right:-25px;top:51px}
+#pronext{right:6px;top:51px}
 #pronext, #proprev{display:block;height:27px;position:absolute;width:20px;}
 #pronext, #proprev{ z-index:1}
 #proprev.end, #proprev.end:hover{background:url("/images/bg_sprite.png") no-repeat scroll -290px -40px transparent;cursor:default;}
-#proprev{left:-16px;top:51px}
-.promotion-list{height:114px;margin:0 auto;overflow:hidden;position:relative;width:912px}
+#proprev{left:5px;top:51px}
+.promotion-list{height:114px;margin:0 auto;overflow:hidden;position:relative;width:922px}
 .promotion-list{z-index:0}
 .promotion-box .pro-con{height:114px;position:absolute;top:0;width:1000em}
 .pro-con dl{background:none repeat scroll 0 0 #FFF;border:4px solid #E8E8E8;float:left;height:106px;margin:0 5px;position:relative;width:212px;}
