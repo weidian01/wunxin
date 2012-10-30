@@ -66,7 +66,6 @@
         .ml40_f{ margin-left:40px}
          .gray_f{ color:#999;  text-decoration:none}
          .c_f{ text-align:center}
-
     </style>
     <script type="text/javascript">
 
@@ -86,79 +85,36 @@
 
 <div style="width: 990px;" class="box" id="contents">
     <div id="comment_hots">
-        <!---->
-        <?php foreach ($comment_data as $k=>$v){ ?>
-        <div class="poster_grid" >
-            <div class="new_poster">
-                <div class="np_pic hover_pic">
-                    <div class="no"></div>
-                    <a target="_blank" href="<?=productURL($v['pid']);?>" class="pic_load">
-                        <img width="164" height="197" src="<?=config_item('static_url')?>images/lazy.gif"
-                             data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>default.jpg" class="goods_pic" alt="产品"/>
-                    </a>
-                    <div class="like_merge" style="display: none;">
-                        <a href="javascript:void(0)" class="right_f poster_forward">
-                            <em class="lm_shouji">&nbsp;</em>收进杂志&nbsp;<span class="poster_forward_num line_num">265</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="comm_box twiiter_box"><p class="posterContent"><?=$v['pname']?></p>
-
-                    <p class="comm_num l20_f">
-                        <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num"><?=$v['comment_num'];?></span></a>
-                        <a href="javascript:void(0)" class="left_f poster_likes likes " isshowlike="1">
-                            <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num"><?=$v['comment_num'] * 8;?></span>
-                        </a>
-                        <a class="love_pro none_f">这是你自己分享的哦！</a></p>
-
-                    <div class="clear_f"></div>
-                </div>
-
-                <?php $i = 0;foreach ($v['comment'] as $comment_value) {?>
-                <div class="comm_share commentHover">
-                    <a target="_blank" href="javascript:void(0);" class="avatar32_f trans07 userInfoTips">
-                        <img src="<?=config_item('static_url')?>images/lazy.gif"
-                             data-original="<?=config_item('static_url')?>upload/designer/<?=intToPath($comment_value['uid'])?>default.jpg">
-                    </a>
-                    <p class="ml40_f">
-                        <a target="_blank" href="javascript:void(0);" class="fb_f"><?=$comment_value['uname'];?></a> <span class="gray_f"><?=$comment_value['title'];?></span>
-                        <a href="javascript:void(0)" class="comment_reply v_hidden" style="visibility: hidden;">回复</a>
-                    </p>
-                    <div class="clear_f"></div>
-                </div>
-                <?php $i++; if ($i == 2) { break; } }?>
-
-                <?php if ($v['comment_num'] > 2){ ?>
-                <div class="comm_share c_f"><a target="_blank" href="<?=productURL($v['pid']);?>"> 查看全部<?=$v['comment_num'];?>条评论...</a></div>
-                <?php }?>
-            </div>
-        </div>
-        <?php }?>
-        <!---->
+        <?php include(__DIR__.'/hot_comment_template.php');?>
         <div id="loads"></div>
     </div>
 </div>
 </div>
 <div class="clear"></div>
-<div class="loading" id="loading" style="display:none;text-align:center;vertical-align:middle;font-size:30px;background-color:#F2F0F0;"><img src="/images/loading.gif">......</div>
+<div class="loading" id="loading" style="width:100%;text-align:center;vertical-align:middle;font-size:30px;background-color:#F2F0F0;padding: 20px;"></div>
 <div class="loading font10" id="no_more_results" style="display:none;text-align:center;background-color:#F2F0F0;padding: 50px;">没有更多.</div>
 
 <!--
-<div class="page clear">
+
 <div class="pages">
 <a href="/comment/hot?offset=10">下一页</a>
    </div>
 </div>
 -->
+<div class="clear">
+</div>
+<div id="infscr-loadings"></div>
 
 <nav id="page-nav">
-    <a href="/activity/activity/hot_comment?offset=2"></a>
+    <a href="/activity/activity/hot_comment?offset=2&callback=?"></a>
+    <!--<a href="2.html"></a>-->
 </nav>
 <?php include(APPPATH."views/footer.php");?>
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/scrollpagination.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.infinitescroll.js"></script>
 <script type="text/javascript">
+    //*
     $(function () {
         var $container = $('#comment_hots');
         $container.imagesLoaded(function () {
@@ -172,16 +128,21 @@
                 navSelector:'#page-nav', // selector for the paged navigation
                 nextSelector:'#page-nav a', // selector for the NEXT link (to page 2)
                 itemSelector:'.poster_grid', // selector for all items you'll retrieve
-
+                //animate:true,
+                //appendCallback:false,
+                //dataType:'json',
                 loading:{
                     finishedMsg:'没有更多数据.',
-                    img:'http://wunxin.com/images/loading.gif'
+                    img:'/images/ajax-loader.gif',
+                    selector:'#loading',
+                    msgText:''
+                    //speed: 'slow'
                 }
             },
 
-
             // trigger Masonry as a callback
             function (newElements) {
+                //alert(newElements);
                 // hide new items while they are loading
                 var $newElems = $(newElements).css({ opacity:0 });
                 // ensure that images load before adding to masonry layout
@@ -196,6 +157,150 @@
     });
 
     $('#comment_hots img').lazyload({effect:"fadeIn"});
+    //*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*无限下拉*/
+    /*
+    $(function () {
+        $('#comment_hots').scrollPagination({
+            'dataType':'json',
+            'contentPage':'/comment/hot', // the url you are fetching the results
+            'contentData':'', // these are the variables you can pass to the request, for example: children().size() to know which page you are
+            'scrollTarget':$(window), // who gonna scroll? in this example, the full window
+            'heightOffset':600, // it gonna request when scroll is 10 pixels before the page ends
+            'bottomlimit':$('#comment_hots'),
+            'beforeLoad':function () { // before load function, you can display a preloader div
+                $('#loading').show();
+                this.contentData = 'offset=' + this.offset + '&callback=?'
+                this.offset += 10;
+            },
+            'afterLoad':function (elementsLoaded, data) { // after loading content, you can use this function to animate your new elements
+                //console.log(elementsLoaded);
+                $('#loading').hide();
+                //$(elementsLoaded).fadeInWithDelay();
+                var html = '';
+                $.each(data, function (i, item) {
+                    html += '<div class="poster_grid" >\
+                                <div class="new_poster">\
+                                    <div class="np_pic hover_pic">\
+                                        <div class="no"></div>\
+                                        <a target="_blank" href="'+wx.productURL(i)+'" class="pic_load">\
+                                            <img width="164" height="197" src="/images/lazy.gif"\
+                                                 data-original="/upload/product/'+idToPath(i)+'default.jpg" class="goods_pic" alt="产品"/>\
+                                        </a>\
+                                        <div class="like_merge" style="display: none;">\
+                                            <a href="javascript:void(0)" class="right_f poster_forward">\
+                                                <em class="lm_shouji">&nbsp;</em>收进杂志&nbsp;<span class="poster_forward_num line_num">265</span>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                    <div class="comm_box twiiter_box"><p class="posterContent">天空是蓝色的</p>\
+                                        <p class="comm_num l20_f">\
+                                            <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num">'+ item.length+'</span></a>\
+                                            <a href="javascript:void(0)" class="left_f poster_likes likes " isshowlike="1">\
+                                                <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num">'+parseInt(i.length * 8)+'</span>\
+                                            </a>\
+                                            <a class="love_pro none_f">这是你自己分享的哦！</a></p>\
+                                        <div class="clear_f"></div>\
+                                    </div>';
+
+                    var iNum = 1;
+                    $.each(item, function (ii, items){
+                        if (iNum > 2) {return;}
+                        html += '<div class="comm_share commentHover">\
+                                    <a href="javascript:void(0);" class="avatar32_f trans07 userInfoTips">\
+                                        <img src="/images/lazy.gif"\
+                                             data-original="/upload/designer/'+idToPath(items.uid)+'default.jpg">\
+                                    </a>\
+                                    <p class="ml40_f">\
+                                        <a href="javascript:void(0);" class="fb_f">'+items.uname+'</a> <span class="gray_f">'+items.title+'</span>\
+                                        <a href="javascript:void(0)" class="comment_reply v_hidden" style="visibility: hidden;">回复</a>\
+                                    </p>\
+                                    <div class="clear_f"></div></div>';
+                        iNum++;
+                    });
+
+                    if (item.length > 1) { html += '<div class="comm_share c_f"><a target="_blank" href="'+wx.productURL(i)+'"> 查看全部'+item.length+'条评论...</a></div>'; }
+                    html += '</div></div>';
+                });
+
+                if (!html || this.offset > this.heightOffset) {
+                    $('#no_more_results').fadeIn();
+                    $('#comment_hots').stopScrollPagination();
+                } else {
+                    //console.log(this.offset);
+                    if (this.offset == 10) {
+                        $('#comment_hots').append(html);
+
+                        var $comment_hots = $('#comment_hots');
+                        $comment_hots.imagesLoaded(function () {
+                            $comment_hots.masonry({
+                                itemSelector:'.poster_grid',
+                                columnWidth:198,
+                                isAnimated:true, //使用jquery的布局变化  Boolean
+                                gutterWidth:0, //列的间隙 Integer
+                                isFitWidth:true, // 适应宽度   Boolean
+                                isResizableL:true, // 是否可调整大小 Boolean
+                                isRTL:false //使用从右到左的布局 Boolean
+                            });
+                        });
+                    } else {
+                        //alert(html);
+                        //$comment_hots.append(html);
+                        //console.log(html);
+                        var $newElems = $(html).css({ opacity: 0 });
+                        alert($newElems);
+                        $newElems.imagesLoaded(function () {
+                            // show elems now they're ready
+                            $newElems.animate({ opacity: 1 });
+                            $('#comment_hots').masonry('appended', $newElems, true);
+                        });
+                    }
+                }
+            }
+        });
+
+
+        // code for fade in element by element
+        $.fn.fadeInWithDelay = function () {
+            var delay = 0;
+            return this.each(function () {
+                $(this).delay(delay).animate({opacity:1}, 200);
+                delay += 1000;
+            });
+        };
+
+    });
+
+
+    /*
+    var $comment_hots = $('#comment_hots');
+    $comment_hots.imagesLoaded(function () {
+        $comment_hots.masonry({
+            itemSelector:'.poster_grid',
+            columnWidth:198,
+            isAnimated:true, //使用jquery的布局变化  Boolean
+            gutterWidth:0, //列的间隙 Integer
+            isFitWidth:true, // 适应宽度   Boolean
+            isResizableL:true, // 是否可调整大小 Boolean
+            isRTL:false //使用从右到左的布局 Boolean
+        });
+    });
+
+    $('.globals img').lazyload({effect:"fadeIn"});
+//*/
 </script>
 <!-- #EndLibraryItem -->
 </body>
