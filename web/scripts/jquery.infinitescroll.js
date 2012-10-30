@@ -291,7 +291,6 @@
                         return this._error('end');
                     }
 
-
                     // use a documentFragment because it works when content is going into a table or UL
                     frag = document.createDocumentFragment();
                     while (box[0].firstChild) {
@@ -307,7 +306,6 @@
 
                     data = children.get();
 
-
                     break;
 
             }
@@ -318,6 +316,7 @@
 
             // smooth scroll to ease in the new content
             if (opts.animate) {
+
                 var scrollTo = $(window).scrollTop() + $('#infscr-loading').height() + opts.extraScrollPx + 'px';
                 $('html,body').animate({ scrollTop: scrollTo }, 800, function () { opts.state.isDuringAjax = false; });
             }
@@ -515,7 +514,7 @@
 	                                (condition) ? instance._loadcallback(box, jqXHR.responseText) : instance._error('end');
 	                            }
 	                        });
-	
+
 	                        break;
 	                }
 				};

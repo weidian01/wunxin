@@ -148,8 +148,7 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, DiscountPrice, pId
     </dl>';
     return html;
 
-    html += '<dl>\
-        <dt title="水具任选2款5折" class="pro-title promo_title">指定产品<b>水具任选2款5折</b></dt>\
+    html += '<dl><dt title="水具任选2款5折" class="pro-title promo_title">指定产品<b>水具任选2款5折</b></dt>\
         <dd class="fl"><a class="img60" href="javascript:void(0);"><img src="http://image.yihaodianimg.com/statics/../images/v2/cart2/discounticon.gif" style="width:56px;height:56px"></a></dd>\
         <dd class="proname">指定商品单笔买满2件每件5折</dd><dd>&nbsp;</dd>\
         <dd>\

@@ -138,7 +138,7 @@ class activity extends MY_Controller
 
     public function hot_comment()
     {
-        $limit = 20;
+        $limit = 10;
         $offset = $this->input->get_post('offset');
         $offset = empty ($offset) ? 1 : $offset ;
         $offset = ($offset - 1) * $limit;
@@ -146,6 +146,7 @@ class activity extends MY_Controller
         $this->load->model('product/Model_Product', 'product');
         $this->load->model('product/Model_Product_comment', 'comment');
         $pData = $this->product->getProductList($limit, $offset, "pid,pname,comment_num", array('comment_num >=' => 2), 'comment_num desc');
+
         if (!empty ($pData)) {
             foreach ($pData as $k => $v) {
                 $commentData = $this->comment->getProductCommentById($v['pid'], 2, 0, '*', null, 'create_time desc');
@@ -154,60 +155,9 @@ class activity extends MY_Controller
         }
 
         if($this->input->is_ajax_request() !== true) {
-            $info = array(
-                'title' => '热门评论',
-                'comment_data' => $pData,
-            );
-            $this->load->view('activity/hot_comment', $info);
+            $this->load->view('activity/hot_comment', array('title' => '热门评论','pData' => $pData));
         } else {
-            $html = '';
-            foreach ($pData as $cv) {
-                //*
-                $html .= '<div class="poster_grid" >
-                    <div class="new_poster">
-                        <div class="np_pic hover_pic">
-                            <div class="no"></div>
-                            <a target="_blank" href="" class="pic_load">
-                                <img width="164" height="197" src="'.config_item('static_url').'images/lazy.gif"
-                                     data-original="'.config_item('static_url').'upload/product/'.intToPath($cv['pid']).'default.jpg" class="goods_pic" alt="产品"/>
-                            </a>
-                            <div class="like_merge" style="display: none;">
-                                <a href="javascript:void(0)" class="right_f poster_forward">
-                                    <em class="lm_shouji">&nbsp;</em>收进杂志&nbsp;<span class="poster_forward_num line_num">265</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="comm_box twiiter_box"><p class="posterContent">'.$cv['pname'].'</p>
-
-                            <p class="comm_num l20_f">
-                                <a href="javascript:void(0)" class="poster_comment pl">评论 <span class="poster_comment_num">'.$cv['comment_num'].'</span></a>
-                                <a href="javascript:void(0)" class="left_f poster_likes likes " isshowlike="1">
-                                    <b class="likes_status"> <i class="lm_love2">&nbsp;</i>喜欢 </b> <span class="red_f poster_like_num">'.($cv['comment_num'] * 8).'</span>
-                                </a>
-                                <a class="love_pro none_f">这是你自己分享的哦！</a></p>
-                            <div class="clear_f"></div>
-                        </div>';
-
-                        $i = 0;foreach ($cv['comment'] as $comment_value) {
-                        $html .= '<div class="comm_share commentHover">
-                            <a target="_blank" href="javascript:void(0);" class="avatar32_f trans07 userInfoTips">
-                                <img src="'.config_item('static_url').'images/lazy.gif"
-                                     data-original="'.config_item('static_url').'upload/designer/'.intToPath($comment_value['uid']).'default.jpg">
-                            </a>
-                            <p class="ml40_f">
-                                <a target="_blank" href="javascript:void(0);" class="fb_f">'.$comment_value['uname'].'</a> <span class="gray_f">'.$comment_value['title'].'</span>
-                                <a href="javascript:void(0)" class="comment_reply v_hidden" style="visibility: hidden;">回复</a>
-                            </p>
-                            <div class="clear_f"></div>
-                        </div>';
-                        }
-                        if ($cv['comment_num'] > 2)
-                        $html .= '<div class="comm_share c_f"><a target="_blank" href="'.productURL($cv['pid']).'"> 查看全部'.$cv['comment_num'].'条评论...</a></div>
-                    </div>
-                </div>';
-                //*/
-            }
-            echo $html;
+            $this->load->view('activity/hot_comment_template', array('pData' => $pData) );
         }
     }
 }
