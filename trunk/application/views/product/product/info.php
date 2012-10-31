@@ -373,7 +373,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
                   </div></td>
               </tr>
             </table>
-            <div class="q-t-w">更多关于万象网购物问题及配送方式问题，详情请 <a href="#">点击这里 >></a></div>
+            <div class="q-t-w">更多关于万象网购物问题及配送方式问题，详情请 <a href="<?=config_item('static_url')?>other/help/index/22">点击这里 >></a></div>
           </div>
           <div class="q-a-box" id='_hdwd'><!--互动问答内容--></div>
           <div id="more_qa" style="float:center;display:none" class="pages"><!--更多--></div>
@@ -398,7 +398,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               如非质量问题退换货将由您来承担，在退回请您先垫付运费寄回， 货物寄到时，万象网将货款与运费支付于您。</p>
           <div class="tuihuan-tit">退换货邮寄地址：</div>
           <p>北京市朝阳区半壁店25号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;收件人：侯先生 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;邮编：100022<br/>
-            客服热线：010-62962388&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客服邮箱： <a class="sermail" href="mailto:servers@wunxin.com">service@wunxin.com </a><br/>
+            客服热线：010-62962388&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;客服邮箱： <a class="sermail" href="mailto:servers@wunxin.com">hjpking@gmail.com </a><br/>
             如有疑问请联系我们，我们将为您竭诚服务！</p>
         </div>
       </div>

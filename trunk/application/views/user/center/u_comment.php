@@ -6,6 +6,7 @@
     <title>设计师留言 -- 我的评论</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
@@ -120,7 +121,7 @@
             <div class="tui-tit">设计师推荐</div>
             <div id="pic_list_1" class="scroll_horizontal">
                 <div class="box">
-                    <ul class="list">
+                    <ul class="list jcarousel-skin-user" id="u_center_list">
                         <?php foreach ($favorite_recommend as $fv):?>
                         <li>
                             <a href="#" title="<?=$fv['uname']?>">
@@ -133,22 +134,20 @@
                         <?php endforeach;?>
                     </ul>
                 </div>
+                <!--
                 <div class="plus"></div>
                 <div class="minus"></div>
+                -->
             </div>
         </div>
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<script>
-    $(function () {
-        $("#pic_list_1").scrollShow("right",{step:6, time:5000, num:5, boxHeight:150, itemWidth:130});
-    });
-</script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>

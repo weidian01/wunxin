@@ -73,7 +73,8 @@ function browseHistoryHTML()
             i++;
             var item = list[k].split('|');
             html += '<div class="vhis">\
-            <a class="hoverimg" href="'+wx.productURL(item[0])+'"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item[0]) + 'default.jpg" width="140" height="168" /></a>\
+            <a class="hoverimg" href="'+wx.productURL(item[0])+'" title="' + item[1] + '">' +
+                '<img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item[0]) + 'default.jpg" width="140" height="168" title="' + item[1] + '"/></a>\
             <p><a href="'+wx.productURL(item[0])+'">' + item[1] + '</a></p>\
             <span class="font4">￥' + sprintf('%.2f',parseFloat(item[2])) + '</span></div>';
 
