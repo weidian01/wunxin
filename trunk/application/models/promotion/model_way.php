@@ -21,7 +21,7 @@ abstract class Model_way
      * @param $conf
      * @return mixed
      */
-    abstract function init($conf);
+    abstract function init($product);
 
     /**
      * 根据原价和规则计算最终价格
@@ -30,5 +30,5 @@ abstract class Model_way
      * @param $num
      * @return mixed
      */
-    abstract function compute($price, $num);
+    abstract function compute();
 }

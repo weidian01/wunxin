@@ -12,17 +12,18 @@ class test extends MY_Controller
     function index()
     {
         $this->load->model('product/Model_Product', 'product');
-        $pInfo = $this->product->getProductById(array(1,2,3),'pid, did, class_id, uid, pname, market_price, sell_price');
-        //var_dump($pInfo);
+        $pInfo = $this->product->getProductById(array(1,2,3,4),'pid, did, class_id, uid, pname, market_price, sell_price');
+
         $this->load->model('promotion/model_promotion', 'promotion');
 
         if($this->promotion->is_promotion_product() === TRUE)
         {
             foreach($pInfo as $p)
             {
+                $p['num'] = 1;
                 $this->promotion->add_product($p);
             }
-
+            $this->promotion->use_promotion(array(1,3,4,5));
             $this->promotion->compute();
             $tmp='';
         }
@@ -30,7 +31,9 @@ class test extends MY_Controller
         {
             die('not promotion!');
         }
-        print_r($this->promotion->promotion());
-        print_r($this->promotion->result());
+        echo '<pre>';
+        //print_r($this->promotion->get_promotion());
+
+        //print_r($this->promotion->result());
     }
 }
