@@ -27,8 +27,8 @@ cart.init = function ()
     //*
     var activity = data['activity'];//console.log(wx.isEmpty(activity));
     if (wx.isEmpty(activity)) {
-        html += '<tr style="width: 980px;"><td colspan="7" style="padding: 5px 0;"><h2>您还可以免费参加以下促销活动\
-                    <a id="cart_top_free_prom_tab" showui="1" onclick="cart.switchActivity();" class="cartHide" href="javascript:void(0)" style="padding-right: 20px;">隐藏</a></h2></td></tr>';
+        html += '<tr style="width: 980px;"><td colspan="7" style="padding: 5px 0 5px 25px;"><h2>您还可以免费参加以下促销活动\
+                    <a id="cart_top_free_prom_tab" showui="1" onclick="cart.switchActivity();" class="cartHide" href="javascript:void(0)" style="padding-right: 25px;">隐藏</a></h2></td></tr>';
         html += '<tr id="activity_list"><td colspan="7" style="padding: 5px 0;"><div class="activity_list"><ul id="list_ul" class="jcarousel-skin-activity">';
         for (var ii in activity) {
             html += cart.getActivityTemplate(activity[ii]['type'], activity[ii]['a_id'], activity[ii]['a_title'],
@@ -97,6 +97,7 @@ cart.init = function ()
     html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="'+wx.base_url+'/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
 
     $('#shopping_cart').html(html);
+    jQuery('#list_ul').jcarousel();
 }
 
 /*
@@ -171,9 +172,6 @@ cart.joinActivity = function (activityId)
 cart.switchActivity = function ()
 {
     $("#activity_list").toggle('fast');
-    //$('#activity_list').toggle(showOrHide);
-
-    //console.log(displayStatus);
 }
 
 //添加产品到购物车
