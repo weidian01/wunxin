@@ -248,9 +248,9 @@ a.productimg:hover{border:1px solid #D00}
 .cart-info .forpay .forpay-b a{display:block; line-height:16px; float:right; padding:0px 8px 0px 0px; color:#9A0505; font-weight:bold}
 .w980{width:980px; height:190px}
 .cart-info .coll2{padding-left:50px; width:120px}
-.return-top{float:right; padding:5px 0px; width:15px; background:url(/images/help.png) no-repeat 0px -360px}
+.return-top{float:right; padding:5px 0px; width:15px; background:url(/images/help.png) no-repeat 0px -360px;}
 .return-top a{display:block; width:15px; height:15px}
-.pages{padding:10px 0 10px 0; height:30px; text-align:center}
+.pages{padding:10px 0 10px 0; height:30px; text-align:right;}
 .pages a{border:1px solid #ccc; padding:3px 7px; margin:2px; color:#000; text-decoration:none; line-height:15px}
 .pages a:hover{BORDER-RIGHT:#f0f0f0 1px solid; BORDER-TOP:#f0f0f0 1px solid; BORDER-LEFT:#f0f0f0 1px solid; COLOR:#000; BORDER-BOTTOM:#f0f0f0 1px solid}
 .pages a:active{BORDER-RIGHT:#f0f0f0 1px solid; BORDER-TOP:#f0f0f0 1px solid; BORDER-LEFT:#f0f0f0 1px solid; COLOR:#000; BORDER-BOTTOM:#f0f0f0 1px solid}
