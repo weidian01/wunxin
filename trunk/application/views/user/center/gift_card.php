@@ -6,7 +6,7 @@
     <title>我的礼物卡 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -21,7 +21,7 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">我的礼物卡<span style="float: right;font-size: 12px;"><a href="/user/center/bingCard">绑定卡</a>&nbsp;&nbsp;&nbsp;</span></div>
+            <div class="u-r-tit">我的礼物卡<span style="float: right;font-size: 12px;"><a href="<?=config_item('static_url')?>/user/center/bingCard">绑定卡</a>&nbsp;&nbsp;&nbsp;</span></div>
         </div>
 
         <span style="font-size: 12px;"> “我的礼物卡” 中只显示您通过各种渠道或促销活动所获得的万象礼品卡；此礼品卡您需登陆

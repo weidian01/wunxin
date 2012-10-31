@@ -6,7 +6,8 @@
     <title>我的评论 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -30,9 +31,9 @@
             <div class="scj">
                 <div class="main">
                     <div class="tab">
-                        <a href="/user/center/productComment">产品评论</a>
-                        <a href="/user/center/designComment" class="act">设计图评论</a>
-                        <a href="/user/center/designerComment">设计师留言</a>
+                        <a href="<?=config_item('static_url')?>/user/center/productComment">产品评论</a>
+                        <a href="<?=config_item('static_url')?>/user/center/designComment" class="act">设计图评论</a>
+                        <a href="<?=config_item('static_url')?>/user/center/designerComment">设计师留言</a>
                     </div>
                     <div id="itemList">
                         <div class="list-m">
@@ -116,7 +117,7 @@
             <div class="tui-tit">设计图推荐</div>
             <div id="pic_list_1" class="scroll_horizontal">
                 <div class="box">
-                    <ul class="list">
+                    <ul class="list jcarousel-skin-ucenter" id="user_center_list">
                         <?php foreach ($favorite_recommend as $fv):?>
                         <li>
                             <a href="#" title="<?=$fv['dname']?>">
@@ -129,22 +130,20 @@
                         <?php endforeach;?>
                     </ul>
                 </div>
+                <!--
                 <div class="plus"></div>
                 <div class="minus"></div>
+                -->
             </div>
         </div>
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/design.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<script>
-    $(function () {
-        $("#pic_list_1").scrollShow("right",{step:5, time:5000, num:5, boxHeight:220});
-    });
-</script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/design.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>

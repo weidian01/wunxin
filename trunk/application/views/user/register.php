@@ -31,8 +31,8 @@
     <div class="user-login">
         <div class="regist-lf"><span class="font13">已经是会员？立即登录</span>
             <div class="turn-to-login">
-                <a href="/user/login/" title="快速登陆">
-                    <img src="/images/login_yellow.jpg" width="135" height="36" alt="登录"/>
+                <a href="<?=config_item('static_url')?>/user/login/" title="快速登陆">
+                    <img src="<?=config_item('static_url')?>/images/login_yellow.jpg" width="135" height="36" alt="登录"/>
                 </a>
             </div>
         </div>
@@ -71,8 +71,8 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td width="38%">
-                                        <img src="/user/register/verifyCode" id="verify_code"/>
-                                        <!-- <img src="/user/register/verifyCode" width="146" height="53"/> -->
+                                        <img src="<?=config_item('static_url')?>/user/register/verifyCode" id="verify_code"/>
+                                        <!-- <img src="<?=config_item('static_url')?>/user/register/verifyCode" width="146" height="53"/> -->
                                     </td>
                                     <td width="62%">&nbsp;&nbsp;看不清楚？<a href="javascript:void(0);" onclick="user.refreshVerifyCode()">换一张</a></td>
                                 </tr>
@@ -95,7 +95,7 @@
                         <td height="40" align="right">&nbsp;</td>
                         <td valign="bottom">
                             <a href="javascript:void(0);" onclick="user.submitRegisterForm()">
-                                <img src="/images/register_red.jpg" width="133" height="32" alt="注册为新会员"/>
+                                <img src="<?=config_item('static_url')?>/images/register_red.jpg" width="133" height="32" alt="注册为新会员"/>
                             </a>
                         </td>
                         <td>&nbsp;</td>

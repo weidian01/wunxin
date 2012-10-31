@@ -28,12 +28,8 @@ cart.init = function ()
     var activity = data['activity'];//console.log(wx.isEmpty(activity));
     if (wx.isEmpty(activity)) {
         html += '<tr style="width: 980px;"><td colspan="7" style="padding: 5px 0;"><h2>您还可以免费参加以下促销活动\
-                    <a id="cart_top_free_prom_tab" showui="1" onclick="cart.switchActivity();" class="cartHide" href="javascript:void(0)" style="padding-right: 20px;">隐藏</a></h2></td></tr>\
-                <tr id="activity_list"><td colspan="7" style="padding: 5px 0;"><div id="freePromotionList"><div class="free_scroll" id="free_promotion_container">\
-                <div class="promotion-box"><div class="emptybox"><div id="cart_top_free_prom_box" class="clearfix sale_list scroll_horizontal" style="display: block;">\
-                    <a href="javascript:void(0)" target="_self" hidefocus="true" class="on" id="pronext"></a>\
-                    <a href="javascript:void(0)" target="_self" hidefocus="true" class="end" id="proprev"></a>\
-                    <div class="promotion-list"><div id="top_promotion" class="pro-con">';
+                    <a id="cart_top_free_prom_tab" showui="1" onclick="cart.switchActivity();" class="cartHide" href="javascript:void(0)" style="padding-right: 20px;">隐藏</a></h2></td></tr>';
+        html += '<tr id="activity_list"><td colspan="7" style="padding: 5px 0;"><div class="activity_list"><ul id="list_ul" class="jcarousel-skin-activity">';
         for (var ii in activity) {
             html += cart.getActivityTemplate(activity[ii]['type'], activity[ii]['a_id'], activity[ii]['a_title'],
                 activity[ii]['a_desc'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status']);
@@ -49,7 +45,7 @@ cart.init = function ()
             </dl>';
             //*/
         }
-        html += '</div></div></div></div></div></div></div></td></tr>';
+        html += '</ul></div></td></tr>';
     }
     //*/
 
@@ -67,7 +63,8 @@ cart.init = function ()
     data = data['cart'];
     for (var i in data) {
         html += '<tr>';
-        html += '<td width="7%" style="padding-left: 8px;"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="60"/></a></td>';
+        html += '<td width="7%" style="padding-left: 8px;"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank">' +
+            '<img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="60"/></a></td>';
         html += '<td width="40%" style="padding-left: 8px;">';
         html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname+'</a><br/>';
         html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
@@ -75,9 +72,9 @@ cart.init = function ()
         html += '<td align="center" style="padding-left: 8px;">'+wx.fPrice(data[i].product_price)+'</td>';
         html += '<td align="center" style="padding-left: 8px;">'+data[i].product_size+'</td>';
         html += '<td align="center" style="padding-left: 8px;">';
-        html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="/images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
+        html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="'+wx.base_url+'/images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
         html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].product_num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
-        html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="/images/plus.gif" width="11" height="11"/></a>';
+        html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="'+wx.base_url+'/images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
         html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].product_price * data[i].product_num) )+'</span></td>';
         html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].product_price * data[i].product_num)+'</span></td>';
@@ -96,8 +93,8 @@ cart.init = function ()
     html += '<tr><td colspan="7"><div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>\
 		<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div>\
         <div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div><div class="post-btn">';
-    html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
-    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
+    html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="'+wx.base_url+'/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
+    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="'+wx.base_url+'/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
 
     $('#shopping_cart').html(html);
 }
@@ -123,7 +120,7 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
         case '1' :
             typeName = 'zeng';
             zengPid = '<span surl="http://www.wunxin.com/" class="zdsp">&nbsp;</span>&nbsp;';
-            pInfo = '<del>￥'+DiscountPrice+'</del>&nbsp;&nbsp;<strong class="red">免费</strong>';
+            pInfo = '<del>￥'+wx.fPrice(DiscountPrice)+'</del>&nbsp;&nbsp;<strong class="red">免费</strong>';
             activityImage = '/upload/product/'+idToPath(pId)+'default.jpg';
             break;
         case '2' :
@@ -143,27 +140,25 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
         activityStatus = '<a class="a-gray" href="javascript:void(0);"><s></s>已领完</a>';
     }
 
-    var html = '<dl>\
+    var html = '<li>\
             <dt title="'+aTitle+'" class="pro-title promo_title">'+zengPid+'<b>'+aTitle+'</b></dt>\
             <dd class="fl"><a class="img60" href="javascript:void(0)" target="_blank"><img src="'+activityImage+'" width="56" height="56" alt="'+aTitle+'"></a></dd>\
             <dd class="proname"><a href="javascript:void(0)" target="_blank" title="'+aDesc+'">'+aDesc+'</a></dd>\
             <dd>'+pInfo+'</dd>\
             <dd>'+activityStatus+'</dd>\
             <dd class="'+typeName+'"></dd>\
-        </dl>';
+        </li>';
     return html;
     /*
-    html += '<dl>\
-        <dt title="水具任选2款5折" class="pro-title promo_title"><b>水具任选2款5折</b></dt>\
-        <dd class="fl"><a class="img60" href="javascript:void(0);"><img src="http://image.yihaodianimg.com/statics/../images/v2/cart2/discounticon.gif" style="width:56px;height:56px"></a></dd>\
-        <dd class="proname">指定商品单笔买满2件每件5折</dd>\
-        <dd>&nbsp;</dd>\
-        <dd>\
-            <a href="http://www.yihaodian.com/ctg/p/pt40699-pl38443" target="_blank" class="view_detail">查看详情</a>\
-            <a class="a-red" onclick="ajaxChooseGift(40699,38443,2,4706427,1);return false;" href="javascript:void(0);" style="color: #ffffff;"> <s></s>立即参加 </a>\
-        </dd>\
-        <dd class="zhe"></dd>\
-    </dl>';
+        <li>
+            <dt title="亲情回馈买就送鼻贴" class="pro-title promo_title"><span surl="" vn="" class="zdsp"></span><b>亲情回馈买就送鼻贴</b></dt>
+            <dd class="fl"><a class="img60" href="/product/4801146_2" target="_blank">
+                <img src="http://d12.yihaodianimg.com/t1/2012/1018/225/55/51cb6e501a748b41c77fecedee40a191_60x60.jpg"></a></dd>
+            <dd class="proname"><a href="/product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>
+            <dd><del>￥5.7</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>
+            <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>
+            <dd class="zeng"></dd>
+        </li>
     //*/
 }
 

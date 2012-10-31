@@ -5,7 +5,7 @@
 <title><?php echo $data['title'];?> -- 最近动态</title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css" />
-<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/comm.js"></script>
 <!--[if lt IE 7]>
 <script type="text/javascript">

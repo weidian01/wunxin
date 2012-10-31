@@ -16,7 +16,7 @@
 <h2>用户收藏</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
 <div class="clear"></div>
@@ -61,7 +61,8 @@
                         <td><?php echo $dfdv['ip'];?></td>
                         <td><?php echo $dfdv['create_time'];?></td>
                         <td>
-                            <a href="/administrator/user_favorite/favoriteDelete/<?php echo $dfdv['designer_favorite_id'].'/'.$uid.'/1';?>" title="删除收藏"><img src="/images/icons/cross.png" alt="删除收藏"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/user_favorite/favoriteDelete/<?php echo $dfdv['designer_favorite_id'].'/'.$uid.'/1';?>" title="删除收藏">
+                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除收藏"></a>
                         </td>
                     </tr>
                     <?php }?>
@@ -99,7 +100,7 @@
                     <td><?php echo $pfdv['ip'];?></td>
                     <td><?php echo $pfdv['create_time'];?></td>
                     <td>
-                        <a href="/administrator/user_favorite/favoriteDelete/<?php echo $pfdv['id'].'/'.$uid.'/2';?>" title="删除收藏"><img src="/images/icons/cross.png" alt="删除收藏"></a>
+                        <a href="<?=config_item('static_url')?>/administrator/user_favorite/favoriteDelete/<?php echo $pfdv['id'].'/'.$uid.'/2';?>" title="删除收藏"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除收藏"></a>
                     </td>
                 </tr>
                     <?php }?>
@@ -137,7 +138,7 @@
                     <td><?php echo $dfvd['ip'];?></td>
                     <td><?php echo $dfvd['create_time'];?></td>
                     <td>
-                        <a href="/administrator/user_favorite/favoriteDelete/<?php echo $dfvd['id'].'/'.$uid.'/3';?>" title="删除收藏"><img src="/images/icons/cross.png" alt="删除收藏"></a>
+                        <a href="<?=config_item('static_url')?>/administrator/user_favorite/favoriteDelete/<?php echo $dfvd['id'].'/'.$uid.'/3';?>" title="删除收藏"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除收藏"></a>
                     </td>
                 </tr>
                     <?php }?>

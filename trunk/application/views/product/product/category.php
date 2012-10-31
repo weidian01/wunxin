@@ -35,7 +35,7 @@ $(document).ready(function(){
         <?php if($category ==$v['class_id']):?>
             <li class="last"><?=$v['cname']?></a></li>
         <?php else:?>
-            <li><a href="/category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
+            <li><a href="<?=config_item('static_url')?>/category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
         <?php endif;?>
       <?php endforeach;?>
       <!--li class="last">T恤/卫衣</li-->
@@ -49,7 +49,7 @@ $(document).ready(function(){
       <div class="menu">
         <ul>
             <?php unset($clan[$ancestor]);foreach($clan as $item):?>
-            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
+            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=config_item('static_url')?>/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
         </ul>
       </div>
@@ -125,7 +125,7 @@ $(document).ready(function(){
               <?php foreach($tmp as $k=>$v):?>
                   <?php $str .= "!{$k}-{$v}";?>
               <?php endforeach;?>
-              <div class="slect-item"><span><?=urldecode($item)?></span><a href="/category/<?echo $category,"/1/{$orderby}/{$orderrank}/",$str?>" class="close"></a></div>
+              <div class="slect-item"><span><?=urldecode($item)?></span><a href="<?=config_item('static_url')?>/category/<?echo $category,"/1/{$orderby}/{$orderrank}/",$str?>" class="close"></a></div>
             <?php endforeach;?>
           </td>
         </tr>
@@ -139,7 +139,7 @@ $(document).ready(function(){
                     <?php foreach($tmp as $k=>$v):?>
                         <?php $str .= "!{$k}-{$v}";?>
                     <?php endforeach;?>
-                    <li><a href="/category/<?echo $category,"/1/{$orderby}/{$orderrank}/!",$item['attr_id'],'-',$tiem,$str?>"><?=$tiem?></a></li>
+                    <li><a href="<?=config_item('static_url')?>/category/<?echo $category,"/1/{$orderby}/{$orderrank}/!",$item['attr_id'],'-',$tiem,$str?>"><?=$tiem?></a></li>
                 <?php endforeach;?>
               </ul></td>
           </tr>
@@ -147,19 +147,19 @@ $(document).ready(function(){
       </table>
     </div>
     <div class="extend">
-      <div class="kz" id="kza"><img src="/images/arrow_down.gif"> <span>更多</span></div>
+      <div class="kz" id="kza"><img src="<?=config_item('static_url')?>/images/arrow_down.gif"> <span>更多</span></div>
     </div>
     <?php endif;?>
        <div class="clear" style="height: 10px"></div>
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="/category/<?=$category?>/1/default/1">默认</a>
-              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="/category/<?=$category?>/1/price/<?php if($orderby=='price' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">价格</a>
-              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="/category/<?=$category?>/1/sale/<?php if($orderby=='sale' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">销量</a>
-              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> class="ordby_new " name="orderby" href="/category/<?=$category?>/1/new/<?php if($orderby=='new' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">最新</a>
+              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=config_item('static_url')?>/category/<?=$category?>/1/default/1">默认</a>
+              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?=config_item('static_url')?>/category/<?=$category?>/1/price/<?php if($orderby=='price' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">价格</a>
+              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?=config_item('static_url')?>/category/<?=$category?>/1/sale/<?php if($orderby=='sale' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">销量</a>
+              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> class="ordby_new " name="orderby" href="<?=config_item('static_url')?>/category/<?=$category?>/1/new/<?php if($orderby=='new' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
-              <?php if($pageno > 1):?><a class="disabled" href="/category/<?=$category?>/<?=($pageno-1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="/category/<?=$category?>/<?=($pageno+1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">下一页</a><?php endif;?>
+              <?php if($pageno > 1):?><a class="disabled" href="<?=config_item('static_url')?>/category/<?=$category?>/<?=($pageno-1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=config_item('static_url')?>/category/<?=$category?>/<?=($pageno+1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">下一页</a><?php endif;?>
           </div>
       </div>
     <div class="goodsbox">

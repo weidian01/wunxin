@@ -17,11 +17,11 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="/administrator/user/search" method="post">
+        <form action="<?=config_item('static_url')?>/administrator/user/search" method="post">
             <p>
                 <label><b>输入关键字</b></label>
                 <input class="text-input small-input" type="text" id="small-input" name="keyword" value="">
@@ -93,10 +93,10 @@
                         <td><?php echo $v['status'] ? '正常' : '已删除';?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/user/userDetail/<?php echo $v['uid']?>" title="查看用户"><img src="/images/icons/view.png" alt="查看用户"></a>
-                            <a href="/administrator/user/userEdit/<?php echo $v['uid']?>" title="修改用户"><img src="/images/icons/pencil.png" alt="修改用户"></a>
-                            <a href="/administrator/user_comment/userCommentList/<?php echo $v['uid']?>" title="查看留言">查看留言</a>
-                            <a href="/administrator/user_favorite/favoriteList/<?php echo $v['uid']?>" title="查看收藏">查看收藏</a>
+                            <a href="<?=config_item('static_url')?>/administrator/user/userDetail/<?php echo $v['uid']?>" title="查看用户"><img src="<?=config_item('static_url')?>/images/icons/view.png" alt="查看用户"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/user/userEdit/<?php echo $v['uid']?>" title="修改用户"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="修改用户"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/user_comment/userCommentList/<?php echo $v['uid']?>" title="查看留言">查看留言</a>
+                            <a href="<?=config_item('static_url')?>/administrator/user_favorite/favoriteList/<?php echo $v['uid']?>" title="查看收藏">查看收藏</a>
 
 
                         </td>

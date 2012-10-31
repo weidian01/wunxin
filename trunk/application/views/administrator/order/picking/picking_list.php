@@ -17,11 +17,11 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/order/orderList"><span> 订单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span>添加快递公司 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order/orderList"><span> 订单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/addExpressCompany"><span>添加快递公司 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
 
     </ul>
     <!-- End .shortcut-buttons-set -->
@@ -102,7 +102,7 @@
                         <td><input type="checkbox"/></td>
                         <td><?php echo $v['picking_id'];?></td>
                         <td><a
-                            href="/administrator/order_picking/orderPickingList/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a>
+                            href="<?=config_item('static_url')?>/administrator/order_picking/orderPickingList/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a>
                         </td>
                         <td><?php echo $v['ed_id'];?></td>
                         <td><?php echo $v['address_id'];?></td>
@@ -118,7 +118,7 @@
                             <?php endif;?>
                         </th>
                         <td>
-                            <a href="/administrator/order_picking/pickingDetail/<?php echo $v['picking_id'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/order_picking/pickingDetail/<?php echo $v['picking_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>/images/icons/view.png" alt="查看订单"/></a>
                         </td>
                     </tr>
                         <?php }?>

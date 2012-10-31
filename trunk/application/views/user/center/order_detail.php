@@ -6,7 +6,7 @@
     <title>订单详情 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
@@ -238,7 +238,7 @@
                                         <a href="javascript:void(0);" onclick="product.productShare(<?php echo $pv['pid'];?>)">
                                             <img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单">
                                         </a><br/>
-                                        <a href="/user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>">
+                                        <a href="<?=config_item('static_url')?>/user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>">
                                             <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货">
                                         </a>
                                     </td>
@@ -266,7 +266,7 @@
                             <?php }?>
 
                             <?php if ($order_data['status'] == '2' && $order_data['is_pay'] != '1') {?>
-                            <a class="btn_bb2" href="/order/order/success/<?php echo $order_data['order_sn']?>" style="color: #ffffff;font-weight: bold;">立即付款</a>
+                            <a class="btn_bb2" href="<?=config_item('static_url')?>/order/order/success/<?php echo $order_data['order_sn']?>" style="color: #ffffff;font-weight: bold;">立即付款</a>
                             <?php }?>
                         <?php }?>
                         <br>

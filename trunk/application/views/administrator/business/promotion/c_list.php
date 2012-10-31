@@ -16,10 +16,10 @@
     <h2>促销分类列表</h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -62,17 +62,17 @@
                         <td><?=$item['cid'];?></td>
                         <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['name'];?></td>
                         <td>
-                            <a href="/administrator/business_promotion_category/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$item['promotion_id'];?>">
+                            <a href="<?=config_item('static_url')?>/administrator/business_promotion_category/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$item['promotion_id'];?>">
                                 <?=$promotion[$item['promotion_id']]['name']?>
                             </a>
                         </td>
                         <td><?=$item['floor']?></td>
                         <td><?=$item['sort']?></td>
                         <td>
-                            <a href="<?php echo url("administrator/business_promotion_category/edit/{$item['cid']}")?>"><img
-                                src="/images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo url("administrator/business_promotion_category/delete/{$item['cid']}")?>"><img
-                                src="/images/icons/cross.png" alt="Delete"/></a>
+                            <a href="<?php echo url("administrator/business_promotion_category/edit/{$item['cid']}")?>">
+                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit"/></a>
+                            <a href="<?php echo url("administrator/business_promotion_category/delete/{$item['cid']}")?>">
+                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete"/></a>
                         </td>
                     </tr>
                         <?php endforeach;?>

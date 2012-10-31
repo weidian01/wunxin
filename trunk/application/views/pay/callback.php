@@ -18,8 +18,8 @@
 <title><?php echo $t;?></title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
-<!--<SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>-->
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></SCRIPT>
+<!--<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/comm.js"></SCRIPT>-->
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <!--[if lt IE 7]>
@@ -75,7 +75,7 @@ $(document).ready(function(){
 
             if (($response['error'] == '0')) {
                 echo ' 您于'.date('Y-m-d H:i',strtotime($order['pay_time'])).' 已成功付款，我们将尽快安排发货，可随时登陆万象网
-                    <a href="/user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
+                    <a href="'.config_item('static_url').'/user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
             } else {
                 if ($order['pay_type'] == '1') {
                     echo ' 如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
@@ -267,7 +267,7 @@ $(document).ready(function(){
                           <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span>
                       </p>
                       <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
-                        <img src="/images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
+                        <img src="<?=config_item('static_url')?>/images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
                       </a>
                   </div>
                   <?php }?>

@@ -16,8 +16,8 @@
     <h2><?php echo $type == 'edit' ? '编辑积分换购产品' : '添加积分换购产品'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_integral_redemption/redemptionAdd"><span><br/> 添加积分<br/>换购产品 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_integral_redemption/redemptionList"><span><br/> 积分换购<br/>产品列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_integral_redemption/redemptionAdd"><span><br/> 添加积分<br/>换购产品 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_integral_redemption/redemptionList"><span><br/> 积分换购<br/>产品列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

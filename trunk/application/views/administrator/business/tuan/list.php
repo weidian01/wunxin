@@ -14,8 +14,8 @@
     <h2>团购列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_tuan/tuanAdd"><span><br/> 添加团购 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_tuan/tuanList"><span><br/> 团购列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_tuan/tuanAdd"><span><br/> 添加团购 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_tuan/tuanList"><span><br/> 团购列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -91,8 +91,8 @@
                         <td><?php echo $v['descr'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/business_tuan/tuanView/<?php echo $v['tuan_id'];?>" title="查看订单"><img src="/images/icons/view.png" alt="查看订单"></a>
-                            <a href="/administrator/business_tuan/tuanEdit/<?php echo $v['tuan_id'];?>" title="编辑团购"><img src="/images/icons/pencil.png" alt="编辑团购"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/business_tuan/tuanView/<?php echo $v['tuan_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>/images/icons/view.png" alt="查看订单"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/business_tuan/tuanEdit/<?php echo $v['tuan_id'];?>" title="编辑团购"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑团购"/></a>
                         </td>
                     </tr>
                         <?php }?>

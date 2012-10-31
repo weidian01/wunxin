@@ -14,8 +14,8 @@
     <h2>积分换购产品列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_integral_redemption/redemptionAdd"><span><br/> 添加积分<br/>换购产品 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_integral_redemption/redemptionList"><span><br/> 积分换购<br/>产品列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_integral_redemption/redemptionAdd"><span><br/> 添加积分<br/>换购产品 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_integral_redemption/redemptionList"><span><br/> 积分换购<br/>产品列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -73,8 +73,10 @@
                         <td><?php echo $v['end_time'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/business_integral_redemption/redemptionEdit/<?php echo $v['redemption_id'].'/'.$current_page;?>" title="修改换购产品"><img src="/images/icons/pencil.png" alt="修改换购产品"></a>
-                            <a href="/administrator/business_integral_redemption/redemptionDelete/<?php echo $v['redemption_id'].'/'.$current_page;?>" title="删除换购产品"><img src="/images/icons/cross.png" alt="删除换购产品"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/business_integral_redemption/redemptionEdit/<?php echo $v['redemption_id'].'/'.$current_page;?>" title="修改换购产品">
+                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="修改换购产品"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/business_integral_redemption/redemptionDelete/<?php echo $v['redemption_id'].'/'.$current_page;?>" title="删除换购产品">
+                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除换购产品"></a>
                         </td>
                     </tr>
                         <?php }?>

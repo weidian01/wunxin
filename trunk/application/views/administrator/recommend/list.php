@@ -13,9 +13,9 @@
 <h2>推荐列表</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="/administrator/recommend_home/recommendList"><span><br/> 推荐列表 </span></a>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/recommend_home/recommendList"><span><br/> 推荐列表 </span></a>
     </li>
-    <li><a class="shortcut-button" href="/administrator/recommend_home/recommendAdd"><span><br/> 添加推荐 </span></a>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/recommend_home/recommendAdd"><span><br/> 添加推荐 </span></a>
     </li>
 </ul>
 <!-- End .shortcut-buttons-set -->
@@ -69,8 +69,8 @@
             <td><?php echo $brv['sort'];?></td>
             <td><?php echo $brv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $brv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $brv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $brv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $brv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -105,8 +105,8 @@
             <td><?php echo $drv['sort'];?></td>
             <td><?php echo $drv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $drv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $drv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $drv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $drv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -138,8 +138,8 @@
             <td><?php echo $derv['sort'];?></td>
             <td><?php echo $derv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $derv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $derv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $derv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $derv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -176,8 +176,8 @@
             <td><?php echo $adrv['sort'];?></td>
             <td><?php echo $adrv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $adrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $adrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $adrv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $adrv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -219,8 +219,8 @@
             <td><?php echo $mrv['emission'];?></td>
             <td><?php echo $mrv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $mrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $mrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $mrv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $mrv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -261,8 +261,8 @@
             <td><?php echo $wrv['emission'];?></td>
             <td><?php echo $wrv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $wrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $wrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $wrv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $wrv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -303,8 +303,8 @@
             <td><?php echo $lrv['emission'];?></td>
             <td><?php echo $lrv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $lrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $lrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $lrv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $lrv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -346,8 +346,8 @@
             <td><?php echo $frv['emission'];?></td>
             <td><?php echo $frv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $frv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $frv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $frv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $frv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -378,8 +378,8 @@
             <td><?php echo $derrv['pid'];?></td>
             <td><?php echo $derrv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $derrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $derrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $derrv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $derrv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>
@@ -408,8 +408,8 @@
             <td><?php echo $skrv['title'];?></td>
             <td><?php echo $skrv['create_time'];?></td>
             <td>
-                <!--<a href="/administrator/article/articleEdit/<?php echo $skrv['id'];?>" title="编辑文章"><img src="/images/icons/pencil.png" alt="编辑文章"/></a>-->
-                <a href="/administrator/recommend_home/recommendDelete/<?php echo $skrv['id'];?>" title="删除推荐"><img src="/images/icons/cross.png" alt="删除推荐"/></a>
+                <!--<a href="<?=config_item('static_url')?>/administrator/article/articleEdit/<?php echo $skrv['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章"/></a>-->
+                <a href="<?=config_item('static_url')?>/administrator/recommend_home/recommendDelete/<?php echo $skrv['id'];?>" title="删除推荐"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除推荐"/></a>
             </td>
         </tr>
             <?php }?>

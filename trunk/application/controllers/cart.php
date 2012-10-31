@@ -39,10 +39,12 @@ class cart extends MY_Controller
 
         //* 活动信息
         $cData['activity'] = array(
-            array('type' => '1', 'a_id' => 1, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '1', 'discount_price' => 321, 'status' => 0),
-            array('type' => '2', 'a_id' => 2, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '2', 'discount_price' => 334, 'status' => 1),
-            array('type' => '3', 'a_id' => 3, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
-            array('type' => '3', 'a_id' => 3, 'a_title' => '天天开心抢天天开心抢', 'a_desc' => '抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
+            array('type' => '1', 'a_id' => 1, 'a_title' => '1天天开心抢天天开心抢', 'a_desc' => '1抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '1', 'discount_price' => 321, 'status' => 0),
+            array('type' => '2', 'a_id' => 2, 'a_title' => '2天天开心抢天天开心抢', 'a_desc' => '2抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '2', 'discount_price' => 334, 'status' => 1),
+            array('type' => '3', 'a_id' => 3, 'a_title' => '3天天开心抢天天开心抢', 'a_desc' => '3抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
+            array('type' => '3', 'a_id' => 3, 'a_title' => '4天天开心抢天天开心抢', 'a_desc' => '4抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
+            array('type' => '3', 'a_id' => 3, 'a_title' => '5天天开心抢天天开心抢', 'a_desc' => '5抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
+            array('type' => '3', 'a_id' => 3, 'a_title' => '6天天开心抢天天开心抢', 'a_desc' => '6抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
         );
         //*/
 

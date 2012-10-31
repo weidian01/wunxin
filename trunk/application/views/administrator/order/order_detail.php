@@ -16,11 +16,11 @@
 <h2>订单管理</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="/administrator/order/orderList"><span> 订单列表 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order/orderList"><span> 订单列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
 </ul>
 <div class="clear"></div>
 操作流程

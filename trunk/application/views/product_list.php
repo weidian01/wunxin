@@ -6,7 +6,7 @@
 <link href="style/base.css" rel="stylesheet" type="text/css" />
 <link href="style/goods.css" rel="stylesheet" type="text/css" />
 <SCRIPT type=text/javascript src="js/comm.js"></SCRIPT>
-<SCRIPT type=text/javascript src="js/jquery-1.4.2.min.js"></SCRIPT>
+<SCRIPT type=text/javascript src="js/jquery.js"></SCRIPT>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="js/iepng.js"></script>
 <script type="text/javascript">
@@ -67,7 +67,7 @@ $(document).ready(function(){
       <div class="rankbox" id="rank1">
         <div class="bdan">
           <div class="no1">1</div>
-          <div class="bdimg"><img src="/images/hg_03.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/hg_03.jpg" width="53" height="54" /></div>
           <div class="bdancont">亿品印花宽松T恤7500 灰色M<br/>
             <span class="font4">￥35.00</span></div>
         </div>
@@ -82,7 +82,7 @@ $(document).ready(function(){
       <div class="rankbox" id="rank2" style="display:none;">
         <div class="bdan">
           <div class="no1">1</div>
-          <div class="bdimg"><img src="/images/pic7.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pic7.jpg" width="53" height="54" /></div>
           <div class="bdancont">亿品印花宽松T恤7500 灰色M<br/>
             <span class="font4">￥35.00</span></div>
         </div>
@@ -97,7 +97,7 @@ $(document).ready(function(){
       <div class="rankbox" id="rank3" style="display:none;">
         <div class="bdan">
           <div class="no1">1</div>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont">亿品印花宽松T恤7500 灰色M<br/>
             <span class="font4">￥35.00</span></div>
         </div>
@@ -120,7 +120,7 @@ $(document).ready(function(){
       <div class="rankbox" id="rankt1">
         <div class="bdan">
           <div class="no1">1</div>
-          <div class="bdimg"><img src="/images/hg_03.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/hg_03.jpg" width="53" height="54" /></div>
           <div class="bdancont">亿品印花宽松T恤7500 灰色M<br/>
             <span class="font4">￥35.00</span></div>
         </div>
@@ -135,7 +135,7 @@ $(document).ready(function(){
       <div class="rankbox" id="rankt2" style="display:none;">
         <div class="bdan">
           <div class="no1">1</div>
-          <div class="bdimg"><img src="/images/pic7.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pic7.jpg" width="53" height="54" /></div>
           <div class="bdancont">亿品印花宽松T恤7500 灰色M<br/>
             <span class="font4">￥35.00</span></div>
         </div>
@@ -150,7 +150,7 @@ $(document).ready(function(){
       <div class="rankbox" id="rankt3" style="display:none;">
         <div class="bdan">
           <div class="no1">1</div>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont">亿品印花宽松T恤7500 灰色M<br/>
             <span class="font4">￥35.00</span></div>
         </div>
@@ -180,7 +180,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -191,7 +191,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -202,7 +202,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -213,7 +213,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -224,7 +224,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -235,7 +235,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -246,7 +246,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -257,7 +257,7 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
@@ -268,14 +268,14 @@ $(document).ready(function(){
               <td><span class="font4">￥152.30</span></td>
             </tr>
           </table>
-          <div class="bdimg"><img src="/images/pick.jpg" width="53" height="54" /></div>
+          <div class="bdimg"><img src="<?=config_item('static_url')?>/images/pick.jpg" width="53" height="54" /></div>
           <div class="bdancont2"><span class="font2">***826542</span>(会员)<br/>
             衣衣对于我来说真的偏长，但是款式还不错</div>
         </div>
       </div>
     </div>
-    <div class="adpic"><img src="/images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
-    <div class="adpic"><img src="/images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+    <div class="adpic"><img src="<?=config_item('static_url')?>/images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+    <div class="adpic"><img src="<?=config_item('static_url')?>/images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
   </div>
   <!--left end-->
   <div class="goods-list">
@@ -283,9 +283,9 @@ $(document).ready(function(){
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td width="10%" align="right">您已选择：</td>
-          <td width="90%"><div class="slect-item"><span>M</span><span class="close"><img src="/images/bgw_06.gif" width="12" height="13" /></span></div>
-            <div class="slect-item"><span>宽松型</span><span class="close"><img src="/images/bgw_06.gif" width="12" height="13" /></span></div>
-          <div class="slect-item"><span>印花</span><span class="close"><img src="/images/bgw_06.gif" width="12" height="13" /></span></div></td>
+          <td width="90%"><div class="slect-item"><span>M</span><span class="close"><img src="<?=config_item('static_url')?>/images/bgw_06.gif" width="12" height="13" /></span></div>
+            <div class="slect-item"><span>宽松型</span><span class="close"><img src="<?=config_item('static_url')?>/images/bgw_06.gif" width="12" height="13" /></span></div>
+          <div class="slect-item"><span>印花</span><span class="close"><img src="<?=config_item('static_url')?>/images/bgw_06.gif" width="12" height="13" /></span></div></td>
         </tr>
         <tr>
           <td align="right">尺码：</td>
@@ -385,162 +385,162 @@ $(document).ready(function(){
     </div>
     <div class="goodsbox">
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_03.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_03.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"><img src="/images/g_05.jpg" width="164" height="220" alt="ddd" />
+        <div class="goods-cbox"><img src="<?=config_item('static_url')?>/images/g_05.jpg" width="164" height="220" alt="ddd" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_08.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_08.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
       <div class="goods-cb">
-        <div class="goods-cbox"> <img src="/images/g_11.jpg" width="164" height="220" alt="eeee" />
+        <div class="goods-cbox"> <img src="<?=config_item('static_url')?>/images/g_11.jpg" width="164" height="220" alt="eeee" />
           <p>[VT]短袖印花T恤 美丽印象（女款）浅紫色<br/><span class="font4">售价 ￥39.00</span></p>
         </div>
       </div>
@@ -558,27 +558,27 @@ $(document).ready(function(){
     <div class="tit">最近浏览过的商品</div>
     <div class="viewhis">
       <div class="vhis">
-      <img src="/images/h1_03.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
+      <img src="<?=config_item('static_url')?>/images/h1_03.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
       <span class="font4">￥49.00 </span></div>
-      <div class="vhis"><img src="/images/h1_05.jpg" width="140" height="140" />
+      <div class="vhis"><img src="<?=config_item('static_url')?>/images/h1_05.jpg" width="140" height="140" />
         <p>时尚百搭男款宽松休闲T恤 天蓝色</p>
       <span class="font4">￥49.00 </span></div>
       <div class="vhis">
-      <img src="/images/h1_08.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
+      <img src="<?=config_item('static_url')?>/images/h1_08.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
       <span class="font4">￥49.00 </span></div>
       <div class="vhis">
-      <img src="/images/h1_10.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
+      <img src="<?=config_item('static_url')?>/images/h1_10.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
       <span class="font4">￥49.00 </span></div>
       <div class="vhis">
-      <img src="/images/h1_03.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
+      <img src="<?=config_item('static_url')?>/images/h1_03.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
       <span class="font4">￥49.00 </span></div>
       <div class="vhis">
-      <img src="/images/h1_05.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
+      <img src="<?=config_item('static_url')?>/images/h1_05.jpg" width="140" height="140" /><p>时尚百搭男款宽松休闲T恤 天蓝色</p>
       <span class="font4">￥49.00 </span></div>
     </div>
   </div>
 </div>
 <?php include '/../footer.php';?>
-<SCRIPT type=text/javascript src="/scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/common.js"></SCRIPT>
 </body>
 </html>

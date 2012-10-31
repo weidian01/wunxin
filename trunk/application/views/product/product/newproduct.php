@@ -44,7 +44,7 @@ $(document).ready(function(){
       <div class="menu">
         <ul>
             <?php foreach($clan as $item):?>
-            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']);?><a href="/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
+            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']);?><a href="<?=config_item('static_url')?>/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
         </ul>
       </div>

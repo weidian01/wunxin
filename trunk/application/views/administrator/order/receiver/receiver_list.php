@@ -17,11 +17,11 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/order/orderList"><span><br/> 订单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_receiver/receivableList"><span><br/> 收款单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_picking/pickingList"><span><br/> 配货单列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/addExpressCompany"><span><br/> 添加快递公司 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/order_express/expressList"><span><br/> 快递公司列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order/orderList"><span><br/> 订单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_receiver/receivableList"><span><br/> 收款单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_picking/pickingList"><span><br/> 配货单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/addExpressCompany"><span><br/> 添加快递公司 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/expressList"><span><br/> 快递公司列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
@@ -102,8 +102,8 @@
                     <tr>
                         <td> <input type="checkbox" /> </td>
                         <td><?php echo $v['receiver_id'];?></td>
-                        <td><a href="/administrator/order_receiver/orderReceiverList/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
-                        <td><a href="/administrator/order_receiver/userReceiverList/<?php echo $v['uid'];?>"><?php echo $v['uid'];?></a></td>
+                        <td><a href="<?=config_item('static_url')?>/administrator/order_receiver/orderReceiverList/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
+                        <td><a href="<?=config_item('static_url')?>/administrator/order_receiver/userReceiverList/<?php echo $v['uid'];?>"><?php echo $v['uid'];?></a></td>
                         <td><?php echo $v['uname'];?></td>
                         <td><?php echo $v['amount'];?></td>
                         <td><?php echo $v['pay_type'] == 1 ? '银行汇款' : '支付宝转账';?></td>

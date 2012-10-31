@@ -16,10 +16,10 @@
     <h2><?php echo $type == 'edit' ? '编辑卡模型' : '添加卡模型'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_card_model/cardModelAdd"><span><br/> 添加卡模型 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_card_model/cardModelList"><span><br/> 卡模型列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_card/cardAdd"><span><br/> 添加卡 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_card/cardList"><span><br/> 卡列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card_model/cardModelAdd"><span><br/> 添加卡模型 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card_model/cardModelList"><span><br/> 卡模型列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card/cardAdd"><span><br/> 添加卡 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card/cardList"><span><br/> 卡列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

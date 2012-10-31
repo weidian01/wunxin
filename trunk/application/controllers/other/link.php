@@ -49,7 +49,7 @@ class link extends MY_Controller
             show_error('申请请求失败!');
         }
 
-        echo '<script>alert("申请成功，等待管理员审核！");window.location.href="/";</script>';
+        echo '<script>alert("申请成功，等待管理员审核！");window.location.href='.config_item('static_url').';</script>';
     }
 
     /**

@@ -6,7 +6,8 @@
     <title>我的订单 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -28,8 +29,8 @@
 <div class="box">
   <div class="path">
     <ul>
-      <li><a href="#">首页</a></li>
-      <li><a href="/user/center/index">个人中心</a></li>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>/user/center/index">个人中心</a></li>
       <li class="last">订单列表</li>
     </ul>
   </div>
@@ -62,7 +63,7 @@
                 $canceledNum = 0;
 
                 if (empty ($data)) {?>
-                <td colspan="7" style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时没有订单，去选择喜欢的<a href="/">产品</a>吧。</td>
+                <td colspan="7" style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时没有订单，去选择喜欢的<a href="<?=config_item('static_url')?>">产品</a>吧。</td>
                 <?php } else {?>
                 <?php
                 foreach ($data as $v) {
@@ -71,7 +72,7 @@
                     if ($v['status'] == '0') { $canceledNum += 1; }
                 ?>
                 <tr>
-                    <td width="15%" align="center"><a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
+                    <td width="15%" align="center"><a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
                     <td width="35%">
                         <div class="goods-in" style="width: 250px;">
                             <?php
@@ -123,20 +124,20 @@
                         case '2': $pst = '配货完成'; break;
                         default: $pst = '未配货'; break;
                     }
-                        echo '1. <a href="#" title="订单状态:'.$st.'">'.$st.'</a><br>';
-                        echo '2. <a href="#" title="支付状态:'.$pt.'">'.$pt.'</a><br>';
-                        echo '3. <a href="#" title="配货状态:'.$pst.'">'.$pst.'</a>';
+                        echo '1. <a href="javascript:void(0);" title="订单状态:'.$st.'">'.$st.'</a><br>';
+                        echo '2. <a href="javascript:void(0);" title="支付状态:'.$pt.'">'.$pt.'</a><br>';
+                        echo '3. <a href="javascript:void(0);" title="配货状态:'.$pst.'">'.$pst.'</a>';
                     ?>
                     </td>
                     <td width="10%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td width="15%" align="center">
-                        <a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>">
+                        <a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/view.png" title="查看订单详情">
                         </a>
                         <?php if ($v['picking_status'] == '2') {?>
-                        &nbsp;&nbsp;<a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品"></a><br/>
-                        <a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品"></a>
-                        &nbsp;&nbsp;<a href="/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货"></a>
+                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品"></a><br/>
+                        <a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品"></a>
+                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货"></a>
                         <?php }?>
                         <!--<div class="gobuy"><a href="#"></a></div>-->
                     </td>
@@ -165,7 +166,7 @@
 
                 <div id="pic_list_1" class="scroll_horizontal">
                     <div class="box">
-                        <ul class="list">
+                        <ul class="list jcarousel-skin-ucenter" id="user_center_list">
                             <?php foreach ($favorite_recommend as $fv):?>
                             <li>
                                 <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
@@ -178,8 +179,10 @@
                             <?php endforeach;?>
                         </ul>
                     </div>
+                    <!--
                     <div class="plus"></div>
                     <div class="minus"></div>
+                    -->
                 </div>
 
         </div>
@@ -187,14 +190,9 @@
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<script type="text/javascript">
-    $(function () {
-        $("#pic_list_1").scrollShow("right",{step:5, time:5000, num:5, boxHeight:220});
-    });
-</script>
-
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>

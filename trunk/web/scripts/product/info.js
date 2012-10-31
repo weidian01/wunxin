@@ -426,8 +426,8 @@
             var html = '';
             $.each(data, function (i, item) {
                 html += '<div class="vhis vew-designer">\
-                    <a class="imgborder" href="/product/'+item.pid+'" target="_blank"><img src="'+ wx.img_url+ 'product/' + idToPath(item.pid) +'default.jpg" width="140" height="168" /></a>\
-                    <p><a href="/product/'+item.pid+'" target="_blank">'+item.pname+'</a></p>\
+                    <a class="imgborder" href="'+wx.static_url+'/product/'+item.pid+'" target="_blank"><img src="'+ wx.img_url+ 'product/' + idToPath(item.pid) +'default.jpg" width="140" height="168" /></a>\
+                    <p><a href="'+wx.static_url+'/product/'+item.pid+'" target="_blank">'+item.pname+'</a></p>\
                     价格:<span class="font4">￥'+sprintf('%.2f', item.sell_price/100)+'</span>\
                     </div>';
             });

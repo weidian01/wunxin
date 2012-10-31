@@ -16,8 +16,8 @@
 <h2>活动详情</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="/administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
-    <li><a class="shortcut-button" href="/administrator/activity/activityList"><span><br/> 活动列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/activity/activityList"><span><br/> 活动列表 </span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
 <div class="clear"></div>
@@ -124,7 +124,8 @@
                     <td><?php echo $cdv['ip'];?></td>
                     <td><?php echo $cdv['create_time'];?></td>
                     <td>
-                        <a href="/administrator/activity/activityCommentDelete/<?php echo $cdv['id'].'/'.$a_data['activity_id'];?>" title="删除评论"> <img src="/images/icons/cross.png" alt="删除评论"></a>
+                        <a href="<?=config_item('static_url')?>/administrator/activity/activityCommentDelete/<?php echo $cdv['id'].'/'.$a_data['activity_id'];?>" title="删除评论">
+                            <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除评论"></a>
                     </td>
                 </tr>
                     <?php }?>
@@ -170,8 +171,9 @@
                     <td><?php echo $pdv['descr'];?></td>
                     <td><?php echo $pdv['create_time'];?></td>
                     <td>
-                        <a href="/administrator/activity_prize/prizeAdd/<?php echo $a_data['activity_id'];?>" title="设置奖品">设置奖品</a>
-                        <a href="/administrator/activity_prize/prizeDelete/<?php echo $pdv['id'].'/'.$a_data['activity_id'];?>" title="删除评论"> <img src="/images/icons/cross.png" alt="删除评论"></a>
+                        <a href="<?=config_item('static_url')?>/administrator/activity_prize/prizeAdd/<?php echo $a_data['activity_id'];?>" title="设置奖品">设置奖品</a>
+                        <a href="<?=config_item('static_url')?>/administrator/activity_prize/prizeDelete/<?php echo $pdv['id'].'/'.$a_data['activity_id'];?>" title="删除评论">
+                            <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除评论"></a>
                     </td>
                 </tr>
                 <?php }?>

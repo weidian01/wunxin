@@ -17,8 +17,8 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/activity/activityList"><span><br/> 活动列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/activity/activityList"><span><br/> 活动列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -86,10 +86,10 @@
                         <td><?php echo $v['status'] ? '进行中' : '已结束';?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/activity/activityView/<?php echo $v['activity_id'].'/'.$current_page;?>" title="查看活动"><img src="/images/icons/view.png" alt="查看活动"/></a>
-                            <a href="/administrator/activity/activityEdit/<?php echo $v['activity_id'].'/'.$current_page;?>" title="修改活动"><img src="/images/icons/pencil.png" alt="修改活动"/></a>
-                            <a href="/administrator/activity/activityDelete/<?php echo $v['activity_id'].'/'.$current_page;?>" title="结束活动"><img src="/images/icons/cross.png" alt="结束活动"/></a>
-                            <a href="/administrator/activity_prize/prizeAdd/<?php echo $v['activity_id'].'/'.$current_page;?>" title="设置奖品">设置奖品</a>
+                            <a href="<?=config_item('static_url')?>/administrator/activity/activityView/<?php echo $v['activity_id'].'/'.$current_page;?>" title="查看活动"><img src="<?=config_item('static_url')?>/images/icons/view.png" alt="查看活动"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/activity/activityEdit/<?php echo $v['activity_id'].'/'.$current_page;?>" title="修改活动"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="修改活动"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/activity/activityDelete/<?php echo $v['activity_id'].'/'.$current_page;?>" title="结束活动"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="结束活动"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/activity_prize/prizeAdd/<?php echo $v['activity_id'].'/'.$current_page;?>" title="设置奖品">设置奖品</a>
                         </td>
                     </tr>
                         <?php }?>

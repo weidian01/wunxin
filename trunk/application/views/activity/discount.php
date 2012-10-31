@@ -76,7 +76,7 @@
 				case '4': $fileName = 'salearea';break;
 				default:$fileName = 'hightarea';
 			}?>
-            <div style="width: 980px"><img width="980" height="38" border="0" src="/images/<?=$fileName;?>.jpg" alt=""></div>
+            <div style="width: 980px"><img width="980" height="38" border="0" src="<?=config_item('static_url')?>/images/<?=$fileName;?>.jpg" alt=""></div>
             <div id="m" class="olist">
                 <ul>
                     <?php $i = 1;foreach ($v['item'] as $ik=>$iv) { ?>

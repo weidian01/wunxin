@@ -16,8 +16,8 @@
     <h2><?php echo $type == 'edit' ? '编辑活动' : '添加活动'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/activity/activityList"><span><br/> 活动列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/activity/activityList"><span><br/> 活动列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

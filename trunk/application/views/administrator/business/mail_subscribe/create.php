@@ -16,8 +16,8 @@
     <h2><?php echo $type == 'edit' ? '编辑邮件订阅' : '添加邮件订阅'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_mail_subscribe/mailSubscribeAdd"><span><br/> 添加邮件订阅 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_mail_subscribe/mailSubscribeList"><span><br/> 邮件订阅列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_mail_subscribe/mailSubscribeAdd"><span><br/> 添加邮件订阅 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_mail_subscribe/mailSubscribeList"><span><br/> 邮件订阅列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

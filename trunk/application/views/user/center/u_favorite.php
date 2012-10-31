@@ -6,7 +6,7 @@
     <title>我的收藏夹 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -30,9 +30,9 @@
             <div class="scj">
                 <div class="main">
                     <div class="tab">
-                        <a href="/user/center/productFavorite">收藏的产品</a>
-                        <a href="/user/center/designerFavorite" class="act">收藏的设计师</a>
-                        <a href="/user/center/designFavorite">收藏的设计图</a>
+                        <a href="<?=config_item('static_url')?>/user/center/productFavorite">收藏的产品</a>
+                        <a href="<?=config_item('static_url')?>/user/center/designerFavorite" class="act">收藏的设计师</a>
+                        <a href="<?=config_item('static_url')?>/user/center/designFavorite">收藏的设计图</a>
                     </div>
                     <div id="itemList">
                         <div class="list-m">
