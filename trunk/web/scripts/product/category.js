@@ -15,7 +15,6 @@ $(function ($) {
     (function(){
         wx.jsonp(wx.base_url + "product/ajax/hotComment", {}, function (data) {
             var html = '';
-            console.log(data);
             $.each(data, function (i, item) {
                 html += '<div class="bdan2">\
                           <table width="95%" border="0" cellspacing="0" cellpadding="0">\
