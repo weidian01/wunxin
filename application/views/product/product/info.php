@@ -469,6 +469,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   <!--right end-->
 
 </div>
+</div>
   <br /><br />
   <div class="clear"></div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
