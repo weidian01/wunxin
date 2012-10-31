@@ -131,4 +131,8 @@ s, strike, del{text-decoration:line-through}
 .jcarousel-item .jian {background-position: -620px 0;}
 .jcarousel-item .zeng{background-position:-500px 0;}
 .jcarousel-item .zhe{background-position:-560px 0;}
+a.cartHide {color: #0066CC;float: right;font-size: 13px;font-weight: normal;}
+
+#shopping_cart_item h2 {color: #666666;font-size: 12px;font-weight: bold;}
+.tit h2 {float: left;}
 /*活动CSS结束*/
