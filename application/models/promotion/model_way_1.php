@@ -17,24 +17,37 @@ class Model_Way_1 extends Model_Way
      * @param $conf      开始时间戳,结束时间戳,折扣
      * @return mixed|void
      */
-    public function init($conf)
+    public function init($products)
     {
-        $this->conf['discount'] = $conf['rule'];
-        $this->conf['start_time'] = $conf['start_time'];
-        $this->conf['end_time'] = $conf['end_time'];
+        $this->products = $products;
+
     }
 
-    function compute($price=0, $num=1)
+    function compute()
     {
-        $time = time();
-        if($time > $this->conf['start_time'] && $time < $this->conf['end_time'])
+        foreach($this->products as $pid=>$product)
         {
-            $price = ($price * ($num-1)) + ($price * $this->conf['discount'] * 0.1);
+            $time = time();
+
+            $rule = self::formatRule($product['rule']);
+
+            if ($time > $rule['start_time'] && $time < $rule['end_time'])
+            {
+                $this->products[$pid]['final_price'] = ($product['sell_price'] * ($product['num']) * $rule['discount'] * 0.1);
+            }
         }
-        else
-        {
-            $price = $price * $num;
-        }
-        return $price;
+    }
+
+    function result()
+    {
+        return $this->products;
+    }
+
+    static function formatRule($conf)
+    {
+        $return['discount'] = $conf['rule'];
+        $return['start_time'] = strtotime($conf['start_time']);
+        $return['end_time'] = strtotime($conf['end_time']);
+        return $return;
     }
 }
