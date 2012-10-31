@@ -113,13 +113,13 @@ table.tab5 td{line-height:30px; padding:3px 0px}
 .blt-h span.curr{border:1px solid #d5d5d5; border-bottom:0px; background-color:#fff}
 .blt-cont{padding:12px 5px 11px 10px}
 .blt-cont ul li{padding-left:10px; line-height:25px; background:url(/images/bg.png) no-repeat 0px 11px}
-.slide{position:relative; z-index:1; height:250px; border:1px solid #a5a6b3; padding:15px 18px 15px 15px}
-.slide ul li.norm{float:left; display:block; width:189px; height:216px; text-align:center; padding:25px 0px}
+.slide{position:relative; z-index:1; height:250px; border:1px solid #a5a6b3; padding:0px;}
+.slide ul li.norm{float:left; display:block; width:166px; height:250px; text-align:center; padding:5px 9px}
 .slide ul li img{padding:2px; border:1px solid #e0e0e0}
 .slide ul li.curr{float:left; display:block; text-align:center; width:221px; height:267px; padding:0px}
-.slide-pre{position:absolute; z-index:100; width:26px; height:35px; top:130px; left:-1px; background:url(/images/bg.png) no-repeat -26px -39px}
+.slide-pre{position:absolute; z-index:100; width:26px; height:35px; top:95px; left:-1px; background:url(/images/bg.png) no-repeat -26px -39px}
 .slide-pre a, .slide-next a{display:block; width:26px; height:35px}
-.slide-next{position:absolute; z-index:100; width:26px; height:35px; top:130px; right:-1px; background:url(/images/bg.png) no-repeat 0px -39px}
+.slide-next{position:absolute; z-index:100; width:26px; height:35px; top:95px; right:-1px; background:url(/images/bg.png) no-repeat 0px -39px}
 .slide-ad{height:200px; position:relative}
 .slide-ad ul li img{border:1px solid #000}
 .tp{padding-top:15px}

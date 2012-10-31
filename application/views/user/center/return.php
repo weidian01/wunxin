@@ -6,7 +6,8 @@
     <title>退换货办理 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -131,32 +132,34 @@
             <div class="tui-tit">热门产品推荐</div>
             <div id="pic_list_1" class="scroll_horizontal">
                 <div class="box">
-                    <ul class="list">
+                    <ul class="list jcarousel-skin-ucenter" id="user_center_list">
                         <?php foreach ($favorite_recommend as $fv):?>
                         <li>
                             <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
                                 <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($fv['pid'])?>default.jpg" width="130" height="156"/>
                             </a>
-
                             <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', '.fPrice($fv['sell_price'])?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8');?></a></p>
                             <span class="font2">市场价：￥<span class="font7"><?=fPrice($fv['market_price']);?></span></span><br/>
                             售价：<span class="font1">￥<?=fPrice($fv['sell_price']);?></span></li>
                         <?php endforeach;?>
                     </ul>
                 </div>
+                <!--
                 <div class="plus"></div>
                 <div class="minus"></div>
+                -->
             </div>
         </div>
     </div>
 </div>
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
 <!-- #EndLibraryItem -->
 </body>
 </html>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>
 <script type="text/javascript">
     function cancelReturn(rId)
     {
@@ -177,8 +180,5 @@
             alert('取消失败!');
         }
     }
-    $(function () {
-        $("#pic_list_1").scrollShow("right",{step:5, time:5000, num:5, boxHeight:220});
-    });
 </script>
 

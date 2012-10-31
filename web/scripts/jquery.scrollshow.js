@@ -31,18 +31,24 @@ minus:是否使用minus按钮
 			auto:true,
 			plus:true,
 			minus:true,
+            containerIsSet:true,
             num:10,
             itemWidth:'140',
-            boxHeight:'255'
+            boxHeight:'255',
+            leftButtonClass:'.plus',
+            rightButtonClass:'.minus',
+            container:'.box',
+            containerList:'.list',
+            listElement:'li'
 		},settings);
 
-        $('.box', this).css({'height': settings.boxHeight+'px', 'width':(settings.itemWidth * settings.num)+'px'});
-        $('li', this).css('width', settings.itemWidth+'px')
+        $(settings.container, this).css({'height': settings.boxHeight+'px', 'width':(settings.itemWidth * settings.num)+'px'});
+        $(settings.listElement, this).css('width', settings.itemWidth+'px')
 
 		var scroll_obj=this;
-		var scroll_box=scroll_obj.find(".box");
-		var scroll_list=scroll_box.find(".list");
-		var scroll_array=scroll_list.find("li");
+		var scroll_box=scroll_obj.find(settings.container);
+		var scroll_list=scroll_box.find(settings.containerList);
+		var scroll_array=scroll_list.find(settings.listElement);
 		var scroll_num=scroll_array.length;
 	
 		if(scroll_num<=1){return;};
@@ -71,11 +77,11 @@ minus:是否使用minus按钮
 	
 		// 添加左右操作按钮
 		srcoll_html="";
-		if(scroll_obj.find(".plus").length<=0&&settings.plus){srcoll_html+="<a class='plus'></a>";};
-		if(scroll_obj.find(".minus").length<=0&&settings.minus){srcoll_html+="<a class='minus'></a>";};
+		if(scroll_obj.find(settings.leftButtonClass).length<=0&&settings.plus){srcoll_html+="<a class='plus'></a>";};
+		if(scroll_obj.find(settings.rightButtonClass).length<=0&&settings.minus){srcoll_html+="<a class='minus'></a>";};
 		scroll_obj.append(srcoll_html);
-		var scroll_plus=scroll_obj.find(".plus");
-		var scroll_minus=scroll_obj.find(".minus");
+		var scroll_plus=scroll_obj.find(settings.leftButtonClass);
+		var scroll_minus=scroll_obj.find(settings.rightButtonClass);
 	
 		// 添加后补元素
 		scroll_list.append(scroll_list.html());

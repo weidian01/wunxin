@@ -212,6 +212,7 @@ var forEach = function (array, callback, thisObject) {
 }
 
 
+/*
 //设计图滚动 代码开始
 $(function(){
     $("#tktktkt").jCarouselLite({
@@ -219,7 +220,7 @@ $(function(){
         btnPrev:".slide-pre"
     });
 });
-
+//*/
 $(function () {
     $('#top-menu li').hover(
             function () {

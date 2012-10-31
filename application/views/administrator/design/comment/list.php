@@ -17,22 +17,22 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/design/addDesign"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/addDesign"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a>
         </li>
-        <li><a class="shortcut-button" href="/administrator/design/designList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/designList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a>
         </li>
-        <li><a class="shortcut-button" href="/administrator/design_category/create"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/create"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a>
         </li>
-        <li><a class="shortcut-button" href="/administrator/design_category/index"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/index"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a>
         </li>
-        <li><a class="shortcut-button" href="/administrator/design_comment/commentList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_comment/commentList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a>
         </li>
 
         <!--
-        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
-        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="/images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
+        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="<?=config_item('static_url')?>/images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
         -->
     </ul>
     <!-- End .shortcut-buttons-set -->
@@ -115,9 +115,9 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?php echo $v['comment_id'];?></td>
-                        <td><a href="/administrator/design_comment/designCommentList/<?php echo $v['did'];?>"
+                        <td><a href="<?=config_item('static_url')?>/administrator/design_comment/designCommentList/<?php echo $v['did'];?>"
                                title="查看设计图所有评论"><?php echo $v['did'];?></a></td>
-                        <td><a href="/administrator/design_comment/userCommentList/<?php echo $v['uid'];?>"
+                        <td><a href="<?=config_item('static_url')?>/administrator/design_comment/userCommentList/<?php echo $v['uid'];?>"
                                title="查看用户所有评论"><?php echo $v['uid'];?></a></td>
                         <td><?php echo $v['uname'];?></td>
                         <td><?php echo $v['title'];?></td>
@@ -126,11 +126,11 @@
                         <td><?php echo $v['reply_num'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/design_comment/viewComment/<?php echo $v['comment_id'];?>"
-                               title="查看评论图评论"><img src="/images/icons/view.png" alt="Edit"/></a>
-                            <a href="/administrator/design_comment/deleteComment/<?php echo $v['comment_id'];?>"
-                               title="删除评论图评论"> <img src="/images/icons/cross.png" alt="Delete"/></a>
-                            <!--<a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
+                            <a href="<?=config_item('static_url')?>/administrator/design_comment/viewComment/<?php echo $v['comment_id'];?>"
+                               title="查看评论图评论"><img src="<?=config_item('static_url')?>/images/icons/view.png" alt="Edit"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/design_comment/deleteComment/<?php echo $v['comment_id'];?>"
+                               title="删除评论图评论"> <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete"/></a>
+                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>
                         <?php }?>

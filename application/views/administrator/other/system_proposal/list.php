@@ -17,7 +17,7 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/other_system_proposal/systemProposalList/"><span><br/> 系统建议与意见列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/other_system_proposal/systemProposalList/"><span><br/> 系统建议与意见列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -75,7 +75,8 @@
                         <td><?php echo $v['uname'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/other_system_proposal/systemProposalDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除系统建议与意见"><img src="/images/icons/cross.png" alt="删除系统建议与意见"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/other_system_proposal/systemProposalDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除系统建议与意见">
+                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除系统建议与意见"/></a>
                         </td>
                     </tr>
                         <?php }?>

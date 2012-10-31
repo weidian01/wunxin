@@ -17,17 +17,17 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/design/addDesign"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design/designList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/create"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/index"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_comment/commentList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/addDesign"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/designList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/create"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/index"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_comment/commentList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
 
         <!--
-        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
-        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="/images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
+        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="<?=config_item('static_url')?>/images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
         -->
     </ul>
     <!-- End .shortcut-buttons-set -->
@@ -123,7 +123,7 @@
                         <td> <input type="checkbox" /> </td>
                         <td><?php echo $v['did'];?></td>
                         <td><?php echo $v['class_id'];?></td>
-                        <td><a href="/administrator/design/userDesignList/<?php echo $v['uid'];?>" title="查看此用户设计图"> <?php echo $v['uid'];?></a></td>
+                        <td><a href="<?=config_item('static_url')?>/administrator/design/userDesignList/<?php echo $v['uid'];?>" title="查看此用户设计图"> <?php echo $v['uid'];?></a></td>
                         <td><?php echo $v['uname'];?></td>
                         <td><?php if (isset ($v['design_img'])) {?>
                             <img title="设计图图片" src="<?php echo base_url().$v['design_img'];?>" alt="<?php echo $v['dname'];?> width="50" height="50"/>
@@ -136,9 +136,9 @@
                         <td><?php echo $v['status'] ? '正常' : '删除';?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/design/editDesign/<?php echo $v['did'];?>" title="编辑设计图"><img src="/images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="/administrator/design/deleteDesign/<?php echo $v['did'];?>" title="删除设计图"> <img src="/images/icons/cross.png" alt="Delete"/></a>
-                            <!--<a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
+                            <a href="<?=config_item('static_url')?>/administrator/design/editDesign/<?php echo $v['did'];?>" title="编辑设计图"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit"/></a>
+                            <a href="<?=config_item('static_url')?>/administrator/design/deleteDesign/<?php echo $v['did'];?>" title="删除设计图"> <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete"/></a>
+                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>
                         <?php }?>

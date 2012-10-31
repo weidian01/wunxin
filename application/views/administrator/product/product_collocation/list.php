@@ -14,12 +14,12 @@
     <h2>产品搭配列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/product_collocation/pcAdd/"><span><br/> 添加产品搭配 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/product_collocation/pcList/"><span><br/> 产品搭配列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/product_collocation/pcAdd/"><span><br/> 添加产品搭配 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/product_collocation/pcList/"><span><br/> 产品搭配列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="http://wunxin.com/administrator/product_collocation/search" method="post">
+        <form action="<?=config_item('static_url')?>administrator/product_collocation/search" method="post">
             <p>
                 <label><b>输入关键字</b></label>
                 <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset ($keyword) ? $keyword : '';?>">
@@ -76,13 +76,15 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?php echo $v['id'];?></td>
-                        <td><a href="/administrator/product_collocation/pcList/<?php echo isset ($current_page) ? $current_page : ''.'/'.$v['pid'];?>"><?php echo $v['pid'];?></a></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/product_collocation/pcList/<?php echo isset ($current_page) ? $current_page : ''.'/'.$v['pid'];?>"><?php echo $v['pid'];?></a></td>
                         <td><?php echo $v['spid'];?></td>
                         <td><?php echo $v['sort'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/product_collocation/pcEdit/<?php echo $v['id'];?>" title="编辑产品搭配"><img src="/images/icons/pencil.png" alt="编辑产品搭配"/></a>
-                            <a href="/administrator/product_collocation/pcDelete/<?php echo $v['id'].'/'.(isset ($current_page) ? $current_page : '');?>" title="删除产品搭配"><img src="/images/icons/cross.png" alt="删除产品搭配"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/product_collocation/pcEdit/<?php echo $v['id'];?>" title="编辑产品搭配">
+                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑产品搭配"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/product_collocation/pcDelete/<?php echo $v['id'].'/'.(isset ($current_page) ? $current_page : '');?>" title="删除产品搭配">
+                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除产品搭配"/></a>
                         </td>
                     </tr>
                         <?php }?>

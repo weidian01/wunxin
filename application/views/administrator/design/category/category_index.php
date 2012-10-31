@@ -16,11 +16,11 @@
     <h2>设计图分类列表</h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/design/addDesign"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design/designList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/create"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_category/index"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/design_comment/commentList"><span> <!--<img src="/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/addDesign"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/designList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/create"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/index"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_comment/commentList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -61,9 +61,9 @@
                         <td><?=$item['floor']?></td>
                         <td>
                             <a href="<?php echo url("administrator/design_category/edit/{$item['class_id']}")?>"><img
-                                src="/images/icons/pencil.png" alt="Edit"/></a>
+                                src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit"/></a>
                             <a href="<?php echo url("administrator/design_category/del/{$item['class_id']}")?>"><img
-                                src="/images/icons/cross.png" alt="Delete"/></a>
+                                src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete"/></a>
                         </td>
                     </tr>
                         <?php endforeach;?>

@@ -4,9 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $title;?></title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/index.js"></SCRIPT>
-    <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/lrscroll.js"></script>
     <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
@@ -67,14 +67,14 @@
                 <div class="blt-cont" id="blt1">
                     <ul>
                         <?php foreach ($bulletin as $bv) {?>
-                        <li><a href="/article/info/<?=$bv['id'];?>" target="_blank"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
+                        <li><a href="<?=config_item('static_url')?>/article/info/<?=$bv['id'];?>" target="_blank"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
                         <?php }?>
                     </ul>
                 </div>
                 <div class="blt-cont" id="blt2" style="display:none;">
                     <ul>
                         <?php foreach ($news as $nv) {?>
-                        <li><a href="/article/dynamic/<?=$nv['id'];?>" target="_blank"><?=mb_substr($nv['title'], 0, 18, 'utf-8');?></a></li>
+                        <li><a href="<?=config_item('static_url')?>/article/dynamic/<?=$nv['id'];?>" target="_blank"><?=mb_substr($nv['title'], 0, 18, 'utf-8');?></a></li>
                         <?php }?>
                     </ul>
                 </div>
@@ -86,17 +86,21 @@
 <div class="box2">
     <div class="container tp">
         <div class="slide" id="tktktkt">
-            <ul>
-                <?php foreach ($design_recommend_data as $drdv) {?>
+            <ul id="list_switch" class="jcarousel-skin-index">
+                <?php foreach ($product_recommend_data as $drdv) {?>
                 <li class="norm">
                     <a href="<?=productURL($drdv['pid'])?>" class="designimg" title="<?=$drdv['pname']?>" target="_blank">
-                        <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="180" height="216"/>
+                        <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="164" height="197"/>
                     </a>
+                    <div class="pro-n"> <p><a target="_blank" title="十字 T恤65, ￥212.31" href="http://wunxin.com/product/2">十字 T恤65</a></p>
+                                    <span class="font4">￥212.31</span></div>
                 </li>
                 <?php }?>
             </ul>
+            <!--
             <div class="slide-pre"><a href="javascript:void(0);"></a></div>
             <div class="slide-next"><a href="javascript:void(0);"></a></div>
+            -->
         </div>
     </div>
 </div>
@@ -117,8 +121,8 @@
         </li>
         <?php $i++;}?>
         <!--
-        <li id="ad2" style="display:none;"><img alt="广告一" src="/images/ad2.jpg" width="978" height="200"/></li>
-        <li id="ad3" style="display:none;"><img alt="广告一" src="/images/ad3.jpg" width="978" height="200"/></li>
+        <li id="ad2" style="display:none;"><img alt="广告一" src="<?=config_item('static_url')?>/images/ad2.jpg" width="978" height="200"/></li>
+        <li id="ad3" style="display:none;"><img alt="广告一" src="<?=config_item('static_url')?>/images/ad3.jpg" width="978" height="200"/></li>
         -->
     </ul>
 </div>
@@ -443,9 +447,10 @@
 </div>
 </div>
 <?php include 'footer.php';?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
 <script type="text/javascript">
     //转播图 代码开始
     var st = new SlideTrans("idContainer2", "idSlider2", <?php echo count($broadcast_recommend);?>, { Vertical:false });
@@ -477,6 +482,25 @@
     st.Run();
     //转播图 代码结束
 
+    //转播图
+    function initCallBack(carousel) {
+        // Disable autoscrolling if the user clicks the prev or next button.
+        carousel.buttonNext.bind('click', function () {
+            carousel.startAuto(0);
+        });
+
+        carousel.buttonPrev.bind('click', function () {
+            carousel.startAuto(0);
+        });
+
+        // Pause autoscrolling if the user moves with the cursor over the clip.
+        carousel.clip.hover(function () {
+            carousel.stopAuto();
+        }, function () {
+            carousel.startAuto();
+        });
+    }
+    jQuery('#list_switch').jcarousel({auto:5, scroll:1, wrap: 'last',initCallback: initCallBack});
 
     /*右下角提示框
     artDialog.notice = function (options) {

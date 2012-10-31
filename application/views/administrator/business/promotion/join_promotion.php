@@ -17,10 +17,10 @@
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

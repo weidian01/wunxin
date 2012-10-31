@@ -6,7 +6,7 @@
     <title>我提供的建议与意见 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -44,7 +44,7 @@
                 <?php if (empty ($data)) {?>
                 <tr>
                     <td colspan="7"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时还没有提供建议与意见，
-                        去“<a href="/user/center/systemProposal">提点建议</a>”吧。</td>
+                        去“<a href="<?=config_item('static_url')?>/user/center/systemProposal">提点建议</a>”吧。</td>
                 </tr>
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>

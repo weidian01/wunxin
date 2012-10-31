@@ -6,7 +6,7 @@
     <title>设计师留言 -- 我的评论</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -31,9 +31,9 @@
             <div class="scj">
                 <div class="main">
                     <div class="tab">
-                        <a href="/user/center/productComment">产品评论</a>
-                        <a href="/user/center/designComment">设计图评论</a>
-                        <a href="/user/center/designerComment" class="act">设计师留言</a>
+                        <a href="<?=config_item('static_url')?>/user/center/productComment">产品评论</a>
+                        <a href="<?=config_item('static_url')?>/user/center/designComment">设计图评论</a>
+                        <a href="<?=config_item('static_url')?>/user/center/designerComment" class="act">设计师留言</a>
                     </div>
                     <div id="itemList">
                         <div class="list-m">

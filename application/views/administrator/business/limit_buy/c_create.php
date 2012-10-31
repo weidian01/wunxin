@@ -17,10 +17,10 @@
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/business_limit_buy/create"><span><br/> 添加限时抢购 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_limit_buy/lists"><span><br/> 限时抢购列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_limit_buy/c_list"><span><br/> 限时抢购<br/>分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="/administrator/business_limit_buy/c_create"><span><br/> 限时抢购<br/>分类添加 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/create"><span><br/> 添加限时抢购 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/lists"><span><br/> 限时抢购列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/c_list"><span><br/> 限时抢购<br/>分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/c_create"><span><br/> 限时抢购<br/>分类添加 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

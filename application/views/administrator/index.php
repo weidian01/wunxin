@@ -13,15 +13,15 @@
     <h2>Welcome www.wunxin.com</h2>
     <p id="page-intro">What would you like to do?</p>
     <ul class="shortcut-buttons-set">
-      <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/pencil_48.png" alt="icon" /><br />
+      <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon" /><br />
         Write an Article </span></a></li>
-      <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/paper_content_pencil_48.png" alt="icon" /><br />
+      <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/paper_content_pencil_48.png" alt="icon" /><br />
         Create a New Page </span></a></li>
-      <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/image_add_48.png" alt="icon" /><br />
+      <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/image_add_48.png" alt="icon" /><br />
         Upload an Image </span></a></li>
-      <li><a class="shortcut-button" href="#"><span> <img src="/images/icons/clock_48.png" alt="icon" /><br />
+      <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/clock_48.png" alt="icon" /><br />
         Add an Event </span></a></li>
-      <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="/images/icons/comment_48.png" alt="icon" /><br />
+      <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="<?=config_item('static_url')?>/images/icons/comment_48.png" alt="icon" /><br />
         Open Modal </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
@@ -42,7 +42,7 @@
       <div class="content-box-content">
         <div class="tab-content default-tab" id="tab1">
           <!-- This is the target div. id must match the href of this div's tab -->
-          <div class="notification attention png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+          <div class="notification attention png_bg"> <a href="#" class="close"><img src="<?=config_item('static_url')?>/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
             <div> This is a Content Box. You can put whatever you want in it. By the way, you can close this notification with the top-right cross. </div>
           </div>
           <table>
@@ -87,8 +87,8 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete">
-                    <img src="/images/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete">
+                    <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a> <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
               <tr>
                 <td>
@@ -100,8 +100,8 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a>
+                    <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
               <tr>
                 <td>
@@ -113,9 +113,9 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a>
+                    <a href="#" title="Delete"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a>
+                    <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
               <tr>
                 <td>
@@ -127,9 +127,9 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a>
+                    <a href="#" title="Delete"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a>
+                    <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
               <tr>
                 <td>
@@ -141,9 +141,9 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a>
+                    <a href="#" title="Delete"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a>
+                    <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
               <tr>
                 <td>
@@ -155,9 +155,9 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a>
+                    <a href="#" title="Delete"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a>
+                    <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
               <tr>
                 <td>
@@ -169,8 +169,8 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a> <a href="#" title="Delete"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a>
+                    <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
               <tr>
                 <td>
@@ -182,9 +182,9 @@
                 <td>Donec tortor diam</td>
                 <td>
                   <!-- Icons -->
-                  <a href="#" title="Edit"><img src="/images/icons/pencil.png" alt="Edit" /></a>
-                    <a href="#" title="Delete"><img src="/images/icons/cross.png" alt="Delete" /></a>
-                    <a href="#" title="Edit Meta"><img src="/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
+                  <a href="#" title="Edit"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit" /></a>
+                    <a href="#" title="Delete"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete" /></a>
+                    <a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="Edit Meta" /></a> </td>
               </tr>
             </tbody>
           </table>
@@ -280,16 +280,16 @@
     <!-- End .content-box -->
     <div class="clear"></div>
     <!-- Start Notifications -->
-    <div class="notification attention png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+    <div class="notification attention png_bg"> <a href="#" class="close"><img src="<?=config_item('static_url')?>/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
       <div> Attention notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
     </div>
-    <div class="notification information png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+    <div class="notification information png_bg"> <a href="#" class="close"><img src="<?=config_item('static_url')?>/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
       <div> Information notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
     </div>
-    <div class="notification success png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+    <div class="notification success png_bg"> <a href="#" class="close"><img src="<?=config_item('static_url')?>/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
       <div> Success notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
     </div>
-    <div class="notification error png_bg"> <a href="#" class="close"><img src="/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+    <div class="notification error png_bg"> <a href="#" class="close"><img src="<?=config_item('static_url')?>/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
       <div> Error notification. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate, sapien quis fermentum luctus, libero. </div>
     </div>
     <!-- End Notifications -->

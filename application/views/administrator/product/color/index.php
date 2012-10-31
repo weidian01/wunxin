@@ -71,15 +71,15 @@
                             <div style="float:left;margin-right:5px;display:block;width:20px;height:20px;background-color:<?=$item['code']?>;"></div> <?=$item['code']?>
                         </td>
                         <td>
-                            <?php if($item['image']):?><img width="20" height="20" src="<?=config_item('static_url'),'upload/color/',$item['image']?>"><?php endif;?>
+                            <?php if($item['image']):?><img width="20" height="20" src="<?=config_item('static_url').'upload/color/'.$item['image']?>"><?php endif;?>
                         </td>
                         <td>
                             <?=$item['descr']?>
                         </td>
                         <td><a href="<?php echo site_url("administrator/product_color/edit/{$item['color_id']}")?>"><img
-                            src="/images/icons/pencil.png" alt="Edit"/></a>
+                            src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit"/></a>
                             <a href="<?php echo site_url("administrator/product_color/del/{$item['color_id']}")?>"><img
-                                src="/images/icons/cross.png" alt="Delete"/></a></td>
+                                src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete"/></a></td>
                     </tr>
                         <?php endforeach;?>
                     </tbody>

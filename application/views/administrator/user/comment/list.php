@@ -17,7 +17,7 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
@@ -80,8 +80,10 @@
                         <td><?php echo $v['reply_num'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="/administrator/user_comment/commentDetail/<?php echo $v['message_id']?>" title="查看回复"><img src="/images/icons/view.png" alt="查看回复"></a>
-                            <a href="/administrator/user_comment/commentDelete/<?php echo $v['message_id'].'/'.$v['uid'].'/'.$current_page?>" title="删除留言"><img src="/images/icons/cross.png" alt="删除留言"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/user_comment/commentDetail/<?php echo $v['message_id']?>" title="查看回复">
+                                <img src="<?=config_item('static_url')?>/images/icons/view.png" alt="查看回复"></a>
+                            <a href="<?=config_item('static_url')?>/administrator/user_comment/commentDelete/<?php echo $v['message_id'].'/'.$v['uid'].'/'.$current_page?>" title="删除留言">
+                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除留言"></a>
                         </td>
                     </tr>
                         <?php }?>

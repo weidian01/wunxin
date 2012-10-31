@@ -43,13 +43,13 @@ class main extends MY_Controller
         //今日推荐
         $day_recommend = $this->recommend->getRecommendCategoryList(1, 6);
 
-        //设计图推荐
-        $design_recommend = $this->recommend->query('select * from wx_recommend where cid=2 order by sort desc limit 1');
-        $tmpDesignId = explode(',', $design_recommend[0]['pid']);
+        //产品推荐
+        $product_recommend = $this->recommend->query('select * from wx_recommend where cid=2 order by sort desc limit 1');
+        $tmpProductId = explode(',', $product_recommend[0]['pid']);
         $this->load->model('design/Model_Design', 'design');
         //$design_recommend_data = $this->design->getDesignByDid($tmpDesignId, 'did, dname');
-        $design_recommend_data = $this->product->getProductById($tmpDesignId, 'pid,pname,market_price,sell_price');
-        //echo '<pre>';print_r($design_recommend);exit;
+        $product_recommend_data = $this->product->getProductById($tmpProductId, 'pid,pname,market_price,sell_price');
+        //echo '<pre>';print_r($product_recommend_data);exit;
 
         //广告推荐
         $AD_recommend = $this->recommend->getRecommendCategoryList(3, 3);
@@ -109,7 +109,7 @@ class main extends MY_Controller
             'title' => '万象网首页',
             'broadcast_recommend' => $broadcast_recommend,
             'day_recommend' => $day_recommend,
-            'design_recommend_data' => $design_recommend_data,
+            'product_recommend_data' => $product_recommend_data,
             'AD_recommend' => $AD_recommend,
             'man_recommend_2_3' => $man_recommend_2_3,
             'man_product_1_recommend_data' => $man_product_1_recommend_data,

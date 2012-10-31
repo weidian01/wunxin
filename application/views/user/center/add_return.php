@@ -6,7 +6,7 @@
     <title>申请退换货 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -37,7 +37,7 @@
         <div class="u-r-box">
             <div class="u-r-tit">申请退换货
                 <span style="float:right;text-align: right;">
-                    <a style="color: #8B8878;font-size: 12px;" href="/user/center/returns">我的退换货记录&nbsp;&nbsp;</a>
+                    <a style="color: #8B8878;font-size: 12px;" href="<?=config_item('static_url')?>/user/center/returns">我的退换货记录&nbsp;&nbsp;</a>
                 </span>
             </div>
         </div>

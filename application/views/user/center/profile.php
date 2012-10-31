@@ -6,7 +6,7 @@
     <title>个人资料 -- 个人中心</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <script type=text/javascript src="http://static.yohobuy.com/js/home/user.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
@@ -212,7 +212,7 @@ dt{font-weight: bold;color: #848484;}
                                 <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($uinfo['uid'])?>icon.jpg" alt="<?php echo $uinfo['uname'];?>" width="60" height="60"/>
                                 <!--<img src="http://static.yoho.cn/images/default_userhead_boy_100_100.png">-->
                                 <br>
-                                <a class="btn_ggtx" href="/user/center/addUserHeader">
+                                <a class="btn_ggtx" href="<?=config_item('static_url')?>/user/center/addUserHeader">
                                     <img src="<?=config_item('static_url')?>images/modify_header.png" alt="" title="更改头像">
                                 </a>
                             </div>

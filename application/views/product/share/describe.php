@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>为晒单照片添加描述</title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
-<!--<SCRIPT type=text/javascript src="/scripts/comm.js"></SCRIPT>-->
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery-1.4.2.min.js"></SCRIPT>
+<!--<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/comm.js"></SCRIPT>-->
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <!--[if lt IE 7]>
@@ -211,7 +211,7 @@ $(document).ready(function(){
                                                 <?php $i++;}?>
                                             </ul>
 											<div style="display:none;" id="page_turner" class="bor3 page_nav"> </div>
-											<p class="bor3 option qzone-display"> <img src="/images/scBTN.jpg" alt="保存" title="保存" onclick="checkShareImage()"> </p>
+											<p class="bor3 option qzone-display"> <img src="<?=config_item('static_url')?>/images/scBTN.jpg" alt="保存" title="保存" onclick="checkShareImage()"> </p>
 										</div>
                                         </form>
 									</div>
