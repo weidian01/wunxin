@@ -84,21 +84,28 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="goods-type">
         <div class="ctxt">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：</div>
           <div class="sizebox">
-              <?php foreach($alike as $item):?>
-              <?php if(isset($item['color']) && $item['color']):?>
-              <a class="sub-s" href="<?=config_item('static_url')?>/product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
-                <span class="selected" style="display:<?php echo ($item['pid'] === $product['pid']) ? 'block':'none';?>">
-                <img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10"/>
-                </span>
-                <?php if(true)://根据产品默认图片显示图片?>
-                <span class="coview"><img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" width="35" height="35"></span>
-                <?php else://根据产品颜色显示图片?>
-                <span class="coview" style="background:<?if ($item['color']['image']):?>url(<?=config_item('static_url')?>upload/color/<?=$item['color']['image']?>)<?php else:?><?=$item['color']['code']?><?php endif;?>"></span>
-                <?php endif;?>
-                <span class="cotxt"><?=$item['color']['china_name']?></span>
-              </a>
-              <?php endif;?>
-              <?php endforeach;?>
+              <?php foreach($alike as $item){?>
+              <?php $genderName = '';switch($item['gender']){
+                  case '0': $genderName = '中性';break;
+                  case '1': $genderName = '男款';break;
+                  case '2': $genderName = '女款';break;
+                  case '3': $genderName = '童装男款';break;
+                  case '4': $genderName = '童装女款';break;
+              }?>
+                  <?php if(isset($item['color']) && $item['color']){?>
+                  <a class="sub-s" href="<?=config_item('static_url')?>/product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
+                    <span class="selected" style="display:<?php echo ($item['pid'] === $product['pid']) ? 'block':'none';?>">
+                    <img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" title="<?=$genderName;?>"/></span>
+                        <?php if(true){//根据产品默认图片显示图片?>
+                        <span class="coview"><img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" width="35" height="35" title="<?=$genderName;?>"></span>
+                        <?php } else {//根据产品颜色显示图片?>
+                        <span class="coview" style="background:<?if ($item['color']['image']){?>url(<?=config_item('static_url')?>upload/color/<?=$item['color']['image']?>)<?php else:?><?=$item['color']['code']?><?php endif;?>"></span>
+                        <?php }?>
+                    <span class="cotxt"><?=$item['color']['china_name']?></span>
+                  </a>
+                  <?php }?>
+
+              <?php }?>
           </div>
       </div>
       <div class="goods-type">
