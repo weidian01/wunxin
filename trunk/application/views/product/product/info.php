@@ -51,7 +51,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="picqh2" id="button_next"></div>
     </div>
     <div class="big-pic">
-        <a href="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="preview" >
+        <a href="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="预览" >
         <img src="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $def_photo)?>" width="350" height="420" />
         </a>
     </div>
@@ -62,8 +62,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <h1><?=$product['pname']?> <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
       <!--<span class="font3"><?=date('Y');?>新品 </span>--></div>
     <p><!--商品编号：CY0569852310000<br/>-->
-      特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?=sprintf('%.2f', $product['sell_price']/100)?></span><br/>
-      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?=sprintf('%.2f', $product['market_price']/100)?></span>
+      特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?=fPrice($product['sell_price'])?></span><br/>
+      原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font7">￥<?=fPrice($product['market_price'])?></span>
     </p>
 
     <div class="pf">
@@ -295,7 +295,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="detail-tit">
           <div class="titles2">细节展示</div>
         </div>
-        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="<?=config_item(\'static_url\')?>/images/lazy.gif" data-original=', $product['pcontent'])?></div>
+        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="'.config_item('static_url').'/images/lazy.gif" data-original=', $product['pcontent'])?></div>
       </div>
     </div>
     <div class="gbox-relation" id="g-relation2">
