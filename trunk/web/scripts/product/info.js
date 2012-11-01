@@ -40,7 +40,8 @@
             lens:false,
             preloadImages:false,
             alwaysOn:false,
-            showPreload:false
+            showPreload:false,
+            preloadText:'正在加载产品图片...'
         });
 
         $("#product_num").blur(function(){
