@@ -99,7 +99,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
                         <?php if(true){//根据产品默认图片显示图片?>
                         <span class="coview"><img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" width="35" height="35" title="<?=$genderName;?>"></span>
                         <?php } else {//根据产品颜色显示图片?>
-                        <span class="coview" style="background:<?if ($item['color']['image']){?>url(<?=config_item('static_url')?>upload/color/<?=$item['color']['image']?>)<?php else:?><?=$item['color']['code']?><?php endif;?>"></span>
+                        <span class="coview" style="background:<?if ($item['color']['image']){?>url(<?=config_item('static_url')?>upload/color/<?=$item['color']['image']?>)<?php } else {?><?=$item['color']['code']?><?php }?>"></span>
                         <?php }?>
                     <span class="cotxt"><?=$item['color']['china_name']?></span>
                   </a>
