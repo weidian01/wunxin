@@ -27,7 +27,7 @@
                     <?php foreach ($broadcast_recommend as $brv) {?>
                     <td class="td_f">
                         <a href="<?php echo $brv['link'];?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $brv['title'];?>" data-original="<?=base_url().str_replace('\\', '/', $brv['img_addr']);?>" class="lazy"/>
+                            <img src="<?=base_url().str_replace('\\', '/', $brv['img_addr']);?>" alt="<?php echo $brv['title'];?>"/>
                         </a>
                     </td>
                     <?php }?>
@@ -53,8 +53,7 @@
                                 <?php foreach ($day_recommend as $drv) {?>
                                 <li style="display: block; float: left; ">
                                     <a target="_blank" title="" href="<?php echo $drv['link'];?>">
-                                        <img alt="<?php echo $drv['title'];?>" src="<?=config_item('static_url')?>images/lazy.gif"
-                                             data-original="<?=base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120" class="lazy">
+                                        <img alt="<?php echo $drv['title'];?>" src="<?=base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120"/>
                                     </a>
                                 </li>
                                 <?php }?>
@@ -92,8 +91,7 @@
                 <?php foreach ($product_recommend_data as $drdv) {?>
                 <li class="norm">
                     <a href="<?=productURL($drdv['pid'])?>" class="designimg" title="<?=$drdv['pname']?>" target="_blank">
-                        <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif"
-                             data-original="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="164" height="197" class="lazy"/>
+                        <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="164" height="197"/>
                     </a>
                     <div class="pro-n"> <p><a target="_blank" title="十字 T恤65, ￥212.31" href="http://wunxin.com/product/2">十字 T恤65</a></p>
                                     <span class="font4">￥212.31</span></div>
@@ -119,8 +117,7 @@
         <?php $i = 1;foreach ($AD_recommend as $arv) {?>
         <li id="index_recommend_ad<?php echo $i;?>" style="<?php echo $i == 1 ? '' : 'display:none;';?>" class="index_recommend_ad">
             <a href="<?php echo $arv['link'];?>" target="_blank">
-                <img alt="<?php echo $arv['title'];?>" src="<?=config_item('static_url')?>images/lazy.gif"
-                     data-original="<?php echo base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200" class="lazy"/>
+                <img alt="<?php echo $arv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200"/>
             </a>
         </li>
         <?php $i++;}?>
