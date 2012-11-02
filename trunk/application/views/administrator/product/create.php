@@ -182,7 +182,7 @@
                         <div id="product_photo">
                         <?php foreach($photo as $v):?>
                             <div id="photo_<?=$v['id']?>">
-                                <img src="<?=config_item('static_url').'upload/product/'.intToPath($product['pid']).str_replace('.','_S.', $v['img_addr'])?>"
+                                <img src="<?=config_item('static_url').'upload/product/'.intToPath($v['pid']).str_replace('.','_S.', $v['img_addr'])?>"
                                      width="120" height="80" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="select_photo(<?=$v['id']?>)"/>
                                 <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
                             <?php if($v['is_default']==1):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id']?>"/><?php endif;?>
