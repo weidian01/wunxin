@@ -3,7 +3,7 @@
   <div class="help-center-box">
     <div class="w980">
       <div class="help-info">
-        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="72" height="18" alt="关于万象" data-original="<?=config_item('static_url')?>/images/help_02.gif"/></div>
+        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="72" height="18" alt="关于万象" data-original="<?=config_item('static_url')?>/images/help_02.gif" class="lazy"/></div>
         <ul>
           <li><a href="<?=config_item('static_url')?>/other/help/index/33" target="_blank">关于我们</a></li>
           <li><a href="<?=config_item('static_url')?>/other/help/index/27" target="_blank">联系客服</a></li>
@@ -12,7 +12,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="71" height="18" alt="新手上路" data-original="<?=config_item('static_url')?>/images/help_05.gif"/></div>
+        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="71" height="18" alt="新手上路" data-original="<?=config_item('static_url')?>/images/help_05.gif" class="lazy"/></div>
         <ul>
           <li><a target="_blank" href="<?=config_item('static_url')?>/other/help/index/15">购物流程演示</a></li>
           <li><a target="_blank" href="<?=config_item('static_url')?>/other/help/index/20">新用户注册</a></li>
@@ -22,7 +22,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="70" height="18" alt="支付方式" data-original="<?=config_item('static_url')?>/images/help_08.gif"/></div>
+        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="70" height="18" alt="支付方式" data-original="<?=config_item('static_url')?>/images/help_08.gif" class="lazy"/></div>
         <ul>
           <li><a target="_blank" href="<?=config_item('static_url')?>/other/help/index/31">网上支付演示</a></li>
           <li><a target="_blank" href="<?=config_item('static_url')?>/other/help/index/32">邮政汇款</a></li>
@@ -30,7 +30,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="68" height="18" alt="配送方式" data-original="<?=config_item('static_url')?>/images/help_11.gif"/></div>
+        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="68" height="18" alt="配送方式" data-original="<?=config_item('static_url')?>/images/help_11.gif" class="lazy"/></div>
         <ul>
           <li><a href="<?=config_item('static_url')?>/other/help/index/22" target="_blank">配送方式</a></li>
           <li><a href="<?=config_item('static_url')?>/other/help/index/23" target="_blank">配送时间及范围</a></li>
@@ -38,7 +38,7 @@
         </ul>
       </div>
       <div class="help-info">
-        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="69" height="18" alt="售后服务" data-original="<?=config_item('static_url')?>/images/help_14.gif"/></div>
+        <div class="help-tit"><img src="<?=config_item('static_url')?>images/lazy.gif" width="69" height="18" alt="售后服务" data-original="<?=config_item('static_url')?>/images/help_14.gif" class="lazy"/></div>
         <ul>
           <li><a target="_blank" href="<?=config_item('static_url')?>/other/help/index/29">退换货须知</a></li>
           <li><a target="_blank" href="<?=config_item('static_url')?>/other/help/index/24">安全与保密</a></li>
