@@ -43,7 +43,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <?php $def_photo='';foreach($photo as $item):?>
             <?php if($item['is_default'] == 1){$def_photo = $item['img_addr'];}?>
             <div class="pic-rn">
-                <a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$item['img_addr']?>'}"><img src="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
+                <a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$item['img_addr']?>'}">
+                    <img src="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
             <?php endforeach;?>
           </div>
         </div>
