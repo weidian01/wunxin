@@ -52,14 +52,15 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     </div>
     <div class="big-pic">
         <a href="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="预览" >
-        <img src="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $def_photo)?>" width="350" height="420" />
+        <img src="<?=config_item('static_url')?>images/lazy.gif" width="350" height="420"
+             data-original="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $def_photo)?>" class="lazy"/>
         </a>
     </div>
   </div>
   <div class="goods-i">
     <div class="goods-name">
 
-      <h1><?=$product['pname']?> <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></h1>
+      <h1><?=$product['pname']?> <img src="<?=config_item('static_url')?>images/lazy.gif" width="31" height="13" data-original="<?=config_item('static_url')?>images/buy_bg_10.gif" class="lazy"/></h1>
       <!--<span class="font3"><?=date('Y');?>新品 </span>--></div>
     <p><!--商品编号：CY0569852310000<br/>-->
       特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?=fPrice($product['sell_price'])?></span><br/>
@@ -88,9 +89,11 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
                   <?php if(isset($item['color']) && $item['color']):?>
                   <a class="sub-s" href="<?=config_item('static_url')?>/product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
                     <span class="selected" style="display:<?php echo ($item['pid'] === $product['pid']) ? 'block':'none';?>">
-                    <img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10"/></span>
+                    <img src="<?=config_item('static_url')?>images/lazy.gif" width="10" height="10" data-original="<?=config_item('static_url')?>images/a07.jpg" class="lazy"/></span>
                         <?php if(true)://根据产品默认图片显示图片?>
-                        <span class="coview"><img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" width="35" height="35"></span>
+                        <span class="coview">
+                            <img src="<?=config_item('static_url')?>images/lazy.gif" width="35" height="35" data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" class="lazy"/>
+                        </span>
                         <?php else://根据产品颜色显示图片?>
                         <span class="coview" style="background:<?if ($item['color']['image']):?>url(<?=config_item('static_url')?>upload/color/<?=$item['color']['image']?>)<?php else:?><?=$item['color']['code']?><?php endif;?>"></span>
                         <?php endif;?>
@@ -104,7 +107,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="ctxt">尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</div>
         <div class="sizebox">
             <?php foreach($psize as $size):?>
-            <a class="sub-cm" href="javascript:;" onclick="select_size(<?=$size['size_id']?>,'<?=$size['abbreviation']?>',this)"><span class="selected2"><img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10" /></span><?=$size['abbreviation']?></a>
+            <a class="sub-cm" href="javascript:;" onclick="select_size(<?=$size['size_id']?>,'<?=$size['abbreviation']?>',this)"><span class="selected2">
+                <img src="<?=config_item('static_url')?>images/lazy.gif" width="10" height="10" data-original="<?=config_item('static_url')?>images/a07.jpg" class="lazy"/>
+            </span><?=$size['abbreviation']?></a>
             <?php endforeach;?>
         </div>
       </div>
@@ -239,7 +244,8 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <?php foreach($rank as $k => $item):?>
             <li<?php if($k == 0):?> class="on"<?php endif;?>>
               <div class="no1"><?=($k+1)?></div>
-              <div class="bdimg"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" /></a></div>
+              <div class="bdimg"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>">
+                  <img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" /></a></div>
               <div class="bdancont"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><?=$item['pname']?></a>
                 <div class="bdprice"> <span class="font4">￥<?=fprice($item['sell_price'])?></span></div>
               </div>
@@ -380,12 +386,11 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       </div>
     </div>
     <div class="gbox-relation pad9" id="g-relation5" style="display:none;">
-      <div class="shsever"> <img src="<?=config_item('static_url')?>images/shouhou_03.gif" width="293" height="18" align="换货流程" /><br>
+      <div class="shsever"> <img src="<?=config_item('static_url')?>images/lazy.gif" width="293" height="18" align="换货流程" data-original="<?=config_item('static_url')?>images/shouhou_03.gif" class="lazy"/><br><br>
+        <div class="pad12"><img src="<?=config_item('static_url')?>images/lazy.gif" width="651" height="140" align="换货流程" data-original="<?=config_item('static_url')?>images/shouhou_07.gif" class="lazy"/></div>
+        <img src="<?=config_item('static_url')?>images/lazy.gif" width="235" height="22" align="退货流程" data-original="<?=config_item('static_url')?>images/shouhou_11.gif" class="lazy"/><br>
         <br>
-        <div class="pad12"><img src="<?=config_item('static_url')?>images/shouhou_07.gif" width="651" height="140" align="换货流程" /></div>
-        <img src="<?=config_item('static_url')?>images/shouhou_11.gif" width="235" height="22" align="退货流程"/><br>
-        <br>
-        <div class="pad12"><img src="<?=config_item('static_url')?>images/shouhou_15.gif" width="652" height="120" align="退货流程"/></div>
+        <div class="pad12"><img src="<?=config_item('static_url')?>images/lazy.gif" width="652" height="120" align="退货流程" data-original="<?=config_item('static_url')?>images/shouhou_15.gif" class="lazy"/></div>
         <div class="tuihuantxt">
           <div class="tuihuan-tit">退换货承诺：</div>
           <p>自您签收货后7日内可以退换货，15天内可以换货，在商品不影响二次销售的情况下，万象网将为您办理退换货服务，请在 <a href="<?=config_item('static_url')?>">万象网</a> -
@@ -414,10 +419,10 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         </div>
         <div class="pay-zw"> 易宝在线支付、工行在线支付、招行在线支付、中国银行在线支付、支付宝在线支付6种在线支付方式，几乎涵盖所有大中型银行发卡的银行卡，覆盖率达98%，选择在线支付即时到账，准确快捷！
           <ul class="paypic">
-            <li><span><img src="<?=config_item('static_url')?>images/paybg_11.jpg" width="114" height="42" /></span>易宝在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/paybg_06.jpg" width="98" height="48" /></span> 支付宝在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/paybg_08.jpg" width="112" height="46" /></span>工商银行在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/paybg_03.jpg" width="120" height="50" /></span>一网通在线支付</li>
+            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="114" height="42" data-original="<?=config_item('static_url')?>images/paybg_11.jpg" class="lazy"/></span>易宝在线支付</li>
+            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="98" height="48" data-original="<?=config_item('static_url')?>images/paybg_06.jpg" class="lazy"/></span> 支付宝在线支付</li>
+            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="112" height="46" data-original="<?=config_item('static_url')?>images/paybg_08.jpg" class="lazy"/></span>工商银行在线支付</li>
+            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="120" height="50" data-original="<?=config_item('static_url')?>images/paybg_03.jpg" class="lazy"/></span>一网通在线支付</li>
           </ul>
           温馨提示：在线支付付款等待期限为24小时。请您在订购后24小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电010-62962388，我们将竭诚为您服务！ </div>
         <div class="payment-tit">
@@ -426,7 +431,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="pay-zw">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td width="25%" height="100"><img src="<?=config_item('static_url')?>images/paybg_18.jpg" width="90" height="86" /></td>
+              <td width="25%" height="100"><img src="<?=config_item('static_url')?>images/lazy.gif" width="90" height="86" data-original="<?=config_item('static_url')?>images/paybg_18.jpg" class="lazy"/></td>
               <td width="75%" valign="top"><span class="font21"><strong>邮局汇款：</strong>选择此方式支付货款的客户，请您在下单后尽快到邮局进行汇款。汇款完毕后，请务必进入订单信息填写页面填写并确认汇款信息<br/>
                 <strong>温馨提示：</strong>在线支付付款等待期限为72小时。请您在订购后72小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电010-62962388，我们将竭诚为您服务！</span></td>
             </tr>
@@ -438,7 +443,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="pay-zw">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td width="25%" align="center"><img src="<?=config_item('static_url')?>images/paybg_21.jpg" width="82" height="138" /></td>
+              <td width="25%" align="center"><img src="<?=config_item('static_url')?>images/lazy.gif" width="82" height="138" data-original="<?=config_item('static_url')?>images/paybg_21.jpg" class="lazy"/></td>
               <td width="75%" valign="middle"><span class="font21"><strong>礼品卡支付：</strong>在进入结算中心 - 提交订单页面，输入您的礼品卡及密码
                   (注意：礼品卡是需要先<a href="<?=config_item('static_url')?>/user/center/bingCard" target="_blank">绑定卡</a>),点击验证进行支付订单，如您的礼品卡余额不足够支付订单，请使用其他方式支付。<br/>
                 <br/>

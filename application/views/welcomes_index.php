@@ -8,6 +8,7 @@
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/index.js"></SCRIPT>
     <script type="text/javascript" charset=utf-8 src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -26,7 +27,7 @@
                     <?php foreach ($broadcast_recommend as $brv) {?>
                     <td class="td_f">
                         <a href="<?php echo $brv['link'];?>" target="_blank">
-                            <img src="<?php echo base_url().str_replace('\\', '/', $brv['img_addr']);?>" alt="<?php echo $brv['title'];?>">
+                            <img src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $brv['title'];?>" data-original="<?=base_url().str_replace('\\', '/', $brv['img_addr']);?>" class="lazy"/>
                         </a>
                     </td>
                     <?php }?>
@@ -52,7 +53,8 @@
                                 <?php foreach ($day_recommend as $drv) {?>
                                 <li style="display: block; float: left; ">
                                     <a target="_blank" title="" href="<?php echo $drv['link'];?>">
-                                        <img alt="<?php echo $drv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120">
+                                        <img alt="<?php echo $drv['title'];?>" src="<?=config_item('static_url')?>images/lazy.gif"
+                                             data-original="<?=base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120" class="lazy">
                                     </a>
                                 </li>
                                 <?php }?>
@@ -90,7 +92,8 @@
                 <?php foreach ($product_recommend_data as $drdv) {?>
                 <li class="norm">
                     <a href="<?=productURL($drdv['pid'])?>" class="designimg" title="<?=$drdv['pname']?>" target="_blank">
-                        <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="164" height="197"/>
+                        <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif"
+                             data-original="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="164" height="197" class="lazy"/>
                     </a>
                     <div class="pro-n"> <p><a target="_blank" title="十字 T恤65, ￥212.31" href="http://wunxin.com/product/2">十字 T恤65</a></p>
                                     <span class="font4">￥212.31</span></div>
@@ -116,7 +119,8 @@
         <?php $i = 1;foreach ($AD_recommend as $arv) {?>
         <li id="index_recommend_ad<?php echo $i;?>" style="<?php echo $i == 1 ? '' : 'display:none;';?>" class="index_recommend_ad">
             <a href="<?php echo $arv['link'];?>" target="_blank">
-                <img alt="<?php echo $arv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200"/>
+                <img alt="<?php echo $arv['title'];?>" src="<?=config_item('static_url')?>images/lazy.gif"
+                     data-original="<?php echo base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200" class="lazy"/>
             </a>
         </li>
         <?php $i++;}?>
@@ -155,7 +159,8 @@
         <div class="men-p">
             <div class="pro-pic">
                 <a href="<?=productURL($mp2rdv['pid'])?>" title="<?=$mp2rdv['pname']?>, <?=fPrice($mp2rdv['sell_price'])?>" target="_blank">
-                    <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp2rdv['pid']))?>default.jpg" width="120" height="144" alt="<?=$mp2rdv['pname']?>"/>
+                    <img src="<?=config_item('static_url')?>images/lazy.gif" width="120" height="144" alt="<?=$mp2rdv['pname']?>"
+                         data-original="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp2rdv['pid']))?>default.jpg" class="lazy"/>
                 </a>
             </div>
             <div class="men-cont"><!--<span class="font2"><?=$mp2rdv['style_no']?></span><br/>-->
@@ -168,7 +173,8 @@
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '2') { ?>
         <a href="<?=$mr23['pid']?>" title="<?=$mr23['title']?>" target="_blank">
-            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="200" height="320"/>
+            <img src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$mr23['title'];?>" width="200" height="320"
+                data-original="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" class="lazy"/>
         </a>
         <?php }?>
         <?php }?>
@@ -177,7 +183,8 @@
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '3') { ?>
         <a href="<?=$mr23['link']?>" title="<?=$mr23['title']?>" target="_blank">
-            <img src="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" alt="<?=$mr23['title'];?>" width="200" height="320"/>
+            <img src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$mr23['title'];?>" width="200" height="320"
+                data-original="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" class="lazy"/>
         </a>
         <?php }?>
         <?php }?>
@@ -189,7 +196,8 @@
         <?php foreach ($man_product_1_recommend_data as $mp1rdv) {?>
         <div class="men-bd-b">
             <a class="productimg" href="<?=productURL($mp1rdv['pid'])?>" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>" target="_blank">
-                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp1rdv['pid']))?>default.jpg" width="160" height="192" alt="<?=$mp1rdv['pname']?>"/>
+                <img src="<?=config_item('static_url')?>images/lazy.gif" width="160" height="192" alt="<?=$mp1rdv['pname']?>"
+                    data-original="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($mp1rdv['pid']))?>default.jpg" class="lazy"/>
             </a>
             <div class="pro-n"> <p><a href="<?=productURL($mp1rdv['pid'])?>" title="<?=$mp1rdv['pname']?>, ￥<?=fPrice($mp1rdv['sell_price'])?>" target="_blank"><?=$mp1rdv['pname']?></a></p>
                 <span class="font4">￥<?=fPrice($mp1rdv['sell_price'])?></span></div>
@@ -227,37 +235,43 @@
             <?php foreach ($woman_recommend_1_2_3_4_5_6 as $wr123456) {?>
             <?php if ($wr123456['emission'] == '1') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item1" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt1" onmouseover="showLayer('1','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
+                <img id="picmt1" onmouseover="showLayer('1','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="300"
+                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '2') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item2" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt2" onmouseover="showLayer('2','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt2" onmouseover="showLayer('2','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
+                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '3') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item3" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt3" onmouseover="showLayer('3','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt3" onmouseover="showLayer('3','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
+                     data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '4') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item4" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt4" onmouseover="showLayer('4','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="300">
+                <img id="picmt4" onmouseover="showLayer('4','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="300"
+                     data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '5') {?>
             <a href="<?php echo $wr123456['link'];?>" class="item5" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt5" onmouseover="showLayer('5','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt5" onmouseover="showLayer('5','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
+                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '6') {?>
             <a href="<?=$wr123456['link'];?>" class="item6" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt6" onmouseover="showLayer('6','picmt', 7)" src="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" alt="<?php echo $wr123456['title'];?>" width="237" height="150">
+                <img id="picmt6" onmouseover="showLayer('6','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
+                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
             <?php }?>
@@ -267,7 +281,8 @@
         <?php foreach ($woman_product_recommend_data as $wprdv) {?>
         <div class="men-bd-b">
             <a class="productimg" href="<?=productURL($wprdv['pid'])?>" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>" target="_blank">
-                <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($wprdv['pid']))?>default.jpg" width="160" height="192" alt="<?=$wprdv['pname']?>"/>
+                <img src="<?=config_item('static_url')?>images/lazy.gif" width="160" height="192" alt="<?=$wprdv['pname']?>"
+                     data-original="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($wprdv['pid']))?>default.jpg" class="lazy"/>
             </a>
             <div class="pro-n">
                 <p><a href="<?=productURL($wprdv['pid'])?>" title="<?=$wprdv['pname']?>, ￥<?=fPrice($wprdv['sell_price'])?>" target="_blank"><?=$wprdv['pname']?></a></p>
@@ -303,14 +318,16 @@
 <div class="prod-bd pad5">
     <div class="sweet">
         <a href="<?=$lover_recommend[0]['link']; ?>" title="<?=$lover_recommend[0]['title']; ?>" target="_blank">
-            <img src="<?=str_replace('\\', '/', $lover_recommend[0]['img_addr']);?>" width="948" height="299" alt="<?=$lover_recommend[0]['title'];?>" title="<?=$lover_recommend[0]['title']; ?>"/>
+            <img src="<?=config_item('static_url')?>images/lazy.gif" width="948" height="299" alt="<?=$lover_recommend[0]['title'];?>" title="<?=$lover_recommend[0]['title']; ?>"
+                data-original="<?=str_replace('\\', '/', $lover_recommend[0]['img_addr']);?>" class="lazy"/>
         </a>
     </div>
     <div class="men-bd pad7">
         <?php foreach ($lover_product_recommend_data as $lprdv) {?>
         <div class="men-bd-b">
             <a class="productimg" href="<?=productURL($lprdv['pid'])?>" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>" target="_blank">
-            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($lprdv['pid']))?>default.jpg" width="160" height="192" alt="<?=$lprdv['pname']?>"/>
+            <img src="<?=config_item('static_url')?>images/lazy.gif" width="160" height="192" alt="<?=$lprdv['pname']?>"
+                data-original="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($lprdv['pid']))?>default.jpg" class="lazy"/>
         </a>
             <div class="pro-n">
                 <p><a href="<?=productURL($lprdv['pid'])?>" title="<?=$lprdv['pname']?>, ￥<?=fPrice($lprdv['sell_price'])?>" target="_blank"><?=$lprdv['pname']?></a></p>
@@ -350,43 +367,50 @@
             <?php foreach ($family_recommend as $fr) {?>
             <?php if ($fr['emission'] == '1') {?>
             <a href="<?=$fr['link'];?>" class="qv1" title="<?=$fr['title'];?>" target="_blank">
-                <img id="qz1" onmouseover="showLayer('1','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="264" height="300">
+                <img id="qz1" onmouseover="showLayer('1','qz', 8)" src="<?=config_item('static_url')?>images/lazy.gif" width="264" height="300"
+                    data-original="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '2') {?>
             <a href="<?=$fr['link'];?>" class="qv2" title="<?=$fr['title'];?>" target="_blank">
-                <img id="qz2" onmouseover="showLayer('2','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="447" height="220">
+                <img id="qz2" onmouseover="showLayer('2','qz', 8)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$fr['title'];?>" width="447" height="220"
+                    data-original="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '3') {?>
             <a href="<?=$fr['link'];?>" class="qv3" title="<?=$fr['title'];?>" target="_blank">
-                <img id="qz3" onmouseover="showLayer('3','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
+                <img id="qz3" onmouseover="showLayer('3','qz', 8)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$fr['title'];?>" width="149" height="80"
+                     data-original="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '4') {?>
             <a href="<?=$fr['link'];?>" class="qv4" title="<?=$fr['title'];?>" target="_blank">
-                <img id="qz4" onmouseover="showLayer('4','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
+                <img id="qz4" onmouseover="showLayer('4','qz', 8)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$fr['title'];?>" width="149" height="80"
+                    data-original="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '5') {?>
             <a href="<?=$fr['link'];?>" class="qv5" title="<?=$fr['title'];?>" target="_blank">
-                <img id="qz5" onmouseover="showLayer('5','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="149" height="80">
+                <img id="qz5" onmouseover="showLayer('5','qz', 8)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$fr['title'];?>" width="149" height="80"
+                     data-original="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '6') {?>
             <a href="<?=$fr['link'];?>" class="qv6" title="<?=$fr['title'];?>" target="_blank">
-                <img id="qz6" onmouseover="showLayer('6','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="237" height="220">
+                <img id="qz6" onmouseover="showLayer('6','qz', 8)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$fr['title'];?>" width="237" height="220"
+                     data-original="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($fr['emission'] == '7') {?>
             <a href="<?=$fr['link'];?>" class="qv7" title="<?=$fr['title'];?>" target="_blank">
-                <img id="qz7" onmouseover="showLayer('7','qz', 8)" src="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" alt="<?=$fr['title'];?>" width="237" height="80">
+                <img id="qz7" onmouseover="showLayer('7','qz', 8)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$fr['title'];?>" width="237" height="80"
+                     data-original="<?=base_url().str_replace('\\','/', $fr['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
@@ -396,7 +420,8 @@
     <div class="men-bd pad7">
         <?php foreach ($family_product_recommend_data as $fprdv) {?>
         <div class="men-bd-b"><a class="productimg" href="<?=productURL($fprdv['pid']);?>" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>" target="_blank">
-            <img src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($fprdv['pid']))?>default.jpg" width="160" height="192"/>
+            <img src="<?=config_item('static_url')?>images/lazy.gif" width="160" height="192"
+                data-original="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($fprdv['pid']))?>default.jpg" class="lazy"/>
         </a>
             <div class="pro-n">
                 <p><a href="<?=productURL($fprdv['pid']);?>" title="<?=$fprdv['pname'];?>, ￥<?=fPrice($fprdv['sell_price'])?>" target="_blank"><?=$fprdv['pname'];?></a></p>
@@ -414,8 +439,8 @@
         <ul>
             <?php $i = 1;foreach ($user_recommend as $urv) {?>
             <li>
-                <img id="bdimg<?=$i?>" onmouseover="showLayer(<?=$i?>,'bdimg', 13)" src="<?=config_item('static_url')?>upload/designer/<?=str_replace('\\', '/', intToPath($urv['uid']))?>icon.jpg"
-                     width="90" height="90" alt="brand1" title="<?=$urv['nickname'];?>" onclick="index.changeUser(<?=$urv['uid']?>)"/>
+                <img id="bdimg<?=$i?>" onmouseover="showLayer(<?=$i?>,'bdimg', 13)" src="<?=config_item('static_url')?>images/lazy.gif" width="90" height="90" alt="brand1" title="<?=$urv['nickname'];?>"
+                     onclick="index.changeUser(<?=$urv['uid']?>)" data-original="<?=config_item('static_url')?>upload/designer/<?=str_replace('\\', '/', intToPath($urv['uid']))?>icon.jpg" class="lazy"/>
             </li>
             <?php $i++;}?>
         </ul>
@@ -426,7 +451,7 @@
         <div class="brand-pro">
             <div class="brand-proimg">
                 <a href="<?=productURL($upv['pid'])?>" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>" target="_blank">
-                <img src="<?=config_item('img_url')?>product/<?=intToPath($upv['pid'])?>default.jpg" width="160" height="186"/>
+                <img src="<?=config_item('static_url')?>images/lazy.gif" width="160" height="186" data-original="<?=config_item('img_url')?>product/<?=intToPath($upv['pid'])?>default.jpg" class="lazy"/>
             </a>
             </div>
             <p><a href="<?=productURL($upv['pid'])?>" title="<?=$upv['pname'];?>, ￥<?=fPrice($upv['sell_price']);?>" target="_blank"><?=$upv['pname'];?></a></p>
@@ -501,6 +526,8 @@
         });
     }
     jQuery('#list_switch').jcarousel({auto:5, scroll:1, wrap: 'last',initCallback: initCallBack});
+
+    $('img.lazy').lazyload({effect:"fadeIn"});
 
     /*右下角提示框
     artDialog.notice = function (options) {
