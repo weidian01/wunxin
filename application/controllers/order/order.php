@@ -389,7 +389,7 @@ class order extends MY_Controller
     }
 
     /**
-     * 系统取消过期未支付的订单
+     * 系统取消过期未支付的订单 -- 未解决订单默认状态的取消
      */
     public function systemCancelOrder()
     {
@@ -411,13 +411,13 @@ class order extends MY_Controller
                 'pay_type' => $v,
                 'is_pay !=' => ORDER_PAY_SUCC,
                 'picking_status' => PICKING_NOT,
-                'status !=' => ORDER_NORMAL,
-                'create_time >=' => date('Y-m-d H:i:s', TIMESTAMP - $timeOut),
+                'status' => ORDER_CONFIRM,
+                'create_time <=' => date('Y-m-d H:i:s', TIMESTAMP - $timeOut),
             );
             $timeOutOrder = $this->order->getOrder(100, 0, '*', $where);
 
             foreach ($timeOutOrder as $tov) {
-                //$this->order->cancelOrderBySystem($tov['order_sn']);
+                $this->order->cancelOrderBySystem($tov['order_sn']);
             }
         }
     }
