@@ -104,7 +104,7 @@ dt{font-weight: bold;color: #848484;}
                                     <dt>生日：</dt>
                                     <dd>
                                         <select onchange="user.changeYear();" id="year_id" name="year">
-                                            <?php for($i = 1940; $i <= date('Y'); $i++) {?>
+                                            <?php for($i = date('Y'); $i >= date('Y') - 80; $i--) {?>
                                             <option value="<?php echo $i;?>" <?php echo ( $i == date('Y', strtotime($uinfo['birthday'])) ) ? 'selected="selected"' : '';?>><?php echo $i;?>年</option>
                                             <?php }?>
                                         </select>
@@ -122,7 +122,7 @@ dt{font-weight: bold;color: #848484;}
                                 <dl>
                                     <dt>婚姻状况：</dt>
                                     <dd>
-                                        <select data-vocation="" name="Vocation" id="marital_status_id" onchange="ChangeVocation()">
+                                        <select data-vocation="" name="vocation" id="marital_status_id">
                                             <?php foreach ($marital_status as $msk => $msv){?>
                                             <option value="<?php echo $msk;?>" <?php echo ($msk == $uinfo['marital_status']) ? 'selected="selected"' : '';?>><?php echo $msv;?></option>
                                             <?php }?>
@@ -132,7 +132,7 @@ dt{font-weight: bold;color: #848484;}
                                 <dl>
                                     <dt>教程程度：</dt>
                                     <dd>
-                                        <select data-vocation="" name="Vocation" id="education_level_id" onchange="ChangeVocation()">
+                                        <select data-vocation="" name="vocation" id="education_level_id">
                                             <option value="0">请选择&nbsp; </option>
                                             <?php foreach ($education_level as $elk => $elv){?>
                                             <option value="<?php echo $elk;?>" <?php echo ($elk == $uinfo['education_level']) ? 'selected="selected"' : '';?>><?php echo $elv;?></option>
@@ -143,7 +143,7 @@ dt{font-weight: bold;color: #848484;}
                                 <dl>
                                     <dt>职业：</dt>
                                     <dd>
-                                        <select data-vocation="" name="Vocation" id="jobs_id" onchange="ChangeVocation()">
+                                        <select data-vocation="" name="vocation" id="jobs_id">
                                             <option value="0">请选择&nbsp; </option>
                                             <?php foreach ($jobs as $jk => $jv){?>
                                             <option value="<?php echo $jk;?>" <?php echo ($jk == $uinfo['job']) ? 'selected="selected"' : '';?>><?php echo $jv;?></option>
@@ -154,7 +154,7 @@ dt{font-weight: bold;color: #848484;}
                                 <dl>
                                       <dt>所属行业：</dt>
                                       <dd>
-                                          <select data-vocation="" name="Vocation" id="industry_id">
+                                          <select data-vocation="" name="vocation" id="industry_id">
                                               <option value="0">请选择&nbsp; </option>
                                               <?php foreach ($industry as $ik => $iv){?>
                                               <option value="<?php echo $ik;?>" <?php echo ($ik == $uinfo['industry']) ? 'selected="selected"' : '';?>><?php echo $iv;?></option>

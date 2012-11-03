@@ -24,6 +24,7 @@
 		loading: {
 			finished: undefined,
 			finishedMsg: "<em>Congratulations, you've reached the end of the internet.</em>",
+            finishedTime:2000,
 			img: "http://www.infinite-scroll.com/loading.gif",
 			msg: null,
 			msgText: "<em>Loading the next set of posts...</em>",
@@ -415,7 +416,7 @@
 	    		.find('img')
 	    		.hide()
 	    		.parent()
-	    		.find('div').html(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000, function () {
+	    		.find('div').html(opts.loading.finishedMsg).animate({ opacity: 1 }, opts.loading.finishedTime, function () {
 	    		    $(this).parent().fadeOut('normal');
 	    		});
 

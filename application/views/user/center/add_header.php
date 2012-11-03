@@ -267,9 +267,9 @@
     //允许上传的图片类型
     var extensions = 'jpg,jpeg,gif,png';
     //保存缩略图的地址.
-    var saveUrl = '/user/user/saveAvatar';
+    var saveUrl = '<?=config_item('static_url')?>user/user/saveAvatar';
     //保存摄象头白摄图片的地址.
-    var cameraPostUrl = '/user/user/camera';
+    var cameraPostUrl = '<?=config_item('static_url')?>user/user/camera';
     //头像编辑器flash的地址.
     var editorFlaPath = '<?=config_item('static_url')?>images/AvatarEditor.swf';
     //Download by http://www.codefans.net
@@ -300,22 +300,22 @@
      * 提供给FLASH的接口 ： 没有摄像头时的回调方法
      */
     function noCamera() {
-        alert("俺是小狗, 俺没有camare ：）");
+        alert("您没有camera！");
     }
 
     /**
      * 提供给FLASH的接口：编辑头像保存成功后的回调方法
      */
     function avatarSaved() {
-        alert('保存成功，哈哈');
-        //window.location.href = '/profile.do';
+        alert('头像保存成功!');
+        window.location.href = '/user/center/profile';
     }
 
     /**
      * 提供给FLASH的接口：编辑头像保存失败的回调方法, msg 是失败信息，可以不返回给用户, 仅作调试使用.
      */
     function avatarError(msg) {
-        alert("上传失败了呀，哈哈");
+        alert("头像上传失败!");
     }
 
     function checkFile() {
@@ -323,7 +323,7 @@
         var ext = getExt(path);
         var re = new RegExp("(^|\\s|,)" + ext + "($|\\s|,)", "ig");
         if (extensions != '' && (re.exec(extensions) == null || ext == '')) {
-            alert('对不起，只能上传jpg, gif, png类型的图片');
+            alert('对不起，只能上传jpg、gif、png类型的图片！');
             return false;
         }
         showLoading();
