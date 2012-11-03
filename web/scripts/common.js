@@ -643,7 +643,8 @@ wx.scoreStatSelect = function (id, pointNum)
 wx.addToCartLayer = function (pId, pName, bindingId)
 {
     var cartData = wx.ajax('/cart/getCart', '');
-
+    cartData = cartData['cart'];
+    
     var totalNum = 0;
     var totalPrice = 0;
 
