@@ -71,7 +71,7 @@ order.changeCity = function (v)
 //添加新地址 层切换
 order.layerSwitch = function ()
 {
-    $('#new_address_id').toggle();
+    $('#new_address_id').show();
 }
 
 //保存收货地址
@@ -231,7 +231,6 @@ wx.deleteAddress = function (aId)
     var data = wx.ajax(url, param);
 
     $('#address_'+aId).remove();
-    order.layerSwitch();
 
     //wx.pageReload();
 }

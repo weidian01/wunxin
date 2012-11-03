@@ -197,7 +197,7 @@ class order extends MY_Controller
         }
 
         $this->load->model('product/Model_Product', 'product');
-        $recommend = $this->product->getProductList(9, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');
+        $recommend = $this->product->getProductList(12, 0, '*', array('status' => 1, 'check_status' => '1', 'shelves' => 1), 'sales desc');
 
         $this->load->view('order/success', array('order' => $data, 'recommend' => $recommend));
     }
@@ -386,6 +386,40 @@ class order extends MY_Controller
         }
 
         $this->recent->deleteUserRecentAddress($aId, $this->uInfo['uid']);
+    }
+
+    /**
+     * 系统取消过期未支付的订单
+     */
+    public function systemCancelOrder()
+    {
+        $this->load->model('order/Model_Order', 'order');
+
+        $typeArray = array(PAY_ONLINE, PAY_CASHDELIVERY, PAY_POST, PAY_SELF, PAY_COMPANY);//支付类型,1 在线支付， 2 货到付款， 3 邮政汇款 ，4 来万象自提， 5 公司汇款
+        foreach ($typeArray as $v) {
+            switch ($v) {
+                case PAY_ONLINE:$timeOut = TIME_OUT_PAY_ONLINE;break;//在线支付超时时间，1天。
+                case PAY_CASHDELIVERY:$timeOut = TIME_OUT_PAY_CASHDELIVERY;break;//货到付款超时时间，14天。
+                case PAY_POST:$timeOut = TIME_OUT_PAY_POST;break;//邮政支付超时时间，3天。
+                case PAY_SELF:$timeOut = TIME_OUT_PAY_SELF;break;//来万象自提超时时间，7天。
+                case PAY_COMPANY:$timeOut = TIME_OUT_PAY_COMPANY;break;//来万象自提超时时间，1天。
+                default :$timeOut = TIME_OUT_PAY_ONLINE;//在线支付超时时间，1天。
+            }
+
+            //获取超时订单
+            $where = array(
+                'pay_type' => $v,
+                'is_pay !=' => ORDER_PAY_SUCC,
+                'picking_status' => PICKING_NOT,
+                'status !=' => ORDER_NORMAL,
+                'create_time >=' => date('Y-m-d H:i:s', TIMESTAMP - $timeOut),
+            );
+            $timeOutOrder = $this->order->getOrder(100, 0, '*', $where);
+
+            foreach ($timeOutOrder as $tov) {
+                //$this->order->cancelOrderBySystem($tov['order_sn']);
+            }
+        }
     }
 }
 

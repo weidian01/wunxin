@@ -147,7 +147,7 @@ $(document).ready(function(){
       </table>
     </div>
     <div class="extend">
-      <div class="kz" id="kza"><img src="<?=config_item('static_url')?>/images/arrow_down.gif"> <span>更多</span></div>
+      <div class="kz" id="kza"><img src="<?=config_item('static_url')?>/images/arrow_down.gif"><span>更多</span></div>
     </div>
     <?php endif;?>
        <div class="clear" style="height: 10px"></div>

@@ -140,6 +140,26 @@ class Model_Order extends MY_Model
     }
 
     /**
+     * 获取订单
+     *
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param null $where
+     * @param null $orderBy
+     * @return mixed
+     */
+    public function getOrder($limit = 20, $offset = 0, $field = '*', $where = null, $orderBy = null)
+    {
+        $this->db->select($field)->from('order');
+        $where && $this->db->where($where);
+        $orderBy && $this->db->order_by($orderBy);
+        $this->db->limit($limit, $offset);
+
+        return $this->db->get()->result_array();
+    }
+
+    /**
      * @name 获取订单产品信息 -- 通过订单ID
      *
      * @param $orderSn 订单ID
@@ -202,7 +222,17 @@ class Model_Order extends MY_Model
      */
     public function cancelOrder($orderSn, $uId)
     {
-        return $this->db->where('order_sn', $orderSn)->where('uid', $uId)->update('order', array('status' => '0'));
+        return $this->db->where('order_sn', $orderSn)->where('uid', $uId)->update('order', array('status' => ORDER_INVALID, 'picking_status' => PICKING_NOT));
+    }
+
+    /**
+     * 系统取消订单，业务代码慎用
+     *
+     * @param $orderSn
+     */
+    public function cancelOrderBySystem($orderSn)
+    {
+        return $this->db->where('order_sn', $orderSn)->update('order', array('status' => ORDER_INVALID, 'picking_status' => PICKING_NOT));
     }
 
     /**

@@ -5,6 +5,7 @@
 <title>恭喜您， <?=($order['is_pay'] == '1')? '您的订单已支付成功' : '您订单提交成功了';?></title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
 <!--<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/comm.js"></SCRIPT>-->
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
@@ -39,40 +40,43 @@ $(document).ready(function(){
   <div class="other-shopping">
     <div class="tit">订单状态</div>
     <div class="order-c">
-      <p>恭喜您，<?=($order['is_pay'] == '1') ? '订单已支付成功了' : '订单提交成功了';?>！</p>
+      <p>恭喜您，<?=($order['is_pay'] == ORDER_PAY_SUCC) ? '订单已支付成功了' : '订单提交成功了';?>！</p>
       <span class="font9">您的订单号：<?=$order['order_sn'];?>
-          <?=($order['is_pay'] == '1')? '已' : '应';?>付金额：<span class="font6"><?=fPrice($order['after_discount_price']);?></span> 元，
+          <?=($order['is_pay'] == ORDER_PAY_SUCC)? '已' : '应';?>付金额：<span class="font6"><?=fPrice($order['after_discount_price']);?></span> 元，
           支付方式：<?php
           switch ($order['pay_type']) {
-              case '1': $ps = '线上支付'; break;
-              case '2': $ps = '货到付款'; break;
-              case '3': $ps = '邮局汇款'; break;
-              case '4': $ps = '来万象自提'; break;
-              case '5': $ps = '公司转账'; break;
+              case PAY_ONLINE: $ps = '线上支付'; break;
+              case PAY_CASHDELIVERY: $ps = '货到付款'; break;
+              case PAY_POST: $ps = '邮局汇款'; break;
+              case PAY_SELF: $ps = '来万象自提'; break;
+              case PAY_COMPANY: $ps = '公司转账'; break;
               default :$ps = '线上支付';
           }echo $ps;
           ?>，　<?php
           switch ($order['delivert_time']) {
-              case '1': $s = '工作日、双休日和节假日均送货'; break;
-              case '2': $s = ' 只双休日、节假日送货（工作时间不送货）'; break;
-              case '3': $s = '只工作日送货（双休日、节假日不送）'; break;
-              case '4': $s = '学校地址，白天没人'; break;
+              case DELIVERT_TIME_ANY: $s = '工作日、双休日和节假日均送货'; break;
+              case DELIVERT_TIME_HOLIDAY: $s = ' 只双休日、节假日送货（工作时间不送货）'; break;
+              case DELIVERT_TIME_WORK: $s = '只工作日送货（双休日、节假日不送）'; break;
+              case DELIVERT_TIME_SCHOOL: $s = '学校地址，白天没人'; break;
               default:  $s = '工作日、双休日和节假日均送货'; break;
           }echo $s;
           ?><br/>
           <?php echo $order['recent_name'].',';
 
-            if ($order['is_pay'] == '1') {
+            if ($order['is_pay'] == ORDER_PAY_SUCC) {
                 echo ' 您于'.date('Y-m-d H:i',strtotime($order['pay_time'])).' 已成功付款，我们将尽快安排发货，可随时登陆万象网
                     <a href="'.config_item('static_url').'/user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
             } else {
-                if ($order['pay_type'] == '1') {
-                    echo ' 如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
-                } elseif ($order['pay_type'] == '3') {
-                    echo ' 如果<span class="font6"> 72 </span>小时内您无法完成付款，系统会将您的订单取消。';
-                } else {
-                    echo ' 如果<span class="font6"> 24 </span>小时内您无法完成付款，系统会将您的订单取消。';
+                switch ($order['pay_type']) {
+                    case PAY_ONLINE : $timeOut = (config_item('TIME_OUT_PAY_ONLINE') / 60 / 60);break;//在线支付
+                    case PAY_CASHDELIVERY : $timeOut = (config_item('TIME_OUT_PAY_CASHDELIVERY') / 60 / 60);break;//货到付款
+                    case PAY_POST : $timeOut = (config_item('TIME_OUT_PAY_POST') / 60 / 60);break;//邮政汇款
+                    case PAY_SELF : $timeOut = (config_item('TIME_OUT_PAY_SELF') / 60 / 60);break;//来万象自提
+                    case PAY_COMPANY : $timeOut = (config_item('TIME_OUT_PAY_COMPANY') / 60 / 60);break;//公司汇款
+                    default :$timeOut = (config_item('TIME_OUT_PAY_ONLINE') / 60 / 60);
                 }
+
+                echo ' 如果<span class="font6"> '.$timeOut.' </span>小时内您无法完成付款，系统会将您的订单取消。';
             }
 
           ?></div>
@@ -231,23 +235,26 @@ $(document).ready(function(){
         -->
 
       </div>
-      <div class="topay"><a href="javascript:vaid(0);" onclick="order.pay('pay_now_id')" id="pay_now_id"><img src="<?=config_item('static_url')?>/images/pay.gif" width="150" height="41" alt="立即付款"/></a></div>
+      <div class="topay"><a href="javascript:vaid(0);" onclick="order.pay('pay_now_id')" id="pay_now_id"></a></div>
+        <br/><br/>
     </div>
   </div>
   </form>
       <?php } else {?>
-  <div class="other-shopping" style="height:300px;">
+  <div class="other-shopping">
       <div class="tit">购买以上商品的顾客还购买过</div>
       <div class="other-c">
+          <!--
           <div class="other-pre"><a href="#">pre</a></div>
           <div class="other-next"><a href="#">next</a></div>
+          <!---->
           <div class="other-cg">
-              <div style=" height:230px; width:1800px;">
+              <ul class="jcarousel-skin-order" id="order_list">
                   <?php foreach ($recommend as $rv) { ?>
-                  <div class="rq">
+                  <li class="rq">
                       <div class="rqimg">
                           <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="144" title="<?php echo $rv['pname'];?>"/>
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="164" height="197" title="<?php echo $rv['pname'];?>"/>
                           </a>
                       </div>
                       <p>
@@ -258,17 +265,19 @@ $(document).ready(function(){
                       <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
                           <img src="<?=config_item('static_url')?>/images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
                       </a>
-                  </div>
+                  </li>
                   <?php }?>
-              </div>
+              </ul>
           </div>
-          <div class="switch"><!--<a class="curr" href="#">1</a><a href="#">2</a>--></div>
+          <!--<div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>-->
       </div>
   </div>
 <?php } ?>
 </div>
 <?php include APPPATH.'views/footer.php';?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>
 </body>
 </html>
