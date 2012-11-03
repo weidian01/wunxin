@@ -421,12 +421,12 @@ function editorder(a, b, t)
     var ey = document.getElementById(a);
     var et = document.getElementById(b);
     if (ey.style.display == "none") {
-        t.innerText = '[不保存关闭]';
+        t.innerHTML = '[不保存关闭]';
         //$('#modify_text_id').html('[不保存关闭]');
         ey.style.display = "";
         (et == null || et == '') ? '' : et.style.display = "none";
     } else {
-        t.innerText = '[修改]';
+        t.innerHTML = '[修改]';
         ey.style.display = "none";
         (et == null || et == '') ? '' : et.style.display = "";
     }
