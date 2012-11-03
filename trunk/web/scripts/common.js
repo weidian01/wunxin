@@ -8,6 +8,7 @@
 * Date: 2012.07.04
 */
 
+
 var wx = {
     'base_url':'http://wunxin.com/',
     'img_url':'http://wunxin.com/upload/',
@@ -16,6 +17,8 @@ var wx = {
     'cookie_domain':'wunxin.com',
     'cookie_path':'/'
 };
+
+
 
 // 获取Cookie
 wx.getCookie = function (name)
@@ -32,6 +35,35 @@ wx.getCookie = function (name)
     return null;
 }
 
+//去两头空格
+wx.trim = function (str)
+{
+    var i;
+    for(i=0;i<str.length;i++)
+    {
+        if(str.charAt(i)!=" "&&str.charAt(i)!=" ")break;
+    }
+    str=str.substring(i,str.length);
+    return str;
+}
+
+//去左边空格
+wx.lTrim = function (str)
+{
+    var i;
+    for(i=str.length-1;i>=0;i--)
+    {
+        if(str.charAt(i)!=" "&&str.charAt(i)!=" ")break;
+    }
+    str=str.substring(0,i+1);
+    return str;
+}
+
+//去右边空格
+wx.rTrim = function (str)
+{
+    return LTrim(RTrim(str));
+}
 
 // 设置Cookie
 wx.setCookie = function (name, value, expires)
@@ -644,7 +676,7 @@ wx.addToCartLayer = function (pId, pName, bindingId)
 {
     var cartData = wx.ajax('/cart/getCart', '');
     cartData = cartData['cart'];
-    
+
     var totalNum = 0;
     var totalPrice = 0;
 
