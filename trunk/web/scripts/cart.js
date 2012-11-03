@@ -15,7 +15,7 @@ cart.init = function ()
     var html = '';
     var data = wx.ajax('cart/getCart', '');
 
-    if (data == '' || data == undefined) {
+    if (data['cart'] == '' || data['cart'] == undefined || data['activity'] == '' || data['activity'] == undefined) {
         html = '<br /><h1 style="text-align: center;">您的购物车中没有商品，请您去 <a href="javascript:void(0);" onclick="wx.goToBack()" style="color: #b5161c;">选购商品</a> 或 ' +
             '<a style="color: #b5161c;" href="javascript:void(0);" onclick="cart.removeCart()">取出寄存的产品</a>&nbsp;&nbsp;» </h1><br /><br /><br /><br />';
         $('#shopping_cart').html(html);
@@ -30,24 +30,14 @@ cart.init = function ()
         html += '<tr style="width: 980px;"><td colspan="7" style="padding: 5px 0 5px 25px;"><h2>您还可以免费参加以下促销活动\
                     <a id="cart_top_free_prom_tab" showui="1" onclick="cart.switchActivity();" class="cartHide" href="javascript:void(0)" style="padding-right: 25px;">隐藏</a></h2></td></tr>';
         html += '<tr id="activity_list"><td colspan="7" style="padding: 5px 0;"><div class="activity_list"><ul id="list_ul" class="jcarousel-skin-activity">';
+
         for (var ii in activity) {
+            if (!wx.isEmpty(activity[ii])) return;
             html += cart.getActivityTemplate(activity[ii]['type'], activity[ii]['a_id'], activity[ii]['a_title'],
                 activity[ii]['a_desc'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status']);
-            /*
-            html += '<dl><dt title="亲情回馈买就送鼻贴" class="pro-title promo_title">\
-                    <span surl=" http://www.yihaodian.com/ctg/p/pt47806-pl44565" vn="2-44565-47806" class="zdsp"></span><b>亲情回馈买就送鼻贴</b></dt>\
-                <dd class="fl"><a class="img60" href="/product/4801146_2" target="_blank">\
-                    <img src="http://d12.yihaodianimg.com/t1/2012/1018/225/55/51cb6e501a748b41c77fecedee40a191_60x60.jpg"></a></dd>\
-                <dd class="proname"><a href="/product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>\
-                <dd><del>￥5.7</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>\
-                <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>\
-                <dd class="zeng"></dd>\
-            </dl>';
-            //*/
         }
         html += '</ul></div></td></tr>';
     }
-    //*/
 
     html += '<tr><td colspan="2" align="center" class="tit">商品/商品号</td>';
     html += '<td width="9%" align="center" class="tit">单价</td>';

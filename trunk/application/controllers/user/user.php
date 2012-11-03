@@ -216,6 +216,8 @@ class user extends MY_Controller
         //$type = $_GET['type'];
         $type = $this->input->get_post('type');
 
+        //log_result($type);
+
         //这里传过来会有两种类型，一先一后, big和small, 保存成功后返回一个json字串，客户端会再次post下一个.
         $type = (isset($type) && $type == 'small') ? 'icon' : 'default';
 

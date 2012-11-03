@@ -133,6 +133,7 @@
                 //dataType:'json',
                 loading:{
                     finishedMsg:'没有更多数据.',
+                    finishedTime:86400,
                     img:'/images/ajax-loader.gif',
                     selector:'#loading',
                     msgText:''
