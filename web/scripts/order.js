@@ -231,7 +231,7 @@ wx.deleteAddress = function (aId)
     var data = wx.ajax(url, param);
 
     $('#address_'+aId).remove();
-    editorder('', b, t)
+    order.layerSwitch();
 
     //wx.pageReload();
 }
