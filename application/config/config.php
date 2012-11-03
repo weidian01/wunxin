@@ -493,5 +493,9 @@ $config['sales_status'] = array(
     SS_NEW => '新品',
 );
 
+
+
+
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */

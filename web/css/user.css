@@ -203,9 +203,7 @@
     background-position: 0px -11px;
 }
 
-.u-right .u-r-box .tab6 tr td a {
-    color: #2262A8;
-}
+.u-right .u-r-box .tab6 tr td .views {color: #2262A8;}
 
 .u-r-box .ddall li {
     float: right;

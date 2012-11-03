@@ -8,7 +8,9 @@
                     <h4>购物车中还没有商品，赶紧去选购吧！</h4>
                 </div>
             </div>
-            <div class="cart-btn"><a href="<?=config_item('static_url')?>/cart/" ><img src="<?=config_item('static_url')?>/images/cart_31.jpg" width="60" height="24"/></a></div>
+            <div class="cart-btn"><a href="<?=config_item('static_url')?>/cart/" >
+                <!--<img src="<?=config_item('static_url')?>/images/cart_31.jpg" width="60" height="24"/>-->
+            </a></div>
         </div>
         <div class="hd-login">
             <ul>
@@ -34,7 +36,9 @@
                         <input id="keyword" name="keyword" type="text" value="<?php echo isset($keyword) ? $keyword:'';?>"/>
                     </form>
                 </div>
-                <div class="sbtn"><a href="javascript:;" onclick="document.forms['search'].submit()"> <img src="<?=config_item('static_url')?>/images/wx_09.jpg" width="37" height="28"/></a></div>
+                <div class="sbtn"><a href="javascript:;" onclick="document.forms['search'].submit()">
+                    <!--<img src="<?=config_item('static_url')?>/images/wx_09.jpg" width="37" height="28"/>-->
+                </a></div>
             </div>
             <div class="hot-keyword">
                 <ul>
@@ -55,9 +59,18 @@
         <div class="cedt">
             <table width="92%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-                    <td width="29%"><img src="<?=config_item('static_url')?>/images/wx_12.jpg" width="51" height="45" alt="正品保证"/></td>
-                    <td width="35%"><img src="<?=config_item('static_url')?>/images/wx_14.jpg" width="62" height="45" alt="全场免运费"/></td>
-                    <td width="36%"><img src="<?=config_item('static_url')?>/images/wx_17.jpg" width="74" height="44" alt="无理由退换货"/></td>
+                    <td width="29%">
+                        <!--<img src="<?=config_item('static_url')?>/images/wx_12.jpg" width="51" height="45" alt="正品保证"/>-->
+                        <b class="genuine"></b>
+                    </td>
+                    <td width="35%">
+                        <b class="audience_free_shipping"></b>
+                        <!--<img src="<?=config_item('static_url')?>/images/wx_14.jpg" width="62" height="45" alt="全场免运费"/>-->
+                    </td>
+                    <td width="36%">
+                        <b class="no_reason_to_return"></b>
+                        <!--<img src="<?=config_item('static_url')?>/images/wx_17.jpg" width="74" height="44" alt="无理由退换货"/>-->
+                    </td>
                 </tr>
             </table>
         </div>

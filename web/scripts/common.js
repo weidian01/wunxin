@@ -337,7 +337,7 @@ wx.cartGlobalInit = function ()
 
     html += '<div class="cart-hj">';
     html += '<div class="sum">合计：<span class="font3">￥'+wx.fPrice( totalPrice )+'</span></div>';
-    html += '<div class="cart-to-js"><a href="'+wx.static_url+'/cart/">我要结算</a></div>';
+    html += '<div class="cart-to-js"><a href="'+wx.static_url+'/cart/"><b>我要结算</b></a></div>';
     html += '</div>';
 //console.log(html);
     $('#cart_product_num').html(' '+totalNum+' ');

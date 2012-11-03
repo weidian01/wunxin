@@ -83,8 +83,10 @@ cart.init = function ()
     html += '<tr><td colspan="7"><div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>\
 		<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div>\
         <div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div><div class="post-btn">';
-    html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="'+wx.base_url+'/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
-    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="'+wx.base_url+'/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
+    html += '<a href="javascript:void(0);" onclick="wx.goToBack()" class="continue_shopping"></a>&nbsp;&nbsp;';
+    //html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="'+wx.base_url+'/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
+    html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()" class="go_payment"></a></div></td></tr></table>';
+    //html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="'+wx.base_url+'/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
 
     $('#shopping_cart').html(html);
     jQuery('#list_ul').jcarousel();

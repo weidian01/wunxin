@@ -377,7 +377,9 @@ $(document).ready(function(){
     </div>
   </div>
   <div class="topost">
-      <a href="javascript:void(0);" onclick="order.orderSubmit()"><img src="<?=config_item('static_url')?>/images/post-order.gif" width="150" height="41" alt="提交订单" /></a>
+      <a href="javascript:void(0);" onclick="order.orderSubmit()" class="order_submit_button">
+          <!--<img src="<?=config_item('static_url')?>/images/post-order.gif" width="150" height="41" alt="提交订单" />-->
+      </a>
   </div>
 </div>
 </form>
