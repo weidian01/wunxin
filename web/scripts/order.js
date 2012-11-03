@@ -71,13 +71,13 @@ order.changeCity = function (v)
 //添加新地址 层切换
 order.layerSwitch = function ()
 {
-    $('#new_address_id').show();
+    $('#new_address_id').toggle();
 }
 
 //保存收货地址
 order.saveAddress = function (urls)
 {
-    var recentName = document.getElementById('recent_name_id').value;
+    var recentName = wx.trim(document.getElementById('recent_name_id').value);
     var province = $('#province_id').find('option:selected').text();//document.getElementById('province_id').value;
     var city = $('#city_id').find('option:selected').text();//document.getElementById('city_id')
     var area = $('#area_id').find('option:selected').text();//document.getElementById('area_id').value;
@@ -145,20 +145,6 @@ order.saveAddress = function (urls)
         }
     }
     alert(data.msg);
-
-    /*
-    if (data.error == '30010') {
-        alert(data.msg);
-    }
-
-    if (data.error == '30011') {
-        alert(data.msg);
-    }
-
-    if (data.error == '30012') {
-        alert(data.msg);
-    }
-    //*/
 }
 
 //编辑地址
@@ -245,6 +231,7 @@ wx.deleteAddress = function (aId)
     var data = wx.ajax(url, param);
 
     $('#address_'+aId).remove();
+    editorder('', b, t)
 
     //wx.pageReload();
 }
