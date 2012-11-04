@@ -134,7 +134,7 @@
                         <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>" class="views">
                             <img src="<?=config_item('static_url')?>images/view.png" title="查看订单详情">
                         </a>
-                        <?php if ($v['is_pay'] != ORDER_PAY_SUCC && $v['status'] != ORDER_INVALID) {?>
+                        <?php if ($v['is_pay'] != ORDER_PAY_SUCC) {?>
                         <a href="<?=config_item('static_url')?>order/order/success/<?php echo $v['order_sn'];?>" class="views">
                             <img src="<?=config_item('static_url')?>images/payment.png" title="订单支付">
                         </a>
