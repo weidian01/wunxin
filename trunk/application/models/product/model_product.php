@@ -404,5 +404,19 @@ class Model_Product extends MY_Model
         return $this->db->count_all_results();
     }
 
+    /**
+     * 更新产品库存
+     *
+     * @param int $pId 产品ID
+     * @param int $num 数量
+     * @param string $operator + 增加， - 减少
+     * @return mixed
+     */
+    function updateProductStock($pId, $num, $operator = '+')
+    {
+        $num = intval($num);
+        $this->db->where('pid', $pId);
 
+        return $this->db->update('product', array('stock'=> 'stock '.$operator.$num));
+    }
 }

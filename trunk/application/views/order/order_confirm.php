@@ -286,7 +286,7 @@ $(document).ready(function(){
               3、收款人邮编：100124<br />
               4、账号：62220606030354<br />
               5、请填写您的姓名、地址、邮编；<br />
-              6、在附言栏注明订单号（您成功提交订单后会收到订单号，也可以在<a href="<?=config_item('static_url')?>/user/center/index" target="_blank"><b> 我的订单 </b></a>中查询到）、联系电话、客户编号（老客户）；<br />
+              6、在附言栏注明订单号（您成功提交订单后会收到订单号，也可以在<a href="<?=config_item('static_url')?>user/center/index" target="_blank"><b> 我的订单 </b></a>中查询到）、联系电话、客户编号（老客户）；<br />
               我们将在收到您的汇款后为您寄发包裹。</div></td>
         </tr>
       </table>
@@ -378,7 +378,7 @@ $(document).ready(function(){
   </div>
   <div class="topost">
       <a href="javascript:void(0);" onclick="order.orderSubmit()" class="order_submit_button">
-          <!--<img src="<?=config_item('static_url')?>/images/post-order.gif" width="150" height="41" alt="提交订单" />-->
+          <!--<img src="<?=config_item('static_url')?>images/post-order.gif" width="150" height="41" alt="提交订单" />-->
       </a>
   </div>
 </div>

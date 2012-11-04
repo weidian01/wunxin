@@ -17,12 +17,12 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/user/userList"><span><br/> 用户列表 </span></a></li>
         <!--
-        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
-        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="<?=config_item('static_url')?>/images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
+        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="<?=config_item('static_url')?>images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
         -->
     </ul>
     <!-- End .shortcut-buttons-set -->
@@ -63,9 +63,9 @@
                         <td><?php echo $message_data['reply_num'];?></td>
                         <td><?php echo $message_data['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/user_comment/commentDelete/<?php echo $message_data['message_id'].'/'.$message_data['uid'].'/'.$current_page?>" title="删除留言">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除留言"></a>
-                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
+                            <a href="<?=config_item('static_url')?>administrator/user_comment/commentDelete/<?php echo $message_data['message_id'].'/'.$message_data['uid'].'/'.$current_page?>" title="删除留言">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除留言"></a>
+                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>
                     </tbody>
@@ -132,9 +132,9 @@
                         <td><?php echo $v['ip'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/user_comment/deleteReply/<?php echo $v['id'].'/'.$message_data['message_id'];?>" title="删除评论图回复">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete"/></a>
-                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
+                            <a href="<?=config_item('static_url')?>administrator/user_comment/deleteReply/<?php echo $v['id'].'/'.$message_data['message_id'];?>" title="删除评论图回复">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
+                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>
                         <?php }?>

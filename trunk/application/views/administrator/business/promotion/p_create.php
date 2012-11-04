@@ -16,10 +16,10 @@
 <h2><?=$promotion['name'];?></h2>
 <!--p id="page-intro">产品分类管理</p-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
     <div class="clear">
@@ -94,7 +94,7 @@
                     <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
                     <td><?=empty ($item['stock']) ? '0' : $item['stock']?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>/administrator/business_promotion_product/joinPromotion/<?=$promotion['promotion_id'].'/'.$item['pid'];?>"><b>加入活动</b></a>
+                        <a href="<?=config_item('static_url')?>administrator/business_promotion_product/joinPromotion/<?=$promotion['promotion_id'].'/'.$item['pid'];?>"><b>加入活动</b></a>
                     </td>
                 </tr>
                     <?php endforeach;?>
@@ -125,9 +125,9 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
-<link rel="stylesheet" href="<?=config_item('static_url')?>/css/base.css" type="text/css" media="screen"/>
-<script type="text/javascript" src="<?=config_item('static_url')?>/scripts/common.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>/scripts/artdialog.js"></script>
+<link rel="stylesheet" href="<?=config_item('static_url')?>css/base.css" type="text/css" media="screen"/>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
 <script type="text/javascript">
     function alertJoin(promotion_type)
     {

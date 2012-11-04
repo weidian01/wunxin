@@ -14,10 +14,10 @@
     <h2>促销活动列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -81,12 +81,12 @@
                         <td><?=$v['descr'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion_product/p_create/<?php echo $v['promotion_id'];?>" title="为此活动添加产品">加产品</a>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion_category/create/<?php echo $v['promotion_id'];?>" title="为此活动添加产品">加分类</a><br/>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion/edit/<?php echo $v['promotion_id'];?>" title="编辑">
-                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑"></a>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion/delete/<?php echo $v['promotion_id'];?>" title="删除">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/p_create/<?php echo $v['promotion_id'];?>" title="为此活动添加产品">加产品</a>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_category/create/<?php echo $v['promotion_id'];?>" title="为此活动添加产品">加分类</a><br/>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion/edit/<?php echo $v['promotion_id'];?>" title="编辑">
+                                <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion/delete/<?php echo $v['promotion_id'];?>" title="删除">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a>
                         </td>
                     </tr>
                         <?php }?>

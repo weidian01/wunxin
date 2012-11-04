@@ -32,9 +32,9 @@
             <div class="scj">
                 <div class="main">
                     <div class="tab">
-                        <a href="<?=config_item('static_url')?>/user/center/productFavorite">收藏的产品</a>
-                        <a href="<?=config_item('static_url')?>/user/center/designerFavorite">收藏的设计师</a>
-                        <a href="<?=config_item('static_url')?>/user/center/designFavorite" class="act">收藏的设计图</a>
+                        <a href="<?=config_item('static_url')?>user/center/productFavorite">收藏的产品</a>
+                        <a href="<?=config_item('static_url')?>user/center/designerFavorite">收藏的设计师</a>
+                        <a href="<?=config_item('static_url')?>user/center/designFavorite" class="act">收藏的设计图</a>
                     </div>
                     <div id="itemList">
                         <div class="list-m">

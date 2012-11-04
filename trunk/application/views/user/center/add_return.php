@@ -37,7 +37,7 @@
         <div class="u-r-box">
             <div class="u-r-tit">申请退换货
                 <span style="float:right;text-align: right;">
-                    <a style="color: #8B8878;font-size: 12px;" href="<?=config_item('static_url')?>/user/center/returns">我的退换货记录&nbsp;&nbsp;</a>
+                    <a style="color: #8B8878;font-size: 12px;" href="<?=config_item('static_url')?>user/center/returns">我的退换货记录&nbsp;&nbsp;</a>
                 </span>
             </div>
         </div>

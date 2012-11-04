@@ -16,7 +16,7 @@
 <h2>用户详情</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/user/userList"><span><br/> 用户列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/user/userList"><span><br/> 用户列表 </span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
 <div class="clear"></div>
@@ -71,8 +71,8 @@
                     <td><?php echo $user_info['status'] ? '正常' : '已删除';?></td>
                     <td><?php echo $user_info['create_time'];?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>/administrator/user/userDetail/<?php echo $user_info['uid']?>" title="修改用户">
-                            <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="修改用户"></a>
+                        <a href="<?=config_item('static_url')?>administrator/user/userDetail/<?php echo $user_info['uid']?>" title="修改用户">
+                            <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改用户"></a>
                     </td>
                 </tr>
                 </tbody>

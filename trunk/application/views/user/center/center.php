@@ -30,7 +30,7 @@
   <div class="path">
     <ul>
       <li><a href="<?=config_item('static_url')?>">首页</a></li>
-      <li><a href="<?=config_item('static_url')?>/user/center/index">个人中心</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
       <li class="last">订单列表</li>
     </ul>
   </div>
@@ -72,7 +72,7 @@
                     if ($v['status'] == '0') { $canceledNum += 1; }
                 ?>
                 <tr>
-                    <td width="15%" align="center"><a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
+                    <td width="15%" align="center"><a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
                     <td width="35%">
                         <div class="goods-in" style="width: 250px;">
                             <?php
@@ -131,15 +131,15 @@
                     </td>
                     <td width="10%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td width="15%" align="center">
-                        <a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>" class="views">
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>" class="views">
                             <img src="<?=config_item('static_url')?>images/view.png" title="查看订单详情">
                         </a>
                         <?php if ($v['picking_status'] == '2') {?>
-                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>">
+                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品">
                         </a><br/>
-                        <a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品"></a>
-                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>/user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货"></a>
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品"></a>
+                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货"></a>
                         <?php }?>
                         <!--<div class="gobuy"><a href="#"></a></div>-->
                     </td>

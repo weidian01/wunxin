@@ -16,10 +16,10 @@
     <h2><?php echo $type == 'edit' ? '编辑分类' : '添加分类'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article/articleList"><span><br/> 文章列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article_category/categoryAdd"><span><br/> 添加分类 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article_category/categoryList"><span><br/> 分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article/articleList"><span><br/> 文章列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article_category/categoryAdd"><span><br/> 添加分类 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article_category/categoryList"><span><br/> 分类列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

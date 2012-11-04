@@ -26,7 +26,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <li><a href="#">首页</a></li>
 
         <?php foreach($nav as $v):?>
-            <li><a href="<?=config_item('static_url')?>/category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
+            <li><a href="<?=config_item('static_url')?>category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
         <?php endforeach;?>
       <li class="last"><?=$product['pname']?></li>
 
@@ -88,7 +88,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
           <div class="sizebox">
               <?php foreach($alike as $item):?>
                   <?php if(isset($item['color']) && $item['color']):?>
-                  <a class="sub-s" href="<?=config_item('static_url')?>/product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
+                  <a class="sub-s" href="<?=config_item('static_url')?>product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
                     <span class="selected" style="display:<?php echo ($item['pid'] === $product['pid']) ? 'block':'none';?>">
                     <img src="<?=config_item('static_url')?>images/lazy.gif" width="10" height="10" data-original="<?=config_item('static_url')?>images/a07.jpg" class="lazy"/></span>
                         <?php if(true)://根据产品默认图片显示图片?>
@@ -395,7 +395,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="tuihuantxt">
           <div class="tuihuan-tit">退换货承诺：</div>
           <p>自您签收货后7日内可以退换货，15天内可以换货，在商品不影响二次销售的情况下，万象网将为您办理退换货服务，请在 <a href="<?=config_item('static_url')?>">万象网</a> -
-              <a href="<?=config_item('static_url')?>/user/center/index" target="_blank">我的订单</a> "申请退换货"
+              <a href="<?=config_item('static_url')?>user/center/index" target="_blank">我的订单</a> "申请退换货"
             申请。注意：商品在非质量问题，运费将由您来承担！
           </p>
           <div class="tuihuan-tit">退换货方式：</div>
@@ -446,7 +446,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <tr>
               <td width="25%" align="center"><img src="<?=config_item('static_url')?>images/lazy.gif" width="82" height="138" data-original="<?=config_item('static_url')?>images/paybg_21.jpg" class="lazy"/></td>
               <td width="75%" valign="middle"><span class="font21"><strong>礼品卡支付：</strong>在进入结算中心 - 提交订单页面，输入您的礼品卡及密码
-                  (注意：礼品卡是需要先<a href="<?=config_item('static_url')?>/user/center/bingCard" target="_blank">绑定卡</a>),点击验证进行支付订单，如您的礼品卡余额不足够支付订单，请使用其他方式支付。<br/>
+                  (注意：礼品卡是需要先<a href="<?=config_item('static_url')?>user/center/bingCard" target="_blank">绑定卡</a>),点击验证进行支付订单，如您的礼品卡余额不足够支付订单，请使用其他方式支付。<br/>
                 <br/>
                 <strong>虚拟账户支付：</strong>是您在万象网的专属账户; 您在万象网购物多支付的部分或报销运费等金额都会存入你的虚拟账户中，你可以在万象网购物时使用。</span></td>
             </tr>

@@ -34,7 +34,7 @@
 
       <!---->
       <div style="text-align: center;">
-          <img src="<?=config_item('static_url')?>/images/loading.gif" alt="加载购物中......"><span>加载购物中......</span>
+          <img src="<?=config_item('static_url')?>images/loading.gif" alt="加载购物中......"><span>加载购物中......</span>
       </div>
       <!--
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping_cart_item" style="display: non;">
@@ -55,18 +55,18 @@
                         <ul id="list_ul" class="jcarousel-skin-activity">
                             <li>
                                 <dt title="亲情回馈买就送鼻贴" class="pro-title promo_title"><span surl="" vn="" class="zdsp"></span><b>亲情回馈买就送鼻贴</b></dt>
-                                <dd class="fl"><a class="img60" href="<?=config_item('static_url')?>/product/4801146_2" target="_blank">
+                                <dd class="fl"><a class="img60" href="<?=config_item('static_url')?>product/4801146_2" target="_blank">
                                     <img src="http://d12.yihaodianimg.com/t1/2012/1018/225/55/51cb6e501a748b41c77fecedee40a191_60x60.jpg"></a></dd>
-                                <dd class="proname"><a href="<?=config_item('static_url')?>/product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>
+                                <dd class="proname"><a href="<?=config_item('static_url')?>product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>
                                 <dd><del>￥5.7</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>
                                 <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>
                                 <dd class="zeng"></dd>
                             </li>
                             <li>
                                 <dt title="亲情回馈买就送鼻贴" class="pro-title promo_title"><span surl="" vn="" class="zdsp"></span><b>亲情回馈买就送鼻贴</b></dt>
-                                <dd class="fl"><a class="img60" href="<?=config_item('static_url')?>/product/4801146_2" target="_blank">
+                                <dd class="fl"><a class="img60" href="<?=config_item('static_url')?>product/4801146_2" target="_blank">
                                     <img src="http://d12.yihaodianimg.com/t1/2012/1018/225/55/51cb6e501a748b41c77fecedee40a191_60x60.jpg"></a></dd>
-                                <dd class="proname"><a href="<?=config_item('static_url')?>/product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>
+                                <dd class="proname"><a href="<?=config_item('static_url')?>product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>
                                 <dd><del>￥5.7</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>
                                 <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>
                                 <dd class="zeng"></dd>
@@ -74,7 +74,7 @@
                             <li>
                                 <dt class="pro-title promo_title" title="天天开心抢天天开心抢"><b>天天开心抢天天开心抢</b></dt>
                                 <dd class="fl"><a target="_blank" href="javascript:void(0)" class="img60">
-                                    <img width="56" height="56" alt="天天开心抢天天开心抢" src="<?=config_item('static_url')?>/images/discounticon.gif"></a>
+                                    <img width="56" height="56" alt="天天开心抢天天开心抢" src="<?=config_item('static_url')?>images/discounticon.gif"></a>
                                 </dd>
                                 <dd class="proname"><a title="抢多了也不伤身抢多了也不伤身抢多了也不伤身" target="_blank" href="javascript:void(0)">抢多了也不伤身抢多了也不伤身抢多了也不伤身</a></dd>
                                 <dd>&nbsp;</dd>
@@ -84,7 +84,7 @@
                             <li>
                                 <dt class="pro-title promo_title" title="天天开心抢天天开心抢"><b>天天开心抢天天开心抢</b></dt>
                                 <dd class="fl"><a target="_blank" href="javascript:void(0)" class="img60">
-                                    <img width="56" height="56" alt="天天开心抢天天开心抢" src="<?=config_item('static_url')?>/images/discounticon.gif"></a>
+                                    <img width="56" height="56" alt="天天开心抢天天开心抢" src="<?=config_item('static_url')?>images/discounticon.gif"></a>
                                 </dd>
                                 <dd class="proname"><a title="抢多了也不伤身抢多了也不伤身抢多了也不伤身" target="_blank" href="javascript:void(0)">抢多了也不伤身抢多了也不伤身抢多了也不伤身</a></dd>
                                 <dd>&nbsp;</dd>
@@ -94,7 +94,7 @@
                             <li>
                                 <dt class="pro-title promo_title" title="天天开心抢天天开心抢"><b>天天开心抢天天开心抢</b></dt>
                                 <dd class="fl"><a target="_blank" href="javascript:void(0)" class="img60">
-                                    <img width="56" height="56" alt="天天开心抢天天开心抢" src="<?=config_item('static_url')?>/images/discounticon.gif"></a>
+                                    <img width="56" height="56" alt="天天开心抢天天开心抢" src="<?=config_item('static_url')?>images/discounticon.gif"></a>
                                 </dd>
                                 <dd class="proname"><a title="抢多了也不伤身抢多了也不伤身抢多了也不伤身" target="_blank" href="javascript:void(0)">抢多了也不伤身抢多了也不伤身抢多了也不伤身</a></dd>
                                 <dd>&nbsp;</dd>
@@ -119,35 +119,35 @@
         <td width="12%" align="center" class="tit">小计</td>
       </tr>
       <tr>
-        <td width="7%"><img src="<?=config_item('static_url')?>/images/pic_07.jpg" width="52" height="66" /></td>
-        <td width="49%"><a class="gn" href="#">Bessie OL气质荷叶边条纹短裙 <img src="<?=config_item('static_url')?>/images/buy_bg_10.gif" width="31" height="13" /></a><br/>
+        <td width="7%"><img src="<?=config_item('static_url')?>images/pic_07.jpg" width="52" height="66" /></td>
+        <td width="49%"><a class="gn" href="#">Bessie OL气质荷叶边条纹短裙 <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></a><br/>
           <span class="font2">GZ26052909-S</span><br/>
           <a href="#">收藏</a>&nbsp;&nbsp;&nbsp;<a href="#">删除</a></td>
         <td align="center">39.00</td>
         <td align="center"><input name="textfield" type="text" class="gnum" id="textfield" value="1" />
-          &nbsp;<a href="#"><img src="<?=config_item('static_url')?>/images/plus.gif" width="11" height="11" /></a></td>
+          &nbsp;<a href="#"><img src="<?=config_item('static_url')?>images/plus.gif" width="11" height="11" /></a></td>
         <td align="center"><span class="font2">—</span></td>
         <td align="center"><span class="font6">39.00</span></td>
       </tr>
       <tr>
-        <td><img src="<?=config_item('static_url')?>/images/pic_10.jpg" width="52" height="67" /></td>
-        <td><a class="gn" href="#">Bessie OL气质荷叶边条纹短裙 <img src="<?=config_item('static_url')?>/images/buy_bg_10.gif" width="31" height="13" /></a><br/>
+        <td><img src="<?=config_item('static_url')?>images/pic_10.jpg" width="52" height="67" /></td>
+        <td><a class="gn" href="#">Bessie OL气质荷叶边条纹短裙 <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></a><br/>
           <span class="font2">GZ26052909-S</span><br/>
           <a href="#">收藏</a>&nbsp;&nbsp;&nbsp;<a href="#">删除</a></td>
         <td align="center">129.00</td>
         <td align="center"><input name="textfield2" type="text" class="gnum" id="textfield2" value="1" />
-          &nbsp;<a href="#"><img src="<?=config_item('static_url')?>/images/plus.gif" alt="" width="11" height="11" /></a></td>
+          &nbsp;<a href="#"><img src="<?=config_item('static_url')?>images/plus.gif" alt="" width="11" height="11" /></a></td>
         <td align="center"><span class="font2">—</span></td>
         <td align="center"><span class="font6">129.00</span></td>
       </tr>
       <tr>
-        <td><img src="<?=config_item('static_url')?>/images/pic_13.jpg" alt="" width="53" height="69" /></td>
-        <td><a class="gn" href="#">Bessie OL气质荷叶边条纹短裙 <img src="<?=config_item('static_url')?>/images/buy_bg_10.gif" width="31" height="13" /></a><br/>
+        <td><img src="<?=config_item('static_url')?>images/pic_13.jpg" alt="" width="53" height="69" /></td>
+        <td><a class="gn" href="#">Bessie OL气质荷叶边条纹短裙 <img src="<?=config_item('static_url')?>images/buy_bg_10.gif" width="31" height="13" /></a><br/>
           <span class="font2">GZ26052909-S</span><br/>
           <a href="#">收藏</a>&nbsp;&nbsp;&nbsp;<a href="#">删除</a></td>
         <td align="center">256.00</td>
         <td align="center"><input name="textfield3" type="text" class="gnum" id="textfield3" value="1" />
-          &nbsp;<a href="#"><img src="<?=config_item('static_url')?>/images/plus.gif" alt="" width="11" height="11" /></a></td>
+          &nbsp;<a href="#"><img src="<?=config_item('static_url')?>images/plus.gif" alt="" width="11" height="11" /></a></td>
         <td align="center"><span class="font2">—</span></td>
         <td align="center"><span class="font6">256.00</span></td>
       </tr>
@@ -157,7 +157,7 @@
       </tr>
       <tr>
         <td colspan="7"><div class="empty"><a href="#">清空购物车</a></div>
-          <div class="post-btn"><a href="#"><img src="<?=config_item('static_url')?>/images/buy_bg_14.gif" alt="继续购物" width="115" height="32" /></a>&nbsp;&nbsp;<a href="#"><img src="<?=config_item('static_url')?>/images/buy_bg_16.gif" width="126" height="32" alt="去结算" /></a></div></td>
+          <div class="post-btn"><a href="#"><img src="<?=config_item('static_url')?>images/buy_bg_14.gif" alt="继续购物" width="115" height="32" /></a>&nbsp;&nbsp;<a href="#"><img src="<?=config_item('static_url')?>images/buy_bg_16.gif" width="126" height="32" alt="去结算" /></a></div></td>
       </tr>
     </table>
     <!---->
@@ -178,7 +178,7 @@
                       原价：￥<span class="font7"><?=fPrice($sv['market_price'])?></span><br/>
                       <span class="font6">特惠价：￥<?=fPrice($sv['sell_price'])?></span></p>
                     <a href="<?=productURL($sv['pid']);?>" title="<?=$sv['pname']?>" target="_blank">
-                        <img src="<?=config_item('static_url')?>/images/add-cart.gif" width="81" height="21" alt="放入购物车" />
+                        <img src="<?=config_item('static_url')?>images/add-cart.gif" width="81" height="21" alt="放入购物车" />
                     </a>
                     </li>
                   <?php endforeach;?>
@@ -205,7 +205,7 @@
                     <p><a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"><?=mb_substr($fv['pname'], 0, 18, 'utf-8')?></a><br/>
                       原价：￥<span class="font7"><?=fPrice($fv['market_price'])?></span><br/>
                       <span class="font6">特惠价：￥<?=fPrice($fv['sell_price'])?></span></p>
-                      <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"> <img src="<?=config_item('static_url')?>/images/add-cart.gif" width="81" height="21" alt="放入购物车" /> </a>
+                      <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname']?>" target="_blank"> <img src="<?=config_item('static_url')?>images/add-cart.gif" width="81" height="21" alt="放入购物车" /> </a>
                   </li>
                   <?php endforeach;?>
               </ul>
@@ -216,8 +216,8 @@
           -->
       </div>
   </div>
-  <div class="tips">您在购物过程中有任何疑问，请查阅 <a href="<?=config_item('static_url')?>/other/help/index/16" target="_blank"><span class="font8">帮助中心</span></a> 或
-      <a href="<?=config_item('static_url')?>/other/help/index/27" target="_blank"><span class="font8">联系客服</span></a></div>
+  <div class="tips">您在购物过程中有任何疑问，请查阅 <a href="<?=config_item('static_url')?>other/help/index/16" target="_blank"><span class="font8">帮助中心</span></a> 或
+      <a href="<?=config_item('static_url')?>other/help/index/27" target="_blank"><span class="font8">联系客服</span></a></div>
 </div>
 <!--<a href="javascript:cart.addToCart(4, 'S');">add to cart</a>-->
 <?php include APPPATH.'views/footer.php';?>

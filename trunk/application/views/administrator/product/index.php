@@ -87,9 +87,9 @@
                     <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
                     <td><?=empty ($item['stock']) ? '0' : $item['stock']?></td>
                     <td><a href="<?php echo site_url("administrator/product/edit/{$item['pid']}")?>"><img
-                        src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="Edit"/></a> <a
+                        src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a> <a
                         href="<?php echo site_url("administrator/product/del/{$item['pid']}")?>"><img
-                        src="<?=config_item('static_url')?>/images/icons/cross.png" alt="Delete"/></a>
+                        src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                     </td>
                 </tr>
                     <?php endforeach;?>

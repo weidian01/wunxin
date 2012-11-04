@@ -228,11 +228,44 @@ class Model_Order extends MY_Model
     /**
      * 系统取消订单，业务代码慎用
      *
-     * @param $orderSn
+     * @param array $where
+     * @return mixed
      */
-    public function cancelOrderBySystem($orderSn)
+    public function cancelOrderBySystem(array $where)
     {
-        return $this->db->where('order_sn', $orderSn)->update('order', array('status' => ORDER_INVALID, 'picking_status' => PICKING_NOT));
+        $this->db->where($where);
+        $this->db->where('is_pay !=', ORDER_PAY_SUCC);
+
+        $this->db->where('status', ORDER_NORMAL);
+        $this->db->or_where('status', ORDER_CONFIRM);
+
+        return $this->db->update('order', array('status' => ORDER_INVALID, 'picking_status' => PICKING_NOT));
+    }
+
+    /**
+     * 获取过期订单
+     *
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param null $where
+     * @param null $orderBy
+     * @return mixed
+     */
+    public function getExpiredOrder($limit = 20, $offset = 0, $field = '*', $where = null, $orderBy = null)
+    {
+        $this->db->select($field)->from('order');
+        $this->db->where('is_pay !=', ORDER_PAY_SUCC);
+
+        $this->db->where('status', ORDER_NORMAL);
+        $this->db->or_where('status', ORDER_CONFIRM);
+
+        $where && $this->db->where($where);
+
+        $orderBy && $this->db->order_by($orderBy);
+        $this->db->limit($limit, $offset);
+
+        return $this->db->get()->result_array();
     }
 
     /**

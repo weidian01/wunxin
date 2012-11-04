@@ -21,7 +21,7 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">收货地址管理<span style="float:right;text-align: right;"><a href="<?=config_item('static_url')?>/user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span></div>
+            <div class="u-r-tit">收货地址管理<span style="float:right;text-align: right;"><a href="<?=config_item('static_url')?>user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span></div>
         </div>
             <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
@@ -42,7 +42,7 @@
             <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">
                 <?php if (empty ($data)) { ?>
                 <tr>
-                    <td colspan="8"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">没有设置收货地址，点击 “ <a href="<?=config_item('static_url')?>/user/center/addRecentAddress"> 创建 </a> ”一个吧。</td>
+                    <td colspan="8"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">没有设置收货地址，点击 “ <a href="<?=config_item('static_url')?>user/center/addRecentAddress"> 创建 </a> ”一个吧。</td>
                 </tr>
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>

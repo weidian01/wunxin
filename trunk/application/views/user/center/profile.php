@@ -212,7 +212,7 @@ dt{font-weight: bold;color: #848484;}
                                 <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($uinfo['uid'])?>icon.jpg" alt="<?php echo $uinfo['uname'];?>" width="60" height="60"/>
                                 <!--<img src="http://static.yoho.cn/images/default_userhead_boy_100_100.png">-->
                                 <br>
-                                <a class="btn_ggtx" href="<?=config_item('static_url')?>/user/center/addUserHeader">
+                                <a class="btn_ggtx" href="<?=config_item('static_url')?>user/center/addUserHeader">
                                     <img src="<?=config_item('static_url')?>images/modify_header.png" alt="" title="更改头像">
                                 </a>
                             </div>

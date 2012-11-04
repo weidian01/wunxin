@@ -389,11 +389,12 @@ class order extends MY_Controller
     }
 
     /**
-     * 系统取消过期未支付的订单 -- 未解决订单默认状态的取消
+     * 系统取消过期未支付的订单
      */
     public function systemCancelOrder()
     {
         $this->load->model('order/Model_Order', 'order');
+        $this->load->model('product/model_product', 'product');
 
         $typeArray = array(PAY_ONLINE, PAY_CASHDELIVERY, PAY_POST, PAY_SELF, PAY_COMPANY);//支付类型,1 在线支付， 2 货到付款， 3 邮政汇款 ，4 来万象自提， 5 公司汇款
         foreach ($typeArray as $v) {
@@ -409,15 +410,35 @@ class order extends MY_Controller
             //获取超时订单
             $where = array(
                 'pay_type' => $v,
-                'is_pay !=' => ORDER_PAY_SUCC,
-                'picking_status' => PICKING_NOT,
-                'status' => ORDER_CONFIRM,
                 'create_time <=' => date('Y-m-d H:i:s', TIMESTAMP - $timeOut),
             );
-            $timeOutOrder = $this->order->getOrder(100, 0, '*', $where);
+
+            $timeOutOrder = $this->order->getExpiredOrder(100, 0, '*', $where);
 
             foreach ($timeOutOrder as $tov) {
-                $this->order->cancelOrderBySystem($tov['order_sn']);
+                $updateWhere = array(
+                    'pay_type' => $v,
+                    'order_sn' => $tov['order_sn'],
+                );
+
+                if (empty ($tov['order_sn'])) { continue; }
+
+                $cancelOrderStatus = $this->order->cancelOrderBySystem($updateWhere);
+
+                /*/更新产品库存
+                if ($cancelOrderStatus) {
+                    $orderProduct = $this->order->getOrderAllProductByOrderSn($tov['order_sn']);
+
+                    foreach ($orderProduct as $opv) {
+                        $pid = intval($opv['pid']);
+                        $pNum = intval($opv['product_num']);
+
+                        if (!$pid || !$pNum) { continue; }
+
+                        //$this->product->updateProductStock($pid, $pNum);
+                    }
+                }
+                //*/
             }
         }
     }
