@@ -36,7 +36,7 @@
         <div class="u-r-box">
             <div class="u-r-tit">系统建议与意见
                 <span style="float:right;text-align: right;">
-                    <a style="color: #8B8878;font-size: 12px;" href="<?=config_item('static_url')?>/user/center/mySystemProposal">我的建议与意见&nbsp;&nbsp;</a>
+                    <a style="color: #8B8878;font-size: 12px;" href="<?=config_item('static_url')?>user/center/mySystemProposal">我的建议与意见&nbsp;&nbsp;</a>
                 </span>
             </div>
         </div>

@@ -17,9 +17,9 @@
 <h2>添加推荐</h2>
 <!--<p id="page-intro">What would you like to do?</p>-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/recommend_home/recommendList"><span><br/> 推荐列表 </span></a>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/recommend_home/recommendList"><span><br/> 推荐列表 </span></a>
     </li>
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/recommend_home/recommendAdd"><span><br/> 添加推荐 </span></a>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/recommend_home/recommendAdd"><span><br/> 添加推荐 </span></a>
     </li>
 </ul>
 <!-- End .shortcut-buttons-set -->
@@ -80,7 +80,7 @@
     </form>
     <hr/>
     <br/>
-    <img src="<?=config_item('static_url')?>/images/recommend/broadcast.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/broadcast.png" alt="示例图"><b style="color: red;">示例图</b>
 
     <div class="clear"></div>
 </div>
@@ -114,7 +114,7 @@
             <input class="button" type="submit" value="Submit"/>
         </fieldset>
         <hr/>
-        <img src="<?=config_item('static_url')?>/images/recommend/day_recommend.png" alt="示例图"><b style="color: red;">示例图</b>
+        <img src="<?=config_item('static_url')?>images/recommend/day_recommend.png" alt="示例图"><b style="color: red;">示例图</b>
 
         <div class="clear"></div>
     </form>
@@ -136,7 +136,7 @@
         <input class="button" type="submit" value="Submit"/>
     </form>
     <hr/>
-    <img src="<?=config_item('static_url')?>/images/recommend/design.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/design.png" alt="示例图"><b style="color: red;">示例图</b>
 
     <div class="clear"></div>
 </div>
@@ -171,7 +171,7 @@
             <input class="button" type="submit" value="Submit"/>
         </fieldset>
         <hr/>
-        <img src="<?=config_item('static_url')?>/images/recommend/ad.png" alt="示例图"><b style="color: red;">示例图</b>
+        <img src="<?=config_item('static_url')?>images/recommend/ad.png" alt="示例图"><b style="color: red;">示例图</b>
 
         <div class="clear"></div>
     </form>
@@ -226,7 +226,7 @@
         <div class="clear"></div>
     </form>
     <hr/>
-    <img src="<?=config_item('static_url')?>/images/recommend/man.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/man.png" alt="示例图"><b style="color: red;">示例图</b>
     <br/> <b style="color: red;">Notes: 如果排放ID为1或4，只需要填写产品ID即可。</b>
 
     <div class="clear"></div>
@@ -285,7 +285,7 @@
     </form>
     <hr/>
     <br/>
-    <img src="<?=config_item('static_url')?>/images/recommend/woman.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/woman.png" alt="示例图"><b style="color: red;">示例图</b>
     <br/><b style="color: red;">Notes: 如果排放ID为5，只需要填写产品ID即可。</b> <br/>
 
     <div class="clear"></div>
@@ -339,7 +339,7 @@
     </form>
     <hr/>
     <br/>
-    <img src="<?=config_item('static_url')?>/images/recommend/lover.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/lover.png" alt="示例图"><b style="color: red;">示例图</b>
     <br/><b style="color: red;">Notes: 如果排放ID为2，只需要填写产品ID即可。</b> <br/>
 
     <div class="clear"></div>
@@ -398,7 +398,7 @@
     </form>
     <hr/>
     <br/>
-    <img src="<?=config_item('static_url')?>/images/recommend/family.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/family.png" alt="示例图"><b style="color: red;">示例图</b>
     <br/><b style="color: red;">Notes: 如果排放ID为8，只需要填写产品ID即可。</b> <br/>
 
     <div class="clear"></div>
@@ -425,7 +425,7 @@
     </form>
     <hr/>
     <br/>
-    <img src="<?=config_item('static_url')?>/images/recommend/designer.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/designer.png" alt="示例图"><b style="color: red;">示例图</b>
     <br/><b style="color: red;"><!--Notes: 如果排放ID为8，只需要填写产品ID即可。--></b> <br/>
 
     <div class="clear"></div>
@@ -452,7 +452,7 @@
     </form>
     <hr/>
     <br/>
-    <img src="<?=config_item('static_url')?>/images/recommend/search_keyword.png" alt="示例图"><b style="color: red;">示例图</b>
+    <img src="<?=config_item('static_url')?>images/recommend/search_keyword.png" alt="示例图"><b style="color: red;">示例图</b>
     <br/><b style="color: red;"><!--Notes: 如果排放ID为8，只需要填写产品ID即可。--></b> <br/>
 
     <div class="clear"></div>

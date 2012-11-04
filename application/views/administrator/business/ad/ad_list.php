@@ -14,10 +14,10 @@
     <h2>广告位置列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_ad_position/positionAdd"><span><br/> 添加广告位置 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_ad_position/positionList"><span><br/> 广告位置列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_ad/adAdd"><span><br/> 添加广告 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_ad/adList"><span><br/> 广告列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_ad_position/positionAdd"><span><br/> 添加广告位置 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_ad_position/positionList"><span><br/> 广告位置列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_ad/adAdd"><span><br/> 添加广告 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_ad/adList"><span><br/> 广告列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -92,8 +92,8 @@
                         <td><?php echo $v['end_time'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_ad/adEdit/<?php echo $v['ad_id'];?>" title="编辑广告"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑广告"/></a>
-                            <a href="<?=config_item('static_url')?>/administrator/business_ad/adDelete/<?php echo $v['ad_id'].'/'.$current_page;?>" title="删除广告"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除广告"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_ad/adEdit/<?php echo $v['ad_id'];?>" title="编辑广告"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑广告"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_ad/adDelete/<?php echo $v['ad_id'].'/'.$current_page;?>" title="删除广告"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除广告"/></a>
                         </td>
                     </tr>
                         <?php }?>

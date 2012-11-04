@@ -14,10 +14,10 @@
     <h2>促销产品列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -77,7 +77,7 @@
                         <td><input type="checkbox"/></td>
                         <td><?=$v['id'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$v['promotion_id'];?>">
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$v['promotion_id'];?>">
                                 <?=$promotion[$v['promotion_id']]['name'];?>
                             </a>
                         </td>
@@ -91,7 +91,7 @@
                         <td>￥<?=fPrice($v['sell_price']);?></td>
                         <td>￥<?=fPrice($v['promotion_price']);?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.( empty ($promotion_id) ? '0' : $promotion_id).'/'.$v['cid'];?>">
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.( empty ($promotion_id) ? '0' : $promotion_id).'/'.$v['cid'];?>">
                                 <?=$category[$v['cid']]['name'];?>
                             </a>
                         </td>
@@ -103,10 +103,10 @@
                         <td><?=$v['sort'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion_product/edit/<?php echo $v['id'];?>" title="编辑">
-                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑"></a>
-                            <a href="<?=config_item('static_url')?>/administrator/business_promotion_product/delete/<?php echo $v['id'];?>" title="删除">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/edit/<?php echo $v['id'];?>" title="编辑">
+                                <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/delete/<?php echo $v['id'];?>" title="删除">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a>
                         </td>
                     </tr>
                         <?php }?>

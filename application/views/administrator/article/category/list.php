@@ -17,10 +17,10 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article/articleList"><span><br/> 文章列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article_category/categoryAdd"><span><br/> 添加分类 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/article_category/categoryList"><span><br/> 分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article/articleList"><span><br/> 文章列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article_category/categoryAdd"><span><br/> 添加分类 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article_category/categoryList"><span><br/> 分类列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -78,10 +78,10 @@
                         <td><?php echo $v['path'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/article_category/categoryEdit/<?php echo $v['cid'];?>" title="编辑文章分类">
-                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑文章分类"/></a>
-                            <a href="<?=config_item('static_url')?>/administrator/article_category/categoryDelete/<?php echo $v['cid'];?>" title="删除文章分类">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除文章分类"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/article_category/categoryEdit/<?php echo $v['cid'];?>" title="编辑文章分类">
+                                <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑文章分类"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/article_category/categoryDelete/<?php echo $v['cid'];?>" title="删除文章分类">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除文章分类"/></a>
                         </td>
                     </tr>
                         <?php }?>

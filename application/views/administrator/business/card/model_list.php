@@ -14,10 +14,10 @@
     <h2>卡模型列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card_model/cardModelAdd"><span><br/> 添加卡模型 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card_model/cardModelList"><span><br/> 卡模型列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card/cardAdd"><span><br/> 添加卡 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_card/cardList"><span><br/> 卡列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardModelAdd"><span><br/> 添加卡模型 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardModelList"><span><br/> 卡模型列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card/cardAdd"><span><br/> 添加卡 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card/cardList"><span><br/> 卡列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -73,8 +73,8 @@
                         <td><?php echo $v['card_num'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_card_model/cardModelEdit/<?php echo $v['model_id'];?>" title="编辑卡模型"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑卡模型"/></a>
-                            <a href="<?=config_item('static_url')?>/administrator/business_card_model/cardModelDelete/<?php echo $v['model_id'].'/'.$current_page;?>" title="删除卡模型"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除卡模型"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelEdit/<?php echo $v['model_id'];?>" title="编辑卡模型"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑卡模型"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelDelete/<?php echo $v['model_id'].'/'.$current_page;?>" title="删除卡模型"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除卡模型"/></a>
                         </td>
                     </tr>
                         <?php }?>

@@ -17,11 +17,11 @@
     操作流程 : 1.确认已支付订单; 2.拆分订单; 3.配货; 4.完成配货; 5.发货;
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order/orderList"><span> 订单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order/orderList"><span> 订单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear">
@@ -171,12 +171,12 @@
                             <?php endif;?>
                             </td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单">
-                                <img src="<?=config_item('static_url')?>/images/icons/view.png" alt="查看订单"/></a>
-                            <!--<a href="<?=config_item('static_url')?>/administrator/order/orderEdit/<?php echo $v['order_sn'];?>" title="编辑订单"> <img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
+                            <a href="<?=config_item('static_url')?>administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单">
+                                <img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"/></a>
+                            <!--<a href="<?=config_item('static_url')?>administrator/order/orderEdit/<?php echo $v['order_sn'];?>" title="编辑订单"> <img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
 
-                            <!--&nbsp;<a href="<?=config_item('static_url')?>/administrator/order/orderDelete/<?php echo $v['order_sn'];?>" title="删除订单"> <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除订单"/></a>-->
-                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>/images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
+                            <!--&nbsp;<a href="<?=config_item('static_url')?>administrator/order/orderDelete/<?php echo $v['order_sn'];?>" title="删除订单"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除订单"/></a>-->
+                            <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>
                         <?php }?>

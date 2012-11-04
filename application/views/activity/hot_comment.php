@@ -80,7 +80,7 @@
 
 <div class="globals" style="background-color:#F2F0F0;">
     <div class="box3" style="width: 980px;">
-        <img alt="Kai Cui" src="<?=config_item('static_url')?>/images/hot_comment_ads.jpg" width="980" height="100" style="margin-top: 5px;"/>
+        <img alt="Kai Cui" src="<?=config_item('static_url')?>images/hot_comment_ads.jpg" width="980" height="100" style="margin-top: 5px;"/>
     </div>
 
 <div style="width: 990px;" class="box" id="contents">
@@ -97,7 +97,7 @@
 <!--
 
 <div class="pages">
-<a href="<?=config_item('static_url')?>/comment/hot?offset=10">下一页</a>
+<a href="<?=config_item('static_url')?>comment/hot?offset=10">下一页</a>
    </div>
 </div>
 -->
@@ -106,7 +106,7 @@
 <div id="infscr-loadings"></div>
 
 <nav id="page-nav">
-    <a href="<?=config_item('static_url')?>/activity/activity/hot_comment?offset=2&callback=?"></a>
+    <a href="<?=config_item('static_url')?>activity/activity/hot_comment?offset=2&callback=?"></a>
     <!--<a href="2.html"></a>-->
 </nav>
 <?php include(APPPATH."views/footer.php");?>

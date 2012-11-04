@@ -88,10 +88,10 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 
     <div class="linksLogo">
         <ul style=" margin-bottom: -3px; margin-top: 5px; padding-left: 5px; padding-right: 3px;">
-            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>/images/nolinkimage.jpg" style="display: inline-block; "></a></li>
-            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>/images/nolinkimage.jpg" style="display: inline-block; "></a></li>
-            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>/images/nolinkimage.jpg" style="display: inline-block; "></a></li>
-            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>/images/nolinkimage.jpg" style="display: inline-block; "></a></li>
+            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>images/nolinkimage.jpg" style="display: inline-block; "></a></li>
+            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>images/nolinkimage.jpg" style="display: inline-block; "></a></li>
+            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>images/nolinkimage.jpg" style="display: inline-block; "></a></li>
+            <li><a href="#"><img width="110" height="40" src="<?=config_item('static_url')?>images/nolinkimage.jpg" style="display: inline-block; "></a></li>
         </ul>
     </div>
 </div>
@@ -146,7 +146,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
                 <div class="linksShuru">
                     <input id="input_validatecode" name="verify_code" type="text" style="width:128px;">
                     <br/>
-                    <img id="verify_code" src="<?=config_item('static_url')?>/user/register/verifyCode" border="0" alt="点击刷新验证码" title="点击刷新验证码" onclick="user.refreshVerifyCode()">
+                    <img id="verify_code" src="<?=config_item('static_url')?>user/register/verifyCode" border="0" alt="点击刷新验证码" title="点击刷新验证码" onclick="user.refreshVerifyCode()">
                     <span class="FSVerification" style="cursor: pointer;"> 看不清？
                         <a href="javascript:void(0);" style="color: #A00002;" onclick="user.refreshVerifyCode()">换一张</a>
                     </span>

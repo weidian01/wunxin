@@ -44,7 +44,7 @@
                 <?php if (empty ($data)) {?>
                 <tr>
                     <td colspan="7"  style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时还没有提供建议与意见，
-                        去“<a href="<?=config_item('static_url')?>/user/center/systemProposal">提点建议</a>”吧。</td>
+                        去“<a href="<?=config_item('static_url')?>user/center/systemProposal">提点建议</a>”吧。</td>
                 </tr>
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>

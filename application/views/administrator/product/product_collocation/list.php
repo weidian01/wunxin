@@ -82,9 +82,9 @@
                         <td><?php echo $v['create_time'];?></td>
                         <td>
                             <a href="<?=config_item('static_url')?>administrator/product_collocation/pcEdit/<?php echo $v['id'];?>" title="编辑产品搭配">
-                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑产品搭配"/></a>
+                                <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑产品搭配"/></a>
                             <a href="<?=config_item('static_url')?>administrator/product_collocation/pcDelete/<?php echo $v['id'].'/'.(isset ($current_page) ? $current_page : '');?>" title="删除产品搭配">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除产品搭配"/></a>
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除产品搭配"/></a>
                         </td>
                     </tr>
                         <?php }?>

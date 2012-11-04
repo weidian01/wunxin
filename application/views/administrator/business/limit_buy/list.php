@@ -14,10 +14,10 @@
     <h2>限时抢购列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/create"><span><br/> 添加限时抢购 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/lists"><span><br/> 限时抢购列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/c_list"><span><br/> 限时抢购<br/>分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_limit_buy/c_create"><span><br/> 限时抢购<br/>分类添加 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_limit_buy/create"><span><br/> 添加限时抢购 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_limit_buy/lists"><span><br/> 限时抢购列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_limit_buy/c_list"><span><br/> 限时抢购<br/>分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_limit_buy/c_create"><span><br/> 限时抢购<br/>分类添加 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -103,8 +103,8 @@
                         <td><?php echo $v['end_time'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_limit_buy/edit/<?php echo $v['id'];?>" title="编辑"><img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑"></a>
-                            <a href="<?=config_item('static_url')?>/administrator/business_limit_buy/del/<?php echo $v['id'];?>" title="删除"><img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_limit_buy/edit/<?php echo $v['id'];?>" title="编辑"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_limit_buy/del/<?php echo $v['id'];?>" title="删除"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a>
                         </td>
                     </tr>
                         <?php }?>

@@ -12,11 +12,11 @@
     <!-- Page Head -->
     <h2><?php echo ($type == 'edit') ? '编辑设计图' : '添加设计图'; ?></h2>
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/addDesign"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design/designList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/create"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_category/index"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/design_comment/commentList"><span> <!--<img src="<?=config_item('static_url')?>/images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/design/addDesign"><span> <!--<img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/design/designList"><span> <!--<img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/design_category/create"><span> <!--<img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图分类 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/design_category/index"><span> <!--<img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图分类列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/design_comment/commentList"><span> <!--<img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图评论列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>

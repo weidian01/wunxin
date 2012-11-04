@@ -44,7 +44,7 @@ $(document).ready(function(){
       <div class="menu">
         <ul>
             <?php foreach($clan as $item):?>
-            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']);?><a href="<?=config_item('static_url')?>/category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
+            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']);?><a href="<?=config_item('static_url')?>category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
         </ul>
       </div>
@@ -112,10 +112,10 @@ $(document).ready(function(){
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a val="" class="ordby_default <?php if(!$sort):?>cur<?php endif;?>" href="<?=config_item('static_url')?>/search?keyword=<?=$keyword?>">默认</a>
-              <a val="pr" class="ordby_pr <?php if($sort=='price'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>/search?keyword=<?=$keyword?>&sort=price&by=<?php if($sort=='price' && $by !=='ASC'):?>ASC<?php endif;?>">价格</a>
-              <a val="sale" class="ordby_sale <?php if($sort=='sales'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>/search?keyword=<?=$keyword?>&sort=sales&by=<?php if($sort=='sales' && $by !=='ASC'):?>ASC<?php endif;?>">销量</a>
-              <a val="new" class="ordby_new <?php if($sort=='new'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>/search?keyword=<?=$keyword?>&sort=new&by=<?php if($sort=='new' && $by !=='ASC'):?>ASC<?php endif;?>">最新</a>
+              <a val="" class="ordby_default <?php if(!$sort):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>">默认</a>
+              <a val="pr" class="ordby_pr <?php if($sort=='price'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>&sort=price&by=<?php if($sort=='price' && $by !=='ASC'):?>ASC<?php endif;?>">价格</a>
+              <a val="sale" class="ordby_sale <?php if($sort=='sales'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>&sort=sales&by=<?php if($sort=='sales' && $by !=='ASC'):?>ASC<?php endif;?>">销量</a>
+              <a val="new" class="ordby_new <?php if($sort=='new'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>&sort=new&by=<?php if($sort=='new' && $by !=='ASC'):?>ASC<?php endif;?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
               <!--a class="disabled" href="javascript:void(0)">上一页</a> <a href="javascript:jumppage(2)">下一页</a-->

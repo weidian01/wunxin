@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
         }
-        .link-btn, .clear-tit, .clear-icon, .clear-tab a.tab-in{background:url('/images/clear-bg.png') no-repeat -9999em 0}
+        .link-btn, .clear-tit, .clear-icon, .clear-tab a.tab-in{background:url('<?=config_item('static_url')?>images/clear-bg.png') no-repeat -9999em 0}
         a { color: #666666; text-decoration: none; }
         img { vertical-align: top; }
         fieldset, img { border: 0 none; }
@@ -34,7 +34,7 @@
         .olist li a { display: block; line-height: 0; outline: medium none; }
         .pic-goods { position: relative; z-index: 1; }
         .pic-goods { border: 1px solid #CDCECE; height: 215px; overflow: hidden; width: 186px; }
-        .pic-goods, .pic-old-goods, .o-big-pic, .obox-slide ol li { background: url("/images/loading.gif") no-repeat scroll center center transparent; }
+        .pic-goods, .pic-old-goods, .o-big-pic, .obox-slide ol li { background: url("<?=config_item('static_url')?>images/loading.gif") no-repeat scroll center center transparent; }
         .pic-goods img { margin: -1px 0 0 -1px; }
         .clear-icon { background-position: -200px 0; bottom: 2px; color: #FFFFFF; display: block; font-family: "宋体"; font-weight: bold; height: 27px; line-height: 14px; padding-top: 23px; position: absolute; right: 2px; text-align: center; width: 38px;}
         .olist li p.olist-name { height: 24px; overflow: hidden; width: 186px; }
@@ -76,7 +76,7 @@
 				case '4': $fileName = 'salearea';break;
 				default:$fileName = 'hightarea';
 			}?>
-            <div style="width: 980px"><img width="980" height="38" border="0" src="<?=config_item('static_url')?>/images/<?=$fileName;?>.jpg" alt=""></div>
+            <div style="width: 980px"><img width="980" height="38" border="0" src="<?=config_item('static_url')?>images/<?=$fileName;?>.jpg" alt=""></div>
             <div id="m" class="olist">
                 <ul>
                     <?php $i = 1;foreach ($v['item'] as $ik=>$iv) { ?>

@@ -32,9 +32,9 @@
             <div class="scj">
                 <div class="main">
                     <div class="tab">
-                        <a href="<?=config_item('static_url')?>/user/center/productComment">产品评论</a>
-                        <a href="<?=config_item('static_url')?>/user/center/designComment">设计图评论</a>
-                        <a href="<?=config_item('static_url')?>/user/center/designerComment" class="act">设计师留言</a>
+                        <a href="<?=config_item('static_url')?>user/center/productComment">产品评论</a>
+                        <a href="<?=config_item('static_url')?>user/center/designComment">设计图评论</a>
+                        <a href="<?=config_item('static_url')?>user/center/designerComment" class="act">设计师留言</a>
                     </div>
                     <div id="itemList">
                         <div class="list-m">

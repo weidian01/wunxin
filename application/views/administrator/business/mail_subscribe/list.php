@@ -14,8 +14,8 @@
     <h2>邮件订阅列表</h2>
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_mail_subscribe/mailSubscribeAdd"><span><br/> 添加邮件订阅 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/business_mail_subscribe/mailSubscribeList"><span><br/> 邮件订阅列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeAdd"><span><br/> 添加邮件订阅 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeList"><span><br/> 邮件订阅列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -71,10 +71,10 @@
 						};echo $s;?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/business_mail_subscribe/mailSubscribeEdit/<?php echo $v['id'].'/'.$current_page;?>" title="修改邮件订阅">
-                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="修改邮件订阅"></a>
-                            <a href="<?=config_item('static_url')?>/administrator/business_mail_subscribe/mailSubscribeDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除邮件订阅">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除邮件订阅"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeEdit/<?php echo $v['id'].'/'.$current_page;?>" title="修改邮件订阅">
+                                <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改邮件订阅"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除邮件订阅">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除邮件订阅"></a>
                         </td>
                     </tr>
                         <?php }?>

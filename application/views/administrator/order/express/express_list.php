@@ -17,11 +17,11 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order/orderList"><span> 订单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order/orderList"><span> 订单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -78,10 +78,10 @@
                         <td><?php echo $v['sort'];?></td>
                         <td><?php echo $v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>/administrator/order_express/editExpressCompany/<?php echo $v['ed_id'];?>" title="编辑快递公司">
-                                <img src="<?=config_item('static_url')?>/images/icons/pencil.png" alt="编辑快递公司"/></a>
-                            <a href="<?=config_item('static_url')?>/administrator/order_express/deleteExpressCompany/<?php echo $v['ed_id'];?>" title="删除快递公司">
-                                <img src="<?=config_item('static_url')?>/images/icons/cross.png" alt="删除快递公司"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/order_express/editExpressCompany/<?php echo $v['ed_id'];?>" title="编辑快递公司">
+                                <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑快递公司"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/order_express/deleteExpressCompany/<?php echo $v['ed_id'];?>" title="删除快递公司">
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除快递公司"/></a>
                         </td>
                     </tr>
                         <?php }?>

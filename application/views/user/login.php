@@ -59,7 +59,7 @@
                         <td colspan="2">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                    <td width="38%"><img src="<?=config_item('static_url')?>/images/rg_12.gif" width="146" height="53"/></td>
+                                    <td width="38%"><img src="<?=config_item('static_url')?>images/rg_12.gif" width="146" height="53"/></td>
                                     <td width="62%">看不清楚？<a href="#">换一张</a></td>
                                 </tr>
                             </table>
@@ -86,7 +86,7 @@
                                 <tr>
                                     <td width="35%">
                                         <a href="javascript:void(0);" onclick="user.submitLoginForm()">
-                                            <img src="<?=config_item('static_url')?>/images/login.jpg" width="133" height="32" alt="登录"/>
+                                            <img src="<?=config_item('static_url')?>images/login.jpg" width="133" height="32" alt="登录"/>
                                         </a>
                                     </td>
                                     <td width="65%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">找回密码</a></td>
@@ -118,8 +118,8 @@
                 注册后您的个人信息可以永久保存，下次购物后不需要再次输入相同的信息</p>
 
             <div class="turn-to-regist">
-                <a href="<?=config_item('static_url')?>/user/register" title="免费注册用户">
-                    <img src="<?=config_item('static_url')?>/images/register.jpg" width="173" height="32" alt="注册"/>
+                <a href="<?=config_item('static_url')?>user/register" title="免费注册用户">
+                    <img src="<?=config_item('static_url')?>images/register.jpg" width="173" height="32" alt="注册"/>
                 </a>
             </div>
             <div class="tip3">注册只需花费您10秒钟哦</div>

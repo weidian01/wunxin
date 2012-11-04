@@ -86,29 +86,29 @@
                             <div class="pic_list">
                                 <ul>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar1.jpg" class="" title="1"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar1.jpg" class="" title="1"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar2.jpg" class="" title="2"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar2.jpg" class="" title="2"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar3.jpg" class="" title="3"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar3.jpg" class="" title="3"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar4.jpg" class="" title="4"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar4.jpg" class="" title="4"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar5.jpg" class="" title="5"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar5.jpg" class="" title="5"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar6.jpg" class="" title="6"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar6.jpg" class="" title="6"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar7.jpg" class="" title="7"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar7.jpg" class="" title="7"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar8.jpg" class="" title="8"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar8.jpg" class="" title="8"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar9.jpg" class="" title="9"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar9.jpg" class="" title="9"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar10.jpg" class="" title="10"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar10.jpg" class="" title="10"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar11.jpg" class="" title="11"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar11.jpg" class="" title="11"></a></li>
                                     <li><a>
-                                        <img width="60" height="60" src="<?=config_item('static_url')?>/images/avatar/avatar12.jpg" class="" title="12"></a></li>
+                                        <img width="60" height="60" src="<?=config_item('static_url')?>images/avatar/avatar12.jpg" class="" title="12"></a></li>
                                 </ul>
                             </div>
 

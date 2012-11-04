@@ -4,12 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>我的收藏夹 -- 个人中心</title>
-    <link href="<?=config_item('static_url')?>/css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="<?=config_item('static_url')?>/css/user.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
-    <script type=text/javascript src="<?=config_item('static_url')?>/scripts/jquery.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="<?=config_item('static_url')?>/scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -31,9 +31,9 @@
             <div class="scj">
                 <div class="main">
                     <div class="tab">
-                        <a href="<?=config_item('static_url')?>/user/center/productFavorite" class="act">收藏的产品</a>
-                        <a href="<?=config_item('static_url')?>/user/center/designerFavorite">收藏的设计师</a>
-                        <a href="<?=config_item('static_url')?>/user/center/designFavorite">收藏的设计图</a>
+                        <a href="<?=config_item('static_url')?>user/center/productFavorite" class="act">收藏的产品</a>
+                        <a href="<?=config_item('static_url')?>user/center/designerFavorite">收藏的设计师</a>
+                        <a href="<?=config_item('static_url')?>user/center/designFavorite">收藏的设计图</a>
                     </div>
                     <div id="itemList">
                         <div class="list-m">
@@ -137,7 +137,7 @@
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/product.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>

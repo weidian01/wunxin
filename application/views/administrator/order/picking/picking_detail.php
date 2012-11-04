@@ -17,16 +17,16 @@
 
     <!-- <p id="page-intro">What would you like to do?</p> -->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order/orderList"><span> 订单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
-        <li><a class="shortcut-button" href="<?=config_item('static_url')?>/administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order/orderList"><span> 订单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_picking/pickingList"><span> 配货单列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_express/addExpressCompany"><span> 添加快递公司 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_express/expressList"><span> 快递公司列表 </span></a></li>
         <!--
-        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
-        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>/images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
-        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="<?=config_item('static_url')?>/images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>images/icons/paper_content_pencil_48.png" alt="icon"/><br/> Create a New Page </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>images/icons/image_add_48.png" alt="icon"/><br/> Upload an Image </span></a></li>
+        <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>images/icons/clock_48.png" alt="icon"/><br/> Add an Event </span></a></li>
+        <li><a class="shortcut-button" href="#messages" rel="modal"><span> <img src="<?=config_item('static_url')?>images/icons/comment_48.png" alt="icon"/><br/> Open Modal </span></a></li>
         -->
     </ul>
     <div class="clear"> </div>
@@ -73,7 +73,7 @@
                         <td><input type="checkbox"/></td>
                         <td><?php echo $data['picking_id'];?></td>
                         <td><a
-                            href="<?=config_item('static_url')?>/administrator/order_picking/orderPickingList/<?php echo $data['order_sn'];?>"><?php echo $data['order_sn'];?></a>
+                            href="<?=config_item('static_url')?>administrator/order_picking/orderPickingList/<?php echo $data['order_sn'];?>"><?php echo $data['order_sn'];?></a>
                         </td>
                         <td><?php echo $data['ed_id'];?></td>
                         <td><?php echo $data['address_id'];?></td>

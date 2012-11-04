@@ -6,7 +6,7 @@
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
     <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
-<!--<SCRIPT type=text/javascript src="<?=config_item('static_url')?>/scripts/comm.js"></SCRIPT>-->
+<!--<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/comm.js"></SCRIPT>-->
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
@@ -263,7 +263,7 @@ $(document).ready(function(){
                           原价：￥<span class="font7"><?php echo fPrice($rv['market_price']);?></span><br/>
                           <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span></p>
                       <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
-                          <img src="<?=config_item('static_url')?>/images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
+                          <img src="<?=config_item('static_url')?>images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
                       </a>
                   </li>
                   <?php }?>
