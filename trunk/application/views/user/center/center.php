@@ -91,11 +91,11 @@
                     <td width="10%" align="center">￥<?=fPrice($v['after_discount_price']);?><br/>
                         <?php
                         switch($v['pay_type']) {
-                            case '1': $pt = '线上支付'; break;
-                            case '2': $pt = '货到付款'; break;
-                            case '3': $pt = '邮局汇款'; break;
-                            case '4': $pt = '来万象自提'; break;
-                            case '5': $pt = '公司转账'; break;
+                            case PAY_ONLINE: $pt = '线上支付'; break;
+                            case PAY_CASHDELIVERY: $pt = '货到付款'; break;
+                            case PAY_POST: $pt = '邮局汇款'; break;
+                            case PAY_SELF: $pt = '来万象自提'; break;
+                            case PAY_COMPANY: $pt = '公司转账'; break;
                             default: $pt = '线上支付'; break;
                         };
                         echo $pt;
@@ -103,25 +103,24 @@
                     </td>
                     <td width="12%" align="left"><?php
                     switch($v['status']) {
-                        case '0': $st = '订单已取消'; break;
-                        case '1': $st = '订单正常'; break;
-                        case '2': $st = '订单已确认'; break;
+                        case ORDER_INVALID: $st = '订单已取消'; break;
+                        case ORDER_NORMAL: $st = '订单正常'; break;
+                        case ORDER_CONFIRM: $st = '订单已确认'; break;
                         default: $st = '订单正常'; break;
                     }
 
                     switch($v['is_pay']) {
-                        case '0': $pt = '等待付款'; break;
-                        case '1': $pt = '付款成功'; break;
-                        case '2': $pt = '付款失败'; break;
-                        case '3': $pt = '等待付款'; break;
+                        case ORDER_PAY_INIT: $pt = '等待付款'; break;
+                        case ORDER_PAY_SUCC: $pt = '付款成功'; break;
+                        case ORDER_PAY_FAIL: $pt = '付款失败'; break;
+                        case ORDER_PAY_DEFECT: $pt = '等待付款'; break;
                         default: $pt = '等待付款'; break;
                     }
 
-
                     switch($v['picking_status']) {
-                        case '0': $pst = '未配货'; break;
-                        case '1': $pst = '配货中'; break;
-                        case '2': $pst = '配货完成'; break;
+                        case PICKING_NOT: $pst = '未配货'; break;
+                        case PICKING_CONDUCT: $pst = '配货中'; break;
+                        case PICKING_COMPLETED: $pst = '配货完成'; break;
                         default: $pst = '未配货'; break;
                     }
                         echo '1. <a href="javascript:void(0);" title="订单状态:'.$st.'">'.$st.'</a><br>';
@@ -144,8 +143,12 @@
                         &nbsp;&nbsp;<a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品">
                         </a><br/>
-                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品"></a>
-                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>"><img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货"></a>
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>">
+                            <img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品">
+                        </a>&nbsp;&nbsp;
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>">
+                            <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货">
+                        </a>
                         <?php }?>
                         <!--<div class="gobuy"><a href="#"></a></div>-->
                     </td>

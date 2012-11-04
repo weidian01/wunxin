@@ -123,12 +123,12 @@
                         <div class="dd-jd"> <div class="dd-jd-box">
                             <div style="width:<?php echo $statusNumber; ?>%;" class="dd-jd-over"></div>
                           </div>
-                          <dl class="li-1 <?php echo ($order_data['status'] == '0') ? '' : 'act';?>">
+                          <dl class="li-1 <?php echo ($order_data['status'] == ORDER_INVALID) ? '' : 'act';?>">
                               <?php
-                              $payStatus = ($order_data['is_pay'] == '1') ? 'act' : '';
-                              $pickingStatus = ($order_data['picking_status'] == '2') ? 'act' : '';
+                              $payStatus = ($order_data['is_pay'] == ORDER_PAY_SUCC) ? 'act' : '';
+                              $pickingStatus = ($order_data['picking_status'] == PICKING_COMPLETED) ? 'act' : '';
 
-                                if ($order_data['status'] == '0') {
+                                if ($order_data['status'] == ORDER_INVALID) {
                                     $payStatus = '';
                                     $pickingStatus = '';
                                 }
@@ -167,11 +167,11 @@
                             支付类型：
                             <?php
                             switch ($order_data['pay_type']) {
-                                case '1': $ptt = '线上支付'; break;
-                                case '2': $ptt = '货到付款'; break;
-                                case '3': $ptt = '邮局汇款'; break;
-                                case '4': $ptt = '来万象自提'; break;
-                                case '5': $ptt = '公司转账'; break;
+                                case PAY_ONLINE: $ptt = '线上支付'; break;
+                                case PAY_CASHDELIVERY: $ptt = '货到付款'; break;
+                                case PAY_POST: $ptt = '邮局汇款'; break;
+                                case PAY_SELF: $ptt = '来万象自提'; break;
+                                case PAY_COMPANY: $ptt = '公司转账'; break;
                                 default :$ptt = '线上支付';
                             }
                             echo $ptt;?>
@@ -179,10 +179,10 @@
                             送货上门时间：
                             <?php
                             switch ($order_data['delivert_time']) {
-                                case '1': $dtt = '工作日、双休日和节假日均送货'; break;
-                                case '2': $dtt = ' 只双休日、节假日送货（工作时间不送货）'; break;
-                                case '3': $dtt = '只工作日送货（双休日、节假日不送）'; break;
-                                case '4': $dtt = '学校地址，白天没人'; break;
+                                case DELIVERT_TIME_ANY: $dtt = '工作日、双休日和节假日均送货'; break;
+                                case DELIVERT_TIME_HOLIDAY: $dtt = ' 只双休日、节假日送货（工作时间不送货）'; break;
+                                case DELIVERT_TIME_WORK: $dtt = '只工作日送货（双休日、节假日不送）'; break;
+                                case DELIVERT_TIME_SCHOOL: $dtt = '学校地址，白天没人'; break;
                                 default :$dtt = '工作日、双休日和节假日均送货';
                             }
                             echo $dtt;?>
@@ -258,14 +258,14 @@
                         </div>
                     </div>
                     <div class="submit">
-                        <?php if ($order_data['status'] == '0') {?>
+                        <?php if ($order_data['status'] == ORDER_INVALID) {?>
                             <span class="stat_cancel" style="font-weight: bold;">订单已取消</span>
                         <?php } else {?>
-                            <?php if ($order_data['status'] != '2' && $order_data['is_pay'] != '1' && $order_data['picking_status'] == '0') {?>
+                            <?php if ($order_data['status'] != ORDER_CONFIRM && $order_data['is_pay'] != ORDER_PAY_SUCC && $order_data['picking_status'] == PICKING_NOT) {?>
                             <a class="btn_bb3" onclick="order.cancelOrder(<?php echo $order_data['order_sn']?>)" href="javascript:void(0);" style="color: #ffffff;font-weight: bold;">取消订单</a>
                             <?php }?>
 
-                            <?php if ($order_data['status'] == '2' && $order_data['is_pay'] != '1') {?>
+                            <?php if ($order_data['status'] != ORDER_INVALID && $order_data['is_pay'] != ORDER_PAY_SUCC) {?>
                             <a class="btn_bb2" href="<?=config_item('static_url')?>order/order/success/<?php echo $order_data['order_sn']?>" style="color: #ffffff;font-weight: bold;">立即付款</a>
                             <?php }?>
                         <?php }?>
