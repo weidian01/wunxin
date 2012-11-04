@@ -23,19 +23,19 @@
         .table3 .end{border-right:0px;}
 
         /*订单详情*/
-        .ddxq{width:800px;height:auto;background:url(/images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
-        .ddxq .main{width:798px;padding:0px 1px 1px 1px;background:url(/images/k_r_b.png) no-repeat bottom;float:left;}
-        .ddxq .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(/images/k_r_tg2.png) no-repeat top;float:left;}
-        .ddxq .title h2{width:175px;height:15px;background:url(/images/z_ddxq.png) no-repeat; text-indent:-999em;float:left;}
-        .ddxq .main h2{clear:both;height:21px;line-height:21px;padding-left:23px;background:url(/images/ico_arrow2.png) no-repeat 5px 5px #efefef;border:1px #e6e6e6 solid;
+        .ddxq{width:800px;height:auto;background:url(<?=config_item('static_url')?>images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
+        .ddxq .main{width:798px;padding:0px 1px 1px 1px;background:url(<?=config_item('static_url')?>images/k_r_b.png) no-repeat bottom;float:left;}
+        .ddxq .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(<?=config_item('static_url')?>images/k_r_tg2.png) no-repeat top;float:left;}
+        .ddxq .title h2{width:175px;height:15px;background:url(<?=config_item('static_url')?>images/z_ddxq.png) no-repeat; text-indent:-999em;float:left;}
+        .ddxq .main h2{clear:both;height:21px;line-height:21px;padding-left:23px;background:url(<?=config_item('static_url')?>images/ico_arrow2.png) no-repeat 5px 5px #efefef;border:1px #e6e6e6 solid;
             font-size:12px;color:#333;font-weight:normal;}
         .ddxq .main .box{padding:10px 20px 20px 20px;}
         .ddxq .main .stat{padding:10px;background:#F8F8F8;border-bottom:1px #e6e6e6 solid;}
         .ddxq .main .stat p{margin:5px 0px;}
         .ddxq .main .info{padding:10px ;}
         .ddxq .main .dd-jd{clear:both;width:552px;height:70px;padding-top:20px;margin:0 auto; position:relative;}
-        .ddxq .main .dd-jd-box{width:552px;height:12px;overflow:hidden;background:url(/images/dd_jd.png) no-repeat 0px 0px;overflow:hidden;}
-        .ddxq .main .dd-jd-over{width:552px;height:12px;background:url(/images/dd_jd.png) no-repeat 0px -12px;}
+        .ddxq .main .dd-jd-box{width:552px;height:12px;overflow:hidden;background:url(<?=config_item('static_url')?>images/dd_jd.png) no-repeat 0px 0px;overflow:hidden;}
+        .ddxq .main .dd-jd-over{width:552px;height:12px;background:url(<?=config_item('static_url')?>images/dd_jd.png) no-repeat 0px -12px;}
         .ddxq .main .dd-jd dl{width:150px;color:#999;line-height:15px;position:absolute;top:38px;}
         .ddxq .main .dd-jd dd{padding-left:12px;font-size:10px;}
         .ddxq .main .dd-jd .li-1{left:-20px;}
@@ -45,10 +45,10 @@
         .ddxq .main .dd-jd .old dt{color:#e9034e;}
         .ddxq .main .dd-jd .act dt{color:#e9034e;font-weight:bold;}
         .ddxq .main .submit{text-align:right;padding:0px 20px 20px 20px;}
-        .stat_cancel { background: url("/images/ico_cancel.png") no-repeat scroll 0 0 transparent; display: inline-block; height: 22px; line-height: 22px; margin: 5px 0; padding-left: 25px;}
-        .btn_bb3 { background: url("/images/btn_pics_b.png") no-repeat scroll 0 -60px transparent; border: 0 none; color: #666666; cursor: pointer; display: inline-block;
+        .stat_cancel { background: url("<?=config_item('static_url')?>images/ico_cancel.png") no-repeat scroll 0 0 transparent; display: inline-block; height: 22px; line-height: 22px; margin: 5px 0; padding-left: 25px;}
+        .btn_bb3 { background: url("<?=config_item('static_url')?>images/btn_pics_b.png") no-repeat scroll 0 -60px transparent; border: 0 none; color: #666666; cursor: pointer; display: inline-block;
             font-size: 14px; height: 30px; line-height: 30px; text-align: center; width: 92px;}
-        .btn_bb2 { background: url("/images/btn_pics_b.png") no-repeat scroll 0 -30px transparent;border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block;
+        .btn_bb2 { background: url("<?=config_item('static_url')?>images/btn_pics_b.png") no-repeat scroll 0 -30px transparent;border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block;
             font-size: 14px; height: 30px; line-height: 30px; text-align: center; width: 92px;}
 
     </style>
@@ -195,7 +195,7 @@
                                 <tr>
                                     <th align="center">商品信息</th>
                                     <th width="90" align="center">单价（元）</th>
-                                    <th width="100" align="center"> 赠送积分<!--<a title="什么是YOHO币" target="_blank" href="#"> <img src="http://static.yohobuy.com/images/ico_help_3.png"> </a>--></th>
+                                    <th width="100" align="center"> 赠送积分</th>
                                     <th width="90" align="center">数量</th>
                                     <th width="90" align="center">小计（元）</th>
                                     <th width="90" align="center">操作</th>

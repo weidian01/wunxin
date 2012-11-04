@@ -393,12 +393,12 @@ function syinfo(a, b)
     var dsc = document.getElementById(b);
     if (dsy.style.display == "none") {
         dsy.style.display = "";
-        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
         dsc.style.backgroundPosition = "0px -179px";
     }
     else {
         dsy.style.display = "none";
-        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
         dsc.style.backgroundPosition = "0px -144px";
     }
 }
@@ -409,11 +409,11 @@ function marksinfo(a, b)
     var dsc = document.getElementById(b);
     if (dsy.style.display == "none") {
         dsy.style.display = "";
-        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
         dsc.style.backgroundPosition = "0px -217px";
     } else {
         dsy.style.display = "none";
-        dsc.style.background = "url(/images/shoppingbg.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
         dsc.style.backgroundPosition = "0px -108px";
     }
 }

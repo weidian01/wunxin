@@ -54,7 +54,7 @@
         .answer_sheet ul li input.area_code{width:29px;*width:28px;width:28px \0;}
         .answer_sheet ul li input.phone_num{width:65px;*width:64px;width:64px \0;}
         .answer_sheet ul li input.extension_num{width:42px;*width:41px;width:41px \0;margin-right:0;}
-        .answer_sheet .btn_ques{display:block;width:96px;height:31px;margin-left:94px;color:#fff;background:url("/images/bg-i_03.gif") no-repeat;line-height:31px;text-align:center; border:0;font-size: 18px;font-weight: bold;}
+        .answer_sheet .btn_ques{display:block;width:96px;height:31px;margin-left:94px;color:#fff;background:url("<?=config_item('static_url')?>images/bg-i_03.gif") no-repeat;line-height:31px;text-align:center; border:0;font-size: 18px;font-weight: bold;}
 
     </style>
 </head>

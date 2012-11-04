@@ -16,19 +16,19 @@
     <style type="text/css">
         body, div, ul, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, input, p, blockquote, th, td, button, blockquote { margin: 0; padding: 0; }
         .xgmm .main {
-            /*background: url("/images/k_r_b.png") no-repeat scroll center bottom transparent;*/
+            /*background: url("<?=config_item('static_url')?>images/k_r_b.png") no-repeat scroll center bottom transparent;*/
             float: left; min-height: 400px; padding: 10px 11px 11px; width: 778px; }
         .xgmm .main dl { border: 1px solid #FFFFFF; float: left; height: 35px; margin-bottom: 5px; width: 776px; }
         dl, ul, li, ol { list-style: none outside none; margin: 0; padding: 0; }
         .xgmm .main dl dt { float: left; line-height: 35px; text-align: right; width: 86px; }
         .xgmm .main dl dd { float: left; padding-top: 5px; width: 665px; }
-        .txi { background: url("/images/onShow.png") no-repeat scroll 5px 5px transparent; color: #999999; display: inline-block; font-size: 12px; height: 22px;
+        .txi { background: url("<?=config_item('static_url')?>images/onShow.png") no-repeat scroll 5px 5px transparent; color: #999999; display: inline-block; font-size: 12px; height: 22px;
             line-height: 22px; padding-left: 25px; }
-        .input_1 { background: url("/images/input_1.png") repeat-x scroll 0 0 #FFFFFF; border: 1px solid #C9C9C9; color: #333333; height: 20px; line-height: 20px; vertical-align: top; }
-        .mistake { background: url("/images/onError.png") no-repeat scroll 5px 5px #FFF2E9; color: #E8044F; display: inline-block; font-size: 12px; height: 22px;
+        .input_1 { background: url("<?=config_item('static_url')?>images/input_1.png") repeat-x scroll 0 0 #FFFFFF; border: 1px solid #C9C9C9; color: #333333; height: 20px; line-height: 20px; vertical-align: top; }
+        .mistake { background: url("<?=config_item('static_url')?>images/onError.png") no-repeat scroll 5px 5px #FFF2E9; color: #E8044F; display: inline-block; font-size: 12px; height: 22px;
             line-height: 22px; padding-left: 25px; }
         .xgmm .main .submit { clear: both; padding: 20px 0 0 86px; }
-        .btn_b1 { background: url("/images/btn_b1.png") no-repeat scroll 0 0 transparent; border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block;
+        .btn_b1 { background: url("<?=config_item('static_url')?>images/btn_b1.png") no-repeat scroll 0 0 transparent; border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block;
             font-size: 14px; font-weight: bold; height: 34px; line-height: 34px; padding-right: 10px; width: 118px; }
     </style>
 </head>

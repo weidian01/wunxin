@@ -16,11 +16,11 @@
     <![endif]-->
     <style type="text/css">
 /*个人资料*/
-.grzl{width:800px;height:auto;background:url(/images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
-.grzl .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(/images/k_r_tg2.png) no-repeat top;float:left;}
-.grzl .title h2{width:175px;height:15px;background:url(/images/z_grzl.png) no-repeat; text-indent:-999em;float:left;}
-.grzl .main{width:778px;min-height:400px;_height:400px;padding:1px 11px 11px 11px;background:url(/images/k_r_b.png) no-repeat bottom;float:left;}
-.grzl .main h2{clear:both;height:21px;line-height:21px;padding-left:23px;background:url(/images/ico_arrow2.png) no-repeat 5px 5px #efefef;
+.grzl{width:800px;height:auto;background:url(<?=config_item('static_url')?>images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
+.grzl .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(<?=config_item('static_url')?>images/k_r_tg2.png) no-repeat top;float:left;}
+.grzl .title h2{width:175px;height:15px;background:url(<?=config_item('static_url')?>images/z_grzl.png) no-repeat; text-indent:-999em;float:left;}
+.grzl .main{width:778px;min-height:400px;_height:400px;padding:1px 11px 11px 11px;background:url(<?=config_item('static_url')?>images/k_r_b.png) no-repeat bottom;float:left;}
+.grzl .main h2{clear:both;height:21px;line-height:21px;padding-left:23px;background:url(<?=config_item('static_url')?>images/ico_arrow2.png) no-repeat 5px 5px #efefef;
     border:1px #e6e6e6 solid;font-size:12px;color:#333;font-weight:normal;cursor:pointer;margin-bottom:2px;}
 .grzl .main h2 span{color:#999;}
 .grzl .main h2 .more{padding:2px 10px 0px 0px;float:right;}
@@ -31,7 +31,7 @@
 .grzl-hyxx .box-info dl{height:30px;border:1px #fff solid;margin-bottom:2px;line-height:22px;font-family:宋体;}
 .grzl-hyxx .box-info dl dt{width:80px;text-align:right;color:#848484;float:left;}
 .grzl-hyxx .box-info dl dd{width:470px;padding-bottom:1px;color:#666;float:left;}
-.grzl-hyxx .box-pic{width:148px;padding:20px;background:url(/images/line_dot_s.png) repeat-y left;text-align:center;float:right;}
+.grzl-hyxx .box-pic{width:148px;padding:20px;background:url(<?=config_item('static_url')?>images/line_dot_s.png) repeat-y left;text-align:center;float:right;}
 
 
 .grzl-grxg dl{clear:both;width:770px;padding-bottom:5px;float:left;}
@@ -54,7 +54,7 @@
 .grzl-xapp .addbox li{height:22px;line-height:22px;padding:0px 0px 0px 10px;float:left;display:inline-block; white-space:nowrap;}
 .grzl-xapp .addbox .btn_del{ vertical-align:middle;}
 dt{font-weight: bold;color: #848484;}
-/*.btn_edit { background: url("/images/btn_edit.png") no-repeat scroll 0 0 transparent; border: 0 none; display: inline-block; height: 17px; overflow: hidden; width: 37px;}*/
+/*.btn_edit { background: url("<?=config_item('static_url')?>images/btn_edit.png") no-repeat scroll 0 0 transparent; border: 0 none; display: inline-block; height: 17px; overflow: hidden; width: 37px;}*/
     </style>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
@@ -210,7 +210,6 @@ dt{font-weight: bold;color: #848484;}
                             </div>
                             <div class="box-pic">
                                 <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($uinfo['uid'])?>icon.jpg" alt="<?php echo $uinfo['uname'];?>" width="60" height="60"/>
-                                <!--<img src="http://static.yoho.cn/images/default_userhead_boy_100_100.png">-->
                                 <br>
                                 <a class="btn_ggtx" href="<?=config_item('static_url')?>user/center/addUserHeader">
                                     <img src="<?=config_item('static_url')?>images/modify_header.png" alt="" title="更改头像">
@@ -219,7 +218,6 @@ dt{font-weight: bold;color: #848484;}
 
                         </div>
                         <div class="submit">
-                            <!--<input type="button" class="btn_b1" value="保存" id="baseInfo" onclick="user.saveUserBaseInfo()">-->
                             <img src="<?=config_item('static_url')?>images/save_modify.jpg" title="保存修改的用户信息" onclick="user.saveUserBaseInfo()" style="cursor: pointer;">
                         </div>
                     </div>

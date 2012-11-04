@@ -301,7 +301,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="detail-tit">
           <div class="titles2">细节展示</div>
         </div>
-        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="'.config_item('static_url').'/images/lazy.gif" data-original=', $product['pcontent'])?></div>
+        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="'.config_item('static_url').'images/lazy.gif" data-original=', $product['pcontent'])?></div>
       </div>
     </div>
     <div class="gbox-relation" id="g-relation2">
