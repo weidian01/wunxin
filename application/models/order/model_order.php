@@ -257,10 +257,10 @@ class Model_Order extends MY_Model
         $this->db->select($field)->from('order');
         $this->db->where('is_pay !=', ORDER_PAY_SUCC);
 
+        $where && $this->db->where($where);
+
         $this->db->where('status', ORDER_NORMAL);
         $this->db->or_where('status', ORDER_CONFIRM);
-
-        $where && $this->db->where($where);
 
         $orderBy && $this->db->order_by($orderBy);
         $this->db->limit($limit, $offset);
