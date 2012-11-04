@@ -337,7 +337,7 @@ wx.cartGlobalInit = function ()
 
     html += '<div class="cart-hj">';
     html += '<div class="sum">合计：<span class="font3">￥'+wx.fPrice( totalPrice )+'</span></div>';
-    html += '<div class="cart-to-js"><a href="'+wx.static_url+'/cart/"><b>我要结算</b></a></div>';
+    html += '<div class="cart-to-js"><a href="'+wx.static_url+'cart/"><b>我要结算</b></a></div>';
     html += '</div>';
 //console.log(html);
     $('#cart_product_num').html(' '+totalNum+' ');
@@ -543,7 +543,7 @@ wx.initLoginStatus = function ()
     var html = '';
 
     if (userInfo) {
-        html = '<a href="'+wx.static_url+'/user/login/login_out" style="color: #AE8D8F;">[退出]</a>';
+        html = '<a href="'+wx.static_url+'user/login/login_out" style="color: #AE8D8F;">[退出]</a>';
         $('#user_name_id').html(userInfo.nickname);
         $('#loginout_id').html(html);
 
@@ -584,9 +584,9 @@ wx.favoriteProductLayer = function(status, bindingId){
     }
 
 	var html = '\<div class="topinfo"><div class="pop-close" onclick="wx.layerClose()"></div> <span class="'+promptIcon+'"></span><span class="topicon2" style="display:none;"></span><p>'+prompt+
-     '&nbsp;&nbsp;&nbsp;<a class="popfont1" href="'+wx.static_url+'/user/center/productFavorite" target="_blank">查看收藏夹 >></a></p></div><div class="pop-t"><span class="pop-b">看过该商品的人还购买过</span>\
+     '&nbsp;&nbsp;&nbsp;<a class="popfont1" href="'+wx.static_url+'user/center/productFavorite" target="_blank">查看收藏夹 >></a></p></div><div class="pop-t"><span class="pop-b">看过该商品的人还购买过</span>\
      &nbsp;&nbsp;&nbsp;&nbsp;<a class="pop-c" href="'+wx.static_url+'" target="_blank"> 更多您可能喜欢的商品 >></a> </div><ul class="pop-goods"><li><div class="pop-img" style="text-align:center;width:435px;">\
-     <img alt="aaaa" src="'+wx.static_url+'/images/loading.gif"></div></li></ul>';
+     <img alt="aaaa" src="'+wx.static_url+'images/loading.gif"></div></li></ul>';
 
     art.dialog({ follow: document.getElementById(bindingId), title:false, content: html });
 
@@ -674,7 +674,7 @@ wx.scoreStatSelect = function (id, pointNum)
 //加入购物车浮层 status:1 添加成功， 2 系统繁忙， 3 参数不全
 wx.addToCartLayer = function (pId, pName, bindingId)
 {
-    var cartData = wx.ajax('/cart/getCart', '');
+    var cartData = wx.ajax('cart/getCart', '');
     cartData = cartData['cart'];
 
     var totalNum = 0;
@@ -688,10 +688,10 @@ wx.addToCartLayer = function (pId, pName, bindingId)
     var html = '<div class="commentDIV"> <div class="tit">商品已成功加入购物车 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="addto-goods">\
        <div class="p-img-g"><a href="'+wx.productURL(pId)+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(pId)+'default.jpg" width="109" height="109" /></a></div> <div class="p-cont-g">\
        <p><a href="'+wx.productURL(pId)+'" target="_blank">'+pName+'</a></p><div class="p-cont-price">购物车共 '+parseInt(totalNum)+' 件宝贝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计：<span class="popfont3">'+wx.fPrice(totalPrice)+'</span>元</div>\
-       <div class="p-cont-btn"> <a class="goshopping" href="javascript:void(0);" onclick="wx.layerClose()">继续购物</a><a class="gocash" href="'+wx.static_url+'/cart/">去结算</a> </div></div></div>\
+       <div class="p-cont-btn"> <a class="goshopping" href="javascript:void(0);" onclick="wx.layerClose()">继续购物</a><a class="gocash" href="'+wx.static_url+'cart/">去结算</a> </div></div></div>\
        <div class="pop-t" style="padding-top:20px;"><span class="pop-b">看过该商品的人还购买过</span><a class="pop-c" href="'+wx.static_url+'">更多您可能喜欢的商品 >></a></div>\
        <ul class="pop-goods" style="padding:0px 0px 20px 20px;" id="pop-goods">\
-       <li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="'+wx.static_url+'/images/loading.gif"></div></li></ul></div>';
+       <li><div class="pop-img" style="text-align:center;width:435px;"><img alt="aaaa" src="'+wx.static_url+'images/loading.gif"></div></li></ul></div>';
 
     art.dialog({ follow: document.getElementById(bindingId), title:false, content: html,padding:0 });
 
@@ -755,7 +755,7 @@ wx.changeLRLayer = function (lr)
         $('#register_id').addClass('curr');
         $('#login_id').removeClass('curr');
 
-        var Html = '<div id="lgrg2""><input type="hidden" name="source_id" id="source_id" value="1" /> <input type="hidden" name="redirect_url_id" id="redirect_url_id" value="/user/login/" />\
+        var Html = '<div id="lgrg2""><input type="hidden" name="source_id" id="source_id" value="1" /> <input type="hidden" name="redirect_url_id" id="redirect_url_id" value="'+wx.base_url+'user/login/" />\
                 <table class="zhuce" width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td width="25%" align="right" valign="top"><strong>用&nbsp;户&nbsp;名：</strong></td>\
                     <td width="43%"> <input class="popinput2" type="text" name="username_id" id="username_id"  onkeydown="user.checkRegisterIsSubmit(event);" onblur="user.checkUserExist()" maxlength="32" value="'+userName+'"/>\
                       <br /> <span class="popfont5" id="username_notice_id" style="padding-bottom: px;padding-left: 0px;font-size:12px;">请输入邮件地址</span> </td>\
@@ -771,7 +771,7 @@ wx.changeLRLayer = function (lr)
                   <tr> <td align="right" valign="top"><strong style="color:#666666;">验&nbsp;证&nbsp;码：</strong></td> <td><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr>\
                   <td width="40%"> <input class="popinput3" type="text" name="verify_code" id="verify_code_id" onkeydown="user.checkRegisterIsSubmit(event);" onblur="user.checkVerifyCode();"/>\
                             <br/><span class="" id="verify_code_notice_id" style="color: #C40000;padding-bottom: px;padding-left: 0px;font-size:12px;">请输入验证码</span></td>\
-                          <td width="60%" valign="top"><img src="'+wx.base_url+'/user/register/verifyCode" alt="" id="verify_code" onclick="user.refreshVerifyCode()"/><br/>\
+                          <td width="60%" valign="top"><img src="'+wx.base_url+'user/register/verifyCode" alt="" id="verify_code" onclick="user.refreshVerifyCode()"/><br/>\
                             <span class="mstk">看不请，</span><a onclick="user.refreshVerifyCode()" href="javascript:void(0);">换一张</a></td> </tr> </table></td>\
                     <td valign="top"><!--<span class="rg-yes" style="display:none;"></span><span class="rg-no"></span>--></td> </tr>\
                   <tr> <td align="right" valign="top">&nbsp;</td> <td><input id="agree_id" type="checkbox" checked="checked" name="agree"><strong>请阅读《<!--<a href="#">-->万象服务条款<!--</a>-->》 </strong></td>\
@@ -801,7 +801,7 @@ wx.productShareLayer = function (pId)
     }
     //console.log(data);
 
-    var html = '<form action="/product/share/add" method="post"  enctype="multipart/form-data" name="product_share_form">\
+    var html = '<form action="'+wx.base_url+'product/share/add" method="post"  enctype="multipart/form-data" name="product_share_form">\
         <div class="commentDIV show-o-w"> <div class="tit">发表晒单 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="questbox">\
         <input type="hidden" name="pid" id="curr_share_product_id" value="'+pData[0].pid+'"/>\
         <table class="queat-ms2" width="100%" border="0" cellspacing="0" cellpadding="0">\
@@ -920,8 +920,6 @@ wx.productURL = function(pid)
 wx.initLoginStatus();
 
 wx.cartGlobalInit();
-
-//var A=window.open(this.BASEURL+"/?c=login.qqlogin&a=gologin"+"&goback="+encodeURIComponent(window.location.href),"TencentLogin","directories=no, menubar=no, toolbar=no, location=no, scrollbars=no, resizable=no, status=no, width=600, height=500,top=50, left=200");
 
 /*右侧浮层菜单开始*/
 function sideToolsAct() {

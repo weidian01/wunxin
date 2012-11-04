@@ -22,7 +22,7 @@
         .recommendmod h3 a:hover,.snapmod h4 a:hover{ text-decoration:none;}
 
         .contentbg{ padding-bottom:61px; background: url(<?=config_item('static_url')?>images/contentbg.png) 0 bottom repeat-x; background-color:#fafafa;}
-        .qiangbtn_small,.mod_hd h3,.qiangbtn_red,.ended,.qiangbtn_blue,.ico_baoyou,.ico_remai,.ico_xinpin,.ico_fengqiang,.seebtn,.left_turn,.right_turn,.left_turn_hov,.right_turn_hov,.left_turn_no,.right_turn_no,.sort_default,.sortlist .s_1,.sortlist .s_2,.sortlist .s_3{ background:url(/images/pic.png) no-repeat;}
+        .qiangbtn_small,.mod_hd h3,.qiangbtn_red,.ended,.qiangbtn_blue,.ico_baoyou,.ico_remai,.ico_xinpin,.ico_fengqiang,.seebtn,.left_turn,.right_turn,.left_turn_hov,.right_turn_hov,.left_turn_no,.right_turn_no,.sort_default,.sortlist .s_1,.sortlist .s_2,.sortlist .s_3{ background:url(<?=config_item('static_url')?>images/pic.png) no-repeat;}
 
         .side{ width:230px; float:left;}
         .main{ width:980px; float:right;}
@@ -251,7 +251,7 @@
 		<div class="ad_div" style="text-align: center;">
 			<div>
                 <a title="" target="_blank" href="">
-                    <img class="lazy" width="980" height="90" alt="真情9月 数码平板1折起" src="<?=config_item('static_url')?>images/lazy.gif" data-original="/images/301.jpg">
+                    <img class="lazy" width="980" height="90" alt="真情9月 数码平板1折起" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/301.jpg">
                 </a>
             </div>
 		</div>

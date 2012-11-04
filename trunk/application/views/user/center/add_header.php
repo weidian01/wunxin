@@ -15,19 +15,19 @@
     <![endif]-->
     <style type="text/css">
         /*设置头像*/
-        .sztx{width:800px;height:auto;background:url(/images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
-        .sztx .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(/images/k_r_tg2.png) no-repeat top;float:left;}
-        .sztx .title h2{width:175px;height:15px;background:url(/images/z_sztx.png) no-repeat; text-indent:-999em;float:left;}
-        .sztx .main{width:798px;min-height:400px;_height:400px;padding:0px 1px 61px 1px;background:url(/images/k_r_b.png) no-repeat bottom;float:left;}
+        .sztx{width:800px;height:auto;background:url(<?=config_item('static_url')?>images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
+        .sztx .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(<?=config_item('static_url')?>images/k_r_tg2.png) no-repeat top;float:left;}
+        .sztx .title h2{width:175px;height:15px;background:url(<?=config_item('static_url')?>images/z_sztx.png) no-repeat; text-indent:-999em;float:left;}
+        .sztx .main{width:798px;min-height:400px;_height:400px;padding:0px 1px 61px 1px;background:url(<?=config_item('static_url')?>images/k_r_b.png) no-repeat bottom;float:left;}
         .sztx .main .uploadbox{width:778px;background:#efefef;padding:10px;float:left;}
         .sztx .main .uploadbox dt{width:70px;font-weight:bold;float:left;}
         .sztx .main .uploadbox dd{width:708px;float:left;}
         .sztx .main .uploadbox dd p{padding:0px 0px 15px 8px;line-height:20px;}
         .sztx .main .photobox{width:650px;padding:20px 60px;float:left;}
-        .sztx .main .photobox .photo{width:300px;height:300px;text-align:left;border:1px #000 solid;background:url(/images/photobox_bg.png);float:left;}
+        .sztx .main .photobox .photo{width:300px;height:300px;text-align:left;border:1px #000 solid;background:url(<?=config_item('static_url')?>images/photobox_bg.png);float:left;}
         .sztx .main .submit{clear:both;padding-left:80px;}
         .sztx .main .submit p{padding:10px;}
-        .btn_b3 { background: url("/images/btn_b3.png") no-repeat scroll 0 0 transparent;
+        .btn_b3 { background: url("<?=config_item('static_url')?>images/btn_b3.png") no-repeat scroll 0 0 transparent;
             border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; height: 35px; line-height: 35px; text-align: center; width: 122px;
         }
 
@@ -45,7 +45,7 @@
         .content img { vertical-align: middle; }
         img { border: medium none; }
         .blank10w { clear: both; display: block; font-size: 0; height: 10px; width: 60px; }
-        .save { background-image: url("/images/scBTN.jpg"); border: 0 none; height: 27px; }
+        .save { background-image: url("<?=config_item('static_url')?>images/scBTN.jpg"); border: 0 none; height: 27px; }
         .pic_list li img.selected { border: 2px solid #980d2c; cursor: pointer;display: inline; }
         .pic_list li img.hover { border:2px solid #980d2c; cursor:pointer; }
 

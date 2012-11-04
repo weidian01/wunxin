@@ -62,9 +62,9 @@ cart.init = function ()
         html += '<td align="center" style="padding-left: 8px;">'+wx.fPrice(data[i].product_price)+'</td>';
         html += '<td align="center" style="padding-left: 8px;">'+data[i].product_size+'</td>';
         html += '<td align="center" style="padding-left: 8px;">';
-        html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="'+wx.base_url+'/images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
+        html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
         html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].product_num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
-        html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="'+wx.base_url+'/images/plus.gif" width="11" height="11"/></a>';
+        html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
         html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].product_price * data[i].product_num) )+'</span></td>';
         html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].product_price * data[i].product_num)+'</span></td>';
@@ -84,9 +84,9 @@ cart.init = function ()
 		<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div>\
         <div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div><div class="post-btn">';
     html += '<a href="javascript:void(0);" onclick="wx.goToBack()" class="continue_shopping"></a>&nbsp;&nbsp;';
-    //html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="'+wx.base_url+'/images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
+    //html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="'+wx.base_url+'images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
     html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()" class="go_payment"></a></div></td></tr></table>';
-    //html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="'+wx.base_url+'/images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
+    //html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()"><img src="'+wx.base_url+'images/buy_bg_16.gif" width="126" height="32" alt="去结算"/></a></div></td></tr></table>';
 
     $('#shopping_cart').html(html);
     jQuery('#list_ul').jcarousel();
@@ -114,15 +114,15 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
             typeName = 'zeng';
             zengPid = '<span surl="http://www.wunxin.com/" class="zdsp">&nbsp;</span>&nbsp;';
             pInfo = '<del>￥'+wx.fPrice(DiscountPrice)+'</del>&nbsp;&nbsp;<strong class="red">免费</strong>';
-            activityImage = '/upload/product/'+idToPath(pId)+'default.jpg';
+            activityImage = wx.base_url+'upload/product/'+idToPath(pId)+'default.jpg';
             break;
         case '2' :
             typeName = 'zhe';
-            activityImage = '/images/discounticon.gif';
+            activityImage = wx.base_url+'images/discounticon.gif';
             break;
         case '3' :
             typeName = 'jian';
-            activityImage = '/images/cashicon.gif';
+            activityImage = wx.base_url+'images/cashicon.gif';
             break;
     }
 

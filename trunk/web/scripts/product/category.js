@@ -39,12 +39,12 @@ $(function ($) {
     $("#kza").toggle(
         function () {
             $('span',this).text('收起');
-            $('img',this).attr('src','/images/arrow_up.gif');
+            $('img',this).attr('src',wx.base_url+'images/arrow_up.gif');
             $('.attr_hidden').show();//.slideUp('fast');//
         },
         function () {
             $('span',this).text('更多');
-            $('img',this).attr('src','/images/arrow_down.gif');
+            $('img',this).attr('src',wx.base_url+'images/arrow_down.gif');
             $('.attr_hidden').hide();//.slideDown('fast');//
         }
     );

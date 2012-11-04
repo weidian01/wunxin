@@ -16,7 +16,7 @@
     <![endif]-->
     <style type="text/css">
         .path ul li.last { background: none repeat scroll 0 0 transparent; }
-        .path, .path ul li { height: 30px; line-height: 30px; background: url(/images/g-bg.png) no-repeat; }
+        .path, .path ul li { height: 30px; line-height: 30px; background: url(<?=config_item('static_url')?>images/g-bg.png) no-repeat; }
         .path, .path ul li { height: 30px; line-height: 30px; }
         .path { padding-left: 20px; background-position: 0px -179px; }
         .path ul li { float: left; padding-right: 12px; padding-left: 5px; display: block; background-position: right -91px; }
