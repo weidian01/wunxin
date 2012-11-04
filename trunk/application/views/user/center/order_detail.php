@@ -238,7 +238,8 @@
                                         <a href="javascript:void(0);" onclick="product.productShare(<?php echo $pv['pid'];?>)">
                                             <img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单">
                                         </a><br/>
-                                        <a href="<?=config_item('static_url')?>user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>">
+                                        <!-- <a href="<?=config_item('static_url')?>user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>"> -->
+                                        <a href="javascript:void(0);" onclick="product.applyReturn(<?php echo $pv['pid'];?>)">
                                             <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货">
                                         </a>
                                     </td>

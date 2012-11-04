@@ -594,3 +594,37 @@ product.likeShareImage = function (siId, bindingId)
     //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
     wx.showPop(prompt, bindingId);
 }
+
+//申请退换货
+product.applyReturn = function (pId, bindingId)
+{
+    if ( !wx.isEmpty(pId) ) {
+        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
+        wx.showPop('参数不全。', bindingId);
+        return false;
+    }
+
+    if ( !wx.checkLoginStatus() ) {
+        return false;
+    }
+
+    var url = '/product/share/isBuyProduct';
+    var param = 'pid='+pId;
+    var data = wx.ajax(url, param);
+
+    if (data.error == '0') {
+        wx.goToUrl(wx.base_url+'user/center/addReturn?pid='+pId);
+        //wx.productShareLayer(data.data.pid, data.data.pname);
+        return true;
+    }
+
+    var prompt = '系统繁忙，请稍后再试';
+    switch (data.error) {
+        case '50008': prompt = '申请退换货参数不全';break;
+        case '50002': prompt = '您没有购买过此产品';break;
+        //case '50020': prompt = '您已对此产品进行过晒单';break;
+    }
+
+    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
+    wx.showPop(prompt, bindingId);
+}
