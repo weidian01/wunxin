@@ -252,7 +252,7 @@ class product extends MY_Controller
         //* 暂用代码
         $pInfo = $this->product->getProductById($pid);
         $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
-
+echo '<pre>';print_r($attr_value);exit;
         $attr = array();
         foreach ($pData as $pdv) {
             $i = 0;
