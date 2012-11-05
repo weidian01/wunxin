@@ -88,7 +88,7 @@ class Model_Product extends MY_Model
      * @param $order
      * @return null | array
      */
-    public function getProductList($limit = 20, $offset = 0, $field= "*", $where = null, $order = null)
+    public function getProductList($limit = 20, $offset = 0, $field= '*', $where = null, $order = null)
     {
         list($key, $field) = self::formatField($field);
         $this->db->select($field);
@@ -96,6 +96,7 @@ class Model_Product extends MY_Model
         $where && $this->db->where($where);
         $order && $this->db->order_by($order);
         $this->db->limit($limit, $offset);
+        //$this->db->group_by('style_no');
         $data = $this->db->get()->result_array($key);
         return $data;
         //return empty ($data) ? null : $data;

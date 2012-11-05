@@ -217,17 +217,83 @@ class product extends MY_Controller
             show_error('录入信息不全');
 
         $this->load->model('product/Model_Product', 'product');
+
+
+
         if ($pid) { //更新产品信息需要的操作
+
+            //修改同款产品属性代码 开始
+            $pInfo = $this->product->getProductById($pid);
+            if (empty ($pInfo)) return;
+
+            $pData = $this->product->getProductList(1000, 0, '*', array('style_no' => $pInfo['style_no']));
+            foreach ($pData as $pdv) {
+                $this->product->editProduct($pdv['pid'], $data);
+                $delphoto = $this->input->post('delphoto');
+                $delphoto && $this->product->delProductPhotoById($delphoto);
+                $this->product->delProductAttrById($pdv['pid']);
+                $this->product->delProductSizeById($pdv['pid']);
+            }
+
+            //修改同款产品属性代码 结束*/
+
+
+            /* 原代码
             $this->product->editProduct($pid, $data);
             $delphoto = $this->input->post('delphoto');
             $delphoto && $this->product->delProductPhotoById($delphoto);
             $this->product->delProductAttrById($pid);
             $this->product->delProductSizeById($pid);
+            //*/
         } else {  //添加产品信息需要的操作
             $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
             $pid = $this->product->addProduct($data);
         }
-        $size && $this->product->addProductSize($size, $pid);
+
+        //修改同款产品属性代码 开始
+        if ($size) {
+            $pInfo = $this->product->getProductById($pid);
+            if (empty ($pInfo)) return;
+
+            $pData = $this->product->getProductList(1000, 0, '*', array('style_no' => $pInfo['style_no']));
+            foreach ($pData as $pdv) {
+                $this->product->addProductSize($size, $pdv['pid']);
+            }
+        }
+        //修改同款产品属性代码 结束*/
+
+        //原代码
+        //$size && $this->product->addProductSize($size, $pid);
+
+        //修改同款产品属性代码 开始
+        if ($pid) {
+            $pInfo = $this->product->getProductById($pid);
+            if (empty ($pInfo)) return;
+
+            $pData = $this->product->getProductList(1000, 0, '*', array('style_no' => $pInfo['style_no']));
+
+            $attr = array();
+            foreach ($pData as $pdv) {
+                $i = 0;
+                foreach ($attr_value as $attr_id => $item) {
+                    foreach ($item as $v) {
+                        if ($v) {
+                            $attr[$i]['pid'] = $pdv['pid'];
+                            $attr[$i]['attr_id'] = $attr_id;
+                            $attr[$i]['model_id'] = $data['model_id'];
+                            $attr[$i]['attr_value'] = $v;
+                            $i++;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+        //修改同款产品属性代码 结束*/
+
+        /*/ 原代码
         $attr = array();
         $i = 0;
         foreach ($attr_value as $attr_id => $item) {
@@ -241,6 +307,7 @@ class product extends MY_Controller
                 }
             }
         }
+        //*/
 
         foreach ($_FILES['images'] as $key => $item) {
             foreach ($item as $k => $v) {
@@ -267,17 +334,11 @@ class product extends MY_Controller
                     show_error($this->upload->display_errors());
                 } else {
                     $tmp = $this->upload->data();
-                    //echo $tmp['file_name'];exit;
                     $fileName = substr($tmp['file_name'], 0, strpos($tmp['file_name'], '.'));//($tmp['file_name']);
-                    //echo $fileName;exit;
                     $source_file = $config['upload_path'] . $tmp['file_name'];
                     $target_path = UPLOAD.'product'. DS . intToPath($pid);
                     recursiveMkdirDirectory($target_path);
                     $fileNameALL = ($fileName . '.jpg');
-
-                    //echo $target_file.'<br>';
-                    //echo $target_path . $target_file.'<br>';
-                    //echo str_replace($target_file, $target_file.'_M.jpg', $target_path . $target_file);exit;
 
                     copyImg($source_file, 350, 420, str_replace($fileNameALL, $fileName.'_M.jpg', $target_path . $fileNameALL), 100, 1.2);
                     copyImg($source_file, 60, 60, str_replace($fileNameALL, $fileName.'_S.jpg', $target_path . $fileNameALL), 100, 1.2);
@@ -287,21 +348,26 @@ class product extends MY_Controller
             }
         }
 
+        //修改同款产品属性代码 开始
+        //$default_photo = $this->input->post('default_photo');
+        //$default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
+        //$product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
+        $attr && $this->product->addProductAttr($attr);
+        //修改同款产品属性代码 结束*/
+
+        /* 原代码
         $default_photo = $this->input->post('default_photo');
         $default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
         $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
         $attr && $this->product->addProductAttr($attr);
+        /*/
+
         /*生成默认图片*/
         $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();
         if($default_photo)
         {
             $img_path = UPLOAD . 'product' . DS . intToPath($default_photo['pid']) .$default_photo['img_addr'];
-//echo $img_path;exit;
-            /*
-            copyImg($source_file, 164, 197, str_replace(md5($v['pid']).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
-            copyImg($source_file, 50, 50, str_replace(md5($v['pid']).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
-            //*/
-            //echo substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.'));exit;
+
             copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
             copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
         }
