@@ -67,7 +67,7 @@
 .jcarousel-skin-index .jcarousel-direction-rtl .jcarousel-prev-horizontal{left:auto; right:5px; background-image:url(/images/bg.png)}
 .jcarousel-skin-index .jcarousel-prev-horizontal:hover,
 .jcarousel-skin-index .jcarousel-prev-horizontal:focus{ background-position:-141px -39px}
-.jcarousel-skin-index .jcarousel-prev-horizontal:active{ background-position:-26px -39px}
+.jcarousel-skin-index .jcarousel-prev-horizontal:active{ background-position:-141px -39px}
 .jcarousel-skin-index .jcarousel-prev-disabled-horizontal,
 .jcarousel-skin-index .jcarousel-prev-disabled-horizontal:hover,
 .jcarousel-skin-index .jcarousel-prev-disabled-horizontal:focus,

@@ -270,6 +270,16 @@ class product extends MY_Controller
                     $source_file = $config['upload_path'] . $tmp['file_name'];
                     copyImg($source_file, 350, 420, str_replace('.', '_M.', $source_file));
                     copyImg($source_file, 60, 60, str_replace('.', '_S.', $source_file));
+
+                    $target_path = WEBROOT.'upload/product/' . intToPath($pid);
+                    $target_file = $target_path . (md5($v['pid']) . '.jpg');
+                    //echo $target_file;exit;
+
+                    //copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
+                    copyImg($source_file, 350, 420, str_replace(md5($pid).'.jpg', md5($pid).'_M.jpg', $target_file), $quality = 100, 1.2);
+                    copyImg($source_file, 60, 60, str_replace(md5($pid).'.jpg', md5($pid).'_S.jpg', $target_file), $quality = 90, 1.2);
+
+
                     $product_photo[] = $path . $tmp['file_name'];
                 }
             }
