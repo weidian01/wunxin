@@ -227,7 +227,7 @@ class product extends MY_Controller
 
             //* 暂用代码
             $pInfo = $this->product->getProductById($pid);
-            $pData = $this->product->getProductByStyleNo($pInfo);
+            $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
 
             foreach ($pData as $pdv) {
                 $this->product->delProductAttrById($pdv['pid']);
@@ -251,7 +251,7 @@ class product extends MY_Controller
 
         //* 暂用代码
         $pInfo = $this->product->getProductById($pid);
-        $pData = $this->product->getProductByStyleNo($pInfo);
+        $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
 
         $attr = array();
         foreach ($pData as $pdv) {
