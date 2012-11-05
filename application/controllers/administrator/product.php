@@ -221,79 +221,18 @@ class product extends MY_Controller
 
 
         if ($pid) { //更新产品信息需要的操作
-
-            //修改同款产品属性代码 开始
-            $pInfo = $this->product->getProductById($pid);
-            if (empty ($pInfo)) return;
-
-            $pData = $this->product->getProductList(1000, 0, '*', array('style_no' => $pInfo['style_no']));
-            foreach ($pData as $pdv) {
-                $this->product->editProduct($pdv['pid'], $data);
-                $delphoto = $this->input->post('delphoto');
-                $delphoto && $this->product->delProductPhotoById($delphoto);
-                $this->product->delProductAttrById($pdv['pid']);
-                $this->product->delProductSizeById($pdv['pid']);
-            }
-
-            //修改同款产品属性代码 结束*/
-
-
-            /* 原代码
             $this->product->editProduct($pid, $data);
             $delphoto = $this->input->post('delphoto');
             $delphoto && $this->product->delProductPhotoById($delphoto);
             $this->product->delProductAttrById($pid);
             $this->product->delProductSizeById($pid);
-            //*/
         } else {  //添加产品信息需要的操作
             $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
             $pid = $this->product->addProduct($data);
         }
 
-        //修改同款产品属性代码 开始
-        if ($size) {
-            $pInfo = $this->product->getProductById($pid);
-            if (empty ($pInfo)) return;
+        $size && $this->product->addProductSize($size, $pid);
 
-            $pData = $this->product->getProductList(1000, 0, '*', array('style_no' => $pInfo['style_no']));
-            foreach ($pData as $pdv) {
-                $this->product->addProductSize($size, $pdv['pid']);
-            }
-        }
-        //修改同款产品属性代码 结束*/
-
-        //原代码
-        //$size && $this->product->addProductSize($size, $pid);
-
-        //修改同款产品属性代码 开始
-        if ($pid) {
-            $pInfo = $this->product->getProductById($pid);
-            if (empty ($pInfo)) return;
-
-            $pData = $this->product->getProductList(1000, 0, '*', array('style_no' => $pInfo['style_no']));
-
-            $attr = array();
-            foreach ($pData as $pdv) {
-                $i = 0;
-                foreach ($attr_value as $attr_id => $item) {
-                    foreach ($item as $v) {
-                        if ($v) {
-                            $attr[$i]['pid'] = $pdv['pid'];
-                            $attr[$i]['attr_id'] = $attr_id;
-                            $attr[$i]['model_id'] = $data['model_id'];
-                            $attr[$i]['attr_value'] = $v;
-                            $i++;
-                        }
-                    }
-                }
-            }
-        }
-
-
-
-        //修改同款产品属性代码 结束*/
-
-        /*/ 原代码
         $attr = array();
         $i = 0;
         foreach ($attr_value as $attr_id => $item) {
@@ -307,7 +246,6 @@ class product extends MY_Controller
                 }
             }
         }
-        //*/
 
         foreach ($_FILES['images'] as $key => $item) {
             foreach ($item as $k => $v) {
@@ -348,19 +286,10 @@ class product extends MY_Controller
             }
         }
 
-        //修改同款产品属性代码 开始
-        //$default_photo = $this->input->post('default_photo');
-        //$default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
-        //$product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
-        $attr && $this->product->addProductAttr($attr);
-        //修改同款产品属性代码 结束*/
-
-        /* 原代码
         $default_photo = $this->input->post('default_photo');
         $default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
         $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
         $attr && $this->product->addProductAttr($attr);
-        /*/
 
         /*生成默认图片*/
         $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();
