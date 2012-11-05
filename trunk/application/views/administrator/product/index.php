@@ -64,6 +64,7 @@
                         <input class="check-all" type="checkbox"/>
                     </th>
                     <th>商品ID</th>
+                    <th>商品图片</th>
                     <th>商品名称</th>
                     <th>售价</th>
                     <th>市场价</th>
@@ -80,6 +81,7 @@
                         <input type="checkbox"/>
                     </td>
                     <td><?=$item['pid']?></td>
+                    <td><img src="<?=config_item('static_url')?>upload/product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" alt="<?=$item['pname']?>" /></td>
                     <td><a href="<?=productURL($item['pid'])?>" target="_blank"><?=$item['pname']?></a></td>
                     <td><?=fPrice($item['sell_price'])?></td>
                     <td><?=fPrice($item['market_price'])?></td>

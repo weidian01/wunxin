@@ -267,20 +267,22 @@ class product extends MY_Controller
                     show_error($this->upload->display_errors());
                 } else {
                     $tmp = $this->upload->data();
+                    //echo $tmp['file_name'];exit;
+                    $fileName = substr($tmp['file_name'], 0, strpos($tmp['file_name'], '.'));//($tmp['file_name']);
+                    //echo $fileName;exit;
                     $source_file = $config['upload_path'] . $tmp['file_name'];
-                    copyImg($source_file, 350, 420, str_replace('.', '_M.', $source_file));
-                    copyImg($source_file, 60, 60, str_replace('.', '_S.', $source_file));
+                    $target_path = UPLOAD.'product'. DS . intToPath($pid);
+                    recursiveMkdirDirectory($target_path);
+                    $fileNameALL = ($fileName . '.jpg');
 
-                    $target_path = WEBROOT.'upload/product/' . intToPath($pid);
-                    $target_file = $target_path . (md5($v['pid']) . '.jpg');
-                    //echo $target_file;exit;
+                    //echo $target_file.'<br>';
+                    //echo $target_path . $target_file.'<br>';
+                    //echo str_replace($target_file, $target_file.'_M.jpg', $target_path . $target_file);exit;
 
-                    //copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
-                    copyImg($source_file, 350, 420, str_replace(md5($pid).'.jpg', md5($pid).'_M.jpg', $target_file), $quality = 100, 1.2);
-                    copyImg($source_file, 60, 60, str_replace(md5($pid).'.jpg', md5($pid).'_S.jpg', $target_file), $quality = 90, 1.2);
+                    copyImg($source_file, 350, 420, str_replace($fileNameALL, $fileName.'_M.jpg', $target_path . $fileNameALL), 100, 1.2);
+                    copyImg($source_file, 60, 60, str_replace($fileNameALL, $fileName.'_S.jpg', $target_path . $fileNameALL), 100, 1.2);
 
-
-                    $product_photo[] = $path . $tmp['file_name'];
+                    $product_photo[] = $fileNameALL;
                 }
             }
         }
@@ -293,9 +295,15 @@ class product extends MY_Controller
         $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();
         if($default_photo)
         {
-            $img_path = UPLOAD . 'product' . DS .$default_photo['img_addr'];
-            copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')));
-            copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')));
+            $img_path = UPLOAD . 'product' . DS . intToPath($default_photo['pid']) .$default_photo['img_addr'];
+//echo $img_path;exit;
+            /*
+            copyImg($source_file, 164, 197, str_replace(md5($v['pid']).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
+            copyImg($source_file, 50, 50, str_replace(md5($v['pid']).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
+            //*/
+            //echo substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.'));exit;
+            copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
+            copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
         }
         /*生成默认图片*/
         redirect('administrator/product/index');
