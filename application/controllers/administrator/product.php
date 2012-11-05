@@ -221,15 +221,16 @@ class product extends MY_Controller
 
 
         if ($pid) { //更新产品信息需要的操作
-            $this->product->editProduct($pid, $data);
-            $delphoto = $this->input->post('delphoto');
-            $delphoto && $this->product->delProductPhotoById($delphoto);
+
 
             //* 暂用代码
             $pInfo = $this->product->getProductById($pid);
             $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
-
+            unset($data['pname']);unset($data['market_price']);unset($data['sell_price']);unset($data['cost_price']);
+            unset($data['pcontent']);
+            //echo '<pre>';print_r($data);exit;
             foreach ($pData as $pdv) {
+                $this->product->editProduct($pdv['pid'], $data);
                 $this->product->delProductAttrById($pdv['pid']);
                 $this->product->delProductSizeById($pdv['pid']);
                 $this->product->addProductSize($size, $pdv['pid']);
@@ -237,6 +238,9 @@ class product extends MY_Controller
             /*//
 
             /*原代码
+            $this->product->editProduct($pid, $data);
+            $delphoto = $this->input->post('delphoto');
+            $delphoto && $this->product->delProductPhotoById($delphoto);
             $this->product->delProductAttrById($pid);
             $this->product->delProductSizeById($pid);
             //*/
@@ -252,10 +256,10 @@ class product extends MY_Controller
         //* 暂用代码
         $pInfo = $this->product->getProductById($pid);
         $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
-echo '<pre>';print_r($attr_value);exit;
+        //echo '<pre>';print_r($attr_value);exit;
         $attr = array();
+        $i = 0;
         foreach ($pData as $pdv) {
-            $i = 0;
             foreach ($attr_value as $attr_id => $item) {
                 foreach ($item as $v) {
                     if ($v) {
@@ -268,8 +272,8 @@ echo '<pre>';print_r($attr_value);exit;
                 }
             }
         }
-        /*//
-
+        //*/
+        //echo '<pre>';print_r($attr);exit;
         /*原代码
         $attr = array();
         $i = 0;
