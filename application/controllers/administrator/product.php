@@ -224,15 +224,53 @@ class product extends MY_Controller
             $this->product->editProduct($pid, $data);
             $delphoto = $this->input->post('delphoto');
             $delphoto && $this->product->delProductPhotoById($delphoto);
+
+            //* 暂用代码
+            $pInfo = $this->product->getProductById($pid);
+            $pData = $this->product->getProductByStyleNo($pInfo);
+
+            foreach ($pData as $pdv) {
+                $this->product->delProductAttrById($pdv['pid']);
+                $this->product->delProductSizeById($pdv['pid']);
+                $this->product->addProductSize($size, $pdv['pid']);
+            }
+            /*//
+
+            /*原代码
             $this->product->delProductAttrById($pid);
             $this->product->delProductSizeById($pid);
+            //*/
         } else {  //添加产品信息需要的操作
             $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
             $pid = $this->product->addProduct($data);
         }
 
-        $size && $this->product->addProductSize($size, $pid);
+        // 原代码
+        //$size && $this->product->addProductSize($size, $pid);
 
+
+        //* 暂用代码
+        $pInfo = $this->product->getProductById($pid);
+        $pData = $this->product->getProductByStyleNo($pInfo);
+
+        $attr = array();
+        foreach ($pData as $pdv) {
+            $i = 0;
+            foreach ($attr_value as $attr_id => $item) {
+                foreach ($item as $v) {
+                    if ($v) {
+                        $attr[$i]['pid'] = $pdv['pid'];
+                        $attr[$i]['attr_id'] = $attr_id;
+                        $attr[$i]['model_id'] = $data['model_id'];
+                        $attr[$i]['attr_value'] = $v;
+                        $i++;
+                    }
+                }
+            }
+        }
+        /*//
+
+        /*原代码
         $attr = array();
         $i = 0;
         foreach ($attr_value as $attr_id => $item) {
@@ -246,6 +284,7 @@ class product extends MY_Controller
                 }
             }
         }
+        //*/
 
         foreach ($_FILES['images'] as $key => $item) {
             foreach ($item as $k => $v) {
