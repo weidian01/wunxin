@@ -21,7 +21,7 @@ abstract class Model_way
      * @param $conf
      * @return mixed
      */
-    abstract function init($product);
+    abstract function init($product, $rule);
 
     /**
      * 根据原价和规则计算最终价格
@@ -31,4 +31,15 @@ abstract class Model_way
      * @return mixed
      */
     abstract function compute();
+
+    public function result()
+    {
+        $result = array();
+        foreach ($this->products as $p) {
+            if ($p['final_price']) {
+                $result[$p['pid']] = array('pid' => $p['pid'], 'final_price' => $p['final_price']);
+            }
+        }
+        return $result;
+    }
 }

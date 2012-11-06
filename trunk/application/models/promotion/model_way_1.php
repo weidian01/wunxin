@@ -10,17 +10,16 @@
  * 折扣, 限时折扣
  */
 
-require __DIR__.DIRECTORY_SEPARATOR.'model_way.php';
+_require(__DIR__.DIRECTORY_SEPARATOR.'Model_way.php');
 class Model_Way_1 extends Model_Way
 {
     /**
      * @param $conf      开始时间戳,结束时间戳,折扣
      * @return mixed|void
      */
-    public function init($products)
+    public function init($products, $rule='')
     {
         $this->products = $products;
-
     }
 
     function compute()
@@ -36,11 +35,6 @@ class Model_Way_1 extends Model_Way
                 $this->products[$pid]['final_price'] = ($product['sell_price'] * ($product['num']) * $rule['discount'] * 0.1);
             }
         }
-    }
-
-    function result()
-    {
-        return $this->products;
     }
 
     static function formatRule($conf)
