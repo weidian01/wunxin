@@ -226,11 +226,9 @@ class product extends MY_Controller
             //* 暂用代码
             $pInfo = $this->product->getProductById($pid);
             $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
-            unset($data['pname']);unset($data['market_price']);unset($data['sell_price']);unset($data['cost_price']);
-            unset($data['pcontent']);
             //echo '<pre>';print_r($data);exit;
             foreach ($pData as $pdv) {
-                $this->product->editProduct($pdv['pid'], $data);
+                //$this->product->editProduct($pdv['pid'], $data);
                 $this->product->delProductAttrById($pdv['pid']);
                 $this->product->delProductSizeById($pdv['pid']);
                 $this->product->addProductSize($size, $pdv['pid']);
