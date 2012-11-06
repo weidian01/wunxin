@@ -737,5 +737,22 @@ function d($variable)
     echo '</pre>';
 }
 
+function _require($file)
+{
+    static $require = array();
+    if(isset($require[$file]))
+    {
+        return ;
+    }
+
+    if(!is_file($file))
+    {
+        die("not found {$file}");
+    }
+
+    $require[$file] = TRUE;
+    require($file);
+}
+
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

@@ -264,7 +264,9 @@ class CI_Loader {
 		if (in_array($name, $this->_ci_models, TRUE))
 		{
             if($return)
+            {
                 return new $model();
+            }
 			return;
 		}
 

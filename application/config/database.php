@@ -56,7 +56,7 @@ $db['default']['database'] = 'test';
 //*/
 $db['default']['hostname'] = '127.0.0.1';//'211.100.40.57';//
 $db['default']['username'] = 'root';
-$db['default']['password'] = '123456';//'';//;
+$db['default']['password'] = '';//;'123456';//
 $db['default']['database'] = 'wunxin';
 
 
