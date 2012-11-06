@@ -26,6 +26,32 @@ class cart extends MY_Controller
     }
 
     /**
+     * 使用促销活动
+     */
+    public function usePromotion()
+    {
+        $promotionId = $this->input->get_post('promotion_id');
+        if (!$promotionId) {
+
+        }
+
+        $this->setPromotion(array('promotion_id' => $promotionId));
+    }
+
+    /**
+     * 删除活动
+     */
+    public function deletePromotion()
+    {
+        $promotionId = $this->input->get_post('promotion_id');
+        if (!$promotionId) {
+
+        }
+
+        $this->setPromotion(array('promotion_id' => $promotionId), false);
+    }
+
+    /**
      * 初始化购物车
      */
     public function getCart()
@@ -33,8 +59,27 @@ class cart extends MY_Controller
         $cData = array();
         $cData['cart'] = $this->getCartToCookie();
 
-        //foreach ($cData)
+        $cInfo = array(
+            'pid' => $pInfo['pid'],
+            'pname' => $pInfo['pname'],
+            'product_price' => ($pInfo['sell_price']),
+            'product_num' => $pNum,
+            'size_id' => $size['size_id'],
+            'product_size' => $size['abbreviation'],
+            'additional_info' => $pAdditionalInfo,
+        );
 
+        //$pInfo = $this->product->getProductById(array(1,2,3,4),'pid, did, class_id, uid, pname, market_price, sell_price');
+
+        $this->load->model('promotion/model_promotion', 'promotion');
+        if($this->promotion->is_promotion_product() === TRUE)
+        {
+            foreach($cData['cart'] as $p)
+            {
+                $p['num'] = 1;
+                $this->promotion->add_product($p);
+            }
+        }
 
 
         //* 活动信息

@@ -123,7 +123,7 @@ class MY_Controller extends CI_Controller
         $this->load->helper('cookie');
         $cData = $this->input->cookie(config_item('cookie_prefix').'cart_info');
 
-        $cData = empty ($cData) ? '' : json_decode($cData, true);
+        $cData = empty ($cData) ? array() : json_decode($cData, true);
 
         return $cData;
     }
@@ -131,8 +131,8 @@ class MY_Controller extends CI_Controller
     /**
      * 设置购物车产品到cookie
      *
-     * @param array $pInfo
-     * @return array | bool | void
+     * @param $pInfo
+     * @return array|bool
      */
     public function setCartToCookie($pInfo)
     {
@@ -170,6 +170,63 @@ class MY_Controller extends CI_Controller
 
         return $cData;
     }
+
+    /**
+     * 获取已经使用的促销活动ID
+     */
+    public function getUsedPromotion()
+    {
+        $this->load->helper('cookie');
+        $promotionData = $this->input->cookie(config_item('cookie_prefix').'promotion');
+
+        $promotionData = empty ($promotionData) ? '' : json_decode($promotionData, true);
+
+        return $promotionData;
+    }
+
+    /**
+     * 设置活动
+     *
+     * @param array $promotion
+     * @param bool $flag true 添加 false 删除
+     * @return array|mixed|string
+     */
+    public function setPromotion(array $promotion, $flag = true)
+    {
+        $this->load->helper('cookie');
+
+        $pData = array(
+            'promotion_id' => $promotion['promotion_id'],
+        );
+
+        $promotionData = $this->getUsedPromotion();
+
+        //标识为真 则添加活动，如为假则删除活动
+        if ($flag) {
+            if (!empty ($promotionData)) {
+                foreach ($promotionData as &$pv) {
+                    if ($pv['promotion_id'] != $pData['promotion_id']) {
+                        $promotionData[] = $pData;
+                    }
+                }
+            } else {
+                $promotionData[] = $pData;
+            }
+
+        } else {
+            foreach ($promotionData as $k=>$v) {
+                if ($v['promotion_id'] == $pData['promotion_id']) {
+                    unset ($promotionData[$k]);
+                }
+            }
+        }
+
+
+        $this->input->set_cookie('promotion', json_encode($promotionData), 10000000);
+
+        return $promotionData;
+    }
+
 
     protected function cache_view($match='')
     {
