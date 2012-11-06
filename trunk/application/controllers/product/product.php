@@ -201,7 +201,7 @@ class Product extends MY_Controller
                 foreach($productAttr as $key => $attr){
                     if($attr['attr_id'] == $v['attr_id'])
                     {
-                        $modelAttr[$k]['attr_value'] .= $attr['attr_value'];
+                        $modelAttr[$k]['attr_value'] .= $attr['attr_value'].'&nbsp;';
                         unset($productAttr[$key]);
                     }
                 }
