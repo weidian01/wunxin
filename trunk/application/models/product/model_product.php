@@ -96,7 +96,7 @@ class Model_Product extends MY_Model
         $where && $this->db->where($where);
         $order && $this->db->order_by($order);
         $this->db->limit($limit, $offset);
-        $this->db->group_by('style_no');
+        //$this->db->group_by('style_no');
         $data = $this->db->get()->result_array($key);
         return $data;
         //return empty ($data) ? null : $data;
