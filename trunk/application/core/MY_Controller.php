@@ -179,7 +179,7 @@ class MY_Controller extends CI_Controller
         $this->load->helper('cookie');
         $promotionData = $this->input->cookie(config_item('cookie_prefix').'promotion');
 
-        $promotionData = empty ($promotionData) ? '' : json_decode($promotionData, true);
+        $promotionData = empty ($promotionData) ? array() : json_decode($promotionData, true);
 
         return $promotionData;
     }
@@ -220,7 +220,6 @@ class MY_Controller extends CI_Controller
                 }
             }
         }
-
 
         $this->input->set_cookie('promotion', json_encode($promotionData), 10000000);
 

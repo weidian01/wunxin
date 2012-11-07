@@ -15,7 +15,7 @@ cart.init = function ()
     var html = '';
     var data = wx.ajax('cart/getCart', '');
 
-    if (data['cart'] == '' || data['cart'] == undefined || data['activity'] == '' || data['activity'] == undefined) {
+    if (data['cart'] == '' || data['cart'] == undefined) {
         html = '<br /><h1 style="text-align: center;">您的购物车中没有商品，请您去 <a href="javascript:void(0);" onclick="wx.goToBack()" style="color: #b5161c;">选购商品</a> 或 ' +
             '<a style="color: #b5161c;" href="javascript:void(0);" onclick="cart.removeCart()">取出寄存的产品</a>&nbsp;&nbsp;» </h1><br /><br /><br /><br />';
         $('#shopping_cart').html(html);
@@ -128,7 +128,7 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
 
     if (activityStatus) {
         activityStatus = '<a href="javascript:void(0);" target="_blank" class="view_detail">查看详情</a>\
-        <a class="a-red" href="javascript:void(0);" style="color: #ffffff;" onclick="cart.joinActivity('+aId+');"> <s></s>立即参加 </a>';
+        <a class="a-red" href="javascript:void(0);" style="color: #ffffff;" onclick="cart.usePromotion('+aId+', "join_promotion_'+aId+'");" id="join_promotion_'+aId+'"> <s></s>立即参加 </a>';
     } else {
         activityStatus = '<a class="a-gray" href="javascript:void(0);"><s></s>已领完</a>';
     }
@@ -328,5 +328,42 @@ cart.goToOrderConfirm = function ()
     wx.goToUrl('/order/order/');
 }
 
+//使用活动
+cart.usePromotion = function (promotionId, bindingId)
+{
+    var url = 'cart/usePromotion';
+    var data = wx.ajax(url, 'promotion_id='+promotionId);
 
+    var popMessage = '系统繁忙，请稍后再试！';
+    switch (data.error) {
+        case '0': popMessage = '使用活动成功！';break;
+        case '60020': popMessage = '参数不全！';break;
+        case '60021': popMessage = '活动不存在！';break;
+    }
+
+    wx.showPop(popMessage, bindingId);
+
+    if (data.error == '0') {
+        cart.init();
+    }
+}
+
+//删除活动
+cart.deletePromotion = function (promotionId, bindingId)
+{
+    var url = 'cart/deletePromotion';
+    var data = wx.ajax(url, 'promotion_id='+promotionId);
+
+    var popMessage = '系统繁忙，请稍后再试！';
+    switch (data.error) {
+        case '0': popMessage = '删除活动成功！';break;
+        case '60022':popMessage = '删除活动参数不全！';break;
+    }
+
+    wx.showPop(popMessage, bindingId);
+
+    if (data.error == '0') {
+        cart.init();
+    }
+}
 
