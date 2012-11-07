@@ -120,7 +120,8 @@ class Model_Promotion extends MY_Model
         {
             if (!isset($item['used']) || $item['used'] != true)
             {
-                if ($this->discount($item['promotion_id'])) {
+                if ($this->discount($item['promotion_id']))
+                {
                     $unused[] = $item;
                 }
             }
@@ -195,13 +196,15 @@ class Model_Promotion extends MY_Model
     function compute()
     {
         $this->set_promotion_product();
-
-        foreach($this->use_promotion['product'] as $promotion_id)
+        if(isset($this->use_promotion['product']))
         {
-            $use_products = $this->discount($promotion_id);
-            if ($use_products) {
-                $this->set_product_final_price($use_products, $promotion_id);
-                $this->clear_promotion_products($use_products);
+            foreach($this->use_promotion['product'] as $promotion_id)
+            {
+                $use_products = $this->discount($promotion_id);
+                if ($use_products) {
+                    $this->set_product_final_price($use_products, $promotion_id);
+                    $this->clear_promotion_products($use_products);
+                }
             }
         }
         return ;
