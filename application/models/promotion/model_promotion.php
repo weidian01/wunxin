@@ -197,6 +197,7 @@ class Model_Promotion extends MY_Model
             }
             if($way)
             {
+                //echo '<pre>';print_r($p_info['rule']);
                 $way->init($products, $p_info['rule']);
                 $way->compute();
                 return $way->result();
@@ -316,10 +317,12 @@ class Model_Promotion extends MY_Model
         {
             if(isset($p['promotion_id']) && $p['promotion_id'])
             {
+                $p['promotion_name'] = $this->promotion[$p['promotion_id']]['name'];
                 $r[$p['pid']] = $p;
             }
             else
             {
+                $p['promotion_name'] = '';
                 $p['promotion_id'] = 0;
                 $p['final_price'] = $p['sell_price'];
                 $r[$p['pid']] = $p;

@@ -27,7 +27,7 @@ class test extends MY_Controller
         {
 
             //array(1,3,4,5)
-            $this->promotion->use_promotion(array()); //使用活动 1
+            $this->promotion->use_promotion(array());//使用活动 1
             $this->promotion->compute();
         }
 

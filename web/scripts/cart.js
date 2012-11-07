@@ -33,7 +33,7 @@ cart.init = function ()
 
         for (var ii in activity) {
             if (!wx.isEmpty(activity[ii])) return;
-            html += cart.getActivityTemplate(activity[ii]['promotion_type'], activity[ii]['promotion_id'], activity[ii]['name'],
+            html += cart.getActivityTemplate(activity[ii]['discount_type'], activity[ii]['promotion_id'], activity[ii]['name'],
                 activity[ii]['descr'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status']);
         }
         html += '</ul></div></td></tr>';
@@ -59,25 +59,25 @@ cart.init = function ()
         html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname+'</a><br/>';
         html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
         html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a></td>';
-        html += '<td align="center" style="padding-left: 8px;">'+wx.fPrice(data[i].product_price)+'</td>';
+        html += '<td align="center" style="padding-left: 8px;">'+wx.fPrice(data[i].final_price)+'</td>';
         html += '<td align="center" style="padding-left: 8px;">'+data[i].product_size+'</td>';
         html += '<td align="center" style="padding-left: 8px;">';
-        html += (data[i].product_num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
-        html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].product_num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
+        html += (data[i].num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
+        html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
         html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
-        html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].product_price * data[i].product_num) )+'</span></td>';
-        html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].product_price * data[i].product_num)+'</span></td>';
+        html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].final_price * data[i].num) )+'</span></td>';
+        html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].final_price * data[i].num)+'</span></td>';
         html += '</tr>';
-        totalIntegral += (data[i].product_price * data[i].product_num);
-        totalPrice += (data[i].product_price * data[i].product_num);
-        totalProductNum += (data[i].product_num);
+        totalIntegral += (data[i].final_price * data[i].num);
+        totalPrice += (data[i].final_price * data[i].num);
+        totalProductNum += (data[i].num);
     }
 
     html += '<tr><td style="border-bottom:1px solid #a5afc3;">&nbsp;</td><td colspan="6" style="border-bottom:1px solid #a5afc3;">';
     html += '<div class="gsum"> 产品数量总计：<span class="font1">'+parseInt(totalProductNum)+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     html += '赠送积分总计：<span class="font1">'+parseInt(wx.fPrice(totalIntegral))+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-    //html += '花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+    html += '花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     html += '商品金额总计：<span class="font1">'+wx.fPrice(totalPrice)+'</span></div></td></tr>';
 
     html += '<tr><td colspan="7"><div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>\
@@ -126,12 +126,17 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
             break;
     }
 
+    activityStatus = '<a href="javascript:void(0);" target="_blank" class="view_detail">查看详情</a>\
+    <a class="a-red" href="javascript:void(0);" style="color: #ffffff;" onclick="cart.usePromotion('+aId+', \'join_promotion_'+aId+'\');" id="join_promotion_'+aId+'"> <s></s>立即参加 </a>';
+
+    /*
     if (activityStatus) {
         activityStatus = '<a href="javascript:void(0);" target="_blank" class="view_detail">查看详情</a>\
         <a class="a-red" href="javascript:void(0);" style="color: #ffffff;" onclick="cart.usePromotion('+aId+', "join_promotion_'+aId+'");" id="join_promotion_'+aId+'"> <s></s>立即参加 </a>';
     } else {
         activityStatus = '<a class="a-gray" href="javascript:void(0);"><s></s>已领完</a>';
     }
+    //*/
 
     var html = '<li>\
             <dt title="'+aTitle+'" class="pro-title promo_title">'+zengPid+'<b>'+aTitle+'</b></dt>\
