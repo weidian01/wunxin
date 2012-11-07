@@ -81,7 +81,7 @@ class cart extends MY_Controller
     public function getCart()
     {
         $cData = array();
-        $cData['cart'] = $this->getCartToCookie();echo '<pre>';print_r($cData['cart']);exit;
+        $cData['cart'] = $this->getCartToCookie();//echo '<pre>';print_r($cData['cart']);exit;
         $promotion = $this->getUsedPromotion();
 
         if (!empty ($cData['cart'])) {
