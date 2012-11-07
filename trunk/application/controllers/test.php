@@ -27,7 +27,7 @@ class test extends MY_Controller
         {
 
             //array(1,3,4,5)
-            $this->promotion->use_promotion(array(9,5, 2, 1)); //使用活动 1
+            $this->promotion->use_promotion(array()); //使用活动 1
             $this->promotion->compute();
         }
 
@@ -37,9 +37,6 @@ class test extends MY_Controller
         p($unused_promotin);
         p($this->promotion->products()); //获取使用过活动产品列表  包括参与过活动的最终价格
         //p($this->promotion);
-
-
-        echo '<pre>';
         //print_r($this->promotion->get_promotion());
 
         //print_r($this->promotion->result());
