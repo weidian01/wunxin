@@ -35,9 +35,17 @@ class Model_Promotion extends MY_Model
     function __construct()
     {
         parent::__construct();
-        $this->set_promotion();
+        $this->init_promotion();
     }
 
+    /**
+     * 初始化计算活动的信息
+     */
+    function init_promotion()
+    {
+        $this->set_promotion();
+        $this->set_promotion_product();
+    }
     /**
      * 获取当前促销信息
      */
@@ -52,29 +60,37 @@ class Model_Promotion extends MY_Model
         foreach ($promotion as $p) {
             $this->promotion[$p['promotion_id']] = $p;
         }
+        return ;
     }
 
     private function set_promotion_product()
     {
-        $pid = array_keys($this->order_products);
-        $promotion_id = array_keys($this->get_promotion());
-        $this->db->select('*')->from('promotion_product');
-        $this->db->where_in('pid', $pid);
-        $this->db->where_in('promotion_id', $promotion_id);
-        $data = $this->db->get()->result_array();
-        foreach($data as $p)
+        $promotions = $this->get_promotion();
+        if($promotions)
         {
-            $this->promotion_products[] = $p;
+            $promotion_id = array_keys($promotions);
+            $pid = array_keys($this->order_products);
+
+            $this->db->select('*')->from('promotion_product');
+            $this->db->where_in('pid', $pid);
+            $this->db->where_in('promotion_id', $promotion_id);
+            $data = $this->db->get()->result_array();
+            if ($data) {
+                foreach ($data as $p) {
+                    $this->promotion_products[] = $p;
+                }
+            }
         }
+        return ;
     }
 
     /**
      * 是否有针对产品的活动进行中
      * @return bool
      */
-    function is_promotion_product()
+    function is_promotion($promotion_id)
     {
-        return $this->promotion ? TRUE : FALSE;
+        return isset($this->promotion[$promotion_id]) ? TRUE : FALSE;
     }
 
     /**
@@ -116,12 +132,9 @@ class Model_Promotion extends MY_Model
     function get_unused_promotion()
     {
         $unused = array();
-        foreach ($this->promotion as $item)
-        {
-            if (!isset($item['used']) || $item['used'] != true)
-            {
-                if ($this->discount($item['promotion_id']))
-                {
+        foreach ($this->promotion as $item) {
+            if (!isset($item['used']) || $item['used'] != true) {
+                if ($this->discount($item['promotion_id'])) {
                     $unused[] = $item;
                 }
             }
@@ -195,7 +208,6 @@ class Model_Promotion extends MY_Model
 
     function compute()
     {
-        $this->set_promotion_product();
         if(isset($this->use_promotion['product']))
         {
             foreach($this->use_promotion['product'] as $promotion_id)
@@ -294,78 +306,80 @@ class Model_Promotion extends MY_Model
         return $return;
     }
 
-//    /**
-//     * 处理产品参与活动后的价格
-//     */
-//    function compute()
-//    {
-//        if ($this->is_promotion_product()) {
-//            foreach ($this->products as $key => $p) {
-//                $price = NULL;
-//                foreach ($this->promotion['one'] as $promotion) {
-//                    if ($promotion['promotion_range'] == 0) {
-//                        $rule['rule'] = $promotion['rule'];
-//                        $rule['start_time'] = strtotime($promotion['start_time']);
-//                        $rule['end_time'] = strtotime($promotion['end_time']);
-//                    } else {
-//                        $tmp = $this->get_promotion_product($p['pid'], $promotion['promotion_id']);
-//                        if (!$tmp)
-//                            continue;
-//                        $rule['rule'] = $tmp['rule'];
-//                        $rule['start_time'] = strtotime($tmp['start_time']);
-//                        $rule['end_time'] = strtotime($tmp['end_time']);
-//                    }
-//                    switch ($promotion['promotion_type']) {
-//                        case 1: //折扣
-//                            $way = $this->load->model('promotion/Model_way_1', 'way', FALSE, TRUE);
-//                            break;
-//                        case 2: //第 N 件 X 折
-//                            $way = $this->load->model('promotion/Model_way_2', 'way', FALSE, TRUE);
-//                            break;
-//                        case 3:
-//                            $way = $this->load->model('promotion/Model_way_3', 'way', FALSE, TRUE);
-//                            break;
-//                        default:
-//                            $way = NULL;
-//                            break;
-//                    }
-//                    if ($way) {
-//                        $way->init($rule);
-//                        if (FALSE) { //$promotion['is_juxtaposed']
-//                            if (!isset($price['share']['price'])) {
-//                                $price['share']['price'] = $way->compute($p['sell_price'], 1);
-//                                $price['share']['remark'] = $promotion['name'];
-//
-//                            } else {
-//                                $price['share']['price'] = $way->compute($price['share']['price'], 1);
-//                                $price['share']['remark'] .= '+' . $promotion['name'];
-//                            }
-//                        } else {
-//                            $price[$promotion['promotion_id']] = array('price' => $way->compute($p['sell_price'], 1), 'remark' => $promotion['name']);
-//                        }
-//                    }
-//                }
-//
-//                if ($price) {
-//                    uasort($price, "self::cmp");
-//                    //$this->products[$key]['price'] = $price[0]['price'];
-//                    //$this->products[$key]['remark'] = $price[0]['remark'];
-//                    $this->products[$key]['promotion'] = $price;
-//                } else {
-//                    $this->products[$key]['price'] = $p['sell_price'];
-//                    $this->products[$key]['remark'] = '';
-//                }
-//            }
-//        }
-//    }
-
+    /**
+     * 获取参与活动后的
+     * @return array
+     */
     function products()
     {
-        //print_r($this->promotion);
         return $this->order_products;
     }
 
+    /**
+     * 处理产品参与活动后的价格
+     */
+    /*
+    function compute()
+    {
+        if ($this->is_promotion_product()) {
+            foreach ($this->products as $key => $p) {
+                $price = NULL;
+                foreach ($this->promotion['one'] as $promotion) {
+                    if ($promotion['promotion_range'] == 0) {
+                        $rule['rule'] = $promotion['rule'];
+                        $rule['start_time'] = strtotime($promotion['start_time']);
+                        $rule['end_time'] = strtotime($promotion['end_time']);
+                    } else {
+                        $tmp = $this->get_promotion_product($p['pid'], $promotion['promotion_id']);
+                        if (!$tmp)
+                            continue;
+                        $rule['rule'] = $tmp['rule'];
+                        $rule['start_time'] = strtotime($tmp['start_time']);
+                        $rule['end_time'] = strtotime($tmp['end_time']);
+                    }
+                    switch ($promotion['promotion_type']) {
+                        case 1: //折扣
+                            $way = $this->load->model('promotion/Model_way_1', 'way', FALSE, TRUE);
+                            break;
+                        case 2: //第 N 件 X 折
+                            $way = $this->load->model('promotion/Model_way_2', 'way', FALSE, TRUE);
+                            break;
+                        case 3:
+                            $way = $this->load->model('promotion/Model_way_3', 'way', FALSE, TRUE);
+                            break;
+                        default:
+                            $way = NULL;
+                            break;
+                    }
+                    if ($way) {
+                        $way->init($rule);
+                        if (FALSE) { //$promotion['is_juxtaposed']
+                            if (!isset($price['share']['price'])) {
+                                $price['share']['price'] = $way->compute($p['sell_price'], 1);
+                                $price['share']['remark'] = $promotion['name'];
 
+                            } else {
+                                $price['share']['price'] = $way->compute($price['share']['price'], 1);
+                                $price['share']['remark'] .= '+' . $promotion['name'];
+                            }
+                        } else {
+                            $price[$promotion['promotion_id']] = array('price' => $way->compute($p['sell_price'], 1), 'remark' => $promotion['name']);
+                        }
+                    }
+                }
+
+                if ($price) {
+                    uasort($price, "self::cmp");
+                    //$this->products[$key]['price'] = $price[0]['price'];
+                    //$this->products[$key]['remark'] = $price[0]['remark'];
+                    $this->products[$key]['promotion'] = $price;
+                } else {
+                    $this->products[$key]['price'] = $p['sell_price'];
+                    $this->products[$key]['remark'] = '';
+                }
+            }
+        }
+    }
 
     private function get_promotion_product($pid, $promotion_id)
     {
@@ -382,6 +396,7 @@ class Model_Promotion extends MY_Model
         }
         return ($a['price'] < $b['price']) ? -1 : 1;
     }
+    */
 }
 
 
