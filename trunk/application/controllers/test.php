@@ -15,15 +15,19 @@ class test extends MY_Controller
         $pInfo = $this->product->getProductById(array(1,2,3,4),'pid, did, class_id, uid, pname, market_price, sell_price');
 
         $this->load->model('promotion/model_promotion', 'promotion');
+
+        foreach ($pInfo as $k => $p)
+        {
+            $pInfo[$k]['num'] = 1;
+
+        }
+        $this->promotion->add_product($pInfo);
         $act = array(5,2,1);
         if($act)
         {
-            foreach($pInfo as $p) {
-                $p['num'] = 1;
-                $this->promotion->add_product($p);
-            }
+
             //array(1,3,4,5)
-            $this->promotion->use_promotion(array(5, 2, 1)); //试用活动 1
+            $this->promotion->use_promotion(array(9,5, 2, 1)); //使用活动 1
             $this->promotion->compute();
         }
 

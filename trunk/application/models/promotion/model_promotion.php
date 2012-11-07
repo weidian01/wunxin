@@ -35,17 +35,9 @@ class Model_Promotion extends MY_Model
     function __construct()
     {
         parent::__construct();
-        $this->init_promotion();
+        $this->set_promotion();
     }
 
-    /**
-     * 初始化计算活动的信息
-     */
-    function init_promotion()
-    {
-        $this->set_promotion();
-        $this->set_promotion_product();
-    }
     /**
      * 获取当前促销信息
      */
@@ -72,7 +64,7 @@ class Model_Promotion extends MY_Model
             $pid = array_keys($this->order_products);
 
             $this->db->select('*')->from('promotion_product');
-            $this->db->where_in('pid', $pid);
+            $pid && $this->db->where_in('pid', $pid);
             $this->db->where_in('promotion_id', $promotion_id);
             $data = $this->db->get()->result_array();
             if ($data) {
@@ -97,10 +89,14 @@ class Model_Promotion extends MY_Model
      * 添加产品
      * @param $produt
      */
-    function add_product($product)
+    function add_product($products)
     {
-        $this->order_products[$product['pid']] = $product;
-        return $this;
+        foreach($products as $p)
+        {
+            $this->order_products[$p['pid']] = $p;
+        }
+        $this->set_promotion_product();
+        return ;
     }
 
     /**
@@ -113,13 +109,16 @@ class Model_Promotion extends MY_Model
         {
             foreach($promotion_id as $id)
             {
-                if($this->promotion[$id]['pay_type'])
+                if($this->is_promotion($id))
                 {
-                    $this->use_promotion['product'][] = $id;
-                }
-                else
-                {
-                    $this->use_promotion['order'][] = $id;
+                    if($this->promotion[$id]['pay_type'])
+                    {
+                        $this->use_promotion['product'][] = $id;
+                    }
+                    else
+                    {
+                        $this->use_promotion['order'][] = $id;
+                    }
                 }
             }
         }
