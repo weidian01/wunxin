@@ -16,7 +16,7 @@ class test extends MY_Controller
 
         $this->load->model('promotion/model_promotion', 'promotion');
 
-        if($this->promotion->is_promotion_product() === TRUE)
+        if($this->promotion->is_promotion() === TRUE)
         {
             foreach($pInfo as $p)
             {
