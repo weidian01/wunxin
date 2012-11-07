@@ -30,12 +30,28 @@ class cart extends MY_Controller
      */
     public function usePromotion()
     {
-        $promotionId = $this->input->get_post('promotion_id');
-        if (!$promotionId) {
+        $promotionId = intval($this->input->get_post('promotion_id'));
 
-        }
+        $response = array('error' => '0', 'msg' => '使用活动成功', 'code' => 'use_promotion_success');
 
-        $this->setPromotion(array('promotion_id' => $promotionId));
+        do {
+            if (!$promotionId) {
+                $response = error(60020);
+                break;
+            }
+
+            $this->load->model('promotion/model_promotion', 'promotion');
+            $promotionData = $this->promotion->isPromotion($promotionId);
+            if (empty ($promotionData)) {
+                $response = error(60021);
+                break;
+            }
+
+            $this->setPromotion(array('promotion_id' => $promotionId));
+        } while (false);
+
+
+        self::json_output($response);
     }
 
     /**
@@ -43,12 +59,20 @@ class cart extends MY_Controller
      */
     public function deletePromotion()
     {
-        $promotionId = $this->input->get_post('promotion_id');
-        if (!$promotionId) {
+        $promotionId = intval($this->input->get_post('promotion_id'));
 
-        }
+        $response = array('error' => '0', 'msg' => '删除活动成功', 'code' => 'delete_promotion_success');
 
-        $this->setPromotion(array('promotion_id' => $promotionId), false);
+        do {
+            if (!$promotionId) {
+                $response = error(60022);
+                break;
+            }
+
+            $this->setPromotion(array('promotion_id' => $promotionId), false);
+        } while (false);
+
+        self::json_output($response);
     }
 
     /**
@@ -58,39 +82,39 @@ class cart extends MY_Controller
     {
         $cData = array();
         $cData['cart'] = $this->getCartToCookie();
-
-        $cInfo = array(
-            'pid' => $pInfo['pid'],
-            'pname' => $pInfo['pname'],
-            'product_price' => ($pInfo['sell_price']),
-            'product_num' => $pNum,
-            'size_id' => $size['size_id'],
-            'product_size' => $size['abbreviation'],
-            'additional_info' => $pAdditionalInfo,
-        );
-
-        //$pInfo = $this->product->getProductById(array(1,2,3,4),'pid, did, class_id, uid, pname, market_price, sell_price');
+        $promotion = $this->getUsedPromotion();
 
         $this->load->model('promotion/model_promotion', 'promotion');
-        if($this->promotion->is_promotion_product() === TRUE)
+        foreach($cData['cart'] as $cv)
         {
-            foreach($cData['cart'] as $p)
-            {
-                $p['num'] = 1;
-                $this->promotion->add_product($p);
-            }
+            $productInfo = array(
+                'pid' => $cv['pid'],
+                'pname' => $cv['pname'],
+                'sell_price' => $cv['product_price'],
+                'num' => $cv['product_num'],
+            );
+            $this->promotion->add_product($productInfo);
         }
+
+        $promotionIdTmpArr = array();
+        foreach ($promotion as $pv) {
+            $promotionIdTmpArr[] = $pv['promotion_id'];
+        }
+        //echo '<pre>';print_r($promotionIdTmpArr);
+        $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
+        $this->promotion->compute();
+        /*
+        $used_promotin = $this->promotion->get_used_promotion(); //获取使用成功的活动
+
+        p($used_promotin);
+        p($unused_promotin);
+        p($this->promotion->products());  //获取使用过活动产品列表  包括参与过活动的最终价格
+        //*/
+
 
 
         //* 活动信息
-        $cData['activity'] = array(
-            array('type' => '1', 'a_id' => 1, 'a_title' => '1天天开心抢天天开心抢', 'a_desc' => '1抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '1', 'discount_price' => 321, 'status' => 0),
-            array('type' => '2', 'a_id' => 2, 'a_title' => '2天天开心抢天天开心抢', 'a_desc' => '2抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '2', 'discount_price' => 334, 'status' => 1),
-            array('type' => '3', 'a_id' => 3, 'a_title' => '3天天开心抢天天开心抢', 'a_desc' => '3抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
-            array('type' => '3', 'a_id' => 3, 'a_title' => '4天天开心抢天天开心抢', 'a_desc' => '4抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
-            array('type' => '3', 'a_id' => 3, 'a_title' => '5天天开心抢天天开心抢', 'a_desc' => '5抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
-            array('type' => '3', 'a_id' => 3, 'a_title' => '6天天开心抢天天开心抢', 'a_desc' => '6抢多了也不伤身抢多了也不伤身抢多了也不伤身', 'pid' => '3', 'discount_price' => 12334, 'status' => 1),
-        );
+        $cData['activity'] = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
         //*/
 
         //echo '<pre>';print_r($cData);exit;
