@@ -739,6 +739,7 @@ function d($variable)
 
 function _require($file)
 {
+    $file = strtolower($file);
     static $require = array();
     if(isset($require[$file]))
     {

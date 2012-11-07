@@ -81,43 +81,38 @@ class cart extends MY_Controller
     public function getCart()
     {
         $cData = array();
-        $cData['cart'] = $this->getCartToCookie();
+        $cData['cart'] = $this->getCartToCookie();echo '<pre>';print_r($cData['cart']);exit;
         $promotion = $this->getUsedPromotion();
 
-        $this->load->model('promotion/model_promotion', 'promotion');
-        foreach($cData['cart'] as $cv)
-        {
-            $productInfo = array(
-                'pid' => $cv['pid'],
-                'pname' => $cv['pname'],
-                'sell_price' => $cv['product_price'],
-                'num' => $cv['product_num'],
-            );
+        if (!empty ($cData['cart'])) {
+            $this->load->model('promotion/model_promotion', 'promotion');
+            $productInfo = array();
+            foreach($cData['cart'] as $cv)
+            {
+                $productInfo[] = array(
+                    'pid' => $cv['pid'],
+                    'pname' => $cv['pname'],
+                    'sell_price' => $cv['product_price'],
+                    'num' => $cv['product_num'],
+                );
+            }
+
             $this->promotion->add_product($productInfo);
+
+            $promotionIdTmpArr = array();
+            foreach ($promotion as $pv) {
+                $promotionIdTmpArr[] = $pv['promotion_id'];
+            }
+            //echo '<pre>';print_r($promotionIdTmpArr);
+            $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
+            $this->promotion->compute();
+
+            //* 活动信息
+            $cData['activity'] = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
         }
 
-        $promotionIdTmpArr = array();
-        foreach ($promotion as $pv) {
-            $promotionIdTmpArr[] = $pv['promotion_id'];
-        }
-        //echo '<pre>';print_r($promotionIdTmpArr);
-        $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
-        $this->promotion->compute();
-        /*
-        $used_promotin = $this->promotion->get_used_promotion(); //获取使用成功的活动
 
-        p($used_promotin);
-        p($unused_promotin);
-        p($this->promotion->products());  //获取使用过活动产品列表  包括参与过活动的最终价格
-        //*/
-
-
-
-        //* 活动信息
-        $cData['activity'] = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
-        //*/
-
-        //echo '<pre>';print_r($cData);exit;
+        //echo '<pre>';print_r($cData['activity']);exit;
         $this->json_output($cData);
     }
 
