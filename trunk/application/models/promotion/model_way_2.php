@@ -32,7 +32,7 @@ class Model_Way_2 extends Model_Way
 
             if ($time > $rule['start_time'] && $time < $rule['end_time'] && $product['num'] >= $rule['num'])
             {
-                $this->products[$pid]['final_price'] = ($product['sell_price'] * ($product['num']-1) +  ($product['sell_price'] * $rule['discount'] * 0.1));
+                $this->products[$pid]['final_price'] = ( $product['sell_price'] * ($product['num']-1) +  ($product['sell_price'] * $rule['discount'] * 0.1) );
             }
         }
     }

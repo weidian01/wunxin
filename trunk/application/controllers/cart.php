@@ -248,11 +248,11 @@ class cart extends MY_Controller
                 $response = error(60018);
                 break;
             }
-
+//echo $id.'<pre>';print_r($cData[$id]);//exit;
             if (!empty ($cData[$id])) {
                 $cData[$id]['product_num'] = $num;
             }
-
+            //echo $id.'<pre>';print_r($cData);exit;
             $status = $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), config_item('cookie_cart_expires'));
             /*/
             if (!false) {
