@@ -33,8 +33,8 @@ cart.init = function ()
 
         for (var ii in activity) {
             if (!wx.isEmpty(activity[ii])) return;
-            html += cart.getActivityTemplate(activity[ii]['type'], activity[ii]['a_id'], activity[ii]['a_title'],
-                activity[ii]['a_desc'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status']);
+            html += cart.getActivityTemplate(activity[ii]['promotion_type'], activity[ii]['promotion_id'], activity[ii]['name'],
+                activity[ii]['descr'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status']);
         }
         html += '</ul></div></td></tr>';
     }
