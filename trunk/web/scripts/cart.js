@@ -7,7 +7,10 @@
 * Author: Evan Hou
 * Date: 2012.07.04
 */
-var cart = {};
+var cart = {
+    product_max_num:100,
+    product_min_num:1
+};
 
 //购物车初始化
 cart.init = function ()
@@ -52,20 +55,24 @@ cart.init = function ()
 
     data = data['cart'];
     for (var i in data) {
-        console.log(i);
+        //console.log(i);
         html += '<tr>';
         html += '<td width="7%" style="padding-left: 8px;"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank">' +
             '<img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="60"/></a></td>';
         html += '<td width="40%" style="padding-left: 8px;">';
         html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname+'</a><br/>';
         html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
-        html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+i+')">删除</a></td>';
+        html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+data[i].pid+')">删除</a></td>';
         html += '<td align="center" style="padding-left: 8px;">'+wx.fPrice(data[i].final_price)+'</td>';
         html += '<td align="center" style="padding-left: 8px;">'+data[i].product_size+'</td>';
         html += '<td align="center" style="padding-left: 8px;">';
-        html += (data[i].num > 1) ? '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 0)"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' : '';
-        html += '<input name="product_num" type="text" class="gnum" id="product_num_'+i+'" value="'+data[i].num+'" maxlength="3" onchange="cart.changeQuantity('+i+', 2)"/>';
-        html += '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+i+', 1)"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
+        html += (data[i].num > cart.product_min_num) ?
+            '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+data[i].pid+', 0)"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' :
+            '&nbsp;<img src="'+wx.base_url+'images/reduce_none.gif" alt="减少"/>&nbsp;';
+        html += '<input name="product_num" type="text" class="gnum" id="product_num_'+data[i].pid+'" value="'+data[i].num+'" maxlength="2" onchange="cart.changeQuantity('+data[i].pid+', 2)"/>';
+        html += (data[i].num >= cart.product_max_num) ?
+            '<img src="'+wx.base_url+'images/plus_none.gif" width="11" height="11"/>' :
+            '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+data[i].pid+', 1)"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
         html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].final_price * data[i].num) )+'</span></td>';
         html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].final_price * data[i].num)+'</span></td>';
@@ -148,23 +155,6 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
             <dd class="'+typeName+'"></dd>\
         </li>';
     return html;
-    /*
-        <li>
-            <dt title="亲情回馈买就送鼻贴" class="pro-title promo_title"><span surl="" vn="" class="zdsp"></span><b>亲情回馈买就送鼻贴</b></dt>
-            <dd class="fl"><a class="img60" href="/product/4801146_2" target="_blank">
-                <img src="http://d12.yihaodianimg.com/t1/2012/1018/225/55/51cb6e501a748b41c77fecedee40a191_60x60.jpg"></a></dd>
-            <dd class="proname"><a href="/product/4801146_2" target="_blank"> 舒适达 新康泰克通气鼻贴(透明型)单片装(赠品)*3片</a></dd>
-            <dd><del>￥5.7</del> &nbsp;&nbsp;<strong class="red">免费</strong></dd>
-            <dd><a class="a-gray" href="javascript:void(0);"><s></s>已领完</a></dd>
-            <dd class="zeng"></dd>
-        </li>
-    //*/
-}
-
-//加入活动
-cart.joinActivity = function (activityId)
-{
-
 }
 
 cart.switchActivity = function ()
@@ -176,7 +166,6 @@ cart.switchActivity = function ()
 cart.addToCart = function (pid, pSize, pNum, additional_info, bindingId)
 {
     if (pid == '' || pid == undefined || pSize == '' || pSize == undefined) {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">添加产品到购物车参数不全。</span><br/>' });
         wx.showPop('添加产品到购物车参数不全。', bindingId);
         return false;
     }
@@ -209,52 +198,38 @@ cart.addToCart = function (pid, pSize, pNum, additional_info, bindingId)
 }
 
 //删除购物车中产品
-cart.deleteCartItem = function (id, bindingId)
+cart.deleteCartItem = function (pid, bindingId)
 {
-    id = parseInt(id);
-    //*
-    if ( !wx.isEmpty(id) && id !== 0) {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
+    pid = parseInt(pid);
+    if ( !wx.isEmpty(pid) && pid !== 0) {
         wx.showPop('参数不全。', bindingId);
         return false;
     }
-    //*/
+
     var url = 'cart/deleteCartProduct';
-    var param = 'id='+id;
+    var param = 'pid='+pid;
     var data = wx.ajax(url, param);
-/*
-    switch (data.error)
-    {
-        case '60008': alert(data.msg);break;
-        case '60009': alert(data.msg);break;
-        case '60010': alert(data.msg);break;
-        default :alert(data.msg);
-    }
-//*/
+
     cart.init();
 }
 
 //更改购物中产品的数量
-cart.changeQuantity = function (id, type)
+cart.changeQuantity = function (pid, type, bindingId)
 {
-    var productNum = document.getElementById('product_num_'+id).value;
+    var productNum = document.getElementById('product_num_'+pid).value;
     productNum = parseInt(productNum);
 
     var num = (type == 2) ? productNum : ( type ? (productNum + 1) : (productNum - 1) );
 
-    var url = 'cart/changeQuantity';
-    var param = 'id='+id+'&num='+num;
-    var data = wx.ajax(url, param);
-/*
-    switch (data.error)
-    {
-        case '60004': alert(data.msg);break;
-        case '60005': alert(data.msg);break;
-        case '60007': alert(data.msg);break;
-        case '60018': alert(data.msg);break;
-        default :alert(data.msg);
+    if (num > cart.product_max_num) {
+        wx.showPop('产品数量超出限制！', bindingId);
+        return;
     }
-//*/
+
+    var url = 'cart/changeQuantity';
+    var param = 'pid='+pid+'&num='+num;
+    var data = wx.ajax(url, param);
+
     cart.init();
 }
 
@@ -265,25 +240,13 @@ cart.saveCart = function (bindingId)
         return false;
     }
 
-    //var url = 'cart/cartStorageToDatabase';
-    //var param = '';
     var data = wx.ajax('cart/cartStorageToDatabase', '');
 
-    if (data.error == '10009') {
-        wx.loginLayer();
-        return false;
-    }
-
-    if (data.error == '60019') {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">保存失败。</span><br/>' });
-        wx.showPop('保存失败。', bindingId);
-        return false;
-    }
-
-    if (data.error == '0') {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">保存成功。</span><br/>' });
-        wx.showPop('购物车中产品寄存成功。', bindingId);
-        return true;
+    switch (data.error) {
+        case '10009': wx.loginLayer(); return false; break;
+        case '60019': wx.showPop('保存失败！', bindingId); return false; break;
+        case '0': wx.showPop('购物车中产品寄存成功！', bindingId); return true; break;
+        default :wx.showPop('系统繁忙，请稍后再试！');
     }
 }
 
@@ -295,18 +258,11 @@ cart.removeCart = function (bindingId)
     }
 
     var url = 'cart/removeCartProduct';
-    //var param = '';
     var data = wx.ajax(url, '');
 
-    if (data.error == '10009') {
-        wx.loginLayer();
-        return false;
-    }
-
-    if (data.error == '0') {
-        //alert('取出产品成功!');
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">取出产品成功。</span><br/>' });
-        wx.showPop('取出购物车产品成功。', bindingId);
+    switch (data.error) {
+        case '10009':wx.loginLayer(); return false;break;
+        case '0':wx.showPop('取出购物车产品成功！', bindingId);break;
     }
 
     cart.init();
@@ -318,8 +274,7 @@ cart.emptyCart = function (bindingId)
     var url = 'cart/emptyCart';
     wx.ajax(url, '');
 
-    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">清空成功。</span><br/>' });
-    wx.showPop('清空成功。', bindingId);
+    wx.showPop('清空成功！', bindingId);
 
     cart.init();
 }
@@ -327,9 +282,7 @@ cart.emptyCart = function (bindingId)
 //提交订单至填写订单核对信息页面
 cart.goToOrderConfirm = function ()
 {
-    if (!wx.checkLoginStatus()) {
-        return false;
-    }
+    if (!wx.checkLoginStatus()) return false;
 
     wx.goToUrl('/order/order/');
 }

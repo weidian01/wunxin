@@ -37,17 +37,9 @@ class order extends MY_Controller
         }
 
         $cartInfo = $this->getCartToCookie();
-//echo '<pre>';print_r($cartInfo);exit;
         if (empty ($cartInfo)) {
             echo "<script type='text/javascript'>alert('购物车为空！');window.location.href = '".$referer."'</script>";
             return ;
-        }
-
-        $totalPrice = 0;
-        $totalNum = 0;
-        foreach ($cartInfo as $cv) {
-            $totalPrice += $cv['product_price'] * $cv['product_num'];
-            $totalNum += $cv['product_num'];
         }
 
         $this->load->model('other/Model_Area', 'area');
@@ -56,10 +48,10 @@ class order extends MY_Controller
         $this->load->model('user/Model_User_Recent', 'recent');
         $recentData = $this->recent->getUserRecentAddressByUid($this->uInfo['uid']);
 
+        $cData = $this->calculateDiscount($cartInfo);
+
         $data = array (
-            'cart_info' => $cartInfo,
-            'total_price' => $totalPrice,
-            'total_num' => $totalNum,
+            'cart_info' => $cData['product'],
             'province_data' => $provinceData,
             'recent_data' => $recentData,
         );
@@ -102,11 +94,13 @@ class order extends MY_Controller
             $this->load->model('product/Model_Product', 'product');
             $this->load->model('product/Model_Product_Color', 'color');
 
+            $cdData = $this->calculateDiscount($cartData);
+
             $productTmpData = array();
             $totalPrice = 0;
-            foreach ($cartData as $cv) {
+            foreach ($cdData['product'] as $cv) {
                 $productData = $this->product->getProductById($cv['pid']);
-                $totalPrice += ($productData['sell_price'] * $cv['product_num']);
+                $totalPrice += ($cv['final_price'] * $cv['num']);
                 $productTmpData[$productData['pid']] = $productData;
 
             }
@@ -145,33 +139,33 @@ class order extends MY_Controller
             }
             $response['order_sn'] = $orderId;
 
-
-
-            foreach ($cartData as $v) {
-                //$productData = $this->product->getProductById($v['pid']);
+            foreach ($cdData['product'] as $v) {
                 $productData = $productTmpData[$v['pid']];
                 $colorData = $this->color->getColorById($productData['color_id']);
-//echo '<pre>';print_r($colorData);exit;
-                $orderProductData [] = array (
+
+                $orderProductData[] = array (
                     'order_sn' => $orderId,
                     'pid' => $productData['pid'],
                     'uid' => $this->uInfo['uid'],
                     'uname' => $this->uInfo['uname'],
                     'pname' => $productData['pname'],
                     'market_price' => $productData['market_price'],
-                    'sall_price' => $productData['sell_price'],
-                    'product_num' => $v['product_num'],
+                    'sell_price' => $productData['sell_price'],
+                    'final_price' => $v['final_price'],
+                    'product_num' => $v['num'],
                     'color' => $colorData['china_name'],
                     'product_size' => $v['product_size'],
                     'presentation_integral' => fPrice($productData['sell_price']),
                     'preferential' => '',
+                    'ext' => $v['promotion_id'].'-'.$v['promotion_name'],
                     'warehouse'=> $productData['warehouse'],
                 );
-
-                $this->order->addOrderProduct($orderProductData, $orderId);
             }
 
+            $this->order->addOrderProduct($orderProductData, $orderId);
+
             $this->input->set_cookie('cart_info', '', -100);
+            $this->input->set_cookie('promotion', '', -100);
 
         } while (false);
 
