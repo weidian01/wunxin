@@ -311,7 +311,21 @@ class Model_Promotion extends MY_Model
      */
     function products()
     {
-        return $this->order_products;
+        $r = array();
+        foreach($this->order_products as $p)
+        {
+            if(isset($p['promotion_id']) && $p['promotion_id'])
+            {
+                $r[$p['pid']] = $p;
+            }
+            else
+            {
+                $p['promotion_id'] = 0;
+                $p['final_price'] = $p['sell_price'];
+                $r[$p['pid']] = $p;
+            }
+        }
+        return $r;
     }
 
     /**
