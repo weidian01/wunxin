@@ -327,7 +327,14 @@ $(document).ready(function(){
           <td width="10%" align="center"><span class="font11">赠送积分</span></td>
           <td width="12%" align="center"><span class="font11">小计</span></td>
         </tr>
-          <?php foreach ($cart_info as $cv) {?>
+          <?php
+          $total_num = 0;
+          $total_price = 0;
+          foreach ($cart_info as $cv) {
+              $total_price += $cv['final_price'] * $cv['num'];
+              $total_num += $cv['num'];
+
+              ?>
         <tr>
           <td width="7%">
               <a href="<?=productURL($cv['pid'])?>" target="_blank">
@@ -336,10 +343,10 @@ $(document).ready(function(){
           </td>
           <td width="49%"><a class="gn2" href="<?=productURL($cv['pid'])?>" target="_blank"><?=mb_substr($cv['pname'], 0, 70, 'utf-8');?></a><br/>
             <!-- <span class="font2">GZ26052909-S</span> --></td>
-          <td align="center"><?=fPrice($cv['product_price']);?></td>
-          <td align="center"><?=intval($cv['product_num']);?></td>
-          <td align="center"><?=intval(fPrice($cv['product_price'] * $cv['product_num']));?></td>
-          <td align="center"><span class="font6"><?=fPrice($cv['product_price'] * $cv['product_num']);?></span></td>
+          <td align="center"><?=fPrice($cv['final_price']);?></td>
+          <td align="center"><?=intval($cv['num']);?></td>
+          <td align="center"><?=intval(fPrice($cv['final_price'] * $cv['num']));?></td>
+          <td align="center"><span class="font6"><?=fPrice($cv['final_price'] * $cv['num']);?></span></td>
         </tr>
           <?php }?>
       </table>

@@ -82,9 +82,10 @@ class cart extends MY_Controller
     {
         $cData = array();
         $cData['cart'] = $this->getCartToCookie();
-        $promotion = $this->getUsedPromotion();
+        //$promotion = $this->getUsedPromotion();
 
         if (!empty ($cData['cart'])) {
+            /*
             $this->load->model('promotion/model_promotion', 'promotion');
             $productInfo = array();
             foreach($cData['cart'] as $cv)
@@ -108,23 +109,14 @@ class cart extends MY_Controller
 
             $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
             $this->promotion->compute();
+            //*/
+
+            $data = $this->calculateDiscount($cData['cart'], array('unused_promotion'));
 
             //* 活动信息
-            $cData['activity'] = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
+            $cData['activity'] = $data['unused_promotion']; //获取可选未使用的活动列表
 
-            $cData['cart'] = $this->promotion->products();
-
-            /*
-            echo '<pre>';print_r($cData['cart']);exit;
-
-            echo '<pre>';print_r($act);exit;
-
-            $used_promotin = $this->promotion->get_used_promotion(); //获取试用成功的活动
-            $unused_promotin = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
-            p($used_promotin);
-            p($unused_promotin);
-            p($this->promotion->products()); //获取使用过活动产品列表  包括参与过活动的最终价格
-            //*/
+            $cData['cart'] = $data['product'];
         }
 
 
@@ -194,12 +186,12 @@ class cart extends MY_Controller
      */
     public function deleteCartProduct()
     {
-        $id = intval($this->input->get_post('id'));
+        $pId = intval($this->input->get_post('pid'));
 
         $response = array('error' => '0', 'msg' => '删除/重新添加产品至购物车中成功', 'code' => 'remove_re_add_product_to_shopping_cart_success');
 
         do {
-            if ($id < 0) {
+            if ($pId < 0) {
                 $response = error(60010);
                 break;
             }
@@ -214,9 +206,16 @@ class cart extends MY_Controller
             //*/
             $cData = $this->getCartToCookie();
 
+            foreach ($cData as $k=>$v) {
+                if ($pId == $v['pid']) {
+                    unset ($cData[$k]);
+                }
+            }
+            /*
             if (!empty ($cData[$id])) {
                 unset ($cData[$id]);
             }
+            //*/
             //echo '<pre>';print_r($cData);exit;
             $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), config_item('cookie_cart_expires'));
 
@@ -232,7 +231,7 @@ class cart extends MY_Controller
      */
     public function changeQuantity()
     {
-        $id = intval($this->input->get_post('id'));
+        $pId = intval($this->input->get_post('pid'));
         $num = intval($this->input->get_post('num'));
 
         $response = array('error' => '0', 'msg' => '更改购物车产品数量成功', 'code' => 'change_cart_products_successful');
@@ -248,11 +247,12 @@ class cart extends MY_Controller
                 $response = error(60018);
                 break;
             }
-//echo $id.'<pre>';print_r($cData[$id]);//exit;
-            if (!empty ($cData[$id])) {
-                $cData[$id]['product_num'] = $num;
+            foreach ($cData as $k=>$v) {
+                if ($pId == $v['pid']) {
+                    $cData[$k]['product_num'] = $num;
+                }
             }
-            //echo $id.'<pre>';print_r($cData);exit;
+
             $status = $this->input->set_cookie('cart_info', empty ($cData) ? '' : json_encode($cData), config_item('cookie_cart_expires'));
             /*/
             if (!false) {
@@ -266,7 +266,7 @@ class cart extends MY_Controller
     }
 
     /**
-     * 购物车产品存储到数据库
+     * 购物车产品存储到数据库  未解决，如用户已存入，然后改数量后再存入，将不会把改后的数量放进库里。
      */
     public function cartStorageToDatabase()
     {
@@ -281,6 +281,12 @@ class cart extends MY_Controller
             }
 
             $this->load->model('product/Model_Product', 'product');
+            $this->load->model('Model_Cart', 'cart');
+
+            foreach ($cData as $v) {
+                $this->cart->deleteCartItem($this->uInfo['uid'], $v['pid']);
+            }
+
             foreach ($cData as $cv) {
                 $pInfo = $this->product->getProductById($cv['pid']);
 
@@ -293,7 +299,6 @@ class cart extends MY_Controller
                     'additional_info' => $cv['additional_info'],
                 );
 
-                $this->load->model('Model_Cart', 'cart');
                 $status = $this->cart->addProductToCart($this->uInfo['uid'], $sInfo);
                 /*
                 if (!$status) {

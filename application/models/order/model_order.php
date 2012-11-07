@@ -63,13 +63,15 @@ class Model_Order extends MY_Model
                 'uname' => $v['uname'],
                 'pname' => $v['pname'],
                 'market_price' => $v['market_price'],
-                'sall_price' => $v['sall_price'],
+                'sell_price' => $v['sell_price'],
+                'final_price' => $v['final_price'],
                 'product_num' => $v['product_num'],
                 'color' => $v['color'],
                 'product_size' => $v['product_size'],
                 'presentation_integral' => $v['presentation_integral'],
                 'preferential' => $v['preferential'],
                 'warehouse'=> $v['warehouse'],
+                'ext' => $v['ext'],
                 'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
             );
         }
@@ -92,7 +94,7 @@ class Model_Order extends MY_Model
             'uname' => $productInfo['uname'],
             'pname' => $productInfo['pname'],
             'market_price' => $productInfo['market_price'],
-            'sall_price' => $productInfo['sall_price'],
+            'sell_price' => $productInfo['sell_price'],
             'product_num' => $productInfo['product_num'],
             'product_size' => $productInfo['product_size'],
             'presentation_integral' => $productInfo['presentation_integral'],
@@ -369,7 +371,7 @@ class Model_Order extends MY_Model
     {
         $field = 'order.order_sn, parent_id, address_id, order.uid, order.uname, after_discount_price, discount_rate, before_discount_price, pay_type, defray_type, is_pay,
         order_source, pay_time, delivert_time, annotated, invoice, paid, need_pay, ip, invoice_payable, invoice_content, recent_name, recent_address,
-        zipcode, phone_num, call_num, picking_status, status, id, pid, pname, market_price, sall_price, product_num,
+        zipcode, phone_num, call_num, picking_status, status, id, pid, pname, market_price, sell_price, product_num,
         comment_status, share_status, product_size, presentation_integral, preferential, warehouse, order.create_time';
         $data = $this->db->select($field)->from('order_product')
             ->join('order', 'order_product.order_sn=order.order_sn', 'left')

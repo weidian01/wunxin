@@ -263,4 +263,53 @@ class MY_Controller extends CI_Controller
         }
         return ;
     }
+
+    /**
+     * 计算折扣
+     *
+     * @param array $cartData 购物车中所有数据
+     * @param array $returnOpt 返回数据选项,默认返回产品数据，unused_promotion 未使用的活动，used_promotion 已使用的活动
+     * @return array
+     */
+    public function calculateDiscount(array $cartData, $returnOpt = null)
+    {
+        $data = array();
+        $promotion = $this->getUsedPromotion();
+        $this->load->model('promotion/model_promotion', 'promotion');
+
+        $productInfo = array();
+        foreach($cartData as $cv)
+        {
+            $productInfo[] = array(
+                'pid' => $cv['pid'],
+                'pname' => $cv['pname'],
+                'sell_price' => $cv['product_price'],
+                'num' => $cv['product_num'],
+                'product_size' => $cv['product_size'],
+                'additional_info' => $cv['additional_info'],
+            );
+        }
+
+        $this->promotion->add_product($productInfo);
+
+        $promotionIdTmpArr = array();
+        foreach ($promotion as $pv) {
+            $promotionIdTmpArr[] = $pv['promotion_id'];
+        }
+
+        $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
+        $this->promotion->compute();
+
+        $data['product'] = $this->promotion->products();
+
+        if ($returnOpt && in_array('unused_promotion', $returnOpt)) {
+            $data['unused_promotion'] = $this->promotion->get_unused_promotion();
+        }
+
+        if ($returnOpt && in_array('used_promotion', $returnOpt)) {
+            $data['used_promotion'] = $this->promotion->get_used_promotion();
+        }
+
+        return $data;
+    }
 }

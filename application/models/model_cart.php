@@ -119,4 +119,16 @@ class Model_Cart extends MY_Model
     {
         return $this->db->delete('shopping_cart', array('uid' => $uid));
     }
+
+    /**
+     * 删除用户的产品
+     *
+     * @param $uid
+     * @param $pid
+     * @return mixed
+     */
+    public function deleteCartItem($uid, $pid)
+    {
+        return $this->db->delete('shopping_cart', array('uid' => $uid, 'pid' => $pid));
+    }
 }

@@ -63,7 +63,7 @@
                 $canceledNum = 0;
 
                 if (empty ($data)) {?>
-                <td colspan="7" style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时没有订单，去选择喜欢的<a href="<?=config_item('static_url')?>">产品</a>吧。</td>
+                <td colspan="7" style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时没有订单，去选择喜欢的<!--<a href="<?=config_item('static_url')?>">-->产品<!--</a>-->吧。</td>
                 <?php } else {?>
                 <?php
                 foreach ($data as $v) {
@@ -78,9 +78,9 @@
                             <?php
                             if (empty ($v['products'])) $v['products'] = array();
                             foreach ($v['products'] as $pv) {?>
-                            <div class="g-i-img" title="<?php echo $pv['pname'].', ￥'.fPrice($pv['sall_price']);?>">
-                                <a href="<?=productURL($pv['pid']);?>" target="_blank" title="<?=$pv['pname'].', ￥'.$pv['sall_price'];?>">
-                                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" width="50" height="50" title="<?=$pv['pname'].', ￥'.fPrice($pv['sall_price']);?>"/>
+                            <div class="g-i-img" title="<?php echo $pv['pname'].', ￥'.fPrice($pv['final_price']);?>">
+                                <a href="<?=productURL($pv['pid']);?>" target="_blank" title="<?=$pv['pname'].', ￥'.$pv['final_price'];?>">
+                                    <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" width="50" height="50" title="<?=$pv['pname'].', ￥'.fPrice($pv['final_price']);?>"/>
                                 </a>
                             </div>
                             <?php }?>

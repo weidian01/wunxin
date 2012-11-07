@@ -68,12 +68,12 @@ $(document).ready(function(){
                     <a href="'.config_item('static_url').'/user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
             } else {
                 switch ($order['pay_type']) {
-                    case PAY_ONLINE : $timeOut = (config_item('TIME_OUT_PAY_ONLINE') / 360);break;//在线支付
-                    case PAY_CASHDELIVERY : $timeOut = (config_item('TIME_OUT_PAY_CASHDELIVERY') / 360);break;//货到付款
-                    case PAY_POST : $timeOut = (config_item('TIME_OUT_PAY_POST') / 360);break;//邮政汇款
-                    case PAY_SELF : $timeOut = (config_item('TIME_OUT_PAY_SELF') / 360);break;//来万象自提
-                    case PAY_COMPANY : $timeOut = (config_item('TIME_OUT_PAY_COMPANY') / 360);break;//公司汇款
-                    default :$timeOut = (config_item('TIME_OUT_PAY_ONLINE') / 360);
+                    case PAY_ONLINE : $timeOut = (TIME_OUT_PAY_ONLINE / 3600);break;//在线支付
+                    case PAY_CASHDELIVERY : $timeOut = (TIME_OUT_PAY_CASHDELIVERY / 3600);break;//货到付款
+                    case PAY_POST : $timeOut = (TIME_OUT_PAY_POST / 3600);break;//邮政汇款
+                    case PAY_SELF : $timeOut = (TIME_OUT_PAY_SELF / 3600);break;//来万象自提
+                    case PAY_COMPANY : $timeOut = (TIME_OUT_PAY_COMPANY / 3600);break;//公司汇款
+                    default :$timeOut = (TIME_OUT_PAY_ONLINE / 3600);
                 }
 
                 echo ' 如果<span class="font6"> '.$timeOut.' </span>小时内您无法完成付款，系统会将您的订单取消。';

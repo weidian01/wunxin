@@ -205,7 +205,7 @@
                                 <?php
                                 $totalPrice = 0;
                                 foreach ($order_product as $pv) {
-                                    $totalPrice += ($pv['sall_price'] * $pv['product_num']);
+                                    $totalPrice += ($pv['final_price'] * $pv['product_num']);
                                     ?>
                                 <tr>
                                     <td>
@@ -227,10 +227,10 @@
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td width="90" align="center"><strong>￥<?php echo fPrice($pv['sall_price']);?></strong></td>
-                                    <td width="100" align="center"><strong><?php echo intval(fPrice($pv['sall_price']));?></strong></td>
+                                    <td width="90" align="center"><strong>￥<?php echo fPrice($pv['final_price']);?></strong></td>
+                                    <td width="100" align="center"><strong><?php echo intval(fPrice($pv['final_price']));?></strong></td>
                                     <td width="90" align="center"><strong><?php echo $pv['product_num'];?></strong></td>
-                                    <td width="90" align="center"><strong>￥<?php echo fPrice(($pv['sall_price'] * $pv['product_num']));?></strong></td>
+                                    <td width="90" align="center"><strong>￥<?php echo fPrice(($pv['final_price'] * $pv['product_num']));?></strong></td>
                                     <td width="90" align="center" class="end">
                                         <a href="javascript:void(0);" onclick="product.productComment(<?php echo $pv['pid'];?>)">
                                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品">
