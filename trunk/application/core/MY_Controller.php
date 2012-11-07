@@ -200,6 +200,7 @@ class MY_Controller extends CI_Controller
         );
 
         $promotionData = $this->getUsedPromotion();
+        //echo '<pre>';print_r($promotionData);exit;
 
         //标识为真 则添加活动，如为假则删除活动
         if ($flag) {

@@ -36,7 +36,7 @@ abstract class Model_way
     {
         $result = array();
         foreach ($this->products as $p) {
-            if ($p['final_price']) {
+            if (isset ($p['final_price'])) {
                 $result[$p['pid']] = array('pid' => $p['pid'], 'final_price' => $p['final_price']);
             }
         }

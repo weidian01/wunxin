@@ -41,7 +41,7 @@ class cart extends MY_Controller
             }
 
             $this->load->model('promotion/model_promotion', 'promotion');
-            $promotionData = $this->promotion->isPromotion($promotionId);
+            $promotionData = $this->promotion->is_promotion($promotionId);
             if (empty ($promotionData)) {
                 $response = error(60021);
                 break;
@@ -81,7 +81,7 @@ class cart extends MY_Controller
     public function getCart()
     {
         $cData = array();
-        $cData['cart'] = $this->getCartToCookie();//echo '<pre>';print_r($cData['cart']);exit;
+        $cData['cart'] = $this->getCartToCookie();
         $promotion = $this->getUsedPromotion();
 
         if (!empty ($cData['cart'])) {
@@ -94,6 +94,8 @@ class cart extends MY_Controller
                     'pname' => $cv['pname'],
                     'sell_price' => $cv['product_price'],
                     'num' => $cv['product_num'],
+                    'product_size' => $cv['product_size'],
+                    'additional_info' => $cv['additional_info'],
                 );
             }
 
@@ -103,12 +105,26 @@ class cart extends MY_Controller
             foreach ($promotion as $pv) {
                 $promotionIdTmpArr[] = $pv['promotion_id'];
             }
-            //echo '<pre>';print_r($promotionIdTmpArr);
+
             $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
             $this->promotion->compute();
 
             //* 活动信息
             $cData['activity'] = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
+
+            $cData['cart'] = $this->promotion->products();
+
+            /*
+            echo '<pre>';print_r($cData['cart']);exit;
+
+            echo '<pre>';print_r($act);exit;
+
+            $used_promotin = $this->promotion->get_used_promotion(); //获取试用成功的活动
+            $unused_promotin = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
+            p($used_promotin);
+            p($unused_promotin);
+            p($this->promotion->products()); //获取使用过活动产品列表  包括参与过活动的最终价格
+            //*/
         }
 
 
