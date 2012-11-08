@@ -578,7 +578,7 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
-<?php include '/../footer.php';?>
+<?php include(APPPATH.'views/administrator/footer.php');?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 </body>
 </html>
