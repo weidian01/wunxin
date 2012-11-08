@@ -186,7 +186,7 @@ class order extends MY_Controller
     {
         $order_sn = $this->input->get_post('order_sn');
         $this->load->model('order/Model_Order', 'order');
-        $field = "pid,uid,uname,pname,market_price,sall_price,product_num,comment_status,share_status,product_size,presentation_integral,preferential,warehouse";
+        $field = "pid,uid,uname,pname,market_price,sell_price,final_price,product_num,comment_status,share_status,product_size,presentation_integral,preferential,warehouse";
         $order_product = $this->order->getOrderAllProductByOrderSn($order_sn, $field);
         if(!$order_product)
         {
@@ -194,7 +194,8 @@ class order extends MY_Controller
             die;
         }
 
-        $field = "parent_id,address_id,uid,uname,after_discount_price,discount_rate,before_discount_price,pay_type,defray_type,is_pay,order_source,pay_time,delivert_time,annotated,invoice,paid,need_pay,ip,invoice_payable,invoice_content,recent_name,recent_address,zipcode,phone_num,call_num,picking_status,status";
+        $field = "parent_id,address_id,uid,uname,after_discount_price,discount_rate,before_discount_price,pay_type,defray_type,is_pay,order_source,pay_time,delivert_time,
+        annotated,invoice,paid,need_pay,ip,invoice_payable,invoice_content,recent_name,recent_address,zipcode,phone_num,call_num,picking_status,status";
         $order_info = $this->order->getOrderByOrderSn($order_sn, $field);
         if($order_info['parent_id'] != 0)
         {
@@ -218,11 +219,11 @@ class order extends MY_Controller
         {
             if(isset($split_order_product[$item['warehouse']]['price']))
             {
-                $split_order_product[$item['warehouse']]['price'] += $item['sall_price'];
+                $split_order_product[$item['warehouse']]['price'] += $item['final_price'];
             }
             else
             {
-                $split_order_product[$item['warehouse']]['price'] = $item['sall_price'];
+                $split_order_product[$item['warehouse']]['price'] = $item['final_price'];
             }
             $split_order_product[$item['warehouse']]['products'][] = $item;
         }

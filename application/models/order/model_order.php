@@ -216,6 +216,18 @@ class Model_Order extends MY_Model
     }
 
     /**
+     * 更新订单
+     *
+     * @param array $info
+     * @param $orderSn
+     * @return mixed
+     */
+    public function updateOrder(array $info, $orderSn)
+    {
+        return $this->db->where('order_sn', $orderSn)->update('order', $info);
+    }
+
+    /**
      * 取消订单
      *
      * @param $orderSn

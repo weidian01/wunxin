@@ -11,14 +11,16 @@ class crawl_tools
     public $dir = '/data/dy1010/';
     public $fileName = 'index.html';
     public $crawlType = 'file'; // file 文件， image 图片
+    public $isReturn = false;
 
     public function __construct(array $config)
     {
         ini_set('memory_limit','2048M');
 
-        $this->dir = empty ($config['dir']) ? $this->dir : $config['dir'];
-        $this->fileName = empty ($config['file_name']) ? $this->fileName : $config['file_name'];
-        $this->crawlType = empty ($config['crawl_type']) ? $this->crawlType : $config['crawl_type'];
+        $this->dir = isset ($config['dir']) ? $config['dir'] : $this->dir;
+        $this->fileName = isset ($config['file_name']) ? $config['file_name'] : $this->fileName;
+        $this->crawlType = isset ($config['crawl_type']) ? $config['crawl_type'] : $this->crawlType;
+        $this->isReturn = isset ($config['is_return']) ? $config['is_return'] : $this->isReturn;
     }
 
     /**
@@ -98,7 +100,11 @@ class crawl_tools
         foreach ($handle as $key => $ch) {
             $content = curl_multi_getcontent($ch);
             if (!empty($content)) {
-                $this->writeContent($content, $key);
+                if ($this->isReturn) {
+                    $return[] = $content;
+                } else {
+                    $this->writeContent($content, $key);
+                }
                 $content = '';unset ($content);
             }
         }
@@ -110,6 +116,9 @@ class crawl_tools
         curl_multi_close($mh);
 
         $urlArray = array();
+        if ($this->isReturn) {
+            return $return;
+        }
         //return $return;
     }
 

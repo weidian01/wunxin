@@ -131,7 +131,7 @@ class order_picking extends MY_Controller
     {
         $order_sn = $this->input->get_post('order_sn');
         $this->load->model('order/Model_Order', 'order');
-        $order_info = $this->order->getOrderByOrderSn($order_sn, 'order_sn, address_id, picking_status');
+        $order_info = $this->order->getOrderByOrderSn($order_sn, 'order_sn, address_id, picking_status, defray_type');
 
         if (!$order_info) {
             self::json_output(array("error" => 1, 'msg' => '订单不存在'));
@@ -140,7 +140,10 @@ class order_picking extends MY_Controller
         if ($order_info['picking_status'] > 0) {
             self::json_output(array("error" => 3, 'msg' => '不可重复配货'));
         }
+
+        $defrayType = $order_info['defray_type'];
         unset($order_info['picking_status']);
+        unset($order_info['defray_type']);
         $order_info['ed_id'] = $this->input->post('ed_id');
         $order_info['logistics_orders_sn'] = $this->input->post('logistics_orders_sn');
         $order_info['descr'] = $this->input->post('descr');
@@ -153,6 +156,43 @@ class order_picking extends MY_Controller
 
         $this->load->model('order/Model_Order_Picking', 'picking');
         $this->picking->create($order_info, $order_product, $this->amInfo['am_uid']);
+
+        //如果是通过支付宝支付的订单，即调用接口进行确认发货操作。
+        if ($defrayType == 'ALIPAY') {
+            $this->load->model('order/model_order_receiver', 'receiver');
+            $receiverData = $this->receiver->getReceiverByOrderSn($order_sn);
+
+            $alipayOrderSn = explode('-', $receiverData[0]['extended_information']);
+            //echo '<pre>';print_r($alipayOrderSn);exit;
+            $alipayOrderSn = $alipayOrderSn[1];
+
+            $logisticsName = '申通';
+            if (!empty ($order_info['ed_id'])) {
+                $this->load->model('order/Model_Order_express', 'express');
+                $expressInfo = $this->express->getExpressCompanyById($order_info['ed_id']);
+
+                if (!empty ($expressInfo['name'])) {
+                    $logisticsName = $expressInfo['name'];
+                }
+            }
+
+            $this->load->model('pay/Model_Pay_Alipay', 'alipay');
+            $doc = $this->alipay->confirmSendGood($alipayOrderSn, $logisticsName, $order_info['logistics_orders_sn']);
+
+            $doc = str_replace(array("\n", "\r"), array('', ''), $doc);
+            log_message('CONFIRM_SEND_GOODS', $doc);
+            /*
+            $response = '';
+            if( ! empty($doc->getElementsByTagName( "response" )->item(0)->nodeValue) ) {
+            	$response= $doc->getElementsByTagName( "response" )->item(0)->nodeValue;
+            }
+            //*/
+
+
+            //echo $response;
+
+            //echo $url;exit;
+        }
 
         self::json_output(array("error"=>0));  //正常
     }
