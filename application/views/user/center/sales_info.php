@@ -61,10 +61,10 @@
                     <dl id="oldpassword_dl">
                         <dt style="font-size: 14px;font-weight: bold;font-size: 11px;color: #707070;">邮件地址：</dt>
                         <dd>
-                            <input name="email" id="email_id_<?php echo $v['id'];?>" type="text" class="input_1" style="width:180px;" onblur="checkPassWord()" value="<?php echo $v['email_addr'];?>">
+                            <input name="email" id="email_id_<?=$v['id'];?>" type="text" class="input_1" style="width:180px;" onblur="checkPassWord()" value="<?=$v['email_addr'];?>">
                             &nbsp;&nbsp;&nbsp;
-                            <!--<input type="button" value="退订" onclick="unsubscribe(<?php echo $v['id'];?>)">-->
-                            <img src="<?=config_item('static_url')?>images/unsubscribe.png" alt="" onclick="unsubscribe(<?php echo $v['id'];?>)" style="cursor: pointer;" title="退订此邮件地址">
+                            <!--<input type="button" value="退订" onclick="unsubscribe(<?=$v['id'];?>)">-->
+                            <img src="<?=config_item('static_url')?>images/unsubscribe.png" alt="" onclick="unsubscribe(<?=$v['id'];?>)" style="cursor: pointer;" title="退订此邮件地址">
 
                         </dd>
                     </dl>

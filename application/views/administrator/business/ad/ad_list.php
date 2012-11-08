@@ -61,7 +61,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -73,27 +73,27 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['ad_id'];?></td>
-                        <td><?php echo $position_data[$v['position_id']]['name'];?></td>
-                        <td><?php echo $v['ad_name'];?></td>
-                        <td><?php echo $v['ad_type'];?></td>
+                        <td><?=$v['ad_id'];?></td>
+                        <td><?=$position_data[$v['position_id']]['name'];?></td>
+                        <td><?=$v['ad_name'];?></td>
+                        <td><?=$v['ad_type'];?></td>
                         <td><?php
                             if (in_array($v['ad_type'], array('1', '2'))) {
                                 echo '<img src="'.base_url().$v['ad_content'].'" width="50" height="50">';
                             } else {
                                 echo mb_substr($v['ad_content'],0, 20,'utf-8');
                             } ?></td>
-                        <td><?php echo $v['click_num'];?></td>
-                        <td><?php echo $v['status'] ? '显示' : '不显示';?></td>
-                        <td><?php echo $v['ad_link'];?></td>
-                        <td><?php echo $v['sort'];?></td>
-                        <td><?php echo $v['descr'];?></td>
-                        <td><?php echo $v['start_time'];?></td>
-                        <td><?php echo $v['end_time'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['click_num'];?></td>
+                        <td><?=$v['status'] ? '显示' : '不显示';?></td>
+                        <td><?=$v['ad_link'];?></td>
+                        <td><?=$v['sort'];?></td>
+                        <td><?=$v['descr'];?></td>
+                        <td><?=$v['start_time'];?></td>
+                        <td><?=$v['end_time'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_ad/adEdit/<?php echo $v['ad_id'];?>" title="编辑广告"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑广告"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_ad/adDelete/<?php echo $v['ad_id'].'/'.$current_page;?>" title="删除广告"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除广告"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_ad/adEdit/<?=$v['ad_id'];?>" title="编辑广告"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑广告"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_ad/adDelete/<?=$v['ad_id'].'/'.$current_page;?>" title="删除广告"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除广告"/></a>
                         </td>
                     </tr>
                         <?php }?>

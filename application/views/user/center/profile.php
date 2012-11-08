@@ -76,28 +76,28 @@ dt{font-weight: bold;color: #848484;}
                             <div class="box-info">
                                 <dl>
                                     <dt>登录邮箱：</dt>
-                                    <dd><?php echo $uinfo['uname'];?></dd>
+                                    <dd><?=$uinfo['uname'];?></dd>
                                 </dl>
                                 <dl class="tips-box-text">
                                     <dt>昵称：</dt>
                                     <dd>
-                                        <input type="text" value="<?php echo $uinfo['nickname'];?>" style="width:150px;" id="nickname_id" class="input_1" name="nickname">
+                                        <input type="text" value="<?=$uinfo['nickname'];?>" style="width:150px;" id="nickname_id" class="input_1" name="nickname">
                                         <span id="nicknameTip" class="tips-p">昵称必须大于2而小于20个字符</span>
                                     </dd>
                                 </dl>
                                 <dl class="tips-box-text">
                                     <dt>真实姓名：</dt>
                                     <dd>
-                                        <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['real_name'];?>" id="realname_id" name="user_name">
+                                        <input type="text" style="width:150px;" class="input_1" value="<?=$uinfo['real_name'];?>" id="realname_id" name="user_name">
                                         <span id="user_nameTip" class="tips-p">真实姓名至少2个中文,最多5个中文</span>
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt>性别：</dt>
                                     <dd>
-                                        <input type="radio" value="1" name="sex_id" <?php echo ($uinfo['sex'] == '1') ? 'checked="checked"' : '';?>>男
-                                        <input type="radio" value="2" name="sex_id" <?php echo ($uinfo['sex'] == '2') ? 'checked="checked"' : '';?>>女
-                                        <input type="radio" value="0" name="sex_id" <?php echo ($uinfo['sex'] == '0') ? 'checked="checked"' : '';?>>保密
+                                        <input type="radio" value="1" name="sex_id" <?=($uinfo['sex'] == '1') ? 'checked="checked"' : '';?>>男
+                                        <input type="radio" value="2" name="sex_id" <?=($uinfo['sex'] == '2') ? 'checked="checked"' : '';?>>女
+                                        <input type="radio" value="0" name="sex_id" <?=($uinfo['sex'] == '0') ? 'checked="checked"' : '';?>>保密
                                     </dd>
                                 </dl>
                                 <dl>
@@ -105,17 +105,17 @@ dt{font-weight: bold;color: #848484;}
                                     <dd>
                                         <select onchange="user.changeYear();" id="year_id" name="year">
                                             <?php for($i = date('Y'); $i >= date('Y') - 80; $i--) {?>
-                                            <option value="<?php echo $i;?>" <?php echo ( $i == date('Y', strtotime($uinfo['birthday'])) ) ? 'selected="selected"' : '';?>><?php echo $i;?>年</option>
+                                            <option value="<?=$i;?>" <?=( $i == date('Y', strtotime($uinfo['birthday'])) ) ? 'selected="selected"' : '';?>><?=$i;?>年</option>
                                             <?php }?>
                                         </select>
 
                                         <select onchange="user.changeMonth(this);" id="month_id" name="month">
                                             <?php for($i = 1; $i <= 12; $i++) {?>
-                                            <option value="<?php echo $i;?>" <?php echo ( $i == date('m', strtotime($uinfo['birthday'])) ) ? 'selected="selected"' : '';?>><?php echo $i;?>月</option>
+                                            <option value="<?=$i;?>" <?=( $i == date('m', strtotime($uinfo['birthday'])) ) ? 'selected="selected"' : '';?>><?=$i;?>月</option>
                                             <?php }?>
                                         </select>
                                         <select id="day_id" name="day">
-                                            <option value="<?php echo date('d', strtotime($uinfo['birthday'])); ?>" ><?php echo date('d', strtotime($uinfo['birthday'])); ?>日</option>
+                                            <option value="<?=date('d', strtotime($uinfo['birthday'])); ?>" ><?=date('d', strtotime($uinfo['birthday'])); ?>日</option>
                                         </select>
                                     </dd>
                                 </dl>
@@ -124,7 +124,7 @@ dt{font-weight: bold;color: #848484;}
                                     <dd>
                                         <select data-vocation="" name="vocation" id="marital_status_id">
                                             <?php foreach ($marital_status as $msk => $msv){?>
-                                            <option value="<?php echo $msk;?>" <?php echo ($msk == $uinfo['marital_status']) ? 'selected="selected"' : '';?>><?php echo $msv;?></option>
+                                            <option value="<?=$msk;?>" <?=($msk == $uinfo['marital_status']) ? 'selected="selected"' : '';?>><?=$msv;?></option>
                                             <?php }?>
                                         </select>
                                     </dd>
@@ -135,7 +135,7 @@ dt{font-weight: bold;color: #848484;}
                                         <select data-vocation="" name="vocation" id="education_level_id">
                                             <option value="0">请选择&nbsp; </option>
                                             <?php foreach ($education_level as $elk => $elv){?>
-                                            <option value="<?php echo $elk;?>" <?php echo ($elk == $uinfo['education_level']) ? 'selected="selected"' : '';?>><?php echo $elv;?></option>
+                                            <option value="<?=$elk;?>" <?=($elk == $uinfo['education_level']) ? 'selected="selected"' : '';?>><?=$elv;?></option>
                                             <?php }?>
                                         </select>
                                     </dd>
@@ -146,7 +146,7 @@ dt{font-weight: bold;color: #848484;}
                                         <select data-vocation="" name="vocation" id="jobs_id">
                                             <option value="0">请选择&nbsp; </option>
                                             <?php foreach ($jobs as $jk => $jv){?>
-                                            <option value="<?php echo $jk;?>" <?php echo ($jk == $uinfo['job']) ? 'selected="selected"' : '';?>><?php echo $jv;?></option>
+                                            <option value="<?=$jk;?>" <?=($jk == $uinfo['job']) ? 'selected="selected"' : '';?>><?=$jv;?></option>
                                             <?php }?>
                                         </select>
                                     </dd>
@@ -157,7 +157,7 @@ dt{font-weight: bold;color: #848484;}
                                           <select data-vocation="" name="vocation" id="industry_id">
                                               <option value="0">请选择&nbsp; </option>
                                               <?php foreach ($industry as $ik => $iv){?>
-                                              <option value="<?php echo $ik;?>" <?php echo ($ik == $uinfo['industry']) ? 'selected="selected"' : '';?>><?php echo $iv;?></option>
+                                              <option value="<?=$ik;?>" <?=($ik == $uinfo['industry']) ? 'selected="selected"' : '';?>><?=$iv;?></option>
                                               <?php }?>
                                           </select>
                                       </dd>
@@ -168,7 +168,7 @@ dt{font-weight: bold;color: #848484;}
                                         <select id="income_id" name="income">
                                             <option value="0">请选择&nbsp; </option>
                                             <?php foreach ($income as $ik => $iv) {?>
-                                            <option value="<?php echo $ik;?>" <?php echo ($ik == $uinfo['income']) ? 'selected="selected"' : '';?>><?php echo $iv;?></option>
+                                            <option value="<?=$ik;?>" <?=($ik == $uinfo['income']) ? 'selected="selected"' : '';?>><?=$iv;?></option>
                                             <?php }?>
                                         </select>
                                     </dd>
@@ -176,15 +176,15 @@ dt{font-weight: bold;color: #848484;}
                                 <dl>
                                     <dt>身材/偏好：</dt>
                                     <dd>
-                                        身高(CM):&nbsp;<input type="text" name="height" id="height_id" value="<?php echo $uinfo['height'];?>" size="5"/>
+                                        身高(CM):&nbsp;<input type="text" name="height" id="height_id" value="<?=$uinfo['height'];?>" size="5"/>
                                         &nbsp;&nbsp;
-                                        体重(KG):&nbsp;<input type="text" name="weight" id="weight_id" value="<?php echo $uinfo['weight'];?>" size="5"/>
+                                        体重(KG):&nbsp;<input type="text" name="weight" id="weight_id" value="<?=$uinfo['weight'];?>" size="5"/>
                                         &nbsp;&nbsp;
                                         体型:&nbsp;
                                         <select name="body_type" id="body_type_id">
                                             <option value="0">请选择体型</option>
                                             <?php foreach($body_type as $bk => $bv) {?>
-                                            <option value="<?php echo $bk;?>"  <?php echo ($bk == $uinfo['body_type']) ? 'selected="selected"' : '';?>><?php echo $bv;?></option>
+                                            <option value="<?=$bk;?>"  <?=($bk == $uinfo['body_type']) ? 'selected="selected"' : '';?>><?=$bv;?></option>
                                             <?php }?>
                                         </select>
                                     </dd>
@@ -192,24 +192,24 @@ dt{font-weight: bold;color: #848484;}
                                 <dl>
                                     <dt>个人网站：</dt>
                                     <dd>
-                                        <input type="text" name="website" id="website_id" value="<?php echo $uinfo['website'];?>" size="36"/>
+                                        <input type="text" name="website" id="website_id" value="<?=$uinfo['website'];?>" size="36"/>
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt>自我介绍：</dt>
                                     <dd>
-                                        <textarea rows="3" cols="30" name="introduction" id="introduction_id"><?php echo $uinfo['introduction'];?></textarea>
+                                        <textarea rows="3" cols="30" name="introduction" id="introduction_id"><?=$uinfo['introduction'];?></textarea>
                                     </dd>
                                 </dl>
                                 <dl>
                                     <dt>兴趣爱好：</dt>
                                     <dd>
-                                        <textarea rows="3" cols="30" name="interest" id="interest_id"><?php echo $uinfo['interest'];?></textarea>
+                                        <textarea rows="3" cols="30" name="interest" id="interest_id"><?=$uinfo['interest'];?></textarea>
                                     </dd>
                                 </dl>
                             </div>
                             <div class="box-pic">
-                                <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($uinfo['uid'])?>icon.jpg" alt="<?php echo $uinfo['uname'];?>" width="60" height="60"/>
+                                <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($uinfo['uid'])?>icon.jpg" alt="<?=$uinfo['uname'];?>" width="60" height="60"/>
                                 <br>
                                 <a class="btn_ggtx" href="<?=config_item('static_url')?>user/center/addUserHeader">
                                     <img src="<?=config_item('static_url')?>images/modify_header.png" alt="" title="更改头像">
@@ -233,20 +233,20 @@ dt{font-weight: bold;color: #848484;}
                                     <select name="province" id="province_id" onchange="order.changeProvince(this.value)">
                                         <option value="0">请选择省份</option>
                                         <?php foreach ($province_data as $pv) {?>
-                                        <option value="<?php echo $pv['id'];?>" <?php echo ($pv['name'] == trim($uinfo['province'])) ? 'selected="selected"' : '';?>><?php echo $pv['name'];?></option>
+                                        <option value="<?=$pv['id'];?>" <?=($pv['name'] == trim($uinfo['province'])) ? 'selected="selected"' : '';?>><?=$pv['name'];?></option>
                                         <?php }?>
                                     </select>
                                     <select name="city" id="city_id">
                                         <option value="0">请选择市</option>
                                         <?php foreach ($city_data as $cv) {?>
-                                        <option value="<?php echo $cv['id'];?>" <?php echo ($cv['name'] == trim($uinfo['city'])) ? 'selected="selected"' : '';?>><?php echo $cv['name'];?></option>
+                                        <option value="<?=$cv['id'];?>" <?=($cv['name'] == trim($uinfo['city'])) ? 'selected="selected"' : '';?>><?=$cv['name'];?></option>
                                         <?php }?>
                                     </select>
                                     <!--
                                     <select id="area_id" name="area_code">
                                         <option value="0">请选择区或县</option>
                                         <?php foreach ($area_data as $av) {?>
-                                        <option value="<?php echo $av['id'];?>" <?php echo ($av['name'] == trim($uinfo['province'])) ? 'selected="selected"' : '';?>><?php echo $av['name'];?></option>
+                                        <option value="<?=$av['id'];?>" <?=($av['name'] == trim($uinfo['province'])) ? 'selected="selected"' : '';?>><?=$av['name'];?></option>
                                         <?php }?>
                                     </select>
                                     -->
@@ -254,39 +254,39 @@ dt{font-weight: bold;color: #848484;}
                             </dl>
                             <dl>
                                 <dt>联系地址：</dt>
-                                <dd><input type="text" style="width:300px;" class="input_1" value="<?php echo $uinfo['detail_address'];?>" id="detail_address_id" name="full_address">
+                                <dd><input type="text" style="width:300px;" class="input_1" value="<?=$uinfo['detail_address'];?>" id="detail_address_id" name="full_address">
                                     <span id="full_addressTip" class="tips-p">请填写详细地址</span>
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>公司电话：</dt>
                                 <dd>
-                                    <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['company_call'];?>" id="company_call_id" name="company_call">
+                                    <input type="text" style="width:150px;" class="input_1" value="<?=$uinfo['company_call'];?>" id="company_call_id" name="company_call">
                                     <span id="phoneTip" class="tips-p">如: 010-82831245</span>
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>家庭电话：</dt>
                                 <dd>
-                                    <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['family_call'];?>" id="family_call_id" name="phone">
+                                    <input type="text" style="width:150px;" class="input_1" value="<?=$uinfo['family_call'];?>" id="family_call_id" name="phone">
                                     <span id="phoneTip" class="tips-p">如: 010-82831245</span>
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>手机号码：</dt>
                                 <dd>
-                                    <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['phone'];?>" id="phone_id" name="phone">
+                                    <input type="text" style="width:150px;" class="input_1" value="<?=$uinfo['phone'];?>" id="phone_id" name="phone">
                                     <span id="mobileTip" class="tips-p">填写手机号便于接收发货和收货通知</span></dd>
                             </dl>
                             <dl>
                                 <dt>QQ：</dt>
                                 <dd>
-                                    <input type="text" style="width:150px;" class="input_1" value="<?php echo $uinfo['qq'];?>" id="qq_id" name="qq">
+                                    <input type="text" style="width:150px;" class="input_1" value="<?=$uinfo['qq'];?>" id="qq_id" name="qq">
                                     <span class="tips-p">填写QQ方便您的好友联系你</span></dd>
                             </dl>
                             <dl>
                                 <dt>邮编：</dt>
-                                <dd><input type="text" class="input_1" value="<?php echo $uinfo['zipcode'];?>" id="zipcode_id" name="zip_code">
+                                <dd><input type="text" class="input_1" value="<?=$uinfo['zipcode'];?>" id="zipcode_id" name="zip_code">
                                     <span id="zip_codeTip" class="tips-p">请输入收货人所在地邮编号</span></dd>
                             </dl>
                         </div>
@@ -304,19 +304,19 @@ dt{font-weight: bold;color: #848484;}
                             <dl>
                                 <dt>身份证号码：</dt>
                                 <dd>
-                                    <input type="text" name="id_card" id="id_card_id" value="<?php echo $uinfo['id_card'];?>" size="36">
+                                    <input type="text" name="id_card" id="id_card_id" value="<?=$uinfo['id_card'];?>" size="36">
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>开户银行：</dt>
                                 <dd>
-                                    <input type="text" name="bank_name" id="bank_name_id" value="<?php echo $uinfo['bank_name'];?>" size="36">
+                                    <input type="text" name="bank_name" id="bank_name_id" value="<?=$uinfo['bank_name'];?>" size="36">
                                 </dd>
                             </dl>
                             <dl>
                                 <dt>银行卡号：</dt>
                                 <dd>
-                                    <input type="text" name="bank_account" id="bank_account_id" value="<?php echo $uinfo['bank_account'];?>" size="36">
+                                    <input type="text" name="bank_account" id="bank_account_id" value="<?=$uinfo['bank_account'];?>" size="36">
                                 </dd>
                             </dl>
                         </div>
@@ -606,7 +606,7 @@ user.checkShoppingForm = function()
     return true;
 }
 
-user.userInfoInit(<?php echo date('Y', strtotime($uinfo['birthday'])); ?>, <?php echo date('m', strtotime($uinfo['birthday'])); ?>, <?php echo date('d', strtotime($uinfo['birthday'])); ?>);
+user.userInfoInit(<?=date('Y', strtotime($uinfo['birthday'])); ?>, <?=date('m', strtotime($uinfo['birthday'])); ?>, <?=date('d', strtotime($uinfo['birthday'])); ?>);
 </script>
 <!-- #EndLibraryItem -->
 </body>

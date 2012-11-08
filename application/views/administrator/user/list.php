@@ -70,7 +70,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -83,20 +83,20 @@
 
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['uid'];?></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['nickname'];?></td>
-                        <td><?php echo $v['lid'];?></td>
-                        <td><?php echo $v['source'];?></td>
-                        <td><?php echo $v['integral'];?></td>
-                        <td><?php echo $v['amount'];?></td>
-                        <td><?php echo $v['status'] ? '正常' : '已删除';?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['uid'];?></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['nickname'];?></td>
+                        <td><?=$v['lid'];?></td>
+                        <td><?=$v['source'];?></td>
+                        <td><?=$v['integral'];?></td>
+                        <td><?=$v['amount'];?></td>
+                        <td><?=$v['status'] ? '正常' : '已删除';?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/user/userDetail/<?php echo $v['uid']?>" title="查看用户"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看用户"></a>
-                            <a href="<?=config_item('static_url')?>administrator/user/userEdit/<?php echo $v['uid']?>" title="修改用户"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改用户"></a>
-                            <a href="<?=config_item('static_url')?>administrator/user_comment/userCommentList/<?php echo $v['uid']?>" title="查看留言">查看留言</a>
-                            <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteList/<?php echo $v['uid']?>" title="查看收藏">查看收藏</a>
+                            <a href="<?=config_item('static_url')?>administrator/user/userDetail/<?=$v['uid']?>" title="查看用户"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看用户"></a>
+                            <a href="<?=config_item('static_url')?>administrator/user/userEdit/<?=$v['uid']?>" title="修改用户"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改用户"></a>
+                            <a href="<?=config_item('static_url')?>administrator/user_comment/userCommentList/<?=$v['uid']?>" title="查看留言">查看留言</a>
+                            <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteList/<?=$v['uid']?>" title="查看收藏">查看收藏</a>
 
 
                         </td>

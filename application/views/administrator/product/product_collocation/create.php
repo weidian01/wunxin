@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑产品搭配' : '添加产品搭配'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑产品搭配' : '添加产品搭配'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/product_collocation/pcAdd/"><span><br/> 添加产品搭配 </span></a></li>
@@ -33,22 +33,22 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/product_collocation/pcEditSave' : '/administrator/product_collocation/pcSave';?>" method="post">
-                    <input type="hidden" name="id" value="<?php echo isset($info['id']) ? $info['id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/product_collocation/pcEditSave' : '/administrator/product_collocation/pcSave';?>" method="post">
+                    <input type="hidden" name="id" value="<?=isset($info['id']) ? $info['id'] : ''?>">
                     <fieldset>
                         <p>
                             <label>产品ID</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['pid']) ? $info['pid'] : ''?>" name="pid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['pid']) ? $info['pid'] : ''?>" name="pid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>被搭配的产品ID</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['spid']) ? $info['spid'] : ''?>" name="spid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['spid']) ? $info['spid'] : ''?>" name="spid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>排序</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>

@@ -56,7 +56,7 @@
                                     <?php } else {?>
                                         <?php foreach ($data as $v) {?>
                                         <tr>
-                                            <!--<td style="width:90px;text-align:center;"><?php echo $v['id'];?></td>-->
+                                            <!--<td style="width:90px;text-align:center;"><?=$v['id'];?></td>-->
                                             <td style="width:20px;">
                                                 <div class="imgbox">
                                                     <a href="<?=productURL($v['pid'])?>" title="<?=$v['pname'];?>" target="_blank">
@@ -100,7 +100,7 @@
                         <div class="list-b">
 
                             <div class="pages" style="float: right;">
-                            <?php echo $page_html;?><span class="page"> 共<?php echo $total_num;?>条结果<!--，1/1页--></span>
+                            <?=$page_html;?><span class="page"> 共<?=$total_num;?>条结果<!--，1/1页--></span>
                             </div>
 
                             <div class="clear"></div>

@@ -262,7 +262,7 @@
         <li class="recommend_<?=$dli;?>">
             <a title="<?=$dlv['pname']?>" class="pic" href="<?=productURL($dlv['pid']);?>" target="_blank">
                 <img class="lazy" width="125" height="150" title="<?=$dlv['pname']?>" alt="<?=$dlv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
-                <?php echo empty ($dlv['product_image']) ?
+                <?=empty ($dlv['product_image']) ?
                     config_item('img_url').'product/'.intToPath($dlv['pid']).'default.jpg' :
                     config_item('base_url').str_replace('\\', '/', $dlv['product_image']);?>">
             </a>
@@ -288,7 +288,7 @@
             <div class="snapmod">
                 <a class="pic" target="_blank" href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>">
                     <img class="lazy" width="164" height="197" title="<?=$iv['pname']?>" alt="<?=$iv['pname']?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
-                    <?php echo empty ($iv['product_image']) ?
+                    <?=empty ($iv['product_image']) ?
                         config_item('img_url').'product/'.intToPath($iv['pid']).'default.jpg' :
                         config_item('base_url').str_replace('\\', '/', $iv['product_image']);?>">
                 </a>
@@ -342,7 +342,7 @@
 					<a class="tit" href="<?=productURL($blv['pid']);?>" title="<?=$blv['pname'];?>" target="_blank"><?=$blv['pname'];?></a>
 					<a class="pic" href="<?=productURL($blv['pid']);?>">
                         <img class="lazy" width="164" height="197" title="<?=$blv['pname'];?>" alt="<?=$blv['pname'];?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
-                        <?php echo empty ($iv['product_image']) ?
+                        <?=empty ($iv['product_image']) ?
                                 config_item('img_url').'product/'.intToPath($blv['pid']).'default.jpg' :
                                 config_item('base_url').str_replace('\\', '/', $blv['product_image']);?>">
                     </a><br/>

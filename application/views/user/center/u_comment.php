@@ -59,34 +59,34 @@
                                     <?php } else {?>
                                         <?php foreach ($data as $v) {?>
                                         <tr>
-                                            <!--<td style="width:90px;text-align:center;"><?php echo $v['id'];?></td>-->
+                                            <!--<td style="width:90px;text-align:center;"><?=$v['id'];?></td>-->
                                             <td style="width:60px;">
                                                 <div class="imgbox">
-                                                    <a href="#" class="a_e" title="<?php echo $v['nickname'];?>">
-                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['uid'])?>default.jpg" alt="" width="90" height="90" title="<?php echo $v['nickname'];?>"/>
+                                                    <a href="#" class="a_e" title="<?=$v['nickname'];?>">
+                                                        <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['uid'])?>default.jpg" alt="" width="90" height="90" title="<?=$v['nickname'];?>"/>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="#" class="a_e" title="<?php echo $v['nickname'];?>"><?php echo $v['uname'];?></a>&nbsp;&nbsp;<br>
-                                                <span title="设计师等级：<?php echo $v['lid'];?>">等级：<?php echo $v['lid'];?></span>
+                                                <a href="#" class="a_e" title="<?=$v['nickname'];?>"><?=$v['uname'];?></a>&nbsp;&nbsp;<br>
+                                                <span title="设计师等级：<?=$v['lid'];?>">等级：<?=$v['lid'];?></span>
                                             </td>
-                                            <td style="width:80px;text-align:center;"><?php echo $v['integral'];?></td>
-                                            <td style="width:80px;text-align:center;"><?php echo $v['title'];?></td>
-                                            <td style="width:160px;text-align:center;"><?php echo $v['content'];?></td>
+                                            <td style="width:80px;text-align:center;"><?=$v['integral'];?></td>
+                                            <td style="width:80px;text-align:center;"><?=$v['title'];?></td>
+                                            <td style="width:160px;text-align:center;"><?=$v['content'];?></td>
                                             <td style="width:90px;text-align:left;">
-                                                &nbsp;&nbsp;<a href="#" title="此留言被回复 <?php echo $v['reply_num'];?>  条" style="color: #990000;font-size: 10px;">回复 <?php echo $v['reply_num'];?> 条</a><br /><br />
-                                                &nbsp;&nbsp;<a href="#" title="此设计师被收藏 <?php echo $v['favorite_num'];?>  条" style="color: #990000;font-size: 10px;">收藏 <?php echo $v['favorite_num'];?> 条</a>
+                                                &nbsp;&nbsp;<a href="#" title="此留言被回复 <?=$v['reply_num'];?>  条" style="color: #990000;font-size: 10px;">回复 <?=$v['reply_num'];?> 条</a><br /><br />
+                                                &nbsp;&nbsp;<a href="#" title="此设计师被收藏 <?=$v['favorite_num'];?>  条" style="color: #990000;font-size: 10px;">收藏 <?=$v['favorite_num'];?> 条</a>
                                             </td>
-                                            <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                                            <td style="width:60px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:70px;text-align:center;">
-                                                <a href="javascript:void(0);" onclick="(<?php echo $v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="查看此设计师">
+                                                <a href="javascript:void(0);" onclick="(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="查看此设计师">
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计师">
                                                 </a>  <br />
-                                                <a href="javascript:void(0);" onclick="(<?php echo $v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="给此设计师留言">
+                                                <a href="javascript:void(0);" onclick="(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="给此设计师留言">
                                                     <img src="<?=config_item('static_url')?>images/message.png" title="给此设计师留言">
                                                 </a>  <br />
-                                                <a href="javascript:void(0);" onclick="user.deleteDesignerMessage(<?php echo $v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="删除此条留言">
+                                                <a href="javascript:void(0);" onclick="user.deleteDesignerMessage(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="删除此条留言">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此条留言">
                                                 </a>
                                             </td>
@@ -107,7 +107,7 @@
                         <div class="list-b">
 
                             <div class="pages" style="float: right;">
-                            <?php echo $page_html;?><span class="page"> 共<?php echo $total_num;?>条结果<!--，1/1页--></span>
+                            <?=$page_html;?><span class="page"> 共<?=$total_num;?>条结果<!--，1/1页--></span>
                             </div>
 
                             <div class="clear"></div>
@@ -128,9 +128,9 @@
                                 <img src="<?=config_item('static_url')?>upload/designer/<?=intToPath($fv['uid'])?>default.jpg" width="90" height="90"/>
                             </a>
 
-                        <p><?php echo $fv['uname'];?></p>
-                        <span class="font2">用户等级：<?php echo $fv['lid'];?></span><br/>
-                        被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span></li>
+                        <p><?=$fv['uname'];?></p>
+                        <span class="font2">用户等级：<?=$fv['lid'];?></span><br/>
+                        被收藏数量：<span class="font1"><?=$fv['favorite_num'];?></span></li>
                         <?php endforeach;?>
                     </ul>
                 </div>

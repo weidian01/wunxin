@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑活动' : '添加活动'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑活动' : '添加活动'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
@@ -33,37 +33,37 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/activity_prize/prizeEditSave' : '/administrator/activity_prize/prizeSave';?>" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="activity_id" value="<?php echo isset($info['activity_id']) ? $info['activity_id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/activity_prize/prizeEditSave' : '/administrator/activity_prize/prizeSave';?>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="activity_id" value="<?=isset($info['activity_id']) ? $info['activity_id'] : ''?>">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>活动</label>
                             <select name="activity_id">
                                 <?php foreach ($a_data as $v) {?>
-                                <option value="<?php echo $v['activity_id'];?>" <?php echo (isset ($activity_id) && $activity_id == $v['activity_id']) ? 'selected="selected"' : '';?>><?php echo $v['subject'];?></option>
+                                <option value="<?=$v['activity_id'];?>" <?=(isset ($activity_id) && $activity_id == $v['activity_id']) ? 'selected="selected"' : '';?>><?=$v['subject'];?></option>
                                 <?php }?>
                             </select>
                             <br/>
                         </p>
                         <p>
                             <label>奖品名称</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['prize_name']) ? $info['prize_name'] : ''?>" name="prize_name"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['prize_name']) ? $info['prize_name'] : ''?>" name="prize_name"/>
                             <br/>
                         </p>
                         <p>
                             <label>奖品图片</label>
-                            <input class="text-input small-input" type="file" value="<?php echo isset($info['img_addr']) ? $info['img_addr'] : ''?>" name="img_addr"/>
+                            <input class="text-input small-input" type="file" value="<?=isset($info['img_addr']) ? $info['img_addr'] : ''?>" name="img_addr"/>
                             <br/>
                         </p>
                         <p>
                             <label>奖品数量</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['number']) ? $info['number'] : ''?>" name="number" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['number']) ? $info['number'] : ''?>" name="number" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>奖品说明</label>
-                            <textarea class="text-input textarea wysiwyg" id="textarea" name="descr" cols="79" rows="15" style="display: none; "><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
+                            <textarea class="text-input textarea wysiwyg" id="textarea" name="descr" cols="79" rows="15" style="display: none; "><?=isset($info['descr']) ? $info['descr'] : ''?></textarea>
                             <br/>
                         </p>
                         <p>

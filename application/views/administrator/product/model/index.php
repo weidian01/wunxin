@@ -54,9 +54,9 @@
                             <input type="checkbox"/>
                         </td>
                         <td><?=$item['model_name']?></td>
-                        <td><a href="<?php echo site_url("administrator/product_model/edit/{$item['model_id']}")?>"><img
+                        <td><a href="<?=site_url("administrator/product_model/edit/{$item['model_id']}")?>"><img
                             src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo site_url("administrator/product_model/del/{$item['model_id']}")?>"><img
+                            <a href="<?=site_url("administrator/product_model/del/{$item['model_id']}")?>"><img
                                 src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a></td>
                     </tr>
                         <?php endforeach;?>

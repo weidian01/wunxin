@@ -45,7 +45,7 @@ $(document).ready(function(){
 <div class="box3">
   <div class="side-left">
     <div class="sidebox">
-      <div class="side-tit"><?php echo isset($this->channel[$ancestor]['cname']) ? $this->channel[$ancestor]['cname']:'全部分类';?></div>
+      <div class="side-tit"><?=isset($this->channel[$ancestor]['cname']) ? $this->channel[$ancestor]['cname']:'全部分类';?></div>
       <div class="menu">
         <ul>
             <?php unset($clan[$ancestor]);foreach($clan as $item):?>

@@ -61,7 +61,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -74,22 +74,22 @@
 
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['activity_id'];?></td>
-                        <td><?php echo $v['subject'];?></td>
-                        <td><?php echo $v['descr'];?></td>
-                        <td><?php echo $event_initiator[$v['event_initiator']]['name'];?></td>
-                        <td><?php echo $v['initiator_name'];?></td>
-                        <td><?php echo $v['initiator_desc'];?></td>
-                        <td><?php echo $v['specification'];?></td>
-                        <td><?php echo $v['start_time'];?></td>
-                        <td><?php echo $v['end_time'];?></td>
-                        <td><?php echo $v['status'] ? '进行中' : '已结束';?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['activity_id'];?></td>
+                        <td><?=$v['subject'];?></td>
+                        <td><?=$v['descr'];?></td>
+                        <td><?=$event_initiator[$v['event_initiator']]['name'];?></td>
+                        <td><?=$v['initiator_name'];?></td>
+                        <td><?=$v['initiator_desc'];?></td>
+                        <td><?=$v['specification'];?></td>
+                        <td><?=$v['start_time'];?></td>
+                        <td><?=$v['end_time'];?></td>
+                        <td><?=$v['status'] ? '进行中' : '已结束';?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/activity/activityView/<?php echo $v['activity_id'].'/'.$current_page;?>" title="查看活动"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看活动"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/activity/activityEdit/<?php echo $v['activity_id'].'/'.$current_page;?>" title="修改活动"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改活动"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/activity/activityDelete/<?php echo $v['activity_id'].'/'.$current_page;?>" title="结束活动"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="结束活动"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/activity_prize/prizeAdd/<?php echo $v['activity_id'].'/'.$current_page;?>" title="设置奖品">设置奖品</a>
+                            <a href="<?=config_item('static_url')?>administrator/activity/activityView/<?=$v['activity_id'].'/'.$current_page;?>" title="查看活动"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看活动"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/activity/activityEdit/<?=$v['activity_id'].'/'.$current_page;?>" title="修改活动"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改活动"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/activity/activityDelete/<?=$v['activity_id'].'/'.$current_page;?>" title="结束活动"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="结束活动"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/activity_prize/prizeAdd/<?=$v['activity_id'].'/'.$current_page;?>" title="设置奖品">设置奖品</a>
                         </td>
                     </tr>
                         <?php }?>

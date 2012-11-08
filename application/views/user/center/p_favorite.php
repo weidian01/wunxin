@@ -57,18 +57,18 @@
                                         <tr>
                                             <td style="width:60px;">
                                                 <div class="imgbox">
-                                                    <a href="<?=productURL($v['pid'])?>" class="a_e" title="<?php echo $v['pname'];?>" target="_blank">
+                                                    <a href="<?=productURL($v['pid'])?>" class="a_e" title="<?=$v['pname'];?>" target="_blank">
                                                         <img src="<?=config_item('img_url')?>product/<?=intToPath($v['pid'])?>icon.jpg" alt=""/>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="<?=productURL($v['pid'])?>" class="a_e" title="<?php echo $v['pname'];?>" target="_blank"><?php echo $v['pname'];?> &nbsp;&nbsp;
-                                                    <span style="color: #CC0033;font-weight: bold;">￥<?php echo fPrice($v['sell_price']);?><span></a></a><br>
+                                                <a href="<?=productURL($v['pid'])?>" class="a_e" title="<?=$v['pname'];?>" target="_blank"><?=$v['pname'];?> &nbsp;&nbsp;
+                                                    <span style="color: #CC0033;font-weight: bold;">￥<?=fPrice($v['sell_price']);?><span></a></a><br>
                                             </td>
-                                            <td style="width:90px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                                            <td style="width:90px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:90px;text-align:center;">
-                                                <a href="#" title="产品共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">共收藏 <?php echo $v['favorite_num'];?> 次</td>
+                                                <a href="#" title="产品共被收藏 <?=$v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">共收藏 <?=$v['favorite_num'];?> 次</td>
                                             <td style="width:90px;text-align:center;">
                                                 <a href="<?=productURL($v['pid'])?>" class="a_e" target="_blank">
                                                     <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
@@ -77,7 +77,7 @@
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此产品">
                                                 </a>
                                                 <br/>
-                                                <a href="javascript:void(0);" class="a_e" onclick="product.deleteFavoriteProduct(<?php echo $v['id'];?>)">
+                                                <a href="javascript:void(0);" class="a_e" onclick="product.deleteFavoriteProduct(<?=$v['id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的此产品">
                                                 </a>
                                             </td>
@@ -98,7 +98,7 @@
                         <div class="list-b">
 
                             <div class="pages" style="float: right;">
-                            <?php echo $page_html;?><span class="page"> 共<?php echo $total_num;?>条结果<!--，1/1页--></span>
+                            <?=$page_html;?><span class="page"> 共<?=$total_num;?>条结果<!--，1/1页--></span>
                             </div>
                             <div class="clear"></div>
                         </div>

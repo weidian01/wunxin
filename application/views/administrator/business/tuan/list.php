@@ -62,7 +62,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -74,25 +74,25 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['tuan_id'];?></td>
-                        <td><?php echo $v['pid'];?></td>
-                        <td><?php echo $v['pname'];?></td>
-                        <td><img src="<?php echo base_url(). str_replace('\\', '/', $v['product_images']);?>" alt="<?php echo $v['pname'];?>" width="50" height="50"/> </td>
-                        <td><?php echo $v['sell_price'] / 100;?></td>
-                        <td><?php echo $v['tuan_price'] / 100;?></td>
-                        <td><?php echo $v['status'] ? '正常团购' : '已结束团购';?></td>
-                        <td><?php echo $v['inventory'];?></td>
-                        <td><?php echo $v['tuan_num'];?></td>
-                        <td><?php echo $v['detail'];?></td>
-                        <td><?php echo $v['start_time'];?></td>
-                        <td><?php echo $v['end_time'];?></td>
-                        <td><?php echo $v['discount_rate'];?></td>
-                        <td><?php echo $v['save'] / 100;?></td>
-                        <td><?php echo $v['descr'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['tuan_id'];?></td>
+                        <td><?=$v['pid'];?></td>
+                        <td><?=$v['pname'];?></td>
+                        <td><img src="<?=base_url(). str_replace('\\', '/', $v['product_images']);?>" alt="<?=$v['pname'];?>" width="50" height="50"/> </td>
+                        <td><?=$v['sell_price'] / 100;?></td>
+                        <td><?=$v['tuan_price'] / 100;?></td>
+                        <td><?=$v['status'] ? '正常团购' : '已结束团购';?></td>
+                        <td><?=$v['inventory'];?></td>
+                        <td><?=$v['tuan_num'];?></td>
+                        <td><?=$v['detail'];?></td>
+                        <td><?=$v['start_time'];?></td>
+                        <td><?=$v['end_time'];?></td>
+                        <td><?=$v['discount_rate'];?></td>
+                        <td><?=$v['save'] / 100;?></td>
+                        <td><?=$v['descr'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanView/<?php echo $v['tuan_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanEdit/<?php echo $v['tuan_id'];?>" title="编辑团购"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑团购"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanView/<?=$v['tuan_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanEdit/<?=$v['tuan_id'];?>" title="编辑团购"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑团购"/></a>
                         </td>
                     </tr>
                         <?php }?>

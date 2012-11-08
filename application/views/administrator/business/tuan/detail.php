@@ -68,24 +68,24 @@
                     <td>
                         <input type="checkbox"/>
                     </td>
-                    <td><?php echo $tuan_data['tuan_id'];?></td>
-                    <td><?php echo $tuan_data['pid'];?></td>
-                    <td><?php echo $tuan_data['pname'];?></td>
-                    <td><img src="<?php echo base_url(). str_replace('\\', '/', $tuan_data['product_images']);?>" alt="<?php echo $tuan_data['pname'];?>"/></td>
-                    <td><?php echo $tuan_data['sell_price'];?></td>
-                    <td><?php echo $tuan_data['tuan_price'];?></td>
-                    <td><?php echo $tuan_data['status'] ? '正常团购' : '已结束团购';?></td>
-                    <td><?php echo $tuan_data['inventory'];?></td>
-                    <td><?php echo $tuan_data['tuan_num'];?></td>
-                    <td><?php echo $tuan_data['detail'];?></td>
-                    <td><?php echo $tuan_data['start_time'];?></td>
-                    <td><?php echo $tuan_data['end_time'];?></td>
-                    <td><?php echo $tuan_data['discount_rate'];?></td>
-                    <td><?php echo $tuan_data['save'];?></td>
-                    <td><?php echo $tuan_data['descr'];?></td>
-                    <td><?php echo $tuan_data['create_time'];?></td>
+                    <td><?=$tuan_data['tuan_id'];?></td>
+                    <td><?=$tuan_data['pid'];?></td>
+                    <td><?=$tuan_data['pname'];?></td>
+                    <td><img src="<?=base_url(). str_replace('\\', '/', $tuan_data['product_images']);?>" alt="<?=$tuan_data['pname'];?>"/></td>
+                    <td><?=$tuan_data['sell_price'];?></td>
+                    <td><?=$tuan_data['tuan_price'];?></td>
+                    <td><?=$tuan_data['status'] ? '正常团购' : '已结束团购';?></td>
+                    <td><?=$tuan_data['inventory'];?></td>
+                    <td><?=$tuan_data['tuan_num'];?></td>
+                    <td><?=$tuan_data['detail'];?></td>
+                    <td><?=$tuan_data['start_time'];?></td>
+                    <td><?=$tuan_data['end_time'];?></td>
+                    <td><?=$tuan_data['discount_rate'];?></td>
+                    <td><?=$tuan_data['save'];?></td>
+                    <td><?=$tuan_data['descr'];?></td>
+                    <td><?=$tuan_data['create_time'];?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanEdit/<?php echo $tuan_data['tuan_id'];?>" title="编辑团购">
+                        <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanEdit/<?=$tuan_data['tuan_id'];?>" title="编辑团购">
                             <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑团购"/></a>
                     </td>
                 </tr>
@@ -125,7 +125,7 @@
                 <tr>
                     <td colspan="13">
                         <div class="pagination">
-                            <?php echo isset ($comment_page_html) ? $comment_page_html : '';?>
+                            <?=isset ($comment_page_html) ? $comment_page_html : '';?>
                         </div>
                         <div class="clear"></div>
                     </td>
@@ -136,18 +136,18 @@
                 foreach ($comment_data as $cdv) {?>
                 <tr>
                     <td> <input type="checkbox"/> </td>
-                    <td><?php echo $cdv['id'];?></td>
-                    <td><?php echo $cdv['uid'];?></td>
-                    <td><?php echo $cdv['uname'];?></td>
-                    <td><?php echo $cdv['title'];?></td>
-                    <td><?php echo $cdv['content'];?></td>
-                    <td><?php echo $cdv['ip'];?></td>
-                    <td><?php echo $cdv['is_valid'];?></td>
-                    <td><?php echo $cdv['is_invalid'];?></td>
-                    <td><?php echo $cdv['status'] ? '正常' : '删除';?></td>
-                    <td><?php echo $cdv['create_time'];?></td>
+                    <td><?=$cdv['id'];?></td>
+                    <td><?=$cdv['uid'];?></td>
+                    <td><?=$cdv['uname'];?></td>
+                    <td><?=$cdv['title'];?></td>
+                    <td><?=$cdv['content'];?></td>
+                    <td><?=$cdv['ip'];?></td>
+                    <td><?=$cdv['is_valid'];?></td>
+                    <td><?=$cdv['is_invalid'];?></td>
+                    <td><?=$cdv['status'] ? '正常' : '删除';?></td>
+                    <td><?=$cdv['create_time'];?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>administrator/business_tuan/deleteTuanComment/<?php echo $cdv['id'].'/'.$tuan_data['tuan_id'];?>" title="删除评论">
+                        <a href="<?=config_item('static_url')?>administrator/business_tuan/deleteTuanComment/<?=$cdv['id'].'/'.$tuan_data['tuan_id'];?>" title="删除评论">
                             <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除评论"></a>
                     </td>
                 </tr>
@@ -186,15 +186,15 @@
                 foreach ($prize_data as $pdv) {?>
                 <tr>
                     <td> <input type="checkbox"/> </td>
-                    <td><?php echo $pdv['id'];?></td>
-                    <td><?php echo $pdv['prize_name'];?></td>
-                    <td><?php echo $pdv['img_addr'];?></td>
-                    <td><?php echo $pdv['number'];?></td>
-                    <td><?php echo $pdv['descr'];?></td>
-                    <td><?php echo $pdv['create_time'];?></td>
+                    <td><?=$pdv['id'];?></td>
+                    <td><?=$pdv['prize_name'];?></td>
+                    <td><?=$pdv['img_addr'];?></td>
+                    <td><?=$pdv['number'];?></td>
+                    <td><?=$pdv['descr'];?></td>
+                    <td><?=$pdv['create_time'];?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>administrator/activity_prize/prizeAdd/<?php echo $a_data['activity_id'];?>" title="设置奖品">设置奖品</a>
-                        <a href="<?=config_item('static_url')?>administrator/activity_prize/prizeDelete/<?php echo $pdv['id'].'/'.$a_data['activity_id'];?>" title="删除评论"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除评论"></a>
+                        <a href="<?=config_item('static_url')?>administrator/activity_prize/prizeAdd/<?=$a_data['activity_id'];?>" title="设置奖品">设置奖品</a>
+                        <a href="<?=config_item('static_url')?>administrator/activity_prize/prizeDelete/<?=$pdv['id'].'/'.$a_data['activity_id'];?>" title="删除评论"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除评论"></a>
                     </td>
                 </tr>
                 <?php }?>

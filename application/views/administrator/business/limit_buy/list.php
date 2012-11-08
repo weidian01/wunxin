@@ -64,7 +64,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -76,7 +76,7 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['id'];?></td>
+                        <td><?=$v['id'];?></td>
                         <td><?php foreach ($category as $vs) {
                             if ($vs['id'] == $v['cid']) echo $vs['name'];
                         }?></td>
@@ -89,22 +89,22 @@
 								default: $names = '默认';
 						}
                             echo $names;?></td>
-                        <td><?php echo $v['pid'];?></td>
-                        <td><?php echo $v['pname'];?></td>
-                        <td><img src="<?php echo base_url(). str_replace('\\', '/', $v['product_image']);?>" alt="<?php echo $v['pname'];?>" width="50" height="50"/> </td>
-                        <td><?php echo fPrice($v['sell_price']);?></td>
-                        <td><?php echo fPrice($v['limit_buy_price']);?></td>
-                        <td><?php echo fPrice($v['sell_price'] - $v['limit_buy_price']);?></td>
-                        <td><?php echo $v['attention_num'];?></td>
-                        <td><?php echo $v['inventory'];?></td>
-                        <td><?php echo $v['limit_buy_num'];?></td>
-                        <td><?php echo $v['sort'];?></td>
-                        <td><?php echo $v['start_time'];?></td>
-                        <td><?php echo $v['end_time'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['pid'];?></td>
+                        <td><?=$v['pname'];?></td>
+                        <td><img src="<?=base_url(). str_replace('\\', '/', $v['product_image']);?>" alt="<?=$v['pname'];?>" width="50" height="50"/> </td>
+                        <td><?=fPrice($v['sell_price']);?></td>
+                        <td><?=fPrice($v['limit_buy_price']);?></td>
+                        <td><?=fPrice($v['sell_price'] - $v['limit_buy_price']);?></td>
+                        <td><?=$v['attention_num'];?></td>
+                        <td><?=$v['inventory'];?></td>
+                        <td><?=$v['limit_buy_num'];?></td>
+                        <td><?=$v['sort'];?></td>
+                        <td><?=$v['start_time'];?></td>
+                        <td><?=$v['end_time'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_limit_buy/edit/<?php echo $v['id'];?>" title="编辑"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_limit_buy/del/<?php echo $v['id'];?>" title="删除"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_limit_buy/edit/<?=$v['id'];?>" title="编辑"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_limit_buy/del/<?=$v['id'];?>" title="删除"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a>
                         </td>
                     </tr>
                         <?php }?>

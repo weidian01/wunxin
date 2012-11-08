@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑活动' : '添加活动'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑活动' : '添加活动'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/activity/activityAdd"><span><br/> 添加活动 </span></a></li>
@@ -33,58 +33,58 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/activity/activityEditSave' : '/administrator/activity/activitySave';?>" method="post">
-                    <input type="hidden" name="activity_id" value="<?php echo isset($info['activity_id']) ? $info['activity_id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/activity/activityEditSave' : '/administrator/activity/activitySave';?>" method="post">
+                    <input type="hidden" name="activity_id" value="<?=isset($info['activity_id']) ? $info['activity_id'] : ''?>">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>活动主题</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['subject']) ? $info['subject'] : ''?>" name="subject"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['subject']) ? $info['subject'] : ''?>" name="subject"/>
                             <br/>
                         </p>
                         <p>
                             <label>活动开始时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>
                             <label>活动结束时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>
                             <label>活动发起方</label>
                             <select name="event_initiator">
                                 <?php foreach ($event_initiator as $v) {?>
-                                <option value="<?php echo $v['id'];?>" <?php echo (isset ($info['event_initiator']) && $v['id'] == $info['event_initiator']) ? 'selected="selected"' : '' ?>><?php echo $v['name'];?></option>
+                                <option value="<?=$v['id'];?>" <?=(isset ($info['event_initiator']) && $v['id'] == $info['event_initiator']) ? 'selected="selected"' : '' ?>><?=$v['name'];?></option>
                                 <?php } ?>
                             </select>
                         </p>
                         <p>
                             <label>活动状态</label>
-                            <input class="text-input " type="radio" value="1" name="status" <?php echo isset($info['status']) && $info['status']=='1'  ? 'checked="checked"': '';?>/>进行中
-                            <input class="text-input " type="radio" value="0" name="status" <?php echo isset($info['status']) && $info['status']=='0'  ? 'checked="checked"': '';?>/>终止
+                            <input class="text-input " type="radio" value="1" name="status" <?=isset($info['status']) && $info['status']=='1'  ? 'checked="checked"': '';?>/>进行中
+                            <input class="text-input " type="radio" value="0" name="status" <?=isset($info['status']) && $info['status']=='0'  ? 'checked="checked"': '';?>/>终止
                             <br/>
                         </p>
                         <p>
                             <label>发起方名称</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['initiator_name']) ? $info['initiator_name'] : ''?>" name="initiator_name"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['initiator_name']) ? $info['initiator_name'] : ''?>" name="initiator_name"/>
                             <br/>
                         </p>
                         <p>
                             <label>发起方介绍</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['initiator_desc']) ? $info['initiator_desc'] : ''?>" name="initiator_desc"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['initiator_desc']) ? $info['initiator_desc'] : ''?>" name="initiator_desc"/>
                             <br/>
                         </p>
 
                         <p>
                             <label>活动规范</label>
-                            <textarea class="text-input textarea" name="specification" cols="79" rows="15" ><?php echo isset($info['specification']) ? $info['specification'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="specification" cols="79" rows="15" ><?=isset($info['specification']) ? $info['specification'] : ''?></textarea>
                             <br/>
                         </p>
                         <p>
                             <label>活动介绍</label>
-                            <textarea class="text-input textarea" name="descr" cols="79" rows="15" ><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="descr" cols="79" rows="15" ><?=isset($info['descr']) ? $info['descr'] : ''?></textarea>
                             <br/>
                         </p>
                         <p>

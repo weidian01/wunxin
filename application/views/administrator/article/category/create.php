@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑分类' : '添加分类'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑分类' : '添加分类'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
@@ -35,13 +35,13 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/article_category/categoryEditSave' : '/administrator/article_category/categorySave';?>" method="post">
-                    <input type="hidden" name="cid" value="<?php echo isset($info['cid']) ? $info['cid'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/article_category/categoryEditSave' : '/administrator/article_category/categorySave';?>" method="post">
+                    <input type="hidden" name="cid" value="<?=isset($info['cid']) ? $info['cid'] : ''?>">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>分类名称</label>
-                            <input class="text-input" type="text" value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
+                            <input class="text-input" type="text" value="<?=isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
                             <br/>
                         </p>
 
@@ -50,17 +50,17 @@
                             <select name="parent_id" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($data as $item): ?>
-                                <option value="<?=$item['cid']?>" <?php if(isset($info['parent_id']) && $info['parent_id']==$item['cid'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option value="<?=$item['cid']?>" <?php if(isset($info['parent_id']) && $info['parent_id']==$item['cid'] ){echo 'selected="selected"';}?>><?=str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
                         <p>
                             <label>排序</label>
-                            <input class="text-input datepicker" type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort"/>
+                            <input class="text-input datepicker" type="text" value="<?=isset($info['sort']) ? $info['sort'] : ''?>" name="sort"/>
 
                         <p>
                             <label>存储路径</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['path']) ? $info['path'] : ''?>" name="path"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['path']) ? $info['path'] : ''?>" name="path"/>
                             <br/>
 
                         </p>

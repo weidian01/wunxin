@@ -22,10 +22,10 @@
         <form action="<?=config_item('static_url')?>administrator/product_collocation/search" method="post">
             <p>
                 <label><b>输入关键字</b></label>
-                <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset ($keyword) ? $keyword : '';?>">
+                <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?=isset ($keyword) ? $keyword : '';?>">
                 <select name="s_type" class="small-input">
-                    <option value="1" <?php echo (isset ($s_type) && $s_type == 1) ? 'selected="selected"' : ''; ?>>搭配ID</option>
-                    <option value="2" <?php echo (isset ($s_type) && $s_type == 2) ? 'selected="selected"' : ''; ?>>产品ID</option>
+                    <option value="1" <?=(isset ($s_type) && $s_type == 1) ? 'selected="selected"' : ''; ?>>搭配ID</option>
+                    <option value="2" <?=(isset ($s_type) && $s_type == 2) ? 'selected="selected"' : ''; ?>>产品ID</option>
                 </select>
                 <input type="submit" value="搜索">
             </p>
@@ -63,7 +63,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -75,15 +75,15 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['id'];?></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/product_collocation/pcList/<?php echo isset ($current_page) ? $current_page : ''.'/'.$v['pid'];?>"><?php echo $v['pid'];?></a></td>
-                        <td><?php echo $v['spid'];?></td>
-                        <td><?php echo $v['sort'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['id'];?></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/product_collocation/pcList/<?=isset ($current_page) ? $current_page : ''.'/'.$v['pid'];?>"><?=$v['pid'];?></a></td>
+                        <td><?=$v['spid'];?></td>
+                        <td><?=$v['sort'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/product_collocation/pcEdit/<?php echo $v['id'];?>" title="编辑产品搭配">
+                            <a href="<?=config_item('static_url')?>administrator/product_collocation/pcEdit/<?=$v['id'];?>" title="编辑产品搭配">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑产品搭配"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/product_collocation/pcDelete/<?php echo $v['id'].'/'.(isset ($current_page) ? $current_page : '');?>" title="删除产品搭配">
+                            <a href="<?=config_item('static_url')?>administrator/product_collocation/pcDelete/<?=$v['id'].'/'.(isset ($current_page) ? $current_page : '');?>" title="删除产品搭配">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除产品搭配"/></a>
                         </td>
                     </tr>

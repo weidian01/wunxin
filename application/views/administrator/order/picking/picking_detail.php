@@ -71,17 +71,17 @@
                     <tbody>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $data['picking_id'];?></td>
+                        <td><?=$data['picking_id'];?></td>
                         <td><a
-                            href="<?=config_item('static_url')?>administrator/order_picking/orderPickingList/<?php echo $data['order_sn'];?>"><?php echo $data['order_sn'];?></a>
+                            href="<?=config_item('static_url')?>administrator/order_picking/orderPickingList/<?=$data['order_sn'];?>"><?=$data['order_sn'];?></a>
                         </td>
-                        <td><?php echo $data['ed_id'];?></td>
-                        <td><?php echo $data['address_id'];?></td>
-                        <td><?php echo $data['logistics_orders_sn'];?></td>
-                        <td><?php echo $data['uid'];?></td>
-                        <td><?php echo $data['descr'];?></td>
-                        <td><?php echo $data['freight'];?></td>
-                        <td><?php echo $data['create_time'];?></td>
+                        <td><?=$data['ed_id'];?></td>
+                        <td><?=$data['address_id'];?></td>
+                        <td><?=$data['logistics_orders_sn'];?></td>
+                        <td><?=$data['uid'];?></td>
+                        <td><?=$data['descr'];?></td>
+                        <td><?=$data['freight'];?></td>
+                        <td><?=$data['create_time'];?></td>
                     </tr>
                     </tbody>
                 </table>
@@ -112,7 +112,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset($page_html) ? $page_html : '';?>
+                                <?=isset($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -124,9 +124,9 @@
                     }foreach ($product_data as $v) { ?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['pid'];?></td>
-                        <td><?php echo $v['pname'];?></td>
-                        <td><?php echo $v['product_num'];?></td>
+                        <td><?=$v['pid'];?></td>
+                        <td><?=$v['pname'];?></td>
+                        <td><?=$v['product_num'];?></td>
                     </tr>
                         <?php }?>
                     </tbody>

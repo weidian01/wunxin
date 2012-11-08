@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑广告位置' : '添加广告位置'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑广告位置' : '添加广告位置'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_ad_position/positionAdd"><span><br/> 添加广告位置 </span></a></li>
@@ -35,26 +35,26 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/business_ad_position/positionEditSave' : '/administrator/business_ad_position/positionSave';?>" method="post">
-                    <input type="hidden" name="position_id" value="<?php echo isset($info['position_id']) ? $info['position_id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/business_ad_position/positionEditSave' : '/administrator/business_ad_position/positionSave';?>" method="post">
+                    <input type="hidden" name="position_id" value="<?=isset($info['position_id']) ? $info['position_id'] : ''?>">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>位置名称</label>
-                            <input class="text-input" type="text" value="<?php echo isset($info['name']) ? $info['name'] : ''?>" name="name"/>
+                            <input class="text-input" type="text" value="<?=isset($info['name']) ? $info['name'] : ''?>" name="name"/>
                             <br/>
                         </p>
                         <p>
                             <label>宽度</label>
-                            <input class="text-input" type="text" value="<?php echo isset($info['width']) ? $info['width'] : ''?>" name="width" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input" type="text" value="<?=isset($info['width']) ? $info['width'] : ''?>" name="width" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                         </p>
                         <p>
                             <label>高度</label>
-                            <input class="text-input datepicker" type="text" value="<?php echo isset($info['height']) ? $info['height'] : ''?>" name="height" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input datepicker" type="text" value="<?=isset($info['height']) ? $info['height'] : ''?>" name="height" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                         </p>
                         <p>
                             <label>显示数量</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['view_num']) ? $info['view_num'] : ''?>" name="view_num" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['view_num']) ? $info['view_num'] : ''?>" name="view_num" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
@@ -65,7 +65,7 @@
                         </p>
                         <p>
                             <label>描述</label>
-                            <textarea class="text-input textarea" name="descr" cols="50" rows="15"><?php echo isset ($info['descr']) ? $info['descr'] : '';?></textarea>
+                            <textarea class="text-input textarea" name="descr" cols="50" rows="15"><?=isset ($info['descr']) ? $info['descr'] : '';?></textarea>
                             <br/>
                         </p>
                         <p>

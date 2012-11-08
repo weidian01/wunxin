@@ -28,15 +28,15 @@
         <form action="<?=url('administrator/order_receiver/search');?>" method="post">
         <p>
             <label><b>输入关键字</b></label>
-            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?=isset($keyword) ? $keyword : ''; ?>">
             <select name="s_type" class="small-input">
                 <?php if (!isset ($searchType)) {$searchType = array();}
                 foreach ($searchType as $sk=>$sv) {?>
                 <?php if (!isset($sType)) $sType = '';
                 if ($sType == $sk) {?>
-                <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                <option value="<?=$sk?>" selected="selected"><?=$sv?></option>
                 <?php } else {?>
-                    <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                    <option value="<?=$sk?>"><?=$sv?></option>
                 <?php }?>
                 <?php }?>
             </select>
@@ -90,7 +90,7 @@
                                 <a class="button" href="#">Apply to selected</a>
                             </div>
                             <div class="pagination">
-                            <?php echo isset ($page_html) ? $page_html : '';?>
+                            <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -101,17 +101,17 @@
                         foreach ($data as $v) { if (empty ($v)) continue;?>
                     <tr>
                         <td> <input type="checkbox" /> </td>
-                        <td><?php echo $v['receiver_id'];?></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/order_receiver/orderReceiverList/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/order_receiver/userReceiverList/<?php echo $v['uid'];?>"><?php echo $v['uid'];?></a></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['amount'];?></td>
-                        <td><?php echo $v['pay_type'] == 1 ? '银行汇款' : '支付宝转账';?></td>
-                        <td><?php echo $v['pay_account'];?></td>
-                        <!--<td><?php echo $v['pay_status'] ? '支付成功' : '支付失败';?></td>-->
-                        <td><?php echo $v['descr']?></td>
-                        <td><?php echo $v['manager_id'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['receiver_id'];?></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/order_receiver/orderReceiverList/<?=$v['order_sn'];?>"><?=$v['order_sn'];?></a></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/order_receiver/userReceiverList/<?=$v['uid'];?>"><?=$v['uid'];?></a></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['amount'];?></td>
+                        <td><?=$v['pay_type'] == 1 ? '银行汇款' : '支付宝转账';?></td>
+                        <td><?=$v['pay_account'];?></td>
+                        <!--<td><?=$v['pay_status'] ? '支付成功' : '支付失败';?></td>-->
+                        <td><?=$v['descr']?></td>
+                        <td><?=$v['manager_id'];?></td>
+                        <td><?=$v['create_time'];?></td>
                     </tr>
                         <?php }?>
 

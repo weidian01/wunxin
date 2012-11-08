@@ -89,7 +89,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
               <?php foreach($alike as $item):?>
                   <?php if(isset($item['color']) && $item['color']):?>
                   <a class="sub-s" href="<?=config_item('static_url')?>product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
-                    <span class="selected" style="display:<?php echo ($item['pid'] === $product['pid']) ? 'block':'none';?>">
+                    <span class="selected" style="display:<?=($item['pid'] === $product['pid']) ? 'block':'none';?>">
                     <img src="<?=config_item('static_url')?>images/lazy.gif" width="10" height="10" data-original="<?=config_item('static_url')?>images/a07.jpg" class="lazy"/></span>
                         <?php if(true)://根据产品默认图片显示图片?>
                         <span class="coview">

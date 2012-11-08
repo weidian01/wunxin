@@ -56,7 +56,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -69,18 +69,18 @@
 
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['position_id'];?></td>
-                        <td><?php echo $v['name'];?></td>
-                        <td><?php echo $v['width'];?></td>
-                        <td><?php echo $v['height'];?></td>
-                        <td><?php echo $v['status'] ? '显示' : '不显示';?></td>
-                        <td><?php echo $v['view_num'];?></td>
-                        <td><?php echo $v['descr'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['position_id'];?></td>
+                        <td><?=$v['name'];?></td>
+                        <td><?=$v['width'];?></td>
+                        <td><?=$v['height'];?></td>
+                        <td><?=$v['status'] ? '显示' : '不显示';?></td>
+                        <td><?=$v['view_num'];?></td>
+                        <td><?=$v['descr'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_ad_position/positionEdit/<?php echo $v['position_id'];?>" title="编辑广告位置">
+                            <a href="<?=config_item('static_url')?>administrator/business_ad_position/positionEdit/<?=$v['position_id'];?>" title="编辑广告位置">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑广告位置"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_ad_position/positionDelete/<?php echo $v['position_id'].'/'.$current_page;?>" title="删除广告位置">
+                            <a href="<?=config_item('static_url')?>administrator/business_ad_position/positionDelete/<?=$v['position_id'].'/'.$current_page;?>" title="删除广告位置">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除广告位置"/></a>
                         </td>
                     </tr>

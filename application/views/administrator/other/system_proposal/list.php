@@ -55,7 +55,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -68,14 +68,14 @@
 
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['id'];?></td>
-                        <td><?php echo $v['title'];?></td>
-                        <td><?php echo $v['content'];?></td>
-                        <td><?php echo $v['uid'];?></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['id'];?></td>
+                        <td><?=$v['title'];?></td>
+                        <td><?=$v['content'];?></td>
+                        <td><?=$v['uid'];?></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/other_system_proposal/systemProposalDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除系统建议与意见">
+                            <a href="<?=config_item('static_url')?>administrator/other_system_proposal/systemProposalDelete/<?=$v['id'].'/'.$current_page;?>" title="删除系统建议与意见">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除系统建议与意见"/></a>
                         </td>
                     </tr>

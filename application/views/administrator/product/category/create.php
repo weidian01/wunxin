@@ -41,8 +41,8 @@
                         <p>
                             <label>分类名称</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
-                            <input type="hidden" name="class_id" value="<?php echo isset($info['class_id']) ? $info['class_id'] : ''?>">
+                                   value="<?=isset($info['cname']) ? $info['cname'] : ''?>" name="cname"/>
+                            <input type="hidden" name="class_id" value="<?=isset($info['class_id']) ? $info['class_id'] : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <br/>
                             <small>分类名称不能为空</small>
@@ -53,7 +53,7 @@
                             <select name="parent_id" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($category as $item): ?>
-                                <option value="<?=$item['class_id']?>" <?php if(isset($info['parent_id']) && $info['parent_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option value="<?=$item['class_id']?>" <?php if(isset($info['parent_id']) && $info['parent_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?=str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
@@ -72,12 +72,12 @@
                         <p>
                             <label>排序</label>
                             <input class="text-input datepicker"
-                                   type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort"/>
+                                   type="text" value="<?=isset($info['sort']) ? $info['sort'] : ''?>" name="sort"/>
 
                         <p>
                             <label>SEO标题</label>
                             <input class="text-input small-input" type="text"
-                                   value="<?php echo isset($info['title']) ? $info['title'] : ''?>" name="title"/>
+                                   value="<?=isset($info['title']) ? $info['title'] : ''?>" name="title"/>
                             <br/>
 
                         </p>
@@ -85,13 +85,13 @@
                         <p>
                             <label>SEO关键字</label>
                             <input class="text-input medium-input" type="text"
-                                   value="<?php echo isset($info['keywords']) ? $info['keywords'] : ''?>"
+                                   value="<?=isset($info['keywords']) ? $info['keywords'] : ''?>"
                                    name="keywords"/>
                         </p>
 
                         <p>
                             <label>SEO描述</label>
-                            <textarea class="text-input textarea" name="descr" cols="50" rows="15"><?php echo isset($info['descr']) ? $info['descr'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="descr" cols="50" rows="15"><?=isset($info['descr']) ? $info['descr'] : ''?></textarea>
                         </p>
 
                         <p>

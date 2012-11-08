@@ -41,21 +41,21 @@
                         <p>
                             <label>名称</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($name) ? $name : ''?>" name="name"/>
-                            <input type="hidden" name="size_id" value="<?php echo isset($size_id) ? $size_id : ''?>">
+                                   value="<?=isset($name) ? $name : ''?>" name="name"/>
+                            <input type="hidden" name="size_id" value="<?=isset($size_id) ? $size_id : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <small>名称不能为空</small>
                         </p>
                         <p>
                             <label>简介</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($abbreviation) ? $abbreviation : ''?>" name="abbreviation"/>
+                                   value="<?=isset($abbreviation) ? $abbreviation : ''?>" name="abbreviation"/>
                             <small>简介不能为空</small>
                         </p>
                         <p>
                             <label>描述</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($descr) ? $descr : ''?>" name="descr"/>
+                                   value="<?=isset($descr) ? $descr : ''?>" name="descr"/>
                             <small>描述不能为空</small>
                         </p>
                         <p>

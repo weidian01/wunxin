@@ -157,13 +157,13 @@ $(document).ready(function(){
 					<div class="photo_editinfo">
 						<div class="wrap">
 							<div style="border:1px solid #eee;" id="" class="bg3 mod_pe_post2blog_v2 qzone-display">
-								<p>您已成功上传<span id="photo_num2" class="c_tx4">&nbsp; <?php echo count($s_img);?> &nbsp;</span>张晒单照片，把它们的购物经历讲出来和好友一起分享吧。</p>
+								<p>您已成功上传<span id="photo_num2" class="c_tx4">&nbsp; <?=count($s_img);?> &nbsp;</span>张晒单照片，把它们的购物经历讲出来和好友一起分享吧。</p>
 								<div class="mod_pe_post2blog_v2_list qzone-display">
 									<ul>
                                         <?php foreach ($s_img as $v) {?>
 										<li id="paper1" class="bg bor">
 											<p class="mod_pe_post2blog_v2_img">
-												<img alt="" style="" src="<?php echo config_item('static_url').'upload/product_share/'.str_replace('\\', '/', $v['img_addr']);?>">
+												<img alt="" style="" src="<?=config_item('static_url').'upload/product_share/'.str_replace('\\', '/', $v['img_addr']);?>">
 											</p>
 										</li>
                                         <?php }?>
@@ -179,29 +179,29 @@ $(document).ready(function(){
                                         <form action="/product/share/saveShareDescribe" method="post" name="share_image_form">
 										<div class="bds">
 											<ul id="edit_photo_list_ul">
-                                                <input type="hidden" name="number" value="<?php echo count($s_img);?>" id="share_image_number">
+                                                <input type="hidden" name="number" value="<?=count($s_img);?>" id="share_image_number">
                                                 <?php $i = 1;foreach ($s_img as $v) {?>
-                                                <input type="hidden" name="s_img_<?php echo $i;?>" value="<?php echo $v['id'];?>">
+                                                <input type="hidden" name="s_img_<?=$i;?>" value="<?=$v['id'];?>">
                                                 <li>
                                                     <div class="inner">
                                                         <div class="img">
                                                             <p class="bor3 main">
-                                                                <img alt="" src="<?php echo config_item('static_url').'upload/product_share/'.str_replace('\\', '/', $v['img_addr']);?>" style="width: 99px; height: 74px;">
+                                                                <img alt="" src="<?=config_item('static_url').'upload/product_share/'.str_replace('\\', '/', $v['img_addr']);?>" style="width: 99px; height: 74px;">
                                                             </p>
                                                             <div class="photo_editinfo_op"> <p class="l">
-                                                                <input type="radio" name="PhotoCover" <?php echo ($v['is_cover'] == '1') ? 'checked="checked"' : '';?> value="<?php echo $v['id'];?>"/>
+                                                                <input type="radio" name="PhotoCover" <?=($v['is_cover'] == '1') ? 'checked="checked"' : '';?> value="<?=$v['id'];?>"/>
                                                                 <label >封面</label> </p> </div>
                                                         </div>
                                                         <div class="cont">
                                                             <p>
                                                                 <label >名称：</label>
-                                                                <input type="text" maxlength="30" class="bor textinput c_tx3" name="photo_name_<?php echo $i;?>" id="photo_name_<?php echo $i;?>" value="<?php echo empty ($v['title']) ? '' : $v['title'];?>">
+                                                                <input type="text" maxlength="30" class="bor textinput c_tx3" name="photo_name_<?=$i;?>" id="photo_name_<?=$i;?>" value="<?=empty ($v['title']) ? '' : $v['title'];?>">
                                                                 <span style="display:none" class="num"><strong>0</strong>/30</span>
                                                             </p>
                                                             <div class="mod_panel_editsingle_desc" style="z-index: 101;">
                                                                 <label >描述：</label>
                                                                 <div class="mod_panel_editsingle_desc_int c_tx3" name="photo_desc">
-                                                                    <textarea class="bor textinput c_tx3" name="photo_desc_<?php echo $i;?>" id="photo_desc_<?php echo $i;?>"><?php echo empty ($v['descr']) ? '' : $v['descr'];?></textarea>
+                                                                    <textarea class="bor textinput c_tx3" name="photo_desc_<?=$i;?>" id="photo_desc_<?=$i;?>"><?=empty ($v['descr']) ? '' : $v['descr'];?></textarea>
                                                                     <span style="display:none" class="num"><span class="c_tx">130</span>/200</span>
                                                                 </div>
                                                             </div>

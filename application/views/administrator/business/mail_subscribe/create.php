@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑邮件订阅' : '添加邮件订阅'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑邮件订阅' : '添加邮件订阅'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeAdd"><span><br/> 添加邮件订阅 </span></a></li>
@@ -33,25 +33,25 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/business_mail_subscribe/mailSubscribeEditSave' : '/administrator/business_mail_subscribe/mailSubscribeSave';?>" method="post">
-                    <input type="hidden" name="id" value="<?php echo isset($info['id']) ? $info['id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/business_mail_subscribe/mailSubscribeEditSave' : '/administrator/business_mail_subscribe/mailSubscribeSave';?>" method="post">
+                    <input type="hidden" name="id" value="<?=isset($info['id']) ? $info['id'] : ''?>">
                     <fieldset>
                         <p>
                             <label>用户ID</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['uid']) ? $info['uid'] : ''?>" name="uid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['uid']) ? $info['uid'] : ''?>" name="uid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>邮件地址</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['email_addr']) ? $info['email_addr'] : ''?>" name="email_addr"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['email_addr']) ? $info['email_addr'] : ''?>" name="email_addr"/>
                             <br/>
                         </p>
                         <p>
                             <label>需要获取信息类型</label>
                             <select name="get_info_type">
-                                <option value="1" <?php echo isset($info['get_info_type']) && $info['get_info_type'] == '1' ? 'selected="selected"' : '';?>>特价优惠</option>
-                                <option value="2" <?php echo isset($info['get_info_type']) && $info['get_info_type'] == '2' ? 'selected="selected"' : '';?>>时尚搭配</option>
-                                <option value="3" <?php echo isset($info['get_info_type']) && $info['get_info_type'] == '3' ? 'selected="selected"' : '';?>>新品咨询</option>
+                                <option value="1" <?=isset($info['get_info_type']) && $info['get_info_type'] == '1' ? 'selected="selected"' : '';?>>特价优惠</option>
+                                <option value="2" <?=isset($info['get_info_type']) && $info['get_info_type'] == '2' ? 'selected="selected"' : '';?>>时尚搭配</option>
+                                <option value="3" <?=isset($info['get_info_type']) && $info['get_info_type'] == '3' ? 'selected="selected"' : '';?>>新品咨询</option>
                             </select>
                             <br/>
                         </p>

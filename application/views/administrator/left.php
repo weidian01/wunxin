@@ -22,7 +22,7 @@
             <a href="#">万象电商管理系统<!--<img id="logo" src="<?=config_item('static_url')?>images/logo.png" alt="Simpla Admin logo"/>--></a>
             <br/><br/><br/><br/>
             <!-- Sidebar Profile links -->
-            <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?php echo $this->amInfo['am_uname'];?></a>
+            <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?=$this->amInfo['am_uname'];?></a>
                 <!--, you have <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br/>-->
                 <br/><br/>
                 <a href="http://wunxin.com" title="View the Site">查看网站首页</a> |

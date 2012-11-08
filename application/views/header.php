@@ -33,7 +33,7 @@
             <div class="s-input">
                 <div class="sch">
                     <form name="search" method="get" action="<?=config_item('base_url')?>search">
-                        <input id="keyword" name="keyword" type="text" value="<?php echo isset($keyword) ? $keyword:'';?>"/>
+                        <input id="keyword" name="keyword" type="text" value="<?=isset($keyword) ? $keyword:'';?>"/>
                     </form>
                 </div>
                 <div class="sbtn"><a href="javascript:;" onclick="document.forms['search'].submit()">

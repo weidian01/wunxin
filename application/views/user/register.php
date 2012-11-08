@@ -37,8 +37,8 @@
             </div>
         </div>
         <form action="/user/register/submit" method="POST" name="register_form">
-            <input type="hidden" name="source" value="<?php echo $source ? $source : 1;?>" id="source_id">
-            <input type="hidden" name="redirect_url" value="<?php echo $redirect_url;?>" id="redirect_url_id">
+            <input type="hidden" name="source" value="<?=$source ? $source : 1;?>" id="source_id">
+            <input type="hidden" name="redirect_url" value="<?=$redirect_url;?>" id="redirect_url_id">
             <div class="regist-rgt">
                 <div class="reg-tit"><h1>注册新会员</h1></div>
                 <table class="tab5" width="93%" border="0" cellspacing="0" cellpadding="0">

@@ -54,7 +54,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -66,15 +66,15 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['model_id'];?></td>
-                        <td><?php echo $v['card_name'];?></td>
-                        <td><?php echo $v['card_type'];?></td>
-                        <td><?php echo $v['card_amount'];?></td>
-                        <td><?php echo $v['card_num'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['model_id'];?></td>
+                        <td><?=$v['card_name'];?></td>
+                        <td><?=$v['card_type'];?></td>
+                        <td><?=$v['card_amount'];?></td>
+                        <td><?=$v['card_num'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelEdit/<?php echo $v['model_id'];?>" title="编辑卡模型"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑卡模型"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelDelete/<?php echo $v['model_id'].'/'.$current_page;?>" title="删除卡模型"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除卡模型"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelEdit/<?=$v['model_id'];?>" title="编辑卡模型"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑卡模型"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelDelete/<?=$v['model_id'].'/'.$current_page;?>" title="删除卡模型"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除卡模型"/></a>
                         </td>
                     </tr>
                         <?php }?>

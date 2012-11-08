@@ -62,7 +62,7 @@
                     <tfoot>
                     <tr>
                         <td colspan="13">
-                            <div class="pagination"> <?php echo isset ($page_html) ? $page_html : '';?> </div>
+                            <div class="pagination"> <?=isset ($page_html) ? $page_html : '';?> </div>
                             <div class="clear"></div>
                         </td>
                     </tr>
@@ -72,21 +72,21 @@
                     foreach ($data as $v) { if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['id'];?></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/article/articleCLass/<?php echo $v['cid'];?>"><?php echo isset($class_data[$v['cid']]['cname']) ? $class_data[$v['cid']]['cname']:'NULL';?></a></td>
-                        <td><a href="<?=config_item('static_url')?>other/help/index/<?php echo $v['id'];?>"><?php echo $v['title'];?></a></td>
-                        <td><?php echo mb_substr($v['keywords'], 0, 20, 'utf-8');?></td>
-                        <td><?php echo mb_substr($v['descr'], 0, 20, 'utf-8');?></td>
-                        <td><?php echo mb_substr(strip_tags(htmlspecialchars_decode($v['content'])), 0, 20, 'utf-8');?></td>
-                        <td><?php echo $v['visiblity'] ? '显示' : '不显示';?></td>
-                        <td><?php echo $v['top'] ? '置顶' : '不置顶';?></td>
-                        <td><?php echo $v['sort'];?></td>
-                        <td><?php echo $v['is_valid'];?></td>
-                        <td><?php echo $v['is_invalid'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['id'];?></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/article/articleCLass/<?=$v['cid'];?>"><?=isset($class_data[$v['cid']]['cname']) ? $class_data[$v['cid']]['cname']:'NULL';?></a></td>
+                        <td><a href="<?=config_item('static_url')?>other/help/index/<?=$v['id'];?>"><?=$v['title'];?></a></td>
+                        <td><?=mb_substr($v['keywords'], 0, 20, 'utf-8');?></td>
+                        <td><?=mb_substr($v['descr'], 0, 20, 'utf-8');?></td>
+                        <td><?=mb_substr(strip_tags(htmlspecialchars_decode($v['content'])), 0, 20, 'utf-8');?></td>
+                        <td><?=$v['visiblity'] ? '显示' : '不显示';?></td>
+                        <td><?=$v['top'] ? '置顶' : '不置顶';?></td>
+                        <td><?=$v['sort'];?></td>
+                        <td><?=$v['is_valid'];?></td>
+                        <td><?=$v['is_invalid'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/article/articleEdit/<?php echo $v['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑文章"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/article/articleDelete/<?php echo $v['id'].'/'.(isset ($current_page) ? $current_page : '1');?>" title="删除文章"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除文章"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/article/articleEdit/<?=$v['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑文章"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/article/articleDelete/<?=$v['id'].'/'.(isset ($current_page) ? $current_page : '1');?>" title="删除文章"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除文章"/></a>
                         </td>
                     </tr>
                         <?php }?>

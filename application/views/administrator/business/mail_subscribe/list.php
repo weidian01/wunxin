@@ -50,7 +50,7 @@
                     <tfoot>
                     <tr>
                         <td colspan="13">
-                            <div class="pagination"> <?php echo isset ($page_html) ? $page_html : '';?> </div>
+                            <div class="pagination"> <?=isset ($page_html) ? $page_html : '';?> </div>
                             <div class="clear"></div>
                         </td>
                     </tr>
@@ -61,19 +61,19 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['id'];?></td>
-                        <td><?php echo $v['uid'];?></td>
-                        <td><?php echo $v['email_addr'];?></td>
+                        <td><?=$v['id'];?></td>
+                        <td><?=$v['uid'];?></td>
+                        <td><?=$v['email_addr'];?></td>
                         <td><?php switch ($v['get_info_type']){
 							case '1':$s = '特价优惠';break;
 							case '2':$s = '时尚搭配';break;
 							case '3':$s = '新品咨询';break;
 						};echo $s;?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeEdit/<?php echo $v['id'].'/'.$current_page;?>" title="修改邮件订阅">
+                            <a href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeEdit/<?=$v['id'].'/'.$current_page;?>" title="修改邮件订阅">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改邮件订阅"></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeDelete/<?php echo $v['id'].'/'.$current_page;?>" title="删除邮件订阅">
+                            <a href="<?=config_item('static_url')?>administrator/business_mail_subscribe/mailSubscribeDelete/<?=$v['id'].'/'.$current_page;?>" title="删除邮件订阅">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除邮件订阅"></a>
                         </td>
                     </tr>

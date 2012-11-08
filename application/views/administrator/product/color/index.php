@@ -76,9 +76,9 @@
                         <td>
                             <?=$item['descr']?>
                         </td>
-                        <td><a href="<?php echo site_url("administrator/product_color/edit/{$item['color_id']}")?>"><img
+                        <td><a href="<?=site_url("administrator/product_color/edit/{$item['color_id']}")?>"><img
                             src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo site_url("administrator/product_color/del/{$item['color_id']}")?>"><img
+                            <a href="<?=site_url("administrator/product_color/del/{$item['color_id']}")?>"><img
                                 src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a></td>
                     </tr>
                         <?php endforeach;?>

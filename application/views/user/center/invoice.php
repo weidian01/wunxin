@@ -42,9 +42,9 @@
                 <td colspan="6" style="text-align: center;font-weight: bold;color: #A10000;" height="50">您暂时没有发票。</td>
                 <?php } else {?>
                 <?php foreach ($data as $v) {?>
-                <tr id="invoice_<?php echo $v['invoice_id'];?>">
-                    <td width="8%" height="26" align="center"><a href="#"><?php echo $v['invoice_id'];?></a></td>
-                    <td width="28%"><?php echo $v['invoice_payable'];?> </td>
+                <tr id="invoice_<?=$v['invoice_id'];?>">
+                    <td width="8%" height="26" align="center"><a href="#"><?=$v['invoice_id'];?></a></td>
+                    <td width="28%"><?=$v['invoice_payable'];?> </td>
                     <td width="8%" align="center"><?php
                         switch($v['invoice_content']) {
                             case '1': $st = '服装'; break;
@@ -54,10 +54,10 @@
                         }
                             echo $st;
                         ?></td>
-                    <td width="10%" align="center"><?php echo $v['default'] == '1' ? '是' : '否';?></td>
-                    <td width="10%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td width="10%" align="center"><?=$v['default'] == '1' ? '是' : '否';?></td>
+                    <td width="10%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td width="10%" align="center">
-                        <a href="javascript:void(0);" onclick="deleteInvoice(<?php echo $v['invoice_id'];?>)">
+                        <a href="javascript:void(0);" onclick="deleteInvoice(<?=$v['invoice_id'];?>)">
                             <img src="<?=config_item('static_url')?>images/delete.png" title="删除此发票">
                         </a>
                     </td>
@@ -80,7 +80,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
         <!--
         <div class="u-r-box">

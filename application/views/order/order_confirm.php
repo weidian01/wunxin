@@ -45,9 +45,9 @@ $(document).ready(function(){
         <?php foreach ($recent_data as $v) {?>
             <?php if ($v['default_address']) {?>
         <div class="consignee" id="cong">
-            <?php echo $v['recent_name']; ?><span style="padding-left:20px;"></span><?php echo $v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
-            <span style="padding-left:20px;"></span><?php echo $v['zipcode'];?><br/>
-            <?php echo $v['phone_num'];?>，    <?php echo $v['call_num'];?>
+            <?=$v['recent_name']; ?><span style="padding-left:20px;"></span><?=$v['province'].','.$v['city'].','.$v['area'].','.$v['detail_address'];?>
+            <span style="padding-left:20px;"></span><?=$v['zipcode'];?><br/>
+            <?=$v['phone_num'];?>，    <?=$v['call_num'];?>
         </div>
             <?php }?>
         <?php }?>
@@ -56,13 +56,13 @@ $(document).ready(function(){
       <div class="consigneeList">
 
           <?php if (empty ($recent_data)) $recent_data = array();foreach ($recent_data as $rdv) {?>
-          <label id="address_<?php echo $rdv['address_id'];?>" onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">
-              <span class="xzradio"> <input name="address_id" type="radio" value="<?php echo $rdv['address_id'];?>" <?php echo $rdv['default_address'] == '1' ? 'checked="checked"' : '';?>/> </span>
-              <span><?php echo $rdv['recent_name'];?></span><span><?php echo $rdv['province'].','.$rdv['city'].','.$rdv['area'].','.$rdv['detail_address'];?>
-              </span><span><?php echo $rdv['phone_num'];?></span><span><?php echo $rdv['call_num'];?></span>
+          <label id="address_<?=$rdv['address_id'];?>" onclick="wx.editAddress(<?=$rdv['address_id'];?>)">
+              <span class="xzradio"> <input name="address_id" type="radio" value="<?=$rdv['address_id'];?>" <?=$rdv['default_address'] == '1' ? 'checked="checked"' : '';?>/> </span>
+              <span><?=$rdv['recent_name'];?></span><span><?=$rdv['province'].','.$rdv['city'].','.$rdv['area'].','.$rdv['detail_address'];?>
+              </span><span><?=$rdv['phone_num'];?></span><span><?=$rdv['call_num'];?></span>
 
-              <!--<span onclick="wx.editAddress(<?php echo $rdv['address_id'];?>)">编辑</span>-->
-              <span onclick="wx.deleteAddress(<?php echo $rdv['address_id'];?>)">删除</span>
+              <!--<span onclick="wx.editAddress(<?=$rdv['address_id'];?>)">编辑</span>-->
+              <span onclick="wx.deleteAddress(<?=$rdv['address_id'];?>)">删除</span>
           </label>
           <?php }?>
 
@@ -85,7 +85,7 @@ $(document).ready(function(){
               <select name="select" id="province_id" onchange="order.changeProvince(this.value)">
                   <option value="0">省份</option>
                   <?php foreach ($province_data as $pv) {?>
-                  <option value="<?php echo $pv['id'];?>"><?php echo $pv['name'];?></option>
+                  <option value="<?=$pv['id'];?>"><?=$pv['name'];?></option>
                   <?php }?>
             </select>
             &nbsp;&nbsp;

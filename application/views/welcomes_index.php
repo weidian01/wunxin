@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?php echo $title;?></title>
+    <title><?=$title;?></title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
@@ -26,8 +26,8 @@
                 <tr>
                     <?php foreach ($broadcast_recommend as $brv) {?>
                     <td class="td_f">
-                        <a href="<?php echo $brv['link'];?>" target="_blank">
-                            <img src="<?=base_url().str_replace('\\', '/', $brv['img_addr']);?>" alt="<?php echo $brv['title'];?>"/>
+                        <a href="<?=$brv['link'];?>" target="_blank">
+                            <img src="<?=base_url().str_replace('\\', '/', $brv['img_addr']);?>" alt="<?=$brv['title'];?>"/>
                         </a>
                     </td>
                     <?php }?>
@@ -52,8 +52,8 @@
                             <ul class="j-sw-c" style="width: 678px; ">
                                 <?php foreach ($day_recommend as $drv) {?>
                                 <li style="display: block; float: left; ">
-                                    <a target="_blank" title="" href="<?php echo $drv['link'];?>">
-                                        <img alt="<?php echo $drv['title'];?>" src="<?=base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120"/>
+                                    <a target="_blank" title="" href="<?=$drv['link'];?>">
+                                        <img alt="<?=$drv['title'];?>" src="<?=base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120"/>
                                     </a>
                                 </li>
                                 <?php }?>
@@ -115,9 +115,9 @@
     </div>
     <ul>
         <?php $i = 1;foreach ($AD_recommend as $arv) {?>
-        <li id="index_recommend_ad<?php echo $i;?>" style="<?php echo $i == 1 ? '' : 'display:none;';?>" class="index_recommend_ad">
-            <a href="<?php echo $arv['link'];?>" target="_blank">
-                <img alt="<?php echo $arv['title'];?>" src="<?php echo base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200"/>
+        <li id="index_recommend_ad<?=$i;?>" style="<?=$i == 1 ? '' : 'display:none;';?>" class="index_recommend_ad">
+            <a href="<?=$arv['link'];?>" target="_blank">
+                <img alt="<?=$arv['title'];?>" src="<?=base_url().str_replace('\\', '/', $arv['img_addr']);?>" width="978" height="200"/>
             </a>
         </li>
         <?php $i++;}?>
@@ -231,44 +231,44 @@
         <div class="floorMain" onmouseout="hideLayer('picmt', 7)">
             <?php foreach ($woman_recommend_1_2_3_4_5_6 as $wr123456) {?>
             <?php if ($wr123456['emission'] == '1') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item1" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt1" onmouseover="showLayer('1','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="300"
-                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
+            <a href="<?=$wr123456['link'];?>" class="item1" title="<?=$wr123456['title'];?>" target="_blank">
+                <img id="picmt1" onmouseover="showLayer('1','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$wr123456['title'];?>" width="237" height="300"
+                    data-original="<?=base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '2') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item2" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt2" onmouseover="showLayer('2','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
-                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
+            <a href="<?=$wr123456['link'];?>" class="item2" title="<?=$wr123456['title'];?>" target="_blank">
+                <img id="picmt2" onmouseover="showLayer('2','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$wr123456['title'];?>" width="237" height="150"
+                    data-original="<?=base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '3') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item3" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt3" onmouseover="showLayer('3','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
-                     data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
+            <a href="<?=$wr123456['link'];?>" class="item3" title="<?=$wr123456['title'];?>" target="_blank">
+                <img id="picmt3" onmouseover="showLayer('3','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$wr123456['title'];?>" width="237" height="150"
+                     data-original="<?=base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '4') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item4" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt4" onmouseover="showLayer('4','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="300"
-                     data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
+            <a href="<?=$wr123456['link'];?>" class="item4" title="<?=$wr123456['title'];?>" target="_blank">
+                <img id="picmt4" onmouseover="showLayer('4','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$wr123456['title'];?>" width="237" height="300"
+                     data-original="<?=base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '5') {?>
-            <a href="<?php echo $wr123456['link'];?>" class="item5" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt5" onmouseover="showLayer('5','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
-                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
+            <a href="<?=$wr123456['link'];?>" class="item5" title="<?=$wr123456['title'];?>" target="_blank">
+                <img id="picmt5" onmouseover="showLayer('5','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$wr123456['title'];?>" width="237" height="150"
+                    data-original="<?=base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
 
             <?php if ($wr123456['emission'] == '6') {?>
             <a href="<?=$wr123456['link'];?>" class="item6" title="<?=$wr123456['title'];?>" target="_blank">
-                <img id="picmt6" onmouseover="showLayer('6','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?php echo $wr123456['title'];?>" width="237" height="150"
-                    data-original="<?php echo base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
+                <img id="picmt6" onmouseover="showLayer('6','picmt', 7)" src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$wr123456['title'];?>" width="237" height="150"
+                    data-original="<?=base_url(). str_replace('\\', '/', $wr123456['img_addr']);?>" class="lazy"/>
             </a>
             <?php }?>
             <?php }?>
@@ -475,7 +475,7 @@
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
 <script type="text/javascript">
     //转播图 代码开始
-    var st = new SlideTrans("idContainer2", "idSlider2", <?php echo count($broadcast_recommend);?>, { Vertical:false });
+    var st = new SlideTrans("idContainer2", "idSlider2", <?=count($broadcast_recommend);?>, { Vertical:false });
     var nums = [];
     //插入数字
     for (var i = 0, n = st._count - 1; i <= n;) {

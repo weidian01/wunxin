@@ -26,15 +26,15 @@
     <div class="content-box-header">
         <h3>收藏列表</h3>
         <ul class="content-box-tabs">
-            <li><a href="#tab1" <?php echo ($type == '1') ? 'class="default-tab"' : '';?> >设计师收藏</a></li>
-            <li><a href="#tab2" <?php echo ($type == '2') ? 'class="default-tab"' : '';?> >产品收藏</a></li>
-            <li><a href="#tab3" <?php echo ($type == '3') ? 'class="default-tab"' : '';?> >设计图收藏</a></li>
+            <li><a href="#tab1" <?=($type == '1') ? 'class="default-tab"' : '';?> >设计师收藏</a></li>
+            <li><a href="#tab2" <?=($type == '2') ? 'class="default-tab"' : '';?> >产品收藏</a></li>
+            <li><a href="#tab3" <?=($type == '3') ? 'class="default-tab"' : '';?> >设计图收藏</a></li>
         </ul>
         <div class="clear"></div>
     </div>
     <!-- End .content-box-header -->
     <div class="content-box-content">
-        <div class="tab-content <?php echo  ($type == '1') ? 'default-tab"' : '';?>" id="tab1">
+        <div class="tab-content <?= ($type == '1') ? 'default-tab"' : '';?>" id="tab1">
             <table>
                 <thead>
                 <tr>
@@ -54,14 +54,14 @@
                         <td>
                             <input type="checkbox"/>
                         </td>
-                        <td><?php echo $dfdv['designer_favorite_id'];?></td>
-                        <td><?php echo $dfdv['favorite_uid'];?></td>
-                        <td><?php echo $dfdv['favorite_uname'];?></td>
-                        <td><?php echo $dfdv['uid'];?></td>
-                        <td><?php echo $dfdv['ip'];?></td>
-                        <td><?php echo $dfdv['create_time'];?></td>
+                        <td><?=$dfdv['designer_favorite_id'];?></td>
+                        <td><?=$dfdv['favorite_uid'];?></td>
+                        <td><?=$dfdv['favorite_uname'];?></td>
+                        <td><?=$dfdv['uid'];?></td>
+                        <td><?=$dfdv['ip'];?></td>
+                        <td><?=$dfdv['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteDelete/<?php echo $dfdv['designer_favorite_id'].'/'.$uid.'/1';?>" title="删除收藏">
+                            <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteDelete/<?=$dfdv['designer_favorite_id'].'/'.$uid.'/1';?>" title="删除收藏">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除收藏"></a>
                         </td>
                     </tr>
@@ -70,7 +70,7 @@
             </table>
         </div>
         <!-- End #tab1 -->
-        <div class="tab-content <?php echo  ($type == '2') ? 'default-tab"' : '';?>" id="tab2">
+        <div class="tab-content <?= ($type == '2') ? 'default-tab"' : '';?>" id="tab2">
             <table>
                 <thead>
                 <tr>
@@ -93,14 +93,14 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $pfdv['id'];?></td>
-                    <td><?php echo $pfdv['uid'];?></td>
-                    <td><?php echo $pfdv['uname'];?></td>
-                    <td><?php echo $pfdv['pid'];?></td>
-                    <td><?php echo $pfdv['ip'];?></td>
-                    <td><?php echo $pfdv['create_time'];?></td>
+                    <td><?=$pfdv['id'];?></td>
+                    <td><?=$pfdv['uid'];?></td>
+                    <td><?=$pfdv['uname'];?></td>
+                    <td><?=$pfdv['pid'];?></td>
+                    <td><?=$pfdv['ip'];?></td>
+                    <td><?=$pfdv['create_time'];?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteDelete/<?php echo $pfdv['id'].'/'.$uid.'/2';?>" title="删除收藏"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除收藏"></a>
+                        <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteDelete/<?=$pfdv['id'].'/'.$uid.'/2';?>" title="删除收藏"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除收藏"></a>
                     </td>
                 </tr>
                     <?php }?>
@@ -109,7 +109,7 @@
             <div class="clear"></div>
         </div>
 
-        <div class="tab-content <?php echo  ($type == '3') ? 'default-tab"' : '';?>" id="tab3">
+        <div class="tab-content <?= ($type == '3') ? 'default-tab"' : '';?>" id="tab3">
             <table>
                 <thead>
                 <tr>
@@ -131,14 +131,14 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $dfvd['id'];?></td>
-                    <td><?php echo $dfvd['uid'];?></td>
-                    <td><?php echo $dfvd['uname'];?></td>
-                    <td><?php echo $dfvd['did'];?></td>
-                    <td><?php echo $dfvd['ip'];?></td>
-                    <td><?php echo $dfvd['create_time'];?></td>
+                    <td><?=$dfvd['id'];?></td>
+                    <td><?=$dfvd['uid'];?></td>
+                    <td><?=$dfvd['uname'];?></td>
+                    <td><?=$dfvd['did'];?></td>
+                    <td><?=$dfvd['ip'];?></td>
+                    <td><?=$dfvd['create_time'];?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteDelete/<?php echo $dfvd['id'].'/'.$uid.'/3';?>" title="删除收藏"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除收藏"></a>
+                        <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteDelete/<?=$dfvd['id'].'/'.$uid.'/3';?>" title="删除收藏"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除收藏"></a>
                     </td>
                 </tr>
                     <?php }?>

@@ -54,16 +54,16 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><?php echo $message_data['message_id'];?></td>
-                        <td><?php echo $message_data['uid'];?></td>
-                        <td><?php echo $message_data['uname'];?></td>
-                        <td><?php echo $message_data['title'];?></td>
-                        <td><?php echo $message_data['content'];?></td>
-                        <td><?php echo $message_data['ip'];?></td>
-                        <td><?php echo $message_data['reply_num'];?></td>
-                        <td><?php echo $message_data['create_time'];?></td>
+                        <td><?=$message_data['message_id'];?></td>
+                        <td><?=$message_data['uid'];?></td>
+                        <td><?=$message_data['uname'];?></td>
+                        <td><?=$message_data['title'];?></td>
+                        <td><?=$message_data['content'];?></td>
+                        <td><?=$message_data['ip'];?></td>
+                        <td><?=$message_data['reply_num'];?></td>
+                        <td><?=$message_data['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/user_comment/commentDelete/<?php echo $message_data['message_id'].'/'.$message_data['uid'].'/'.$current_page?>" title="删除留言">
+                            <a href="<?=config_item('static_url')?>administrator/user_comment/commentDelete/<?=$message_data['message_id'].'/'.$message_data['uid'].'/'.$current_page?>" title="删除留言">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除留言"></a>
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
@@ -112,7 +112,7 @@
                             </div>
                             -->
                             <div class="pagination">
-                                <?php echo $page_html;?>
+                                <?=$page_html;?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -124,15 +124,15 @@
                     }foreach ($reply_data as $v) { ?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['id'];?></td>
-                        <td><?php echo $v['uid'];?></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['message_id'];?></td>
-                        <td><?php echo $v['content'];?></td>
-                        <td><?php echo $v['ip'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['id'];?></td>
+                        <td><?=$v['uid'];?></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['message_id'];?></td>
+                        <td><?=$v['content'];?></td>
+                        <td><?=$v['ip'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/user_comment/deleteReply/<?php echo $v['id'].'/'.$message_data['message_id'];?>" title="删除评论图回复">
+                            <a href="<?=config_item('static_url')?>administrator/user_comment/deleteReply/<?=$v['id'].'/'.$message_data['message_id'];?>" title="删除评论图回复">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>

@@ -66,21 +66,21 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><?php echo $comment_data['comment_id'];?></td>
+                        <td><?=$comment_data['comment_id'];?></td>
                         <td><a
-                            href="<?=config_item('static_url')?>administrator/design_comment/designCommentList/<?php echo $comment_data['did'];?>"><?php echo $comment_data['did'];?></a>
+                            href="<?=config_item('static_url')?>administrator/design_comment/designCommentList/<?=$comment_data['did'];?>"><?=$comment_data['did'];?></a>
                         </td>
                         <td><a
-                            href="<?=config_item('static_url')?>administrator/design_comment/userCommentList/<?php echo $comment_data['uid'];?>"><?php echo $comment_data['uid'];?></a>
+                            href="<?=config_item('static_url')?>administrator/design_comment/userCommentList/<?=$comment_data['uid'];?>"><?=$comment_data['uid'];?></a>
                         </td>
-                        <td><?php echo $comment_data['uname'];?></td>
-                        <td><?php echo $comment_data['title'];?></td>
-                        <td><?php echo $comment_data['content'];?></td>
-                        <td><?php echo $comment_data['ip'];?></td>
-                        <td><?php echo $comment_data['reply_num'];?></td>
-                        <td><?php echo $comment_data['create_time'];?></td>
+                        <td><?=$comment_data['uname'];?></td>
+                        <td><?=$comment_data['title'];?></td>
+                        <td><?=$comment_data['content'];?></td>
+                        <td><?=$comment_data['ip'];?></td>
+                        <td><?=$comment_data['reply_num'];?></td>
+                        <td><?=$comment_data['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/design_comment/deleteComment/<?php echo $comment_data['comment_id'];?>"
+                            <a href="<?=config_item('static_url')?>administrator/design_comment/deleteComment/<?=$comment_data['comment_id'];?>"
                                title="删除评论图评论"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
@@ -129,7 +129,7 @@
                             </div>
                             -->
                             <div class="pagination">
-                                <?php echo $page_html;?>
+                                <?=$page_html;?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -141,16 +141,16 @@
                     }foreach ($reply_data as $v) { ?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['id'];?></td>
-                        <td><?php echo $v['comment_id'];?></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/design_comment/userCommentList/<?php echo $v['uid'];?>"
-                               title="查看用户所有评论"><?php echo $v['uid'];?></a></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['content'];?></td>
-                        <td><?php echo $v['ip'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['id'];?></td>
+                        <td><?=$v['comment_id'];?></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/design_comment/userCommentList/<?=$v['uid'];?>"
+                               title="查看用户所有评论"><?=$v['uid'];?></a></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['content'];?></td>
+                        <td><?=$v['ip'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/design_comment/deleteReply/<?php echo $v['id'].'/'.$comment_data['comment_id'];?>"
+                            <a href="<?=config_item('static_url')?>administrator/design_comment/deleteReply/<?=$v['id'].'/'.$comment_data['comment_id'];?>"
                                title="删除评论图回复"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>

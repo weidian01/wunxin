@@ -46,19 +46,19 @@
                 </tr>
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>
-                    <tr id="address_<?php echo $v['address_id'];?>">
-                        <td width="6%" align="center"><?php echo $v['address_id'];?></td>
-                        <td width="6%" align="center"><?php echo $v['recent_name'];?></td>
-                        <td width="18%" align="center"><?php echo $v['email'];?></td>
-                        <td width="7%" align="center"><?php echo $v['zipcode'];?></td>
-                        <td width="10%" align="center"><?php echo $v['phone_num'];?></td>
-                        <td width="10%" align="center"><?php echo $v['call_num'];?></td>
-                        <td width="20%" align="center"><?php echo $v['province']. ' '. $v['city'] .' '. $v['area']. ' ' . $v['detail_address'];?></td>
-                        <td width="5%" align="center"><?php echo $v['default_address'] == '1' ? '是' : '否';?></td>
+                    <tr id="address_<?=$v['address_id'];?>">
+                        <td width="6%" align="center"><?=$v['address_id'];?></td>
+                        <td width="6%" align="center"><?=$v['recent_name'];?></td>
+                        <td width="18%" align="center"><?=$v['email'];?></td>
+                        <td width="7%" align="center"><?=$v['zipcode'];?></td>
+                        <td width="10%" align="center"><?=$v['phone_num'];?></td>
+                        <td width="10%" align="center"><?=$v['call_num'];?></td>
+                        <td width="20%" align="center"><?=$v['province']. ' '. $v['city'] .' '. $v['area']. ' ' . $v['detail_address'];?></td>
+                        <td width="5%" align="center"><?=$v['default_address'] == '1' ? '是' : '否';?></td>
                         <td width="6%" align="center">
-                            <!--<a href="javascript:void(0);" onclick="(<?php echo $v['address_id'];?>)">修改</a>
+                            <!--<a href="javascript:void(0);" onclick="(<?=$v['address_id'];?>)">修改</a>
                             <br/>-->
-                            <a href="javascript:void(0);" onclick="deleteRecentAddress(<?php echo $v['address_id'];?>)">
+                            <a href="javascript:void(0);" onclick="deleteRecentAddress(<?=$v['address_id'];?>)">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此地址">
                             </a>
                         </td>
@@ -68,7 +68,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
     </div>
 </div>

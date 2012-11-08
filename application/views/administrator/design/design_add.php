@@ -10,7 +10,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo ($type == 'edit') ? '编辑设计图' : '添加设计图'; ?></h2>
+    <h2><?=($type == 'edit') ? '编辑设计图' : '添加设计图'; ?></h2>
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/design/addDesign"><span> <!--<img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon"/>--><br/> 添加设计图 </span></a></li>
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/design/designList"><span> <!--<img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon"/>--><br/> 设计图列表 </span></a></li>
@@ -24,7 +24,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3><?php echo ($type == 'edit') ? '编辑设计图' : '添加设计图'; ?></h3>
+            <h3><?=($type == 'edit') ? '编辑设计图' : '添加设计图'; ?></h3>
             <!--
             <ul class="content-box-tabs">
                 <li><a href="#tab1" class="default-tab">Table</a></li>
@@ -41,13 +41,13 @@
                 <form
                     action="<?=($type == 'edit') ? url('administrator/design/editSaveDesign') : url('administrator/design/saveDesign');?>"
                     method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="did" value="<?php echo isset($dInfo['did']) ? $dInfo['did'] : ''; ?>">
+                    <input type="hidden" name="did" value="<?=isset($dInfo['did']) ? $dInfo['did'] : ''; ?>">
                     <input type="hidden" name="source" value="1">
                     <fieldset>
                         <p>
                             <label>设计图名称</label>
                             <input class="text-input small-input" type="text" id="small-input" name="design_name"
-                                   value="<?php echo isset($dInfo['dname']) ? $dInfo['dname'] : ''; ?>"/>
+                                   value="<?=isset($dInfo['dname']) ? $dInfo['dname'] : ''; ?>"/>
                             <br/>
                         </p>
 
@@ -58,7 +58,7 @@
                                 <option
                                     value="<?=$item['class_id']?>" <?php if (isset($info['parent_id']) && $info['parent_id'] == $item['class_id']) {
                                     echo 'selected="selected"';
-                                }?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                }?>><?=str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
@@ -66,7 +66,7 @@
                         <p>
                             <label>投票结束时间</label>
                             <input class="text-input small-input" type="text" id="small-input" name="vote_end_time"
-                                   value="<?php echo isset($dInfo['vote_end_time']) ? $dInfo['vote_end_time'] : ''; ?>"
+                                   value="<?=isset($dInfo['vote_end_time']) ? $dInfo['vote_end_time'] : ''; ?>"
                                    onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
@@ -75,14 +75,14 @@
                             <label>设计图图片</label>
                             <input class="text-input small-input" type="file" id="small-input" name="design_image"/>
                             <?php if (isset($dInfo['design_img'])) { ?>
-                            <img src="<?php echo base_url() . $dInfo['design_img'];?>" alt="" width="50" height="50"/>
+                            <img src="<?=base_url() . $dInfo['design_img'];?>" alt="" width="50" height="50"/>
                             <?php }?>
                             <br/>
                         </p>
 
                         <p>
                             <label>设计图介绍</label>
-                            <textarea class="text-input textarea wysiwyg" id="textarea" name="design_detail" cols="79" rows="15"><?php echo isset($dInfo['ddetail']) ? $dInfo['ddetail'] : ''; ?></textarea>
+                            <textarea class="text-input textarea wysiwyg" id="textarea" name="design_detail" cols="79" rows="15"><?=isset($dInfo['ddetail']) ? $dInfo['ddetail'] : ''; ?></textarea>
                         </p>
 
                         <p>

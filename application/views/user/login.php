@@ -30,8 +30,8 @@
 <div class="box pad9">
     <div class="user-login">
         <form action="/user/login/submit" method="POST" name="login_form">
-            <input type="hidden" name="source" value="<?php echo $source ? $source: 1;?>" id="source_id">
-            <input type="hidden" name="redirect_url" value="<?php echo $redirect_url;?>" id="redirect_url_id">
+            <input type="hidden" name="source" value="<?=$source ? $source: 1;?>" id="source_id">
+            <input type="hidden" name="redirect_url" value="<?=$redirect_url;?>" id="redirect_url_id">
             <div class="regist-rgt" style="border:0px; border-right:1px solid #eee;">
                 <div class="reg-tit"> <h1>会员登录</h1></div>
                 <table class="tab5" width="93%" border="0" cellspacing="0" cellpadding="0">

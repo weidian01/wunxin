@@ -50,8 +50,8 @@
             <span style="padding-left: 5%;"><span style="font-weight: bold;color: #8B8878;">温馨提示:</span> 带红星为必填项，请认真填写。</span>
             <br/><br/>
             <form action="/user/center/saveReturn" method="post" enctype="multipart/form-data" name="return_from" onsubmit="return submitReturn()">
-                <input type="hidden" name="order_sn" value="<?php echo $order_sn?>">
-                <input type="hidden" name="pid" value="<?php echo $pid?>">
+                <input type="hidden" name="order_sn" value="<?=$order_sn?>">
+                <input type="hidden" name="pid" value="<?=$pid?>">
             <table width="100%" border="0">
                 <tbody>
                 <tr>

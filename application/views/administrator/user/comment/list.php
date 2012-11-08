@@ -58,7 +58,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -71,18 +71,18 @@
 
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['message_id'];?></td>
-                        <td><?php echo $v['uid'];?></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['title'];?></td>
-                        <td><?php echo $v['content'];?></td>
-                        <td><?php echo $v['ip'];?></td>
-                        <td><?php echo $v['reply_num'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['message_id'];?></td>
+                        <td><?=$v['uid'];?></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['title'];?></td>
+                        <td><?=$v['content'];?></td>
+                        <td><?=$v['ip'];?></td>
+                        <td><?=$v['reply_num'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/user_comment/commentDetail/<?php echo $v['message_id']?>" title="查看回复">
+                            <a href="<?=config_item('static_url')?>administrator/user_comment/commentDetail/<?=$v['message_id']?>" title="查看回复">
                                 <img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看回复"></a>
-                            <a href="<?=config_item('static_url')?>administrator/user_comment/commentDelete/<?php echo $v['message_id'].'/'.$v['uid'].'/'.$current_page?>" title="删除留言">
+                            <a href="<?=config_item('static_url')?>administrator/user_comment/commentDelete/<?=$v['message_id'].'/'.$v['uid'].'/'.$current_page?>" title="删除留言">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除留言"></a>
                         </td>
                     </tr>

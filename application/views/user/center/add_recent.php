@@ -39,11 +39,11 @@
         <div class="u-r-box">
             <form action="/user/center/addInvoice" method="post">
                 <input type="hidden" name="act" value="add">
-                <input type="hidden" name="act" value="<?php echo empty ($recentData['recent_name']) ? '0' : $recentData['address_id'];?>" id="aid_id">
+                <input type="hidden" name="act" value="<?=empty ($recentData['recent_name']) ? '0' : $recentData['address_id'];?>" id="aid_id">
                 <table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0" id="new_address_id">
                     <tr>
                       <td width="10%" align="right"><span class="font10">*</span> 收货人姓名：</td>
-                      <td width="90%"><input name="recent_name" type="text" class="input4" id="recent_name_id" value="<?php echo empty ($recentData['recent_name']) ? '' : $recentData['recent_name'];?>"/>
+                      <td width="90%"><input name="recent_name" type="text" class="input4" id="recent_name_id" value="<?=empty ($recentData['recent_name']) ? '' : $recentData['recent_name'];?>"/>
                         <span class="font2" id="recent_name_notice_id"> 请填写您的真实姓名</span></td>
                     </tr>
                     <tr>
@@ -52,7 +52,7 @@
                           <select name="select" id="province_id" onchange="order.changeProvince(this.value)">
                               <option value="0">省份</option>
                               <?php foreach ($province_data as $pv) {?>
-                              <option value="<?php echo $pv['id'];?>"><?php echo $pv['name'];?></option>
+                              <option value="<?=$pv['id'];?>"><?=$pv['name'];?></option>
                               <?php }?>
                         </select>
                         &nbsp;&nbsp;

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $data['title'];?> -- 公告中心</title>
+<title><?=$data['title'];?> -- 公告中心</title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css" />
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
@@ -21,7 +21,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
   <div class="path2">
     <ul>
       <li><span class="font22">公告中心</span></li>
-      <li class="last"><?php echo $data['title'];?></li>
+      <li class="last"><?=$data['title'];?></li>
     </ul>
   </div>
 </div>
@@ -30,9 +30,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <div style="width: 980px;margin: 10px auto;">
   <div class="u-rights" style="width: 980px;">
     <div class="help_box" style="padding: 15px 0px 15px 0px;width: 980px;">
-      <div class="h-title" style="text-align: center;"><?php echo $data['title'];?></div>
+      <div class="h-title" style="text-align: center;"><?=$data['title'];?></div>
       <div class="h-cont" style="padding: 20px;">
-        <?php echo htmlspecialchars_decode($data['content']);?>
+        <?=htmlspecialchars_decode($data['content']);?>
           <!--
      <div class="help-rst">
        这条帮助是否解决了您的问题？<br />

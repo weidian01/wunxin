@@ -61,7 +61,7 @@ $(document).ready(function(){
               default:  $s = '工作日、双休日和节假日均送货'; break;
           }echo $s;
           ?><br/>
-          <?php echo $order['recent_name'].',';
+          <?=$order['recent_name'].',';
 
             if ($order['is_pay'] == ORDER_PAY_SUCC) {
                 echo ' 您于'.date('Y-m-d H:i',strtotime($order['pay_time'])).' 已成功付款，我们将尽快安排发货，可随时登陆万象网
@@ -254,14 +254,14 @@ $(document).ready(function(){
                   <li class="rq">
                       <div class="rqimg">
                           <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="164" height="197" title="<?php echo $rv['pname'];?>"/>
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="164" height="197" title="<?=$rv['pname'];?>"/>
                           </a>
                       </div>
                       <p>
                           <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?> </a>
                           <br/>
-                          原价：￥<span class="font7"><?php echo fPrice($rv['market_price']);?></span><br/>
-                          <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span></p>
+                          原价：￥<span class="font7"><?=fPrice($rv['market_price']);?></span><br/>
+                          <span class="font6">特惠价：￥<?=fPrice($rv['sell_price']);?></span></p>
                       <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
                           <img src="<?=config_item('static_url')?>images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
                       </a>

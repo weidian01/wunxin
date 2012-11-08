@@ -56,12 +56,12 @@
                         <td>
                             <input type="checkbox"/>
                         </td>
-                        <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['name'];?></td>
+                        <td><?=str_repeat("&nbsp;", $item['floor'] * 4), $item['name'];?></td>
                         <td><?=$item['floor']?></td>
                         <td>
-                            <a href="<?php echo url("administrator/business_limit_buy/c_edit/{$item['id']}")?>">
+                            <a href="<?=url("administrator/business_limit_buy/c_edit/{$item['id']}")?>">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo url("administrator/business_limit_buy/c_del/{$item['id']}")?>">
+                            <a href="<?=url("administrator/business_limit_buy/c_del/{$item['id']}")?>">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                         </td>
                     </tr>

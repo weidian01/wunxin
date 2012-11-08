@@ -47,7 +47,7 @@
                 <?php } else {?>
                 <?php foreach ($data as $v) {?>
                 <tr>
-                    <td width="8%" align="center"><!--<a href="#">--><?php echo $v['share_id'];?><!--</a>--></td>
+                    <td width="8%" align="center"><!--<a href="#">--><?=$v['share_id'];?><!--</a>--></td>
                     <td width="8%" align="center"><a href="<?=productURL($v['pid']);?>" target="_blank">
                         <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid']);?>icon.jpg" alt="" width="50" height="50"/>
                         </a></td>
@@ -55,20 +55,20 @@
                         <div class="goods-in">
                             <?php foreach ($v['share_images'] as $pv) {?>
                             <div class="g-i-img">
-                                <a href="#" title="<?php echo $pv['descr'];?>, 有 <?php echo empty ($pv['is_like']) ? 0 : $pv['is_like'];?> 人喜欢.">
-                                    <img src="<?=config_item('static_url')?><?php echo $pv['img_addr'];?>" width="45" height="45"/>
+                                <a href="#" title="<?=$pv['descr'];?>, 有 <?=empty ($pv['is_like']) ? 0 : $pv['is_like'];?> 人喜欢.">
+                                    <img src="<?=config_item('static_url')?><?=$pv['img_addr'];?>" width="45" height="45"/>
                                 </a>
                             </div>
                             <?php }?>
                             <!--<div class="scolls"><a href="#"></a></div> -->
                         </div>
                     </td>
-                    <td width="20%" align="center"><?php echo $v['title']; ?></td>
-                    <td width="25%" align="center"><?php echo $v['content'];?></td>
+                    <td width="20%" align="center"><?=$v['title']; ?></td>
+                    <td width="25%" align="center"><?=$v['content'];?></td>
                     <td width="18%" align="center">
-                        <a href="#" title="查看 <?php echo $v['comment_num'];?> 条晒单评论" style="color: #990000;font-size: 10px;"> 查看评论 (<?php echo $v['comment_num'];?>)</a>
+                        <a href="#" title="查看 <?=$v['comment_num'];?> 条晒单评论" style="color: #990000;font-size: 10px;"> 查看评论 (<?=$v['comment_num'];?>)</a>
                     </td>
-                    <td width="10%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td width="10%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                     <!--
                     <td width="17%" align="center">
                         <a href="">修改</a>
@@ -81,7 +81,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
         <div class="u-r-box">
             <div class="tui-tit">热闹产品推荐</div>

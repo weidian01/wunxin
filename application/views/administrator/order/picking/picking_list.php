@@ -30,7 +30,7 @@
             <p>
                 <label><b>输入关键字</b></label>
                 <input class="text-input small-input" type="text" id="small-input" name="keyword"
-                       value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+                       value="<?=isset($keyword) ? $keyword : ''; ?>">
                 <select name="s_type" class="small-input">
                     <?php if (!isset ($searchType)) {
                     $searchType = array();
@@ -40,9 +40,9 @@
                         <?php if (!isset($sType)) $sType = '';
                         if ($sType == $sk) {
                             ?>
-                            <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                            <option value="<?=$sk?>" selected="selected"><?=$sv?></option>
                             <?php } else { ?>
-                            <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                            <option value="<?=$sk?>"><?=$sv?></option>
                             <?php } ?>
                         <?php }?>
                 </select>
@@ -88,7 +88,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -100,17 +100,17 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['picking_id'];?></td>
+                        <td><?=$v['picking_id'];?></td>
                         <td><a
-                            href="<?=config_item('static_url')?>administrator/order_picking/orderPickingList/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a>
+                            href="<?=config_item('static_url')?>administrator/order_picking/orderPickingList/<?=$v['order_sn'];?>"><?=$v['order_sn'];?></a>
                         </td>
-                        <td><?php echo $v['ed_id'];?></td>
-                        <td><?php echo $v['address_id'];?></td>
-                        <td><?php echo $v['logistics_orders_sn'];?></td>
-                        <td><?php echo $v['uid'];?></td>
-                        <td><?php echo $v['descr'];?></td>
-                        <td><?php echo $v['freight'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['ed_id'];?></td>
+                        <td><?=$v['address_id'];?></td>
+                        <td><?=$v['logistics_orders_sn'];?></td>
+                        <td><?=$v['uid'];?></td>
+                        <td><?=$v['descr'];?></td>
+                        <td><?=$v['freight'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <th>
                             <?php if($v['status']==0):?>无效
                             <?php elseif($v['status']==1):?>未配货
@@ -118,7 +118,7 @@
                             <?php endif;?>
                         </th>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/order_picking/pickingDetail/<?php echo $v['picking_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/order_picking/pickingDetail/<?=$v['picking_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"/></a>
                         </td>
                     </tr>
                         <?php }?>
