@@ -108,6 +108,10 @@ class center extends MY_Controller
     {
         $pId = intval($this->input->get_post('pid'));
         $orderSn = intval($this->input->get_post('order_sn'));
+
+        if (empty ($pId) || empty ($orderSn)) {
+            show_error('订单ID或产品ID为空！');
+        }
 //echo $pId,$orderSn;
         $this->load->view('user/center/add_return', array('pid' => $pId, 'order_sn' => $orderSn));
     }

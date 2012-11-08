@@ -190,7 +190,9 @@
                 <tr>
                     <td><input type="checkbox"/></td>
                     <td><?=$rev['return_id'];?></td>
-                    <td><?=$rev['img_one'];?></td>
+                    <td><img src="<?=config_item('base_url').$rev['img_one'];?>" alt="" width="60" height="50"/>
+                        <img src="<?=config_item('base_url').$rev['img_two'];?>" alt="" width="60" height="50"/>
+                    </td>
                     <td><?=$rev['uid'];?></td>
                     <td><?=$rev['order_sn'];?></td>
                     <td><?=$rev['type'] == 1 ? '退货' : '换货';?></td>
