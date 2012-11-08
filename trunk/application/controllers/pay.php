@@ -81,7 +81,7 @@ class pay extends MY_Controller
 
         do {
             //未知的支付渠道
-            $paymentChannel = $this->checkPaymentChannel();
+            $paymentChannel = strtolower($this->checkPaymentChannel());
             if (empty ($paymentChannel) || $paymentChannel == '') {
                 $response = error(30019);
                 break;
@@ -90,7 +90,7 @@ class pay extends MY_Controller
             $this->load->model('order/Model_Order', 'order');
             $this->load->model("pay/Model_pay_{$paymentChannel}", 'channel');
             $payResult = $this->channel->response();
-            p($paymentChannel);exit;
+            
             //2 签名错误
             if ($payResult['status'] == 2) {
                 $data = array('is_pay' => 2, 'paid' => 0, 'need_pay' => $payResult['amount'], 'status' => 1, 'defray_type' => $payResult['pay_channel']);
