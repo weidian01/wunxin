@@ -85,32 +85,6 @@ class cart extends MY_Controller
         //$promotion = $this->getUsedPromotion();
 
         if (!empty ($cData['cart'])) {
-            /*
-            $this->load->model('promotion/model_promotion', 'promotion');
-            $productInfo = array();
-            foreach($cData['cart'] as $cv)
-            {
-                $productInfo[] = array(
-                    'pid' => $cv['pid'],
-                    'pname' => $cv['pname'],
-                    'sell_price' => $cv['product_price'],
-                    'num' => $cv['product_num'],
-                    'product_size' => $cv['product_size'],
-                    'additional_info' => $cv['additional_info'],
-                );
-            }
-
-            $this->promotion->add_product($productInfo);
-
-            $promotionIdTmpArr = array();
-            foreach ($promotion as $pv) {
-                $promotionIdTmpArr[] = $pv['promotion_id'];
-            }
-
-            $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
-            $this->promotion->compute();
-            //*/
-
             $data = $this->calculateDiscount($cData['cart'], array('unused_promotion'));
 
             //* 活动信息
@@ -120,7 +94,7 @@ class cart extends MY_Controller
         }
 
 
-        //echo '<pre>';print_r($cData['activity']);exit;
+        //echo '<pre>';print_r($cData['cart']);exit;
         $this->json_output($cData);
     }
 

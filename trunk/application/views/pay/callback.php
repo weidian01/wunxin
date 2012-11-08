@@ -18,6 +18,7 @@
 <title><?=$t;?></title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
 <!--<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/comm.js"></SCRIPT>-->
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
@@ -250,9 +251,12 @@ $(document).ready(function(){
   <div class="other-shopping" style="height:350px;">
       <div class="tit">购买以上商品的顾客还购买过</div>
       <div class="other-c">
+          <!--
           <div class="other-pre"><a href="#">pre</a></div>
           <div class="other-next"><a href="#">next</a></div>
+          -->
           <div class="other-cg">
+              <!--
               <div style=" height:230px; width:1800px;">
                   <?php foreach ($recommend as $rv) { ?>
                   <div class="rq">
@@ -272,6 +276,33 @@ $(document).ready(function(){
                   </div>
                   <?php }?>
               </div>
+                -->
+
+
+              <div class="other-cg">
+                  <ul class="jcarousel-skin-order" id="order_list">
+                      <?php foreach ($recommend as $rv) { ?>
+                      <li class="rq">
+                          <div class="rqimg">
+                              <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
+                                <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="164" height="197" title="<?=$rv['pname'];?>"/>
+                              </a>
+                          </div>
+                          <p>
+                              <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?> </a>
+                              <br/>
+                              原价：￥<span class="font7"><?=fPrice($rv['market_price']);?></span><br/>
+                              <span class="font6">特惠价：￥<?=fPrice($rv['sell_price']);?></span></p>
+                          <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
+                              <img src="<?=config_item('static_url')?>images/add-cart.gif" width="81" height="21" alt="放入购物车"/>
+                          </a>
+                      </li>
+                      <?php }?>
+                  </ul>
+              </div>
+
+
+
           </div>
           <div class="switch"><a class="curr" href="#">1</a><a href="#">2</a></div>
       </div>
@@ -282,5 +313,7 @@ $(document).ready(function(){
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/order.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/cart.js"></SCRIPT>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>
 </body>
 </html>

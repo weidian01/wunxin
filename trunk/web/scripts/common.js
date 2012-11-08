@@ -679,8 +679,8 @@ wx.addToCartLayer = function (pId, pName, bindingId)
 
     var totalNum = 0;
     var totalPrice = 0;
-
-    for (var ci = 0; ci < cartData.length; ci++) {
+//console.log(cartData.length);
+    for (var ci in cartData) {
         totalNum += cartData[ci]['num'];
         totalPrice += cartData[ci]['final_price'] * cartData[ci]['num'];
     }
