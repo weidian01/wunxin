@@ -364,7 +364,7 @@
                         <td><?=$pv['logistics_orders_sn'];?></td>
                         <td><?=$pv['descr'];?></td>
                         <td><?=$pv['ext'];?></td>
-                        <td><?=$pv['freight'];?></td>
+                        <td><?=empty ($pv['freight']) ? '0' : $pv['freight'];?></td>
                         <td><?=$pv['create_time'];?></td>
                     </tr>
                     <?php }?>
