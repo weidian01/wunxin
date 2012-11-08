@@ -15,7 +15,7 @@ class Model_Order_Express extends MY_Model
      */
     public function getPickingAndExpressCompanyByOrderSn($orderSn)
     {
-        $field = 'p.picking_id, p.order_sn, p.ed_id, p.address_id, p.logistics_orders_sn, p.uid, p.descr, p.freight, p.create_time, p.status';
+        $field = 'p.picking_id, p.order_sn, p.ed_id, p.address_id, p.logistics_orders_sn, p.uid, p.descr, p.freight, p.create_time, p.status,';
         $field .= 'e.ed_id, e.name, e.descr edescr, e.website, e.sort, e.status estatus, e.create_time ecreate_time';
 
         $this->db->select($field);
