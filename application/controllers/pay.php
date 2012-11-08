@@ -86,7 +86,7 @@ class pay extends MY_Controller
                 $response = error(30019);
                 break;
             }
-
+p($paymentChannel);exit;
             $this->load->model('order/Model_Order', 'order');
             $this->load->model("pay/Model_pay_{$paymentChannel}", 'channel');
             $payResult = $this->channel->response();
