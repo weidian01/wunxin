@@ -69,7 +69,7 @@
             <div class="ddxq">
                 <div class="main">
                     <div class="stat">
-                        <p> 订单编号：<strong><?php echo $order_data['order_sn']?></strong></p>
+                        <p> 订单编号：<strong><?=$order_data['order_sn']?></strong></p>
 
                         <p class="f_rz" style="color: #E8044F;">当前状态：
                             <?php
@@ -121,9 +121,9 @@
                     </div>
                     <div class="info">
                         <div class="dd-jd"> <div class="dd-jd-box">
-                            <div style="width:<?php echo $statusNumber; ?>%;" class="dd-jd-over"></div>
+                            <div style="width:<?=$statusNumber; ?>%;" class="dd-jd-over"></div>
                           </div>
-                          <dl class="li-1 <?php echo ($order_data['status'] == ORDER_INVALID) ? '' : 'act';?>">
+                          <dl class="li-1 <?=($order_data['status'] == ORDER_INVALID) ? '' : 'act';?>">
                               <?php
                               $payStatus = ($order_data['is_pay'] == ORDER_PAY_SUCC) ? 'act' : '';
                               $pickingStatus = ($order_data['picking_status'] == PICKING_COMPLETED) ? 'act' : '';
@@ -134,32 +134,32 @@
                                 }
                               ?>
                             <dt>1. 提交订单</dt>
-                            <dd><?php echo $order_data['create_time'];?></dd>
+                            <dd><?=$order_data['create_time'];?></dd>
                           </dl>
-                          <dl class="li-2 <?php echo $payStatus;?>">
+                          <dl class="li-2 <?=$payStatus;?>">
                             <dt>2. 支付状态</dt>
                           </dl>
-                          <dl class="li-3 <?php echo $pickingStatus;?>">
+                          <dl class="li-3 <?=$pickingStatus;?>">
                             <dt>3. 配货状态</dt>
                           </dl>
-                          <dl class="li-4 <?php echo $pickingStatus;?>">
+                          <dl class="li-4 <?=$pickingStatus;?>">
                             <dt>4. 交易完成</dt>
                           </dl>
 
                         </div>
                         <h2>订单跟踪</h2>
 
-                        <div class="box"> 下单时间：<?php echo $order_data['create_time'];?>
+                        <div class="box"> 下单时间：<?=$order_data['create_time'];?>
                         </div>
                         <h2>订单信息</h2>
 
-                        <div class="box"> 收货人：<?php echo $order_data['recent_name']; ?><br>
-                            收货地址：<?php echo $order_data['recent_address']. ', '.$order_data['zipcode']; ?><br>
-                            联系电话：<?php echo $order_data['phone_num'].', '.$order_data['call_num']; ?>
+                        <div class="box"> 收货人：<?=$order_data['recent_name']; ?><br>
+                            收货地址：<?=$order_data['recent_address']. ', '.$order_data['zipcode']; ?><br>
+                            联系电话：<?=$order_data['phone_num'].', '.$order_data['call_num']; ?>
                         </div>
                         <h2>备注</h2>
                         <div class="box">
-                            <?php echo $order_data['annotated']; ?>
+                            <?=$order_data['annotated']; ?>
                         </div>
                         <h2>支付及配送方式</h2>
 
@@ -213,33 +213,33 @@
                                             <tbody>
                                             <tr>
                                                 <td style="width:60px;">
-                                                    <a href="<?=productURL($pv['pid'])?>" title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>" target="_blank">
+                                                    <a href="<?=productURL($pv['pid'])?>" title="<?=$pv['pname']?>, 尺码: <?=$pv['product_size'];?>" target="_blank">
                                                         <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>default.jpg" alt="" width="80" height="96"/>
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a title="<?php echo $pv['pname']?>, 尺码: <?php echo $pv['product_size'];?>" class="a_e" href="<?=productURL($pv['pid'])?>" target="_blank">
-                                                        <?php echo $pv['pname']?>
+                                                    <a title="<?=$pv['pname']?>, 尺码: <?=$pv['product_size'];?>" class="a_e" href="<?=productURL($pv['pid'])?>" target="_blank">
+                                                        <?=$pv['pname']?>
                                                     </a><br>
-                                                    <span class="f_g">尺码：<?php echo $pv['product_size'];?></span>
+                                                    <span class="f_g">尺码：<?=$pv['product_size'];?></span>
                                                 </td>
                                             </tr>
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td width="90" align="center"><strong>￥<?php echo fPrice($pv['final_price']);?></strong></td>
-                                    <td width="100" align="center"><strong><?php echo intval(fPrice($pv['final_price']));?></strong></td>
-                                    <td width="90" align="center"><strong><?php echo $pv['product_num'];?></strong></td>
-                                    <td width="90" align="center"><strong>￥<?php echo fPrice(($pv['final_price'] * $pv['product_num']));?></strong></td>
+                                    <td width="90" align="center"><strong>￥<?=fPrice($pv['final_price']);?></strong></td>
+                                    <td width="100" align="center"><strong><?=intval(fPrice($pv['final_price']));?></strong></td>
+                                    <td width="90" align="center"><strong><?=$pv['product_num'];?></strong></td>
+                                    <td width="90" align="center"><strong>￥<?=fPrice(($pv['final_price'] * $pv['product_num']));?></strong></td>
                                     <td width="90" align="center" class="end">
-                                        <a href="javascript:void(0);" onclick="product.productComment(<?php echo $pv['pid'];?>)">
+                                        <a href="javascript:void(0);" onclick="product.productComment(<?=$pv['pid'];?>)">
                                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品">
                                         </a>
-                                        <a href="javascript:void(0);" onclick="product.productShare(<?php echo $pv['pid'];?>)">
+                                        <a href="javascript:void(0);" onclick="product.productShare(<?=$pv['pid'];?>)">
                                             <img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单">
                                         </a><br/>
-                                        <!-- <a href="<?=config_item('static_url')?>user/center/addReturn?pid=<?php echo $pv['pid'];?>&order_sn=<?php echo $pv['order_sn'];?>"> -->
-                                        <a href="javascript:void(0);" onclick="product.applyReturn(<?php echo $pv['pid'];?>)">
+                                        <!-- <a href="<?=config_item('static_url')?>user/center/addReturn?pid=<?=$pv['pid'];?>&order_sn=<?=$pv['order_sn'];?>"> -->
+                                        <a href="javascript:void(0);" onclick="product.applyReturn(<?=$pv['pid'];?>, <?=$order_data['order_sn']?>)">
                                             <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货">
                                         </a>
                                     </td>
@@ -248,10 +248,10 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td class="end" colspan="6"> 商品总价： <strong> ¥ <?php echo fPrice($totalPrice);?>元</strong><br>
+                                    <td class="end" colspan="6"> 商品总价： <strong> ¥ <?=fPrice($totalPrice);?>元</strong><br>
                                         运费：+ ¥ 0元<br>
                                         万象币使用：0个<br>
-                                        实际应支付：<strong><span class="f_rz">¥ <?php echo fPrice($totalPrice);?>元</span></strong><br>
+                                        实际应支付：<strong><span class="f_rz">¥ <?=fPrice($totalPrice);?>元</span></strong><br>
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -263,11 +263,11 @@
                             <span class="stat_cancel" style="font-weight: bold;">订单已取消</span>
                         <?php } else {?>
                             <?php if ($order_data['status'] != ORDER_CONFIRM && $order_data['is_pay'] != ORDER_PAY_SUCC && $order_data['picking_status'] == PICKING_NOT) {?>
-                            <a class="btn_bb3" onclick="order.cancelOrder(<?php echo $order_data['order_sn']?>)" href="javascript:void(0);" style="color: #ffffff;font-weight: bold;">取消订单</a>
+                            <a class="btn_bb3" onclick="order.cancelOrder(<?=$order_data['order_sn']?>)" href="javascript:void(0);" style="color: #ffffff;font-weight: bold;">取消订单</a>
                             <?php }?>
 
                             <?php if ($order_data['status'] != ORDER_INVALID && $order_data['is_pay'] != ORDER_PAY_SUCC) {?>
-                            <a class="btn_bb2" href="<?=config_item('static_url')?>order/order/success/<?php echo $order_data['order_sn']?>" style="color: #ffffff;font-weight: bold;">立即付款</a>
+                            <a class="btn_bb2" href="<?=config_item('static_url')?>order/order/success/<?=$order_data['order_sn']?>" style="color: #ffffff;font-weight: bold;">立即付款</a>
                             <?php }?>
                         <?php }?>
                         <br>

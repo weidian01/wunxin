@@ -120,7 +120,8 @@ class center extends MY_Controller
         $data['reason'] = intval($this->input->get_post('reason'));
         $data['descr'] = ($this->input->get_post('content'));
         //var_dump($_FILES['problem_one']['error'] != '0');
-//echo '<pre>';print_r($_FILES['problem_two']);exit;
+        //p($_FILES);
+//echo '<pre>';print_r($_SERVER);exit;
         if (
             empty ($data['pid']) ||
             empty ($data['order_sn']) ||
