@@ -60,7 +60,7 @@
     <div class="content-box-header">
         <h3>订单产品</h3>
         <ul class="content-box-tabs">
-            <li><a href="#tab1" class="default-tab">发票信息</a></li>
+            <li><a href="#tab1" class="default-tab">产品信息</a></li>
             <!-- href must be unique and match the id of target div -->
             <li><a href="#tab2">收款单信息</a></li>
             <li><a href="#tab3">退换货信息</a></li>
