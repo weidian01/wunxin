@@ -17,7 +17,7 @@ class share extends MY_Controller
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
-echo '<pre>';print_r($_REQUEST);exit;
+//echo '<pre>';print_r($_REQUEST);exit;
         if (empty ($pid) || empty ($title) || empty ($content)) {
             show_error('参数不全');
         }
@@ -27,7 +27,7 @@ echo '<pre>';print_r($_REQUEST);exit;
         }
 
         $this->load->model('order/Model_order', 'order');
-        $data = $this->order->userIsBuyProduct(1, 1); //($uid, $pid);
+        $data = $this->order->userIsBuyProduct($this->uInfo['uid'], $pid); //($uid, $pid);
         if (empty ($data)) {
             show_error('没有购买过此商品');
         }

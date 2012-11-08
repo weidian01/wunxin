@@ -596,9 +596,9 @@ product.likeShareImage = function (siId, bindingId)
 }
 
 //申请退换货
-product.applyReturn = function (pId, bindingId)
+product.applyReturn = function (pId, order_sn, bindingId)
 {
-    if ( !wx.isEmpty(pId) ) {
+    if ( !wx.isEmpty(pId) || !wx.isEmpty(order_sn)) {
         //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
         wx.showPop('参数不全。', bindingId);
         return false;
@@ -613,7 +613,7 @@ product.applyReturn = function (pId, bindingId)
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
-        wx.goToUrl(wx.base_url+'user/center/addReturn?pid='+pId);
+        wx.goToUrl(wx.base_url+'user/center/addReturn?pid='+pId+'&order_sn='+order_sn);
         //wx.productShareLayer(data.data.pid, data.data.pname);
         return true;
     }
