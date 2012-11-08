@@ -725,16 +725,16 @@ function productURL($pid)
 
 function p($variable)
 {
-    echo '<pre>';
+    echo "\n<pre>\n";
     print_r($variable);
-    echo '</pre>';
+    echo "\n</pre>\n";
 }
 
 function d($variable)
 {
-    echo '<pre>';
+    echo "\n<pre>\n";
     var_dump($variable);
-    echo '</pre>';
+    echo "\n</pre>\n";
 }
 
 function _require($file)
