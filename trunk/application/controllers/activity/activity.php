@@ -138,7 +138,7 @@ class activity extends MY_Controller
 
     public function hot_comment()
     {
-        $limit = 10;
+        $limit = 20;
         $offset = $this->input->get_post('offset');
         $offset = empty ($offset) ? 1 : $offset ;
         $offset = ($offset - 1) * $limit;
