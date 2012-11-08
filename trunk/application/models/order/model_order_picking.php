@@ -117,7 +117,7 @@ class Model_Order_Picking extends MY_Model
         }
         $this->db->insert_batch('picking_product', $product);
         $this->db->update('order', array('picking_status' => 1), array('order_sn' => $info['order_sn'], 'picking_status' => 0, 'status' => 2));
-        
+
         return $picking_id;
     }
 
