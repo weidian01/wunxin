@@ -120,4 +120,16 @@ class Model_Order_Picking extends MY_Model
        $this->db->update('order', array('picking_status'=>1), array('order_sn'=>$info['order_sn'], 'picking_status'=>0, 'status'=>2));
     }
 
+    /**
+     * 更新配货信息
+     *
+     * @param array $pickingData
+     * @param $pickingId
+     * @return mixed
+     */
+    public function updatePicking(array $pickingData, $pickingId)
+    {
+        $this->db->where('picking_id', $pickingId);
+        return $this->db->update('picking', $pickingData);
+    }
 }

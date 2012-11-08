@@ -346,6 +346,7 @@
                     <th>收货地址</th>
                     <th>物流单号</th>
                     <th>备注</th>
+                    <th>扩展信息</th>
                     <th>运费</th>
                     <th>创建时间</th>
                 </tr>
@@ -362,6 +363,7 @@
                         <td><?=$data['recent_address'];?></td>
                         <td><?=$pv['logistics_orders_sn'];?></td>
                         <td><?=$pv['descr'];?></td>
+                        <td><?=$pv['ext'];?></td>
                         <td><?=$pv['freight'];?></td>
                         <td><?=$pv['create_time'];?></td>
                     </tr>
