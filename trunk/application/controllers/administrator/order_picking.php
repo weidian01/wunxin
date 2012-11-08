@@ -158,7 +158,7 @@ class order_picking extends MY_Controller
         $this->picking->create($order_info, $order_product, $this->amInfo['am_uid']);
 
         //如果是通过支付宝支付的订单，即调用接口进行确认发货操作。
-        if ($defrayType == 'ALIPAY') {
+        if ($defrayType == 'alipay') {
             $this->load->model('order/model_order_receiver', 'receiver');
             $receiverData = $this->receiver->getReceiverByOrderSn($order_sn);
 
