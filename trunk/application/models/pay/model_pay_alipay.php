@@ -106,6 +106,108 @@ class Model_Pay_Alipay extends MY_Model
     }
 
     /**
+     * 确认发货
+     */
+    public function confirmSendGood($orderSn, $logisticsName, $invoiceNo)
+    {
+        $para = array(
+            "service" => "send_goods_confirm_by_platform",
+            "partner" => config_item('alipay_merchant_id'),
+            "_input_charset" => 'utf-8',
+            "trade_no" => $orderSn,
+            "logistics_name" => $logisticsName,
+            "invoice_no" => $invoiceNo,
+            "transport_type" => 'EXPRESS',
+        );
+
+        $sort_para = $this->paraFilter($para);
+
+        ksort($sort_para);
+       	reset($sort_para);
+
+        $mySign = $this->buildMySign($sort_para, config_item('alipay_merchant_key'));
+
+        $sort_para['sign'] = $mySign;
+        $sort_para['sign_type'] = 'MD5';
+
+        $link = $this->createLinkStringUrlEncode($sort_para);
+
+        $url = config_item('alipay_request_url') . $link;
+
+        return $this->getHttpResponse($url);
+        /*
+        $xml_data = $this->getHttpResponse($url);
+
+        $doc = new DOMDocument();
+        $doc->loadXML($xml_data);
+
+        return $doc;
+        //*/
+    }
+
+    private function createLinkStringUrlEncode($para) {
+    	$arg  = "";
+    	while (list ($key, $val) = each ($para)) {
+    		$arg.=$key."=".urlencode($val)."&";
+    	}
+    	//去掉最后一个&字符
+    	$arg = substr($arg,0,count($arg)-2);
+
+    	//如果存在转义字符，那么去掉转义
+    	if(get_magic_quotes_gpc()){$arg = stripslashes($arg);}
+
+    	return $arg;
+    }
+
+    /**
+     * 远程获取数据
+     * 注意：该函数的功能可以用curl来实现和代替。curl需自行编写。
+     *
+     * @param string $url 指定URL完整路径地址
+     * @param string $input_charset 编码格式。默认值：空值
+     * @param int $time_out 超时时间。默认值：60
+     * @return string 远程输出的数据
+     */
+    function getHttpResponse($url, $input_charset = 'utf-8', $time_out = 60)
+    {
+    	$urlarr     = parse_url($url);
+    	$errno      = "";
+    	$errstr     = "";
+    	$transports = "";
+    	$responseText = "";
+    	if($urlarr["scheme"] == "https") {
+    		$transports = "ssl://";
+    		$urlarr["port"] = "443";
+    	} else {
+    		$transports = "tcp://";
+    		$urlarr["port"] = "80";
+    	}
+    	$fp=@fsockopen($transports . $urlarr['host'],$urlarr['port'],$errno,$errstr,$time_out);
+    	if(!$fp) {
+    		die("ERROR: $errno - $errstr<br />\n");
+    	} else {
+    		if (trim($input_charset) == '') {
+    			fputs($fp, "POST ".$urlarr["path"]." HTTP/1.1\r\n");
+    		}
+    		else {
+    			fputs($fp, "POST ".$urlarr["path"].'?_input_charset='.$input_charset." HTTP/1.1\r\n");
+    		}
+    		fputs($fp, "Host: ".$urlarr["host"]."\r\n");
+    		fputs($fp, "Content-type: application/x-www-form-urlencoded\r\n");
+    		fputs($fp, "Content-length: ".strlen($urlarr["query"])."\r\n");
+    		fputs($fp, "Connection: close\r\n\r\n");
+    		fputs($fp, $urlarr["query"] . "\r\n\r\n");
+    		while(!feof($fp)) {
+    			$responseText .= @fgets($fp, 1024);
+    		}
+    		fclose($fp);
+    		$responseText = trim(stristr($responseText,"\r\n\r\n"),"\r\n");
+
+    		return $responseText;
+    	}
+    }
+
+    /**
      * 生成加密串
      *
      * @param $sort_para

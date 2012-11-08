@@ -82,6 +82,7 @@
                     <th>产品名称</th>
                     <th>市场价格</th>
                     <th>销售价格</th>
+                    <th>最终价格</th>
                     <th>数量</th>
                     <th>尺码</th>
                     <th>优惠</th>
@@ -98,15 +99,16 @@
                     <td>
                         <input type="checkbox"/>
                     </td>
-                    <td><?php echo $pv['order_sn'];?></td>
-                    <td><?php echo $pv['pid'];?></td>
-                    <td><?php echo '图片';?></td>
-                    <td><?php echo $pv['pname'];?></td>
-                    <td><?php echo $pv['market_price'];?></td>
-                    <td><?php echo $pv['sall_price'];?></td>
-                    <td><?php echo $pv['product_num'];?></td>
-                    <td><?php echo $pv['product_size'];?></td>
-                    <td><?php echo $pv['preferential'];?></td>
+                    <td><?=$pv['order_sn'];?></td>
+                    <td><?=$pv['pid'];?></td>
+                    <td><?='图片';?></td>
+                    <td><?=$pv['pname'];?></td>
+                    <td>￥<?=fPrice($pv['market_price']);?></td>
+                    <td>￥<?=fPrice($pv['sell_price']);?></td>
+                    <td>￥<?=fPrice($pv['final_price']);?></td>
+                    <td><?=$pv['product_num'];?></td>
+                    <td><?=$pv['product_size'];?></td>
+                    <td><?=$pv['preferential'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -123,7 +125,7 @@
                     <th>用户名称</th>
                     <th>金额</th>
                     <th>汇款类型</th>
-                    <th>状态</th>
+                    <!--<th>状态</th>-->
                     <th>收款备注</th>
                     <th>收款账号</th>
                     <th>汇款时间</th>
@@ -138,15 +140,22 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $rv['receiver_id'];?></td>
-                    <td><?php echo $rv['uid'];?></td>
-                    <td><?php echo $rv['uname'];?></td>
-                    <td><?php echo $rv['amount'];?></td>
-                    <td><?php echo $rv['pay_type'] == 1 ? '银行汇款' : '支付宝转账';?></td>
-                    <td><?php echo $rv['pay_status'] ? '支付成功' : '支付失败';?></td>
-                    <td><?php echo $rv['descr'];?></td>
-                    <td><?php echo $rv['pay_account'];?></td>
-                    <td><?php echo $rv['pay_time'];?></td>
+                    <td><?=$rv['receiver_id'];?></td>
+                    <td><?=$rv['uid'];?></td>
+                    <td><?=$rv['uname'];?></td>
+                    <td><?=$rv['amount'];?></td>
+                    1易宝支付，2支付宝转账， 3银行汇款
+                    <td><?php
+                        switch($rv['pay_type']){
+                            case '1':$name = '易宝支付';break;
+                            case '2':$name = '支付宝转账';break;
+                            case '3':$name = '银行汇款';break;
+                            default :$name = '易宝支付';
+                        }echo $name;?></td>
+                    <!--<td><?=$rv['pay_status'] ? '支付成功' : '支付失败';?></td>-->
+                    <td><?=$rv['descr'];?></td>
+                    <td><?=$rv['pay_account'];?></td>
+                    <td><?=$rv['pay_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -180,11 +189,11 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $rev['return_id'];?></td>
-                    <td><?php echo $rev['img_one'];?></td>
-                    <td><?php echo $rev['uid'];?></td>
-                    <td><?php echo $rev['order_sn'];?></td>
-                    <td><?php echo $rev['type'] == 1 ? '退货' : '换货';?></td>
+                    <td><?=$rev['return_id'];?></td>
+                    <td><?=$rev['img_one'];?></td>
+                    <td><?=$rev['uid'];?></td>
+                    <td><?=$rev['order_sn'];?></td>
+                    <td><?=$rev['type'] == 1 ? '退货' : '换货';?></td>
                     <td><?php switch ($rev['reason']) {
                         case 1:
                             $r = '尺寸不对';
@@ -197,8 +206,8 @@
                     }
                         echo $r;
                         ?></td>
-                    <td><?php echo $rev['descr'];?></td>
-                    <td><?php echo $rev['logistic_num'];?></td>
+                    <td><?=$rev['descr'];?></td>
+                    <td><?=$rev['logistic_num'];?></td>
                     <td><?php
                         switch ($rev['status']) {
                             case 1:
@@ -211,7 +220,7 @@
                                 $s = '初始';
                         }
                         ?></td>
-                    <td><?php echo $rev['create_time'];?></td>
+                    <td><?=$rev['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -222,7 +231,7 @@
         <div class="tab-content" id="tab4">
             <form action="#" method="post">
                 <fieldset>
-                    <?php echo $data['annotated'];?>
+                    <?=$data['annotated'];?>
                 </fieldset>
                 <div class="clear"></div>
                 <!-- End .clear -->
@@ -262,20 +271,20 @@
             <table>
                 <tr>
                     <td><b>收货人：</b></td>
-                    <td><?php echo $data['recent_name'];?></td>
+                    <td><?=$data['recent_name'];?></td>
 
                     <td><b>手机号码：</b></td>
-                    <td><?php echo $data['phone_num'];?></td>
+                    <td><?=$data['phone_num'];?></td>
                 </tr>
                 <tr>
                     <td><b>座机：</b></td>
-                    <td><?php echo $data['call_num'];?></td>
+                    <td><?=$data['call_num'];?></td>
                     <td><b>邮政编码：</b></td>
-                    <td><?php echo $data['zipcode'];?></td>
+                    <td><?=$data['zipcode'];?></td>
                 </tr>
                 <tr>
                     <td><b>收货地址：</b></td>
-                    <td><?php echo $data['recent_address'];?></td>
+                    <td><?=$data['recent_address'];?></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -298,21 +307,21 @@
             <table>
                 <tr>
                     <td><b>用户ID：</b></td>
-                    <td><?php echo $userInfo['uid'];?></td>
+                    <td><?=$userInfo['uid'];?></td>
                     <td><b>用户账号：</b></td>
-                    <td><?php echo $userInfo['uname'];?></td>
+                    <td><?=$userInfo['uname'];?></td>
                 </tr>
                 <tr>
                     <td><b>用户昵称：</b></td>
-                    <td><?php echo $userInfo['nickname'];?></td>
+                    <td><?=$userInfo['nickname'];?></td>
                     <td><b>用户等级：</b></td>
-                    <td><?php echo $userInfo['lid'];?></td>
+                    <td><?=$userInfo['lid'];?></td>
                 </tr>
                 <tr>
                     <td><b>用户积分：</b></td>
-                    <td><?php echo $userInfo['integral'];?></td>
+                    <td><?=$userInfo['integral'];?></td>
                     <td><b>用户金额：</b></td>
-                    <td><?php echo $userInfo['amount'];?></td>
+                    <td><?=$userInfo['amount'];?></td>
                 </tr>
             </table>
         </div>
@@ -347,14 +356,14 @@
                 foreach ($picking as $pv) {
                     ?>
                     <tr>
-                        <td><?php echo $pv['picking_id'];?></td>
-                        <td><?php echo $pv['name'];?></td>
-                        <td><?php echo $data['recent_name'];?></td>
-                        <td><?php echo $data['recent_address'];?></td>
-                        <td><?php echo $pv['logistics_orders_sn'];?></td>
-                        <td><?php echo $pv['descr'];?></td>
-                        <td><?php echo $pv['freight'];?></td>
-                        <td><?php echo $pv['create_time'];?></td>
+                        <td><?=$pv['picking_id'];?></td>
+                        <td><?=$pv['name'];?></td>
+                        <td><?=$data['recent_name'];?></td>
+                        <td><?=$data['recent_address'];?></td>
+                        <td><?=$pv['logistics_orders_sn'];?></td>
+                        <td><?=$pv['descr'];?></td>
+                        <td><?=$pv['freight'];?></td>
+                        <td><?=$pv['create_time'];?></td>
                     </tr>
                     <?php }?>
             </table>

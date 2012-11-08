@@ -42,6 +42,9 @@ class pay extends MY_Controller
             show_error('订单中没有任何产品!');
         }
 
+        //更新订单的支付渠道
+        $this->order->updateOrder(array('defray_type' => $bank), $orderSn);
+
         $pDesc = '';
         foreach ($orderProduct as $v) {
             $pDesc .= $v['pname'].' | ';
