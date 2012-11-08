@@ -72,13 +72,13 @@
                     if ($v['status'] == '0') { $canceledNum += 1; }
                 ?>
                 <tr>
-                    <td width="15%" align="center"><a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>"><?php echo $v['order_sn'];?></a></td>
+                    <td width="15%" align="center"><a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>"><?=$v['order_sn'];?></a></td>
                     <td width="35%">
                         <div class="goods-in" style="width: 250px;">
                             <?php
                             if (empty ($v['products'])) $v['products'] = array();
                             foreach ($v['products'] as $pv) {?>
-                            <div class="g-i-img" title="<?php echo $pv['pname'].', ￥'.fPrice($pv['final_price']);?>">
+                            <div class="g-i-img" title="<?=$pv['pname'].', ￥'.fPrice($pv['final_price']);?>">
                                 <a href="<?=productURL($pv['pid']);?>" target="_blank" title="<?=$pv['pname'].', ￥'.$pv['final_price'];?>">
                                     <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($pv['pid'])?>icon.jpg" width="50" height="50" title="<?=$pv['pname'].', ￥'.fPrice($pv['final_price']);?>"/>
                                 </a>
@@ -87,7 +87,7 @@
                             <!--<div class="scolls"><a href="#"></a></div> -->
                         </div>
                     </td>
-                    <td width="8%" align="center"><?php echo $v['recent_name'];?></td>
+                    <td width="8%" align="center"><?=$v['recent_name'];?></td>
                     <td width="10%" align="center">￥<?=fPrice($v['after_discount_price']);?><br/>
                         <?php
                         switch($v['pay_type']) {
@@ -128,25 +128,25 @@
                         echo '3. <a href="javascript:void(0);" title="配货状态:'.$pst.'">'.$pst.'</a>';
                     ?>
                     </td>
-                    <td width="10%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                    <td width="10%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td width="15%" align="center">
-                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>" class="views">
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>" class="views">
                             <img src="<?=config_item('static_url')?>images/view.png" title="查看订单详情">
                         </a>
                         <?php if ($v['is_pay'] != ORDER_PAY_SUCC && $v['status'] != ORDER_INVALID) {?>
-                        <a href="<?=config_item('static_url')?>order/order/success/<?php echo $v['order_sn'];?>" class="views">
+                        <a href="<?=config_item('static_url')?>order/order/success/<?=$v['order_sn'];?>" class="views">
                             <img src="<?=config_item('static_url')?>images/payment.png" title="订单支付">
                         </a>
                         <?php }?>
 
                         <?php if ($v['picking_status'] == '2') {?>
-                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>">
+                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品">
                         </a><br/>
-                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>">
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品">
                         </a>&nbsp;&nbsp;
-                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?php echo $v['order_sn'];?>">
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货">
                         </a>
                         <?php }?>
@@ -158,10 +158,10 @@
                 <tr>
                     <td colspan="7" align="right">
                         <ul class="ddall">
-                            <li>订单总数：<span class="font1"><?php echo $total_num; ?></span></li>
-                            <li>已取消订单数：<span class="font1"><?php echo $canceledNum;?></span></li>
-                            <li>已完成订单数：<span class="font1"><?php echo $completedNum;?></span></li>
-                            <li>未付款订单数：<span class="font1"><?php echo $notPayNum;?></span></li>
+                            <li>订单总数：<span class="font1"><?=$total_num; ?></span></li>
+                            <li>已取消订单数：<span class="font1"><?=$canceledNum;?></span></li>
+                            <li>已完成订单数：<span class="font1"><?=$completedNum;?></span></li>
+                            <li>未付款订单数：<span class="font1"><?=$notPayNum;?></span></li>
                             <!--<li>等待付款订单数：<span class="font1">0</span></li>-->
                         </ul>
                     </td>
@@ -169,7 +169,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-                <?php echo $page_html; ?>
+                <?=$page_html; ?>
         </div>
 
         <div class="u-r-box">

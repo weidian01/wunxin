@@ -26,15 +26,15 @@
         <form action="<?=url('administrator/business_promotion_product/p_create/'.$promotion_id);?>" method="post">
             <p>
                 <label><b>输入关键字</b></label>
-                <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+                <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?=isset($keyword) ? $keyword : ''; ?>">
                 <select name="s_type" class="small-input">
                     <?php if (!isset ($searchType)) { $searchType = array(); }
                     foreach ($searchType as $sk => $sv) { ?>
                         <?php if (!isset($sType)) $sType = '';
                         if ($sType == $sk) { ?>
-                            <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                            <option value="<?=$sk?>" selected="selected"><?=$sv?></option>
                             <?php } else { ?>
-                            <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                            <option value="<?=$sk?>"><?=$sv?></option>
                             <?php } ?>
                         <?php }?>
                 </select>
@@ -103,7 +103,7 @@
                 <tr>
                     <td colspan="8">
                         <div class="pagination">
-                        <?php echo isset ($page) ? $page : '';?>
+                        <?=isset ($page) ? $page : '';?>
                         </div>
                         <div class="clear"></div>
                     </td>

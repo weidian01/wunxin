@@ -40,14 +40,14 @@
         <form action="<?=url('administrator/design_comment/search');?>" method="post">
         <p>
             <label><b>输入关键字</b></label>
-            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?=isset($keyword) ? $keyword : ''; ?>">
             <select name="s_type" class="small-input">
                 <?php foreach ($searchType as $sk=>$sv) {?>
                 <?php if (!isset($sType)) $sType = '';
                 if ($sType == $sk) {?>
-                <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                <option value="<?=$sk?>" selected="selected"><?=$sv?></option>
                 <?php } else {?>
-                    <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                    <option value="<?=$sk?>"><?=$sv?></option>
                 <?php }?>
                 <?php }?>
             </select>
@@ -100,7 +100,7 @@
                                 <a class="button" href="#">Apply to selected</a>
                             </div>
                             <div class="pagination">
-                                <?php echo isset($page_html) ? $page_html : '';?>
+                                <?=isset($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -114,21 +114,21 @@
                         ?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['comment_id'];?></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/design_comment/designCommentList/<?php echo $v['did'];?>"
-                               title="查看设计图所有评论"><?php echo $v['did'];?></a></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/design_comment/userCommentList/<?php echo $v['uid'];?>"
-                               title="查看用户所有评论"><?php echo $v['uid'];?></a></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['title'];?></td>
-                        <td><?php echo $v['content'];?></td>
-                        <td><?php echo $v['ip'];?></td>
-                        <td><?php echo $v['reply_num'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['comment_id'];?></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/design_comment/designCommentList/<?=$v['did'];?>"
+                               title="查看设计图所有评论"><?=$v['did'];?></a></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/design_comment/userCommentList/<?=$v['uid'];?>"
+                               title="查看用户所有评论"><?=$v['uid'];?></a></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['title'];?></td>
+                        <td><?=$v['content'];?></td>
+                        <td><?=$v['ip'];?></td>
+                        <td><?=$v['reply_num'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/design_comment/viewComment/<?php echo $v['comment_id'];?>"
+                            <a href="<?=config_item('static_url')?>administrator/design_comment/viewComment/<?=$v['comment_id'];?>"
                                title="查看评论图评论"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="Edit"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/design_comment/deleteComment/<?php echo $v['comment_id'];?>"
+                            <a href="<?=config_item('static_url')?>administrator/design_comment/deleteComment/<?=$v['comment_id'];?>"
                                title="删除评论图评论"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>

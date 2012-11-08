@@ -52,7 +52,7 @@
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>
                     <tr>
-                        <td width="8%" height="26" align="center"><?php echo $v['pid'];?></td>
+                        <td width="8%" height="26" align="center"><?=$v['pid'];?></td>
                         <td width="8%" align="center">
                             <a href="<?=productURL($v['pid'])?>" title="<?=$v['pname']?>" target="_blank">
                                 <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>default.jpg" alt="" width="60" height="72"/>
@@ -62,18 +62,18 @@
                         <td width="8%" align="center">￥<?=fPrice($v['sell_price']);?></td>
                         <td width="8%" align="center"><?=$v['sales'];?></td>
                         <td width="8%" align="center">
-                            <a href="#" title="产品<?php echo $v['shelves'] == '1' ? '上架' : '已下架';?>"><?=$v['shelves'] == '1' ? '上架' : '已下架';?></a><br/>
-                            <a href="#" title="产品审核<?php echo $v['check_status'] == '1' ? '通过' : '未通过';?>"><?=$v['check_status'] == '1' ? '通过' : '未通过';?></a>
+                            <a href="#" title="产品<?=$v['shelves'] == '1' ? '上架' : '已下架';?>"><?=$v['shelves'] == '1' ? '上架' : '已下架';?></a><br/>
+                            <a href="#" title="产品审核<?=$v['check_status'] == '1' ? '通过' : '未通过';?>"><?=$v['check_status'] == '1' ? '通过' : '未通过';?></a>
                         </td>
                         <td width="10%" align="center">
-                            <a href="#" title="共被评论 <?php echo $v['comment_num'];?> 次" style="color: #990000;font-size: 10px;">评论 <?=$v['comment_num'];?> 条</a><br/>
-                            <a href="#" title="共被收藏 <?php echo $v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">收藏 <?=$v['favorite_num'];?> 次</a>
+                            <a href="#" title="共被评论 <?=$v['comment_num'];?> 次" style="color: #990000;font-size: 10px;">评论 <?=$v['comment_num'];?> 条</a><br/>
+                            <a href="#" title="共被收藏 <?=$v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">收藏 <?=$v['favorite_num'];?> 次</a>
                         </td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="10%" align="center">
-                            <!--<a href="javascript:void(0);" onclick="(<?php echo $v['pid'];?>)">修改</a>
+                            <!--<a href="javascript:void(0);" onclick="(<?=$v['pid'];?>)">修改</a>
                             <br/>-->
-                            <a href="javascript:void(0);" onclick="deleteProduct(<?php echo $v['pid'];?>)">
+                            <a href="javascript:void(0);" onclick="deleteProduct(<?=$v['pid'];?>)">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品">
                             </a>
                         </td>
@@ -83,7 +83,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
 
         <div class="u-r-box">

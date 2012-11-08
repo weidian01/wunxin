@@ -50,24 +50,24 @@
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>
                     <tr>
-                        <td width="8%" height="26" align="center"><?php echo $v['did'];?></td>
+                        <td width="8%" height="26" align="center"><?=$v['did'];?></td>
                         <td width="8%" align="center">
-                            <a href="#" title="<?php echo $v['dname'];?>">
-                                <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" title="<?php echo $v['dname'];?>" width="60" height="72"/></td>
+                            <a href="#" title="<?=$v['dname'];?>">
+                                <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>icon.jpg" title="<?=$v['dname'];?>" width="60" height="72"/></td>
                             </a>
                         <td width="15%" align="center"><a href="#" title="<?=$v['dname']?>"><?=mb_substr($v['dname'], 0, 60, 'utf-8');?></a></td>
-                        <td width="25%" align="center"><?php echo $v['ddetail'];?></td>
+                        <td width="25%" align="center"><?=$v['ddetail'];?></td>
                         <td width="15%" align="center">
-                            <a href="#" title="此设计图被收藏 <?php echo $v['total_fraction'];?> 次" style="color: #990000;font-size: 10px;">被收藏 <?php echo $v['favorite_num'];?> 次</a> <br />
-                            <a href="#" title="共有 <?php echo $v['total_num'];?> 用户投票" style="color: #990000;font-size: 10px;">共 <?php echo $v['total_num'];?> 票</a> &nbsp;|&nbsp;
-                            <a href="#" title="此设计图总分数为 <?php echo $v['total_fraction'];?> 分" style="color: #990000;font-size: 10px;">共 <?php echo $v['total_num'];?> 分</a>
+                            <a href="#" title="此设计图被收藏 <?=$v['total_fraction'];?> 次" style="color: #990000;font-size: 10px;">被收藏 <?=$v['favorite_num'];?> 次</a> <br />
+                            <a href="#" title="共有 <?=$v['total_num'];?> 用户投票" style="color: #990000;font-size: 10px;">共 <?=$v['total_num'];?> 票</a> &nbsp;|&nbsp;
+                            <a href="#" title="此设计图总分数为 <?=$v['total_fraction'];?> 分" style="color: #990000;font-size: 10px;">共 <?=$v['total_num'];?> 分</a>
                         </td>
-                        <td width="8%" align="center"><?php echo $v['status'] == 1 ? '正常' : '未激活';?></td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="8%" align="center"><?=$v['status'] == 1 ? '正常' : '未激活';?></td>
+                        <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="10%" align="center">
-                            <!--<a href="javascript:void(0);" onclick="(<?php echo $v['did'];?>)">修改</a>
+                            <!--<a href="javascript:void(0);" onclick="(<?=$v['did'];?>)">修改</a>
                             <br/>-->
-                            <a href="javascript:void(0);" onclick="deleteDesign(<?php echo $v['did'];?>)">
+                            <a href="javascript:void(0);" onclick="deleteDesign(<?=$v['did'];?>)">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图">
                             </a>
                         </td>
@@ -77,7 +77,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
 
         <div class="u-r-box">
@@ -92,8 +92,8 @@
                                 <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="130" height="156"/>
                             </a>
                             <p><a href="#" title="<?=$fv['dname']?>"><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></a></p>
-                            <span class="font2">设计师：<?php echo substr($fv['uname'], 0, 10);?></span><br/>
-                            被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span>
+                            <span class="font2">设计师：<?=substr($fv['uname'], 0, 10);?></span><br/>
+                            被收藏数量：<span class="font1"><?=$fv['favorite_num'];?></span>
                         </li>
                         <?php endforeach;?>
                     </ul>

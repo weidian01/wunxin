@@ -57,12 +57,12 @@
                         <td>
                             <input type="checkbox"/>
                         </td>
-                        <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['cname'];?></td>
+                        <td><?=str_repeat("&nbsp;", $item['floor'] * 4), $item['cname'];?></td>
                         <td><?=$item['floor']?></td>
                         <td>
-                            <a href="<?php echo url("administrator/design_category/edit/{$item['class_id']}")?>"><img
+                            <a href="<?=url("administrator/design_category/edit/{$item['class_id']}")?>"><img
                                 src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo url("administrator/design_category/del/{$item['class_id']}")?>"><img
+                            <a href="<?=url("administrator/design_category/del/{$item['class_id']}")?>"><img
                                 src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                         </td>
                     </tr>

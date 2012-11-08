@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑促销活动' : '添加促销活动'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑促销活动' : '添加促销活动'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
@@ -27,7 +27,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3><?php echo $type == 'edit' ? '编辑促销活动' : '添加促销活动'; ?></h3>
+            <h3><?=$type == 'edit' ? '编辑促销活动' : '添加促销活动'; ?></h3>
 
             <div class="clear"></div>
         </div>
@@ -40,7 +40,7 @@
                     <fieldset>
                         <p>
                             <label>活动名称</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['name']) ? $info['name'] : ''?>" name="name"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['name']) ? $info['name'] : ''?>" name="name"/>
                             <br/>
                         </p>
                         <p>
@@ -75,17 +75,17 @@
                         </p>
                         <p>
                             <label>优先级</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['priority']) ? $info['priority'] : ''?>" name="priority"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['priority']) ? $info['priority'] : ''?>" name="priority"/>
                             <br/>
                         </p>
                         <p>
                             <label>开始时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>
                             <label>结束时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>

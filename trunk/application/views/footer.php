@@ -86,7 +86,7 @@
     <p>
         <a rel="nofollow" target="_blank" href="http://www.miibeian.gov.cn/">京ICP备12031044号</a>
         <span class="mr15">北京万象乾鑫科技有限公司</span>
-        <span>Copyright©2012-<?php echo date('Y')?> WunXin Inc. All Rights Reserved</span> <span style="font-size:9px">Page rendered in {elapsed_time} seconds</span>
+        <span>Copyright©2012-<?=date('Y')?> WunXin Inc. All Rights Reserved</span> <span style="font-size:9px">Page rendered in {elapsed_time} seconds</span>
     </p>
   </div>
 </div>

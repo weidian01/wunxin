@@ -60,7 +60,7 @@
                             <input type="checkbox"/>
                         </td>
                         <td><?=$item['cid'];?></td>
-                        <td><?php echo str_repeat("&nbsp;", $item['floor'] * 4), $item['name'];?></td>
+                        <td><?=str_repeat("&nbsp;", $item['floor'] * 4), $item['name'];?></td>
                         <td>
                             <a href="<?=config_item('static_url')?>administrator/business_promotion_category/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$item['promotion_id'];?>">
                                 <?=$promotion[$item['promotion_id']]['name']?>
@@ -69,9 +69,9 @@
                         <td><?=$item['floor']?></td>
                         <td><?=$item['sort']?></td>
                         <td>
-                            <a href="<?php echo url("administrator/business_promotion_category/edit/{$item['cid']}")?>">
+                            <a href="<?=url("administrator/business_promotion_category/edit/{$item['cid']}")?>">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo url("administrator/business_promotion_category/delete/{$item['cid']}")?>">
+                            <a href="<?=url("administrator/business_promotion_category/delete/{$item['cid']}")?>">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                         </td>
                     </tr>

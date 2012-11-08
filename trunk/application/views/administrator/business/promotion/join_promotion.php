@@ -12,7 +12,7 @@
             </div>
         </div>
     </noscript>
-    <h2><?php echo $type == 'edit' ? '编辑促销产品' : '添加促销产品'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑促销产品' : '添加促销产品'; ?></h2>
     <!-- Page Head -->
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
@@ -46,7 +46,7 @@
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>产品名称</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($product['pname']) ? $product['pname'] : ''?>" name="pname"/> <small>产品名称不能为空</small>
+                            <input class="text-input small-input" type="text" value="<?=isset($product['pname']) ? $product['pname'] : ''?>" name="pname"/> <small>产品名称不能为空</small>
                         </p>
                         <p>
                             <label>分类</label>
@@ -56,7 +56,7 @@
                                 <option
                                     value="<?=$item['cid']?>" <?php if (isset($info['parent_id']) && $info['parent_id'] == $item['cid']) {
                                     echo 'selected="selected"';
-                                }?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['name']?></option>
+                                }?>><?=str_repeat("&nbsp;", $item['floor']), $item['name']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
@@ -66,7 +66,7 @@
                         </p>
                         <!--p>
                             <label>促销价格</label>
-                            <input class="text-input small-input datepicker" type="promotion_price" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>分
+                            <input class="text-input small-input datepicker" type="promotion_price" value="<?=isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>分
                         </p-->
                         <p>
                             <label>开始时间</label>

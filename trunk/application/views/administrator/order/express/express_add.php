@@ -14,7 +14,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo ($type == 'edit') ? '编辑快递公司' : '添加快递公司'; ?></h2>
+    <h2><?=($type == 'edit') ? '编辑快递公司' : '添加快递公司'; ?></h2>
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order/orderList"><span> 订单列表 </span></a></li>
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/order_receiver/receivableList"><span> 收款单列表 </span></a></li>
@@ -28,7 +28,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3><?php echo ($type == 'edit') ? '编辑快递公司' : '添加快递公司'; ?></h3>
+            <h3><?=($type == 'edit') ? '编辑快递公司' : '添加快递公司'; ?></h3>
             <!--
             <ul class="content-box-tabs">
                 <li><a href="#tab1" class="default-tab">Table</a></li>
@@ -43,31 +43,31 @@
             <div class="tab-content default-tab" id="tab1">
                 <form action="<?=($type == 'edit') ? url('administrator/order_express/saveEditExpressCompany') : url('administrator/order_express/saveExpress');?>"
                     method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="eid" value="<?php echo isset($data['ed_id']) ? $data['ed_id'] : ''; ?>">
+                    <input type="hidden" name="eid" value="<?=isset($data['ed_id']) ? $data['ed_id'] : ''; ?>">
                     <fieldset>
                         <p>
                             <label>快递名称</label>
                             <input class="text-input small-input" type="text" id="small-input" name="name"
-                                   value="<?php echo isset($data['name']) ? $data['name'] : ''; ?>"/>
+                                   value="<?=isset($data['name']) ? $data['name'] : ''; ?>"/>
                             <br/>
                         </p>
                         <p>
                             <label>网址</label>
                             <input class="text-input small-input" type="text" id="small-input" name="website"
-                                   value="<?php echo isset($data['website']) ? $data['website'] : ''; ?>"/>
+                                   value="<?=isset($data['website']) ? $data['website'] : ''; ?>"/>
                             <br/>
                         </p>
 
                         <p>
                             <label>排序</label>
                             <input class="text-input small-input" type="text" id="small-input" name="order"
-                                   value="<?php echo isset($data['sort']) ? $data['sort'] : ''; ?>"/>
+                                   value="<?=isset($data['sort']) ? $data['sort'] : ''; ?>"/>
                             <br/>
                         </p>
 
                         <p>
                             <label>快递描述</label>
-                            <textarea class="text-input textarea wysiwyg" id="textarea" name="detail" cols="79" rows="15"><?php echo isset($data['descr']) ? $data['descr'] : ''; ?></textarea>
+                            <textarea class="text-input textarea wysiwyg" id="textarea" name="detail" cols="79" rows="15"><?=isset($data['descr']) ? $data['descr'] : ''; ?></textarea>
                         </p>
 
                         <p>

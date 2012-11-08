@@ -35,15 +35,15 @@
         <form action="<?=url('administrator/design/search');?>" method="post">
         <p>
             <label><b>输入关键字</b></label>
-            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?=isset($keyword) ? $keyword : ''; ?>">
             <select name="s_type" class="small-input">
                 <?php if (!isset ($searchType)) {$searchType = array();}
                 foreach ($searchType as $sk=>$sv) {?>
                 <?php if (!isset($sType)) $sType = '';
                 if ($sType == $sk) {?>
-                <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                <option value="<?=$sk?>" selected="selected"><?=$sv?></option>
                 <?php } else {?>
-                    <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                    <option value="<?=$sk?>"><?=$sv?></option>
                 <?php }?>
                 <?php }?>
             </select>
@@ -98,7 +98,7 @@
                                 <a class="button" href="#">Apply to selected</a>
                             </div>
                             <div class="pagination">
-                            <?php echo isset ($page_html) ? $page_html : '';?>
+                            <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <!--
 
@@ -121,23 +121,23 @@
                         foreach ($data as $v) { ?>
                     <tr>
                         <td> <input type="checkbox" /> </td>
-                        <td><?php echo $v['did'];?></td>
-                        <td><?php echo $v['class_id'];?></td>
-                        <td><a href="<?=config_item('static_url')?>administrator/design/userDesignList/<?php echo $v['uid'];?>" title="查看此用户设计图"> <?php echo $v['uid'];?></a></td>
-                        <td><?php echo $v['uname'];?></td>
+                        <td><?=$v['did'];?></td>
+                        <td><?=$v['class_id'];?></td>
+                        <td><a href="<?=config_item('static_url')?>administrator/design/userDesignList/<?=$v['uid'];?>" title="查看此用户设计图"> <?=$v['uid'];?></a></td>
+                        <td><?=$v['uname'];?></td>
                         <td><?php if (isset ($v['design_img'])) {?>
-                            <img title="设计图图片" src="<?php echo base_url().$v['design_img'];?>" alt="<?php echo $v['dname'];?> width="50" height="50"/>
+                            <img title="设计图图片" src="<?=base_url().$v['design_img'];?>" alt="<?=$v['dname'];?> width="50" height="50"/>
                             <?php }?>
                         </td>
-                        <td><?php echo $v['dname'];?></td>
-                        <td><?php echo $v['ddetail'];?></td>
-                        <td><?php echo $v['total_num'];?></td>
-                        <td><?php echo $v['total_fraction'];?></td>
-                        <td><?php echo $v['status'] ? '正常' : '删除';?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['dname'];?></td>
+                        <td><?=$v['ddetail'];?></td>
+                        <td><?=$v['total_num'];?></td>
+                        <td><?=$v['total_fraction'];?></td>
+                        <td><?=$v['status'] ? '正常' : '删除';?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/design/editDesign/<?php echo $v['did'];?>" title="编辑设计图"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/design/deleteDesign/<?php echo $v['did'];?>" title="删除设计图"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/design/editDesign/<?=$v['did'];?>" title="编辑设计图"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/design/deleteDesign/<?=$v['did'];?>" title="删除设计图"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>

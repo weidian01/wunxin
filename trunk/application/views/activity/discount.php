@@ -82,7 +82,7 @@
                     <?php $i = 1;foreach ($v['item'] as $ik=>$iv) { ?>
                     <li <?=$i == 1 ? ' class="first-li"' : ''?>>
                         <a href="<?=productURL($iv['pid']);?>" title="<?=$iv['pname']?>" class="pic-goods" target="_blank" style="text-align: center;">
-                            <img width="164" height="197" class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?php echo empty ($iv['product_image']) ?
+                            <img width="164" height="197" class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=empty ($iv['product_image']) ?
                                 config_item('img_url').'product/'.intToPath($iv['pid']).'default.jpg' :
                                 config_item('base_url').str_replace('\\', '/', $iv['product_image']);?>" style="display: inline-block;">
                             <span class="clear-icon"><?=round(fPrice($iv['sell_price'] - $iv['promotion_price']), 0);?></span>

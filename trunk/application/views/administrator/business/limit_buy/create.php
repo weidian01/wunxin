@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑限时抢购' : '添加限时抢购'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑限时抢购' : '添加限时抢购'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_limit_buy/create"><span><br/> 添加限时抢购 </span></a></li>
@@ -27,7 +27,7 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3><?php echo $type == 'edit' ? '编辑限时抢购' : '添加限时抢购'; ?></h3>
+            <h3><?=$type == 'edit' ? '编辑限时抢购' : '添加限时抢购'; ?></h3>
 
             <div class="clear"></div>
         </div>
@@ -44,7 +44,7 @@
                                 <option value="0">默认</option>
                                 <?php foreach ($category as $item): ?>
                                 <option value="<?=$item['id']?>" <?php if (isset($info['cid']) && $info['cid'] == $item['id']) { echo 'selected="selected"'; }?>>
-                                    <?php echo str_repeat("&nbsp;", $item['floor']), $item['name']?>
+                                    <?=str_repeat("&nbsp;", $item['floor']), $item['name']?>
                                 </option>
                                 <?php endforeach;?>
                             </select><br/>
@@ -60,44 +60,44 @@
                         </p>
                         <p>
                             <label>产品ID</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['pid']) ? $info['pid'] : ''?>" name="pid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['pid']) ? $info['pid'] : ''?>" name="pid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>产品名称</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['pname']) ? $info['pname'] : ''?>" name="pname"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['pname']) ? $info['pname'] : ''?>" name="pname"/>
                             <br/>
                         </p>
                         <p>
                             <label>产品图片</label>
                             <input class="text-input small-input" type="file" name="product_image"/>
-                            <?php echo isset ($info['product_image']) ? '<img src="'.base_url(). str_replace('\\', '/', $info['product_image']) .'" alt="'.$info['pname'].'" width="50" height="50"/>' : '';?>
+                            <?=isset ($info['product_image']) ? '<img src="'.base_url(). str_replace('\\', '/', $info['product_image']) .'" alt="'.$info['pname'].'" width="50" height="50"/>' : '';?>
                             如不上传，则使用产品默认图片
                         </p>
                         <p>
                             <label>抢购价格</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['limit_buy_price']) ? $info['limit_buy_price'] : ''?>" name="limit_buy_price" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['limit_buy_price']) ? $info['limit_buy_price'] : ''?>" name="limit_buy_price" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             价格单位为分,如：350.38元，填写：35038
                             <br/>
                         </p>
                         <p>
                             <label>库存量</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['inventory']) ? $info['inventory'] : ''?>" name="inventory" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['inventory']) ? $info['inventory'] : ''?>" name="inventory" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>排序</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['sort']) ? $info['sort'] : ''?>" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>开始时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>
                             <label>结束时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>

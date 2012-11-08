@@ -41,8 +41,8 @@
                         <p>
                             <label>模型名称</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($model_name) ? $model_name : ''?>" name="model_name"/>
-                            <input type="hidden" name="model_id" value="<?php echo isset($model_id) ? $model_id : ''?>">
+                                   value="<?=isset($model_name) ? $model_name : ''?>" name="model_name"/>
+                            <input type="hidden" name="model_id" value="<?=isset($model_id) ? $model_id : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <small>模型名称不能为空</small>
                         </p>

@@ -57,25 +57,25 @@
                                     <?php } else {?>
                                         <?php foreach ($data as $v) {?>
                                         <tr>
-                                            <!--<td style="width:90px;text-align:center;"><?php echo $v['id'];?></td>-->
+                                            <!--<td style="width:90px;text-align:center;"><?=$v['id'];?></td>-->
                                             <td style="width:60px;">
                                                 <div class="imgbox">
-                                                    <a href="#" class="a_e" title="<?php echo $v['dname'];?>">
+                                                    <a href="#" class="a_e" title="<?=$v['dname'];?>">
                                                         <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($v['did'])?>default.jpg" alt="" width="60" height="72"/>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td>
-                                                <a href="#" class="a_e" title="<?php echo $v['dname'];?>"><?php echo $v['dname'];?></a> &nbsp;&nbsp;<br>
-                                                <span>设计师：<a href="#" title="<?php echo $v['uname'];?>"><?php echo $v['uname'];?></a></span>
+                                                <a href="#" class="a_e" title="<?=$v['dname'];?>"><?=$v['dname'];?></a> &nbsp;&nbsp;<br>
+                                                <span>设计师：<a href="#" title="<?=$v['uname'];?>"><?=$v['uname'];?></a></span>
                                             </td>
-                                            <td style="width:170px;text-align:center;"><?php echo $v['ddetail'];?></td>
+                                            <td style="width:170px;text-align:center;"><?=$v['ddetail'];?></td>
                                             <td style="width:110px;text-align:center;">
-                                                <a href="#" title="此设计图评论被回复 <?php echo $v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?php echo $v['reply_num'];?> 条</a> <br /><br />
-                                                <a href="#" title="共有 <?php echo $v['total_num'];?> 用户投票" style="color: #990000;font-size: 10px;">共 <?php echo $v['total_num'];?> 票</a> &nbsp;|&nbsp;
-                                                <a href="#" title="此设计图总分数为 <?php echo $v['total_fraction'];?> 分" style="color: #990000;font-size: 10px;">共 <?php echo $v['total_fraction'];?> 分</a>
+                                                <a href="#" title="此设计图评论被回复 <?=$v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?=$v['reply_num'];?> 条</a> <br /><br />
+                                                <a href="#" title="共有 <?=$v['total_num'];?> 用户投票" style="color: #990000;font-size: 10px;">共 <?=$v['total_num'];?> 票</a> &nbsp;|&nbsp;
+                                                <a href="#" title="此设计图总分数为 <?=$v['total_fraction'];?> 分" style="color: #990000;font-size: 10px;">共 <?=$v['total_fraction'];?> 分</a>
                                             </td>
-                                            <td style="width:60px;text-align:center;"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                                            <td style="width:60px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:60px;text-align:center;">
                                                 <!--
                                                 <a href="#">
@@ -87,7 +87,7 @@
                                                 </a>
                                                 <br/>
                                                 -->
-                                                <a href="javascript:void(0);" onclick="design.deleteComment(<?php echo $v['comment_id'];?>)">
+                                                <a href="javascript:void(0);" onclick="design.deleteComment(<?=$v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图评论">
                                                 </a>
                                             </td>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="list-b">
                             <div class="pages" style="float: right;">
-                            <?php echo $page_html;?><span class="page"> 共<?php echo $total_num;?>条结果<!--，1/1页--></span>
+                            <?=$page_html;?><span class="page"> 共<?=$total_num;?>条结果<!--，1/1页--></span>
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -124,8 +124,8 @@
                                 <img src="<?=config_item('static_url')?>upload/design/<?=intToPath($fv['did'])?>default.jpg" width="130" height="156"/>
                             </a>
                             <p><a href="#" title="<?=$fv['dname']?>"><?=mb_substr($fv['dname'], 0, 18, 'utf-8');?></a></p>
-                            <span class="font2">设计师：<?php echo substr($fv['uname'], 0, 10);?></span><br/>
-                            被收藏数量：<span class="font1"><?php echo $fv['favorite_num'];?></span>
+                            <span class="font2">设计师：<?=substr($fv['uname'], 0, 10);?></span><br/>
+                            被收藏数量：<span class="font1"><?=$fv['favorite_num'];?></span>
                         </li>
                         <?php endforeach;?>
                     </ul>

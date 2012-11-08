@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑分类' : '添加分类'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑分类' : '添加分类'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/article/articleAdd"><span><br/> 添加文章 </span></a></li>
@@ -35,12 +35,12 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/article/articleEditSave' : '/administrator/article/articleSave';?>" method="post">
-                    <input type="hidden" name="id" value="<?php echo isset($info['id']) ? $info['id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/article/articleEditSave' : '/administrator/article/articleSave';?>" method="post">
+                    <input type="hidden" name="id" value="<?=isset($info['id']) ? $info['id'] : ''?>">
                     <fieldset>
                         <p>
                             <label>文章标题</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['title']) ? $info['title'] : ''?>" name="title"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['title']) ? $info['title'] : ''?>" name="title"/>
                             <br/>
                         </p>
                         <p>
@@ -48,34 +48,34 @@
                             <select name="cid" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($class_data as $item): ?>
-                                <option value="<?=$item['cid']?>" <?php if(isset($info['cid']) && $info['cid']==$item['cid'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option value="<?=$item['cid']?>" <?php if(isset($info['cid']) && $info['cid']==$item['cid'] ){echo 'selected="selected"';}?>><?=str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
                         <p>
                             <label>关键字</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['keywords']) ? $info['keywords'] : ''?>" name="keyword"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['keywords']) ? $info['keywords'] : ''?>" name="keyword"/>
 
                         <p>
                             <label>描述</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['descr']) ? $info['descr'] : ''?>" name="descr"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['descr']) ? $info['descr'] : ''?>" name="descr"/>
                             <br/>
                         </p>
                         <p>
                             <label>是否显示</label>
-                            <input type="radio" value="1" <?php echo isset($info['visiblity']) && $info['visiblity'] === '1' ? 'checked="checked"' : '';?> name="visiblity"/> 显示
-                            <input type="radio" value="0" <?php echo isset($info['visiblity']) && $info['visiblity'] === '0' ? 'checked="checked"' : '';?> name="visiblity"/> 不显示
+                            <input type="radio" value="1" <?=isset($info['visiblity']) && $info['visiblity'] === '1' ? 'checked="checked"' : '';?> name="visiblity"/> 显示
+                            <input type="radio" value="0" <?=isset($info['visiblity']) && $info['visiblity'] === '0' ? 'checked="checked"' : '';?> name="visiblity"/> 不显示
                             <br/>
                         </p>
                         <p>
                             <label>是否置顶</label>
-                            <input type="radio" value="1" <?php echo isset($info['top']) && $info['top'] === '1' ? 'checked="checked"' : '';?> name="top"/> 置顶
-                            <input type="radio" value="0" <?php echo isset($info['top']) && $info['top'] === '0' ? 'checked="checked"' : '';?> name="top"/> 不置顶
+                            <input type="radio" value="1" <?=isset($info['top']) && $info['top'] === '1' ? 'checked="checked"' : '';?> name="top"/> 置顶
+                            <input type="radio" value="0" <?=isset($info['top']) && $info['top'] === '0' ? 'checked="checked"' : '';?> name="top"/> 不置顶
                             <br/>
                         </p>
                         <p>
                             <label>内容</label>
-                            <textarea class="text-input textarea" name="content" cols="50" rows="15"><?php echo isset($info['content']) ? $info['content']: '';?></textarea>
+                            <textarea class="text-input textarea" name="content" cols="50" rows="15"><?=isset($info['content']) ? $info['content']: '';?></textarea>
                             <br/>
                         </p>
                         <p>

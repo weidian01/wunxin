@@ -50,30 +50,30 @@
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>
                     <tr>
-                        <td width="6%" height="26" align="center"><?php echo $v['qa_id'];?></td>
+                        <td width="6%" height="26" align="center"><?=$v['qa_id'];?></td>
                         <td width="8%" align="center">
-                            <a href="<?=productURL($v['pid'])?>" title="<?php echo $v['pname'];?>" target="_blank">
+                            <a href="<?=productURL($v['pid'])?>" title="<?=$v['pname'];?>" target="_blank">
                                 <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($v['pid'])?>icon.jpg" alt="" width="60" height="72"/>
                             </a>
                         </td>
-                        <td width="20%" align="center"><a href="<?=productURL($v['pid'])?>" title="<?php echo $v['pname'];?>" target="_blank"><?php echo $v['pname'];?></a></td>
-                        <td width="8%" align="center">￥<?php echo $v['sell_price'] / 100;?></td>
+                        <td width="20%" align="center"><a href="<?=productURL($v['pid'])?>" title="<?=$v['pname'];?>" target="_blank"><?=$v['pname'];?></a></td>
+                        <td width="8%" align="center">￥<?=$v['sell_price'] / 100;?></td>
                         <td width="20%" align="left">
-                            <b>问：</b><?php echo $v['content'];?> <br />
-                            <b>答：</b><?php echo $v['reply_content'];?> <span style="font-size: 10px;"> <?php echo date('m-d H:i:s', strtotime($v['reply_time']));?></span>
+                            <b>问：</b><?=$v['content'];?> <br />
+                            <b>答：</b><?=$v['reply_content'];?> <span style="font-size: 10px;"> <?=date('m-d H:i:s', strtotime($v['reply_time']));?></span>
                         </td>
                         <td width="15%" align="center">
-                            <a href="#" title="共被回复 <?php echo $v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?php echo $v['reply_num'];?> 条</a><br />
+                            <a href="#" title="共被回复 <?=$v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?=$v['reply_num'];?> 条</a><br />
 
-                            <a href="#" title="共有 <?php echo $v['is_valid'];?> 条有用" style="color: #990000;font-size: 10px;">有效 <?php echo $v['is_valid'];?> 条</a>&nbsp;|&nbsp;
-                            <a href="#" title="共有 <?php echo $v['is_invalid'];?> 条有用" style="color: #990000;font-size: 10px;">无效 <?php echo $v['is_invalid'];?> 条</a>
+                            <a href="#" title="共有 <?=$v['is_valid'];?> 条有用" style="color: #990000;font-size: 10px;">有效 <?=$v['is_valid'];?> 条</a>&nbsp;|&nbsp;
+                            <a href="#" title="共有 <?=$v['is_invalid'];?> 条有用" style="color: #990000;font-size: 10px;">无效 <?=$v['is_invalid'];?> 条</a>
                         </td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="8%" align="center">
                             <a href="<?=productURL($v['qa_id']);?>" onclick="(<?=$v['qa_id'];?>)" target="_blank">
                                 <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
                             </a><br />
-                            <a href="javascript:void(0);" onclick="product.deleteProductQa(<?php echo $v['qa_id'];?>)">
+                            <a href="javascript:void(0);" onclick="product.deleteProductQa(<?=$v['qa_id'];?>)">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此问答">
                             </a>
                         </td>
@@ -83,7 +83,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
 
         <div class="u-r-box">

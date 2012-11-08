@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑积分换购产品' : '添加积分换购产品'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑积分换购产品' : '添加积分换购产品'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_integral_redemption/redemptionAdd"><span><br/> 添加积分<br/>换购产品 </span></a></li>
@@ -33,32 +33,32 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/business_integral_redemption/redemptionEditSave' : '/administrator/business_integral_redemption/redemptionSave';?>" method="post">
-                    <input type="hidden" name="redemption_id" value="<?php echo isset($info['redemption_id']) ? $info['redemption_id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/business_integral_redemption/redemptionEditSave' : '/administrator/business_integral_redemption/redemptionSave';?>" method="post">
+                    <input type="hidden" name="redemption_id" value="<?=isset($info['redemption_id']) ? $info['redemption_id'] : ''?>">
                     <fieldset>
                         <p>
                             <label>产品ID</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['pid']) ? $info['pid'] : ''?>" name="pid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['pid']) ? $info['pid'] : ''?>" name="pid" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>换购积分</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['redemption_integral']) ? $info['redemption_integral'] : ''?>" name="redemption_integral" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['redemption_integral']) ? $info['redemption_integral'] : ''?>" name="redemption_integral" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>换购价格</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['redemption_price']) ? $info['redemption_price'] / 100 : ''?>" name="redemption_price" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['redemption_price']) ? $info['redemption_price'] / 100 : ''?>" name="redemption_price" onkeyup="value=value.replace(/[^\d]/g, '')"/>
                             <br/>
                         </p>
                         <p>
                             <label>开始时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['start_time']) ? $info['start_time'] : ''?>" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>
                             <label>结束时间</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['end_time']) ? $info['end_time'] : ''?>" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                             <br/>
                         </p>
                         <p>

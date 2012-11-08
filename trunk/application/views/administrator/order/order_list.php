@@ -28,15 +28,15 @@
         <form action="<?=site_url('administrator/order/search');?>" method="post">
         <p>
             <label><b>输入关键字</b></label>
-            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+            <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?=isset($keyword) ? $keyword : ''; ?>">
             <select name="s_type" class="small-input">
                 <?php if (!isset ($searchType)) {$searchType = array();}
                 foreach ($searchType as $sk=>$sv) {?>
                 <?php if (!isset($sType)) $sType = '';
                 if ($sType == $sk) {?>
-                <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                <option value="<?=$sk?>" selected="selected"><?=$sv?></option>
                 <?php } else {?>
-                    <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                    <option value="<?=$sk?>"><?=$sv?></option>
                 <?php }?>
                 <?php }?>
             </select>
@@ -115,7 +115,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                            <?php echo isset ($page_html) ? $page_html : '';?>
+                            <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -127,8 +127,8 @@
                     <tr>
                         <td> <input type="checkbox" /> </td>
 
-                        <td><?php echo $v['order_sn'];?></td>
-                        <td><?php echo $v['recent_name'];?></td>
+                        <td><?=$v['order_sn'];?></td>
+                        <td><?=$v['recent_name'];?></td>
                         <td><?php
                             switch ($v['is_pay']) {
                                 case ORDER_PAY_SUCC:
@@ -144,11 +144,11 @@
                                     $payStatus = '初始';
                             }
                             echo $payStatus;?></td>
-                        <td><?php echo $v['uid'];?></td>
-                        <td><?php echo $v['uname'];?></td>
-                        <td><?php echo $v['after_discount_price'];?></td>
-                        <td><?php echo $v['pay_type'].'--'.$v['defray_type'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['uid'];?></td>
+                        <td><?=$v['uname'];?></td>
+                        <td><?=$v['after_discount_price'];?></td>
+                        <td><?=$v['pay_type'].'--'.$v['defray_type'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td><small>
                             <?php if ($v['status'] == ORDER_NORMAL): ?>
                             未确认
@@ -171,11 +171,11 @@
                             <?php endif;?>
                             </td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/order/orderDetail/<?php echo $v['order_sn'];?>" title="查看订单">
+                            <a href="<?=config_item('static_url')?>administrator/order/orderDetail/<?=$v['order_sn'];?>" title="查看订单">
                                 <img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"/></a>
-                            <!--<a href="<?=config_item('static_url')?>administrator/order/orderEdit/<?php echo $v['order_sn'];?>" title="编辑订单"> <img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
+                            <!--<a href="<?=config_item('static_url')?>administrator/order/orderEdit/<?=$v['order_sn'];?>" title="编辑订单"> <img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
 
-                            <!--&nbsp;<a href="<?=config_item('static_url')?>administrator/order/orderDelete/<?php echo $v['order_sn'];?>" title="删除订单"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除订单"/></a>-->
+                            <!--&nbsp;<a href="<?=config_item('static_url')?>administrator/order/orderDelete/<?=$v['order_sn'];?>" title="删除订单"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除订单"/></a>-->
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->
                         </td>
                     </tr>

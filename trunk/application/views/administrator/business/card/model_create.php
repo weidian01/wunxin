@@ -13,7 +13,7 @@
         </div>
     </noscript>
     <!-- Page Head -->
-    <h2><?php echo $type == 'edit' ? '编辑卡模型' : '添加卡模型'; ?></h2>
+    <h2><?=$type == 'edit' ? '编辑卡模型' : '添加卡模型'; ?></h2>
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardModelAdd"><span><br/> 添加卡模型 </span></a></li>
@@ -27,40 +27,40 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3><?php echo $type == 'edit' ? '修改卡模型' : '添加卡模型'; ?></h3>
+            <h3><?=$type == 'edit' ? '修改卡模型' : '添加卡模型'; ?></h3>
             <div class="clear"></div>
         </div>
         <!-- End .content-box-header -->
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?php echo $type == 'edit' ? '/administrator/business_card_model/cardModelEditSave' : '/administrator/business_card_model/cardModelSave';?>" method="post">
-                    <input type="hidden" name="model_id" value="<?php echo isset($info['model_id']) ? $info['model_id'] : ''?>">
+                <form action="<?=$type == 'edit' ? '/administrator/business_card_model/cardModelEditSave' : '/administrator/business_card_model/cardModelSave';?>" method="post">
+                    <input type="hidden" name="model_id" value="<?=isset($info['model_id']) ? $info['model_id'] : ''?>">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>模型名称</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['card_name']) ? $info['card_name'] : ''?>" name="card_name"/> <br/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['card_name']) ? $info['card_name'] : ''?>" name="card_name"/> <br/>
                         </p>
                         <p>
                             <label>类型</label>
                             <select name="card_type">
                                 <?php $info['card_type'] = isset ($info['card_type']) ? $info['card_type'] : '';foreach ($card_type as $v) { ?>
                                 <?php if ($v['id'] == $info['card_type']) { ?>
-                                    <option value="<?php echo $v['id'];?>" selected="selected"><?php echo $v['name'];?></option>
+                                    <option value="<?=$v['id'];?>" selected="selected"><?=$v['name'];?></option>
                                     <?php } else { ?>
-                                    <option value="<?php echo $v['id'];?>"><?php echo $v['name'];?></option>
+                                    <option value="<?=$v['id'];?>"><?=$v['name'];?></option>
                                     <?php } ?>
                                 <?php }?>
                             </select>
                         </p>
                         <p>
                             <label>金额</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['card_amount']) ? $info['card_amount'] : ''?>" name="card_amount" onkeyup="value=value.replace(/[^\d]/g, '')"/> <br/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['card_amount']) ? $info['card_amount'] : ''?>" name="card_amount" onkeyup="value=value.replace(/[^\d]/g, '')"/> <br/>
                         </p>
                         <p>
                             <label>数量</label>
-                            <input class="text-input small-input" type="text" value="<?php echo isset($info['card_num']) ? $info['card_num'] : ''?>" name="card_num" onkeyup="value=value.replace(/[^\d]/g, '')"/> <br/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['card_num']) ? $info['card_num'] : ''?>" name="card_num" onkeyup="value=value.replace(/[^\d]/g, '')"/> <br/>
                         </p>
                         <p>
                             <input class="button" type="submit" value="Submit"/>

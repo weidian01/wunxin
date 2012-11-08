@@ -49,13 +49,13 @@
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>
                     <tr>
-                        <td width="6%" height="26" align="center"><?php echo $v['id'];?></td>
-                        <td width="8%" align="center"><?php echo $v['title'];?></td>
-                        <td width="20%" align="center"><?php echo $v['content'];?></td>
-                        <td width="8%" align="center"><?php echo $v['realname'];?></td>
-                        <td width="20%" align="left"><?php echo $v['telecall'];?></td>
-                        <td width="15%" align="center"><?php echo $v['email'];?></td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="6%" height="26" align="center"><?=$v['id'];?></td>
+                        <td width="8%" align="center"><?=$v['title'];?></td>
+                        <td width="20%" align="center"><?=$v['content'];?></td>
+                        <td width="8%" align="center"><?=$v['realname'];?></td>
+                        <td width="20%" align="left"><?=$v['telecall'];?></td>
+                        <td width="15%" align="center"><?=$v['email'];?></td>
+                        <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
 
                     </tr>
                     <?php }?>
@@ -63,7 +63,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
         <br/><br/><br/><br/>
         <div class="u-r-box">

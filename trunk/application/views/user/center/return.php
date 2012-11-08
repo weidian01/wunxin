@@ -108,13 +108,13 @@
                                 }
                             ?>
                         </td>
-                        <td width="8%" align="center"><?php echo ($v['type'] == '1') ? '退货' : '换货';?></td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="8%" align="center"><?=($v['type'] == '1') ? '退货' : '换货';?></td>
+                        <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="8%" align="center">
                             <?php if ($v['status'] == '2') {?>
 
                             <?php } else { ?>
-                                <a href="javascript:void(0);" onclick="cancelReturn(<?php echo $v['return_id'];?>)">
+                                <a href="javascript:void(0);" onclick="cancelReturn(<?=$v['return_id'];?>)">
                                     <img src="<?=config_item('static_url')?>images/cancel.jpg" title="取消此申请">
                                 </a>
                             <?php }?>
@@ -125,7 +125,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
 
         <div class="u-r-box">

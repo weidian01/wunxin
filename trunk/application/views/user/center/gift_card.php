@@ -55,18 +55,18 @@
                 <?php } else {?>
                     <?php foreach ($data as $v) {?>
                     <tr>
-                        <td width="15%" height="26" align="center"><?php echo $v['card_no'];?></td>
-                        <td width="8%" align="center">￥<?php echo $v['card_amount'] / 100;?></td>
-                        <td width="15%" align="center"><?php echo $v['card_name'];?></td>
-                        <td width="8%" align="center"><?php echo $v['card_type'];?></td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['end_time']));?></td>
-                        <td width="8%" align="center"><?php echo $v['integral'];?></td>
-                        <td width="8%" align="center"><?php echo $v['use_num'];?></td>
-                        <td width="8%" align="center"><?php echo date('Y-m-d', strtotime($v['create_time']));?></td>
+                        <td width="15%" height="26" align="center"><?=$v['card_no'];?></td>
+                        <td width="8%" align="center">￥<?=$v['card_amount'] / 100;?></td>
+                        <td width="15%" align="center"><?=$v['card_name'];?></td>
+                        <td width="8%" align="center"><?=$v['card_type'];?></td>
+                        <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['end_time']));?></td>
+                        <td width="8%" align="center"><?=$v['integral'];?></td>
+                        <td width="8%" align="center"><?=$v['use_num'];?></td>
+                        <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="10%" align="center">
-                            <!--<a href="javascript:void(0);" onclick="(<?php echo $v['did'];?>)">修改</a>
+                            <!--<a href="javascript:void(0);" onclick="(<?=$v['did'];?>)">修改</a>
                             <br/>-->
-                            <a href="javascript:void(0);" onclick="deleteCard('<?php echo $v['card_no'];?>')">
+                            <a href="javascript:void(0);" onclick="deleteCard('<?=$v['card_no'];?>')">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此礼物卡">
                             </a>
                         </td>
@@ -76,7 +76,7 @@
             </table>
         </div>
         <div class="pages" style="float: right;">
-        <?php echo $page_html;?>
+        <?=$page_html;?>
         </div>
         <br /><br />
         <div class="tips">

@@ -39,8 +39,8 @@
                         <p>
                             <label>产品名称</label>
                             <input class="text-input small-input" type="text"
-                                   value="<?php echo isset($info['pname']) ? $info['pname'] : ''?>" name="pname"/>
-                            <input type="hidden" name="pid" value="<?php echo isset($info['pid']) ? $info['pid'] : ''?>">
+                                   value="<?=isset($info['pname']) ? $info['pname'] : ''?>" name="pname"/>
+                            <input type="hidden" name="pid" value="<?=isset($info['pid']) ? $info['pid'] : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <br/>
                             <small>分类名称不能为空</small>
@@ -51,14 +51,14 @@
                             <select name="class_id" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($category as $item): ?>
-                                <option value="<?=$item['class_id']?>" <?php if(isset($info['class_id']) && $info['class_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?php echo str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option value="<?=$item['class_id']?>" <?php if(isset($info['class_id']) && $info['class_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?=str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>
 
                         <p>
                             <label>设计图id</label>
-                            <input class="text-input" type="text" value="<?php echo isset($info['did']) ? $info['did'] : ''?>" name="did"/>
+                            <input class="text-input" type="text" value="<?=isset($info['did']) ? $info['did'] : ''?>" name="did"/>
                         </p>
 
                         <p>
@@ -116,26 +116,26 @@
                         <p>
                             <label>市场价格</label>
                             <input class="text-input datepicker"
-                                   type="text" value="<?php echo isset($info['market_price']) ? $info['market_price'] : ''?>" name="market_price"/> 分
+                                   type="text" value="<?=isset($info['market_price']) ? $info['market_price'] : ''?>" name="market_price"/> 分
 
                         <p>
 
                         <p>
                             <label>销售价格</label>
                             <input class="text-input datepicker"
-                                   type="text" value="<?php echo isset($info['sell_price']) ? $info['sell_price'] : ''?>" name="sell_price"/> 分
+                                   type="text" value="<?=isset($info['sell_price']) ? $info['sell_price'] : ''?>" name="sell_price"/> 分
                         <p>
 
                         <p>
                             <label>成本价格</label>
                             <input class="text-input datepicker"
-                                   type="text" value="<?php echo isset($info['cost_price']) ? $info['cost_price'] : ''?>" name="cost_price"/> 分
+                                   type="text" value="<?=isset($info['cost_price']) ? $info['cost_price'] : ''?>" name="cost_price"/> 分
                         <p>
 
                         <p>
                             <label>库存</label>
                             <input class="text-input datepicker"
-                                   type="text" value="<?php echo isset($info['stock']) ? $info['stock'] : ''?>" name="stock"/>
+                                   type="text" value="<?=isset($info['stock']) ? $info['stock'] : ''?>" name="stock"/>
                         <p>
 
                         <p>
@@ -157,18 +157,18 @@
                         <p>
                             <label>SEO关键字</label>
                             <input class="text-input medium-input"
-                                   type="text" value="<?php echo isset($info['keyword']) ? $info['keyword'] : ''?>" name="keyword"/>
+                                   type="text" value="<?=isset($info['keyword']) ? $info['keyword'] : ''?>" name="keyword"/>
                         <p>
 
                         <p>
                             <label>SEO描述</label>
                             <input class="text-input large-input"
-                                   type="text" value="<?php echo isset($info['descr']) ? $info['descr'] : ''?>" name="descr"/>
+                                   type="text" value="<?=isset($info['descr']) ? $info['descr'] : ''?>" name="descr"/>
                         <p>
 
                         <p>
                             <label>产品描述</label>
-                            <textarea class="text-input textarea" name="pcontent" cols="50" rows="15"><?php echo isset($info['pcontent']) ? $info['pcontent'] : ''?></textarea>
+                            <textarea class="text-input textarea" name="pcontent" cols="50" rows="15"><?=isset($info['pcontent']) ? $info['pcontent'] : ''?></textarea>
                         </p>
 
                         <p>
@@ -191,12 +191,12 @@
                         <?php endif;?>
                         <p>
                             <label>仓库</label>
-                            <input class="text-input" id="" name="warehouse" type="text" value="<?php echo isset($info['warehouse']) ? $info['warehouse'] : ''?>">
+                            <input class="text-input" id="" name="warehouse" type="text" value="<?=isset($info['warehouse']) ? $info['warehouse'] : ''?>">
                             <small style="color:red;">不包含http:// 例 : jsbike.taobao.com</small>
                         </p>
                         <p>
                             <label>货物淘宝地址</label>
-                            <input class="text-input large-input" id="large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
+                            <input class="text-input large-input" id="large-input" name="product_taobao_addr" type="text" value="<?=isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
                         </p>
                         <p id="hidden">
                             <input class="button" type="submit" value="Submit"/>

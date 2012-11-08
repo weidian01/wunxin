@@ -25,15 +25,15 @@
             <p>
                 <label><b>输入关键字</b></label>
                 <input class="text-input small-input" type="text" id="small-input" name="keyword"
-                       value="<?php echo isset($keyword) ? $keyword : ''; ?>">
+                       value="<?=isset($keyword) ? $keyword : ''; ?>">
                 <select name="s_type" class="small-input">
                     <?php if (!isset ($searchType)) { $searchType = array(); }
                     foreach ($searchType as $sk => $sv) { ?>
                         <?php if (!isset($sType)) $sType = '';
                         if ($sType == $sk) { ?>
-                            <option value="<?php echo $sk?>" selected="selected"><?php echo $sv?></option>
+                            <option value="<?=$sk?>" selected="selected"><?=$sv?></option>
                             <?php } else { ?>
-                            <option value="<?php echo $sk?>"><?php echo $sv?></option>
+                            <option value="<?=$sk?>"><?=$sv?></option>
                             <?php } ?>
                         <?php }?>
                 </select>
@@ -88,9 +88,9 @@
                     <td><?=fPrice($item['cost_price'])?></td>
                     <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
                     <td><?=empty ($item['stock']) ? '0' : $item['stock']?></td>
-                    <td><a href="<?php echo site_url("administrator/product/edit/{$item['pid']}")?>"><img
+                    <td><a href="<?=site_url("administrator/product/edit/{$item['pid']}")?>"><img
                         src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a> <a
-                        href="<?php echo site_url("administrator/product/del/{$item['pid']}")?>"><img
+                        href="<?=site_url("administrator/product/del/{$item['pid']}")?>"><img
                         src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                     </td>
                 </tr>
@@ -100,7 +100,7 @@
                 <tr>
                     <td colspan="8">
                         <div class="pagination">
-                        <?php echo isset ($page) ? $page : '';?>
+                        <?=isset ($page) ? $page : '';?>
                         </div>
                         <div class="clear"></div>
                     </td>

@@ -15,7 +15,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php echo $t;?></title>
+<title><?=$t;?></title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
 <!--<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/comm.js"></SCRIPT>-->
@@ -50,9 +50,9 @@ $(document).ready(function(){
   <div class="other-shopping">
     <div class="tit">订单状态</div>
     <div class="order-c">
-      <p><?php echo $t;?>!</p>
-      <span class="font9">您的订单号：<?php echo $order['order_sn'];?>
-          <?php echo ($response['error'] == '0') ? '已' : '应';?>付金额：<span class="font6"><?php echo fPrice($order['after_discount_price']);?></span> 元，
+      <p><?=$t;?>!</p>
+      <span class="font9">您的订单号：<?=$order['order_sn'];?>
+          <?=($response['error'] == '0') ? '已' : '应';?>付金额：<span class="font6"><?=fPrice($order['after_discount_price']);?></span> 元，
           支付方式：<?php
           switch ($order['pay_type']) {
               case '1': $ps = '线上支付'; break;
@@ -71,7 +71,7 @@ $(document).ready(function(){
               default:  $s = '工作日、双休日和节假日均送货'; break;
           }echo $s;
           ?><br/>
-          <?php echo $order['recent_name'].',';
+          <?=$order['recent_name'].',';
 
             if (($response['error'] == '0')) {
                 echo ' 您于'.date('Y-m-d H:i',strtotime($order['pay_time'])).' 已成功付款，我们将尽快安排发货，可随时登陆万象网
@@ -90,7 +90,7 @@ $(document).ready(function(){
   </div>
   <?php if ($response['error'] != '0') {?>
   <form action="" method="POST" onsubmit="return order.pay()" name="pay_form" id="" target="_blank">
-      <input type="hidden" name="order_sn" value="<?php echo $order['order_sn'];?>" />
+      <input type="hidden" name="order_sn" value="<?=$order['order_sn'];?>" />
   <div class="other-shopping">
     <div class="tit">选择支付方式</div>
     <div class="payment">
@@ -258,13 +258,13 @@ $(document).ready(function(){
                   <div class="rq">
                       <div class="rqimg">
                           <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="144" title="<?php echo $rv['pname'];?>"/>
+                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="120" height="144" title="<?=$rv['pname'];?>"/>
                           </a>
                       </div>
                       <p>
-                          <a href="<?=productURL($rv['pid'])?>" title="<?php echo $rv['pname'];?>" target="_blank"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?></a><br/>
-                          原价：￥<span class="font7"><?php echo fPrice($rv['market_price']);?></span><br/>
-                          <span class="font6">特惠价：￥<?php echo fPrice($rv['sell_price']);?></span>
+                          <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank"> <?=mb_substr($rv['pname'], 0, 20, 'utf-8');?></a><br/>
+                          原价：￥<span class="font7"><?=fPrice($rv['market_price']);?></span><br/>
+                          <span class="font6">特惠价：￥<?=fPrice($rv['sell_price']);?></span>
                       </p>
                       <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
                         <img src="<?=config_item('static_url')?>images/add-cart.gif" width="81" height="21" alt="放入购物车"/>

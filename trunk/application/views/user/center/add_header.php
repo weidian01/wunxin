@@ -115,7 +115,7 @@
                             <div class="finishnew" style=" margin:8px;">
                                 <ul>
                                     <li style=" height:127px;">
-                                        <img src="<?=config_item('static_url')?>upload/designer/<?=str_replace('\\', '/', intToPath($uInfo['uid']))?>icon.jpg" alt="<?php echo $uInfo['uname'];?>" width="90" height="90"
+                                        <img src="<?=config_item('static_url')?>upload/designer/<?=str_replace('\\', '/', intToPath($uInfo['uid']))?>icon.jpg" alt="<?=$uInfo['uname'];?>" width="90" height="90"
                                             onerror="javascript:this.src='<?=config_item('static_url')?>images/avatar/avatar1.jpg'"/>
                                         <span class="blank10w"></span>
                                         <a id="OK" onclick="SaveHead();" name="my_avatar_change_save" style="width: 90px;float: left;">

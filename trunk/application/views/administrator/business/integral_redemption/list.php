@@ -53,7 +53,7 @@
                     <tfoot>
                     <tr>
                         <td colspan="13">
-                            <div class="pagination"> <?php echo isset ($page_html) ? $page_html : '';?> </div>
+                            <div class="pagination"> <?=isset ($page_html) ? $page_html : '';?> </div>
                             <div class="clear"></div>
                         </td>
                     </tr>
@@ -64,18 +64,18 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['redemption_id'];?></td>
-                        <td><?php echo $v['pid'];?></td>
-                        <td><?php echo $v['redemption_integral'];?></td>
-                        <td><?php echo $v['price'] / 100;?></td>
-                        <td><?php echo $v['redemption_price'] / 100;?></td>
-                        <td><?php echo $v['start_time'];?></td>
-                        <td><?php echo $v['end_time'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['redemption_id'];?></td>
+                        <td><?=$v['pid'];?></td>
+                        <td><?=$v['redemption_integral'];?></td>
+                        <td><?=$v['price'] / 100;?></td>
+                        <td><?=$v['redemption_price'] / 100;?></td>
+                        <td><?=$v['start_time'];?></td>
+                        <td><?=$v['end_time'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_integral_redemption/redemptionEdit/<?php echo $v['redemption_id'].'/'.$current_page;?>" title="修改换购产品">
+                            <a href="<?=config_item('static_url')?>administrator/business_integral_redemption/redemptionEdit/<?=$v['redemption_id'].'/'.$current_page;?>" title="修改换购产品">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改换购产品"></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_integral_redemption/redemptionDelete/<?php echo $v['redemption_id'].'/'.$current_page;?>" title="删除换购产品">
+                            <a href="<?=config_item('static_url')?>administrator/business_integral_redemption/redemptionDelete/<?=$v['redemption_id'].'/'.$current_page;?>" title="删除换购产品">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除换购产品"></a>
                         </td>
                     </tr>

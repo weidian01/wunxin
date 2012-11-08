@@ -66,9 +66,9 @@
                         <td>
                             <?php if($item['type'] == 1):?>T恤<?php elseif($item['type'] == 2):?>卫衣<?php elseif($item['type'] == 3):?>衬衫<?php else:?>裤子<?php endif;?>
                         </td>
-                        <td><a href="<?php echo site_url("administrator/product_size/edit/{$item['size_id']}")?>"><img
+                        <td><a href="<?=site_url("administrator/product_size/edit/{$item['size_id']}")?>"><img
                             src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
-                            <a href="<?php echo site_url("administrator/product_size/del/{$item['size_id']}")?>"><img
+                            <a href="<?=site_url("administrator/product_size/del/{$item['size_id']}")?>"><img
                                 src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a></td>
                     </tr>
                         <?php endforeach;?>

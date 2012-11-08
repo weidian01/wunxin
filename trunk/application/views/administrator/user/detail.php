@@ -61,17 +61,17 @@
                     <td>
                         <input type="checkbox"/>
                     </td>
-                    <td><?php echo $user_info['uid'];?></td>
-                    <td><?php echo $user_info['uname'];?></td>
-                    <td><?php echo $user_info['nickname'];?></td>
-                    <td><?php echo $user_info['lid'];?></td>
-                    <td><?php echo $user_info['source'];?></td>
-                    <td><?php echo $user_info['integral'];?></td>
-                    <td><?php echo $user_info['amount'];?></td>
-                    <td><?php echo $user_info['status'] ? '正常' : '已删除';?></td>
-                    <td><?php echo $user_info['create_time'];?></td>
+                    <td><?=$user_info['uid'];?></td>
+                    <td><?=$user_info['uname'];?></td>
+                    <td><?=$user_info['nickname'];?></td>
+                    <td><?=$user_info['lid'];?></td>
+                    <td><?=$user_info['source'];?></td>
+                    <td><?=$user_info['integral'];?></td>
+                    <td><?=$user_info['amount'];?></td>
+                    <td><?=$user_info['status'] ? '正常' : '已删除';?></td>
+                    <td><?=$user_info['create_time'];?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>administrator/user/userDetail/<?php echo $user_info['uid']?>" title="修改用户">
+                        <a href="<?=config_item('static_url')?>administrator/user/userDetail/<?=$user_info['uid']?>" title="修改用户">
                             <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改用户"></a>
                     </td>
                 </tr>
@@ -109,20 +109,20 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $rv['address_id'];?></td>
-                    <td><?php echo $rv['uid'];?></td>
-                    <td><?php echo $rv['uname'];?></td>
-                    <td><?php echo $rv['recent_name'];?></td>
-                    <td><?php echo $rv['country'];?></td>
-                    <td><?php echo $rv['province'];?></td>
-                    <td><?php echo $rv['city'];?></td>
-                    <td><?php echo $rv['area'];?></td>
-                    <td><?php echo $rv['detail_address'];?></td>
-                    <td><?php echo $rv['zipcode'];?></td>
-                    <td><?php echo $rv['phone_num'];?></td>
-                    <td><?php echo $rv['call_num'];?></td>
-                    <td><?php echo $rv['default_address'] ? '是' : '否';?></td>
-                    <td><?php echo $rv['create_time'];?></td>
+                    <td><?=$rv['address_id'];?></td>
+                    <td><?=$rv['uid'];?></td>
+                    <td><?=$rv['uname'];?></td>
+                    <td><?=$rv['recent_name'];?></td>
+                    <td><?=$rv['country'];?></td>
+                    <td><?=$rv['province'];?></td>
+                    <td><?=$rv['city'];?></td>
+                    <td><?=$rv['area'];?></td>
+                    <td><?=$rv['detail_address'];?></td>
+                    <td><?=$rv['zipcode'];?></td>
+                    <td><?=$rv['phone_num'];?></td>
+                    <td><?=$rv['call_num'];?></td>
+                    <td><?=$rv['default_address'] ? '是' : '否';?></td>
+                    <td><?=$rv['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -152,16 +152,16 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $iv['invoice_id'];?></td>
-                    <td><?php echo $iv['uid'];?></td>
-                    <td><?php echo $iv['invoice_payable'];?></td>
+                    <td><?=$iv['invoice_id'];?></td>
+                    <td><?=$iv['uid'];?></td>
+                    <td><?=$iv['invoice_payable'];?></td>
                     <td><?php switch ($iv['invoice_content']) {
                     	case '1': $s = '服装';break;
                     	case '2': $s = '其他';break;
                     	default: $s = $iv['invoice_content'];
                     } echo empty ($s) ? '' : $s;?></td>
-                    <td><?php echo $iv['default'] ? '是' : '否';?></td>
-                    <td><?php echo $iv['create_time'];?></td>
+                    <td><?=$iv['default'] ? '是' : '否';?></td>
+                    <td><?=$iv['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -192,12 +192,12 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $rv['id'];?></td>
-                    <td><?php echo $rv['uid'];?></td>
-                    <td><?php echo $rv['up_action'];?></td>
-                    <td><?php echo $rv['former_level'];?></td>
-                    <td><?php echo $rv['current_level'];?></td>
-                    <td><?php echo $rv['create_time'];?></td>
+                    <td><?=$rv['id'];?></td>
+                    <td><?=$rv['uid'];?></td>
+                    <td><?=$rv['up_action'];?></td>
+                    <td><?=$rv['former_level'];?></td>
+                    <td><?=$rv['current_level'];?></td>
+                    <td><?=$rv['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -229,14 +229,14 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $cdv['consume_id'];?></td>
-                    <td><?php echo $cdv['uid'];?></td>
-                    <td><?php echo $cdv['operat_type'];?></td>
-                    <td><?php echo $cdv['before_amount'];?></td>
-                    <td><?php echo $cdv['after_amount'];?></td>
-                    <td><?php echo $cdv['descr'];?></td>
-                    <td><?php echo $cdv['consume_amount'];?></td>
-                    <td><?php echo $cdv['create_time'];?></td>
+                    <td><?=$cdv['consume_id'];?></td>
+                    <td><?=$cdv['uid'];?></td>
+                    <td><?=$cdv['operat_type'];?></td>
+                    <td><?=$cdv['before_amount'];?></td>
+                    <td><?=$cdv['after_amount'];?></td>
+                    <td><?=$cdv['descr'];?></td>
+                    <td><?=$cdv['consume_amount'];?></td>
+                    <td><?=$cdv['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -265,11 +265,11 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $rdv['id'];?></td>
-                    <td><?php echo $rdv['uid'];?></td>
-                    <td><?php echo $rdv['passwd_code'];?></td>
-                    <td><?php echo $rdv['end_time'];?></td>
-                    <td><?php echo $rdv['create_time'];?></td>
+                    <td><?=$rdv['id'];?></td>
+                    <td><?=$rdv['uid'];?></td>
+                    <td><?=$rdv['passwd_code'];?></td>
+                    <td><?=$rdv['end_time'];?></td>
+                    <td><?=$rdv['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -301,14 +301,14 @@
                     ?>
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $idv['integral_id'];?></td>
-                    <td><?php echo $idv['uid'];?></td>
-                    <td><?php echo $idv['operat_type'];?></td>
-                    <td><?php echo $idv['before_amount'];?></td>
-                    <td><?php echo $idv['after_amount'];?></td>
-                    <td><?php echo $idv['consume_amount'];?></td>
-                    <td><?php echo $idv['descr'];?></td>
-                    <td><?php echo $idv['create_time'];?></td>
+                    <td><?=$idv['integral_id'];?></td>
+                    <td><?=$idv['uid'];?></td>
+                    <td><?=$idv['operat_type'];?></td>
+                    <td><?=$idv['before_amount'];?></td>
+                    <td><?=$idv['after_amount'];?></td>
+                    <td><?=$idv['consume_amount'];?></td>
+                    <td><?=$idv['descr'];?></td>
+                    <td><?=$idv['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>
@@ -339,12 +339,12 @@
                 ?>
             <tr>
                 <td><input type="checkbox"/></td>
-                <td><?php echo $adv['acb_id'];?></td>
-                <td><?php echo $adv['uid'];?></td>
-                <td><?php echo $adv['uname'];?></td>
-                <td><?php echo $adv['amount'];?></td>
-                <td><?php echo $adv['descr'];?></td>
-                <td><?php echo $adv['ip'];?></td>
+                <td><?=$adv['acb_id'];?></td>
+                <td><?=$adv['uid'];?></td>
+                <td><?=$adv['uname'];?></td>
+                <td><?=$adv['amount'];?></td>
+                <td><?=$adv['descr'];?></td>
+                <td><?=$adv['ip'];?></td>
                 <td><?php switch ($adv['status']) {
 					case '0': $s = '提交申请';break;
 					case '1': $s = '已打款';break;
@@ -353,7 +353,7 @@
 				};
 				echo $s;
 				?></td>
-                <td><?php echo $adv['create_time'];?></td>
+                <td><?=$adv['create_time'];?></td>
             </tr>
                 <?php }?>
             </tbody>
@@ -373,93 +373,93 @@
             <table>
                 <tr>
                     <td><b>头像：</b></td>
-                    <td><img src="<?php echo base_url().$user_info['header'];?>" align="<?php echo $user_info['real_name'];?>" width="50" height="50"/> </td>
+                    <td><img src="<?=config_item('static_url')?>upload/designer/<?=str_replace('\\', '/', intToPath($user_info['uid']))?>icon.jpg" align="<?=$user_info['real_name'];?>" width="50" height="50"/> </td>
 
                     <td><b>真实姓名：</b></td>
-                    <td><?php echo $user_info['real_name'];?></td>
+                    <td><?=$user_info['real_name'];?></td>
 
                     <td><b>性别：</b></td>
-                    <td><?php echo $user_info['sex'];?></td>
+                    <td><?=$user_info['sex'];?></td>
                 </tr>
                 <tr>
                     <td><b>生日：</b></td>
-                    <td><?php echo $user_info['birthday'];?></td>
+                    <td><?=$user_info['birthday'];?></td>
 
                     <td><b>国家：</b></td>
-                    <td><?php echo $user_info['country'];?></td>
+                    <td><?=$user_info['country'];?></td>
 
                     <td><b>省份：</b></td>
-                    <td><?php echo $user_info['province'];?></td>
+                    <td><?=$user_info['province'];?></td>
                 </tr>
                 <tr>
                     <td><b>城市：</b></td>
-                    <td><?php echo $user_info['city'];?></td>
+                    <td><?=$user_info['city'];?></td>
 
                     <td><b>邮编：</b></td>
-                    <td><?php echo $user_info['zipcode'];?></td>
+                    <td><?=$user_info['zipcode'];?></td>
 
                     <td><b>兴趣爱好：</b></td>
-                    <td><?php echo $user_info['interest'];?></td>
+                    <td><?=$user_info['interest'];?></td>
                 </tr>
                 <tr>
                     <td><b>详细地址：</b></td>
-                    <td colspan="5"><?php echo $user_info['detail_address'];?></td>
+                    <td colspan="5"><?=$user_info['detail_address'];?></td>
                 </tr>
                 <tr>
                     <td><b>手机：</b></td>
-                    <td><?php echo $user_info['phone'];?></td>
+                    <td><?=$user_info['phone'];?></td>
 
                     <td><b>公司电话：</b></td>
-                    <td><?php echo $user_info['company_call'];?></td>
+                    <td><?=$user_info['company_call'];?></td>
 
                     <td><b>家庭电话：</b></td>
-                    <td><?php echo $user_info['family_call'];?></td>
+                    <td><?=$user_info['family_call'];?></td>
                 </tr>
                 <tr>
 
                     <td><b>身高：</b></td>
-                    <td><?php echo $user_info['height'];?></td>
+                    <td><?=$user_info['height'];?></td>
 
                     <td><b>体重：</b></td>
-                    <td><?php echo $user_info['weight'];?></td>
+                    <td><?=$user_info['weight'];?></td>
 
                     <td><b>体型：</b></td>
-                    <td><?php echo $user_info['body_type'];?></td>
+                    <td><?=$user_info['body_type'];?></td>
                 </tr>
 
                 <tr>
                     <td><b>婚姻状况：</b></td>
-                    <td><?php echo $user_info['marital_status'];?></td>
+                    <td><?=$maritalStatus = config_item('maritalStatus');$maritalStatus[$user_info['marital_status']];?></td>
 
                     <td><b>教育程序：</b></td>
-                    <td><?php echo $user_info['education_level'];?></td>
+                    <td><?=$education_level = config_item('educationLevel');$education_level[$user_info['education_level']];?></td>
 
                     <td><b>从事职业：</b></td>
-                    <td><?php echo $user_info['job'];?></td>
+                    <td><?=$jobs = config_item('jobs');$jobs[$user_info['job']];?></td>
                 </tr>
                 <tr>
                     <td><b>行业：</b></td>
-                    <td><?php echo $user_info['industry'];?></td>
+                    <td><?=$industry = config_item('industry');$jobs[$user_info['industry']];?></td>
 
                     <td><b>月薪：</b></td>
-                    <td><?php echo $user_info['income'];?></td>
+                    <td><?=$income = config_item('income');$income[$user_info['income']];?></td>
 
                     <td><b>个人网站：</b></td>
-                    <td><?php echo $user_info['website'];?></td>
+                    <td><?=$user_info['website'];?></td>
                 </tr>
                 <tr>
                     <td><b>身份证号码：</b></td>
-                    <td><?php echo $user_info['id_card'];?></td>
+                    <td><?=$user_info['id_card'];?></td>
 
                     <td><b>开户银行：</b></td>
-                    <td><?php echo $user_info['bank_name'];?></td>
+                    <td><?=$user_info['bank_name'];?></td>
 
                     <td><b>银行账号：</b></td>
-                    <td><?php echo $user_info['bank_account'];?></td>
+                    <td><?=$user_info['bank_account'];?></td>
                 </tr>
                 <tr>
                     <td><b>自我介绍：</b></td>
-                    <td colspan="7"><?php echo $user_info['introduction'];?></td>
+                    <td colspan="7"><?=$user_info['introduction'];?></td>
                 </tr>
             </table>
         </div>
@@ -493,7 +493,7 @@
                 <tr>
                     <td colspan="13">
                         <div class="pagination">
-                            <?php echo isset ($page_html) ? $page_html : '';?>
+                            <?=isset ($page_html) ? $page_html : '';?>
                         </div>
                         <div class="clear"></div>
                     </td>
@@ -506,11 +506,11 @@
 
                 <tr>
                     <td><input type="checkbox"/></td>
-                    <td><?php echo $v['id'];?></td>
-                    <td><?php echo $v['uid'];?></td>
-                    <td><?php echo $v['login_source'];?></td>
-                    <td><?php echo $v['ip'];?></td>
-                    <td><?php echo $v['create_time'];?></td>
+                    <td><?=$v['id'];?></td>
+                    <td><?=$v['uid'];?></td>
+                    <td><?=$v['login_source'];?></td>
+                    <td><?=$v['ip'];?></td>
+                    <td><?=$v['create_time'];?></td>
                 </tr>
                     <?php }?>
                 </tbody>

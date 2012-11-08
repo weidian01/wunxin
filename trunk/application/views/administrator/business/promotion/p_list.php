@@ -63,7 +63,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -103,9 +103,9 @@
                         <td><?=$v['sort'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/edit/<?php echo $v['id'];?>" title="编辑">
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/edit/<?=$v['id'];?>" title="编辑">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
-                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/delete/<?php echo $v['id'];?>" title="删除">
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/delete/<?=$v['id'];?>" title="删除">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a>
                         </td>
                     </tr>

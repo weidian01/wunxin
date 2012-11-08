@@ -51,27 +51,27 @@
                         <p>
                             <label>中文名</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($china_name) ? $china_name : ''?>" name="china_name"/>
-                            <input type="hidden" name="color_id" value="<?php echo isset($color_id) ? $color_id : ''?>">
+                                   value="<?=isset($china_name) ? $china_name : ''?>" name="china_name"/>
+                            <input type="hidden" name="color_id" value="<?=isset($color_id) ? $color_id : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
                             <small>不能为空</small>
                         </p>
                         <p>
                             <label>英文名</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($english_name) ? $english_name : ''?>" name="english_name"/>
+                                   value="<?=isset($english_name) ? $english_name : ''?>" name="english_name"/>
                             <small>不能为空</small>
                         </p>
                         <p>
                             <label>CODE</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($code) ? $code : ''?>" name="code"/>
+                                   value="<?=isset($code) ? $code : ''?>" name="code"/>
                             <small>不能为空</small>
                         </p>
                         <p>
                             <label>描述</label>
                             <input class="text-input" type="text"
-                                   value="<?php echo isset($descr) ? $descr : ''?>" name="descr"/>
+                                   value="<?=isset($descr) ? $descr : ''?>" name="descr"/>
                             <small>不能为空</small>
                         </p>
                         <p>

@@ -58,7 +58,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -71,16 +71,16 @@
 
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['cid'];?></td>
-                        <td><?php echo str_repeat("&nbsp;", $v['floor'] * 4), $v['cname'];?></td>
-                        <td><?php echo $v['parent_id'] ? $class_data[$v['parent_id']]['cname'] : '顶级分类';?></td>
-                        <td><?php echo $v['sort'];?></td>
-                        <td><?php echo $v['path'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['cid'];?></td>
+                        <td><?=str_repeat("&nbsp;", $v['floor'] * 4), $v['cname'];?></td>
+                        <td><?=$v['parent_id'] ? $class_data[$v['parent_id']]['cname'] : '顶级分类';?></td>
+                        <td><?=$v['sort'];?></td>
+                        <td><?=$v['path'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/article_category/categoryEdit/<?php echo $v['cid'];?>" title="编辑文章分类">
+                            <a href="<?=config_item('static_url')?>administrator/article_category/categoryEdit/<?=$v['cid'];?>" title="编辑文章分类">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑文章分类"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/article_category/categoryDelete/<?php echo $v['cid'];?>" title="删除文章分类">
+                            <a href="<?=config_item('static_url')?>administrator/article_category/categoryDelete/<?=$v['cid'];?>" title="删除文章分类">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除文章分类"/></a>
                         </td>
                     </tr>

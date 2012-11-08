@@ -59,7 +59,7 @@
                     <tr>
                         <td colspan="13">
                             <div class="pagination">
-                                <?php echo isset ($page_html) ? $page_html : '';?>
+                                <?=isset ($page_html) ? $page_html : '';?>
                             </div>
                             <div class="clear"></div>
                         </td>
@@ -71,16 +71,16 @@
                         if (empty ($v)) continue;?>
                     <tr>
                         <td><input type="checkbox"/></td>
-                        <td><?php echo $v['ed_id'];?></td>
-                        <td><?php echo $v['name'];?></td>
-                        <td><?php echo $v['website'];?></td>
-                        <td><?php echo $v['descr'];?></td>
-                        <td><?php echo $v['sort'];?></td>
-                        <td><?php echo $v['create_time'];?></td>
+                        <td><?=$v['ed_id'];?></td>
+                        <td><?=$v['name'];?></td>
+                        <td><?=$v['website'];?></td>
+                        <td><?=$v['descr'];?></td>
+                        <td><?=$v['sort'];?></td>
+                        <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/order_express/editExpressCompany/<?php echo $v['ed_id'];?>" title="编辑快递公司">
+                            <a href="<?=config_item('static_url')?>administrator/order_express/editExpressCompany/<?=$v['ed_id'];?>" title="编辑快递公司">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑快递公司"/></a>
-                            <a href="<?=config_item('static_url')?>administrator/order_express/deleteExpressCompany/<?php echo $v['ed_id'];?>" title="删除快递公司">
+                            <a href="<?=config_item('static_url')?>administrator/order_express/deleteExpressCompany/<?=$v['ed_id'];?>" title="删除快递公司">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除快递公司"/></a>
                         </td>
                     </tr>
