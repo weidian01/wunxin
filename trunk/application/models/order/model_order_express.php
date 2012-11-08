@@ -20,9 +20,9 @@ class Model_Order_Express extends MY_Model
 
         $this->db->select($field);
         $this->db->from('picking p');
-        $this->db->join('express_delivery_company e', 'picking.ed_id = express_delivery_company.ed_id', 'left');
-        $this->db->where('picking.order_sn', $orderSn);
-        $this->db->where('express_delivery_company.status', 1);
+        $this->db->join('express_delivery_company e', 'p.ed_id = e.ed_id', 'left');
+        $this->db->where('p.order_sn', $orderSn);
+        $this->db->where('e.status', 1);
         $data = $this->db->get()->result_array();
 
         return empty ($data) ? null : $data;
