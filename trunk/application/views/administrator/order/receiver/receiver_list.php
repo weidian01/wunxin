@@ -71,7 +71,7 @@
                         <th>金额</th>
                         <th>汇款类型</th>
                         <th>收款账号</th>
-                        <th>状态</th>
+                        <!--<th>状态</th>-->
                         <th>收款备注</th>
                         <th>管理员ID</th>
                         <th>创建时间</th>
@@ -108,7 +108,7 @@
                         <td><?php echo $v['amount'];?></td>
                         <td><?php echo $v['pay_type'] == 1 ? '银行汇款' : '支付宝转账';?></td>
                         <td><?php echo $v['pay_account'];?></td>
-                        <td><?php echo $v['pay_status'] ? '支付成功' : '支付失败';?></td>
+                        <!--<td><?php echo $v['pay_status'] ? '支付成功' : '支付失败';?></td>-->
                         <td><?php echo $v['descr']?></td>
                         <td><?php echo $v['manager_id'];?></td>
                         <td><?php echo $v['create_time'];?></td>
