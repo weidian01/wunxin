@@ -178,7 +178,7 @@ class order_picking extends MY_Controller
 
             $this->load->model('pay/Model_Pay_Alipay', 'alipay');
             $doc = $this->alipay->confirmSendGood($alipayOrderSn, $logisticsName, $order_info['logistics_orders_sn']);
-
+echo $doc;
             $doc = str_replace(array("\n", "\r"), array('', ''), $doc);
             log_message('CONFIRM_SEND_GOODS', $doc);
             /*
