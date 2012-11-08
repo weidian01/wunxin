@@ -155,7 +155,7 @@ class order_picking extends MY_Controller
         }
 
         $this->load->model('order/Model_Order_Picking', 'picking');
-        $this->picking->create($order_info, $order_product, $this->amInfo['am_uid']);
+        $pickingId = $this->picking->create($order_info, $order_product, $this->amInfo['am_uid']);
 
         //如果是通过支付宝支付的订单，即调用接口进行确认发货操作。
         if ($defrayType == 'alipay') {
@@ -177,10 +177,20 @@ class order_picking extends MY_Controller
             }
 
             $this->load->model('pay/Model_Pay_Alipay', 'alipay');
-            $doc = $this->alipay->confirmSendGood($alipayOrderSn, $logisticsName, $order_info['logistics_orders_sn']);
-echo $doc;
-            $doc = str_replace(array("\n", "\r"), array('', ''), $doc);
-            log_message('CONFIRM_SEND_GOODS', $doc);
+            $xmlDoc = $this->alipay->confirmSendGood($alipayOrderSn, $logisticsName, $order_info['logistics_orders_sn']);
+
+            $doc = new DOMDocument();
+            $doc->loadXML($xmlDoc);
+
+            $response = '';
+            if( ! empty($doc->getElementsByTagName( "is_success" )->item(0)->nodeValue) ) {
+            	$response= $doc->getElementsByTagName( "is_success" )->item(0)->nodeValue;
+            }
+
+            $this->picking->updatePicking(array('ext' => $response), $pickingId);
+
+            $xmlDoc = str_replace(array("\n", "\r"), array('', ''), $xmlDoc);
+            log_message('CONFIRM_SEND_GOODS', $xmlDoc);
             /*
             $response = '';
             if( ! empty($doc->getElementsByTagName( "response" )->item(0)->nodeValue) ) {
