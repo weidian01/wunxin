@@ -75,9 +75,9 @@ class user extends MY_Controller
         $currentPage = $this->uri->segment(5, 1);
         $offset = ($currentPage - 1) * $Limit;
 
-        $this->load->model('user/Model_User_Log', 'log');
-        $totalNum = $this->log->getUserLoginLogCount($uid);
-        $loginLogData = $this->log->getUserLoginLogList($uid, $Limit, $offset);
+        $this->load->model('user/Model_User_Log', 'logs');
+        $totalNum = $this->logs->getUserLoginLogCount($uid);
+        $loginLogData = $this->logs->getUserLoginLogList($uid, $Limit, $offset);
 
         $this->load->library('pagination');
         $config['base_url'] = site_url() . '/administrator/user/userDetail/'.$uid;
