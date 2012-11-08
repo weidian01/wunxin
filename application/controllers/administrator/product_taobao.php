@@ -33,28 +33,6 @@ class product_taobao extends MY_Controller
     public function index()
     {
         $this->load->view('administrator/product/taobao/index');
-//        $this->load->model('product/Model_Product', 'product');
-//        $this->load->library('pagination');
-//        $num = $this->product->getProductCount();
-//        $pagesize = 20;
-//        $config['base_url'] = site_url('administrator/product/index');
-//        $config['total_rows'] = $num;
-//        $config['per_page'] = $pagesize;
-//        $config['use_page_numbers'] = TRUE;
-//        $config['uri_segment'] = 4;
-//        $config['num_links'] = 10;
-//        $config['anchor_class'] = 'class="number" ';
-//        $this->pagination->initialize($config);
-//
-//        $page = $this->uri->segment(4, 1);
-//        $data = array();
-//        if ($num) {
-//            $page = (abs($page) - 1) * $pagesize;
-//            $data = $this->product->getProductList($pagesize, $page);
-//        }
-//        //print_r($data);
-//        $this->load->view('administrator/product/index', array('list' => $data, 'searchType' => $this->searchType, 'page' => $this->pagination->create_links()));
-//
     }
 
     private $match = array(
@@ -69,13 +47,37 @@ class product_taobao extends MY_Controller
             'desc_url'=>'/;(?:n|s)\.async\s?=\s?true;\s?(?:n|s)\.src\s?=\s?(?:\'|")(.*?)(?:\'|")/',
             'defimg'=>'/<div class="tb-pic tb-s60">\s*?<a href="#"><img src="(.*?)_60x60\.jpg" \/><\/a>\s*?<\/div>/s',
         ),
+        'taobao'=>array( //ok
+            'name' => '/<input type="hidden" name="title" value="(.*?)" \/>/',            //一个
+            'size' => '/<li data-value="(.*?)"><a href="#"><span>(.*?)<\/span><\/a><\/li>/',   //多个
+            'color' => array('/<li data-value="(\d+:\d+)" title="(.*?)".*?>.*?<a href="#" style="background:url\((.*?)_30x30.jpg\) center no-repeat;">/s','<li data-value="(.*?)" title="(.*?)".*?>'),            //多个
+            'price' => "/'reservePrice' : '(.*?)',/",                                                              //多个
+            'attribute' => array('/<div class="attributes-list".*?>.*?<ul>(.*?)<\/ul>/s','/<li.*?>(.*?)(?:：|:)(.*?)<\/li>/'),                                                          //
+            'intro' => "/<script>\(function\(url\).*?new Date\(\);\}\)\('(.*?)'\);<\/script>/",
+            'skuMap'=> '/"valItemInfo":(.*?)"isSevenDaysRefundment"/s',
+            'desc_url'=>'/;(?:n|s)\.async\s?=\s?true;\s?(?:n|s)\.src\s?=\s?(?:\'|")(.*?)(?:\'|")/',
+            'defimg'=>'/<div class="tb-pic tb-s60">\s*?<a href="#"><img src="(.*?)_60x60\.jpg" \/><\/a>\s*?<\/div>/s',
+        ),
     );
 
-    public function getproductinfo()
+    public function confirm()
     {
         $url = $this->input->post('url');
         $url_arr = parse_url($url);
-        //print_r($url_arr);
+
+        $query = $unique_id = NULL;
+        parse_str($url_arr['query'], $query);
+        if(isset($query['id']))
+        {
+            $unique_id = $query['id'];
+        }
+        if($unique_id === NULL)
+        {
+            die("淘宝卫衣产品号不存在");
+        }
+
+        $this->load->helper('directory');
+
         $template_type = NULL;
         switch($url_arr['host'])
         {
@@ -94,38 +96,18 @@ class product_taobao extends MY_Controller
             die("模版不存在");
         }
 
-        $this->product_html = $html = self::get_html($url);
+        $this->product_html = $html = self::get_html($url, $unique_id);
         //echo $html;
         $info = array();
         //$info['shop'] = $website;
         //$info['link_id'] = $item['id'];
-        $info['type'] = 0;
         //$html = $this->get_content($website, $item['id']);
 
 
         $info['defimg'] = $this->get_product_defimg($match['defimg']);
 
         $info['name'] = $this->get_product_name($match['name']);
-        if(isset($info['name']))
-        {
-            if ($info['type'] === 0) {
-                $findme = '卫衣';
-                $pos = strpos($info['name'], $findme);
-                $pos !== false && $info['type'] = 1;
-            }
 
-            if ($info['type'] === 0) {
-                $findme = '裤';
-                $pos = strpos($info['name'], $findme);
-                $pos !== false && $info['type'] = 2;
-            }
-
-            if ($info['type'] === 0) {
-                $findme = '裙';
-                $pos = strpos($info['name'], $findme);
-                $pos !== false && $info['type'] = 3;
-            }
-        }
         $info['price'] = $this->get_product_price($match['price']);
 
 
@@ -139,24 +121,68 @@ class product_taobao extends MY_Controller
         $info['color'] = $this->get_product_color($match['color']);
         $skuMap = $this->get_product_skuMap($match['skuMap']);
         $skuMap = json_decode($skuMap, true);
-        $desc = $this->get_product_desc($match['desc_url']);
+        $desc = $this->get_product_desc($match['desc_url'], $unique_id);
 
-        echo $desc;
-        p($skuMap);
-        p($info);
+        //echo $desc;
+        $desc_img = $this->get_product_desc_img($desc);
+        //p($desc_img);
+        //p($skuMap);
+        //p($info);
 
-
+        $view_data['public'] = array('pname'=>$info['name'], 'def_img'=>$info['defimg'], 'desc_img'=>$desc_img);
+        $view_data['private'] = $this->product_format($info, $skuMap);
+        //p($view_data);
+        $this->load->view('administrator/product/taobao/confirm', $view_data);
     }
 
-    static private function get_html($url)
+    function product_format($info , $skuMap)
     {
-        $html = file_get_contents($url);
+        $result = array();
+        if(isset($info['color']))
+        {
+            foreach($info['color'] as $item)
+            {
+                foreach($info['size'] as $size)
+                {
+                    $key = ";{$size['id']};{$item['id']};";
+                    if(isset($skuMap['skuMap'][$key]))
+                    {
+                        if(!isset($result[$item['id']]))
+                        {
+                            $item['price'] = $skuMap['skuMap'][$key]['priceCent'];
+                            $result[$item['id']] = $item;
+                        }
+                        $result[$item['id']]['size'][] = $size;
+                    }
+                }
+            }
+        }
+        return $result;
+    }
+
+
+
+    static private function get_html($url, $unique_id)
+    {
+        $file_name = md5($url);
+        $path = APPPATH . 'cache/taobao/'.intToPath($unique_id);
+        $file_path = $path . $file_name;
+        recursiveMkdirDirectory($path);
+
+        if(is_file($file_path))
+        {
+            $html = file_get_contents($file_path);
+        }
+        else
+        {
+            $html = file_get_contents($url);
+            file_put_contents($file_path, $html, LOCK_EX);
+        }
         return iconv('GBK', "UTF-8//IGNORE", $html);
     }
 
-    function get_product_desc($match='')
+    function get_product_desc($match='', $unique_id)
     {
-        $match = '/;(?:n|s)\.async\s?=\s?true;\s?(?:n|s)\.src\s?=\s?(?:\'|")(.*?)(?:\'|")/';
         //n.async = true; n.src = 'http://dsc.taobaocdn.com/i2/131/520/13852771115/T1bif6XdlbXXcWeqbX.desc%7Cvar%5Edesc%3Bsign%5E030317aea1a674a5420ee444c463b8aa%3Blang%5Egbk%3Bt%5E1352211984'
         //s.async = true;s.src="
         $matches = array();
@@ -167,7 +193,7 @@ class product_taobao extends MY_Controller
         //p($matches);
         if($result)
         {
-            $desc = self::get_html($result);
+            $desc = self::get_html($result, $unique_id);
             preg_match('/var desc=\'(.*)\';/', $desc, $out);
             if(isset($out[1]) && $out[1])
             {
@@ -181,6 +207,15 @@ class product_taobao extends MY_Controller
         $html = strip_tags($html, '<img><br>');
         $desc = preg_replace('/<img title="超.*?</', '<', $html);
         return $desc;
+    }
+
+    function get_product_desc_img($desc)
+    {
+        $result = array();
+        $matches = array();
+        preg_match_all('/src="(.*?)"/', $desc, $matches);
+        isset($matches[1]) && $result = $matches[1];
+        return $result;
     }
 
     function get_product_skuMap($match)
