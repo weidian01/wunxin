@@ -31,7 +31,7 @@ class CI_Log {
 	protected $_threshold	= 1;
 	protected $_date_fmt	= 'Y-m-d H:i:s';
 	protected $_enabled	= TRUE;
-	protected $_levels	= array('ERROR' => '1', 'PAYLOG'=>'2', 'SQL'=>'3', 'DEBUG' => '4',  'INFO' => '5', 'ALL' => '6', 'CONFIRM_SEND_GOODS' => '0');
+	protected $_levels	= array('ERROR' => '1', 'PAYLOG'=>'2', 'SQL'=>'3', 'DEBUG' => '4',  'INFO' => '5', 'ALL' => '6', 'CONFIRM_SEND_GOODS' => '0', 'CANCEL_ORDER' => '-1');
 
 	/**
 	 * Constructor

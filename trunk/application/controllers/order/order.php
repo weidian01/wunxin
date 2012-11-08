@@ -418,7 +418,7 @@ class order extends MY_Controller
                 if (empty ($tov['order_sn'])) { continue; }
 
                 $cancelOrderStatus = $this->order->cancelOrderBySystem($updateWhere);
-
+                log_message('CANCEL_ORDER', $tov['order_sn'].'-'.$v);
                 /*/更新产品库存
                 if ($cancelOrderStatus) {
                     $orderProduct = $this->order->getOrderAllProductByOrderSn($tov['order_sn']);

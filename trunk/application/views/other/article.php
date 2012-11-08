@@ -13,6 +13,9 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 </script>
 <![endif]-->
 </head>
+<style type="text/css">
+    .h-title {background: url("<?=config_item('static_url')?>images/dixian_01.gif") no-repeat scroll left bottom transparent;font-size: 16px;font-weight: bold;height: 35px;line-height: 30px;}
+</style>
 <body>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>

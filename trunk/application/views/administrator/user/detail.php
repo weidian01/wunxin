@@ -418,31 +418,31 @@
                 <tr>
 
                     <td><b>身高：</b></td>
-                    <td><?=$user_info['height'];?></td>
+                    <td><?=$user_info['height'];?>CM</td>
 
                     <td><b>体重：</b></td>
-                    <td><?=$user_info['weight'];?></td>
+                    <td><?=$user_info['weight'];?>KG</td>
 
                     <td><b>体型：</b></td>
-                    <td><?=$user_info['body_type'];?></td>
+                    <td><?php $bodyType = config_item('bodyType');echo $bodyType[$user_info['body_type']];?></td>
                 </tr>
 
                 <tr>
                     <td><b>婚姻状况：</b></td>
-                    <td><?=$maritalStatus = config_item('maritalStatus');$maritalStatus[$user_info['marital_status']];?></td>
+                    <td><?php $maritalStatus = config_item('maritalStatus');echo $maritalStatus[$user_info['marital_status']];?></td>
 
                     <td><b>教育程序：</b></td>
-                    <td><?=$education_level = config_item('educationLevel');$education_level[$user_info['education_level']];?></td>
+                    <td><?php $education_level = config_item('educationLevel');echo $education_level[$user_info['education_level']];?></td>
 
                     <td><b>从事职业：</b></td>
-                    <td><?=$jobs = config_item('jobs');$jobs[$user_info['job']];?></td>
+                    <td><?php $jobs = config_item('jobs');echo $jobs[$user_info['job']];?></td>
                 </tr>
                 <tr>
                     <td><b>行业：</b></td>
-                    <td><?=$industry = config_item('industry');$jobs[$user_info['industry']];?></td>
+                    <td><?php $industry = config_item('industry');echo $jobs[$user_info['industry']];?></td>
 
                     <td><b>月薪：</b></td>
-                    <td><?=$income = config_item('income');$income[$user_info['income']];?></td>
+                    <td><?php $income = config_item('income');echo $income[$user_info['income']];?></td>
 
                     <td><b>个人网站：</b></td>
                     <td><?=$user_info['website'];?></td>
