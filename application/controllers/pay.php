@@ -86,10 +86,10 @@ class pay extends MY_Controller
                 $response = error(30019);
                 break;
             }
-echo "pay/Model_pay_{$paymentChannel}";exit;
+//echo "pay/Model_pay_{$paymentChannel}";exit;
             $this->load->model('order/Model_Order', 'order');
-            $this->load->model("pay/Model_pay_{$paymentChannel}", 'channel');
-            $payResult = $this->channel->response();
+            $this->load->model("pay/Model_pay_{$paymentChannel}", 'payment_channel');
+            $payResult = $this->payment_channel->response();
 
             //2 签名错误
             if ($payResult['status'] == 2) {
