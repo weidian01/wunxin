@@ -13,6 +13,15 @@ class crawl_tools
     public $crawlType = 'file'; // file 文件， image 图片
     public $isReturn = false;
 
+    /**
+     * array (
+        'dir' => '/data/dy1010/',
+        'file_name' => 'index.html',
+        'crawl_type' => 'file' | 'image',
+        'is_return' => false | true,
+     * );
+     * @param array $config
+     */
     public function __construct(array $config)
     {
         ini_set('memory_limit','2048M');
