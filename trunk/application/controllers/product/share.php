@@ -36,12 +36,16 @@ class share extends MY_Controller
             show_error('你已对此商品进行过晒单');
         }
 
+        $this->load->model('product/model_product_color', 'color');
+        $colorInfo = $this->color->getColorById($data['color_id']);
         $data = array(
             'pid' => $pid,
             'uid' => $this->uInfo['uid'],
             'title' => $title,
             'content' => $content,
-            'ip' => $ip
+            'ip' => $ip,
+            'size' => $data['product_size'],
+            'color' => $colorInfo['descr'],
         );
         $this->load->model('product/Model_Product_Share', 'share');
         $status = $this->share->productShare($data);
@@ -280,20 +284,30 @@ class share extends MY_Controller
             if($response['total'])
             {
                 $response['share'] = $this->share->getProductShareByPid($pid, $limit, $offset, array('share_id'=>'*'), 'share_id DESC');
+                //p($response['share']);exit;
                 if($response['share'])
                 {
                     $tmp = current($response['share']);
                     $this->load->model('user/Model_User', 'user');
-                    $uinfo = $this->user->getUserInfoById($tmp['uid'], array('uid' => 'height, weight'));
+                    $uinfo = $this->user->getUserAllInfoById($tmp['uid']);
+
+                    $response['share'][$tmp['share_id']]['height'] = $uinfo['height'];
+
                     $response['share'][$tmp['share_id']]['height'] = $uinfo['height'];
                     $response['share'][$tmp['share_id']]['weight'] = $uinfo['weight'];
+                    $response['share'][$tmp['share_id']]['uname'] = $uinfo['uname'];
+                    $response['share'][$tmp['share_id']]['nickname'] = $uinfo['nickname'];
+                    $response['share'][$tmp['share_id']]['body_type'] = $uinfo['body_type'];
+                    $response['share'][$tmp['share_id']]['integral'] = $uinfo['integral'];
+
+                    //p($response['share']);exit;
                 }
                 $share_img = $this->share->getProductShareImage(array_keys($response['share']), 'share_id, img_addr, descr' , array('is_cover'=>1));
                 foreach($share_img as $img)
                 {
                     $response['share'][$img['share_id']] += $img;
                 }
-                //print_r($response);
+                //p($response['share']);exit;
             }
         }
         self::json_output($response , true);

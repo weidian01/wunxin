@@ -214,8 +214,8 @@ class comment extends MY_Controller
                 $uid[] = $item['uid'];
             }
             $this->load->model('user/Model_User', 'user');
-            $uinfo = $this->user->getUserInfoById($uid, array('uid'=>'uid, height, weight'));
-            //print_r($re['comments']);
+            $uinfo = $this->user->getUserAllInfoById($uid);
+
             foreach($re['comments'] as $key=>$item)
             {
                 $re['comments'][$key] += $uinfo[$item['uid']];

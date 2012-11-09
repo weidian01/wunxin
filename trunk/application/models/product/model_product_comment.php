@@ -270,6 +270,34 @@ class Model_Product_Comment extends MY_Model
     }
 
     /**
+     * 通过产品id获取评论信息和用户信息
+     *
+     * @param $pid
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param null $where
+     * @param null $group
+     * @param null $orderBy
+     * @return mixed
+     */
+    public function getCommentAndUserByPid($pid, $limit = 20, $offset = 0, $field = '*', $where = null, $group = null, $orderBy = null)
+    {
+        list($key, $field) = self::formatField($field);
+        $this->db->select($field)->from('product_comment');
+        $this->db->join('user', 'user.uid=product_comment.uid', 'left');
+        $where && $this->db->where($where);
+        $group && $this->db->group_by($group);
+        $orderBy && $this->db->order_by($orderBy);
+        $this->db->limit($limit, $offset);
+        if(is_array($pid))
+        {
+            return $this->db->where_in('pid', $pid)->get()->result_array($key);
+        }
+        return $this->db->where('pid', $pid)->get()->result_array();
+    }
+
+    /**
      * 通过产品id获取评论数量
      * @param $pid
      * @return mixed

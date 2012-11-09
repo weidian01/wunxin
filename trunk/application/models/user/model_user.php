@@ -111,8 +111,14 @@ class Model_User extends MY_Model
         $field = 'user.uid, nickname, password, lid, uname, source, status, integral, amount, real_name, sex, birthday, country, province, city, zipcode, detail_address, phone, id_card, qq,
             company_call, family_call, height, weight, body_type, marital_status, education_level, job, industry, income, interest, introduction, website, create_time, bank_name, bank_account';
 
-        $this->db->select($field)->from('user')->join('user_info', 'user.uid = user_info.uid', 'left')->where('user.uid', $uId)->where('user.status', 1);
-        return $this->db->get()->row_array();
+        $this->db->select($field)->from('user')->join('user_info', 'user.uid = user_info.uid', 'left')->where('user.status', 1);
+        //return $this->db->get()->row_array();
+
+        if(is_array($uId))
+        {
+            return $this->db->where_in('user.uid', $uId)->get()->result_array('uid');
+        }
+        return $this->db->where('user.uid', $uId)->get()->row_array();
     }
 
     /**

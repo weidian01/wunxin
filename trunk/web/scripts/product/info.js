@@ -222,7 +222,7 @@
                           </table>\
                           <div class="bdimg"><a href="'+wx.productURL(item.pid)+'" title="'+item.pname+'" target="_blank">' +
                     '<img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url + 'product/' + idToPath(item.pid) +'icon.jpg" width="50" height="50" title="'+item.pname+'"/>\
-                    </a></div> <div class="bdancont2" style="float:left;"><span class="font2">'+item.uname+'</span>(会员)<br/>'+item.content+'</div></div>';
+                    </a></div> <div class="bdancont2" style="float:left;"><span class="font2">'+item.nickname+'</span>(会员)<br/>'+item.content+'</div></div>';
             });
             $('#hotComment').html(html).show();
             lazyload(".bdimg img.lazy");
@@ -237,31 +237,48 @@
         wx.jsonp(wx.base_url + "product/share/ajaxGetShareByPid", {'pid':pid, 'offset':offset, 'limit':limit}, function (data) {
             if(data.total > 0)
             {
+                var bodyTypeName = '';
                 var html = '';
                 var main = '';
                 $.each(data.share, function (i, o) {
 
                     if(offset == 0 && !main)
                     {
-                        main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' + o.title + '<img src="' + wx.static_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：'+o.uname+'</td></tr></table>\
-                                <div class="sd-main">\
-                                  <div style="text-align:center"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" /></div>\
+                        switch (o.body_type){
+                            case '1': bodyTypeName = '偏瘦';break;
+                            case '2': bodyTypeName = '均称';break;
+                            case '3': bodyTypeName = '偏胖';break;
+                            case '4': bodyTypeName = '肥胖';break;
+                            default :bodyTypeName = '均称';
+                        }
+                        var title = wx.isEmpty(o.title) ? o.title : '';
+                        var nickname = wx.isEmpty(o.nickname) ? o.nickname : '';
+                        var height = wx.isEmpty(o.height) ? o.height+'cm / ': '';
+                        var weight = wx.isEmpty(o.weight) ? o.weight+'kg' : '';
+                        var integral = wx.isEmpty(o.integral) ? o.integral : 0;
+                        var color = wx.isEmpty(o.color) ? o.color : '';
+                        var size = wx.isEmpty(o.size) ? o.size : '';
+                        var content = wx.isEmpty(o.content) ? o.content : '';
+
+                        main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' +title+
+                            '<img src="' + wx.static_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：'+nickname+'</td></tr></table>\
+                                <div class="sd-main"><div style="text-align:center">\
+                                  <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" /></div>\
                                   <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">\
-                                    <tr><td align="center" bgcolor="#f3f3f3">达人麻豆</td><td align="center" bgcolor="#f3f3f3">身高/体重</td><td align="center" bgcolor="#f3f3f3">三围</td><td align="center" bgcolor="#f3f3f3">颜色</td><td align="center" bgcolor="#f3f3f3">尺码</td></tr>\
-                                    <tr><td align="center">999</td><td align="center">' + o.height + 'cm / ' + o.weight + 'kg</td><td align="center">1 / 2 / 3</td><td align="center">' + o.color + '</td><td align="center">' + o.size + '</td></tr>\
+                                    <tr><td align="center" bgcolor="#f3f3f3">用户积分</td><td align="center" bgcolor="#f3f3f3">身高/体重</td>\
+                                    <td align="center" bgcolor="#f3f3f3">体型</td><td align="center" bgcolor="#f3f3f3">颜色</td><td align="center" bgcolor="#f3f3f3">尺码</td></tr>\
+                                    <tr><td align="center">'+integral+'</td><td align="center">'+height+weight+ '</td>' +
+                            '<td align="center">'+bodyTypeName+'</td><td align="center">'+color+'</td><td align="center">'+size+'</td></tr>\
                                   </table>\
-                                  <p>' + o.content + '</p>\
+                                  <p>' + content + '</p>\
                                 </div>';
                         $('#share_main').replaceWith(main);
                     }
                     else
                     {
-                        html += '<div class="sd-cont">\
-                                    <div class="sd-cbox">\
-                                        <div class="sdimg"><img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" width="107" height="143" /></div>\
-                                        <div class="sdtext"><strong>' + o.title + '</strong><br/>' + o.content + '</div>\
-                                    </div>\
-                                </div>';
+                        html += '<div class="sd-cont"><div class="sd-cbox"><div class="sdimg">\
+                                    <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" width="107" height="143" />\
+                                    </div><div class="sdtext"><strong>' + o.title + '</strong><br/>' + o.content + '</div></div></div>';
                     }
                 });
                 $('#share_total').text(data.total);
@@ -278,11 +295,18 @@
         wx.jsonp(wx.base_url + "product/qa/ajaxGetQaByPid", {'pid':pid, 'offset':offset, 'limit':limit}, function (data) {
             var html = '';
             var leight = 0;
+
             $.each(data, function (i, o) {leight++;
-                html += '<div class="q-a"><div class="q-a-u">' + o.uname + '&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;' + o.create_time + '</div>\
-                         <div class="q-a-wt">咨询内容：' + o.qa_content + '</div><div class="q-a-hd">客服回复：' + o.reply_content + '</div></div>';
+                var nickname = wx.isEmpty(o.nickname) ? o.nickname : '';
+                var createTime = wx.isEmpty(o.create_time) ? o.create_time : '';
+                var content = wx.isEmpty(o.content) ? o.content : '';
+                var replyContent = wx.isEmpty(o.reply_content) ? o.reply_content : '';
+
+                html += '<div class="q-a"><div class="q-a-u">' + nickname + '&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;' + createTime + '</div>\
+                         <div class="q-a-wt">咨询内容：' + content + '</div><div class="q-a-hd">客服回复：' + replyContent + '</div></div>';
             });
-            var more = leight == limit ? '<a href="javascript:;" onclick="productQa(' + pid + ',' + limit + ',' + (offset + limit) + ')"><span class="font10">查看更多</span></a>' : '<a href="javascript:;">无更多内容</a>';
+            var more = leight == limit ? '<a href="javascript:;" onclick="productQa(' + pid + ',' + limit + ',' + (offset + limit) + ')">' +
+                '<span class="font10">查看更多</span></a>' : '<a href="javascript:void(0);">无更多内容</a>';
             $('#more_qa').html(more).show();
             html && $('.q-a-box').append(html);
         });
@@ -296,15 +320,23 @@
             {
                 var html = '';
                 $.each(data.comments, function (i, o) {
+                    o.nickname = wx.isEmpty(o.nickname) ? o.nickname : '';
+                    o.content = wx.isEmpty(o.content) ? o.content : '';
+                    o.create_time = wx.isEmpty(o.create_time) ? o.create_time : '';
+                    o.weight = wx.isEmpty(o.weight) ? o.weight+'kg' : '';
+                    o.height = wx.isEmpty(o.height) ? o.height+'cm' : '';
+                    o.color = wx.isEmpty(o.color) ? o.color : '';
+                    o.size = wx.isEmpty(o.size) ? o.size : '';
+
                     html += '<div class="cmt-body">\
                       <div class="user-comment">\
                         <div class="u-tx"><img class="lazy" src="'+wx.static_url+'images/lazy.gif" data-original="'+wx.img_url+'designer/'+idToPath(o.uid)+'icon.jpg'+'" width="50" height="50" /></div>\
-                        <div class="u-cmt"><span class="font17">'+ o.uname+'</span><p>'+ o.content+'</p></div>\
+                        <div class="u-cmt"><span class="font17">'+o.nickname +'</span><p>'+o.content +'</p></div>\
                         <div class="u-time"><span class="font2">'+ o.create_time+' </span></div>\
                       </div>\
                       <div class="u-info">\
                         <table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>\
-                            <td width="70%" height="25">身高：'+ o.height+'cm&nbsp;&nbsp;&nbsp;&nbsp;体重：'+ o.weight+'kg&nbsp;&nbsp;&nbsp;&nbsp;颜色：'+ o.color+'&nbsp;&nbsp;&nbsp;&nbsp;尺码：'+ o.size+'</td>\
+                            <td width="70%" height="25">身高：'+o.height +'cm&nbsp;&nbsp;&nbsp;&nbsp;体重：'+ o.weight+'&nbsp;&nbsp;&nbsp;&nbsp;颜色：'+ o.color+'&nbsp;&nbsp;&nbsp;&nbsp;尺码：'+ o.size+'</td>\
                             <td width="13%"><div class="u-ly" onclick="tops(this, '+ o.comment_id+' ,1)">对我有用('+ o.is_valid+')</div></td><td width="13%"><div class="u-ly" onclick="tops(this, '+ o.comment_id+' ,0)">对我无用('+ o.is_invalid+')</div></td>\
                           </tr></table>\
                       </div>\

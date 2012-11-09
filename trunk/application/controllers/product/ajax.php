@@ -14,7 +14,6 @@ class Ajax extends MY_Controller
 
     }
 
-
     public function getProductByClass()
     {
         $class_id = (int)$this->input->get('class_id');
@@ -31,6 +30,9 @@ class Ajax extends MY_Controller
         self::json_output($response, true);
     }
 
+    /**
+     * 热闹评论
+     */
     public function hotComment()
     {
         $this->load->model('product/Model_Product', 'product');
@@ -40,7 +42,7 @@ class Ajax extends MY_Controller
         {
             $pids = array_keys($response);
             $this->load->model('product/Model_Product_comment', 'comment');
-            $tmp = $this->comment->getCommentByPid($pids, 10, 0, 'pid, uid, uname, title, content', '','pid');
+            $tmp = $this->comment->getCommentAndUserByPid($pids, 10, 0, 'pid, user.uid, user.uname, title, content, user.nickname', '','pid', 'comment_id desc');
             foreach ($tmp as $key => $item) {
                 $response[$item['pid']] += $item;
             }
