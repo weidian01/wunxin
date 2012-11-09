@@ -69,6 +69,25 @@ class Model_Product_QA extends MY_Model
     }
 
     /**
+     * 获取产品疑难问答和用户信息 -- 通过产品ID
+     *
+     * @param $pid
+     * @param int $limit
+     * @param int $offset
+     * @param string $fields
+     * @param null $order
+     * @return mixed
+     */
+    public function getProductQaAndUserByPid($pid, $limit = 20, $offset = 0, $fields = '*', $order = null)
+    {
+        list($key, $fields) = self::formatField($fields);
+        $this->db->select($fields);
+        $this->db->join('user', 'user.uid=product_qa.uid', 'left');
+        $order && $this->db->order_by($order);
+        return $this->db->get_where('product_qa', array('pid' => $pid), $limit, $offset)->result_array($key);
+    }
+
+    /**
      * 获取用户对产品疑难问答
      *
      * @param int $uId
