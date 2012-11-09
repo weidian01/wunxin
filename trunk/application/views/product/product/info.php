@@ -270,7 +270,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="sidebox" id="browseHistory" style="display:none">
       <div class="side-tit2">
         <div class="viewrecord">最近浏览</div>
-        <div class="clearrecord" onclick="clearBrowseHistory()">清除</div>
+        <div class="clearrecord" onclick="wx.clearBrowseHistory()">清除</div>
       </div>
     </div>
   </div>
