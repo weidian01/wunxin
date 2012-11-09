@@ -89,13 +89,6 @@
         $('#browseHistory').append(html).show();
     }
 
-    /*清空最近浏览*/
-    function clearBrowseHistory()
-    {
-        wx.setCookie('browseHistory', '', 0);
-        $('#browseHistory').fadeOut('fast');
-    }
-
     /*保存最近浏览*/
     function setBrowseHistory(id, name, price)
     {
@@ -216,7 +209,7 @@
                 html += '<div class="bdan2">\
                           <table width="95%" border="0" cellspacing="0" cellpadding="0">\
                             <tr>\
-                              <td><a href="'+wx.productURL(item.pid)+'" title="'+item.pname+'" target="_blank">'+item.pname.substring(0, 12)+'</a></td>\
+                              <td><a href="'+wx.productURL(item.pid)+'" title="'+item.pname+'" target="_blank" class="hot_comment_item">'+item.pname+'</a></td>\
                               <td><span class="font4">￥'+wx.fPrice(item.sell_price)+'</span></td>\
                             </tr>\
                           </table>\

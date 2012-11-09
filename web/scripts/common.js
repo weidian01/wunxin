@@ -917,6 +917,13 @@ wx.productURL = function(pid)
     return  wx.base_url + 'product/' + pid;
 }
 
+//清空最近浏览记录
+wx.clearBrowseHistory = function ()
+{
+    wx.setCookie('browseHistory', '', 0);
+    $('#browseHistory').fadeOut('fast');
+}
+
 wx.initLoginStatus();
 
 wx.cartGlobalInit();

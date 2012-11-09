@@ -89,7 +89,7 @@ $(document).ready(function(){
       <div class="sidebox" id="browseHistory" style="display:none">
         <div class="side-tit2">
           <div class="viewrecord">最近浏览</div>
-          <div class="clearrecord" onclick="clearBrowseHistory()">清除</div>
+          <div class="clearrecord" onclick="wx.clearBrowseHistory()">清除</div>
         </div>
       </div>
 
