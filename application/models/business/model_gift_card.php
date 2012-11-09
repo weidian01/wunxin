@@ -36,7 +36,7 @@ class Model_Gift_Card extends MY_Model
      */
     public function cardVerify($cardNo, $cardPassword)
     {
-        $cardPassword = md5($cardPassword);
+        //$cardPassword = md5($cardPassword);
 
         $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'card_pass' => $cardPassword))->row_array();
 
@@ -64,7 +64,7 @@ class Model_Gift_Card extends MY_Model
      */
     public function getCardInfoByCid($cardNo)
     {
-        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'status' => 1))->row_array();
+        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'status' => 1))->row_array();
 
         return empty ($data) ? null : $data;
     }
@@ -95,6 +95,14 @@ class Model_Gift_Card extends MY_Model
         return $this->db->select('*')->from('card')->where('uid', $uId)->where('status', 1)->count_all_results();
     }
 
+    /**
+     * 获取用户的卡和卡模型信息
+     *
+     * @param $uId
+     * @param int $limit
+     * @param int $offset
+     * @return null
+     */
     public function getUserCardInfoAndModel($uId, $limit = 20, $offset = 0)
     {
         $field = 'id, card_no, card.model_id, card.card_amount, card_pass, start_time, end_time, integral, uid, uname, use_num, status, card.create_time,
@@ -112,6 +120,12 @@ class Model_Gift_Card extends MY_Model
         return empty ($data) ? null : $data;
     }
 
+    /**
+     * 获取用户的卡和卡模型信息数量
+     *
+     * @param $uId
+     * @return mixed
+     */
     public function getUserCardInfoAndModelCount($uId)
     {
         $this->db->select('*');
@@ -156,9 +170,21 @@ class Model_Gift_Card extends MY_Model
      * 卡使用
      *
      * @param $cardNo
+     * @param $uId
+     * @param $amount
      */
-    public function cardUse($cardNo)
+    public function useCard($cardNo, $uId, $amount)
     {
+        $amount = (int)$amount;
 
+        $this->db->where('card_no', $cardNo);
+        $this->db->where('uid', $uId);
+        $this->db->where('status', '2');
+        $this->db->where('end_time >=', date('Y-m-d H:i:s', TIMESTAMP));
+
+        $data = array(
+            ''
+        );
+        return $this->db->update('card', $data);
     }
 }

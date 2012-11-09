@@ -1,47 +1,47 @@
 @charset "utf-8"; 
 .process{height:33px; background-color:#e9e9e9}
-.process ul li{float:left; height:33px; line-height:33px; text-align:center; width:300px; background:url(/images/shoppingbg.png) no-repeat right -292px; padding-left:26px; font-size:15px; color:#777; font-weight:bold;font-family:"&#24494; &#36719; &#38597; &#40657; "}
-.process ul li.curr{color:#fff;background:#333 url(/images/shoppingbg.png) no-repeat;background-position:right -325px;_background-position:right -324px}
+.process ul li{float:left; height:33px; line-height:33px; text-align:center; width:300px; background:url(http://wunxin.com/images/shoppingbg.png) no-repeat right -292px; padding-left:26px; font-size:15px; color:#777; font-weight:bold;font-family:"&#24494; &#36719; &#38597; &#40657; "}
+.process ul li.curr{color:#fff;background:#333 url(http://wunxin.com/images/shoppingbg.png) no-repeat;background-position:right -325px;_background-position:right -324px}
 .process ul li.curr2{color:#fff;background:#333}
-.process ul li.current{background:#333 url(/images/flu_03.gif) no-repeat left top;width:302px;color:#fff}
+.process ul li.current{background:#333 url(http://wunxin.com/images/flu_03.gif) no-repeat left top;width:302px;color:#fff}
 .process ul li.last{background:none;width:302px}
-.process ul li.last2{background:url(/images/buy_bg_03.gif) no-repeat left;width:302px}
-.process ul li.bgcart{background:url(/images/shoppingbg.png) no-repeat;background-position:right -259px;_background-position:right -258px}
+.process ul li.last2{background:url(http://wunxin.com/images/buy_bg_03.gif) no-repeat left;width:302px}
+.process ul li.bgcart{background:url(http://wunxin.com/images/shoppingbg.png) no-repeat;background-position:right -259px;_background-position:right -258px}
 h1.shoppingitem{padding:8px 6px;font-size:26px;font-family:"&#24494; &#36719; &#38597; &#40657; ";color:#aaa;font-weight:normal}
 .shopping-cart table{border:1px solid #ddd}
 .shopping-cart table td{border-bottom:1px dashed #ddd;padding:0px 5px;line-height:18px}
-.shopping-cart table td.tit{height:24px;line-height:24px;border-bottom:1px solid #ddd;padding:0px;background:url(/images/bg2_03.gif) repeat-x;font-size:14px;color:#888}
+.shopping-cart table td.tit{height:24px;line-height:24px;border-bottom:1px solid #ddd;padding:0px;background:url(http://wunxin.com/images/bg2_03.gif) repeat-x;font-size:14px;color:#888}
 .shopping-cart table td a.gn{color:#1859a5}
 input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-align:center}
 .gsum{padding:6px 15px;text-align:right}
 .empty{float:left;height:30px;padding:20px 0 0 15px;width:85px}
-.empty a{display:block;height:10px;line-height:10px;padding:0 0 0 15px;background:url(/images/shoppingbg.png) no-repeat -135px 0px;text-decoration:none;}
-.empty a:hover{background:url(/images/shoppingbg.png) no-repeat -135px -10px;text-decoration:none;}
+.empty a{display:block;height:10px;line-height:10px;padding:0 0 0 15px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -135px 0px;text-decoration:none;}
+.empty a:hover{background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -135px -10px;text-decoration:none;}
 .storage{float:left;padding:20px 0 0 5px;width:200px;overflow:hidden}
 .st-d{float:left;width:85px;height:21px;}
 .st-a{float:left;width:90px;height:10px;padding:0 0 0 15px}
-.st-d a{display:block;height:12px;line-height:12px;padding:0 0 0 25px;background:url(/images/shoppingbg.png) no-repeat 0px -358px;text-decoration:none;}
-.st-d a:hover{display:block;height:12px;width:70px;padding:0 0 0 25px;background:url(/images/shoppingbg.png) no-repeat 0px -370px;text-decoration:none;}
-.st-a a{display:block;height:13px;line-height:13px;padding:0 0 0 20px;background:url(/images/shoppingbg.png) no-repeat -130px -358px;text-decoration:none;}
-.st-a a:hover{display:block;height:13px;line-height:13px;padding:0 0 0 20px;background:url(/images/shoppingbg.png) no-repeat -130px -371px;text-decoration:none;}
+.st-d a{display:block;height:12px;line-height:12px;padding:0 0 0 25px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 0px -358px;text-decoration:none;}
+.st-d a:hover{display:block;height:12px;width:70px;padding:0 0 0 25px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 0px -370px;text-decoration:none;}
+.st-a a{display:block;height:13px;line-height:13px;padding:0 0 0 20px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -130px -358px;text-decoration:none;}
+.st-a a:hover{display:block;height:13px;line-height:13px;padding:0 0 0 20px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -130px -371px;text-decoration:none;}
 .post-btn{float:right;text-align:right;padding:10px 0px 5px 0px;width:265px}
 .other-shopping{margin:15px 0px 0px 0px;border:1px solid #ddd;width:978px;overflow:hidden}
-.other-shopping .tit{height:24px;padding-left:15px;line-height:24px;border-bottom:1px solid #ddd;background:url(/images/bg2_03.gif) repeat-x;font-size:13px;color:#666;font-weight:bold}
+.other-shopping .tit{height:24px;padding-left:15px;line-height:24px;border-bottom:1px solid #ddd;background:url(http://wunxin.com/images/bg2_03.gif) repeat-x;font-size:13px;color:#666;font-weight:bold}
 .other-c{position:relative;z-index:1;/*padding:15px 30px;*/width:978px;overflow:hidden}
 .other-cg{height:330px;width:978px;overflow:hidden}
 .other-c .rq{float:left;width:122px;padding:0px 7px 0px 6px;line-height:16px}
 .other-c .rqimg img{border:1px solid #eee}
 .other-c .rqimg{padding-bottom:6px}
 .other-c .rq p{padding-bottom:6px}
-.other-pre{position:absolute;z-index:100;width:22px;height:100px;top:40px;left:0px;background:url(/images/shoppingbg.png) no-repeat 0px 0px}
+.other-pre{position:absolute;z-index:100;width:22px;height:100px;top:40px;left:0px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 0px 0px}
 .other-pre a{display:block;width:22px;height:100px;text-indent:-99em}
-.other-next{position:absolute;z-index:100;width:22px;height:100px;background:url(/images/shoppingbg.png) no-repeat;background-position:-22px 0px;_background-position:-21px 0px;top:40px;right:0px}
+.other-next{position:absolute;z-index:100;width:22px;height:100px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat;background-position:-22px 0px;_background-position:-21px 0px;top:40px;right:0px}
 .other-next a{display:block;width:22px;height:100px;text-indent:-99em}
 .switch{text-align:right;padding:10px 15px 0px 0px}
 .other-c .switch a{line-height:20px;padding:0px 4px;border:1px solid #ddd;color:#888;margin-right:5px;text-decoration:none}
 .other-c .switch a.curr{background-color:#a10000;color:#fff;border:1px solid #a10000}
 .tips{padding:15px 0px 20px 0px}
-.order-c{padding:25px 10px 25px 100px;background:url(/images/shoppingbg.png) no-repeat 55px -383px}
+.order-c{padding:25px 10px 25px 100px;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 55px -383px}
 .order-c p{font-size:24px;color:#a10000;font-family:"&#24494; &#36719; &#38597; &#40657; ";padding-bottom:8px}
 .payment{padding:20px 40px 20px 55px}
 .payment p{padding:15px 0px 5px 0px;font-family:"&#24494; &#36719; &#38597; &#40657; "}
@@ -50,8 +50,8 @@ input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-al
 .pradio{float:left;width:30px;height:30px;padding-top:14px}
 .bankpic{float:left;width:159px;height:42px;border:1px solid #eee}
 .banktu{float:left;border:1px solid #a10000}
-.bankpic a{display:block;width:157px;height:40px;overflow:hidden;text-indent:-99em;border:1px solid #eee;background:url(/images/bank.jpg) no-repeat}
-.bankpic span{display:block;width:157px;height:40px;overflow:hidden;text-indent:-99em;background:url(/images/bank.jpg) no-repeat}
+.bankpic a{display:block;width:157px;height:40px;overflow:hidden;text-indent:-99em;border:1px solid #eee;background:url(http://wunxin.com/images/bank.jpg) no-repeat}
+.bankpic span{display:block;width:157px;height:40px;overflow:hidden;text-indent:-99em;background:url(http://wunxin.com/images/bank.jpg) no-repeat}
 .bankpic a:hover{border:1px solid #a10000}
 .bankpic span#onlinepay{background-position:0px -96px}
 .bankpic span#icbc{background-position:0px -144px}
@@ -92,9 +92,12 @@ input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-al
 .cartlist{padding:20px 40px}
 .cartlist .tab3 tr td a.gn2{color:#1859a5}
 .sy2{padding:6px 0 6px 0}
-.invo{display:block;width:136px;height:31px;cursor:pointer;background:url(/images/shoppingbg.png) no-repeat 0px -144px}
+.invo{display:block;width:136px;height:31px;cursor:pointer;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 0px -144px}
 .sybox{background-color:#fff;border:1px solid #e0e0e0;padding:15px;margin-bottom:15px}
-.ordermark{display:block;width:136px;height:31px;cursor:pointer;background:url(/images/shoppingbg.png) no-repeat 0px -108px}
+.gift_card{display:block;width:136px;height:31px;cursor:pointer;background:url(http://wunxin.com/images/button_images.png) no-repeat -16px -180px}
+.gift_card_box{background-color:#fff;border:1px solid #e0e0e0;padding:15px;margin-bottom:15px}
+.ordermark{display:block;width:136px;height:31px;cursor:pointer;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 0px -109px}
+.use_gift_card{display:block;width:92px;height:34px;cursor:pointer;background:url(http://wunxin.com/images/button_images.png) no-repeat -58px -212px}
 .order-info{ line-height:20px;  width:898px;  overflow:hidden}
 .order-sum{ float:right;  width:300px;  text-align:right}
 .order-fj{ float:left;  width:400px}
@@ -102,10 +105,10 @@ input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-al
 .other-shopping .tit span{ color:#a10000;  cursor:pointer}
 .tta{ width:350px}
 .topost{ padding:18px 0px 20px 0px;  text-align:right}
-.continue_shopping{float:left;width:115px;height:32px;padding-left:10px;display: block;background:url(/images/button_images.png) no-repeat -35px -33px;}
-.go_payment{float:left;width:126px;height:32px;display: block;background:url(/images/button_images.png) no-repeat -24px 0px;}
-.order_submit_button{float:right;width:150px;height:41px;display: block;background:url(/images/button_images.png) no-repeat 0px -66px;}
-#pay_now_id{float:right;width:150px;height:41px;display: block;background:url(/images/button_images.png) no-repeat 0px -108px;}
+.continue_shopping{float:left;width:115px;height:32px;padding-left:10px;display: block;background:url(http://wunxin.com/images/button_images.png) no-repeat -35px -33px;}
+.go_payment{float:left;width:126px;height:32px;display: block;background:url(http://wunxin.com/images/button_images.png) no-repeat -24px 0px;}
+.order_submit_button{float:right;width:150px;height:41px;display: block;background:url(http://wunxin.com/images/button_images.png) no-repeat 0px -66px;}
+#pay_now_id{float:right;width:150px;height:41px;display: block;background:url(http://wunxin.com/images/button_images.png) no-repeat 0px -108px;}
 
 /*活动CSS开始*/
 .pro-title{position:relative;z-index:0;padding:0 10px 0 30px;height:22px;line-height:22px;padding-bottom:4px;overflow:hidden;}
@@ -113,7 +116,7 @@ input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-al
 .pro-title span, .pro-title{color:#C00;font-weight:bold}
 .pro-title{height:22px;line-height:22px;overflow:hidden;position:relative;z-index:0}
 .pro-con dt .pro-title span.zdsp{margin-top:0}
-span.zdsp{background:url("/images/bg_sprite.png") no-repeat scroll -220px -300px transparent;cursor:pointer;display:inline-block;height:18px;line-height:0;vertical-align:middle;width:65px;}
+span.zdsp{background:url("http://wunxin.com/images/bg_sprite.png") no-repeat scroll -220px -300px transparent;cursor:pointer;display:inline-block;height:18px;line-height:0;vertical-align:middle;width:65px;}
 #cart_redemption_box dt b, #top_promotion dt b{display:inline-block;height:16px;line-height:16px;overflow:hidden;vertical-align:-4px}
 .promo_title b{width:105px}
 .pro-con .fl{height:62px;margin:2px 6px 0 10px;width:62px}
@@ -125,13 +128,13 @@ img{border:0 none;margin:0}
 .pro-con del, .hg_list del{color:#999;font-family:Arial}
 .pro-con strong, .hg_list strong{font-family:Arial;font-weight:bold;margin-right:10px}
 .red{color:#C00}
-.a-gray{background:url("/images/bg_buycarsprite2.gif") repeat scroll 100% -110px transparent;color:#666;cursor:default;display:inline-block;height:22px;line-height:21px;margin:4px 0 0 2px;overflow:hidden;padding:0 12px 0 0;text-decoration:none;vertical-align:middle}
-.a-gray s, .a-gray2 s{background:url("/images/bg_buycarsprite2.gif") repeat scroll 0 -110px transparent;display:inline-block;float:left;height:22px;width:10px}
+.a-gray{background:url("http://wunxin.com/images/bg_buycarsprite2.gif") repeat scroll 100% -110px transparent;color:#666;cursor:default;display:inline-block;height:22px;line-height:21px;margin:4px 0 0 2px;overflow:hidden;padding:0 12px 0 0;text-decoration:none;vertical-align:middle}
+.a-gray s, .a-gray2 s{background:url("http://wunxin.com/images/bg_buycarsprite2.gif") repeat scroll 0 -110px transparent;display:inline-block;float:left;height:22px;width:10px}
 a.view_detail{color:#999;float:right;height:22px;line-height:22px;margin:2px 10px 0 0}
-.a-red s{background:url("/images/bg_buycarsprite2.gif") no-repeat scroll 0 -80px transparent;display:inline-block;float:left;height:22px;width:6px}
-.a-red{background:url("/images/bg_buycarsprite2.gif") no-repeat scroll 100% -80px transparent;color:#FFF;display:inline-block;font-weight:bold;height:22px;line-height:21px;margin:2px 0 0 2px;overflow:hidden;padding:0 7px 0 0;text-decoration:none;vertical-align:middle}
+.a-red s{background:url("http://wunxin.com/images/bg_buycarsprite2.gif") no-repeat scroll 0 -80px transparent;display:inline-block;float:left;height:22px;width:6px}
+.a-red{background:url("http://wunxin.com/images/bg_buycarsprite2.gif") no-repeat scroll 100% -80px transparent;color:#FFF;display:inline-block;font-weight:bold;height:22px;line-height:21px;margin:2px 0 0 2px;overflow:hidden;padding:0 7px 0 0;text-decoration:none;vertical-align:middle}
 s, strike, del{text-decoration:line-through}
-.jcarousel-item .zeng, .jcarousel-item .zhe, .jcarousel-item .jian{background:url(/images/bg_sprite.png) no-repeat;position:relative;left:0;top:-104px;width:30px;height:30px;}
+.jcarousel-item .zeng, .jcarousel-item .zhe, .jcarousel-item .jian{background:url(http://wunxin.com/images/bg_sprite.png) no-repeat;position:relative;left:0;top:-104px;width:30px;height:30px;}
 .jcarousel-item .jian {background-position: -620px 0;}
 .jcarousel-item .zeng{background-position:-500px 0;}
 .jcarousel-item .zhe{background-position:-560px 0;}

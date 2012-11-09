@@ -239,6 +239,7 @@ $error[50020] = array('error' => '50020', 'msg' => '已晒单过此产品', 'cod
 /**
  * 购物车错误代码 -- 购物车相关错误代码以60开头
  */
+$error[60001] = array('error' => '60001', 'msg' => '购物车为空', 'code' => 'cart_empty');
 $error[60002] = array('error' => '60002', 'msg' => '添加产品到购物车失败', 'code' => 'add_products_to_cart_failure');
 $error[60003] = array('error' => '60003', 'msg' => '添加产品到购物车参数不全', 'code' => 'add_products_to_cart_parameter_failure');
 
@@ -289,6 +290,14 @@ $error[70012] = array('error' => '70012', 'msg' => '删除礼物卡失败', 'cod
 
 $error[70013] = array('error' => '70013', 'msg' => '参数不全', 'code' => 'parameter_failure');
 $error[70014] = array('error' => '70014', 'msg' => '问题不存在', 'code' => 'the_problem_does_not_exist');
+
+$error[70015] = array('error' => '70015', 'msg' => '使用礼品卡参数不全', 'code' => 'use_gift_card_parameter_failure');
+$error[70016] = array('error' => '70016', 'msg' => '礼品卡未绑定', 'code' => 'gift_card_not_banding');
+$error[70017] = array('error' => '70017', 'msg' => '礼品卡未不存在', 'code' => 'gift_card_not_exists');
+$error[70018] = array('error' => '70018', 'msg' => '礼品卡已过期', 'code' => 'gift_card_already_expired');
+$error[70019] = array('error' => '70019', 'msg' => '礼品卡不属于您', 'code' => 'gift_card_not_your_self');
+$error[70020] = array('error' => '70020', 'msg' => '礼品卡密码错误', 'code' => 'gift_card_password_error');
+$error[70021] = array('error' => '70021', 'msg' => '礼品卡金额为空', 'code' => 'gift_card_amount_empty');
 
 
 
