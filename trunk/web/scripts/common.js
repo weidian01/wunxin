@@ -613,7 +613,7 @@ wx.favoriteProductLayer = function(status, bindingId){
 wx.productCommentLayer = function (pId, pNmae)
 {
     var html ='<input type="hidden" name="pid" value="'+pId+'" id="pid"> <div class="commentDIV"><div class="tit">我要评论<div class="close-cm" onclick="wx.layerClose()"></div></div>\
-    <div class="cmt-gname"><strong>商品名称：</strong>'+pNmae.substring(0, 80)+'</div><div class="cmtbox"> <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span>\
+    <div class="cmt-gname"><strong>商品名称：</strong><a href="'+wx.productURL(pId)+'" target="_blank">'+pNmae+'</a></div><div class="cmtbox"> <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span>\
     <input type="hidden" value="5" name="product_score" id="p_s_s_id"/><dt><strong>商品评分：</strong></dt> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 1)"></dd> \
     <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 2)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 3)"></dd>\
     <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 4)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 5)"></dd></dl>\
@@ -858,9 +858,10 @@ wx.productQaLayer = function (data)
 {
     var html = '<input type="hidden" name="pid" value="'+data.pid+'" id="pid_id"/><div class="commentDIV"> <div class="tit">我的提问 <div class="close-cm" onclick="wx.layerClose()"></div> </div>\
       <div class="addto-goods" style="padding-bottom:5px;">\
-        <div class="p-img-g"><img src="'+wx.static_url+'upload/product/'+idToPath(data.pid)+'icon.jpg" width="109" height="109" /></div>\
+        <div class="p-img-g"><a href="'+wx.productURL(data.pid)+'" target="_blank">' +
+        '<img src="'+wx.static_url+'upload/product/'+idToPath(data.pid)+'icon.jpg" width="109" height="109" title="'+data.pname+'"/></a></div>\
         <div class="p-cont-g2">\
-          <a href="#"><strong>'+data.pname.substring(0, 50)+'</strong></a><br />\
+          <a href="'+wx.productURL(data.pid)+'" target="_blank"><strong>'+data.pname+'</strong></a><br />\
           售价：<span class="popfont6">'+wx.fPrice(data.sell_price)+'</span> 元<br />\
           提问数量：<span class="popfont6">'+data.qa_num+'</span> 条\
           <div class="p-cont-pf">\
@@ -873,7 +874,7 @@ wx.productQaLayer = function (data)
       <div class="questbox">\
       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom:8px;">\
       <tr>\
-        <td width="17%" height="28"><strong>提问类型</strong>*</td>\
+        <td width="17%" height="28"><strong>提问类型</strong><span class="popfont2">*</span></td>\
         <td width="19%"><input class="bdbox" name="q_type" type="radio" value="1" checked="checked"/> <label class="bdlabel">尺码问题</label></td>\
         <td width="20%"><input class="bdbox" name="q_type" type="radio" value="2" />&nbsp;<label class="bdlabel">颜色问题</label> </td>\
         <td width="22%"><input class="bdbox" name="q_type" type="radio" value="3" />&nbsp;<label class="bdlabel">商品材质</label></td>\
@@ -882,7 +883,7 @@ wx.productQaLayer = function (data)
     </table>\
     <table class="queat-ms" width="100%" border="0" cellspacing="0" cellpadding="0">\
       <tr>\
-        <td width="16%" valign="top"><strong>您的问题</strong></td>\
+        <td width="16%" valign="top"><strong>您的问题</strong><span class="popfont2">*</span></td>\
         <td width="84%">\
           <input name="textfield" type="text" class="popinput4" id="title_id" /><br />\
           <span class="popfont2">请输入5至50个字符</span></td>\

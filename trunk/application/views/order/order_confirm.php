@@ -6,6 +6,7 @@
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
@@ -362,22 +363,41 @@ $(document).ready(function(){
       </table>
       <div class="order-info">
         <div class="order-fj">
+            <div class="sy"><span class="gift_card" id="gift_card" onclick="syinfo('gift_card_box','gift_card')"></span></div>
+            <div class="gift_card_box" id="gift_card_box" style="display: none;">
+                <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td width="19%" align="right">卡号：</td>
+                        <td width="81%"><input class="input1" type="text" name="card_number" id="card_number"></td>
+                    </tr>
+                    <tr>
+                        <td align="right">密码：</td>
+                        <td><input class="input1" type="text" name="card_password" id="card_password"></td>
+                    </tr>
+                    <tr>
+                        <td align="right" colspan="2"><s class="use_gift_card" onclick="order.useGiftCard('use_card_button');" id="use_card_button"></s></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
           <div class="sy2"><span class="ordermark" id="omk" onclick="marksinfo('syinv2','omk')"></span></div>
           <div class="sybox" id="syinv2" style="display:none;">
             <textarea class="tta" name="annotated" rows="6" id="annotated_id"></textarea>
             <p style="padding-top:8px;"><span class="font2">声明：备注中的有关收货人信息、支付方式、配送方式等购买要求一律以上面的选择为准，备注无效。</span><br/>
-                <!--
+
               是否打印价格：
-              <input name="" type="radio" value="" />
+              <input name="is_print_price" type="radio" value="1" checked="checked"/>
               是
-              <input name="" type="radio" value="" />
+              <input name="is_print_price" type="radio" value="0" />
               否 （如送朋友的商品可不打印价格哦）</p>
-              -->
+
           </div>
         </div>
         <div class="order-sum">运费：￥0<br/>
-          <!--礼品卡冲抵：￥0.00<br/>
-          虚拟账户余额冲抵：￥0.00-->
+          礼品卡冲抵：￥0.00<br/>
+          虚拟账户余额冲抵：￥0.00
           <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥<?=fPrice($total_price);?></span></div>
         </div>
       </div>
@@ -400,13 +420,13 @@ function syinfo(a, b)
     var dsc = document.getElementById(b);
     if (dsy.style.display == "none") {
         dsy.style.display = "";
-        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
-        dsc.style.backgroundPosition = "0px -179px";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/button_images.png) no-repeat";
+        dsc.style.backgroundPosition = "-16px -150px";
     }
     else {
         dsy.style.display = "none";
-        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
-        dsc.style.backgroundPosition = "0px -144px";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/button_images.png) no-repeat";
+        dsc.style.backgroundPosition = "-16px -180px";
     }
 }
 
@@ -421,7 +441,7 @@ function marksinfo(a, b)
     } else {
         dsy.style.display = "none";
         dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
-        dsc.style.backgroundPosition = "0px -108px";
+        dsc.style.backgroundPosition = "0px -109px";
     }
 }
 

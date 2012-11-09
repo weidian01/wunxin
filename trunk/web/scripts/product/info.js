@@ -235,35 +235,36 @@
                 var main = '';
                 $.each(data.share, function (i, o) {
 
+                    switch (o.body_type){
+                        case '1': bodyTypeName = '偏瘦';break;
+                        case '2': bodyTypeName = '均称';break;
+                        case '3': bodyTypeName = '偏胖';break;
+                        case '4': bodyTypeName = '肥胖';break;
+                        default :bodyTypeName = '均称';
+                    }
+                    o.title = wx.isEmpty(o.title) ? o.title : '';
+                    o.nickname = wx.isEmpty(o.nickname) ? o.nickname : '';
+                    o.height = wx.isEmpty(o.height) ? o.height+'cm / ': '';
+                    o.weight = wx.isEmpty(o.weight) ? o.weight+'kg' : '';
+                    o.integral = wx.isEmpty(o.integral) ? o.integral : 0;
+                    o.color = wx.isEmpty(o.color) ? o.color : '';
+                    o.size = wx.isEmpty(o.size) ? o.size : '';
+                    o.content = wx.isEmpty(o.content) ? o.content : '';
+                    o.img_addr = o.img_addr.replace("\\", "/");
+
                     if(offset == 0 && !main)
                     {
-                        switch (o.body_type){
-                            case '1': bodyTypeName = '偏瘦';break;
-                            case '2': bodyTypeName = '均称';break;
-                            case '3': bodyTypeName = '偏胖';break;
-                            case '4': bodyTypeName = '肥胖';break;
-                            default :bodyTypeName = '均称';
-                        }
-                        var title = wx.isEmpty(o.title) ? o.title : '';
-                        var nickname = wx.isEmpty(o.nickname) ? o.nickname : '';
-                        var height = wx.isEmpty(o.height) ? o.height+'cm / ': '';
-                        var weight = wx.isEmpty(o.weight) ? o.weight+'kg' : '';
-                        var integral = wx.isEmpty(o.integral) ? o.integral : 0;
-                        var color = wx.isEmpty(o.color) ? o.color : '';
-                        var size = wx.isEmpty(o.size) ? o.size : '';
-                        var content = wx.isEmpty(o.content) ? o.content : '';
-
-                        main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' +title+
-                            '<img src="' + wx.static_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：'+nickname+'</td></tr></table>\
+                        main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' +o.title+
+                            '<img src="' + wx.static_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：'+o.nickname+'</td></tr></table>\
                                 <div class="sd-main"><div style="text-align:center">\
                                   <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" /></div>\
                                   <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">\
                                     <tr><td align="center" bgcolor="#f3f3f3">用户积分</td><td align="center" bgcolor="#f3f3f3">身高/体重</td>\
                                     <td align="center" bgcolor="#f3f3f3">体型</td><td align="center" bgcolor="#f3f3f3">颜色</td><td align="center" bgcolor="#f3f3f3">尺码</td></tr>\
-                                    <tr><td align="center">'+integral+'</td><td align="center">'+height+weight+ '</td>' +
-                            '<td align="center">'+bodyTypeName+'</td><td align="center">'+color+'</td><td align="center">'+size+'</td></tr>\
+                                    <tr><td align="center">'+o.integral+'</td><td align="center">'+o.height+o.weight+ '</td>' +
+                            '<td align="center">'+bodyTypeName+'</td><td align="center">'+o.color+'</td><td align="center">'+o.size+'</td></tr>\
                                   </table>\
-                                  <p>' + content + '</p>\
+                                  <p>' + o.content + '</p>\
                                 </div>';
                         $('#share_main').replaceWith(main);
                     }
@@ -290,13 +291,13 @@
             var leight = 0;
 
             $.each(data, function (i, o) {leight++;
-                var nickname = wx.isEmpty(o.nickname) ? o.nickname : '';
-                var createTime = wx.isEmpty(o.create_time) ? o.create_time : '';
-                var content = wx.isEmpty(o.content) ? o.content : '';
-                var replyContent = wx.isEmpty(o.reply_content) ? o.reply_content : '';
+                o.nickname = wx.isEmpty(o.nickname) ? o.nickname : '';
+                o.create_time = wx.isEmpty(o.create_time) ? o.create_time : '';
+                o.content = wx.isEmpty(o.content) ? o.content : '';
+                o.reply_content = wx.isEmpty(o.reply_content) ? o.reply_content : '';
 
-                html += '<div class="q-a"><div class="q-a-u">' + nickname + '&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;' + createTime + '</div>\
-                         <div class="q-a-wt">咨询内容：' + content + '</div><div class="q-a-hd">客服回复：' + replyContent + '</div></div>';
+                html += '<div class="q-a"><div class="q-a-u">' + o.nickname + '&nbsp;&nbsp;<span class="font2">发表于</span>&nbsp;&nbsp;' + o.create_time + '</div>\
+                         <div class="q-a-wt">咨询内容：' + o.content + '</div><div class="q-a-hd">客服回复：' + o.reply_content + '</div></div>';
             });
             var more = leight == limit ? '<a href="javascript:;" onclick="productQa(' + pid + ',' + limit + ',' + (offset + limit) + ')">' +
                 '<span class="font10">查看更多</span></a>' : '<a href="javascript:void(0);">无更多内容</a>';
@@ -309,6 +310,8 @@
     function productComment(pid, page)
     {
         wx.jsonp(wx.base_url+'product/comment/ajaxComment', {'pid':pid, 'pageno':page}, function(data){
+
+
             if(data.totalCount > 0)
             {
                 var html = '';
@@ -329,7 +332,7 @@
                       </div>\
                       <div class="u-info">\
                         <table width="100%" border="0" cellspacing="0" cellpadding="0"><tr>\
-                            <td width="70%" height="25">身高：'+o.height +'cm&nbsp;&nbsp;&nbsp;&nbsp;体重：'+ o.weight+'&nbsp;&nbsp;&nbsp;&nbsp;颜色：'+ o.color+'&nbsp;&nbsp;&nbsp;&nbsp;尺码：'+ o.size+'</td>\
+                            <td width="70%" height="25">身高：'+o.height +'&nbsp;&nbsp;&nbsp;&nbsp;体重：'+ o.weight+'&nbsp;&nbsp;&nbsp;&nbsp;颜色：'+ o.color+'&nbsp;&nbsp;&nbsp;&nbsp;尺码：'+ o.size+'</td>\
                             <td width="13%"><div class="u-ly" onclick="tops(this, '+ o.comment_id+' ,1)">对我有用('+ o.is_valid+')</div></td><td width="13%"><div class="u-ly" onclick="tops(this, '+ o.comment_id+' ,0)">对我无用('+ o.is_invalid+')</div></td>\
                           </tr></table>\
                       </div>\

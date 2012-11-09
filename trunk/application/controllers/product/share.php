@@ -17,7 +17,7 @@ class share extends MY_Controller
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
-//echo '<pre>';print_r($_REQUEST);exit;
+
         if (empty ($pid) || empty ($title) || empty ($content)) {
             show_error('参数不全');
         }
@@ -36,8 +36,11 @@ class share extends MY_Controller
             show_error('你已对此商品进行过晒单');
         }
 
+        $this->load->model('product/model_product', 'product');
+        $pInfo = $this->product->getProductById($pid);
         $this->load->model('product/model_product_color', 'color');
-        $colorInfo = $this->color->getColorById($data['color_id']);
+        $colorInfo = $this->color->getColorById($pInfo['color_id']);
+
         $data = array(
             'pid' => $pid,
             'uid' => $this->uInfo['uid'],
@@ -47,13 +50,13 @@ class share extends MY_Controller
             'size' => $data['product_size'],
             'color' => $colorInfo['descr'],
         );
+
         $this->load->model('product/Model_Product_Share', 'share');
         $status = $this->share->productShare($data);
         if (!$status) {
             show_error('产品晒单失败');
         }
 
-        //
         foreach ($_FILES['images'] as $key => $item) {
             foreach ($item as $k => $v) {
                 $_FILES['image' . $k][$key] = $v;
@@ -283,7 +286,7 @@ class share extends MY_Controller
             $response['share'] = array();
             if($response['total'])
             {
-                $response['share'] = $this->share->getProductShareByPid($pid, $limit, $offset, array('share_id'=>'*'), 'share_id DESC');
+                $response['share'] = $this->share->getProductShareByPid($pid, $limit, $offset, array('share_id'=>'*'), 'share_id ASC');
                 //p($response['share']);exit;
                 if($response['share'])
                 {

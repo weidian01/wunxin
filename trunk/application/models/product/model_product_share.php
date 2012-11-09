@@ -26,6 +26,8 @@ class Model_Product_Share extends MY_Model
             'title' => $sInfo['title'],
             'content' => $sInfo['content'],
             'ip' => $sInfo['ip'],
+            'size' => $sInfo['size'],
+            'color' => $sInfo['color'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 

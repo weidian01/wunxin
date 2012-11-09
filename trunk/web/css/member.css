@@ -1,114 +1,25 @@
-@charset "utf-8";
-.user-login {
-    border: 1px solid #e0e0e0;
-    background: url(/images/bg-re_03.gif) repeat-x;
-    padding: 40px 30px 60px 30px;
-    width: 918px;
-    overflow: hidden;
-}
-
-.regist-lf {
-    float: left;
-    width: 370px;
-    text-align: center;
-    line-height: 25px;
-    padding-top: 110px;
-}
-
-.login-lef {
-    float: left;
-    width: 340px;
-    padding-top: 50px;
-    padding-left: 30px;
-}
-
-.login-lef p {
-    padding: 10px 0px 0px 0px;
-    line-height: 20px;
-    color: #666;
-}
-
-.turn-to-login {
-    padding: 10px 0 0 0;
-    text-align: center;
-}
-
-.turn-to-regist {
-    padding-top: 20px;
-}
-
-.regist-rgt {
-    float: left;
-    padding: 10px 0px 10px 30px;
-    width: 510px;
-    border-left: 1px solid #e0e0e0;
-}
-
-.reg-tit {
-    padding-bottom: 6px;
-    border-bottom: 1px solid #eee;
-}
-
-.reg-tit h1 {
-    ine-height: 30px;
-    color: #666;
-    font-weight: bold;
-    font-size: 18px;
-    font-family: "微软雅黑";
-}
-
-.mistake {
-    display: block;
-    float: left;
-    height: 20px;
-    line-height: 20px;
-    padding: 0px 10px 0px 20px;
-    background: #fff3e9 url(/images/rg_03.gif) no-repeat 4px center;
-    color: #D11010;
-}
-
-.txi {
-    display: block;
-    float: left;
-    height: 20px;
-    line-height: 20px;
-    padding: 0px 10px 0px 20px;
-    background: url(/images/rg_06.gif) no-repeat 4px center;
-    color: #888;
-}
-
-.user-login .regist-rgt a {
-    color: #1A87BB;
-    text-decoration: underline;
-}
-
-.tip3 {
-    width: 168px;
-    padding: 11px 0 0 10px;
-    background: url(/images/rg_16.gif) no-repeat 0px 6px;
-    height: 20px;
-    line-height: 20px;
-}
-
-.tips_box {
-    width: 958px;
-    border: 1px #E0E0E0 solid;
-    padding: 5px 10px;
-    background: #f7f7f7;
-    margin: 20px auto 0px auto;
-    text-align: center;
-}
-
-.tips_box #message_id { color: #b5161c; }
-
-/*外部登陆开始*/
-.other_login ul li{ float: left; padding: 8px; }
-.other_login ul li a{ margin-left: 24px; height: 23px; line-height: 23px; }
-.other_login ul li span { background-image: url("/images/icons/icon_cooperation.jpg"); background-repeat: no-repeat; display: block; height: 23px; position: absolute;width: 23px;}
-.icon_qq { background-position: 0 0;}
-.icon_sina { background-position: -115px 0;}
-.icon_renren { background-position: -46px 0;}
-.icon_163 { background-position: -69px 0; }
-.icon_kx { background-position: -92px 0; }
-.icon_douban { background-position: -161px 0; }
-/*外部登陆结束*/
+@charset "utf-8"; 
+.user-login{border:1px solid #e0e0e0; background:url(http://wunxin.com/images/bg-re_03.gif) repeat-x; padding:40px 30px 60px 30px; width:918px; overflow:hidden}
+.regist-lf{float:left; width:370px; text-align:center; line-height:25px; padding-top:110px}
+.login-lef{float:left; width:340px; padding-top:50px; padding-left:30px}
+.login-lef p{padding:10px 0px 0px 0px; line-height:20px; color:#666}
+.turn-to-login{padding:10px 0 0 0; text-align:center}
+.turn-to-regist{padding-top:20px}
+.regist-rgt{float:left; padding:10px 0px 10px 30px; width:510px; border-left:1px solid #e0e0e0}
+.reg-tit{padding-bottom:6px; border-bottom:1px solid #eee}
+.reg-tit h1{ine-height:30px; color:#666; font-weight:bold; font-size:18px; font-family:"&#24494; &#36719; &#38597; &#40657; "}
+.mistake{display:block; float:left; height:20px; line-height:20px; padding:0px 10px 0px 20px; background:#fff3e9 url(http://wunxin.com/images/rg_03.gif) no-repeat 4px center; color:#D11010}
+.txi{display:block; float:left; height:20px; line-height:20px; padding:0px 10px 0px 20px; background:url(http://wunxin.com/images/rg_06.gif) no-repeat 4px center; color:#888}
+.user-login .regist-rgt a{color:#1A87BB; text-decoration:underline}
+.tip3{width:168px; padding:11px 0 0 10px; background:url(http://wunxin.com/images/rg_16.gif) no-repeat 0px 6px;  height:20px;  line-height:20px}
+.tips_box{ width:958px;  border:1px #E0E0E0 solid;  padding:5px 10px;  background:#f7f7f7;  margin:20px auto 0px auto;  text-align:center}
+.tips_box #message_id{color:#b5161c}
+.other_login ul li{float:left; padding:8px}
+.other_login ul li a{margin-left:24px; height:23px; line-height:23px}
+.other_login ul li span{background-image:url("http://wunxin.com/images/icons/icon_cooperation.jpg"); background-repeat:no-repeat; display:block; height:23px; position:absolute; width:23px}
+.icon_qq{background-position:0 0}
+.icon_sina{background-position:-115px 0}
+.icon_renren{background-position:-46px 0}
+.icon_163{background-position:-69px 0}
+.icon_kx{background-position:-92px 0}
+.icon_douban{background-position:-161px 0}

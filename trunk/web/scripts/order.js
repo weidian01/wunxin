@@ -347,3 +347,20 @@ order.cancelOrder = function (order_sn, bindingId)
     wx.showPop(prompt, bindingId);
     wx.pageReload();
 }
+
+order.useGiftCard = function (bindingId)
+{
+    var cardNumber = $.trim($('#card_number').val());
+    var cardPassword = $.trim($('#card_password').val());
+
+    if (!wx.isEmpty(cardNumber) || !wx.isEmpty(cardPassword)) {
+        wx.showPop('卡号或密码不能为空！', bindingId);
+        return ;
+    }
+
+    if (!wx.checkLoginStatus()) {
+        return ;
+    }
+
+    console.log(cardNumber);console.log(cardPassword);
+}
