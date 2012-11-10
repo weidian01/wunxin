@@ -28,15 +28,46 @@ class giftCard extends MY_Controller
                 $response = error(10009);
                 break;
             }
+
             $this->load->model('business/Model_Gift_Card', 'card');
-            //var_dump($this->card->cardVerify($cardNo, $cardPassword));exit;
-            if (!$this->card->cardVerify($cardNo, $cardPassword)) {
-                $response = error(70001);
+            $this->load->model('business/Model_Gift_Card_model', 'model');
+            $cardInfo = $this->card->getCardInfoByCid($cardNo);
+            $modelInfo = $this->model->getCardModelByMid($cardInfo['model_id']);
+
+            //卡是否存在
+            if (empty ($cardInfo)) {
+                $response = error(70017);
                 break;
             }
 
-            if (!$this->card->cardIsBanding($cardNo)) {
-                $response = error(70004);
+            //判断有效期
+            if ($modelInfo['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
+                $response = error(70018);
+                break;
+            }
+
+            //判断卡是否绑定
+            if ($cardInfo['status'] == 2) {
+                $response = error(70022);
+                break;
+            }
+
+            //判断卡的归属
+            if ($cardInfo['uid'] != $this->uInfo['uid']) {
+                $response = error(70019);
+                break;
+            }
+
+            //判断卡余额
+            if ($cardInfo['card_amount'] <= 0) {
+                $response = error(70021);
+                break;
+            }
+
+            //验证卡密码
+            $verify = $this->card->cardVerify($cardNo, $cardPassword);
+            if (!$verify) {
+                $response = error(70020);
                 break;
             }
 
@@ -85,17 +116,17 @@ class giftCard extends MY_Controller
     }
 
     /**
-     * 使用卡
+     * 使用绑定卡 -- 在订单支付过程
      */
-    public function useCard()
+    public function useBandingCard()
     {
         $cardNo = $this->input->get_post('card_number');
-        $cardPassword = $this->input->get_post('card_password');
+        $useAmount = (int)$this->input->get_post('use_amount');
 
         $response = array('error' => '0', 'msg' => '使用礼物卡成功', 'code' => 'use_gift_card_success');
 
         do {
-            if (empty ($cardNo) || empty ($cardPassword)) {
+            if (empty ($cardNo) || empty ($useAmount)) {
                 $response = error(70015);
                 break;
             }
@@ -107,16 +138,25 @@ class giftCard extends MY_Controller
             }
 
             $this->load->model('business/Model_Gift_Card', 'card');
+            $cardInfo = $this->card->getCardInfoByCid($cardNo);
 
             //卡是否存在
-            $cardInfo = $this->card->getCardInfoByCid($cardNo);
             if (empty ($cardInfo)) {
                 $response = error(70017);
                 break;
             }
 
+            $this->load->model('business/Model_Gift_Card_model', 'model');
+            $modelInfo = $this->model->getCardModelByMid($cardInfo['model_id']);
+
+            //判断卡模型信息
+            if (empty ($modelInfo)) {
+                $response = error(70024);
+                break;
+            }
+
             //判断有效期
-            if ($cardInfo['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
+            if ($modelInfo['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
                 $response = error(70018);
                 break;
             }
@@ -139,13 +179,12 @@ class giftCard extends MY_Controller
                 break;
             }
 
-            //卡密码错误
-            $verify = $this->card->cardVerify($cardNo, $cardPassword);
-            if (!$verify) {
-                $response = error(70020);
+            if ($useAmount > $cardInfo['card_amount']) {
+                $response = error(70023);
                 break;
             }
 
+            //判断购物车是否为空
             $cData['cart'] = $this->getCartToCookie();
             $data = $this->calculateDiscount($cData['cart']);
             if (empty ($data['product'])) {
@@ -153,17 +192,48 @@ class giftCard extends MY_Controller
                 break;
             }
 
-            $total_price = 0;
-            foreach ($data['product'] as $k=>$v) {
-                $total_price += $v['final_price'] * $v['num'];
+            $giftCard = $this->input->cookie(config_item('cookie_prefix').'gift_card');
+            $giftCard = json_decode(authcode($giftCard, 'DECODE'), true);
+
+            $info = array(
+                'card_no' => $cardInfo['card_no'],
+                'card_pass' => $cardInfo['card_pass'],
+                'card_amount' => $cardInfo['card_amount'],
+                'uid' => $this->uInfo['uid'],
+                'model_id' => $cardInfo['model_id'],
+            );
+
+            //处理多礼品卡 -- 唯一性
+            $giftCard[$cardInfo['card_no']] = $info;
+
+            switch ($modelInfo['card_type']) {
+                case CARD_GOLD: $this->load->model('card/model_card_gold', 'm_card');break;
+                case CARD_SILVER:$this->load->model('card/model_card_silver', 'm_card');break;
+                case CARD_COPPER:$this->load->model('card/model_card_copper', 'm_card');break;
             }
 
-            if ($total_price < $cardInfo['card_amount']) {
-                $cardBalance = $cardInfo['card_amount'] - $total_price;
-                //$this->card->
-            } else {
+            $cartInfo = $this->getCartToCookie();
+            $cData = $this->calculateDiscount($cartInfo);
+p($cData);p($info);
+            //单个卡检查是否可以使用
+            $this->m_card->init($info, $cData['product']);
+            $useStatus = $this->m_card->useCheck();
 
+            if (!$useStatus) {
+                $response = error(70025);
+                break;
             }
+
+
+//p($giftCard);
+            $this->input->set_cookie('gift_card', authcode(json_encode($giftCard), 'ENCODE'), 3600);
+
+            //$this->load->model('card/model_card', 'm_card');
+            //$this->m_card->a();
+
+
         } while (false);
+
+        $this->json_output($response);
     }
 }

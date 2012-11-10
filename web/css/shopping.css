@@ -95,15 +95,16 @@ input.gnum{border:1px solid #ccc;height:16px;line-height:16px;width:30px;text-al
 .invo{display:block;width:136px;height:31px;cursor:pointer;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 0px -144px}
 .sybox{background-color:#fff;border:1px solid #e0e0e0;padding:15px;margin-bottom:15px}
 .gift_card{display:block;width:136px;height:31px;cursor:pointer;background:url(http://wunxin.com/images/button_images.png) no-repeat -16px -180px}
-.gift_card_box{background-color:#fff;border:1px solid #e0e0e0;padding:15px;margin-bottom:15px}
+.gift_card_box{background-color:#fff;border:1px solid #e0e0e0;}
 .ordermark{display:block;width:136px;height:31px;cursor:pointer;background:url(http://wunxin.com/images/shoppingbg.png) no-repeat 0px -109px}
-.use_gift_card{display:block;width:92px;height:34px;cursor:pointer;background:url(http://wunxin.com/images/button_images.png) no-repeat -58px -212px}
+.use_gift_card{display:block;width:92px;height:34px;cursor:pointer;background:url(http://wunxin.com/images/button_images.png) no-repeat -58px -212px;float: right;padding-right: 20px;}
+.banding_gift_card{display:block;width:92px;height:34px;cursor:pointer;background:url(http://wunxin.com/images/button_images.png) no-repeat -58px -245px;float: right;padding-right: 20px;}
 .order-info{ line-height:20px;  width:898px;  overflow:hidden}
-.order-sum{ float:right;  width:300px;  text-align:right}
-.order-fj{ float:left;  width:400px}
+.order-sum{ float:right;  width:230px;  text-align:right}
+.order-fj{ float:left;  width:660px}
 .other-shopping .tit.borders span{ color:#a10000;  cursor:pointer}
 .other-shopping .tit span{ color:#a10000;  cursor:pointer}
-.tta{ width:350px}
+.tta{ width:623px}
 .topost{ padding:18px 0px 20px 0px;  text-align:right}
 .continue_shopping{float:left;width:115px;height:32px;padding-left:10px;display: block;background:url(http://wunxin.com/images/button_images.png) no-repeat -35px -33px;}
 .go_payment{float:left;width:126px;height:32px;display: block;background:url(http://wunxin.com/images/button_images.png) no-repeat -24px 0px;}

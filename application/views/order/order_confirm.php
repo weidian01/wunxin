@@ -5,6 +5,7 @@
 <title>填写订单核对信息</title>
 <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
 <link href="<?=config_item('static_url')?>css/shopping.css" rel="stylesheet" type="text/css" />
+<link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css" />
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
 <!--[if lt IE 7]>
@@ -365,19 +366,53 @@ $(document).ready(function(){
         <div class="order-fj">
             <div class="sy"><span class="gift_card" id="gift_card" onclick="syinfo('gift_card_box','gift_card')"></span></div>
             <div class="gift_card_box" id="gift_card_box" style="display: none;">
+                <style>.o-list{font-weight: bold;color: #888888;}</style>
                 <table class="tab2" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr class="o-list">
+                        <td align="center">卡号</td>
+                        <td align="center">卡名称</td>
+                        <td align="center">卡金额</td>
+                        <td align="center">使用说明</td>
+                        <td align="center">使用次数</td>
+                        <td align="center">使用金额</td>
+                        <td align="center">操作</td>
+                    </tr>
                     <tbody>
+                    <?php
+                    foreach ($user_card as $k=>$v) {
+                        if ($v['card_amount'] <= 0 || $card_model[$v['model_id']]['end_time'] < date('Y-m-d H:i:s') || $v['status'] != 2) {
+                            unset ($user_card[$k]);
+                        }
+                    }
+                    if (empty ($user_card)) {?>
                     <tr>
-                        <td width="19%" align="right">卡号：</td>
-                        <td width="81%"><input class="input1" type="text" name="card_number" id="card_number"></td>
+                        <td colspan="7" style="text-align: center;font-weight: bold;color: #A10000;" height="50">
+                            您暂时没有礼品卡，去<a href="<?=config_item('static_url')?>user/center/bingCard" target="_blank">绑定卡</a>吧。
+                        </td>
                     </tr>
+                    <?php } else {?>
+                    <?php foreach ($user_card as $k=>$v):?>
+                    <tr style="background-color: <?=($k%2) ? '#FFFAFA': '';?>;">
+                        <td style="word-break:break-all; width:22%;"><?=$v['card_no'];?></td>
+                        <td style="word-break:break-all; width:15%;"><?=$card_model[$v['model_id']]['card_name'];?></td>
+                        <td align="center">￥<?=fPrice($v['card_amount']);?></td>
+                        <td style="word-break:break-all; width:20%;"><?=$card_model[$v['model_id']]['descr'];?></td>
+                        <td align="center"><?=$v['use_num'];?>次</td>
+                        <td align="center"><input type="text" name="use_amount" value="<?=fPrice($v['card_amount']);?>" size="6" id="use_amount_<?=$v['card_no'];?>"/>元</td>
+                        <td align="center">
+                            <a href="javascript:void(0);" onclick="order.useGiftCard('<?=$v['card_no'];?>', <?=($v['card_amount']);?>, 'pop_<?=$v['card_no'];?>')" id="pop_<?=$v['card_no'];?>">
+                                <img src="<?=config_item('static_url')?>images/use.png" alt="使用礼品卡" title="使用礼品卡"/>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
                     <tr>
-                        <td align="right">密码：</td>
-                        <td><input class="input1" type="text" name="card_password" id="card_password"></td>
+                        <td align="right" colspan="7">
+                            <a class="banding_gift_card" href="<?=config_item('static_url')?>user/center/bingCard" target="_blank"></a>
+                            <!--<s class="use_gift_card" onclick="order.useGiftCard('use_card_button');" id="use_card_button"></s>-->
+                        </td>
                     </tr>
-                    <tr>
-                        <td align="right" colspan="2"><s class="use_gift_card" onclick="order.useGiftCard('use_card_button');" id="use_card_button"></s></td>
-                    </tr>
+                    <?php }?>
                     </tbody>
                 </table>
             </div>
@@ -396,9 +431,11 @@ $(document).ready(function(){
           </div>
         </div>
         <div class="order-sum">运费：￥0<br/>
-          礼品卡冲抵：￥0.00<br/>
+          礼品卡冲抵：￥<?=fPrice( ($gift_card['total_price'] > $total_price) ? $total_price : $gift_card['total_price'] );?><br/>
           虚拟账户余额冲抵：￥0.00
-          <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥<?=fPrice($total_price);?></span></div>
+          <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥
+              <?=fPrice( ($gift_card['total_price'] > $total_price) ? 0 : ($total_price - $gift_card['total_price']) );?></span>
+          </div>
         </div>
       </div>
     </div>

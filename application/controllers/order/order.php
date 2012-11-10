@@ -48,12 +48,27 @@ class order extends MY_Controller
         $this->load->model('user/Model_User_Recent', 'recent');
         $recentData = $this->recent->getUserRecentAddressByUid($this->uInfo['uid']);
 
+        //计算活动价格
         $cData = $this->calculateDiscount($cartInfo);
+
+        $this->load->model('business/Model_gift_card_model', 'model');
+        $cardModel = $this->model->getCardModelList(200);
+
+        $this->load->model('business/Model_gift_card', 'card');
+        $userCard = $this->card->getUserCard($this->uInfo['uid'], 100, 0, array('card_amount >' => 0));
+
+        //礼品卡处理
+        $giftCard = $this->giftCard();
+
+        //p($cardModel);exit;
 
         $data = array (
             'cart_info' => $cData['product'],
             'province_data' => $provinceData,
             'recent_data' => $recentData,
+            'gift_card' => $giftCard,
+            'card_model' => $cardModel,
+            'user_card' => $userCard,
         );
         $this->load->view('order/order_confirm', $data);
     }
@@ -214,6 +229,31 @@ class order extends MY_Controller
         }
 
         return array ('price' => $p, 'discount' => $discount);
+    }
+
+    /**
+     * 处理礼品卡
+     *
+     * @return array
+     */
+    private function giftCard()
+    {
+        $giftCard = $this->input->cookie(config_item('cookie_prefix').'gift_card');
+        $giftCard = json_decode(authcode($giftCard, 'DECODE'), true);
+
+        if (empty ($giftCard)) $giftCard = array();
+
+        $returnData = array();
+        $totalPrice = 0;
+        foreach ($giftCard as $v) {
+            $totalPrice += $v['card_amount'];
+
+            $returnData['card_list'][] = $v;
+        }
+
+        $returnData['total_price'] = $totalPrice;
+
+        return $returnData;
     }
 
     /**

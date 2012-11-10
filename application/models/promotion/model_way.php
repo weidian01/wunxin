@@ -17,17 +17,18 @@ abstract class Model_way
 
     /**
      * 初始化设置
+     *
      * @abstract
-     * @param $conf
+     * @param $product
+     * @param $rule
      * @return mixed
      */
     abstract function init($product, $rule);
 
     /**
      * 根据原价和规则计算最终价格
+     *
      * @abstract
-     * @param $price
-     * @param $num
      * @return mixed
      */
     abstract function compute();

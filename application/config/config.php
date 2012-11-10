@@ -493,6 +493,20 @@ $config['sales_status'] = array(
     SS_NEW => '新品',
 );
 
+/**
+ * 金象卡 不限额 不限使用张数 不限产品
+ * 银象卡 限额 限量 不限产品
+ * 铜象卡 不限额 不限量 限产品
+ */
+define('CARD_GOLD' ,  1);//金象卡
+define('CARD_SILVER', 2);//银象卡
+define('CARD_COPPER', 3);//铜象卡
+$config['card_type'] = array(
+    CARD_GOLD => '金象卡',
+    CARD_SILVER => '银象卡',
+    CARD_COPPER => '铜象卡',
+);
+
 
 
 

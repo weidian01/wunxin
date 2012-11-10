@@ -7,6 +7,7 @@
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
     <script type="text/javascript">
@@ -59,7 +60,7 @@
                     </dd>
                 </dl>
                 <div class="submit">
-                    <input type="button" value="" class="btn_b1" onclick="bingCard()">
+                    <input type="button" value="" class="btn_b1" onclick="bingCard('banding_card_id')" id="banding_card_id">
                     <span id="submit_id" class=""></span>
                 </div>
             </div>
@@ -121,7 +122,7 @@
         return cardPassword;
     }
 
-    function bingCard()
+    function bingCard(banding_card_id)
     {
         var cardNo = checkcardNo();
         var cardPassword = checkCardPassword();
@@ -133,8 +134,9 @@
         var param = 'card_no='+cardNo+'&card_password='+cardPassword;
         var data = wx.ajax(url, param);
 
-        $('#submit_id').addClass('mistake');
-        $('#submit_id').html(data.msg);
+        //$('#submit_id').addClass('mistake');
+        //$('#submit_id').html(data.msg);
+        wx.showPop(data.msg, banding_card_id, 10)
 
         if (data.error == '0') {
             wx.goToUrl('/user/center/giftCard');

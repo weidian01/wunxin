@@ -348,19 +348,46 @@ order.cancelOrder = function (order_sn, bindingId)
     wx.pageReload();
 }
 
-order.useGiftCard = function (bindingId)
+//使用礼品卡
+order.useGiftCard = function (card_no, base_amount, bindingId)
 {
-    var cardNumber = $.trim($('#card_number').val());
-    var cardPassword = $.trim($('#card_password').val());
+    var cardNumber = $.trim(card_no);
+    var useAmount = $.trim($('#use_amount_'+card_no).val());
+    useAmount = (useAmount * 100);
 
-    if (!wx.isEmpty(cardNumber) || !wx.isEmpty(cardPassword)) {
-        wx.showPop('卡号或密码不能为空！', bindingId);
+    if (!wx.isEmpty(cardNumber) || !wx.isEmpty(useAmount)) {
+        wx.showPop('卡号或使用金额不能为空！', bindingId);
         return ;
     }
 
-    if (!wx.checkLoginStatus()) {
+    base_amount = parseInt(base_amount);
+    if (useAmount > base_amount) {
+        wx.showPop('输入的金额大于卡金额！', bindingId);
         return ;
     }
 
-    console.log(cardNumber);console.log(cardPassword);
+    if (!wx.isLogin()) {
+        return ;
+    }
+
+    var url = 'business/giftCard/useBandingCard';
+    var param = 'card_number='+cardNumber+'&use_amount='+useAmount;
+    var data = wx.ajax(url, param);
+
+    var prompt = '系统繁忙，请稍后再试！';
+    switch (data.error) {
+        case '':prompt = '';break;
+        case '70015':prompt = '使用礼品卡参数不全';break;
+        case '10009':wx.loginLayer();return;break;
+        case '70017':prompt = '礼品卡未不存在';break;
+        case '70018':prompt = '礼品卡已过期';break;
+        case '70016':prompt = '礼品卡未绑定';break;
+        case '70019':prompt = '礼品卡不属于您';break;
+        case '70021':prompt = '礼品卡金额为空';break;
+        case '70020':prompt = '礼品卡密码错误';break;
+        case '60001':prompt = '购物车为空';break;
+    }
+
+    wx.showPop(prompt, bindingId);
+    console.log(bindingId);
 }
