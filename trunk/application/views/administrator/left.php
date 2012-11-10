@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<?=config_item('static_url')?>css/style.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="<?=config_item('static_url')?>css/invalid.css" type="text/css" media="screen"/>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js?version=1.7.2"></script>
+    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/simpla.jquery.configuration.js"></script>
     <!--script type="text/javascript" src="<?=config_item('static_url')?>scripts/facebox.js"></script-->
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.wysiwyg.js"></script>

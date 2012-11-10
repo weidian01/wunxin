@@ -293,11 +293,15 @@ $error[70014] = array('error' => '70014', 'msg' => '问题不存在', 'code' => 
 
 $error[70015] = array('error' => '70015', 'msg' => '使用礼品卡参数不全', 'code' => 'use_gift_card_parameter_failure');
 $error[70016] = array('error' => '70016', 'msg' => '礼品卡未绑定', 'code' => 'gift_card_not_banding');
-$error[70017] = array('error' => '70017', 'msg' => '礼品卡未不存在', 'code' => 'gift_card_not_exists');
+$error[70017] = array('error' => '70017', 'msg' => '礼品卡不存在', 'code' => 'gift_card_not_exists');
 $error[70018] = array('error' => '70018', 'msg' => '礼品卡已过期', 'code' => 'gift_card_already_expired');
 $error[70019] = array('error' => '70019', 'msg' => '礼品卡不属于您', 'code' => 'gift_card_not_your_self');
 $error[70020] = array('error' => '70020', 'msg' => '礼品卡密码错误', 'code' => 'gift_card_password_error');
-$error[70021] = array('error' => '70021', 'msg' => '礼品卡金额为空', 'code' => 'gift_card_amount_empty');
+$error[70021] = array('error' => '70021', 'msg' => '礼品卡金额为零', 'code' => 'gift_card_amount_empty');
+$error[70022] = array('error' => '70022', 'msg' => '礼品卡已绑定', 'code' => 'gift_card_already_banding');
+$error[70023] = array('error' => '70023', 'msg' => '使用金额大于礼品卡金额', 'code' => 'use_amount_greater_than_gift_card_amount');
+$error[70024] = array('error' => '70024', 'msg' => '礼品卡模型不存在', 'code' => 'gift_card_model_not_exist');
+$error[70025] = array('error' => '70024', 'msg' => '礼品卡使用失败', 'code' => 'gift_card_use_failure');
 
 
 

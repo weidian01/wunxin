@@ -38,7 +38,7 @@ class Model_Gift_Card extends MY_Model
     {
         //$cardPassword = md5($cardPassword);
 
-        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'card_pass' => $cardPassword))->row_array();
+        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'card_pass' => $cardPassword, 'status' => 2))->row_array();
 
         return empty ($data) ? false : true;
     }
@@ -51,7 +51,7 @@ class Model_Gift_Card extends MY_Model
      */
     public function cardIsBanding($cardNo)
     {
-        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'status' => 1))->row_array();
+        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'status' => 2))->row_array();
 
         return empty ($data) ? false : true;
     }
@@ -64,9 +64,9 @@ class Model_Gift_Card extends MY_Model
      */
     public function getCardInfoByCid($cardNo)
     {
-        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'status' => 1))->row_array();
+        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo))->row_array();
 
-        return empty ($data) ? null : $data;
+        return $data;
     }
 
     /**
@@ -75,13 +75,17 @@ class Model_Gift_Card extends MY_Model
      * @param $uId
      * @param int $limit
      * @param int $offset
-     * @return null | array
+     * @param null $where
+     * @param null $order
+     * @return mixed
      */
-    public function getUserCardInfoByCardNoAndUid($uId, $limit = 20, $offset = 0)
+    public function getUserCard($uId, $limit = 20, $offset = 0, $where = null, $order = null)
     {
-        $data = $this->db->select('*')->get_where('card', array('uid' => $uId, 'status' => 1), $limit, $offset)->result_array();
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
+        $data = $this->db->select('*')->get_where('card', array('uid' => $uId, 'status' => 2), $limit, $offset)->result_array();
 
-        return empty ($data) ? null : $data;
+        return $data;
     }
 
     /**
@@ -92,7 +96,43 @@ class Model_Gift_Card extends MY_Model
      */
     public function getUserCardInfoByCardNoAndUidCount($uId)
     {
-        return $this->db->select('*')->from('card')->where('uid', $uId)->where('status', 1)->count_all_results();
+        return $this->db->select('*')->from('card')->where('uid', $uId)->where('status', 2)->count_all_results();
+    }
+
+    /**
+     * 获取卡数量
+     * @param null $where
+     * @return int
+     */
+    public function getCardCount($where = null)
+    {
+        $this->db->from('card');
+        $where && $this->db->where($where);
+        return $this->db->count_all_results();
+    }
+
+    /**
+     * 获取卡列表
+     *
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param int $where
+     * @param $order
+     * @return null | array
+     */
+    public function getCardList($limit = 20, $offset = 0, $field= '*', $where = null, $order = null)
+    {
+        list($key, $field) = self::formatField($field);
+        $this->db->select($field);
+        $this->db->from('card');
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
+        $this->db->limit($limit, $offset);
+        //$this->db->group_by('style_no');
+        $data = $this->db->get()->result_array($key);
+        return $data;
+        //return $data;
     }
 
     /**
@@ -105,7 +145,7 @@ class Model_Gift_Card extends MY_Model
      */
     public function getUserCardInfoAndModel($uId, $limit = 20, $offset = 0)
     {
-        $field = 'id, card_no, card.model_id, card.card_amount, card_pass, start_time, end_time, integral, uid, uname, use_num, status, card.create_time,
+        $field = 'id, card_no, card.model_id, card.card_amount, card_pass, end_time, integral, uid, uname, use_num, status, card.create_time,
         card_name, card_type, card_num';
 
         $this->db->select($field);
@@ -117,7 +157,7 @@ class Model_Gift_Card extends MY_Model
         $this->db->limit($limit, $offset);
         $data = $this->db->get()->result_array();
 
-        return empty ($data) ? null : $data;
+        return $data;
     }
 
     /**
@@ -138,7 +178,7 @@ class Model_Gift_Card extends MY_Model
     }
 
     /**
-     * 获取信息卡列表
+     * 获取用户卡信息 -- 通过卡号
      *
      * @param $cardNo
      * @param $uId
@@ -146,9 +186,9 @@ class Model_Gift_Card extends MY_Model
      */
     public function getUserCardInfo($cardNo, $uId)
     {
-        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'uid' => $uId, 'status' => 1))->result_array();
+        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'uid' => $uId, 'status' => 2))->result_array();
 
-        return empty ($data) ? null : $data;
+        return $data;
     }
 
     /**
@@ -162,6 +202,20 @@ class Model_Gift_Card extends MY_Model
         $data = array( 'status' => 0 );
         $this->db->where('card_no', $cardNo);
         $this->db->where('uid', $uId);
+
+        return $this->db->update('card', $data);
+    }
+
+    /**
+     * 删除卡
+     *
+     * @param array $where
+     * @return mixed
+     */
+    public function deleteCard(array $where)
+    {
+        $data = array( 'status' => 0 );
+        $this->db->where($where);
 
         return $this->db->update('card', $data);
     }

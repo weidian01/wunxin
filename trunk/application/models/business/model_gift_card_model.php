@@ -21,6 +21,9 @@ class Model_Gift_Card_Model extends MY_Model
             'card_type' => $info['card_type'],
             'card_amount' => $info['card_amount'],
             'card_num' => $info['card_num'],
+            'rule' => $info['rule'],
+            'descr' => $info['descr'],
+            'end_time' => $info['end_time'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
@@ -42,6 +45,9 @@ class Model_Gift_Card_Model extends MY_Model
             'card_type' => $mInfo['card_type'],
             'card_amount' => $mInfo['card_amount'],
             'card_num' => $mInfo['card_num'],
+            'rule' => $mInfo['rule'],
+            'end_time' => $mInfo['end_time'],
+            'descr' => $mInfo['descr'],
         );
 
         return $this->db->where('model_id', $mId)->update('card_model', $data);
@@ -52,26 +58,33 @@ class Model_Gift_Card_Model extends MY_Model
      *
      * @param int $limit
      * @param int $offset
-     * @return null | array
+     * @param string $field
+     * @param null $where
+     * @param null $orderBy
+     * @return null
      */
-    public function getCardModelList($limit = 20, $offset = 0)
+    public function getCardModelList($limit = 20, $offset = 0, $field = '*', $where = null, $orderBy = null)
     {
-        $this->db->select('*');
+        $this->db->select($field);
         $this->db->from('card_model');
+        $where && $this->db->where($where);
+        $orderBy && $this->db->order_by($orderBy);
         $this->db->limit($limit, $offset);
-        $data = $this->db->get()->result_array();
+        $data = $this->db->get()->result_array('model_id');
 
-        return empty ($data) ? null : $data;
+        return $data;
     }
 
     /**
      * 获取卡模型数量
      *
-     * @return int
+     * @param array $where
+     * @return mixed
      */
-    public function getCardModelCount()
+    public function getCardModelCount($where = null)
     {
         $this->db->select('*')->from('card_model');
+        $where && $this->db->where($where);
 
         return $this->db->count_all_results();
     }
