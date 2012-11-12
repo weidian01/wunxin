@@ -24,6 +24,7 @@ class product_taobao extends MY_Controller
             $this->load->helper('url');
             redirect('/administrator/admin_login/index');
         }
+        $this->load->helper('directory');
         set_time_limit(0);
     }
 
@@ -60,6 +61,25 @@ class product_taobao extends MY_Controller
         ),
     );
 
+    private function get_match($url)
+    {
+        $url_arr = parse_url($url);
+        $template_type = NULL;
+        switch($url_arr['host'])
+        {
+            case 'detail.tmall.com':
+                $template_type = 'tmall';
+                break;
+            case 'item.taobao.com':
+                $template_type = 'taobao';
+                break;
+        }
+        //var_dump($template_type);
+
+        $match = isset($this->match[$template_type]) ? $this->match[$template_type] : NULL;
+        return $match;
+    }
+
     public function confirm()
     {
         $url = $this->input->post('url');
@@ -73,10 +93,10 @@ class product_taobao extends MY_Controller
         }
         if($unique_id === NULL)
         {
-            die("淘宝卫衣产品号不存在");
+            die("淘宝产品唯一号不存在");
         }
 
-        $this->load->helper('directory');
+        //$this->load->helper('directory');
 
         $template_type = NULL;
         switch($url_arr['host'])
@@ -108,19 +128,20 @@ class product_taobao extends MY_Controller
 
         $info['name'] = $this->get_product_name($match['name']);
 
-        $info['price'] = $this->get_product_price($match['price']);
+        //$info['price'] = $this->get_product_price($match['price']);
 
 
         //产品简介
-        $matches = array();
-        preg_match($match['intro'], $html, $matches);
-        isset($matches[1]) && $info['intro'] = trim($matches[1]);
+        //$matches = array();
+        //preg_match($match['intro'], $html, $matches);
+        //isset($matches[1]) && $info['intro'] = trim($matches[1]);
 
 
-        $info['size'] = $this->get_product_size($match['size']);
-        $info['color'] = $this->get_product_color($match['color']);
-        $skuMap = $this->get_product_skuMap($match['skuMap']);
-        $skuMap = json_decode($skuMap, true);
+        //$info['size'] = $this->get_product_size($match['size']);
+        //$info['color'] = $this->get_product_color($match['color']);
+        //$skuMap = $this->get_product_skuMap($match['skuMap']);
+        //$skuMap = json_decode($skuMap, true);
+
         $desc = $this->get_product_desc($match['desc_url'], $unique_id);
 
         //echo $desc;
@@ -129,10 +150,180 @@ class product_taobao extends MY_Controller
         //p($skuMap);
         //p($info);
 
-        $view_data['public'] = array('pname'=>$info['name'], 'def_img'=>$info['defimg'], 'desc_img'=>$desc_img);
-        $view_data['private'] = $this->product_format($info, $skuMap);
+        $view_data['public'] = array('url'=> $url,'unique_id'=>$unique_id, 'pname'=>$info['name'], 'def_img'=>$info['defimg'], 'desc_img'=>$desc_img);
+        //$view_data['private'] = $this->product_format($info, $skuMap);
         //p($view_data);
         $this->load->view('administrator/product/taobao/confirm', $view_data);
+    }
+
+
+    function confirm2()
+    {
+        $unique_id = $this->input->post('unique_id');
+
+        if(!$unique_id) {
+            die("淘宝产品唯一号不存在");
+        }
+        $pname = $this->input->post('pname');
+        $url = $this->input->post('url');
+        //p(get_defined_constants(true));die;
+        //$this->load->helper('directory');
+        $def_img = $this->input->post('def_img');
+        $desc_img = $this->input->post('desc_img');
+
+        $def_images = $desc_images = array();
+        foreach($def_img as $i) {
+            $def_images[] = self::get_pro_img($i, $unique_id);
+        }
+        //p($def_images);
+        foreach($desc_img as $ii) {
+            $desc_images[$ii] = trim(config_item('base_url'), '/').self::get_desc_img($ii, $unique_id);
+        }
+        //p($desc_images);
+
+        $view_data['public'] = array('url'=> $url,'unique_id'=>$unique_id, 'pname'=>$pname, 'def_img'=>$def_images, 'desc_img'=>$desc_images);
+        $this->load->view('administrator/product/taobao/confirm2', $view_data);
+        //p($view_data);
+    }
+
+    function complete()
+    {
+        $unique_id = $this->input->post('unique_id');
+
+        if(!$unique_id) {
+            die("淘宝产品唯一号不存在");
+        }
+        $pname = $this->input->post('pname');
+        $url = $this->input->post('url');
+        $def_img = $this->input->post('def_img');
+        $desc_img = $this->input->post('desc_img');
+        $match = $this->get_match($url);
+        $this->product_html = self::get_html($url, $unique_id);
+        $desc = $this->get_product_desc($this->match['tmall']['desc_url'], $unique_id);
+        //echo "尚未替换结束\n\n\n";
+        if($desc_img)
+        {
+            $search  = $replace = array();
+            foreach ($desc_img as $item) {
+                list($search[], $replace[]) = explode('|||||', $item);
+            }
+            $desc = str_replace($search, $replace, $desc);
+        }
+
+        //echo "开始";
+        //echo $desc, "结束\n\n\n";
+        $desc = preg_replace('/<img[^<^>).]*?src="http:\/\/(?!img).*?>/', '', $desc);
+        $desc = preg_replace('/<b[\s<>br]*r>/', '<br>', $desc);
+
+        //p($search);p($replace);
+        //echo "替换后\n",$desc;
+        //die;
+        $info['size'] = $this->get_product_size($match['size']);
+        $info['color'] = $this->get_product_color($match['color']);
+        $skuMap = $this->get_product_skuMap($match['skuMap']);
+        $skuMap = json_decode($skuMap, true);
+        $pro_list = $this->product_format($info, $skuMap);
+        //p($pro_list);
+
+        $insert = array();
+        foreach($pro_list as $kk=> $pp)
+        {
+            $insert[] = array('pname'=>$pname,
+                'sell_price'=>$pp['price'],
+                'style_no'=>md5($unique_id),
+                'keyword'=>$pname,
+                'def_img'=>$pp['img'],
+                'descr'=>$pname,
+                'product_taobao_addr'=> $url,
+                'pcontent'=>$desc,
+                'create_time'=>date("Y-m-d H:i:s"));
+        }
+        //p($insert);
+        $result_id = array();
+        $pro_photo = array();
+        foreach($insert as $insert_item)
+        {
+            $_def_img = $insert_item['def_img'];
+            $_def_img = $this->get_pro_img($_def_img, $unique_id);
+            unset($insert_item['def_img']);
+            $this->db->insert('product', $insert_item);
+            $tmp_id = $this->db->insert_id();
+
+            $source_file = rtrim(WEBROOT, '/') . $_def_img;
+            $target_path = rtrim(WEBROOT, '/') . '/upload/product/' . intToPath($tmp_id);
+            //echo '<br>';
+            recursiveMkdirDirectory($target_path);
+            $target_file = $target_path . (md5($tmp_id) . '.jpg');
+            //copyImg($source_file, 0, 0, $target_file);
+            copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
+            copyImg($source_file, 350, 420, str_replace(md5($tmp_id).'.jpg', md5($tmp_id).'_M.jpg', $target_file), $quality = 100, 1.2);
+            copyImg($source_file, 60, 60, str_replace(md5($tmp_id).'.jpg', md5($tmp_id).'_S.jpg', $target_file), $quality = 90, 1.2);
+            copyImg($source_file, 164, 197, str_replace(md5($tmp_id).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
+            copyImg($source_file, 50, 50, str_replace(md5($tmp_id).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
+
+            $create_time = data("Y-m-d H:i:s",TIMESTAMP)
+            $pro_photo[] = array('pid'=>$tmp_id, 'img_addr'=>md5($_def_img).'.jpg', 'is_default'=>1, 'create_itme'=>$create_time);
+            $_pro_photo = $this->copy_img($tmp_id, $def_img);
+            //p($_pro_photo);
+            foreach($_pro_photo as $photo)
+            {
+                $tmp['pid'] = $tmp_id;
+                $tmp['img_addr'] = $photo;
+                $tmp['is_default'] = 0;
+                $tmp['create_itme'] = $create_time;
+                $pro_photo[] = $tmp;
+            }
+            $this->db->insert_batch('product_photo', $pro_photo);
+
+            $result_id[] = $tmp_id;
+        }
+        //p($result_id);
+        //p($insert);
+        //p($def_img);
+        //p($desc_img);
+        foreach($result_id as $id)
+        {
+            echo "<a href=\"/administrator/product/edit/{$id}\" target=\"_blank\">{$id}</a><br>";
+        }
+
+
+        $query = '';
+        foreach($result_id as $pid)
+        {
+            $query .= "&product_id[]={$pid}";
+        }
+        header("Location:http://wunxin.com/administrator/product_taobao/show_result?{$query}");
+    }
+
+    public function show_result()
+    {
+        $product_id = $this->input->get("product_id");
+        foreach($product_id as $id)
+        {
+            echo "<a href=\"/administrator/product/edit/{$id}\" target=\"_blank\">{$id}</a><br>";
+        }
+    }
+
+    function copy_img($pid, $img_list)
+    {
+        $r = array();
+        foreach($img_list as $img)
+        {
+            $source_file = rtrim(WEBROOT, '/') . $img;
+            $target_path = rtrim(WEBROOT, '/') . '/upload/product/' . intToPath($pid);
+            $file_name = basename($img.'.jpg');
+            recursiveMkdirDirectory($target_path);
+            $target_file = $target_path . $file_name.'.jpg';
+            //copyImg($source_file, 0, 0, $target_file);
+            copyImg($source_file, 0, 0, $target_file, $quality = 100, 1.2);
+            copyImg($source_file, 350, 420, str_replace($file_name.'.jpg', $file_name.'_M.jpg', $target_file), $quality = 100, 1.2);
+            copyImg($source_file, 60, 60, str_replace($file_name.'.jpg', $file_name.'_S.jpg', $target_file), $quality = 90, 1.2);
+            //copyImg($source_file, 164, 197, str_replace(md5($pid).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
+            //copyImg($source_file, 50, 50, str_replace(md5($pid).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
+            $r[] = $file_name.".jpg";
+        }
+        return $r;
+
     }
 
     function product_format($info , $skuMap)
@@ -160,7 +351,31 @@ class product_taobao extends MY_Controller
         return $result;
     }
 
+    static private function get_pro_img($url, $unique_id)
+    {
+        $file_name = md5($url).'.jpg';
+        $path = WEBROOT . '/tmp/taobao_img/' . intToPath($unique_id);
+        $file_path = $path . $file_name;
+        if(! is_file($file_path)) {
+            recursiveMkdirDirectory($path);
+            $img = file_get_contents($url);
+            file_put_contents($file_path, $img, LOCK_EX);
+        }
+        return '/tmp/taobao_img/' . intToPath($unique_id) . $file_name;
+    }
 
+    static private function get_desc_img($url, $unique_id)
+    {
+        $file_name = md5($url).'.jpg';
+        $path = WEBROOT . 'upload/attached/tb_product/' . intToPath($unique_id);
+        $file_path = $path . $file_name;
+        if(! is_file($file_path)) {
+            recursiveMkdirDirectory($path);
+            $img = file_get_contents($url);
+            file_put_contents($file_path, $img, LOCK_EX);
+        }
+        return '/upload/attached/tb_product/' . intToPath($unique_id) . $file_name;
+    }
 
     static private function get_html($url, $unique_id)
     {
