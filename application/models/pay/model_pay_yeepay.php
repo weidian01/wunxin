@@ -101,8 +101,13 @@ class Model_Pay_Yeepay extends MY_Model
 
         $rhMac = $this->getCallbackHMacString($r0_Cmd,$r1_Code,$r2_TrxId,$r3_Amt,$r4_Cur,$r5_Pid,$r6_Order,$r7_Uid,$r8_MP,$r9_BType);
 
+        /*
+        p($_REQUEST);
+        p($rData);
+        echo $hMac.'<br>'.$rhMac;exit;
+        //*/
         //状态值(status) 1 成功， 2 签名错误， 3 订单支付失败
-        $rData = array('status' => 1);
+        $rData['status'] = 1;
         if ($hMac != $rhMac) {
             $rData['status'] = 2;
         }
