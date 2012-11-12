@@ -423,9 +423,9 @@ $(document).ready(function(){
             <p style="padding-top:8px;"><span class="font2">声明：备注中的有关收货人信息、支付方式、配送方式等购买要求一律以上面的选择为准，备注无效。</span><br/>
 
               是否打印价格：
-              <input name="is_print_price" type="radio" value="1" checked="checked"/>
+              <input name="is_print_price" type="radio" value="1"/>
               是
-              <input name="is_print_price" type="radio" value="0" />
+              <input name="is_print_price" type="radio" value="0" checked="checked"/>
               否 （如送朋友的商品可不打印价格哦）</p>
 
           </div>

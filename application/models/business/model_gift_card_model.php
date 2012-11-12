@@ -24,6 +24,7 @@ class Model_Gift_Card_Model extends MY_Model
             'rule' => $info['rule'],
             'descr' => $info['descr'],
             'end_time' => $info['end_time'],
+            'is_generation' => '0',
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
@@ -48,6 +49,7 @@ class Model_Gift_Card_Model extends MY_Model
             'rule' => $mInfo['rule'],
             'end_time' => $mInfo['end_time'],
             'descr' => $mInfo['descr'],
+            'is_generation' => '0',
         );
 
         return $this->db->where('model_id', $mId)->update('card_model', $data);
@@ -90,16 +92,41 @@ class Model_Gift_Card_Model extends MY_Model
     }
 
     /**
-     * 获取卡模型 -- 通过模型ID
+     * 获取卡信息 -- 通过模型ID
      *
      * @param $mId
      * @return null | array
      */
     public function getCardModelByMid($mId)
     {
+        $data = $this->db->select('*')->from('card')->where('model_id', $mId)->get()->row_array();
+
+        return $data;
+    }
+
+    /**
+     * 获取卡模型信息
+     *
+     * @param $mId
+     * @return mixed
+     */
+    public function getCardModel($mId)
+    {
         $data = $this->db->select('*')->from('card_model')->where('model_id', $mId)->get()->row_array();
 
-        return empty ($data) ? null : $data;
+        return $data;
+    }
+
+    /**
+     * 更新卡模型
+     *
+     * @param array $data
+     * @param $mId
+     */
+    public function updateCardModel(array $data, $mId)
+    {
+        $this->db->where('model_id', $mId);
+        $this->db->update('card_model', $data);
     }
 
     /**

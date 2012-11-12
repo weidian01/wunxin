@@ -140,7 +140,7 @@ $error[30010] = array('error' => '30010', 'msg' => '保存收货地址失败', '
 $error[30011] = array('error' => '30011', 'msg' => '保存收货地址参数不全', 'code' => 'save_recent_address_parameter_failure');
 $error[30012] = array('error' => '30012', 'msg' => '修改收货地址参失败', 'code' => 'save_recent_address_parameter_failure');
 
-$error[30013] = array('error' => '30013', 'msg' => '添加订单成功', 'code' => 'add_order_success');
+//$error[30013] = array('error' => '30013', 'msg' => '添加订单成功', 'code' => 'add_order_success');
 $error[30014] = array('error' => '30014', 'msg' => '添加订单失败', 'code' => 'add_order_failure');
 $error[30015] = array('error' => '30015', 'msg' => '添加订单参数不全', 'code' => 'add_order_parameter_failure');
 $error[30016] = array('error' => '30016', 'msg' => '收货地址为空', 'code' => 'recent_address_empty');
@@ -301,7 +301,10 @@ $error[70021] = array('error' => '70021', 'msg' => '礼品卡金额为零', 'cod
 $error[70022] = array('error' => '70022', 'msg' => '礼品卡已绑定', 'code' => 'gift_card_already_banding');
 $error[70023] = array('error' => '70023', 'msg' => '使用金额大于礼品卡金额', 'code' => 'use_amount_greater_than_gift_card_amount');
 $error[70024] = array('error' => '70024', 'msg' => '礼品卡模型不存在', 'code' => 'gift_card_model_not_exist');
-$error[70025] = array('error' => '70024', 'msg' => '礼品卡使用失败', 'code' => 'gift_card_use_failure');
+$error[70025] = array('error' => '70025', 'msg' => '礼品卡使用失败', 'code' => 'gift_card_use_failure');
+
+$error[70026] = array('error' => '70026', 'msg' => '生成卡参数不全', 'code' => 'generation_gift_card_parameter_failure');
+$error[70027] = array('error' => '70027', 'msg' => '礼品卡数量为零', 'code' => 'gift_card_number_empty');
 
 
 

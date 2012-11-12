@@ -81,6 +81,13 @@
                         <td><?=$v['end_time'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
+                            <?php if ($v['is_generation']) {?>
+                                已制
+                            <?php } else {?>
+                            <a href="javascript:void(0);" onclick="generationCard(<?=$v['model_id'];?>, 'generation_card')" title="生成卡" id="generation_card">
+                                制卡
+                            </a>
+                            <?php }?>
                             <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelEdit/<?=$v['model_id'];?>" title="编辑卡模型">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑卡模型"/></a>
                             <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelDelete/<?=$v['model_id'].'/'.$current_page;?>" title="删除卡模型">
@@ -98,3 +105,14 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    function generationCard(model_id, bandingId)
+    {
+        var url = 'administrator/business_card_model/generationCard';
+        var param = 'model_id='+model_id;
+        var data = wx.ajax(url, param);
+
+        wx.showPop(data.msg, bandingId);
+        wx.pageReload();
+    }
+</script>

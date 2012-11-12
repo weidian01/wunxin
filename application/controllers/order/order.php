@@ -82,9 +82,10 @@ class order extends MY_Controller
         $payType = $this->input->get_post('pay_type');
         $delivertTime = $this->input->get_post('delivert_time');
         $annotated = $this->input->get_post('annotated');
+        $isPrintPrice = $this->input->get_post('is_print_price');
         $cartData = $this->getCartToCookie();
 
-        $response = error(30013);
+        $response = array('error' => '30013', 'msg' => '添加订单成功', 'code' => 'add_order_success');
 
         do {
             if (empty ($addressId) || empty ($payType) || empty ($delivertTime)) {
@@ -144,6 +145,7 @@ class order extends MY_Controller
                 'zipcode' => $recentData['zipcode'],
                 'phone_num' => $recentData['phone_num'],
                 'call_num' => $recentData['call_num'],
+                'is_print_price' => $isPrintPrice,
             );
 
             $this->load->model('order/Model_Order', 'order');

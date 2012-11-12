@@ -271,6 +271,7 @@ order.orderSubmit = function ()
     //var invoicePayable = document.getElementById('invoice_payable_id').value;
     //var invoiceContent = $("#invoice_content_id").val();
     var annotated = document.getElementById('annotated_id').value;
+    var isPrintPrice = $("input[name='is_print_price']:checked").val();
 
     if (!addressId) {
         alert('请检查配送地址是否正确!');
@@ -288,7 +289,7 @@ order.orderSubmit = function ()
     }
 
     var url = 'order/order/submit/';
-    var param = 'address_id='+addressId+'&pay_type='+payType+'&delivert_time='+delivertTime+'&annotated='+annotated;//+'&invoice_payable='+invoicePayable+'&invoice_content='+invoiceContent;
+    var param = 'address_id='+addressId+'&pay_type='+payType+'&delivert_time='+delivertTime+'&annotated='+annotated+'&is_print_price='+isPrintPrice;//+'&invoice_payable='+invoicePayable+'&invoice_content='+invoiceContent;
     var data = wx.ajax(url, param);
 
     if (data.error == '30013') {
