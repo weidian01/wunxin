@@ -37,21 +37,18 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?=site_url('administrator/product_taobao/confirm')?>" method="post">
+
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <?php foreach($product_id as $pid):?>
-                                <a href="/administrator/product/edit/<?=$id?>" target="_blank"><?=$id?></a><br>;
+                                <a href="/administrator/product/edit/<?=$pid?>" target="_blank"><?=$pid?></a><br>
                             <?php endforeach;?>
-                        </p>
-                        <p>
-                            <input class="button" type="submit" value="Submit"/>
                         </p>
                     </fieldset>
                     <div class="clear"></div>
                     <!-- End .clear -->
-                </form>
+
             </div>
             <!-- End #tab2 -->
         </div>
