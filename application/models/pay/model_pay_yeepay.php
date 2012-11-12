@@ -29,10 +29,10 @@ class Model_Pay_Yeepay extends MY_Model
         $payBackUrl = config_item('pay_back_url');
         $order_sn   = $orderSn;
         $amount = $amount;
-        $pName = urlencode(iconv("UTF-8","GBK",$pName));
-        $pCat = urlencode(iconv("UTF-8","GBK",'服装'));
-        $pDesc = urlencode(iconv("UTF-8","GBK",$pDesc));
-        $mp = urlencode(iconv("UTF-8","GBK",'万象网-中国最专业的个性化服装电子商城'));
+        $pName = 'product_name';urlencode(iconv("UTF-8","GBK",$pName));
+        $pCat = 'clothing';//urlencode(iconv("UTF-8","GBK",'服装'));
+        $pDesc = 'product_desc';urlencode(iconv("UTF-8","GBK",$pDesc));
+        $mp = 'wunxin.com';//urlencode(iconv("UTF-8","GBK",'万象网-中国最专业的个性化服装电子商城'));
         $PaymentChannel = $PaymentChannel;
 
 
@@ -74,10 +74,10 @@ class Model_Pay_Yeepay extends MY_Model
         $r2_TrxId = $this->input->get_post('r2_TrxId');
         $r3_Amt = $this->input->get_post('r3_Amt');
         $r4_Cur = $this->input->get_post('r4_Cur');
-        $r5_Pid = $this->input->get_post('r5_Pid');
+        $r5_Pid = $this->input->get_post('r5_Pid');//iconv('GB2312', 'UTF-8', urldecode($this->input->get_post('r5_Pid')));
         $r6_Order = $this->input->get_post('r6_Order');
         $r7_Uid = $this->input->get_post('r7_Uid');
-        $r8_MP = $this->input->get_post('r8_MP');
+        $r8_MP = $this->input->get_post('r8_MP');//iconv('GB2312', 'UTF-8', urldecode($this->input->get_post('r8_MP')));
         $r9_BType = $this->input->get_post('r9_BType');
         $rb_BankId = $this->input->get_post('rb_BankId');
         $ro_BankOrderId = $this->input->get_post('ro_BankOrderId');
@@ -186,6 +186,8 @@ class Model_Pay_Yeepay extends MY_Model
         //需要配置环境支持iconv，否则中文参数不能正常处理
         //$key = iconv("UTF-8","GB2312",$key);
         //$data = iconv("UTF-8","GB2312",$data);
+        //$key = iconv("GB2312","UTF-8",$key);
+        //$data = iconv("GB2312","UTF-8",$data);
 
         $b = 64; // byte length for md5
         if (strlen($key) > $b) {
