@@ -38,6 +38,7 @@ class Model_Order extends MY_Model
             'zipcode' => $orderInfo['zipcode'],
             'phone_num' => $orderInfo['phone_num'],
             'call_num' => $orderInfo['call_num'],
+            'is_print_price' => $orderInfo['is_print_price'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP)
         );
 

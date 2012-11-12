@@ -112,6 +112,28 @@ class Model_Gift_Card extends MY_Model
     }
 
     /**
+     * 获取卡信息 -- 通过卡模型ID
+     *
+     * @param $mId
+     * @return mixed
+     */
+    public function getCardByMId($mId)
+    {
+        return $this->db->select('*')->from('card')->where('model_id', $mId)->get()->result_array();
+    }
+
+    /**
+     * 获取卡数量 -- 通过卡模型ID
+     *
+     * @param $mId
+     * @return mixed
+     */
+    public function getCardCountByMId($mId)
+    {
+        return $this->db->select('*')->from('card')->where('model_id', $mId)->count_all_results();
+    }
+
+    /**
      * 获取卡列表
      *
      * @param int $limit
@@ -193,6 +215,7 @@ class Model_Gift_Card extends MY_Model
 
     /**
      * 删除卡
+     *
      * @param $uId
      * @param $cardNo
      * @return boolean
@@ -240,5 +263,28 @@ class Model_Gift_Card extends MY_Model
             ''
         );
         return $this->db->update('card', $data);
+    }
+
+    /**
+     * 添加卡
+     *
+     * @param array $data
+     * @return mixed
+     */
+    public function addCard(array $data)
+    {
+        $info = array(
+            'card_no' => $data['card_no'],
+            'model_id' => $data['model_id'],
+            'card_amount' => $data['card_amount'],
+            'card_pass' => $data['card_pass'],
+            'integral' => $data['integral'],
+            'use_num' => '0',
+            'status' => '1',
+            'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
+        );
+
+        $this->db->insert('card', $info);
+        return $this->db->insert_id();
     }
 }

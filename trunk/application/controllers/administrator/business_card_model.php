@@ -149,7 +149,7 @@ class business_card_model extends MY_Controller
         $mId = $this->uri->segment(4, 1);
 
         $this->load->model('/business/Model_Gift_Card_Model', 'model');
-        $data = $this->model->getCardModelByMid($mId);
+        $data = $this->model->getCardModel($mId);
 
         $info = array(
             'info' => $data,
@@ -164,16 +164,96 @@ class business_card_model extends MY_Controller
      */
     public function cardModelDelete()
     {
-        $aId = $this->uri->segment(4, 1);
+        $mId = $this->uri->segment(4, 0);
         $currentPage = $this->uri->segment(5, 1);
-        if (!$aId) {
+        if (!$mId) {
             show_error('卡模型ID为空');
         }
 
+        $this->load->model('/business/Model_Gift_Card', 'card');
+        $cardData = $this->card->getCardByMId($mId);
+        if (!empty ($cardData)) {
+            show_error('此卡模型下还有卡！');
+        }
+
         $this->load->model('/business/Model_Gift_Card_Model', 'model');
-        $this->model->cardModelDelete($aId);
+        $this->model->cardModelDelete($mId);
 
         redirect('/administrator/business_card_model/cardModelList/'.$currentPage);
+    }
+
+    public function generationCard()
+    {
+        $mId = (int)$this->input->get_post('model_id');
+
+        $response = array('error' => '0', 'msg' => '生成礼品卡成功', 'code' => 'generation_gift_card_success');
+
+        do {
+            if (empty ($mId)) {
+                $response = error(70026);
+                break;
+            }
+
+            $this->load->model('/business/Model_Gift_Card_Model', 'model');
+            $modelData = $this->model->getCardModel($mId);
+
+            if (empty ($modelData)) {
+                $response = error(70024);
+                break;
+            }
+
+            if ($modelData['card_amount'] < 1) {
+                $response = error(70021);
+                break;
+            }
+            $cardAmount = $modelData['card_amount'];
+
+            if ($modelData['card_num'] < 1) {
+                $response = error(70027);
+                break;
+            }
+            $cardNum = $modelData['card_num'];
+
+            if ($modelData['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
+                $response = error(70018);
+                break;
+            }
+
+            $this->load->model('business/model_gift_card', 'card');
+            $cardData = $this->card->getCardCountByMId($mId);
+
+            //判断当前卡数量是否大于或等于模型中的卡数量
+            if ($cardData >= $cardNum) {
+                $this->model->updateCardModel(array('is_generation' => '1'), $mId);
+                break;
+            }
+
+            //最终要生成多少张卡
+            $randNum = mt_rand(10000, 99999);
+            $cardNum = $cardNum - $cardData;
+            $generationNum = $randNum + $cardNum;
+
+            $model_id = str_pad($mId, 6, '0', STR_PAD_LEFT);
+            for ($i = $randNum; $i < $generationNum; $i++) {
+                $unIqId = str_pad($i, 10, '0', STR_PAD_LEFT);
+                $cardNo = $model_id.$unIqId;
+                $password = mt_rand(100000, 999999);
+
+                $data = array(
+                    'card_no' => $cardNo,
+                    'model_id' => $mId,
+                    'card_amount' => $cardAmount,
+                    'card_pass' => $password,
+                    'integral' => $cardAmount,
+                );
+
+                $this->card->addCard($data);
+            }
+
+            $this->model->updateCardModel(array('is_generation' => '1'), $mId);
+        } while (false);
+
+        $this->json_output($response);
     }
 
     /**
