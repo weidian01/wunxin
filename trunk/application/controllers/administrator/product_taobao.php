@@ -212,7 +212,7 @@ class product_taobao extends MY_Controller
 
         //echo "开始";
         //echo $desc, "结束\n\n\n";
-        $desc = preg_replace('/<img[^<^>).]*?src="http:\/\/(?!img).*?>/', '', $desc);
+        $desc = preg_replace('/<img[^<^>).]*?src="http:\/\/(?!wunxin).*?>/', '', $desc);
         $desc = preg_replace('/<b[\s<>br]*r>/', '<br>', $desc);
 
         //p($search);p($replace);
@@ -223,8 +223,7 @@ class product_taobao extends MY_Controller
         $skuMap = $this->get_product_skuMap($match['skuMap']);
         $skuMap = json_decode($skuMap, true);
         $pro_list = $this->product_format($info, $skuMap);
-        //p($pro_list);
-
+        //p($pro_list);die;
         $insert = array();
         foreach($pro_list as $kk=> $pp)
         {
@@ -261,8 +260,8 @@ class product_taobao extends MY_Controller
             copyImg($source_file, 164, 197, str_replace(md5($tmp_id).'.jpg', 'default.jpg', $target_file), $quality = 100, 1.2);
             copyImg($source_file, 50, 50, str_replace(md5($tmp_id).'.jpg', 'icon.jpg', $target_file), $quality = 90, 1.2);
 
-            $create_time = data("Y-m-d H:i:s",TIMESTAMP)
-            $pro_photo[] = array('pid'=>$tmp_id, 'img_addr'=>md5($_def_img).'.jpg', 'is_default'=>1, 'create_itme'=>$create_time);
+            $create_time = date("Y-m-d H:i:s",TIMESTAMP);
+            $pro_photo[] = array('pid'=>$tmp_id, 'img_addr'=>md5($tmp_id).'.jpg', 'is_default'=>1, 'create_time'=>$create_time);
             $_pro_photo = $this->copy_img($tmp_id, $def_img);
             //p($_pro_photo);
             foreach($_pro_photo as $photo)
@@ -270,7 +269,7 @@ class product_taobao extends MY_Controller
                 $tmp['pid'] = $tmp_id;
                 $tmp['img_addr'] = $photo;
                 $tmp['is_default'] = 0;
-                $tmp['create_itme'] = $create_time;
+                $tmp['create_time'] = $create_time;
                 $pro_photo[] = $tmp;
             }
             $this->db->insert_batch('product_photo', $pro_photo);
@@ -298,10 +297,47 @@ class product_taobao extends MY_Controller
     public function show_result()
     {
         $product_id = $this->input->get("product_id");
-        foreach($product_id as $id)
+        //foreach($product_id as $id)
+        //{
+        //    echo "<a href=\"/administrator/product/edit/{$id}\" target=\"_blank\">{$id}</a><br>";
+        //}
+        $this->load->view('administrator/product/taobao/show_result', array("product_id"=>$product_id));
+    }
+
+    function get_product_info()
+    {
+        $url = $this->input->post('url');
+        $spare = $this->input->post('spare');
+        $unique_id = self::get_unique_id($url);
+
+        $this->product_html = self::get_html($url, $unique_id);
+        $match = $this->get_match($url);
+        $info['size'] = $this->get_product_size($match['size']);
+        $info['color'] = $this->get_product_color($match['color']);
+        $skuMap = $this->get_product_skuMap($match['skuMap']);
+        $skuMap = json_decode($skuMap, true);
+        $pro_list = $this->product_format($info, $skuMap);
+        //p($match);
+        //p($skuMap);
+        if(isset($pro_list[$spare]))
         {
-            echo "<a href=\"/administrator/product/edit/{$id}\" target=\"_blank\">{$id}</a><br>";
+            p($pro_list[$spare]);
         }
+        else
+            p($pro_list);
+    }
+
+    static function get_unique_id($url)
+    {
+        $url_arr = parse_url($url);
+
+        $query = $unique_id = NULL;
+        parse_str($url_arr['query'], $query);
+        if(isset($query['id']))
+        {
+            $unique_id = $query['id'];
+        }
+        return $unique_id;
     }
 
     function copy_img($pid, $img_list)
@@ -311,7 +347,7 @@ class product_taobao extends MY_Controller
         {
             $source_file = rtrim(WEBROOT, '/') . $img;
             $target_path = rtrim(WEBROOT, '/') . '/upload/product/' . intToPath($pid);
-            $file_name = basename($img.'.jpg');
+            $file_name = basename($img, '.jpg');
             recursiveMkdirDirectory($target_path);
             $target_file = $target_path . $file_name.'.jpg';
             //copyImg($source_file, 0, 0, $target_file);
