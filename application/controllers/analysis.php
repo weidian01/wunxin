@@ -179,7 +179,7 @@ class analysis extends MY_Controller
 
             //产品属性
             $matches = array();
-            preg_match($match['attribute'][0], $html, $matches);//p($matches);
+            preg_match($match['font_foramt'][0], $html, $matches);//p($matches);
             if(isset($matches[1]) && $matches[1])
             {
                 preg_match_all($match['attribute'][1], $matches[1], $out, PREG_SET_ORDER);
