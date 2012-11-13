@@ -526,7 +526,7 @@
 
     $('img.lazy').lazyload({effect:"fadeIn"});
 
-    //*右下角提示框
+    /*右下角提示框
     artDialog.notice = function (options) {
         var opt = options || {},
             api, aConfig, hide, wrap, top,
