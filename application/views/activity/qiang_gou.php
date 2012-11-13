@@ -5,7 +5,6 @@
     <title><?=$promotion['name'];?> -- 万象网</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
-    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/index.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/lrscroll.js"></SCRIPT>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
@@ -257,7 +256,8 @@
                 </a>
             </div>
             -->
-            <script type="text/javascript">wx.advert(2);</script>
+            <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+            <script type="text/javascript">wx.advert(2);//$(document).ready(function(){ wx.advert(2); });</script>
 		</div>
 	</div>
 

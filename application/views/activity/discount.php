@@ -7,7 +7,6 @@
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
-    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
@@ -62,7 +61,8 @@
             <img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/banner_special.jpg" alt="广告" width="980px;" height="400px;">
         </div>
         -->
-        <script type="text/javascript">wx.advert(4);</script>
+        <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+        <script type="text/javascript">wx.advert(4);//$(document).ready(function(){ wx.advert(4); });</script>
         <div id="f0">
             <!--
             <div>
@@ -109,7 +109,6 @@
 <?php include(APPPATH."views/footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
-
 <script type="text/javascript">
     $('.page img.lazy').lazyload({effect:"fadeIn"});
 </script>
