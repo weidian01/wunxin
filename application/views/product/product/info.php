@@ -52,7 +52,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       <div class="picqh2" id="button_next"></div>
     </div>
     <div class="big-pic">
-        <a href="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="预览" >
+        <a href="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="" >
         <img src="<?=config_item('static_url')?>images/lazy.gif" width="350" height="420"
              data-original="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $def_photo)?>" class="lazy"/>
         </a>

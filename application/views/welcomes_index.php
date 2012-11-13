@@ -526,7 +526,7 @@
 
     $('img.lazy').lazyload({effect:"fadeIn"});
 
-    /*右下角提示框
+    //*右下角提示框
     artDialog.notice = function (options) {
         var opt = options || {},
             api, aConfig, hide, wrap, top,
@@ -572,7 +572,7 @@
     };
 
     art.dialog.notice({
-        title: false,//'万象网管',
+        title: '万象网管',//false,//
         width: 220,// 必须指定一个像素宽度值或者百分比，否则浏览器窗口改变可能导致artDialog收缩
         content: '尊敬的顾客朋友，您IQ卡余额不足10元，请及时充值',
         icon: 'face-sad',
