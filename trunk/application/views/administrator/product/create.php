@@ -224,6 +224,7 @@
 </html>
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
+
 <script>
 function load_size(val)
 {
@@ -362,7 +363,12 @@ function get_product_info()
     var url = $("input[name='product_taobao_addr']").val();
     $.post("/administrator/product_taobao/get_product_info", { 'url': url, 'spare':"<?php echo isset($info['spare']) ? $info['spare'] : ''?>" },
        function(data){
-         alert("Data Loaded: " + data);
+         alert(data);
        });
+
+
 }
+
 </script>
+
+
