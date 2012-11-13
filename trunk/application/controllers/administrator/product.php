@@ -209,6 +209,7 @@ class product extends MY_Controller
         $size = $this->input->post('size');
         $data['warehouse'] = $this->input->post('warehouse');
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
+        $data['spare'] = $this->input->post('spare');
 
         //var_dump($size);
         $pid = $this->input->post('pid');

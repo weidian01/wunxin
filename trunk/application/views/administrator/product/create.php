@@ -38,7 +38,7 @@
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
                             <label>产品名称</label>
-                            <input class="text-input small-input" type="text"
+                            <input class="text-input medium-input" type="text"
                                    value="<?=isset($info['pname']) ? $info['pname'] : ''?>" name="pname"/>
                             <input type="hidden" name="pid" value="<?=isset($info['pid']) ? $info['pid'] : ''?>">
                             <!-- Classes for input-notification: success, error, information, attention -->
@@ -198,6 +198,10 @@
                             <label>货物淘宝地址</label>
                             <input class="text-input large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
                         </p>
+                        <p>
+                            <label>备用字段</label>
+                            <input class="text-input small-input" name="spare" type="text" value="<?php echo isset($info['spare']) ? $info['spare'] : ''?>">
+                        </p>
                         <p id="hidden">
                             <input class="button" type="submit" value="Submit"/>
                         </p>
@@ -224,7 +228,7 @@
 </html>
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
-
+<link rel="stylesheet" href="http://wunxin.com/css/artdialog.css" type="text/css" media="screen"/>
 <script>
 function load_size(val)
 {
@@ -363,12 +367,66 @@ function get_product_info()
     var url = $("input[name='product_taobao_addr']").val();
     $.post("/administrator/product_taobao/get_product_info", { 'url': url, 'spare':"<?php echo isset($info['spare']) ? $info['spare'] : ''?>" },
        function(data){
-         alert(data);
+           _alert(data);
        });
 
 
 }
 
+function _alert(text)
+{
+    artDialog.notice = function (options) {
+        var opt = options || {},
+            api, aConfig, hide, wrap, top,
+            duration = 800;
+
+        var config = {
+            id: 'Notice',
+            left: '100%',
+            top: '100%',
+            fixed: true,
+            drag: false,
+            resize: false,
+            follow: null,
+            lock: false,
+            init: function(here){
+                api = this;
+                aConfig = api.config;
+                wrap = api.DOM.wrap;
+                top = parseInt(wrap[0].style.top);
+                hide = top + wrap[0].offsetHeight;
+
+                wrap.css('top', hide + 'px')
+                    .animate({top: top + 'px'}, duration, function () {
+                        opt.init && opt.init.call(api, here);
+                    });
+            },
+            close: function(here){
+                wrap.animate({top: hide + 'px'}, duration, function () {
+                    opt.close && opt.close.call(this, here);
+                    aConfig.close = $.noop;
+                    api.close();
+                });
+
+                return false;
+            }
+        };
+
+        for (var i in opt) {
+            if (config[i] === undefined) config[i] = opt[i];
+        };
+
+        return artDialog(config);
+    };
+
+    art.dialog.notice({
+        title: false,//'万象网管',
+        width: 220,// 必须指定一个像素宽度值或者百分比，否则浏览器窗口改变可能导致artDialog收缩
+        content: text,
+        icon: 'face-sad',
+        time: false
+    });
+}
 </script>
 
 
