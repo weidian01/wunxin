@@ -7,7 +7,6 @@
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
-    <script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.masonry.min.js"> </script>
 
@@ -85,7 +84,8 @@
         <img alt="Kai Cui" src="<?=config_item('static_url')?>images/hot_comment_ads.jpg" width="980" height="100" style="margin-top: 5px;"/>
     </div>
     -->
-    <script type="text/javascript">wx.advert(3);</script>
+    <script type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></script>
+    <script type="text/javascript">wx.advert(3);//$(document).ready(function(){ wx.advert(3); });</script>
 
 <div style="width: 990px;" class="box" id="contents">
     <div id="comment_hots">

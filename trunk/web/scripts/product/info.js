@@ -41,7 +41,9 @@
             preloadImages:false,
             alwaysOn:false,
             showPreload:false,
-            preloadText:'正在加载产品图片...'
+            preloadText:'正在加载产品图片...',
+            fadeinSpeed:'fast',
+            fadeoutSpeed:'fast'
         });
 
         $("#product_num").blur(function(){

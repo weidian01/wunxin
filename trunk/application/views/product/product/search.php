@@ -83,8 +83,12 @@ $(document).ready(function(){
       </div>
       <div class="rankbox pad10" id="hotComment" style="display:none"><!--热评商品--></div>
     </div>
+      <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
+      <script type="text/javascript">wx.advert(5);//$(document).ready(function(){ wx.advert(5); });</script>
+    <!--
     <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
     <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+    -->
 
       <div class="sidebox" id="browseHistory" style="display:none">
         <div class="side-tit2">
@@ -144,6 +148,5 @@ $(document).ready(function(){
 </body>
 </html>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/scrollpagination.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script>var global = {}; global.next_page = '/search?keyword=<?=$keyword?>';</script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/search.js"></script>
