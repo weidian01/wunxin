@@ -120,7 +120,7 @@ table.tab5 td{line-height:30px; padding:3px 0px}
 .blt-cont ul li{padding-left:10px; line-height:25px; background:url(http://wunxin.com/images/bg.png) no-repeat 0px 11px}
 .slide{position:relative; z-index:1; height:250px; border:1px solid #a5a6b3; padding:0px;}
 .slide ul li.norm{float:left; display:block; width:166px; height:250px; text-align:center; padding:5px 9px}
-.slide ul li img{padding:2px; border:1px solid #e0e0e0}
+.slide ul li img{padding:0px; border:1px solid #e0e0e0}
 .slide ul li.curr{float:left; display:block; text-align:center; width:221px; height:267px; padding:0px}
 .slide ul li .designimg{border: 1px solid #EEEEEE;display: block;width: 164px;height: 197px;overflow: hidden;}
 .slide ul li a:hover{border:1px solid #D00}
@@ -269,10 +269,7 @@ a.productimg:hover{border:1px solid #D00}
 .pages a.fanye{border:1px solid #a10000; background-color:#a10000; color:#fff}
 .pages span.current{border:1px solid #a10000; padding:3px 7px; FONT-WEIGHT:bold; MARGIN:2px; COLOR:#fff; background-color:#a10000}
 .pages span.fanye{border:1px solid #a10000; background-color:#a10000; color:#fff; padding:2px 5px; margin:2px; text-decoration:none}
-
-
 .clear { clear: both; }
-
 
 .aui_outer { text-align:left; }
 table.aui_border, table.aui_dialog { border:0; margin:0; border-collapse:collapse; width:auto; }
