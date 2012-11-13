@@ -219,61 +219,21 @@ class product extends MY_Controller
 
         $this->load->model('product/Model_Product', 'product');
 
-
-
         if ($pid) { //更新产品信息需要的操作
-
-
-            //* 暂用代码
-            $pInfo = $this->product->getProductById($pid);
-            $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
-            //echo '<pre>';print_r($data);exit;
-            foreach ($pData as $pdv) {
-                //$this->product->editProduct($pdv['pid'], $data);
-                $this->product->delProductAttrById($pdv['pid']);
-                $this->product->delProductSizeById($pdv['pid']);
-                $this->product->addProductSize($size, $pdv['pid']);
-            }
-            /*//
-
-            /*原代码
             $this->product->editProduct($pid, $data);
             $delphoto = $this->input->post('delphoto');
             $delphoto && $this->product->delProductPhotoById($delphoto);
             $this->product->delProductAttrById($pid);
             $this->product->delProductSizeById($pid);
-            //*/
         } else {  //添加产品信息需要的操作
             $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
             $pid = $this->product->addProduct($data);
         }
 
-        // 原代码
-        //$size && $this->product->addProductSize($size, $pid);
+        $size && $this->product->addProductSize($size, $pid);
 
 
-        //* 暂用代码
-        $pInfo = $this->product->getProductById($pid);
-        $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
-        //echo '<pre>';print_r($attr_value);exit;
-        $attr = array();
-        $i = 0;
-        foreach ($pData as $pdv) {
-            foreach ($attr_value as $attr_id => $item) {
-                foreach ($item as $v) {
-                    if ($v) {
-                        $attr[$i]['pid'] = $pdv['pid'];
-                        $attr[$i]['attr_id'] = $attr_id;
-                        $attr[$i]['model_id'] = $data['model_id'];
-                        $attr[$i]['attr_value'] = $v;
-                        $i++;
-                    }
-                }
-            }
-        }
-        //*/
         //echo '<pre>';print_r($attr);exit;
-        /*原代码
         $attr = array();
         $i = 0;
         foreach ($attr_value as $attr_id => $item) {
@@ -287,7 +247,6 @@ class product extends MY_Controller
                 }
             }
         }
-        //*/
 
         foreach ($_FILES['images'] as $key => $item) {
             foreach ($item as $k => $v) {
