@@ -5,6 +5,7 @@
     <title><?=$promotion['name'];?> -- 万象网</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/index.js"></SCRIPT>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/lrscroll.js"></SCRIPT>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
@@ -249,11 +250,14 @@
 
     <div class="wrapper">
 		<div class="ad_div" style="text-align: center;">
+            <!--
 			<div>
                 <a title="" target="_blank" href="">
                     <img class="lazy" width="980" height="90" alt="真情9月 数码平板1折起" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/301.jpg">
                 </a>
             </div>
+            -->
+            <script type="text/javascript">wx.advert(2);</script>
 		</div>
 	</div>
 
@@ -362,7 +366,7 @@
 	</div>
 </div>
 <?php include APPPATH.'views/footer.php';?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
+
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/product.js"></SCRIPT>
 <script type="text/javascript">

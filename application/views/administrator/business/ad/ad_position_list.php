@@ -71,8 +71,8 @@
                         <td><input type="checkbox"/></td>
                         <td><?=$v['position_id'];?></td>
                         <td><?=$v['name'];?></td>
-                        <td><?=$v['width'];?></td>
-                        <td><?=$v['height'];?></td>
+                        <td><?=$v['width'];?>px</td>
+                        <td><?=$v['height'];?>px</td>
                         <td><?=$v['status'] ? '显示' : '不显示';?></td>
                         <td><?=$v['view_num'];?></td>
                         <td><?=$v['descr'];?></td>

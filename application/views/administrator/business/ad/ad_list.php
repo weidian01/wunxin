@@ -76,10 +76,10 @@
                         <td><?=$v['ad_id'];?></td>
                         <td><?=$position_data[$v['position_id']]['name'];?></td>
                         <td><?=$v['ad_name'];?></td>
-                        <td><?=$v['ad_type'];?></td>
+                        <td><?=$ad_type[$v['ad_type']];?></td>
                         <td><?php
                             if (in_array($v['ad_type'], array('1', '2'))) {
-                                echo '<img src="'.base_url().$v['ad_content'].'" width="50" height="50">';
+                                echo '<img src="'.base_url().str_replace('\\', '/', $v['ad_content']).'" width="50" height="50">';
                             } else {
                                 echo mb_substr($v['ad_content'],0, 20,'utf-8');
                             } ?></td>

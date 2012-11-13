@@ -925,6 +925,71 @@ wx.clearBrowseHistory = function ()
     $('#browseHistory').fadeOut('fast');
 }
 
+wx.advert = function(position_id)
+{
+    if (!wx.isEmpty(position_id)) {
+        return ;
+    }
+
+    var url = 'business/advert/getAdvert';
+    var param = 'position_id='+position_id;
+    var data = wx.ajax(url, param);
+
+    var html = '';
+    var info = data['advert'];
+    for (var i in info) {
+        switch (info[i]['ad_type']) {
+            case '1':wx.advertImage(data, info[i]);break;
+            case '2':wx.advertFlash(data, info[i]);break;
+            case '3':wx.advertScript(data, info[i]);break;
+            case '4':wx.advertText(data, info[i]);break;
+        }
+    }
+}
+
+//图片广告
+wx.advertImage = function (postitionData, advertData)
+{
+    var imageAddr = advertData['ad_content'];
+    var template = advertData['template'];
+
+    template = template.replace(/\$link/g, advertData['ad_link']);
+    template = template.replace(/\$image/g, wx.base_url+imageAddr.replace(/\\/g, '/'));
+    template = template.replace(/\$width/g, postitionData['width']);
+    template = template.replace(/\$height/g, postitionData['height']);
+    template = template.replace(/\$ad_name/g, advertData['ad_name']);
+
+/*
+    var html = '';
+    console.log(template);
+
+    html += '<a href="'+advertData['ad_link']+'" target="_blank">';
+    html += '<img width="'+postitionData['width']+'" height="'+postitionData['height']+'" alt="'+advertData['ad_name']+'" src="'+wx.base_url+(imageAddr.replace(/\\/g, '/'))+'"/>';
+    html += '</a>';
+//*/
+    //console.log(template);
+
+    document.write(template);
+}
+
+//FLASH广告
+wx.advertFlash = function (postitionData, advertData)
+{
+
+}
+
+//文字广告
+wx.advertText = function (postitionData, advertData)
+{
+
+}
+
+//脚本广告
+wx.advertScript = function (postitionData, advertData)
+{
+
+}
+
 wx.initLoginStatus();
 
 wx.cartGlobalInit();

@@ -7,6 +7,7 @@
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
+    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
     <!--[if lt IE 7]>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
@@ -56,9 +57,12 @@
 <?php include(APPPATH.'views/header.php');?>
 <div class="page">
     <div class="content">
+        <!--
         <div class="clear-top mb10">
             <img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>images/banner_special.jpg" alt="广告" width="980px;" height="400px;">
         </div>
+        -->
+        <script type="text/javascript">wx.advert(4);</script>
         <div id="f0">
             <!--
             <div>
@@ -103,7 +107,6 @@
 </div>
 <br/><br/>
 <?php include(APPPATH."views/footer.php");?>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/user.js"></SCRIPT>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></SCRIPT>
 

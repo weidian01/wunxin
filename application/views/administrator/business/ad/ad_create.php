@@ -36,7 +36,7 @@
         <div class="content-box-content">
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
-                <form action="<?=$type == 'edit' ? '/administrator/business_ad/adEditSave' : '/administrator/business_ad/adSave';?>" method="post" enctype="multipart/form-data">
+                <form action="<?=config_item('static_url')?>administrator/business_ad/adSave" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="ad_id" value="<?=isset($info['ad_id']) ? $info['ad_id'] : ''?>">
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
@@ -49,8 +49,7 @@
                             <select name="position_id">
                                 <?php $info['position_id'] = isset ($info['position_id']) ? $info['position_id'] : '';foreach ($position_data as $v) { ?>
                                 <?php if ($v['position_id'] == $info['position_id']) { ?>
-                                    <option value="<?=$v['position_id'];?>"
-                                            selected="selected"><?=$v['name'];?></option>
+                                    <option value="<?=$v['position_id'];?>" selected="selected"><?=$v['name'];?></option>
                                     <?php } else { ?>
                                     <option value="<?=$v['position_id'];?>"><?=$v['name'];?></option>
                                     <?php } ?>
@@ -60,10 +59,13 @@
                         <p>
                             <label>广告类型</label>
                             <select name="ad_type" onchange="adTypeChange(this)">
-                                <option value="1" <?=isset ($info['ad_type']) ? ($info['ad_type'] == 1 ? 'selected="selected"' : '') : '';?>>图片广告</option>
-                                <option value="2" <?=isset ($info['ad_type']) ? ($info['ad_type'] == 2 ? 'selected="selected"' : '') : '';?>>flash广告</option>
-                                <option value="3" <?=isset ($info['ad_type']) ? ($info['ad_type'] == 3 ? 'selected="selected"' : '') : '';?>>代码广告</option>
-                                <option value="4" <?=isset ($info['ad_type']) ? ($info['ad_type'] == 4 ? 'selected="selected"' : '') : '';?>>文字广告</option>
+                                <?php foreach ($ad_type as $atk=>$atv) {?>
+                                <?php if (isset ($info['ad_type']) && ($info['ad_type'] == $atk)) {?>
+                                <option value="<?=$atk;?>" selected="selected"><?=$atv?></option>
+                                <?php } else {?>
+                                <option value="<?=$atk;?>"><?=$atv?></option>
+                                <?php }?>
+                                <?php }?>
                             </select>
                         </p>
                         <p>
@@ -72,7 +74,9 @@
                                 <?php $info['ad_type'] = isset($info['ad_type']) ? $info['ad_type'] : '';
                                 if (in_array($info['ad_type'], array('1', '2')) || empty ($info['ad_type'])) {?>
                                 <input class="text-input small-input" type="file" name="ad_content"/>
-                                <img src="<?=base_url().(isset ($info['ad_content']) ? $info['ad_content']: '');?>" alt="<?=isset ($info['ad_name']) ? $info['ad_name']: '';?>" width="50" height="50">
+                                    <?php if (isset ($info['ad_content'])) {?>
+                                    <img src="<?=base_url().(isset ($info['ad_content']) ? str_replace('\\', '/', $info['ad_content']): '');?>" alt="<?=isset ($info['ad_name']) ? $info['ad_name']: '';?>" width="50" height="50">
+                                    <?php }?>
                                 <?php } else {?>
                                 <textarea class="text-input textarea" name="ad_content" cols="50" rows="15"><?=isset ($info['ad_content']) ? $info['ad_content']: '';?></textarea>
                                 <?php }?>
@@ -102,6 +106,10 @@
                         <p>
                             <label>描述</label>
                             <textarea class="text-input textarea" name="descr" cols="50" rows="15"><?=isset ($info['descr']) ? $info['descr'] : '';?></textarea> <br/>
+                        </p>
+                        <p>
+                            <label>模板</label>
+                            <textarea class="text-input textarea" name="template" cols="50" rows="15"><?=isset ($info['template']) ? $info['template'] : '';?></textarea> <br/>
                         </p>
                         <p>
                             <input class="button" type="submit" value="Submit"/>

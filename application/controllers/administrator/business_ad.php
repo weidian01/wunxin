@@ -8,6 +8,13 @@
  */
 class business_ad extends MY_Controller
 {
+    public $adType = array(
+        '1' => '图片广告',
+        '2' => 'flash广告',
+        '3' => '代码广告',
+        '4' => '文字广告',
+    );
+
     public function __construct()
     {
         parent::__construct();
@@ -45,7 +52,14 @@ class business_ad extends MY_Controller
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-        $this->load->view('/administrator/business/ad/ad_list', array('data' => $data, 'position_data' => $pData, 'page_html' => $pageHtml, 'current_page' => $currentPage));
+        $info = array(
+            'data' => $data,
+            'position_data' => $pData,
+            'page_html' => $pageHtml,
+            'current_page' => $currentPage,
+            'ad_type' => $this->adType,
+        );
+        $this->load->view('/administrator/business/ad/ad_list', $info);
     }
 
     /**
@@ -56,7 +70,7 @@ class business_ad extends MY_Controller
         $this->load->model('/business/Model_Ad_Position', 'position');
         $pData = $this->position->getPositionList(1000);
 
-        $this->load->view('/administrator/business/ad/ad_create', array('type' => 'add', 'position_data' => $pData));
+        $this->load->view('/administrator/business/ad/ad_create', array('type' => 'add', 'position_data' => $pData, 'ad_type' => $this->adType,));
     }
 
     /**
@@ -67,14 +81,15 @@ class business_ad extends MY_Controller
         $name = $this->input->get_post('name');
         $positionId = intval($this->input->get_post('position_id'));
         $adType = intval($this->input->get_post('ad_type'));
-        $adContent = $this->input->get_post('ad_content');
         $status = intval($this->input->get_post('status'));
         $adLink = $this->input->get_post('ad_link');
         $sort = $this->input->get_post('sort');
         $startTime = $this->input->get_post('start_time');
         $endTime = $this->input->get_post('end_time');
         $descr = $this->input->get_post('descr');
-
+        $ad_id = $this->input->get_post('ad_id');
+        $template = $_REQUEST['template'];//$this->input->get_post('template', false);
+//print_r($template);exit;
         if (empty ($name) || empty ($positionId) || empty ($adType) || empty ($adLink) || empty ($startTime) || empty ($endTime) || empty ($descr)) {
             show_error('参数不全');
         }
@@ -83,7 +98,6 @@ class business_ad extends MY_Controller
             'position_id' => $positionId,
             'ad_name' => $name,
             'ad_type' => $adType,
-            'ad_content' => $adContent,
             'click_num' => '',
             'status' => $status,
             'ad_link' => $adLink,
@@ -91,13 +105,22 @@ class business_ad extends MY_Controller
             'descr' => $descr,
             'start_time' => $startTime,
             'end_time' => $endTime,
+            'template' => $template,
         );
         $this->load->model('/business/Model_Ad', 'ad');
-        $lastId = $this->ad->adAdd($data);
+
+        if ($ad_id) {
+            $lastId = $this->ad->adEdit($data, $ad_id);
+        } else {
+            $lastId = $this->ad->adAdd($data);
+        }
+
         if (!$lastId) {
             show_error('添加广告失败');
         }
 
+        //var_dump(in_array($adType, array('1', '2')) && $_FILES['ad_content']['error'] == '0');exit;
+        //p($_FILES);exit;
         if (in_array($adType, array('1', '2')) && $_FILES['ad_content']['error'] == '0') {
             $this->load->helper('directory');
             $directory = 'upload' . DS . 'advert' . DS . date('Ymd') . DS;
@@ -140,7 +163,7 @@ class business_ad extends MY_Controller
         $this->load->model('/business/Model_Ad_Position', 'position');
         $pData = $this->position->getPositionList(1000);
 //echo '<pre>';print_r($data);exit;
-        $this->load->view('/administrator/business/ad/ad_create', array('info' => $data, 'type' => 'edit', 'position_data' => $pData));
+        $this->load->view('/administrator/business/ad/ad_create', array('info' => $data, 'type' => 'edit', 'position_data' => $pData, 'ad_type' => $this->adType,));
     }
 
     /**

@@ -51,6 +51,29 @@ class Model_Ad extends MY_Model
     }
 
     /**
+     * 获取广告 -- 通过广告位置ID
+     *
+     * @param $position_id
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param null $where
+     * @param null $order
+     * @param null $groupBy
+     * @return mixed
+     */
+    public function getAdvertByPositionId($position_id, $limit = 20, $offset = 0, $field = '*', $where = null, $order = null, $groupBy = null)
+    {
+        $this->db->select($field)->from('advert');
+        $this->db->limit($limit, $offset);
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
+        $groupBy && $this->db->group_by($groupBy);
+
+        return $this->db->where('position_id', $position_id)->get()->result_array();
+    }
+
+    /**
      * 添加广告
      *
      * @param array $data
@@ -62,7 +85,6 @@ class Model_Ad extends MY_Model
             'position_id' => $data['position_id'],
             'ad_name' => $data['ad_name'],
             'ad_type' => $data['ad_type'],
-            'ad_content' => $data['ad_content'],
             'click_num' => $data['click_num'],
             'status' => $data['status'],
             'ad_link' => $data['ad_link'],
@@ -70,6 +92,7 @@ class Model_Ad extends MY_Model
             'descr' => $data['descr'],
             'start_time' => $data['start_time'],
             'end_time' => $data['end_time'],
+            'template' => $data['template'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 
@@ -90,13 +113,13 @@ class Model_Ad extends MY_Model
             'position_id' => $data['position_id'],
             'ad_name' => $data['ad_name'],
             'ad_type' => $data['ad_type'],
-            'ad_content' => $data['ad_content'],
             'click_num' => $data['click_num'],
             'status' => $data['status'],
             'ad_link' => $data['ad_link'],
             'sort' => $data['sort'],
             'descr' => $data['descr'],
             'start_time' => $data['start_time'],
+            'template' => $data['template'],
             'end_time' => $data['end_time'],
         );
 
