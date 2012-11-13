@@ -90,7 +90,7 @@ class pay extends MY_Controller
             $this->load->model('order/Model_Order', 'order');
             $this->load->model("pay/Model_pay_{$paymentChannel}", 'payment_channel');
             $payResult = $this->payment_channel->response();
-            
+
             //2 签名错误
             if ($payResult['status'] == 2) {
                 $data = array('is_pay' => 2, 'paid' => 0, 'need_pay' => $payResult['amount'], 'status' => 1, 'defray_type' => $payResult['pay_channel']);

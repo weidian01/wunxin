@@ -74,7 +74,6 @@
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'business') === 0):?>current<?php endif;?>">业务管理</a>
                     <ul>
                         <li><a href="<?=config_item('static_url')?>administrator/business_ad_position/positionList" title="广告管理">广告管理</a></li>
-                        <li><a href="<?=config_item('static_url')?>administrator/business_ad/adList" title="广告管理">广告管理</a></li>
                         <li><a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelList" title="礼物卡管理">礼物卡管理</a></li>
                         <li><a href="<?=config_item('static_url')?>administrator/business_tuan/tuanList" title="团购管理">团购管理</a></li>
                         <!--<li><a href="<?=config_item('static_url')?>administrator/business_limit_buy/lists" title="限时抢购">限时抢购</a></li>
