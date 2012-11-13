@@ -33,10 +33,10 @@
 
         $('.jqzoom').jqzoom({
             zoomType:'standard',
-            zoomWidth:418,
-            zoomHeight:418,
-            showEffect:'fadein',
-            hideEffect:'fadeout',
+            zoomWidth:400,
+            zoomHeight:320,
+            showEffect:'show',
+            hideEffect:'hide',
             lens:false,
             preloadImages:false,
             alwaysOn:false,

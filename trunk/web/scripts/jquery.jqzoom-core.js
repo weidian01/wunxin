@@ -58,6 +58,7 @@
         el.title = $(el).attr('title');
         el.imagetitle = img.attr('title');
         var zoomtitle = ($.trim(el.title).length > 0) ? el.title : el.imagetitle;
+        zoomtitle = (zoomtitle == undefined) ? '' : zoomtitle;
         var smallimage = new Smallimage(img);
         var lens = new Lens();
         var stage = new Stage();
