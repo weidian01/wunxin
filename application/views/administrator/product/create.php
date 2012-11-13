@@ -26,11 +26,11 @@
         <!-- Start Content Box -->
         <div class="content-box-header">
             <h3>添加新产品</h3>
-
             <div class="clear"></div>
         </div>
         <!-- End .content-box-header -->
         <div class="content-box-content">
+            <a href="javascript:get_product_info()">获取产品信息参考(来自淘宝的产品)</a>
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
                 <?=form_open_multipart('administrator/product/save')?>
@@ -196,7 +196,7 @@
                         </p>
                         <p>
                             <label>货物淘宝地址</label>
-                            <input class="text-input large-input" id="large-input" name="product_taobao_addr" type="text" value="<?=isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
+                            <input class="text-input large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
                         </p>
                         <p id="hidden">
                             <input class="button" type="submit" value="Submit"/>
@@ -356,4 +356,13 @@ $(function () {
             'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'unlink']
     });
 });
+
+function get_product_info()
+{
+    var url = $("input[name='product_taobao_addr']").val();
+    $.post("/administrator/product_taobao/get_product_info", { 'url': url, 'spare':"<?php echo isset($info['spare']) ? $info['spare'] : ''?>" },
+       function(data){
+         alert("Data Loaded: " + data);
+       });
+}
 </script>
