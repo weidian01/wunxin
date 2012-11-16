@@ -451,9 +451,13 @@ class product_taobao extends MY_Controller
     }
 
     static function font($v) {
-        if (!empty ($v[1])) {
-            return iconv('ucs-2', 'UTF-8', pack('n', $v[1]));
+        $encode = mb_detect_encoding($v[1], array('ASCII','UTF-8','GB2312','GBK','BIG5'));
+
+        if (!empty ($v[1]) && $encode != 'UTF-8') {
+            //return iconv('ucs-2', 'UTF-8', pack('n', $v[1]));
+            return iconv($encode, 'UTF-8', pack('n', $v[1]));
         }
+
         return '';
     }
 
