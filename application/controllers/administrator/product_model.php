@@ -141,6 +141,7 @@ class product_model extends MY_Controller
         $model_id = $this->input->get_post('model_id');
         $this->load->model('product/Model_Product_Model', 'mod');
         $data = $this->mod->getModel($model_id);
+        //print_r($data);
         self::json_output($data['attrs']);
     }
 }
