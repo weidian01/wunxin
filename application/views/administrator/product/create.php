@@ -34,6 +34,7 @@
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
                 <?=form_open_multipart('administrator/product/save')?>
+                <input type="hidden" name="current_page" value="<?=$current_page;?>"/>
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
