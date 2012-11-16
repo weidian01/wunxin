@@ -46,7 +46,8 @@ class product extends MY_Controller
         $data = array();
         if ($num) {
             $page = (abs($page) - 1) * $pagesize;
-            $data = $this->product->getProductList($pagesize, $page);
+            //($limit = 20, $offset = 0, $field= '*', $where = null, $order = null)
+            $data = $this->product->getProductList($pagesize, $page, '*', null, 'pid asc');
         }
         //print_r($data);
         $this->load->view('administrator/product/index', array('list' => $data, 'searchType' => $this->searchType, 'page' => $this->pagination->create_links()));
