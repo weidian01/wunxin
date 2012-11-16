@@ -219,6 +219,163 @@ class product extends MY_Controller
 
         $this->load->model('product/Model_Product', 'product');
 
+
+
+        if ($pid) { //更新产品信息需要的操作
+
+
+            //* 暂用代码
+            $pInfo = $this->product->getProductById($pid);
+            $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
+            //echo '<pre>';print_r($data);exit;
+            foreach ($pData as $pdv) {
+                //$this->product->editProduct($pdv['pid'], $data);
+                $this->product->delProductAttrById($pdv['pid']);
+                $this->product->delProductSizeById($pdv['pid']);
+                $this->product->addProductSize($size, $pdv['pid']);
+            }
+            /*//
+
+            /*原代码
+            $this->product->editProduct($pid, $data);
+            $delphoto = $this->input->post('delphoto');
+            $delphoto && $this->product->delProductPhotoById($delphoto);
+            $this->product->delProductAttrById($pid);
+            $this->product->delProductSizeById($pid);
+            //*/
+        } else {  //添加产品信息需要的操作
+            $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
+            $pid = $this->product->addProduct($data);
+        }
+
+        // 原代码
+        //$size && $this->product->addProductSize($size, $pid);
+
+
+        //* 暂用代码
+        $pInfo = $this->product->getProductById($pid);
+        $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
+        //echo '<pre>';print_r($attr_value);exit;
+        $attr = array();
+        $i = 0;
+        foreach ($pData as $pdv) {
+            foreach ($attr_value as $attr_id => $item) {
+                foreach ($item as $v) {
+                    if ($v) {
+                        $attr[$i]['pid'] = $pdv['pid'];
+                        $attr[$i]['attr_id'] = $attr_id;
+                        $attr[$i]['model_id'] = $data['model_id'];
+                        $attr[$i]['attr_value'] = $v;
+                        $i++;
+                    }
+                }
+            }
+        }
+        //*/
+        //echo '<pre>';print_r($attr);exit;
+        /*原代码
+        $attr = array();
+        $i = 0;
+        foreach ($attr_value as $attr_id => $item) {
+            foreach ($item as $v) {
+                if ($v) {
+                    $attr[$i]['pid'] = $pid;
+                    $attr[$i]['attr_id'] = $attr_id;
+                    $attr[$i]['model_id'] = $data['model_id'];
+                    $attr[$i]['attr_value'] = $v;
+                    $i++;
+                }
+            }
+        }
+        //*/
+
+        foreach ($_FILES['images'] as $key => $item) {
+            foreach ($item as $k => $v) {
+                $_FILES['image' . $k][$key] = $v;
+            }
+        }
+        unset($_FILES['images']);
+        if ($_FILES['image0']['size'] > 0) {
+            $this->load->helper('directory');
+            //$date = date('Y/m/d', TIMESTAMP);
+            $path = intToPath($pid);
+            $config['upload_path'] = UPLOAD . 'product' . DS . $path;
+            recursiveMkdirDirectory($config['upload_path']);
+            $config['allowed_types'] = 'gif|jpg|png|jepg';
+            $config['max_size'] = '1000';
+            //$config['max_width'] = '1024';
+            //$config['max_height'] = '768';
+            $config['encrypt_name'] = true;
+            $config['overwrite'] = true;
+            $this->load->library('upload', $config);
+            $product_photo = array();
+            foreach ($_FILES as $key => $item) {
+                if (!$this->upload->do_upload($key)) {
+                    show_error($this->upload->display_errors());
+                } else {
+                    $tmp = $this->upload->data();
+                    $fileName = substr($tmp['file_name'], 0, strpos($tmp['file_name'], '.'));//($tmp['file_name']);
+                    $source_file = $config['upload_path'] . $tmp['file_name'];
+                    $target_path = UPLOAD.'product'. DS . intToPath($pid);
+                    recursiveMkdirDirectory($target_path);
+                    $fileNameALL = ($fileName . '.jpg');
+
+                    copyImg($source_file, 350, 420, str_replace($fileNameALL, $fileName.'_M.jpg', $target_path . $fileNameALL), 100, 1.2);
+                    copyImg($source_file, 60, 60, str_replace($fileNameALL, $fileName.'_S.jpg', $target_path . $fileNameALL), 100, 1.2);
+
+                    $product_photo[] = $fileNameALL;
+                }
+            }
+        }
+
+        $default_photo = $this->input->post('default_photo');
+        $default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
+        $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
+        $attr && $this->product->addProductAttr($attr);
+
+        /*生成默认图片*/
+        $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();
+        if($default_photo)
+        {
+            $img_path = UPLOAD . 'product' . DS . intToPath($default_photo['pid']) .$default_photo['img_addr'];
+
+            copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
+            copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
+        }
+        /*生成默认图片*/
+        redirect('administrator/product/index');
+
+
+        /*
+        //echo '<pre>';print_r($this->input->post());die;
+        $data['pname'] = $this->input->post('pname');
+        $data['class_id'] = $this->input->post('class_id');
+        $data['color_id'] = $this->input->post('color_id');
+        $data['did'] = $this->input->post('did');
+        $data['model_id'] = $this->input->post('model_id');
+        $attr_value = $this->input->post('attr_value');
+        $data['market_price'] = $this->input->post('market_price');
+        $data['sell_price'] = $this->input->post('sell_price');
+        $data['cost_price'] = $this->input->post('cost_price');
+        $data['stock'] = $this->input->post('stock');
+        $data['status'] = $this->input->post('status');
+        $data['keyword'] = $this->input->post('keyword');
+        $data['descr'] = $this->input->post('descr');
+        $data['pcontent'] = $this->input->post('pcontent');
+        $data['size_type'] = $this->input->post('size_type');
+        $size = $this->input->post('size');
+        $data['warehouse'] = $this->input->post('warehouse');
+        $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
+        $data['spare'] = $this->input->post('spare');
+
+        //var_dump($size);
+        $pid = $this->input->post('pid');
+
+        if (!$size || !$attr_value || !$data['pname'] || !$data['color_id'] || !$data['model_id'])
+            show_error('录入信息不全');
+
+        $this->load->model('product/Model_Product', 'product');
+
         if ($pid) { //更新产品信息需要的操作
             $this->product->editProduct($pid, $data);
             $delphoto = $this->input->post('delphoto');
@@ -292,7 +449,7 @@ class product extends MY_Controller
         $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
         $attr && $this->product->addProductAttr($attr);
 
-        /*生成默认图片*/
+        //*生成默认图片
         $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();
         if($default_photo)
         {
@@ -301,8 +458,9 @@ class product extends MY_Controller
             copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
             copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
         }
-        /*生成默认图片*/
+        //*生成默认图片
         redirect('administrator/product/index');
+        //*/
     }
 
     /**
