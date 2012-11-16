@@ -230,7 +230,9 @@ class product extends MY_Controller
             $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
             //echo '<pre>';print_r($data);exit;
             foreach ($pData as $pdv) {
-                //$this->product->editProduct($pdv['pid'], $data);
+                $info['class_id'] = $data['class_id'];
+                $info['model_id'] = $data['model_id'];
+                $this->product->editProduct($pdv['pid'], $info);
                 $this->product->delProductAttrById($pdv['pid']);
                 $this->product->delProductSizeById($pdv['pid']);
                 $this->product->addProductSize($size, $pdv['pid']);
