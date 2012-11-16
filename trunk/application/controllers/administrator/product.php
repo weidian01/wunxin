@@ -42,7 +42,7 @@ class product extends MY_Controller
         $config['anchor_class'] = 'class="number" ';
         $this->pagination->initialize($config);
 
-        $page = $this->uri->segment(4, 1);
+        $currentPage = $page = $this->uri->segment(4, 1);
         $data = array();
         if ($num) {
             $page = (abs($page) - 1) * $pagesize;
@@ -50,7 +50,13 @@ class product extends MY_Controller
             $data = $this->product->getProductList($pagesize, $page, '*', null, 'pid asc');
         }
         //print_r($data);
-        $this->load->view('administrator/product/index', array('list' => $data, 'searchType' => $this->searchType, 'page' => $this->pagination->create_links()));
+        $info = array(
+            'list' => $data,
+            'searchType' => $this->searchType,
+            'page' => $this->pagination->create_links(),
+            'current_page' => $currentPage,
+        );
+        $this->load->view('administrator/product/index', $info);
     }
 
     /**
@@ -114,6 +120,7 @@ class product extends MY_Controller
         if (!$id) {
             show_error('产品id为空');
         }
+        $currentPage = $this->uri->segment(5, 1);
 
         $this->load->model('product/Model_Product', 'product');
         $info = $this->product->getProductById($id);
@@ -186,6 +193,7 @@ class product extends MY_Controller
             'photo' => $photo,
             'size' => $this->size->getSizeByType($info['size_type'], 'size_id,name'),
             'psize' => $psize,
+            'current_page' => $currentPage,
         ));
     }
 
@@ -211,6 +219,7 @@ class product extends MY_Controller
         $data['warehouse'] = $this->input->post('warehouse');
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
         $data['spare'] = $this->input->post('spare');
+        $currentPage = $this->input->get_post('current_page');
 
         //var_dump($size);
         $pid = $this->input->post('pid');
@@ -346,7 +355,7 @@ class product extends MY_Controller
             copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
         }
         /*生成默认图片*/
-        redirect('administrator/product/index');
+        redirect('administrator/product/index/'.$currentPage);
 
 
         /*
