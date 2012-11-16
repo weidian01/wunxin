@@ -451,7 +451,10 @@ class product_taobao extends MY_Controller
     }
 
     static function font($v) {
-        return iconv('ucs-2', 'UTF-8', pack('n', $v[1]));
+        if (!empty ($v[1])) {
+            return iconv('ucs-2', 'UTF-8', pack('n', $v[1]));
+        }
+        return '';
     }
 
     function get_product_desc($match='', $unique_id)

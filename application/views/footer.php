@@ -101,6 +101,7 @@
                  <a target="_blank" href="<?=config_item('static_url')?>activity/activity/qiang/4">限时抢购</a>
                  <a target="_blank" href="<?=config_item('static_url')?>activity/activity/discount/2">特价热卖</a>
                  <a target="_blank" href="<?=config_item('static_url')?>cart/">购物车</a>
+                 <a target="_blank" href="<?=config_item('static_url')?>coupon/">优惠卷</a>
              </dd>
          </dl>
          <!--
