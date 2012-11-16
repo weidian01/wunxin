@@ -121,7 +121,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       	<!--<input type="hidden" value="0" id="totalGift">-->
       </div>
         <script type="text/javascript">
-            function onmouses(t, v)
+            function onmouses(t, v)d
             {
                 $('.clearfix dd').attr('class', '');
                 $(v).attr('class', 'cur');
