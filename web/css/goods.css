@@ -212,3 +212,26 @@
 .model_attr li.title{background-color:#e0e0e0; width:80px; text-align:right}
 .model_attr li.content{background-color:#f3f3f3; width:173px; text-align:left; margin-right:1px; text-indent:5px}
 .hot_comment_item{ display:block;  height:30px;  overflow:hidden;  width:100px}
+
+/*活动显示 开始*/
+.detailPromo {position: relative;z-index: 1;}
+.mt {margin-top: 10px;}
+.clearfix:after {clear: both;content: "";display: block;height: 0;line-height: 0;visibility: hidden;}
+.clearfix:after {clear: both;content: ".";display: block;font-size: 0;height: 0;line-height: 0;visibility: hidden;}
+.detailPromo dl {overflow: hidden;}
+.clearfix {display: block;}
+.detailPromo dt {border-right: 1px solid #E4E4E4;color: #CC0000;float: left;font-weight: bold;line-height: 24px;padding-right: 10px;}
+.property dt {text-align: right;width: 75px;}
+.detailPromo dd {line-height: 25px;}
+.detailPromo dd {-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none;-moz-border-top-colors: none;border-color: #E4E4E4;border-image: none;border-style: solid;border-width: 1px 1px 0 0;color: #333333;cursor: pointer;float: left;margin-left: 0;text-align: center;}
+.detailPromo dd.cur {-moz-border-bottom-colors: none;-moz-border-left-colors: none;-moz-border-right-colors: none;-moz-border-top-colors: none;background: none repeat scroll 0 0 #EEEEEE;border-color: #CC0000 #CC0000 -moz-use-text-color;border-image: none;border-style: solid solid none;border-width: 1px 1px 0;font-weight: bold;margin-left: -1px;position: relative;z-index: 2;}
+.detailPromo dd {color: #333333;cursor: pointer;float: left;text-align: center;}
+.promoInfo {border: 1px solid #CC0000;margin-top: -1px;position: relative;text-align: center;z-index: 1;}
+.promoMain.foldHeight {height: 49px;}
+.promoMain {background: none repeat scroll 0 0 #EEEEEE;overflow: hidden;padding: 5px 0 10px 20px;text-align: left;}
+.detailPromo div p {line-height: 30px;}
+.detailPromo div p span {color: #CC0000;margin-right: 10px;}
+.property a:link, .property a:visited {color: #0066CC;}
+.detailPromo div p a {margin-left: 10px;}
+.property a.unfoldBtn, .property a.unfoldBtn:link, .property a.unfoldBtn:visited {background: url("http://wunxin.com/images/detailFoldBg.gif") no-repeat scroll 33px -104px #EEEEEE;color: #333333;display: block;line-height: 18px;margin: 0 auto;padding: 0 18px 0 6px;width: 24px; }
+/*活动显示 结束*/

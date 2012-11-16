@@ -82,6 +82,59 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
       </div>
     </div>
     <p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：<?=$product['brand']['name']?></p>
+
+      <div id="newpromotion2">
+        <div style="height: auto;" class="detailPromo mt">
+      		<dl class="clearfix">
+      	    	<dt>优惠信息：</dt>
+                <dd style="width:45px;" class="cur" onmouseover="onmouses(1, this)">立减</dd>
+                <dd style="width:45px;" onmouseover="onmouses(2, this)">优惠</dd>
+      	    </dl>
+      	    <div style="width: 370px; display: block;" class="promoInfo one">
+      	    	<div class="promoMain foldHeight">
+                    <p>
+                      <span><a style="color:#CC0000;margin-left:0px;" href="#" target="_blank" type="cash">买满¥<b>300</b>立减¥<b>90</b> </a></span>
+                      <!--剩302天5小时7分结束-->
+                      <!--<a href="http://www.yihaodian.com/ctg/p/pt34530-pl33046" target="_blank" type="cash">查看详情</a>-->
+                        剩302天5小时7分结束
+                    </p>
+                    <p>
+                        <span><a style="color:#CC0000;margin-left:0px;" href="#" target="_blank" type="cash">买满¥<b>200</b>立减¥<b>60</b></a></span>
+                    <!--剩302天5小时7分结束-->
+                        <!--<a href="http://www.yihaodian.com/ctg/p/pt34530-pl33045" target="_blank" type="cash">查看详情</a>-->
+                        剩302天5小时7分结束
+                    </p>
+      	        </div>
+      	        <!--<a href="javascript:void(0);" class="unfoldBtn">展开</a>-->
+      	    </div>
+      	    <div style="display: none;width:370px;" class="promoInfo two">
+      	    	<div class="promoMain">
+                    <p>
+                        <span><a style="color:#CC0000;margin-left:0px;" href="#" target="_blank" type="offer">指定商品¥<b>120</b>任选<b>2</b>件</a></span>
+                        <!--剩48天5小时7分结束-->
+                        <!--<a href="/promotion/detail.do?promotionId=48790&promotionLevelId=45412&merchantId=2" target="_blank" type="offer">查看详情</a>-->
+                        剩48天5小时7分结束
+                    </p>
+      	        </div>
+      	    </div>
+      	</div>
+      	<!--<input type="hidden" value="0" id="totalGift">-->
+      </div>
+        <script type="text/javascript">
+            function onmouses(t, v)
+            {
+                $('.clearfix dd').attr('class', '');
+                $(v).attr('class', 'cur');
+                if (t == 1) {
+                    $('.one').show();
+                    $('.two').hide();
+                } else {
+                    $('.one').hide();
+                    $('.two').show();
+                }
+            }
+        </script>
+
     <div class="size">
       <div class="goods-type">
         <div class="ctxt">颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色：</div>
