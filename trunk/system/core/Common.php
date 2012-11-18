@@ -755,5 +755,30 @@ function _require($file)
     require($file);
 }
 
+/**
+ * 获取时间
+ * @param $begin_time
+ * @param $end_time
+ * @return array
+ */
+function timeDiff($begin_time, $end_time)
+{
+    if ($begin_time < $end_time) {
+        $startTime = $begin_time;
+        $endTime = $end_time;
+    } else {
+        $startTime = $end_time;
+        $endTime = $begin_time;
+    }
+    $timeDiff = $endTime - $startTime;
+    $days = intval($timeDiff / 86400);
+    $remain = $timeDiff % 86400;
+    $hours = intval($remain / 3600);
+    $remain = $remain % 3600;
+    $min = intval($remain / 60);
+    $secs = $remain % 60;
+    $res = array("day" => $days, "hour" => $hours, "min" => $min, "sec" => $secs);
+    return $res;
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */

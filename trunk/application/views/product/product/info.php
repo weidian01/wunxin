@@ -83,56 +83,38 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     </div>
     <p>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：<?=$product['brand']['name']?></p>
 
-      <div id="newpromotion2">
-        <div style="height: auto;" class="detailPromo mt">
-      		<dl class="clearfix">
-      	    	<dt>优惠信息：</dt>
-                <dd style="width:45px;" class="cur" onmouseover="onmouses(1, this)">立减</dd>
-                <dd style="width:45px;" onmouseover="onmouses(2, this)">优惠</dd>
-      	    </dl>
-      	    <div style="width: 370px; display: block;" class="promoInfo one">
-      	    	<div class="promoMain foldHeight">
-                    <p>
-                      <span><a style="color:#CC0000;margin-left:0px;" href="#" target="_blank" type="cash">买满¥<b>300</b>立减¥<b>90</b> </a></span>
-                      <!--剩302天5小时7分结束-->
-                      <!--<a href="http://www.yihaodian.com/ctg/p/pt34530-pl33046" target="_blank" type="cash">查看详情</a>-->
-                        剩302天5小时7分结束
-                    </p>
-                    <p>
-                        <span><a style="color:#CC0000;margin-left:0px;" href="#" target="_blank" type="cash">买满¥<b>200</b>立减¥<b>60</b></a></span>
-                    <!--剩302天5小时7分结束-->
-                        <!--<a href="http://www.yihaodian.com/ctg/p/pt34530-pl33045" target="_blank" type="cash">查看详情</a>-->
-                        剩302天5小时7分结束
-                    </p>
-      	        </div>
-      	        <!--<a href="javascript:void(0);" class="unfoldBtn">展开</a>-->
-      	    </div>
-      	    <div style="display: none;width:370px;" class="promoInfo two">
-      	    	<div class="promoMain">
-                    <p>
-                        <span><a style="color:#CC0000;margin-left:0px;" href="#" target="_blank" type="offer">指定商品¥<b>120</b>任选<b>2</b>件</a></span>
-                        <!--剩48天5小时7分结束-->
-                        <!--<a href="/promotion/detail.do?promotionId=48790&promotionLevelId=45412&merchantId=2" target="_blank" type="offer">查看详情</a>-->
-                        剩48天5小时7分结束
-                    </p>
-      	        </div>
-      	    </div>
-      	</div>
-      	<!--<input type="hidden" value="0" id="totalGift">-->
-      </div>
+    <p id="promotion_area">
+
+      <!--
+    <div style="" class="goodsAddArea">
+        <div class="danpinColorTitle">
+            <p>优惠信息：</p>
+        </div>
+        <div class="goodsAdd">
+            <p class="cityAdd" onmouseover="onmouses(this, 1)" onmouseout="onmouses(this, 0)">
+                <span class="goodsAdd"><span id="shippingAddr">查看</span><span id="citystatus">优惠信息</span></span><strong>&nbsp;</strong></p>
+            <span id="stockinfo" class="fahuoDuanq">结算时选择相应活动</span>
+            <div class="warnning" style="display: none;">
+                <span style="height: 16px; display: block; width: 16px; background-position: -1911px 0pt; margin: 2px;float: left; " class="sprites"></span>
+                <p>请在上方选择尺码后再查看库存</p>
+            </div>
+        </div>
+        <div class="addressWindows" style="display: none;" onmouseover="onmouses(this, 1)" onmouseout="onmouses(this, 0)">
+            <span class="blank10"></span>
+                <p><span>华北地区：</span><a name="hs-110000" href="#">北京</a>、
+                    <a name="hs-120000" href="#">天津</a>、
+                    <a name="hs-130000" href="#">河北</a>、
+                    <a name="hs-140000" href="#">山西</a>、
+                    <a name="hs-150000" href="#">内蒙古</a>
+                </p>
+        </div>
+    </div>
+    -->
+
+    </p>
+      <br/>
         <script type="text/javascript">
-            function onmouses(t, v)d
-            {
-                $('.clearfix dd').attr('class', '');
-                $(v).attr('class', 'cur');
-                if (t == 1) {
-                    $('.one').show();
-                    $('.two').hide();
-                } else {
-                    $('.one').hide();
-                    $('.two').show();
-                }
-            }
+
         </script>
 
     <div class="size">
@@ -537,12 +519,14 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/info.js"></script>
 <script>
 product.class_id = <?=$product['class_id']?>;
 product.pid = <?=$product['pid']?>;
 product.pname = '<?=$product['pname']?>';
 product.sell_price = <?=$product['sell_price'];?>/100;
+loadPromotion(<?=$product['pid']?>);
 </script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/info.js"></script>
+
 </body>
 </html>

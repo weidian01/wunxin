@@ -233,5 +233,110 @@
 .detailPromo div p span {color: #CC0000;margin-right: 10px;}
 .property a:link, .property a:visited {color: #0066CC;}
 .detailPromo div p a {margin-left: 10px;}
-.property a.unfoldBtn, .property a.unfoldBtn:link, .property a.unfoldBtn:visited {background: url("http://wunxin.com/images/detailFoldBg.gif") no-repeat scroll 33px -104px #EEEEEE;color: #333333;display: block;line-height: 18px;margin: 0 auto;padding: 0 18px 0 6px;width: 24px; }
+.detailPromo a.unfoldBtn, .detailPromo a.unfoldBtn:link, .detailPromo a.unfoldBtn:visited {background: url("http://wunxin.com/images/detailFoldBg.gif") no-repeat scroll 33px -104px #EEEEEE;color: #333333;display: block;line-height: 18px;margin: 0 auto;padding: 0 18px 0 6px;width: 24px; }
+.promoTips {
+    color: #999999;
+    position: absolute;
+    right: 0;
+    top: -22px;
+}
+
+
+.goodsAddArea {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    margin-left: 0px;
+    padding: 0;
+    position: relative;
+    width: 350px;
+    z-index: 0;
+}
+
+.danpinColorTitle {
+    /*color: #666666;*/
+    float: left;
+    line-height: 22px;
+}
+
+.cityAdd {
+    background: none repeat scroll 0 0 #F5F5F5;
+    border: 1px solid #F5F5F5;
+    display: inline;
+    float: left;
+    margin: 0px;
+    padding: 0 4px;
+    position: relative;
+    width: auto;
+    z-index: 5;
+}
+.cityAddHover strong{background: url("http://i5.vanclimg.com/others/2012/11/5/1393406800/sprites.png") no-repeat scroll -235px -362px transparent;}
+.cityAddHover{background:#fff;border:1px solid #bdbdbd;border-bottom:1px solid #ffffff;cursor: pointer;}
+span.goodsAdd {
+    height: 19px;
+    line-height: 19px;
+    text-align: center;
+    width: auto;
+}
+.goodsAdd span {
+    display: inline;
+    float: left;
+}
+
+.goodsAdd span {
+    display: inline;
+    float: left;
+    line-height: 19px;
+}
+
+.goodsAddArea strong, .shuoming strong, .pay strong {
+    color: #A10000;
+    font-weight: bold;
+}
+.cityAdd strong {
+    background: url("http://i5.vanclimg.com/others/2012/11/5/1393406800/sprites.png") no-repeat scroll -235px -362px transparent;
+    display: block;
+    float: left;
+    margin-left: 2px;
+    width: 15px;
+}
+em, strong, th {
+    font-style: normal;
+}
+.goodsAdd .fahuoDuanq {
+    color: #999999;
+}
+.addressWindows {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #BDBDBD;
+    font-size: 12px;
+    left: -1px;
+    padding: 0 0 10px;
+    position: absolute;
+    top: 25px;
+    width: 320px;
+    z-index: 1;
+}
+
+.addressWindows span {
+    color: #999999;
+}
+.blank10 {
+    clear: both;
+    display: block;
+    font-size: 1px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.addressWindows p {
+    line-height: 20px;
+    margin-left: 10px;
+    margin-right: 8px;
+    padding: 0;
+}
+
+.addressWindows span {
+    color: #999999;
+}
+
 /*活动显示 结束*/

@@ -136,6 +136,7 @@ class activity extends MY_Controller
         $this->load->view('activity/discount', $info);
     }
 
+    //热闹评论
     public function hot_comment()
     {
         $limit = 20;
@@ -154,10 +155,56 @@ class activity extends MY_Controller
             }
         }
 
-        if($this->input->is_ajax_request() !== true) {
-            $this->load->view('activity/hot_comment', array('title' => '热门评论','pData' => $pData));
-        } else {
+        if($this->input->is_ajax_request() === true) {
             $this->load->view('activity/hot_comment_template', array('pData' => $pData) );
+        } else {
+            $this->load->view('activity/hot_comment', array('title' => '热门评论','pData' => $pData));
         }
+    }
+
+    //获取产品活动
+    public function getProductPromotion()
+    {
+        $pId = intval($this->input->get_post('pid'));
+
+        $response = array('error' => '0', 'msg' => '获取活动成功', 'code' => 'get_promotion_success');
+
+        do {
+            if (empty ($pId)) {
+                $response = error(70028);
+                break;
+            }
+
+            $this->load->model('business/model_business_promotion', 'promotion');
+            $this->load->model('business/model_business_promotion_product', 'product');
+            $where = array(
+                'start_time <=' => date('Y-m-d H:i:s', TIMESTAMP),
+                'end_time >=' => date('Y-m-d H:i:s', TIMESTAMP),
+            );
+            $promotionData = $this->promotion->getPromotionList(20, 0, '*', $where);
+
+            if (empty ($promotionData)) {
+                $response['promotion'] = $promotionData;
+                break;
+            }
+
+            //清除此产品未参与的活动
+            foreach ($promotionData as $pdk=>$pdv) {
+                $formatTime = timeDiff(TIMESTAMP, strtotime($pdv['end_time']));
+                $promotionData[$pdk]['end_time'] = '剩'.$formatTime['day'].'天'.$formatTime['hour'].'时'.$formatTime['min'].'分'.$formatTime['sec'].'秒结束';
+
+                if ($pdv['pay_type']) {
+                    $tmp = $this->product->getPromotionProductByPid($pId, 20, 0, '*', $where);
+                    if (empty ($tmp)) {
+                        unset ($promotionData[$pdk]);
+                    }
+                }
+            }
+
+            $response['promotion'] = $promotionData;
+
+        } while (false);
+
+        $this->json_output($response);
     }
 }

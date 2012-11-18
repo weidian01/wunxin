@@ -1,1317 +1,1919 @@
-/* SVN.committedRevision=8024 */
-/* FILE BEGIN threePages.js */
-$.suning || ($.suning = {});
-$.suning.productThird = {};
-$PT = $.suning.productThird;
-$.extend({removeCookie:function (c) {
-    var d = new Date();
-    d.setTime(d.getTime() - 1);
-    document.cookie = c + "=;expires=" + d.toGMTString()
-}});
-$PT.sibOpera = function (p, k, i, n, m) {
-    var o = $("#" + p).find("dl");
-    var j = o.length;
-    if (j > 11) {
-        $("#allCategor").show();
-        l()
-    }
-    function l() {
-        for (var a = 10; a < j - 1; a++) {
-            o.eq(a).hide()
-        }
-    }
-
-    $("#allCategor").toggle(function () {
-        $("#" + p).find("dl").show();
-        $(this).find("b").addClass("up")
-    }, function () {
-        l()
-    });
-    $("#" + p).find(k).click(function () {
-        $(this).parent().addClass("foc").siblings().removeClass("foc");
-        $(this).addClass("foc").parent().siblings().find("dt").removeClass("foc");
-        $(this).siblings().addClass("foc").parent().siblings().find("dd").removeClass("foc");
-        if (p == "navBarConIndex" && n) {
-            if (m != null && m == "2" && m != "") {
-                $("#" + n).parents("dt").addClass("foc").siblings().addClass("foc");
-                $("#" + n).bind("click", function () {
-                    return false
-                });
-                $("#" + n).parents("dt").parents("dl").addClass("foc")
-            } else {
-                $("#" + n).addClass("foc").parents("dd").addClass("foc").siblings().addClass("foc");
-                $("#" + n).addClass("foc").parents("dd").parents("dl").addClass("foc")
-            }
-        }
-    });
-    $("#" + p).find("span").find("a").click(function () {
-        $("#" + p).find("dt").removeClass("foc");
-        $("#" + p).find("dd").removeClass("foc");
-        $("#" + p).find("a").removeClass("foc");
-        $(this).addClass("foc").parent().parent().addClass("foc").siblings().addClass("foc")
-    })
-};
-$PT.filter = function (f, v, t, i, q, w) {
-    var u = f.find("dl"), p = u.length, o = window.screen.width;
-    u.each(function () {
-        if ($(this).find("dd").hasClass("fList brand")) {
-            var b = $(this).find("a").length;
-            if (o > 1200) {
-                if (b > 6) {
-                    $(this).find(".fList").css("height", "49px")
-                }
-                if (b > 12) {
-                    $(this).find(".more").show()
-                }
-            } else {
-                if (b > 4) {
-                    $(this).find(".fList").css("height", "49px")
-                }
-                if (b > 8) {
-                    $(this).find(".more").show()
-                }
-            }
+$(function () {
+    $.fn.alert = function (d, a, e) {
+        var f = $.extend(false, {}, $.fn.alert.defaults, e);
+        $(".orderChangeTsk80EE8D67985E,#maskdiv80EE8D67985E").remove();
+        var c = '<div id="maskdiv80EE8D67985E"></div>';
+        $(c).appendTo($("body"));
+        var b = [];
+        b.push('<div class="orderChangeTsk80EE8D67985E">');
+        b.push("<h3><span>" + f.title + '</span><a href="#" class="close80EE8D67985E">关闭</a>');
+        b.push('<a class="close80EE8D67985E" href="#"><img src="//i.vanclimg.com/Others/2011/2/15/dpbox_06.gif"></a></h3>');
+        b.push('<p class="Word80EE8D67985E" style="text-align:center;">' + d + "</p>");
+        b.push('<div id="buttons80EE8D67985E"><input type="submit" value="" class="queding80EE8D67985E"><span><a id="quxiao80EE8D67985E" href="#">取消</a></span></div></div>');
+        $(b.join("")).appendTo($("body"));
+        if (f.type == 1) {
+            $("#quxiao80EE8D67985E").hide();
+            $("#buttons80EE8D67985E").attr("style", "margin-left:120px")
         } else {
-            new slashAdvFilterDescrib();
-            var a = $(this).find(".fList")[0].scrollHeight;
-            if (a > 83) {
-                $(this).find(".fList").css("height", "49px");
-                $(this).find(".more").show()
+            $("#quxiao80EE8D67985E").show();
+            $("#buttons80EE8D67985E").attr("style", "margin-left:100px")
+        }
+        $(".orderChangeTsk80EE8D67985E").center();
+        $(".orderChangeTsk80EE8D67985E, #maskdiv80EE8D67985E").show();
+        $(".orderChangeTsk80EE8D67985E .close80EE8D67985E, #quxiao80EE8D67985E").click(function () {
+            if (a) {
+                a(false)
             }
-        }
-    });
-    if (p > 5) {
-        q.show()
-    }
-    filtersLineGenerator();
-    for (var s = 5; s < p; s++) {
-        u.eq(s).hide()
-    }
-    q.toggle(function () {
-        for (var a = 5; a < p; a++) {
-            u.eq(a).slideDown("fast")
-        }
-        $(this).addClass("filterUp").html("向上收起")
-    }, function () {
-        for (var a = 5; a < p; a++) {
-            u.eq(a).slideUp("fast")
-        }
-        $(this).removeClass("filterUp").html("显示全部")
-    });
-    i.toggle(function () {
-        var a = $(this).parent().siblings(".fList")[0].scrollHeight, b = $(this).parent().siblings(".fList");
-        b.animate({height:+a - 8 + "px"}, 200);
-        $(this).html("收起").addClass("up")
-    }, function () {
-        var a = $(this).parent().siblings(".fList");
-        a.animate({height:"49px"}, 200);
-        $(this).html("更多").removeClass("up")
-    });
-    t.click(function () {
-        w.show();
-        var b = $(this).parent().attr("class"), c = $(this).html();
-        if (f.find(".filterCond").hasClass("searchT")) {
-            f.find(".searchT").show();
-            f.find(".searchKeyT").addClass("searchKeyTS")
-        }
-        if ($("#topFilter a").hasClass(b)) {
-            $("#topFilter").find("." + b).html(c)
-        } else {
-            $("#topFilter").append('<a href="javascript:void(0);" class="' + b + '">' + c + "</a>")
-        }
-        if ($(this).hasClass("foc")) {
-            $(this).removeClass("foc");
-            $("#topFilter").find("." + b).remove()
-        } else {
-            $(this).blur().toggleClass("foc").siblings().removeClass("foc")
-        }
-        (function a(d) {
-            $("#topFilter a").click(function () {
-                var e = $(this).attr("class");
-                $(this).remove();
-                f.find("." + e).find("a").removeClass("foc")
-            })
-        })()
-    });
-    w.click(function () {
-        if (f.find(".filterCond").hasClass("searchT")) {
-            $(this).parent().parent().hide();
-            f.find(".searchKeyT").removeClass("searchKeyTS")
-        } else {
-            $(this).hide()
-        }
-        $(this).blur();
-        $("#topFilter").html("");
-        f.find("a").removeClass();
-        resetAllFilters()
-    });
-    (function n() {
-        var a = $("#sPrice");
-        a.click(function () {
-            var d = $("#bPrice").val(), b = $("#ePrice").val(), c = /^\+?[1-9][0-9]*$/;
-            if (!c.test(d) || !c.test(b) || d >= b) {
-                popTip("#fullBg", "#tipI", "请输入正确的价格区间.", ".closePop");
-                return false
+            $(".orderChangeTsk80EE8D67985E, #maskdiv80EE8D67985E").hide();
+            return false
+        });
+        $(".queding80EE8D67985E").click(function () {
+            if (a) {
+                a(true)
             }
-        })
-    })();
-    filters = $("#historyFilters").find("tr");
-    if (filters && filters.length != 0) {
-        matchHistoryFilters(filters);
-        $("#resetFilter").show()
-    }
-};
-$PT.proSort = function (j) {
-    var i = j == null ? 5 : parseInt(j);
-    var f = $("#sort li").eq(i);
-    $("#sort").find("b").html(f.html());
-    var g = 0;
-    var h = "5";
-    $("#sortTile").removeClass().addClass(f.attr("class"));
-    $("#sort li").click(function () {
-        $("#sort").find("b").html(f.html());
-        var a = $(this).attr("class");
-        $("#sortTile").removeClass().addClass(a);
-        $(this).parent().removeClass("foc");
-        switch ($(this).index()) {
-            case 0:
-                g = 8;
-                break;
-            case 1:
-                g = 9;
-                break;
-            case 2:
-                g = 10;
-                break;
-            case 3:
-                g = 6;
-                break;
-            case 4:
-                g = 2;
-                break;
-            default:
-                g = 0
-        }
-        h = $(this).index();
-        sortByFeature(h, g)
-    });
-    $("#sortTile a").click(function () {
-        var a = $(this).attr("rel");
-        if (a != "priceChange") {
-            $(this).parent().removeClass().addClass(a);
-            if (a == "sales") {
-                h = 0;
-                g = 8;
-                $("#sort").find("b").html($("#sort li.sales").html())
-            } else {
-                if (a == "eval") {
-                    h = 3;
-                    g = 6;
-                    $("#sort").find("b").html($("#sort li.eval").html())
-                } else {
-                    if (a == "timeS") {
-                        h = 4;
-                        g = 2;
-                        $("#sort").find("b").html($("#sort li.timeS").html())
-                    }
-                }
-            }
-            sortByFeature(h, g)
-        }
-    });
-    $("#priceChange").click(function () {
-        var a = $(this).parent().attr("class");
-        if (a != "priceUp") {
-            $(this).parent().removeClass().addClass("priceUp");
-            g = 9;
-            h = 1;
-            $("#sort").find("b").html($("#sort li.priceUp").html())
-        } else {
-            if (a == "priceUp") {
-                $(this).parent().removeClass().addClass("priceDown");
-                g = 10;
-                h = 2;
-                $("#sort").find("b").html($("#sort li.priceDown").html())
-            }
-        }
-        sortByFeature(h, g)
-    })
-};
-$PT.topPager = function (k, i, j) {
-    var n = k == null ? 1 : parseInt(k);
-    var m = i == null ? 1 : parseInt(i);
-    var l = $("#prev"), h = $("#next");
-    this.init = function () {
-        if (m == 0) {
-            $("#pageThis,#pageTotal").html("0")
-        }
-        if (m <= 1) {
-            l.removeClass();
-            h.removeClass()
-        } else {
-            if (n == 1) {
-                l.removeClass();
-                h.addClass("use")
-            } else {
-                if (n >= m) {
-                    l.addClass("use");
-                    h.removeClass()
-                } else {
-                    l.addClass("use");
-                    h.addClass("use")
-                }
-            }
-        }
-        if (l.hasClass("use")) {
-            l.click(function (c) {
-                changePage(parseInt(n - 2))
-            })
-        }
-        if (h.hasClass("use")) {
-            h.click(function (c) {
-                changePage(n)
-            })
-        }
-        var a = (n - 1) * 36 <= 0 ? 1 : (n - 1) * 36 + 1;
-        var b = 0;
-        if (n == i) {
-            b = j
-        } else {
-            b = n * 36 <= 36 ? 36 : n * 36
-        }
-        if (j < 36) {
-            b = j;
-            if (j == 0) {
-                a = 0
-            }
-        }
-        $("#proStart").html(a);
-        $("#proEnd").html(b)
-    }
-};
-$PT.buttomPager = function (q, o) {
-    var x = q == null ? 1 : parseInt(q);
-    var v = o == null ? 1 : parseInt(o);
-    var w = $("a.prev"), n = $("a.next");
-    var p = $(".pagesubmit");
-    var m = $("div.snPages").find("a").not("a.next").not("a.prev");
-    var s = "<span class='prev'><b></b> 上一页</span>";
-    var u = "<span class='next'><b></b> 下一页</span>";
-    var t = "<a  href='###' class='prev'><b></b> 上一页</a>";
-    var y = "<a href='###' class='next'><b></b> 下一页</a>";
-    this.init = function () {
-        this.setStatus();
-        this.setPage()
-    };
-    this.setStatus = function () {
-        if (v == 0) {
-            $("div.snPages").hide()
-        } else {
-            $("div.snPages").show()
-        }
-        if (v <= 1) {
-            $("div.snPages").find("span.prev,a.next").remove();
-            $("#pageFirst").before(s);
-            $("#pageFirst").after(u);
-            p.find("input").attr("disabled", true)
-        } else {
-            if (x == 1) {
-                $("div.snPages").find("a.prev").remove();
-                if (!$("span.prev")[0]) {
-                    $("#pageFirst").before(s)
-                }
-                if (!$("a.next")[0]) {
-                    $("#pageLast").after(y)
-                }
-            } else {
-                if (x >= v) {
-                    $("div.snPages").find("span.prev,a.next").remove();
-                    $("#pageFirst").before(t);
-                    $("#pageLast").after(u)
-                } else {
-                    $("div.snPages").find("span.prev").remove();
-                    $("#pageFirst").before(t);
-                    if (!$("a.next")[0]) {
-                        $("#pageLast").after(u)
-                    }
-                }
-            }
-        }
-        m.each(function (b) {
-            var a = parseInt($(this).html());
-            if (a == x) {
-                $(this).addClass("current").css("color", "#FF6600")
-            } else {
-                $(this).removeClass("current")
-            }
+            $(".orderChangeTsk80EE8D67985E, #maskdiv80EE8D67985E").hide();
+            return false
         })
     };
-    this.setPage = function () {
-        $("a.prev").click(function (a) {
-            changePage(parseInt(x - 2))
-        });
-        $("a.next").click(function () {
-            changePage(x)
-        });
-        p.click(function (c) {
-            var a = /^[\d]+$/;
-            var b = $.trim((p.siblings()).val());
-            if (!a.test(b)) {
-                alert("请输入正确的数字!")
-            } else {
-                if (b <= 0 || b > v) {
-                    alert("请输入正确的页码!")
-                } else {
-                    if (b != x) {
-                        changePage(parseInt(b - 1))
-                    }
-                }
-            }
-        });
-        m.click(function (b) {
-            if (!$(this).hasClass("current")) {
-                $(this).addClass("current").siblings().removeClass("current");
-                var a = parseInt($(this).html());
-                changePage(parseInt(a - 1))
-            }
-        })
-    }
-};
-$PT.showTab = function (c) {
-    var d = c ? c : "0";
-    if (c == "0") {
-        $("#showTab").removeClass("spanLS");
-        $("#proShow").removeClass().addClass("proListTile")
-    } else {
-        $("#showTab").addClass("spanLS");
-        $("#proShow").removeClass().addClass("proLists")
-    }
-    $("#listS").click(function () {
-        $(this).parent().addClass("spanLS");
-        if ($("#proShow").html() != "") {
-            $("#proShow").removeClass().addClass("proLists")
+    $.fn.alert.defaults = {title:"提示", type:1};
+    $.fn.center = function () {
+        var b = (($(window).height() - this.height()) / 2 - 80).toString() + "px";
+        var a = (($(window).width() - this.width()) / 2).toString() + "px";
+        if ($.browser.msie && $.browser.version == "6.0") {
+            b = ((($(window).height() - this.height()) / 2 - 80) + $(window).scrollTop()).toString()
         }
-    });
-    $("#layS").click(function () {
-        if ($("#proShow").html() != "") {
-            $("#proShow").removeClass().addClass("proListTile")
-        }
-        $(this).parent().removeClass("spanLS")
-    })
-};
-function stopA() {
-    $("a").click(function (b) {
-        if ($(this).attr("href") == "javascript:void(0)") {
-            b.preventDefault()
-        }
-    })
-}
-$PT.compare = function (A, w, i) {
-    var t = $("#compare");
-    var y = [];
-    var D = $(window).scrollTop();
-    if (!window.XMLHttpRequest) {
-        $(window).scroll(function () {
-            var a = $(window).scrollTop();
-            t.css("top", a + 200)
-        })
-    }
-    if ($.trim(i)) {
-        var C = i.split("|||");
-        var G = [], x = "";
-        for (var z = 0, E = C.length; z < E; z++) {
-            var j, F, u;
-            G = C[z].split("||");
-            j = G[0];
-            F = decodeURIComponent(G[1]);
-            u = decodeURIComponent(G[2]);
-            if (j) {
-                y.push(j);
-                x += "<dl id='" + j + "cpar'><dt><img src='" + F + "'/></dt><dd>" + u + "<b class='compareClose'></b></dd></dl>";
-                if ($("#" + G[0]).size() != 0) {
-                    $("#" + G[0]).find(".opre").find("a").eq(2).html("取消").css("color", "#f60")
-                }
-            }
-        }
-        $("#" + w).html(x);
-        if (!window.XMLHttpRequest) {
-            t.css("top", D + 200)
-        }
-        t.show();
-        v()
-    }
-    $("#proShow a." + A).click(function () {
-        var b = $(this).parent().parent().parent();
-        var a = b.find("img").attr("src");
-        var d = b.find("span a:not(em)").html();
-        var f = b.attr("id");
-        var e = $(this).html();
-        $("#tipInfor").find("i").css("background-position", "-316px -26px");
-        $("#tipInfor").find("i").css("left", "20px");
-        $("#tipInfor").find("p").css("padding-left", "62px");
-        for (var c = 0; c < y.length; c++) {
-            if (f === y[c] && e == "对比") {
-                globalAlert("对不起,此商品已存在对比框中.", "info");
-                return
-            }
-            if (f === y[c]) {
-                $(this).html("对比").css("color", "#333");
-                $("#compareCon dl[id='" + f + "cpar']").remove();
-                y.splice(c, 1);
-                B();
-                return
-            }
-        }
-        if (y.length > 3) {
-            globalAlert("对不起,您最多只可选择4个商品对比.", "info");
-            return
-        }
-        $(this).html("取消").css("color", "#f60");
-        y.push(f);
-        $("#" + w).append("<dl id='" + f + "cpar'><dt><img src='" + a + "'/></dt><dd>" + d + "<b class='compareClose'></b></dd></dl>");
-        t.show();
-        v();
-        B()
-    });
-    function v() {
-        $("#compareCon").find(".compareClose").click(function () {
-            $(this).parent().parent().remove();
-            var d = $(this).parent().parent().attr("id");
-            var b = d.replace("cpar", "");
-            var c = $("#compareCon").find(".compareClose").length;
-            $("#" + b).find(".opre").find("a").eq(2).html("对比").css("color", "#333");
-            if (c == 0) {
-                $("#compareCon").parent().hide();
-                y = []
-            }
-            for (var a = 0; a < y.length; a++) {
-                if (b === y[a]) {
-                    y.splice(a, 1)
-                }
-            }
-            B()
-        })
-    }
-
-    $("#boxClose").click(function () {
-        $("#compare").hide();
-        $("#compareCon").html("");
-        y = [];
-        $("#proShow .opre a").each(function () {
-            if ($(this).html() == "取消") {
-                $(this).html("对比").css("color", "#333")
-            }
-        });
-        $.cookie("compare", "", {domain:URLPrefix.cookie_domain, path:"/"})
-    });
-    t.find(".compareAll").click(function () {
-        var a = y.length;
-        var c = y[0];
-        var e = y[1];
-        var b = y[2];
-        var d = y[3];
-        if (a < 2) {
-            globalAlert("对不起,少于2个商品无法使用对比功能.", "info");
-            return false
-        } else {
-            if (a == 2) {
-                window.open(URLPrefix.commerce_emall + "/ProductCompareView?catalogId=10051&storeId=10052&compareIds=" + c + "&compareIds=" + e)
-            } else {
-                if (a == 3) {
-                    window.open(URLPrefix.commerce_emall + "/ProductCompareView?catalogId=10051&storeId=10052&compareIds=" + c + "&compareIds=" + e + "&compareIds=" + b)
-                } else {
-                    if (a == 4) {
-                        window.open(URLPrefix.commerce_emall + "/ProductCompareView?catalogId=10051&storeId=10052&compareIds=" + c + "&compareIds=" + e + "&compareIds=" + b + "&compareIds=" + d)
-                    }
-                }
-            }
-        }
-    });
-    function B() {
-        $.cookie("compare", "", {domain:URLPrefix.cookie_domain, path:"/"});
-        var a = $("#compareCon").find("dl");
-        if (a.size() != 0) {
-            var e = "";
-            var c, d, b;
-            a.each(function () {
-                c = $(this).attr("id").replace("cpar", "");
-                d = $(this).find("img").attr("src");
-                b = $(this).find("dd").text();
-                e += c + "||" + encodeURIComponent(d) + "||" + encodeURIComponent(b) + "|||"
-            });
-            e = e.substr(0, e.length - 3);
-            $.cookie("compare", e, {domain:URLPrefix.cookie_domain, path:"/"})
-        }
-    }
-};
-$PT.customPrice = function (d, c) {
-    $("#" + c).click(function () {
-        var k = $.trim($("#startM").val()), m = $.trim($("#endM").val());
-        var n = parseInt(parseFloat(k)), b = parseInt(parseFloat(m));
-        var j = /(^\+?[1-9]+[\d]*$)|(^[0]+$)/, a = /^\+?[1-9][0-9]*$/;
-        if (!j.test(k) || !a.test(m) || n >= b) {
-            globalAlert("请输入正确的价格区间.", "info");
-            $("#startM,#endM").val("");
-            return false
-        } else {
-            var l = parseInt(k) + "-" + parseInt(m);
-            $("#filterContent").find("dl[class='filterPrice']").find("a").each(function () {
-                $(this).blur().removeClass("foc")
-            });
-            if (l == $.trim($("#startMendM").val())) {
-                window.location.reload()
-            } else {
-                searchFilterPage("price", l)
-            }
-        }
-    });
-    if ($.trim($("#startM").val()) != "") {
-        $("#cPrice").css("display", "inline")
-    }
-};
-$PT.evaluLen = function (b) {
-    var b = $(b);
-    b.each(function () {
-        var f = $(this).html();
-        var e = f.length;
-        var a = e - 3;
-        if (e > 5) {
-            f = f / Math.pow(10, a);
-            f = Math.floor(f);
-            $(this).html(f + "...")
-        }
-    })
-};
-$PT.evalCharLen = function (e, f) {
-    var d = $(e);
-    f = f || 7;
-    d.each(function () {
-        var a = $.trim($(this).html());
-        if (a.length > f) {
-            $(this).html(a.substr(0, f) + "...")
-        }
-    })
-};
-$PT.scroll = function (l, m, q, o, k) {
-    var l = $("#" + l);
-    var i = $("." + m).width();
-    var q = $("#" + q);
-    var k = $("#" + k);
-    var s = q.find("li").length || 7;
-    var n = Math.ceil(s / o);
-    var p = 1;
-    l.click(function () {
-        $(this).blur();
-        if (p == 1) {
-            return false
-        } else {
-            q.animate({left:"+=" + i}, 240);
-            p--
-        }
-    });
-    k.click(function () {
-        $(this).blur();
-        var a = $(this).siblings().find("img[src3]");
-        a.each(function () {
-            $(this).attr("src", $(this).attr("src3")).removeAttr("src3")
-        });
-        if (p == n) {
-            return false
-        } else {
-            q.animate({left:"-=" + i}, 240);
-            p++
-        }
-    })
-};
-$PT.comparePage = function (h, e, g, f) {
-    var g = $("b." + g);
-    var h = $("table." + h);
-    h.find("tr.title").toggle(function () {
-        $(this).find("td").addClass("shrink");
-        $(this).siblings().hide()
-    }, function () {
-        $(this).siblings().show();
-        $(this).find("td").removeClass("shrink")
-    });
-    g.each(function () {
-        var a = $(this).html();
-        var c = a.length;
-        var b = c - 5;
-        if (c > 7) {
-            a = a / Math.pow(10, b);
-            a = Math.floor(a);
-            $(this).html(a + "...")
-        }
-    });
-    $("a." + e).click(function () {
-        var c = $(this).parent();
-        var m = c.index();
-        c.parent().append("<li class='last'><a href='" + f + "' class='thirdBg cancal'>增加对比选项</a></li>");
-        c.remove();
-        h.find("tr").not(".title").each(function () {
-            $(this).find("td").eq(m).remove();
-            $(this).append("<td></td>")
-        });
-        var a = $("#showPros").find("td");
-        if (a.eq(1).find("div").size()) {
-            var b = "";
-            var d, n, l;
-            a.each(function () {
-                if ($(this).find("div").size()) {
-                    d = $(this).find("div").eq(0).attr("id");
-                    n = $(this).find("img").attr("src");
-                    l = $(this).find("span p").eq(0).text();
-                    b += d + "||" + encodeURIComponent(n) + "||" + encodeURIComponent(l) + "|||"
-                }
-            });
-            b = b.substr(0, b.length - 3);
-            $.cookie("compare", b, {domain:URLPrefix.cookie_domain, path:"/"})
-        } else {
-            $.cookie("compare", "", {domain:URLPrefix.cookie_domain, path:"/"})
-        }
-    })
-};
-$PT.cityBox = function () {
-    var l = $("#citybox");
-    var o, t = false, n, q, k, p, m = false, s;
-    var u;
-    return{init:function (a) {
-        u = a || (function (b) {
-            alert(b)
-        });
-        if (l.length == 0) {
-            return
-        }
-        n = this;
-        o = $("#citybox_btn");
-        o.click(function (b) {
-            if (l.css("display") == "none") {
-                $(this).addClass("select");
-                l.show()
-            } else {
-                $(this).removeClass("select");
-                l.hide()
-            }
-            b.preventDefault()
-        });
-        l.mouseover(function () {
-            $(this).show();
-            $("#citybox_btn").addClass("select")
-        }).mouseleave(function () {
-            $(this).hide();
-            $("#citybox_btn").removeClass("select")
-        });
-        l.find("table a").click(function (b) {
-            var c = this.href;
-            n.x = parseInt($(this).offset().left - $(".province").offset().left);
-            n.y = parseInt($(this).offset().top - $(".province").offset().top);
-            b.preventDefault();
-            if (q != null) {
-                q.remove();
-                q = null
-            }
-            m = false;
-            clearTimeout(s);
-            p = $(this).offset();
-            (function () {
-                $.get(c, function (d) {
-                    n.addCity(d, $(this).parent())
-                })
-            })();
-            $(this).css({"z-index":111, position:"relative"});
-            $(this).css("position", "relative");
-            $(this).addClass("on").parent().parent().siblings().find("a").removeClass("on");
-            $(this).addClass("on").parent().siblings().find("a").removeClass("on");
-            $(this).addClass("on").siblings().removeClass("on")
-        }).mouseleave(function (b) {
-                $(this).css({"z-index":10, position:"relative"});
-                s = setTimeout(function () {
-                    if (!m && q != null) {
-                        q.remove();
-                        $(".province").find("a").removeClass("on");
-                        q = null;
-                        l.css({height:"auto"})
-                    }
-                }, 200)
-            });
-        l.find(".closeIco").click(function (b) {
-            l.hide();
-            b.preventDefault()
-        })
-    }, addCity:function (b, e) {
-        var y = /([A-Za-z]+)([0-9]+)(.[^\|]+)()/g;
-        var g = {};
-        var h = {};
-        while (r = y.exec(b)) {
-            if (!g[r[1]]) {
-                g[r[1]] = [r[3]];
-                h[r[1]] = [r[2]]
-            } else {
-                g[r[1]].push(r[3]);
-                h[r[1]].push(r[2])
-            }
-        }
-        var c = 0;
-        var a = '<table class="citys"><tr>';
-        var A = "";
-        for (var f in g) {
-            var i = g[f];
-            var d = h[f];
-            for (var z = 0; z < d.length; z++) {
-                A += "<a name=" + d[z] + ' href="#">' + i[z] + "</a>"
-            }
-            c++
-        }
-        a += '<td class="td03">' + A + "</td></tr><tr>";
-        a = a.substring(0, a.length - 5) + "</table>";
-        var j = l.height();
-        q = $(a);
-        l.append(q);
-        if (this.y + q.height() + 30 < j) {
-            l.css("height", j)
-        } else {
-            l.css({height:this.y + q.height() + 30})
-        }
-        q.mouseover(function (v) {
-            m = true
-        }).mouseleave(function (v) {
-            m = false;
-            q.remove();
-            q = null;
-            l.css({height:"auto"});
-            $(".province").find("a").removeClass("on")
-        });
-        q.find("a").click(function (v) {
-            setTimeout(function () {
-                l.hide();
-                $("#citybox_btn").removeClass("select");
-                l.css({height:"auto", "z-index":20})
-            }, 300);
-            $("#citybox_btn .ctext").html(this.innerHTML);
-            v.preventDefault();
-            changeCity(this.innerHTML, this.name)
-        });
-        q.css({left:10 + "px", top:this.y + 19 + "px"})
-    }}
-};
-$PT.catalogTree = function (c, d) {
-    $("#navBarCon dl:first-child").children().addClass("foc");
-    if (c) {
-        $("#navBarCon dl:first-child").addClass("foc")
-    }
-    if (d) {
-        $("#" + d).addClass("foc").parents("dt").parents("dl").addClass("foc");
-        $("#" + d).addClass("foc").parents("dd").parents("dl").addClass("foc");
-        $("#" + d).addClass("foc").parents("dd").addClass("foc").siblings().addClass("foc");
-        if (!c) {
-            $("#" + d).click(function (a) {
-                a.preventDefault()
-            })
-        }
-    }
-};
-$PT.goTopBox = function () {
-    var d = window.screen.width, c = 0;
-    if (d < 1200) {
-        c = ($(window).width() - 960) / 2 - 50
-    } else {
-        c = ($(window).width() - 1160) / 2 - 50
-    }
-    $(window).scroll(function () {
-        if ($(window).scrollTop() > 0) {
-            $("#back_top").css("right", c).fadeIn(200)
-        } else {
-            $("#back_top").fadeOut()
-        }
-        if (!window.XMLHttpRequest) {
-            $("#back_top").css("top", $(window).scrollTop() + $(window).height() - 100)
-        }
-    })
-};
-function SnLazyLoad(i, l) {
-    l = l || {};
-    var n = l.multiple || 1.5;
-    var m = $(i);
-    var h = m.find("img[src2], iframe[src2]");
-    var j = navigator.userAgent.toLowerCase().match(/iPad/i) == "ipad";
-    var k = document.documentElement.clientHeight;
-    this.load = function () {
-        var a = j ? window.pageYOffset : Math.max(document.documentElement.scrollTop, document.body.scrollTop);
-        h.each(function () {
-            var d = $(this);
-            var b = d.offset().top;
-            if (b <= (a + parseInt(k * n))) {
-                var c = d.attr("src2");
-                if (c) {
-                    d.attr("src", c).removeAttr("src2")
-                }
-            }
-        })
-    };
-    this.bindScroll = function () {
-        $(window).bind("scroll", this.load)
-    };
-    this.bindScroll();
-    this.load()
-}
-function priceWavy(g, h) {
-    g = g || "";
-    var l = $(g + ".liprice").length;
-    var k = $(g + ".liprice");
-    for (var j = 0; j < l; j++) {
-        var i;
-        if (k.eq(j).attr("src")) {
-            i = k.eq(j).attr("src").replace("~", h);
-            k.eq(j).attr("src", i)
-        } else {
-            if (k.eq(j).attr("src1")) {
-                i = k.eq(j).attr("src1").replace("~", h);
-                k.eq(j).attr("src", i).removeAttr("src1")
-            } else {
-                if (k.eq(j).attr("src2")) {
-                    i = k.eq(j).attr("src2").replace("~", h);
-                    k.eq(j).attr("src", i).removeAttr("src2")
-                } else {
-                    if (k.eq(j).attr("src3")) {
-                        i = k.eq(j).attr("src3").replace("~", h);
-                        k.eq(j).attr("src", i).removeAttr("src3")
-                    }
-                }
-            }
-        }
-    }
-}
-$PT.recTxt = function (d) {
-    var c = d.html();
-    d.click(function () {
-        $(this).html("")
-    });
-    d.blur(function () {
-        if ($(this).html() == "" || $(this).html() == c) {
-            $(this).html(c);
-            return false
-        }
-    })
-};
-function specPBLen() {
-    var c = $("#specPB"), d = c.find("li").length;
-    c.css("width", (d * 253) + "px");
-    $PT.recTxt($("#recTxt"))
-}
-function matchHistoryFilters(d) {
-    if (typeof(d) != null && d.size != 0) {
-        $(".filterCond").show()
-    }
-    var c = false;
-    d.each(function () {
-        var a = $(this).find("td").eq(0).html();
-        var g = $(this).find("td").eq(1).html();
-        $("#" + a).find("a").each(function () {
-            if ($.trim(g) == $.trim($(this).attr("id"))) {
-                var e = $(this).parent().attr("class"), m = $.trim($(this).html());
-                var f = parseInt(e.substring(2));
-                if (f > 5) {
-                    c = true
-                }
-                $(this).addClass("foc");
-                var l = "'" + $(this).parent().parent().parent().attr("id") + "'";
-                l = l == "'brand_Id_Name'" ? "'brand_Name_FacetAll'" : l;
-                l = l == "'filterPrice'" ? "'price'" : l;
-                var n = "'" + $(this).attr("id") + "'";
-                $("#topFilter").append('<a href="###" class="' + e + '" onclick="searchFilterPage(' + l + "," + n + ')">' + m + "</a>");
-                $(this).find("a").addClass("foc").siblings().removeClass("foc");
-                showAll($(this).find("a").find("em"))
-            }
-        });
-        if ("price" == a && !$("#price a").hasClass("foc")) {
-            var b = g.split("-")[0];
-            var h = g.split("-")[1];
-            $("#startM").val(b);
-            $("#endM").val(h);
-            if (parseInt(parseFloat(b)) == 0) {
-                $("#startM").val("0")
-            }
-            $("#startM").parent("div").show()
-        }
-    });
-    if (c) {
-        $("#filterContent").find("dl").show();
-        $("#filterShrink").addClass("filterUp").html("向上收起")
-    }
-}
-function showAll(h) {
-    if ($(h).parent().parent().parent().parent().parent().css("display") == "none") {
-        $(h).parent().parent().parent().parent().parent().siblings().not("#historyFilters").each(function () {
-            if ($(this).css("display") == "none") {
-                $(this).css("display", "block")
-            }
-        });
-        var g = $("#filterContent").find("dl");
-        var e = g.length;
-        $(h).parent().parent().parent().parent().parent().css("display", "block");
-        g.eq(4).css("border-bottom", "1px dotted #ccc");
-        g.eq(e - 1).css("border", "none");
-        for (var f = 5; f < e; f++) {
-            g.eq(f).slideDown("fast")
-        }
-        $("#filterShrink").addClass("filterUp").html("向上收起")
-    }
-}
-function submit(c) {
-    var d = document.createElement("form");
-    d.action = "search.do?keyword=" + c;
-    d.method = "get";
-    d.id = "omiiForm";
-    d.name = "omiiForm";
-    d.style.display = "none";
-    document.body.appendChild(d);
-    setTimeout("omiiFormDoSubmit()", 10)
-}
-function omiiFormDoSubmit() {
-    $("#omiiForm")[0].submit()
-}
-function resubmitSearchin1(h, f) {
-    var i = $.trim(document.getElementById("reword").value);
-    f = (f) ? f : ((window.event) ? window.event : "");
-    keyCode = f.keyCode ? f.keyCode : (f.which ? f.which : f.charCode);
-    if (13 == keyCode) {
-        if (i === "") {
-            window.location.reload()
-        } else {
-            var j = URLPrefix.search + "/search.do?keyword=" + encodeURIComponent(i);
-            var g = $.cookie("cityId");
-            if (!g) {
-                g = 9173
-            }
-            j = j + "&cityId=" + g;
-            window.location.href = j
-        }
-    }
-}
-function resubmitSearchin(h) {
-    var e = $("#reword").val();
-    if (e == "") {
-        e = h;
-        var f = URLPrefix.search + "/search.do?keyword=" + encodeURIComponent(h)
-    } else {
-        var f = URLPrefix.search + "/search.do?keyword=" + encodeURIComponent(e)
-    }
-    var g = $.cookie("cityId");
-    if (!g) {
-        g = 9173
-    }
-    f = f + "&cityId=" + g;
-    window.location.href = f
-}
-if (typeof param != "undefined") {
-    var href = param.holdURL;
-
-    function searchFilterPage(d, c) {
-        href = param.holdURL + getShowType() + param.sortType + param.inventory + "&cf=" + d + ":" + c + param.historyFilter;
-        window.parent.location = href
-    }
-
-    function clearCustomerPrice() {
-        if (param.historyFilter != "") {
-            $("#startM,#endM").val("");
-            $("#cPrice").hide();
-            searchFilterPage("price", $("#startMendM").val())
-        }
-    }
-
-    function sortByFeature(d, c) {
-        href = param.holdURL + "&cp=0" + getShowType();
-        if (d != null) {
-            href = href + "&si=" + d
-        }
-        if (c != null) {
-            href = href + "&st=" + c
-        }
-        href = href + param.inventory + param.historyFilter;
-        window.parent.location = href
-    }
-
-    function changePage(b) {
-        href = param.holdURL + "&cp=" + b + getShowType() + param.sortType + param.inventory + param.historyFilter;
-        window.parent.location = href
-    }
-
-    function checkForInventory(b) {
-        href = param.holdURL + "&cp=0" + getShowType() + param.sortType;
-        if (b == "1") {
-            href = href + "&iy=1"
-        }
-        href = href + param.historyFilter;
-        window.parent.location = href
-    }
-}
-$(".disAll").click(function () {
-    if ($("#inventory").val() == "1") {
-        checkForInventory(0)
-    } else {
-        checkForInventory(1)
+        return this.css({top:b, left:a}).show()
     }
 });
-function getShowType() {
-    var b = $("#showTab").hasClass("spanLS") ? "1" : "0";
-    return"&il=" + b
-}
-function resetAllFilters() {
-    window.parent.location = href
-}
-function slashAdvFilterDescrib() {
-    var c = $(".advFilValDes");
-    c.each(function () {
-        var a = $.trim($(this).html());
-        var b = slasher(a, 30, false);
-        $(this).html(b)
-    });
-    var d = $(".advFilValDesBrand");
-    d.each(function () {
-        var a = $.trim($(this).html());
-        var b = slasher(a, 14, true);
-        $(this).html(b)
-    })
-}
-function slashNoResPageRelatedWords(d) {
-    d *= 2;
-    var c = $(".noResultPageRw");
-    c.each(function () {
-        var a = $(this).html();
-        var b = slasher(a, d, true);
-        $(this).html(b)
-    })
-}
-function slasher(m, i, n) {
-    if (m == null || typeof(m) == "undefined") {
-        return
-    }
-    var s = 0;
-    var o = "";
-    var l = /[^\x00-\xff]/g;
-    var p = "";
-    var k = m.replace(l, "**").length;
-    for (var q = 0; q < k; q++) {
-        p = m.charAt(q).toString();
-        if (p.match(l) != null) {
-            s += 2
+var isIE6 = false;
+(function (a) {
+    a.fn.popwindow = function (c) {
+        var c = a.extend({}, c);
+        if (this.context) {
+            a(this).click(function () {
+                d(this);
+                return false
+            })
         } else {
-            s++
+            d(null)
         }
-        if (s > i) {
+        function d(g) {
+            html = [];
+            html.push();
+            html.push('<div id="Overlay">');
+            if (c.title) {
+                var h = c.title;
+                if (typeof(c.title) == "function") {
+                    h = c.title(g)
+                }
+                html.push('<div class="KmainBox">');
+                html.push('<h2 class="msgboxhead">');
+                html.push("    <span>" + h + "</span> ");
+                html.push('    <a style="color: #fff;" href="#" class="close track" name="item-close">关闭</a><a href="#" class="close track" name="item-close"><img src="//i.vanclimg.com/Others/2011/2/15/dpbox_06.gif" /></a></h2>')
+            }
+            html.push('    <iframe id="LoadedContent" frameborder="0"></iframe>');
+            if (c.title) {
+                html.push("</div>")
+            }
+            html.push("</div>");
+            a("body").prepend(html.join(""));
+            if (!c.noOverlayClose) {
+                a("#Overlay").click(function () {
+                    a(this).remove()
+                })
+            }
+            if (a.fn.decorateIframe) {
+                a("#Overlay").decorateIframe()
+            }
+            var f = a("#LoadedContent");
+            var j = "";
+            if (c.href) {
+                j = c.href
+            } else {
+                j = a(g).attr("href")
+            }
+            f.attr("src", j);
+            a("#Overlay").children().eq(0).css(c);
+            b();
+            a("#Overlay .close").click(function () {
+                a("#Overlay").fadeOut().remove();
+                return false
+            })
+        }
+    };
+    a.fn.popwindow.close = function () {
+        a("#Overlay").fadeOut().remove()
+    };
+    a.fn.popwindow.resize = function (c) {
+        a("#LoadedContent").css(c)
+    };
+    function b() {
+        var c = a("#LoadedContent");
+        if (isIE6) {
+            ie6.windowresize()
+        } else {
+            a("#Overlay").css({position:"fixed"})
+        }
+        var d = {marginLeft:(a(window).width() - c.width()) / 2, marginTop:(a(window).height() - c.height()) / 2};
+        a("#Overlay").children().eq(0).css(d)
+    }
+
+    a(window).resize(b)
+})(jQuery);
+String.prototype.cut = function (b) {
+    var d = 0;
+    var c = [];
+    for (var a = 0; a < this.length; a++) {
+        if (this.charCodeAt(a) > 128) {
+            d += 2
+        } else {
+            d++
+        }
+        c.push(this.charAt(a));
+        if (d >= b) {
+            c.push("...");
             break
         }
-        o += p
     }
-    if (k > i && n) {
-        o += "..."
-    }
-    return o
-}
-function backToTop() {
-    if (document.body) {
-        $(document.body).animate({scrollTop:0})
-    }
-    $("html").animate({scrollTop:0})
-}
-function sideToolsAct() {
-    var u = $("#sideTools");
-    var p = $(window).height();
-    var m = u.height();
-    var y = u.find(".stMore");
-    var t = u.find(".miniNav a");
-    var w = u.find(".stMoreClose");
-    var q = false;
-    var n;
-    var x = !!window.ActiveXObject;
-    var v = x && !window.XMLHttpRequest;
-    u.css({top:(p - m) - 100 + "px"});
-    if (v) {
-        u.css({bottom:"200px"})
-    }
-    u.removeClass("hide");
-    u.hover(function () {
-        clearTimeout(n);
-        u.stop().animate({right:0})
-    }, function () {
-        if (!q) {
-            n = setTimeout(function () {
-                u.stop(true, true).animate({right:"-52px"})
-            }, 300)
-        }
-    });
-    t.click(function () {
-        o()
-    });
-    w.click(function () {
-        o()
-    });
-    function o() {
-        var b = y.height();
-        if (!q) {
-            t.addClass("on");
-            y.show().height("auto");
-            var c = y.height();
-            y.height(0).hide();
-            var a = (p - m - c + 14) / 2;
-            var d = u.css("right");
-            if (d < 0) {
-                u.animate({right:0}, 1)
-            }
-            if (a < 0) {
-                a = 0
-            }
-            y.show().animate({height:c + "px"}, 400);
-            if (v) {
-                u.css({top:$(document).scrollTop() + 42 + "px"})
-            } else {
-                u.stop().animate({top:a + "px"}, 350)
-            }
-            w.show();
-            q = true
+    return c.join("")
+};
+String.prototype.gblen = function () {
+    var b = 0;
+    for (var a = 0; a < this.length; a++) {
+        if (this.charCodeAt(a) > 128) {
+            b += 2
         } else {
-            t.removeClass("on");
-            y.animate({height:0}, 180);
-            if (v) {
-                u.css({top:$(document).scrollTop() + 42 + "px"})
-            } else {
-                u.stop().animate({top:(p - m) / 2 + "px"}, 350, function () {
-                    y.hide()
-                })
-            }
-            w.hide();
-            q = false
+            b++
         }
+    }
+    return b
+};
+var stockTimeout = null;
+function stockIn() {
+    if (stockTimeout != null) {
+        window.clearTimeout(stockTimeout)
+    }
+    $(".addressWindows").show();
+    $(".cityAdd").addClass("cityAddHover")
+}
+function stockOut() {
+    stockTimeout = window.setTimeout(function () {
+        $(".addressWindows").hide();
+        $(".cityAdd").removeClass("cityAddHover")
+    }, 50)
+}
+function checkStocking() {
+    var b = getCloseCode();
+    if (b != null) {
+        var a = $(".addressWindows a:contains('" + $.trim($("#shippingAddr").text()) + "')");
+        if (a.length == 0) {
+            return
+        }
+        var c = a.attr("name").replace("hs-", "");
+        var d = [];
+        d.push("/styles/stocking.aspx");
+        d.push("?clothescode=" + b);
+        d.push("&housecode=" + c);
+        $.get(d.join(""), function (e) {
+            if (e == "True") {
+                $("#stockinfo").text("从最近库房发货");
+                $("#citystatus").text("(有货)")
+            } else {
+                $("#stockinfo").text("从其他库房发货");
+                $("#citystatus").text("(库存紧张)")
+            }
+        })
+    }
+    stockOut()
+}
+function getCloseCode() {
+    if ($(".selSize #onlickSelSize").length == 0) {
+        return null
+    }
+    return $(".selSize #onlickSelSize").attr("name")
+}
+function ajaxIsLogined(a, c) {
+    var d = "styles/IsLogined.aspx";
+    var b = [];
+    if (c != null && c.length > 0) {
+        b.push("productcode=" + c)
+    }
+    if (b.length > 0) {
+        d = d + "?" + b.join("&")
+    }
+    $.getScript(d, a)
+}
+var sizetitle = "";
+$(function () {
+    isIE6 = (typeof ie6 != "undefined");
+    if ($.fn.decorateIframe) {
+        $("#bigView,#collectbox,#shopbox").decorateIframe()
+    }
+    var productcode = $("#productcode").text().split("：")[1];
+    $("#addToShoppingCar").live("click", function () {
+        $("#shoploading").html('<img src="//i.vanclimg.com/logo/loading.gif" alt="loading">');
+        $(".shoppingErrTips").remove();
+        if ($("#shopbox").css("display") != "none") {
+            $("#collectbox").fadeOut()
+        } else {
+            $("#collectbox,#shopbox").fadeOut()
+        }
+        var closeCode = getCloseCode();
+        if (closeCode == null) {
+            $(".danpin_xuanzeGMcm").show();
+            return false
+        }
+        var url = [];
+        url.push("http://shopping.vancl.com");
+        url.push("/mycart/batchadd");
+        url.push("?sku=");
+        url.push(closeCode);
+        url.push("&price=");
+        url.push($("#pricearea >.cuxiaoPrice>span>strong:eq(0)").text());
+        url.push("&qty=");
+        url.push($("#selectedAmount").val());
+        var refLink = (function (o) {
+            var href = o.attr("href");
+            var index = href.indexOf("#");
+            if (index > -1 && index + 1 < href.length) {
+                var href = href.substring(index + 1, href.length);
+                return"&" + href
+            }
+        })($(this));
+        if (refLink) {
+            url.push(refLink)
+        }
+        url.push("&async=true");
+        url.push("&callback=?");
+        $("#shopbox").css({top:$("#addToShoppingCar").offset().top - 120}).show();
+        if (isIE6) {
+            $("#shopbox").css({left:ie6.setLeft(538)})
+        }
+        $("#shopbox").find(".close,.jxgwbtn").click(function () {
+            $("#shopbox").hide();
+            $("#shoploading").show().next().hide();
+            return false
+        });
+        var shoppingurl = url.join("");
+        if ($(".cuxiaoPrice").find("strong").length == 1 && shoppingurl.indexOf("&isPoint=true") > 0) {
+            shoppingurl = shoppingurl.replace("&isPoint=true", "")
+        }
+        $.getJSON(shoppingurl, function (data) {
+            if (!data.Type || data.Type == "") {
+                $("#shopboxprice").text(data.TotalPrice);
+                $("#shopboxcount").text(data.TotalProducts);
+                $.getJSON("/api/buynow.aspx?callback=?");
+                var clothes = "";
+                if (typeof(data.clothes) != "undefined") {
+                    clothes = data.clothes
+                }
+                var paramJson = '[{Position:"rp_item_cart", ProductCodes:"' + productcode + '",Rows:"' + 5 + '",Remark:"NeedExclude",ClothesCodes:"' + clothes + '"}]';
+                var $gmlist = $("#shopbox").find(".gmlist");
+                var $weblog = $("<img style='display:none;' src='//item.vancl.com/api/user.aspx?closeCode=" + closeCode + "' />");
+                $("body").append($weblog);
+                recmApi(paramJson, $gmlist, "dp_add2cart_similarpurchase", "item-shopping-pap", "cart");
+                $("#shoploading").fadeOut(function () {
+                    $(this).next().show()
+                });
+                VA_GLOBAL.va.track(null, "va_atc", shoppingurl.substr(shoppingurl.indexOf("?") + 1));
+                if (typeof(VANCL.MiniCart.trackSBU) != undefined) {
+                    VANCL.MiniCart.trackSBU()
+                }
+            } else {
+                $("#shopbox").hide();
+                var $tip = $('<p class="shoppingErrTips"><span></span>' + data.Content + "</p>");
+                if (data.Content.indexOf("请先登录") > 0) {
+                    $tip = $('<p class="shoppingErrTips"><span></span>本商品限购，<a href="javascript:location.href=\'https://login.vancl.com/login/login.aspx?\'+location.href"> 请先登录</a> 确认您的会员等级能否购买</p>')
+                }
+                $(".shoppingCarArea").after($tip)
+            }
+        });
+        return false
+    });
+    $("img[original]").lazyload();
+    var producttype = $("#pricearea").attr("name");
+    var styleid = $("#styleinfo").attr("name");
+    $("#imageMenu li span").live("mouseover", function () {
+        if ($(this).attr("id") != "onlickImg") {
+            midChange($(this).attr("name").replace("small", "mid"));
+            $("#imageMenu li").removeAttr("id");
+            $(this).parent().attr("id", "onlickImg")
+        }
+    });
+    function midChange(src) {
+        $("#midimg").attr("src", src).load(function () {
+            changeViewImg()
+        })
     }
 
-    function s() {
-        if (v) {
-            var a = (p - m) / 2;
-            u.css({position:"absolute", right:"-54px", top:a + "px"});
-            $(window).scroll(function () {
-                var d = u.height();
-                var b = (p - d) - 100;
-                var c = $(document).scrollTop();
-                u.stop().animate({top:b + c + "px"}, 500)
+    $("#imageMenu").scrollTop(0);
+    (function () {
+        function mouseEnter(e) {
+            if ($("#winSelector").css("display") == "none") {
+                $("#winSelector,#bigView").show()
+            }
+            $("#winSelector").css(fixedPosition(e));
+            e.stopPropagation();
+            return false
+        }
+
+        function mouseOut(e) {
+            if ($("#winSelector").css("display") != "none") {
+                $("#winSelector,#bigView").hide()
+            }
+            e.stopPropagation();
+            return false
+        }
+
+        if (document.createTouch) {
+            $("#midimg,#winSelector").live("touchmove", mouseEnter).live("touchend", mouseOut)
+        } else {
+            $("#midimg, #winSelector").live("mouseenter", mouseEnter);
+            $("#winSelector").live("mousemove", mouseEnter);
+            $("#midimg,#winSelector").live("mouseout", mouseOut)
+        }
+        var $divWidth = $("#winSelector").width();
+        var $divHeight = $("#winSelector").height();
+        var $imgWidth = $("#midimg").width();
+        var $imgHeight = $("#midimg").height();
+        var $viewImgWidth = $viewImgHeight = $height = null;
+        $(window).load(changeViewImg);
+        $("#bigView").scrollTop(0);
+        function fixedPosition(e) {
+            if (e == null) {
+                return
+            }
+            var pageX = e.clientX + $(document).scrollLeft();
+            var pageY = e.clientY + $(document).scrollTop();
+            if (document.createTouch) {
+                pageX = event.touches[0].pageX;
+                pageY = event.touches[0].pageY
+            }
+            var $imgLeft = $("#midimg").offset().left;
+            var $imgTop = $("#midimg").offset().top;
+            X = pageX - $imgLeft - $divWidth / 2;
+            Y = pageY - $imgTop - $divHeight / 2;
+            X = X < 0 ? 0 : X;
+            Y = Y < 0 ? 0 : Y;
+            X = X + $divWidth > $imgWidth ? $imgWidth - $divWidth : X;
+            Y = Y + $divHeight > $imgHeight ? $imgHeight - $divHeight : Y;
+            if ($viewImgWidth == null) {
+                $viewImgWidth = $("#bigView img").outerWidth();
+                $viewImgHeight = $("#bigView img").height();
+                if ($viewImgWidth < 200 || $viewImgHeight < 200) {
+                    $viewImgWidth = $viewImgHeight = 800
+                }
+                $height = $divHeight * $viewImgHeight / $imgHeight;
+                $("#bigView").width($divWidth * $viewImgWidth / $imgWidth);
+                $("#bigView").height($height)
+            }
+            var scrollX = X * $viewImgWidth / $imgWidth;
+            var scrollY = Y * $viewImgHeight / $imgHeight;
+            $("#bigView img").css({left:scrollX * -1, top:scrollY * -1});
+            var viewH = document.documentElement.clientHeight == 0 ? document.body.clientHeight : document.documentElement.clientHeight;
+            var top = ((viewH - $height) / 2) + $(document).scrollTop();
+            top = top < 240 ? 240 : top;
+            var left = 537;
+            if (isIE6) {
+                left = ie6.setLeft(left)
+            }
+            $("#bigView").css({top:top, left:left});
+            return{left:X, top:Y}
+        }
+    })();
+    $("#saleout").live("click", function () {
+        var productcode = $("#productcode").text().split("：")[1];
+        var saleoutWidth = 466;
+        var saleoutHeight = 208;
+        ajaxIsLogined(function () {
+            if (!isLogined) {
+                saleoutWidth = 451;
+                saleoutHeight = 156
+            }
+            $.fn.popwindow({width:saleoutWidth, height:saleoutHeight, title:"到货通知我", href:"http://www.vancl.com/Product/ProductSaleOutNotify.aspx?oper=1&productCode=" + productcode + "&r=" + Math.random()})
+        });
+        return false
+    });
+    $(".selColor li:not(.colorBlocksouqing),.selSize li").live("mouseover",function () {
+        $(this).addClass("hover")
+    }).live("mouseout", function () {
+        $(this).removeClass("hover")
+    });
+    function selectedAmount_click() {
+        var number = parseFloat($("#selectedAmount").val());
+        re = /\d/g;
+        var text = $(".cuxiaoPrice span").text().replace(/[\d|\.]+/g, function ($1, i) {
+            if (i == 1) {
+                i = 2
+            } else {
+                i = 0
+            }
+            return(parseFloat($1) * number).toFixed(i)
+        });
+        $(".goodsPrice em").text(text)
+    }
+
+    $("#selectedAmount").click(selectedAmount_click);
+    selectedAmount_click();
+    (function () {
+        var api = ["sina", "sohu", "qq", "qqzone", "kaixin", "renren", "douban"];
+        $("#share a").live("click", function () {
+            var index = $(this).prevAll("a").length;
+            var img = $("#midimg").attr("src");
+            var title = "我在凡客诚品看到了一个非常不错的商品：" + $.trim($("#styleinfo").text()) + "，仅售" + $.trim($(".cuxiaoPrice").find("strong").text()) + "元； " + $.trim($(".danpin_YhTsBox").find("li:first").text()) + " @VANCL粉丝团，地址：" + document.location.href.replace(/(demo|my)item/ig, "item");
+            $.fn.share({api:api[index], title:title, url:getencodelochref(), pic:img});
+            return false
+        });
+        function getencodelochref() {
+            return encodeURIComponent(document.location.href.replace(/(demo|my)item/ig, "item"))
+        }
+    })();
+    $(".question a").hover(function () {
+        var divIframe = $("#vipiframe");
+        if (divIframe.length == 0) {
+            var divIframe = $("<iframe />");
+            divIframe.attr("id", "vipiframe").attr("frameborder", "0").appendTo("body")
+        }
+        divIframe.attr("src", $(this).attr("href")).css({width:340, height:125, top:$(this).offset().top + 20, left:650}).show()
+    },function () {
+        $("#vipiframe").hide()
+    }).click(function () {
+        return false
+    });
+    if ($("#onlickColor .colorBlock").attr("name") == "True") {
+        $("#comeon").fadeIn()
+    }
+    $(".dp_scbtn").live("click", function () {
+        $("#collectbox,#shopbox").hide();
+        ajaxIsLogined(function () {
+            if (!isLogined) {
+                openLoginDiv("addFavorite()")
+            } else {
+                addFavorite()
+            }
+        });
+        return false
+    });
+    var closeCode = getCloseCode();
+    if (closeCode == null) {
+        $(".cityAdd").addClass("notallowed").hover(function () {
+            $(this).nextAll(".warnning").show()
+        }, function () {
+            $(this).nextAll(".warnning").hide()
+        })
+    } else {
+        $(window).load(checkStocking);
+        SumPrice();
+        $(".cityAdd").hover(stockIn, stockOut).nextAll("div.warnning").remove();
+        $(".addressWindows").hover(stockIn, stockOut)
+    }
+    $(".goodsAddArea").fadeIn("slow");
+    if (window.localStorage) {
+        var myprovince = window.localStorage.myprovince;
+        if (myprovince == null) {
+            myprovince = "北京"
+        }
+        $("#shippingAddr").text(myprovince)
+    } else {
+        if (document.body.style.behavior != "undefined") {
+            var o = document.getElementById("bigView");
+            o.style.behavior = "url('#default#userData')";
+            o.addBehavior("#default#userData");
+            o.load("my");
+            var myprovince = o.getAttribute("province");
+            if (myprovince == null) {
+                myprovince = "北京"
+            }
+            $("#shippingAddr").text(myprovince)
+        }
+    }
+    $(".addressWindows a").live("click", function () {
+        $("#shippingAddr").text($(this).text());
+        if (window.localStorage) {
+            window.localStorage.myprovince = $(this).text()
+        } else {
+            if (document.body.style.behavior != "undefined") {
+                var o = document.getElementById("bigView");
+                o.setAttribute("province", $(this).text());
+                o.save("my")
+            }
+        }
+        checkStocking();
+        return false
+    });
+    (function () {
+        $(".RsetTabMenu li").click(function () {
+            var menu = $(".RsetTabMenu li");
+            menu.removeClass("hover").addClass("down");
+            $(this).addClass("hover").removeClass("down");
+            var index = $(this).prevAll().length;
+            var tabs = $(".RsetTabCon");
+            tabs.hide();
+            if ($.trim(tabs.eq(index).html()) == "") {
+                $.get($(this).find("a").attr("href"),function (data) {
+                    tabs.eq(index).html(data)
+                }).success(function () {
+                    tabs.eq(index).show()
+                })
+            } else {
+                tabs.eq(index).show()
+            }
+            if (index > 0) {
+                $(".RsetTabArea>.liketabfg,.RsetTabArea>.blank20,.RsetTabArea>.blank15,#starvancl").hide()
+            } else {
+                $(".RsetTabArea>.liketabfg,.RsetTabArea>.blank20,.RsetTabArea>.blank15,#starvancl").show();
+                tabs.eq(1).show();
+                tabs.eq(2).show()
+            }
+            return false
+        })
+    })();
+    $("#selectedAmount").live("change", SumPrice);
+    $("#tiwen").click(function () {
+        ajaxIsLogined(function () {
+            if (!isLogined) {
+                $.fn.alert("此操作需要登录，您现在要登录吗？", function (b) {
+                    if (b) {
+                        location.href = "https://login.vancl.com/login/login.aspx?" + location.href
+                    }
+                }, {type:2})
+            } else {
+                $.fn.popwindow({href:"/styles/static.aspx?position=Ask", width:"821px", height:"380px", title:"提问"})
+            }
+        });
+        return false
+    });
+    $(window).one("scroll", function () {
+        var productcode = $("#productcode").text().split("：")[1];
+        $.get("/styles/ajaxload.aspx?productcode=" + productcode + "&producttype=" + producttype + "&styleid=" + styleid, function (data) {
+            $(".danpinRight").append(($("#promotion", data).html()));
+            $(".sideBarArea").append(($("#left", data).html()));
+            $("#starvancl").replaceWith($("#starvancl", data));
+            $(".dpShuXing ul").append($("#productporperty", data).html());
+            if ($(".dpShuXing ul li").length > 0) {
+                $("#attr").show()
+            } else {
+                $("#attr").hide()
+            }
+            var index = $(".RsetTabMenu li.hover").prevAll().length;
+            if (index > 0) {
+                $("#starvancl").hide()
+            }
+            if (typeof(vjiaAd) != "undefined" && vjiaAd.imageUrl && vjiaAd.imageLink) {
+                try {
+                    var adlink = "<a class='track' name='" + vjiaAd.track + "' href='" + vjiaAd.imageLink + "?source=" + vjiaAd.source + "' target='_blank'><img src='" + vjiaAd.imageUrl + "' style='width: 200px;height:220px;' /></a>";
+                    $(".sideBarArea").append("<div class='itemad' style='width: 200px;height:220px;overflow:hidden;'>" + adlink + "</div>")
+                } catch (e) {
+                }
+            }
+            bindShowStarWindow();
+            $lazyload = $(".danpin_TJtaozTab,#starvancl,.sideBarArea").find("img[original]").not("[src])");
+            if ($lazyload.length > 0) {
+                $lazyload.lazyload()
+            }
+        });
+        $.ajax({url:"//jsy.vanclimg.com/js.ashx?href=item/unimportant.js&compress&v=20120711", cache:true, dataType:"script"})
+    });
+    (function () {
+        var viewH = document.documentElement.clientHeight == 0 ? document.body.clientHeight : document.documentElement.clientHeight;
+        if (window.screen.width > $(document.body).width() + 100) {
+            var scrollit = function () {
+                if ($(window).scrollTop() == 0) {
+                    goup.fadeOut()
+                } else {
+                    goup.fadeIn();
+                    if (isIE6) {
+                        goup.css({top:ie6.goUpTop()})
+                    }
+                }
+            };
+            var goup = $('<div style="right:0px;POSITION: absolute;z-index:1"><a href="javascript:window.scrollTo(0,0);"><div class="sprites" style="width:34px;height:24px;background-position:-88px -321px"></div></a></div>').hide();
+            if (!isIE6) {
+                goup.css({position:"fixed", bottom:5, right:($(window).width() / 2 - $(document.body).width() / 2 - 100) < 0 ? 0 : ($(window).width() / 2 - $(document.body).width() / 2 - 100)})
+            } else {
+                if ($(window).scrollTop() > 0) {
+                    goup.css({top:ie6.goUpTop()}).show()
+                }
+                ie6.windowresize();
+                $(window).resize(scrollit)
+            }
+            $(window).scroll(scrollit);
+            $("body").prepend(goup)
+        }
+    })();
+    (function () {
+        var pageCount = $("#relatedPager").find("a[id*='relatedPager_']").length;
+        if (pageCount > 0) {
+            $("#relatedLeft").hide();
+            $("#relatedPager").find("a[id*='relatedPager_']").click(function () {
+                var pagerID = $(this).attr("id");
+                setRelatedCurent(pagerID);
+                window.location.hash = "relatedshow";
+                return false
+            });
+            $("#relatedRight").click(function () {
+                relatedPageStep(1);
+                window.location.hash = "relatedshow";
+                return false
+            });
+            $("#relatedLeft").click(function () {
+                relatedPageStep(-1);
+                window.location.hash = "relatedshow";
+                return false
+            })
+        }
+    })();
+    (function () {
+        $(window).load(function () {
+            LimitPurchase();
+            var styleID = $("#styleinfo").attr("name");
+            $.get("/SizeCalculate/IniColorBox.aspx?styleID=" + styleID, function (r) {
+                if (r) {
+                    sizeCalObj = eval("(" + r + ")");
+                    if (sizeCalObj.isHave) {
+                        $("#sizeCal_text").show();
+                        if (sizeCalObj.start) {
+                            $("#showSizeCalculate").attr("href", "/SizeCalculate/PageRedirect.aspx?pageName=" + sizeCalObj.start)
+                        }
+                        $("#showSizeCalculate").popwindow({width:"530px", height:"354px", noOverlayClose:true})
+                    }
+                }
+            })
+        })
+    })()
+});
+function changeViewImg() {
+    $("#bigView").empty().append('<span>正在加载中……</span><img style="display:none"/>');
+    $("#bigView img").load(function () {
+        $("#bigView span").remove();
+        $(this).show()
+    }).attr("src", $("#midimg").attr("src").replace("mid", "big"))
+}
+function bindShowStarWindow() {
+    var a = $("#productcode").text().split("：")[1];
+    $("#showstar").attr("href", "//seller.vancl.com/suit/show?productid=" + a);
+    $("#showstar").unbind("click");
+    $("#showstar").click(function () {
+        ajaxIsLogined(function () {
+            if (!isLogined) {
+                $.fn.alert("此操作需要登录，您现在要登录吗？", function (c) {
+                    if (c) {
+                        location.href = "https://login.vancl.com/login/login.aspx?" + location.href
+                    }
+                }, {type:2});
+                return false
+            } else {
+                if (isPurchased && isPurchased > 0) {
+                    if (trialproductcode != "") {
+                        $("#showstar").attr("href", "http://seller.vancl.com/suit/show?productid=" + trialproductcode)
+                    }
+                    $.fn.popwindow({href:$("#showstar").attr("href"), width:"821px", height:"500px", title:"我要晒单"})
+                } else {
+                    $.fn.alert("您尚未购买此商品，或订单未完成，还不能晒单。");
+                    return false
+                }
+            }
+        }, a);
+        return false
+    });
+    $("#starItemPager a").live("click", function (c) {
+        var d = $(this).attr("href");
+        if (!d) {
+            return false
+        } else {
+            d = d + "&normalstarcount=" + $("#starvancl").attr("name")
+        }
+        b(d);
+        return false
+    });
+    function b(c) {
+        $.get(c, function (d) {
+            $("#starItem .bask").html($(".baskcontainer", d).html());
+            $("#starItemPager").html($(".pagercontainer", d).html())
+        })
+    }
+}
+function relatedPageStep(f) {
+    var b = $("#relatedPager").find("strong").parent();
+    var c = b.attr("id");
+    var a = c.split("_");
+    var e = Number(a[1]) + f;
+    var d = a[0] + "_" + e;
+    setRelatedCurent(d)
+}
+function setRelatedCurent(e) {
+    var b = $("#relatedPager").find("strong");
+    var f = b.html();
+    b.parent().html(f);
+    $("#" + e).html("<strong>" + $("#" + e).html() + "</strong>");
+    $(".relatedshow").removeClass("relatedshow").addClass("relatedhide");
+    var d = 0;
+    var a = 5;
+    var g = Number(e.split("_")[1]) * a;
+    var j = Number($("#relatedTotal").html());
+    if (g + a >= j) {
+        a = j - g;
+        $("#relatedRight").hide()
+    } else {
+        $("#relatedRight").show()
+    }
+    if (g == 0) {
+        $("#relatedLeft").hide()
+    } else {
+        $("#relatedLeft").show()
+    }
+    while (d < a) {
+        var h = g + d;
+        $("#relatedImage_" + h).removeClass("relatedhide").addClass("relatedshow");
+        d++
+    }
+}
+function ChooseThisSize(a, d, c) {
+    $(".danpin_xuanzeGMcm").hide();
+    $(".shoppingErrTips").remove();
+    $(".cityAdd").removeClass("notallowed").next("div.warnning").remove();
+    if (c < 10) {
+        $("#comeon").fadeIn()
+    } else {
+        $("#comeon").fadeOut()
+    }
+    $(".selSize li").removeAttr("id");
+    $(a).attr("id", "onlickSelSize");
+    c = parseInt(c);
+    $(a).siblings().find("span").remove();
+    $("<span></span>").appendTo($(a));
+    var e = $("#selectedAmount option").length - c;
+    if (e > 0) {
+        $("#selectedAmount option").eq(c - 1).nextAll().remove()
+    } else {
+        if (e < 0) {
+            e = Math.abs(e);
+            var b = new Array(e);
+            $.map(b, function (g, f) {
+                var h = parseInt($("#selectedAmount option:last-child").val()) + 1;
+                $("#selectedAmount").append('<option value="' + h + '">' + h + "</option>")
+            })
+        }
+    }
+    checkStocking();
+    SumPrice();
+    $(".cityAdd").unbind();
+    $(".cityAdd").hover(stockIn, stockOut);
+    $(".addressWindows").hover(stockIn, stockOut)
+}
+var preUrlArr = ["/SizeCalculate/PageRedirect.aspx?pageName=HWCompute"];
+var sizeCalObj;
+var preParam = {};
+function setTab(e, b, d) {
+    for (i = 1; i <= d; i++) {
+        var c = document.getElementById(e + i);
+        var a = document.getElementById("con_" + e + "_" + i);
+        c.className = i == b ? "hover" : "";
+        a.style.display = i == b ? "block" : "none"
+    }
+}
+function recmApi(b, a, d, e, c) {
+    if (a.length > 0) {
+        $.getJSON("//app-recm.vancl.com/RecmService/GetProductByPosition?jsoncallback=?", {strJson:b}, function (f) {
+            if (f.Success) {
+                var h = $("#itemcode").val();
+                var j = $("#productcode").text().split("：")[1];
+                var g = [];
+                g.push("<h6>");
+                g.push(f.Title);
+                g.push("<a href='/favourate?productcode=" + j + "&p=" + c + "' style='color:#A10000;margin-left:120px;' class='track' name='" + e + "' target='_blank'>更多您可能喜欢的商品>></a></h6>");
+                g.push("<ul>");
+                $.each(f.Items, function (k, l) {
+                    var n = "//item.vancl.com/" + l.ProductCode + ".html";
+                    var m = l.Ref + "-" + j;
+                    if (h != undefined && h != "") {
+                        m = m + "-" + h
+                    }
+                    g.push("<li>");
+                    g.push('<div class="ygmPic">');
+                    g.push("<a class='track' name='" + e + "' href=\"" + n + '" target="_blank" rel="' + m + '">');
+                    g.push('<img src="' + l.ImageUrl + '" /></a></div>');
+                    g.push('<a class="ygmName track" name=\'' + e + "' href=\"" + n + '" target="_blank" rel="' + m + '">' + l.ProductName + "</a>");
+                    g.push('<p class="ygmPrice">');
+                    g.push("<span>售价￥" + l.Price + "</span>");
+                    g.push("</p>");
+                    g.push("</li>")
+                });
+                g.push("</ul>");
+                a.html(g.join("")).show()
+            } else {
+                a.hide()
+            }
+        })
+    }
+}
+function addFavorite() {
+    $("#collectboxloaging").html('<img src="//i.vanclimg.com/logo/loading.gif" alt="loading">');
+    $.fn.popwindow.close();
+    $("#collectbox").css({top:$(".dp_scbtn").offset().top - 100}).show();
+    if (isIE6) {
+        $("#collectbox").css({left:ie6.setLeft(539)})
+    }
+    isLogined = true;
+    setWelcome();
+    var d = $("#productcode").text().split("：")[1];
+    var c = '[{Position:"rp_item_favorite", ProductCodes:"' + d + '",Rows:"' + 5 + '",Remark:"NeedExclude"}]';
+    var a = $(".collectbox").find(".gmlist");
+    var b = {productcode:d};
+    b.price = $.trim($(".cuxiaoPrice strong:eq(0)").text());
+    b.endcatename = $.trim($(".breadNav a:last").text());
+    $.getJSON("/api/likethis.aspx", b, function (e) {
+        if (e.msg == "Y") {
+            $("#collectbox").find(".msgboxhead2 a").click(function () {
+                $("#collectbox").hide();
+                $("#collectboxloaging").show().nextAll().hide();
+                $(".fonttext,.tishi, .baocun").hide();
+                $(".icte").val("");
+                $(".inCti").find("span").removeClass().addClass("inCti_img02");
+                return false
+            });
+            recmApi(c, a, "dp_collect_SimilarWatching", "item-favorite-pab", "favorite");
+            $("#collectboxloaging").hide().nextAll().show();
+            $.getJSON("/api/FavoriteMark.aspx?styleid=" + $("#styleinfo").attr("name"), function (f) {
+                if (f.Success == "Y") {
+                    var h = f.CommonRemarks || [];
+                    if (h.length == 0) {
+                        var g = $.map($(".breadNav a:gt(0)"), function (j) {
+                            return $.trim($(j).text())
+                        });
+                        g.reverse().splice(3 - h.length);
+                        if (g.length > 3) {
+                            g.length = 3
+                        }
+                        $.merge(h, g)
+                    } else {
+                        if (h.length > 3) {
+                            h.length = 3
+                        }
+                    }
+                    $("#commonmarks").hide();
+                    if (h.length > 0) {
+                        $("#commonmarks").show().html("常用标签：" + $.map(h,function (j) {
+                            return'<label><input type="checkbox" class="input" />' + j + "</label>"
+                        }).join(" "))
+                    }
+                }
+            })
+        } else {
+            $.fn.alert("添加错误。");
+            $(".queding80EE8D67985E").click(function () {
+                $("#collectbox").hide()
+            })
+        }
+    })
+}
+function openLoginDiv(a) {
+    var b = [];
+    b.push("https://login.vancl.com");
+    b.push("/PublicControls/LoginDiv.aspx");
+    b.push("?url=");
+    b.push(escape(window.location.href));
+    b.push("&location=");
+    b.push(escape("http://item.vancl.com/styles/closeit.aspx?func=" + a));
+    $.fn.popwindow({href:b.join(""), width:384, height:463, title:"操作提示", noOverlayClose:true})
+}
+function CommentVote(b) {
+    $.fn.popwindow.close();
+    isLogined = true;
+    setWelcome();
+    b = b.replace("#mvc", ".mvc");
+    var a = $(".new-btn").find("a[href='" + b + "']").find("span");
+    if (!a.html()) {
+        a = $(".new-btn[href='" + b + "']").find("strong em")
+    }
+    $.ajax({url:b + "&t=" + Math.random(), dataType:"text"}).success(function (c) {
+        if (c == "Y") {
+            a.fadeOut(function () {
+                var d = "(" + (parseInt(a.text().replace("(", "").replace(")", "")) + 1) + ")";
+                a.text(d).fadeIn()
+            }).closest(".new-comment, .plDYinfo").find(".new-btn, .new-btn a").attr("href", "")
+        } else {
+            $.fn.alert(c)
+        }
+    }).error(function (c) {
+        $.fn.alert(c)
+    })
+}
+function LimitPurchase() {
+    function b(f, g, h) {
+        var d = $("#selectedAmount");
+        var e = $("#selectedAmount option");
+        d.after("<span id='limitinfo' style='margin-left:5px;'>" + g + "</span>");
+        var c = e.eq(h - 1).prevAll();
+        if (f == "down") {
+            c = e.eq(h - 1).nextAll()
+        }
+        c.attr("disabled", true);
+        if ($.browser.msie && $.browser.version <= 7) {
+            c.css({color:"graytext"});
+            d.unbind("focus").focus(function () {
+                $(this).data("f", this.selectedIndex)
+            });
+            d.unbind("change").change(function () {
+                var j = f == "down" ? this.selectedIndex > h - 1 : this.selectedIndex < h - 1;
+                if (j) {
+                    this.selectedIndex = $(this).data("f")
+                } else {
+                    $(this).data("f", this.selectedIndex)
+                }
+            })
+        }
+        if ($.browser.msie && $.browser.version == 8) {
+            d.unbind("keypress").keypress(function (k) {
+                var l = k.keyCode;
+                var j = f == "down" ? l > (h + 48) : l < (h + 48);
+                if (l > 48 && l < 58 && j) {
+                    if (l == 49 && f == "down") {
+                        this.selectedIndex = 0
+                    }
+                    return false
+                }
             })
         }
     }
 
-    s()
-}
-function filtersLineGenerator() {
-    var e = $("#filterContent").find("dl");
-    var f = false;
-    var d = 0;
-    if (!$(".filterCond ").is(":hidden")) {
-        f = true
-    }
-    e.each(function () {
-        if (d != 0) {
-            $(this).css("border-top", "1px dotted #CCCCCC")
+    $("#selectedAmount").next("#limitinfo").remove();
+    var a = $("#productcode").text().split("：")[1];
+    $.getJSON("api/LimitPurchase.aspx?productcode=" + a, function (c) {
+        if (c.msg == "Y" && typeof(c.direction) != "undefined") {
+            b(c.direction, c.err, c.num)
         }
-        d++
     })
 }
-function AdvfilterNameSlasher(c) {
-    var d = $(".AdvFfiledNameDesc");
-    d.each(function () {
-        var a = $.trim($(this).html());
-        a = a.substring(0, a.length - 1);
-        var b = slasher(a, c * 2, false);
-        $(this).html(b + ":")
+function SumPrice() {
+    var a = $(".goodsCar .dpxj0523");
+    if (getCloseCode()) {
+        var c = Number($("#selectedAmount").val());
+        var b = Number($(".cuxiaoPrice strong").eq(0).text());
+        a.show().children("span").html((c * b).toFixed(2))
+    } else {
+        a.hide()
+    }
+}
+$(function () {
+    $("input[name=yes]").click(function (b) {
+        var c = $(this).index("input[name=yes]");
+        if (c == 0) {
+            $("#recommendarea").slideUp();
+            $(".SubmitOk :button").eq(0).show()
+        } else {
+            $(".SubmitOk :button").eq(0).hide();
+            $("#recommendarea").slideDown();
+            $("#recommendarea textarea").data("forid", (c == 1 ? "textbox26382" : "textbox26379"))
+        }
+    });
+    var a = true;
+    $(".Comment0903 textarea").keyup(function (b) {
+        if (this.value.length >= 1000) {
+            $(".reachWord").show();
+            this.value = this.value.substr(0, 1000)
+        } else {
+            $(".reachWord").hide()
+        }
+        $(".OrderZifu em").text(this.value.length)
+    }).focus(function (b) {
+        if (a) {
+            this.value = "";
+            this.style.color = "black";
+            a = false
+        }
+    });
+    $(".SubmitOk :button").click(function () {
+        var b = {textbox26373:"单品页", textbox26382:"", textbox26379:""};
+        b.p4182 = $(".Comment0903 :checked").val();
+        var c = $("#recommendarea textarea");
+        if (c.data("forid")) {
+            b[c.data("forid")] = c.val()
+        }
+        $.post("/api/survey.aspx", b);
+        $(".yijianTJ").replaceAll(".Comment0903").show();
+        return false
     })
-}
-function recomStoreDescribSlasher() {
-    var b = $(".recomStoreDescrib");
-    b.html(slasher(b.html(), 88 * 2, true))
-}
-;
-/* FILE BEGIN searchSug.js */
-$.ajax({type:"GET", data:"key=" + $("#keyword").val() + "&cityId=" + $("#cityId").val(), dataType:"html", url:"buyMore.html", success:function (b) {
-    var a = b.split("@split@");
-    $("#finalBuy").html(a[0]);
-    $("#buyMore").html(a[1]);
-    $("#singleRec_findMore").html(a[2]);
-    if (a[2] != "\r\n") {
-        $("#singleRec_findMore").css("display", "block")
-    }
-    new SnLazyLoad("#buyLast,#bugMore,#singleRec_findMore")
-}, error:function () {
-}});
-/* FILE BEGIN jsInit.js */
-if (typeof(param) != "undefined") {
-    $PT.showTab(param.isList);
-    $PT.proSort(param.sortIndex);
-    $PT.catalogTree(param.level, param.categoryId);
-    $PT.sibOpera("navBarConIndex", "dt", "dd", param.categoryId, param.dirBean_level);
-    $PT.sibOpera("navBarCon", "dt", "dd");
-    if (param.currentPage) {
-        new $PT.topPager(parseInt(param.currentPage) + 1, parseInt(param.pageNumbers), parseInt(param.numFound)).init();
-        new $PT.buttomPager(parseInt(param.currentPage) + 1, parseInt(param.pageNumbers)).init()
-    }
-}
-$PT.compare("compareBtn", "compareCon", $.cookie("compare"));
-$PT.goTopBox();
-$PT.filter($("#filterContent"), $("#price"), $("#filterContent li a"), $("#filterContent .moreCond span"), $("#filterShrink"), $("#resetFilter"));
-$PT.customPrice("filterPrice", "customPrice");
-$("#proShow li").hover(function () {
-    $(this).addClass("foc").siblings().removeClass("foc")
-}, function () {
-    $(this).removeClass("foc")
 });
-new SnLazyLoad("#proShow,#recClassify,#recFStore");
-new sideToolsAct();
-new slashNoResPageRelatedWords(6);
-new AdvfilterNameSlasher(7);
-new recomStoreDescribSlasher();
-/* FILE BEGIN collect_da.js */
-function HashMap() {
-    this.keys = new Array();
-    this.data = new Object();
-    this.put = function (d, c) {
-        if (this.data[d] == null) {
-            this.keys.push(d)
+(function (a) {
+    a.fn.share = function (e) {
+        var e = a.extend({}, e);
+        var m = e.windowSize || "scrollbars=no,width=600,height=450,left=75,top=20,status=no,resizable=yes";
+        var l = e.target || "_blank";
+        var j = "http://v.t.sina.com.cn/share/share.php";
+        var c = "http://www.kaixin001.com/repaste/share.php";
+        var h = "http://share.renren.com/share/buttonshare/post/1004";
+        var b = "http://www.douban.com/recommend/";
+        var f = "http://v.t.qq.com/share/share.php";
+        var g = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey";
+        var k = "http://t.sohu.com/third/post.jsp";
+        d();
+        function d() {
+            switch (e.api) {
+                case"sina":
+                    window.open(j + "?pic=" + e.pic + "&title=" + encodeURIComponent(e.title) + "&url=" + encodeURIComponent(e.url) + "&rcontent=", l, m);
+                    break;
+                case"sohu":
+                    window.open(k + "?url=" + encodeURIComponent(e.url) + "&pic=" + e.pic + "&title=" + encodeURIComponent(e.title) + "&content=utf8", l, m);
+                    break;
+                case"qq":
+                    window.open(f + "?title=" + encodeURIComponent(e.title) + "&url=" + encodeURIComponent(e.url) + "&pic=" + e.pic + "&rcontent=", l, m);
+                    break;
+                case"qqzone":
+                    window.open(g + "?title=" + encodeURIComponent(e.title) + "&url=" + encodeURIComponent(e.url) + "&pics=" + e.pic + "&rcontent=", l, m);
+                    break;
+                case"kaixin":
+                    window.open(c + "?rtitle=" + encodeURIComponent(e.title) + "&rurl=" + encodeURIComponent(e.url) + "&rcontent=", l, m);
+                    break;
+                case"renren":
+                    window.open(h + "?title=" + encodeURIComponent(e.title) + "&url=" + encodeURIComponent(e.url) + "&pic=" + e.pic + "&rcontent=", l, m);
+                    break;
+                case"douban":
+                    window.open(b + "?title=" + encodeURIComponent(e.title) + "&url=" + encodeURIComponent(e.url) + "&rcontent=", l, m);
+                    break
+            }
         }
-        this.data[d] = c
+    }
+})(jQuery);
+$(document).ready(function () {
+    $("#video").click(function () {
+        trackurl("dp-Video-track", this);
+        if ($(this).css("background-image").indexOf("videoBtn.gif") > -1) {
+            $(this).removeClass("videoBtn").addClass("videoBtn02");
+            $("#share,#imageMenu,#midimg").hide();
+            var d = "args=" + $(this).attr("name") + "|" + encodeURI($.trim($("#pricearea h2").text())) + "|yes|no|yes|0|75";
+            $(this).css("background-image", "url(http://i.vanclimg.com/Others/2010/8/20/fanhuiImg.gif)");
+            html = [];
+            html.push('<div id="videowindow" style="position:absolute;background-color:White;">');
+            html.push('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0"');
+            html.push('width="507" height="380" align="middle">');
+            html.push('<param name="allowScriptAccess" value="sameDomain" />');
+            html.push('<param name="allowFullScreen" value="true" />');
+            html.push('<param name="movie" value="http://i.vanclimg.com/flv/vanclplayer.swf" />');
+            html.push('<param name="quality" value="high" />');
+            html.push('<param name="bgcolor" value="#ffffff" />');
+            html.push('<param name="flashvars" value="' + d + '" />');
+            html.push('<embed src="http://i.vanclimg.com/flv/vanclplayer.swf" quality="high" bgcolor="#ffffff" width="507"');
+            html.push(' height="380" align="middle" allowscriptaccess="sameDomain"');
+            html.push(' allowfullscreen="true" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"');
+            html.push(' flashvars="' + d + '" />');
+            html.push("</object>");
+            html.push("</div>");
+            var c = $(".danpin_colLef").position().left - ($(document).width() - $("body").width()) / 2 < 0 ? 0 : $(".danpin_colLef").position().left - ($(document).width() - $("body").width()) / 2;
+            var b = {top:$(".danpin_colLef").position().top, left:c};
+            if (!document.all) {
+                b = {top:$(".danpin_colLef").position().top - 2}
+            }
+            $(html.join("")).appendTo("body").css(b)
+        } else {
+            a()
+        }
+        return false
+    });
+    function a() {
+        $("#video").css("background-image", "url(http://i.vanclimg.com/Others/2010/8/20/videoBtn.gif)").removeClass("videoBtn02").addClass("videoBtn");
+        $("#share,#imageMenu,#midimg").show();
+        $("#videowindow").remove()
+    }
+});
+$(function () {
+    function c(e) {
+        if (history && history.pushState) {
+            var f = {productcode:e};
+            window.history.pushState(f, document.title, window.location.href.replace(/\d{7,8}\.html/, e + ".html"))
+        }
+    }
+
+    window.onpopstate = function (f) {
+        if (f.state) {
+            a(f.state.productcode, b, false)
+        } else {
+            var g = document.location.toString().match(/(\w{7,8}).html/);
+            if (g != null && g.length == 2) {
+                var h = g[1];
+                if ($("#productcode").text().split("：")[1] != h) {
+                    a(h, b, false)
+                }
+            }
+        }
     };
-    this.get = function (b) {
-        return this.data[b]
-    };
-    this.remove = function (b) {
-        if (this.get(b) != null) {
-            delete this.data[b]
+    function a(g, f, e) {
+        $("#loading").html('<img src="//i.vanclimg.com/logo/loading.gif" alt="loading">');
+        if (isIE6) {
+            $("#loading").css({left:ie6.setLeft(0)})
+        }
+        $("#loading").css({top:$(".bigImg").position().top, height:260}).show();
+        $.get("/styles/AjaxChangeProduct.aspx?ui=new&productcode=" + g + "&point=" + f + "&ref=" + d("ref") + "&source=" + d("source"), function (l) {
+            $this = $(".selColor li[name='" + g + "']");
+            $this.siblings().find(".colorHoverok").remove().appendTo($this);
+            $(".bigImg").html($(".bigImg", l).html());
+            $("#loading").fadeOut("slow").hide(0);
+            changeViewImg();
+            $(".smallImg").html($(".smallImg", l).html());
+            if (typeof checkMenuStatus == "undefined" && $("#imageMenu").children("li").length > 5) {
+                $.getScript("//js.vanclimg.com/item/smallimg.js", function () {
+                    checkMenuStatus()
+                })
+            }
+            $("#productTitle").html($("#title", l).html());
+            var p = $("#pricearea").children(".pingfen").html();
+            $("#pricearea").html($("#price", l).html()).children(".pingfen").html(p);
+            $(".selSizeArea").html($("#size", l).html());
+            $("#tj").html($("#tj", l).html());
+            $lazyload = $("#tj").find("img[original]").not("[src])");
+            if ($lazyload.length > 0) {
+                $lazyload.lazyload()
+            }
+            $(".goodsNum, .goodsAddArea, .AreaItotal, .shoppingErrTips").remove();
+            $(".cityAdd").removeClass("notallowed");
+            $("#citystatus").text("");
+            if ($(".goodsNum", l).length != 0) {
+                $(".selSizeArea + .blank8ie").after($("#shoppingcar", l).html());
+                $(".goodsAddArea").show();
+                var k = getCloseCode();
+                if (k == null) {
+                    $(".cityAdd").addClass("notallowed").hover(function () {
+                        $(this).nextAll(".warnning").show()
+                    }, function () {
+                        $(this).nextAll(".warnning").hide()
+                    })
+                } else {
+                    $(".cityAdd").hover(stockIn, stockOut).nextAll("div.warnning").remove();
+                    $(".addressWindows").hover(stockIn, stockOut)
+                }
+                if (window.localStorage) {
+                    var m = window.localStorage.myprovince;
+                    if (m == null) {
+                        m = "北京"
+                    }
+                    $("#shippingAddr").text(m)
+                } else {
+                    if (document.body.style.behavior != "undefined") {
+                        var n = document.getElementById("bigView");
+                        n.style.behavior = "url('#default#userData')";
+                        n.addBehavior("#default#userData");
+                        n.load("my");
+                        var m = n.getAttribute("province");
+                        if (m == null) {
+                            m = "北京"
+                        }
+                        $("#shippingAddr").text(m)
+                    }
+                }
+            }
+            $("#onlickColor").removeAttr("id");
+            var j = $this.find(".colorBlock");
+            if (j.attr("name") == "True" && j.hasClass("colorBlocksouqing") == false) {
+                $("#comeon").show()
+            } else {
+                $("#comeon").hide()
+            }
+            var h = $.trim($this.text());
+            var q = $("#productcode").text().split("：")[1];
+            $this.attr("id", "onlickColor");
+            $("#imageMenu").scrollTop(0).scrollLeft(0);
+            if (typeof checkMenuStatus != "undefined") {
+                $("#imageMenu").scrollTop(0);
+                checkMenuStatus()
+            }
+            $(".fangda a").attr("href", "/Styles/BigImg.aspx?ProductCode=" + q);
+            $("#product_set").html($("#product_set", l).html());
+            $(".dpShuXing ul li.ajaxchange").remove();
+            $(".dpShuXing ul").append($("#productporperty", l).html());
+            if ($(".dpShuXing ul li").length > 0) {
+                $("#attr").show()
+            } else {
+                $("#attr").hide()
+            }
+            $("#starvancl").html($("#starvancl", l).html());
+            bindShowStarWindow();
+            LimitPurchase();
+            var r = location.href.replace(/\d{7,8}/, q);
+            var k = getCloseCode();
+            if (k != null) {
+                checkStocking();
+                SumPrice()
+            }
+            if (e) {
+                c(q)
+            }
+            $lazyload = $(".danpin_TJtaozTab,#starvancl,#tj").find("img[original]").not("[src])");
+            if ($lazyload.length > 0) {
+                $lazyload.lazyload()
+            }
+        })
+    }
+
+    $(".selColorArea .selColor li[name]").click(function () {
+        if ($(this).attr("id") != "onlickColor") {
+            $(".selSize li").removeAttr("onclick");
+            var e = $(this).attr("name");
+            a(e, b, true)
+        }
+        return false
+    });
+    var b = (function () {
+        var h = document.location.toString();
+        var g = h.indexOf("point=");
+        if (g > -1) {
+            g += 6;
+            var f = h.indexOf("&");
+            if (f == -1) {
+                f = g.length
+            }
+            return h.substring(g, f)
+        }
+        return 0
+    })();
+
+    function d(f) {
+        var h = document.location.href;
+        if (h.indexOf(f + "=") > -1) {
+            var e = h.indexOf(f + "=");
+            var g = h.substring(e + f.length + 1, h.length);
+            if (g == "") {
+                return null
+            }
+            if (g.indexOf("&") > -1) {
+                g = g.substring(0, g.indexOf("&"))
+            }
+            return g
+        }
+        return""
+    }
+});
+var smallImgData = [];
+smallImgData.downHover = {direction:1, target:"last-child", className:"downer", visible:function () {
+    var a = $("#imageMenu");
+    return a.scrollTop() + a.height() == a.get(0).scrollHeight
+}, span:function (a) {
+    return a.position().top
+}, scrollSpan:function (a) {
+    return a.scrollTop()
+}, animateParam:function (a) {
+    return{scrollTop:a}
+}};
+smallImgData.upHover = {direction:-1, target:"first", className:"upper", visible:function () {
+    return $("#imageMenu").scrollTop() == 0
+}, span:function (a) {
+    return a.position().top
+}, scrollSpan:function (a) {
+    return a.scrollTop()
+}, animateParam:function (a) {
+    return{scrollTop:a}
+}};
+function checkMenuStatus() {
+    for (key in smallImgData) {
+        if (smallImgData[key].visible()) {
+            $("." + key).removeClass(key).addClass(smallImgData[key].className)
+        } else {
+            $("." + smallImgData[key].className).addClass(key).removeClass(smallImgData[key].className)
         }
     }
 }
-var _samap = new HashMap();
-function _filterSaPush() {
-    var f = /^filter_.+$/;
-    var e = ["a", null, null, f];
-    var d = [e];
-    _samap.put("_saClickDatas", d)
+$(function () {
+    $(".smallImgDown,.smallImgUp").live("click", function () {
+        var b = $(this).attr("class");
+        if (b.indexOf("downHover") > -1) {
+            b = "downHover"
+        }
+        if (b.indexOf("upHover") > -1) {
+            b = "upHover"
+        }
+        if (b == "downHover" || b == "upHover") {
+            var d = smallImgData[b];
+            var e = 0;
+            while (d.span($("#imageMenu")) > d.span($("#imageMenu li").eq(e))) {
+                e++
+            }
+            e += 5 * d.direction;
+            var a = $("#imageMenu li").eq(e);
+            if (a.length == 0 || e < 0) {
+                a = $("#imageMenu li:" + d.target)
+            }
+            var c = d.scrollSpan($("#imageMenu")) + d.span(a) - d.span($("#imageMenu"));
+            $("#imageMenu").animate(d.animateParam(c), 500, checkMenuStatus)
+        }
+    })
+});
+$(function () {
+    function c() {
+        $(".rightborder2").height($(".cltboxcon").height() - 2)
+    }
+
+    function b(e, j) {
+        var k = "", f = false;
+        var l = "171";
+        if (!$.trim(j)) {
+            k = " 请输入标签";
+            f = true
+        } else {
+            var h = /^[\u4E00-\u9FA50-9_a-zA-Z,，]+$/i;
+            var d = j.split(/[,，]/);
+            var g = d.length;
+            if (!h.test(j)) {
+                k = "请输入中英文、数字或下划线";
+                l = "190";
+                f = true
+            } else {
+                if ($.unique(d).length < g) {
+                    k = "请不要设置重复标签";
+                    f = true
+                } else {
+                    if (d.length > 3) {
+                        k = "最多3个标签";
+                        f = true
+                    } else {
+                        $.each(d, function (m, o) {
+                            if (o.gblen() > 10) {
+                                f = true;
+                                k = "单个标签最多10个字符";
+                                return false
+                            }
+                        })
+                    }
+                }
+            }
+        }
+        if (f) {
+            $(".tishi").eq(e).width(l).empty().html("<span></span>" + k + "！").show(c);
+            return false
+        } else {
+            $(".tishi").eq(e).hide(c)
+        }
+        return true
+    }
+
+    function a(e, f) {
+        var g = "", d = true;
+        if (!(d = !!$.trim(f))) {
+            g = "Email不能为空"
+        } else {
+            if (!(d = /^[a-z0-9]([a-z0-9]*[-_\.]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i.test(f))) {
+                g = "Email格式不正确"
+            }
+        }
+        if (!d) {
+            $(".tishi").eq(e).empty().html("<span></span>" + g + "！").show(c)
+        }
+        return d
+    }
+
+    $(".addsubscribe,.addmark").click(function (f) {
+        var g = $(this).attr("class").indexOf("addmark") == -1 ? 1 : 0;
+        $(".fonttext").eq(g).toggle();
+        var d = $(".inCti").eq(g).find("span").attr("class");
+        $(".inCti").eq(g).find("span").removeClass().addClass(d == "inCti_img02" ? "inCti_img01" : "inCti_img02");
+        c();
+        if ($(this).text() == "取消") {
+            $(".fonttext").eq(g).find(":text").val("");
+            $(".fonttext").eq(g).find(":checkbox").attr("checked", false);
+            $(".tishi").eq(g).hide()
+        }
+        return false
+    });
+    $(".icte:eq(0)").blur(function () {
+        var d = $(this).val();
+        $(this).val(d.replace(/[,，]{2,}/g, ",").replace(/^[,，]/, "").replace(/[,，]$/, ""))
+    });
+    $(".submitdiv").click(function (d) {
+        var j = $("#styleinfo").attr("name");
+        var h = $("#productcode").text().split("：")[1];
+        var f = $(this).index(".submitdiv");
+        var k = $(".icte").eq(f).val();
+        var g = {productcode:h};
+        var l = "";
+        if (f == 0) {
+            if (!b(f, k)) {
+                return false
+            }
+            g.styleid = j;
+            g.marks = k;
+            l = "/api/SaveFavoriteMark.aspx"
+        } else {
+            if (!a(f, k)) {
+                return false
+            }
+            g.email = k;
+            l = "/api/AddSubscribe.aspx"
+        }
+        $.getJSON(l, g, function (e) {
+            var m = e.Success ? "成功" : "失败";
+            $(".baocun").eq(f).html("保存" + m + "！").show("fast", function () {
+                var n = $(this);
+                setTimeout(function () {
+                    n.hide("fast")
+                }, 3000);
+                $(".tishi").eq(f).hide(c)
+            })
+        });
+        return false
+    });
+    $("#commonmarks input").live("click", function (f) {
+        var g = $(".icte").eq(0);
+        var j = g.val();
+        var h = $(this).closest("label").text();
+        if (!$.trim(j) && this.checked) {
+            g.val(h)
+        } else {
+            var d = $.grep(j.split(/[,，]/), function (k, e) {
+                return k != $.trim(h)
+            });
+            if (this.checked) {
+                d.push(h)
+            }
+            g.val(d.join(","))
+        }
+        b(0, g.val())
+    })
+});
+document.domain = "vancl.com";
+var ColorBoxTitle = "计算您的尺码";
+var PreUrl = window.parent.preUrlArr;
+var sizeCalObj = window.parent.sizeCalObj;
+var preParam = window.parent.preParam;
+var isSizeList = false;
+function IniSlider(styleID, SDVFIDs, arrSDVFID, isJYW) {
+    var t = encodeURI(SDVFIDs.toString());
+    jQuery.get("/SizeCalculate/IniSlider.mvc?styleID=" + styleID + "&SDVFIDs=" + t + "&r=" + Math.random(), function (data) {
+        if (data == "") {
+            iframeClose();
+            return
+        }
+        var r = "var arr = " + data;
+        eval(r);
+        for (var i = 0; i < arr.length; i++) {
+            var id = arr[i].Name;
+            for (var j = 0; j < arrSDVFID.length; j++) {
+                if (id == arrSDVFID[j].SDVFID) {
+                    arrSDVFID[j].min = arr[i].min;
+                    arrSDVFID[j].max = arr[i].max;
+                    var bgImage = arr[i].backImage;
+                    if (isJYW) {
+                        bgImage = bgImage.replace(".gif", "_2.gif")
+                    }
+                    $("#" + arrSDVFID[j].divID).css("background-image", "url(" + bgImage + "?1234)");
+                    $("#" + arrSDVFID[j].outputID).attr("name", arr[i].SDVFID);
+                    if (preParam[arrSDVFID[j].outputID]) {
+                        var v = preParam[arrSDVFID[j].outputID];
+                        arrSDVFID[j].value = v.split(",")[0]
+                    }
+                    Slider(arrSDVFID[j])
+                }
+            }
+        }
+    })
 }
-function _searchDataSaPush(C) {
-    var y = document.location.href;
-    var x = y.substring(y.indexOf("?") + 1, y.length);
-    var u = x.split("&");
-    var i = new HashMap();
-    for (var A = 0; A < u.length; A++) {
-        var z = u[A].split("=");
-        for (var w = 0; w < z.length; w++) {
-            i.put(z[w], z[++w])
+function Slider(a) {
+    this.range = "min";
+    this.min = 0;
+    this.max = 100;
+    this.value = 0;
+    this.sliderID = "";
+    this.outputID = "";
+    this.step = 1;
+    if (a.sliderID != "undefined" && a.sliderID != "") {
+        if (typeof(a.range) != "undefined") {
+            this.range = a.range
+        }
+        if (typeof(a.min) != "undefined") {
+            this.min = parseFloat(a.min)
+        }
+        if (typeof(a.max) != "undefined") {
+            this.max = parseFloat(a.max)
+        }
+        if (typeof(a.value) != "undefined") {
+            this.value = a.value
+        } else {
+            this.value = this.min
+        }
+        if (typeof(a.step) != "undefined") {
+            this.step = a.step
+        }
+        var b = {range:this.range, value:this.value, step:this.step, min:this.min, max:this.max};
+        if (typeof(a.outputID) != "undefined" && a.outputID != "") {
+            $("#" + a.outputID).val(this.value);
+            b.slide = function (c, d) {
+                $("#" + a.outputID).val(0 + d.value)
+            };
+            $("#" + a.outputID).data("max", this.max);
+            $("#" + a.outputID).data("min", this.min);
+            $("#" + a.outputID).focusout(function () {
+                var c = $("#" + a.outputID).val();
+                if (/^[0-9]+(.[0-9]{2})?$/.test(c) || /^[0-9]+(.[0-9]{1})?$/.test(c)) {
+                    $("#" + a.sliderID).slider("option", "value", c)
+                } else {
+                    alert("请输入两位位小数或整数！！");
+                    $("#" + a.outputID).focus()
+                }
+            })
+        }
+        $("#" + a.sliderID).slider(b)
+    }
+}
+function ShowHWCompute() {
+    ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=HWCompute.html")
+}
+function ShowSizeList() {
+    if (sizeCalObj.sizelist) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.sizelist)
+    }
+}
+function ShowExactCompute() {
+    if (sizeCalObj.exact) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.exact)
+    }
+}
+function ShowButtocks() {
+    if (sizeCalObj.second) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.second)
+    }
+    return false
+}
+function ShowContFind() {
+    if (sizeCalObj.nofind) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.nofind)
+    }
+}
+function ShowContFind_E() {
+    if (sizeCalObj.nofind_e) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.nofind_e)
+    }
+}
+function ShowResult() {
+    if (sizeCalObj.result) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.result)
+    }
+}
+function ShowResult_E() {
+    if (sizeCalObj.result_e) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.result_e)
+    }
+}
+function showResult4Exact() {
+    if (sizeCalObj.result4exact) {
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.result4exact)
+    }
+}
+function ShowResult_EYW() {
+    ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=ResultExactYW")
+}
+function ShowError() {
+    if (sizeCalObj.error) {
+        isSizeList = true;
+        ColorboxReload("/SizeCalculate/PageRedirect.mvc?pageName=" + sizeCalObj.error)
+    }
+}
+function GoPrevious() {
+    if (PreUrl.length > 0) {
+        var a = PreUrl.pop();
+        ColorboxReload(a)
+    }
+}
+function ColorboxReload(d) {
+    var a = $(window.parent.document.body);
+    var b = a.find("#LoadedContent");
+    b.attr("src", d)
+}
+function LoadLookList(a, e, c) {
+    if (typeof(c) != "undefined") {
+        var d = "";
+        var b = "";
+        if (sizeCalObj.sizelist) {
+            d = '<a href="#" id="sizeList" title="">查看尺码对照表</a>'
+        }
+        if (c) {
+            if (sizeCalObj.exact) {
+                b = '<a id="exactCompute" href="#" title="">精确计算</a>'
+            } else {
+                if (typeof($(".Men-JXWbtnUp")) != "undefined") {
+                    $(".Men-JXWbtnUp").css("margin-left", "297px")
+                }
+                if (typeof($(".Men-GXbtnUp") != "undefined")) {
+                    $(".Men-GXbtnUp").css("margin-left", "162px")
+                }
+            }
+        }
+        $("." + a).html(d + b + $("." + a).html())
+    }
+    $("." + a).find("a").each(function () {
+        var f = $(this).attr("id");
+        if (f == "sizeList") {
+            $(this).click(function () {
+                pushInputParm();
+                PreUrl.push(e);
+                ShowSizeList();
+                return false
+            })
+        }
+        if (f == "exactCompute") {
+            $(this).click(function () {
+                pushInputParm();
+                PreUrl.push(e);
+                ShowExactCompute();
+                return false
+            })
+        }
+    })
+}
+function pushInputParm() {
+    $("input[type='text']").each(function () {
+        window.parent.preParam[$(this).attr("id")] = $(this).val() + "," + $(this).attr("name")
+    })
+}
+function pushRaidoChecked() {
+    $("input[type='radio']").each(function () {
+        if ($(this).attr("checked")) {
+            window.parent.preParam.statureRadio = $(this).attr("id")
+        }
+    })
+}
+function setRadioChecked() {
+    var a = "standard";
+    if (typeof(window.parent.preParam.statureRadio) != "undefined") {
+        var a = window.parent.preParam.statureRadio
+    }
+    $("#" + a).attr("checked", "checked")
+}
+function UnitSelect(d) {
+    var b = d.val();
+    var a = b.split(",");
+    if (a.length == 2) {
+        $("#div_" + a[0]).removeClass("hide").addClass("show");
+        $("#div_" + a[1]).removeClass("show").addClass("hide");
+        var g = $("#" + a[1]).val();
+        var f = d.find("option:selected").text();
+        var c = "";
+        if (f == "CM") {
+            c = g * 33.33333
+        } else {
+            c = g / 33.33333
+        }
+        var e = c.toFixed(1);
+        if (e > $("#" + a[0]).data("max")) {
+            e = $("#" + a[0]).data("max")
+        }
+        if (e < $("#" + a[0]).data("min")) {
+            e = $("#" + a[0]).data("min")
+        }
+        $("#" + a[0]).val(e);
+        $("#" + a[0]).focusout()
+    }
+}
+function setColorBoxTitle() {
+    var a = $(window.parent.document.body);
+    a.find("#boxTitle").html(ColorBoxTitle)
+}
+function validate(e, d) {
+    var a = $(window.parent.document.body);
+    var b = $("#" + e).slider("option", "max");
+    var c = $("#" + e).slider("option", "min");
+    var f = $("#" + d).val();
+    errMess = a.find("#sizeCalErrMessage").val();
+    if (f == "") {
+        if (errMess == "") {
+            a.find("#sizeCalErrMessage").val($("#" + d).attr("title"))
+        } else {
+            a.find("#sizeCalErrMessage").val(errMess + "和" + ("#" + d).attr("title"))
+        }
+        return false
+    } else {
+        if (b < f || c > f) {
+            if (errMess == "") {
+                a.find("#sizeCalErrMessage").val($("#" + d).attr("title"))
+            } else {
+                a.find("#sizeCalErrMessage").val(errMess + "和" + $("#" + d).attr("title"))
+            }
+            return false
+        } else {
+            return true
         }
     }
-    var t = i.get("keyword");
-    var D = (!t || t == null || t == "undefined") ? "" : t;
-    var E = C;
-    var F = "0";
-    var G = "";
-    var B = i.get("ci");
-    var H = (!B || B == null || B == "undefined") ? "" : B;
-    var v = i.get("catalogId");
-    var I = (!v || v == null || v == "undefined") ? "" : v;
-    var J = [D, E, F, G, H, I];
-    _samap.put("_saSearchDatas", J)
 }
-;
+function iframeClose() {
+    ChooseSize();
+    parent.$.fn.popwindow.close();
+    return false
+}
+function colorBoxResize(b) {
+    var a = {width:"0px", height:"0px", overflow:"hidden"};
+    if (typeof(b.innerHeight) != "undefined") {
+        a.height = b.innerHeight
+    } else {
+        a.height = b.height
+    }
+    if (typeof(b.innerWidth) != "undefined") {
+        a.width = b.innerWidth
+    } else {
+        a.width = b.width
+    }
+    parent.$.fn.popwindow.resize(a)
+}
+function reSizeC() {
+    ResizeCBbody("cboxMiddleLeft");
+    ResizeCBbody("cboxContent");
+    ResizeCBbody("cboxMiddleRight")
+}
+function ResizeCBbody(b) {
+    var e = $(window.parent.document.body);
+    var d = e.find("#" + b);
+    var a = d.css("height");
+    if (a.indexOf("px") > 0) {
+        a = a.replace("px", "");
+        var c = parseInt(a);
+        var c = c > 28 ? c - 28 : c;
+        d.css("height", c.toString() + "px")
+    }
+}
+function ChooseSize() {
+    var b = $(window.parent.document.body);
+    var a = b.find("#CalculateResult").val();
+    if (a && a != "") {
+        var c = b.find(".selSize").find("ul");
+        c.find("li").each(function () {
+            var d = $.trim($(this).html());
+            if (d == a) {
+                $(this).click()
+            }
+        })
+    }
+}
+function setSelectParValue() {
+    $("select").each(function () {
+        var b = $(this).find("option:selected").text();
+        var a = $(this).attr("id");
+        sizeCalObj[a] = b
+    })
+}
+function getSelectValue() {
+    $("select").each(function () {
+        var a = $(this).attr("id");
+        var b = "尺";
+        if (typeof(sizeCalObj[a]) != "undefined") {
+            b = sizeCalObj[a]
+        }
+        $(this).find("option").each(function () {
+            if ($(this).text() == b) {
+                $(this).attr("selected", "selected");
+                var c = $(this).val().split(",");
+                if (c.length == 2) {
+                    $("#div_" + c[0]).removeClass("hide").addClass("show");
+                    $("#div_" + c[1]).removeClass("show").addClass("hide")
+                }
+            }
+        })
+    })
+}
+var feedbacktype = 0;
+$(function () {
+    var c = $("#styleinfo").attr("name");
+    var b = 10;
+    $(".hzcTitle li").click(function () {
+        $(".hzcTitle li").removeClass();
+        feedbacktype = $(this).index();
+        if (feedbacktype == 0) {
+            $(this).addClass("commonPL")
+        } else {
+            $(this).addClass("hzcHover");
+            $(".hzcTitle li").eq(0).addClass("commonPL2")
+        }
+        a(1)
+    });
+    $("#pinglundetail").hover(function () {
+        if ($(".zwsBoxPl").length > 0) {
+            $(".zwsBoxPl").show()
+        } else {
+            var d = $("<div class='zwsBoxPl'><div class=\"zwscondiv\"><ul><div style='text-align:center; margin-top:20px;'><img src=\"//i.vanclimg.com/logo/loading.gif\" /></div></ul></div></div>");
+            $("#pinglundetail").after(d);
+            $.get(this.name, function (e) {
+                d.remove();
+                $("#pinglundetail").after($(e))
+            })
+        }
+    }, function () {
+        $(".zwsBoxPl").hide()
+    });
+    function a(e, d) {
+        window.location.hash = "feedback";
+        window.location = window.location;
+        $(".NewCommentDetail").html("<div style='text-align:center; margin-top:20px;'><img src=\"//i.vanclimg.com/logo/loading.gif\" /></div>");
+        var f = "";
+        if (typeof(e) != "undefined") {
+            f = "/styles/AjaxStyleAssesses.aspx?styleId=" + c + "&pageindex=" + e + "&type=" + feedbacktype + "&total=" + $("#feedbackcount" + feedbacktype).text()
+        }
+        if (typeof(d) != "undefined") {
+            f = d.href + "&total=" + $("#feedbackcount" + feedbacktype).text()
+        }
+        $.get(f, function (g) {
+            if ($.trim($("#comments", g).html()) == "") {
+                g = "<div style='text-align:center;padding-top:10px;color:#999'>还没有最新的此类评论，<a href='#' id='nocomment'><<返回全部评论</a></div>";
+                $(".NewCommentDetail").html(g);
+                $("#feedbackpagerarea").hide();
+                return
+            }
+            $(".NewCommentDetail").html($("#comments", g).html());
+            $("#feedbackpagerarea").html($("#page", g).html());
+            $("#feedbackpagerarea").show()
+        })
+    }
+
+    $("#styleAssessesPager ul li a").live("click", function () {
+        a(1, this);
+        return false
+    });
+    $("#nocomment").live("click", function () {
+        $(".hzcTitle li:eq(0)").click();
+        return false
+    })
+});
+$(function () {
+    var c = $("#styleinfo").attr("name");
+    var b = 5;
+    $(".myAsk a").live("click", function () {
+        var d = $(this);
+        ajaxIsLogined(function () {
+            if (!isLogined) {
+                $.fn.alert("此操作需要登录，您现在要登录吗？", function (e) {
+                    if (e) {
+                        location.href = "https://login.vancl.com/login/login.aspx?" + location.href
+                    }
+                }, {type:2})
+            } else {
+                $.fn.popwindow({href:d.attr("href"), width:"821px", height:"470px", title:"我要回答"})
+            }
+        });
+        return false
+    });
+    function a(e, d) {
+        window.location.hash = "quiz";
+        window.location = window.location;
+        var g = "";
+        if (e != "undefined") {
+            g = "styles/AjaxStyleQuestions.aspx?styleId=" + c + "&pageindex=" + e + "&orderType=" + $("#questionOrderType").val()
+        }
+        if (typeof(d) != "undefined") {
+            g = d.href + "&orderType=" + $("#questionOrderType").val()
+        }
+        var f = $(".area3[name]").attr("name");
+        if (f) {
+            g = g + "&totalcount=" + f
+        }
+        $("#stylequestionslist").html("<div style='text-align:center'><img src=\"//i.vanclimg.com/logo/loading.gif\" /></div>");
+        $.get(g, function (h) {
+            $("#stylequestionslist").html($("#quiz", h));
+            $("#stylequestionsPager").html($("#page", h));
+            $(".area3Con:odd").addClass("area3ConBg")
+        })
+    }
+
+    $(".area3Con:odd").addClass("area3ConBg");
+    $("#stylequestionsPager ul li a").live("click", function () {
+        a(1, this);
+        return false
+    });
+    $("#questionOrderType").change(function () {
+        a(1)
+    });
+    $(".sizeList table tr:first td").each(function (d) {
+        $(this).addClass("col0" + (d + 1))
+    })
+});
+$(function () {
+    $(".showfile").live("click", function () {
+        var a = $(this).closest(".plConr,.area3Con").find(".notesNewpl");
+        a.find(".pl0727Hfk").remove();
+        if (a.css("display") == "none") {
+            $(this).closest(".root").find(".notesNewpl").hide()
+        }
+        if ($.trim(a.html()) == "") {
+            $.ajax({url:$(this).attr("href").replace("#", ""), dataType:"html"}).success(function (b) {
+                a.html(b);
+                a.toggle("normal")
+            }).error(function (b) {
+                $.fn.alert(b)
+            })
+        } else {
+            a.toggle("normal")
+        }
+        if (!window.replyfunction) {
+            $.getScript("http://jsy.vanclimg.com/item/reply.js?v=2")
+        }
+        return false
+    });
+    $(".new-btn a, .new-btn").removeAttr("onclick").live("click", function () {
+        var a = $(this).find("span");
+        var b = $(this).attr("href");
+        if (b == "") {
+            $.fn.alert("您已经投过票了。");
+            return false
+        }
+        ajaxIsLogined(function () {
+            if (isLogined == false) {
+                openLoginDiv("CommentVote('" + escape(escape(b)) + "')");
+                return false
+            }
+            CommentVote(b)
+        });
+        return false
+    })
+});
