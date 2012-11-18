@@ -144,7 +144,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <div class="sizebox">
             <?php foreach($psize as $size):?>
             <a class="sub-cm" href="javascript:;" onclick="select_size(<?=$size['size_id']?>,'<?=$size['abbreviation']?>',this)"><span class="selected2">
-                <img src="<?=config_item('static_url')?>images/lazy.gif" width="10" height="10" data-original="<?=config_item('static_url')?>images/a07.jpg" class="lazy"/>
+                <img src="<?=config_item('static_url')?>images/a07.jpg" width="10" height="10"/>
             </span><?=$size['abbreviation']?></a>
             <?php endforeach;?>
         </div>
