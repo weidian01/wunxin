@@ -129,4 +129,31 @@ class model_business_promotion_product extends MY_Model
 
         return empty ($category) ? $return : $category;
     }
+
+    /**
+     * 获取活动产品
+     *
+     * @param $pId
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param null $where
+     * @param null $order
+     * @param null $group
+     * @return mixed
+     */
+    public function getPromotionProductByPid($pId, $limit = 20, $offset = 0, $field = '*', $where = null, $order = null, $group = null)
+    {
+        $this->db->select($field)->from('promotion_product');
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
+        $group && $this->db->group_by($group);
+        $this->db->limit($limit, $offset);
+
+        if(is_array($pId))
+        {
+            return  $this->db->where_in('pid', $pId)->get()->result_array('pid');
+        }
+        return $this->db->where('pid', $pId)->get()->result_array('pid');
+    }
 }

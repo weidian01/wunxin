@@ -123,6 +123,33 @@ class Model_Gift_Card extends MY_Model
     }
 
     /**
+     * 领取卡
+     *
+     * @param $modelId
+     */
+    public function receiveCard($modelId)
+    {
+        $data = array(
+           'is_receive' => '1',
+        );
+
+        $where = array(
+            'is_receive' => '0',
+            'status' => '1'
+        );
+
+        $this->db->where('model_id', $modelId);
+        $this->db->where($where);
+        $this->db->limit(1);
+        $this->db->update('card', $data);
+
+        if ($this->db->affected_rows()) {
+            $this->db->select('*')->from('card')->where(array('model_id' => $modelId, 'is_receive' => '1'));
+            return $this->db->order_by('id', 'desc')->limit(1)->get()->row_array();
+        }
+    }
+
+    /**
      * 获取卡数量 -- 通过卡模型ID
      *
      * @param $mId

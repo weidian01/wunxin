@@ -521,3 +521,56 @@
         }
         $("#"+ a + id).css({'borderRight':'1px solid #ca0000','borderLeft':'1px solid #ca0000','borderTop':'1px solid #ca0000'})
     }
+
+    //加载促销活动
+    function loadPromotion(pid)
+    {
+        if (!wx.isEmpty(pid)) {
+            return;
+        }
+
+        $('#promotion_area').html('<img src="/images/loading.gif" alt="加载促销信息..." title="加载促销信息..."/>');
+
+        var url = 'activity/activity/getProductPromotion';
+        var data = wx.ajax(url, 'pid='+pid);
+
+        var promotionHtml = '';
+        var info = data['promotion'];
+        for (var i in info) {
+            promotionHtml += '<span class="blank10"></span><p style="border-bottom: 1px double #C0C0C0;"><span>\
+                <a style="color:#CC0000;margin-left:0px;" href="javascript:void(0);" type="cash">'+info[i]['name']+'</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+info[i]['end_time']+'</p>';
+        }
+
+        var html = '';
+        html = '<div class="goodsAddArea" style="padding: 5px 0 15px 0;">\
+                <div class="danpinColorTitle">\
+                    <p style="padding: 0px;line-height: 19px;color: #FF0000;"><b>优惠信息：</b></p>\
+                </div>\
+                <div class="goodsAdd">\
+                    <p class="cityAdd" onmouseover="viewPromotion(this, 1)" onmouseout="viewPromotion(this, 0)" style="line-height: 19px;padding: 0px;">\
+                        <span class="goodsAdd"><span id="shippingAddr">查看</span><span id="citystatus">优惠信息</span></span><strong>&nbsp;</strong></p>\
+                    <span id="stockinfo" class="fahuoDuanq" style="padding-left: 15px;">结算时选择相应活动</span>\
+                    <div class="warnning" style="display: none;">\
+                        <span style="height: 16px; display: block; width: 16px; background-position: -1911px 0pt; margin: 2px;float: left; " class="sprites"></span>\
+                        <p>请在上方选择尺码后再查看库存</p>\
+                    </div>\
+                </div>\
+                <div class="addressWindows" style="display: none;position: absolute;" onmouseover="viewPromotion(this, 1)" onmouseout="viewPromotion(this, 0)">\
+                        '+promotionHtml+'\
+                </div>\
+            </div>';
+
+        $('#promotion_area').html(html);
+    }
+
+    //显示促销信息
+    function viewPromotion(t, v)
+    {
+        if (v) {
+            $('.cityAdd').addClass('cityAddHover');
+            $('.addressWindows').show();
+        } else {
+            $('.cityAdd').removeClass('cityAddHover');
+            $('.addressWindows').hide();
+        }
+    }

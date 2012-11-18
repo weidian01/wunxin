@@ -306,6 +306,11 @@ $error[70025] = array('error' => '70025', 'msg' => '礼品卡使用失败', 'cod
 $error[70026] = array('error' => '70026', 'msg' => '生成卡参数不全', 'code' => 'generation_gift_card_parameter_failure');
 $error[70027] = array('error' => '70027', 'msg' => '礼品卡数量为零', 'code' => 'gift_card_number_empty');
 
+$error[70028] = array('error' => '70028', 'msg' => '获取活动参数错误', 'code' => 'get_promotion_parameter_failure');
+
+$error[70029] = array('error' => '70029', 'msg' => '领取优惠卷参数错误', 'code' => 'get_coupon_parameter_failure');
+$error[70030] = array('error' => '70030', 'msg' => '领取优惠卷失败', 'code' => 'get_coupon_failure');
+
 
 
 /**

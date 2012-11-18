@@ -178,6 +178,21 @@ s, b, i {
     width: 75px;
 }
 
+a.coupon:hover .right {
+    background-color: #FFFEDD;
+}
+a.coupon:hover .btn {
+    background: url("http://wunxin.com/images/s2.png") no-repeat scroll 0 0 transparent;
+}
+.coupon .shadow-right, .coupon .shadow-bottom, .coupon .corner {
+    font-size: 0;
+    position: absolute;
+    visibility: hidden;
+}
+a.coupon:hover .shadow-right, a.coupon:hover .shadow-bottom, a.coupon:hover .corner {
+    visibility: visible;
+}
+
 .coupon .shadow-right {
     background-color: #D9D9D9;
     border-left: 1px solid #CCCCCC;
@@ -219,6 +234,13 @@ s, b, i {
     transition: all 0.1s ease 0s;
     width: 7px;
 }
+
+a.coupon:hover .corner {
+    background-position: 0 -191px;
+    height: 32px;
+    width: 32px;
+}
+
 
 .coupon .shadow-right, .coupon .shadow-bottom, .coupon .corner {
     position: absolute;
@@ -400,4 +422,124 @@ ol, ul {
     text-align: center;
     vertical-align: top;
     width: 26px;
+}
+.use_area{
+    height: 16px;
+    overflow: hidden;
+    display: block;
+    float: right;
+    width: 185px;
+}
+
+
+.main {
+    float: left;
+    width: 700px;
+}
+
+.detail {
+    padding: 20px 15px;
+}
+
+.detail .coupon {
+    float: left;
+}
+
+.detail .info {
+    color: #333333;
+    float: right;
+    width: 305px;
+}
+
+.detail .info p {
+    margin: 6px 0;
+}
+.detail .info label {
+    color: #666666;
+    display: inline-block;
+    width: 63px;
+}
+
+
+.detail .info .tip {
+    color: #666666;
+}
+.detail .info p {
+    margin: 6px 0;
+}
+
+.detail .info label {
+    color: #666666;
+    display: inline-block;
+    width: 63px;
+}
+.detail .remark h4, .mine .remark h4 {
+    color: #404040;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+.detail .remark p, .mine .remark p {
+    color: #666666;
+    line-height: 22px;
+    white-space: pre-wrap;
+}
+
+.detail .remark h4, .mine .remark h4 {
+    color: #404040;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+.detail .remark p, .mine .remark p {
+    color: #666666;
+    line-height: 22px;
+    white-space: pre-wrap;
+}
+
+.detail .info label {
+    color: #666666;
+    display: inline-block;
+    width: 63px;
+}
+
+.vcode input {
+    border: 1px solid #E0E0E0;
+    font-size: 12px;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 2px;
+    vertical-align: middle;
+    width: 64px;
+}
+
+.vcode img {
+    height: 30px;
+    margin-left: 10px;
+    vertical-align: middle;
+    width: 100px;
+}
+
+.vcode a {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.detail .info .btn-get {
+    background: url("http://wunxin.com/images/s2.png") no-repeat scroll 0 -64px transparent;
+}
+.detail .info .btn-get, .detail .info .btn-got, .detail .info .btn-none {
+    display: inline-block;
+    height: 32px;
+    margin-top: 10px;
+    width: 96px;
+}
+
+.detail .info .btn-got {
+    background: url("http://wunxin.com/images/s2.png") no-repeat scroll -115px -33px transparent;
 }
