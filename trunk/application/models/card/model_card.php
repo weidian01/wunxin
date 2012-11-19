@@ -35,41 +35,35 @@ class model_card extends MY_Model
         return $this->db->where('model_id', $model_id)->get()->row_array();
     }
 
-    public function check_card($card_info, $uid, $use_amount)
+    public function check_card($card_info, $uid)
     {
-        $status = 0;
-        do {
-            if (empty ($card_info)) {
-                $status = 1;
-                break;
+        foreach($card_info as $card)
+        {
+            if (empty ($card)) {
+                return 1;
             }
 
             //判断有效期
-            if ($card_info['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
-                $status = 2;
-                break;
+            if (TIMESTAMP > strtotime($card['end_time'])) {
+                return 2;
             }
 
             //判断卡是否绑定
-            if ($card_info['status'] == 2) {
-                $status = 3;
-                break;
+            if ($card['status'] == 2) {
+                return 3;
             }
 
             //判断卡的归属
-            if ($card_info['uid'] != $uid) {
-                $status = 4;
-                break;
+            if ($card['uid'] != $uid) {
+                return 4;
             }
 
             //判断卡余额
-            if ($card_info['card_amount'] < ($use_amount*100)) {
-                $status = 5;
-                break;
+            if ($card['card_amount'] < ($card['use_amount'] * 100)) {
+                return 5;
             }
-        } while (FALSE);
-
-        return $status;
+        }
+        return 0;
     }
 
     public function check_union($cards)
