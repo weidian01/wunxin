@@ -61,7 +61,7 @@
 
                     <p>
                         <label></label>
-                        <?php if ($needReceive >= $data['card_num']){?>
+                        <?php if ($needReceive >= $data['card_num'] || !empty ($is_receive)){?>
                         <a class="btn-got" href="javascript:void(0);" id="receive_card"></a>
                         <?php } else {?>
                         <a onclick="receiveCard(<?=$data['model_id'];?>, 'receive_card')" class="btn-get" href="javascript:void(0);" id="receive_card"></a>
@@ -126,14 +126,19 @@
             return;
         }
 
+        if (!wx.checkLoginStatus()) {
+            return;
+        }
+
         var url = 'coupon/receive';
         var data = wx.ajax(url, 'id='+id);
 
         var prompt = '系统繁忙，请稍后再试！';
         switch (data.error) {
             case '0':
-                prompt = '领取成功!<br/><br/> 卡号：'+data['card']['card_no']+'<br/>密码：'+data['card']['card_pass'];
-                wx.showPop(prompt, bangingId, 86400);
+                prompt = '<h1>领取成功!</h1><br/> <span style="color:#000000;">去</span> "<a href="'+wx.base_url+'user/center/index" target="_blank" style="color:#A10000;">个人中心</a>" - ' +
+                    ' "<a href="'+wx.base_url+'user/center/giftCard" target="_blank" style="color:#A10000;">礼品卡管理</a>" <span style="color:#000000;">中查看！</span>';
+                wx.showPop(prompt, bangingId, 20);
                 break;
             case '70029':
                 prompt = '参数不全!';
@@ -143,9 +148,19 @@
                 prompt = '已领完!';
                 wx.showPop(prompt, bangingId);
                 break;
+            case '10009':
+                alert('您未登陆!');
+                wx.goToUrl(wx.base_url+'user/login/');
+                break;
+            case '70002':
+                prompt = '绑定卡失败!';
+                wx.showPop(prompt, bangingId);
+                break;
+            case '70032':
+                prompt = '已领取过此卡';
+                wx.showPop(prompt, bangingId);
+                break;
         }
-
-
     }
 </script>
 </body>

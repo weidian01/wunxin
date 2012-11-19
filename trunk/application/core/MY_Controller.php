@@ -312,4 +312,26 @@ class MY_Controller extends CI_Controller
 
         return $data;
     }
+
+    /**
+     * 获取用户已使用的卡
+     *
+     * @return array|mixed
+     */
+    public function getUseCard()
+    {
+        $cardList = $this->input->cookie(config_item('cookie_prefix').'gift_card');
+        $cardList = empty ($cardList) ? array() : json_decode(authcode($cardList, 'DECODE'), true);
+        return $cardList;
+    }
+
+    /**
+     * 设置用户已使用的卡
+     *
+     * @param $cardList
+     */
+    public function setUseCard($cardList)
+    {
+        $this->input->set_cookie('gift_card', authcode(json_encode($cardList), 'ENCODE'), 3600);
+    }
 }

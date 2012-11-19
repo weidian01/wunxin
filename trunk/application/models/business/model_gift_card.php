@@ -126,6 +126,7 @@ class Model_Gift_Card extends MY_Model
      * 领取卡
      *
      * @param $modelId
+     * @return bool
      */
     public function receiveCard($modelId)
     {
@@ -145,8 +146,10 @@ class Model_Gift_Card extends MY_Model
 
         if ($this->db->affected_rows()) {
             $this->db->select('*')->from('card')->where(array('model_id' => $modelId, 'is_receive' => '1'));
-            return $this->db->order_by('id', 'desc')->limit(1)->get()->row_array();
+            return $this->db->order_by('id', 'ASC')->limit(1)->get()->row_array();
         }
+
+        return false;
     }
 
     /**
@@ -235,7 +238,21 @@ class Model_Gift_Card extends MY_Model
      */
     public function getUserCardInfo($cardNo, $uId)
     {
-        $data = $this->db->select('*')->get_where('card', array('uid' => $cardNo, 'uid' => $uId, 'status' => 2))->result_array();
+        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'uid' => $uId, 'status' => 2))->result_array();
+
+        return $data;
+    }
+
+    /**
+     * 获取用户卡信息 -- 通过卡模型ID
+     *
+     * @param $modelId
+     * @param $uId
+     * @return mixed
+     */
+    public function getUserCardByModelId($modelId, $uId)
+    {
+        $data = $this->db->select('*')->get_where('card', array('model_id' => $modelId, 'uid' => $uId, 'status' => 2))->result_array();
 
         return $data;
     }
@@ -308,6 +325,7 @@ class Model_Gift_Card extends MY_Model
             'integral' => $data['integral'],
             'use_num' => '0',
             'status' => '1',
+            'end_time' => $data['end_time'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
 

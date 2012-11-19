@@ -135,7 +135,7 @@
                 break;
         }
 
-        $('#rule_area').html(html);
+        //$('#rule_area').html(html);
     }
 
     var initCardType = wx.isEmpty(editCardType) ? editCardType : CARD_GOLD;

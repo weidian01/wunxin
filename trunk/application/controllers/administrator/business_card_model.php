@@ -87,6 +87,7 @@ class business_card_model extends MY_Controller
             show_error('意外的卡类型！');
         }
 
+        /*
         $conf = array();
         switch ($cardType) {
             case CARD_GOLD:
@@ -115,13 +116,13 @@ class business_card_model extends MY_Controller
         }
 
         $rule = $this->m_card->buildRule($conf);
-
+        //*/
         $data = array(
             'card_name' => $cardName,
             'card_type' => $cardType,
             'card_amount' => $cardAmount * 100,
             'card_num' => $cardNum,
-            'rule' => $rule,
+            //'rule' => $rule,
             'end_time' => $endTime,
             'descr' => $descr,
         );
@@ -182,6 +183,9 @@ class business_card_model extends MY_Controller
         redirect('/administrator/business_card_model/cardModelList/'.$currentPage);
     }
 
+    /**
+     * 生成卡
+     */
     public function generationCard()
     {
         $mId = (int)$this->input->get_post('model_id');
@@ -245,6 +249,7 @@ class business_card_model extends MY_Controller
                     'card_amount' => $cardAmount,
                     'card_pass' => $password,
                     'integral' => $cardAmount,
+                    'end_time' => $modelData['end_time'],
                 );
 
                 $this->card->addCard($data);

@@ -909,7 +909,7 @@ wx.showPop = function (content, bindingId, timeOut)
     if ( !wx.isEmpty(timeOut)) {
         time = 3;
     }
-    art.dialog({ title:false, follow: document.getElementById(bindingId), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;">'+content+'</span><br/>' });
+    art.dialog({ title:false, follow: document.getElementById(bindingId), time: time, content: '<br/><span style="color: #A10000;font-weight: bold;text-align: center;">'+content+'</span><br/>' });
 }
 
 //产品链接

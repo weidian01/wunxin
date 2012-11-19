@@ -310,7 +310,8 @@ $error[70028] = array('error' => '70028', 'msg' => '获取活动参数错误', '
 
 $error[70029] = array('error' => '70029', 'msg' => '领取优惠卷参数错误', 'code' => 'get_coupon_parameter_failure');
 $error[70030] = array('error' => '70030', 'msg' => '领取优惠卷失败', 'code' => 'get_coupon_failure');
-
+$error[70031] = array('error' => '70031', 'msg' => '此卡不能同时使用', 'code' => 'this_card_cannot_be_used_at_the_same_time');
+$error[70032] = array('error' => '70032', 'msg' => '已领取过此优惠卡', 'code' => 'need_receive_this_card');
 
 
 /**

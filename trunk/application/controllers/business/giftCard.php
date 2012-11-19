@@ -125,6 +125,14 @@ class giftCard extends MY_Controller
 
         $response = array('error' => '0', 'msg' => '使用礼物卡成功', 'code' => 'use_gift_card_success');
 
+        $return = array(
+            '1' => '',
+            '2' => 70018,//有效期
+            '3' => 70016,//判断卡是否绑定
+            '4' => 70019,//判断卡的归属
+            '5' => 70023,//判断卡余额
+        );
+
         do {
             if (empty ($cardNo) || empty ($useAmount)) {
                 $response = error(70015);
@@ -137,12 +145,17 @@ class giftCard extends MY_Controller
                 break;
             }
 
-            $this->load->model('business/Model_Gift_Card', 'card');
-            $cardInfo = $this->card->getCardInfoByCid($cardNo);
-
+            $this->load->model('business/Model_Gift_Card', 'cards');
+            $cardInfo = $this->cards->getUserCardInfo($cardNo, $this->uInfo['uid']);
             //卡是否存在
             if (empty ($cardInfo)) {
                 $response = error(70017);
+                break;
+            }
+
+            //判断卡余额
+            if ($cardInfo['card_amount'] <= 0) {
+                $response = error(70021);
                 break;
             }
 
@@ -155,34 +168,31 @@ class giftCard extends MY_Controller
                 break;
             }
 
-            //判断有效期
-            if ($modelInfo['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
-                $response = error(70018);
+            $cardList = $this->getUseCard();
+            $cardList[$cardNo] = $useAmount;
+
+            $this->load->model('card/model_card', 'card');
+            $cardData = $this->card->get_card_by_no(array_keys($cardList));
+
+            foreach ($cardData as $k=>$v) {
+                $cardData[$k]['use_amount'] = $cardList[$v['card_no']];
+            }
+
+            //检测单张卡
+            $cardCheckStatus = $this->card->check_card($cardData, $this->uInfo['uid']);
+            if ($cardCheckStatus != '0') {
+                $response = error($return[$cardCheckStatus]);
                 break;
             }
 
-            //判断卡是否绑定
-            if ($cardInfo['status'] != 2) {
-                $response = error(70016);
+            //多张卡检测
+            $checkAllCardStatus = $this->card->check_union($cardData);
+            if (!$checkAllCardStatus) {
+                $response = error(70031);
                 break;
             }
 
-            //判断卡的归属
-            if ($cardInfo['uid'] != $this->uInfo['uid']) {
-                $response = error(70019);
-                break;
-            }
-
-            //判断卡余额
-            if ($cardInfo['card_amount'] <= 0) {
-                $response = error(70021);
-                break;
-            }
-
-            if ($useAmount > $cardInfo['card_amount']) {
-                $response = error(70023);
-                break;
-            }
+//print_r($cardCheckStatus);d($checkAllCardStatus);exit;
 
             //判断购物车是否为空
             $cData['cart'] = $this->getCartToCookie();
@@ -192,46 +202,7 @@ class giftCard extends MY_Controller
                 break;
             }
 
-            $giftCard = $this->input->cookie(config_item('cookie_prefix').'gift_card');
-            $giftCard = json_decode(authcode($giftCard, 'DECODE'), true);
-
-            $info = array(
-                'card_no' => $cardInfo['card_no'],
-                'card_pass' => $cardInfo['card_pass'],
-                'card_amount' => $cardInfo['card_amount'],
-                'uid' => $this->uInfo['uid'],
-                'model_id' => $cardInfo['model_id'],
-            );
-
-            //处理多礼品卡 -- 唯一性
-            $giftCard[$cardInfo['card_no']] = $info;
-
-            switch ($modelInfo['card_type']) {
-                case CARD_GOLD: $this->load->model('card/model_card_gold', 'm_card');break;
-                case CARD_SILVER:$this->load->model('card/model_card_silver', 'm_card');break;
-                case CARD_COPPER:$this->load->model('card/model_card_copper', 'm_card');break;
-            }
-
-            $cartInfo = $this->getCartToCookie();
-            $cData = $this->calculateDiscount($cartInfo);
-p($cData);p($info);
-            //单个卡检查是否可以使用
-            $this->m_card->init($info, $cData['product']);
-            $useStatus = $this->m_card->useCheck();
-
-            if (!$useStatus) {
-                $response = error(70025);
-                break;
-            }
-
-
-//p($giftCard);
-            $this->input->set_cookie('gift_card', authcode(json_encode($giftCard), 'ENCODE'), 3600);
-
-            //$this->load->model('card/model_card', 'm_card');
-            //$this->m_card->a();
-
-
+            $this->setUseCard($cardList);
         } while (false);
 
         $this->json_output($response);

@@ -60,7 +60,11 @@ class coupon extends MY_Controller
 
         $recommend = $this->model->getCardModelList(10, 0, '*', array('is_generation' => '1'), 'receive_num desc');
 
-        $this->load->view('coupon/show', array('data' => $data, 'needReceive' => $needReceive, 'recommend' => $recommend));
+        $this->isLogin();
+        $userCard = $this->card->getUserCardByModelId($modelId, $this->uInfo['uid']);
+        //print_r($userCard);
+
+        $this->load->view('coupon/show', array('data' => $data, 'needReceive' => $needReceive, 'recommend' => $recommend, 'is_receive' => $userCard));
     }
 
     //领取优惠卷
@@ -76,15 +80,38 @@ class coupon extends MY_Controller
                 break;
             }
 
-            $this->load->model('business/model_gift_card', 'card');
-            $data = $this->card->receiveCard($modelId);
+            if (!$this->isLogin()) {
+                $response = error(10009);
+                break;
+            }
 
-            if (empty ($data)) {
+            $this->load->model('business/model_gift_card', 'card');
+            $userCard = $this->card->getUserCardByModelId($modelId, $this->uInfo['uid']);
+            if (!empty ($userCard)) {
+                $response = error(70032);
+                break;
+            }
+
+            $data = $this->card->receiveCard($modelId);
+            if (empty ($data) || !$data) {
                 $response = error(70030);
                 break;
             }
 
-            $response['card'] = $data;
+            //绑定卡
+            $info = array(
+                'uid' => $this->uInfo['uid'],
+                'uname' => $this->uInfo['uname'],
+            );
+            $status = $this->card->cardBinding($data['card_no'], $info);
+
+            //绑定卡失败
+            if (!$status) {
+                $response = error(70002);
+                break;
+            }
+
+            //$response['card'] = $data;
         } while (false);
 
         self::json_output($response);
