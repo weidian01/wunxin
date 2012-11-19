@@ -25,7 +25,7 @@ class Model_Product extends MY_Model
 
         if(is_array($pid))
         {
-            return  $this->db->where_in('pid', $pid)->get()->result_array();
+            return $this->db->where_in('pid', $pid)->get()->result_array();
         }
         return $this->db->where('pid', $pid)->get()->row_array();
 
