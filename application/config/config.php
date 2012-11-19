@@ -504,7 +504,7 @@ define('CARD_COPPER', 3);//铜象卡
 $config['card_type'] = array(
     CARD_GOLD => '金象卡',
     CARD_SILVER => '银象卡',
-    CARD_COPPER => '铜象卡',
+    //CARD_COPPER => '铜象卡',
 );
 
 

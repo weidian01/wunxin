@@ -45,7 +45,7 @@
                         <th>类型</th>
                         <th>金额</th>
                         <th>数量</th>
-                        <th>规则</th>
+                        <!--<th>规则</th>-->
                         <th>使用说明</th>
                         <th>截止日期</th>
                         <th>创建时间</th>
@@ -76,7 +76,7 @@
                             <?=$card_type[$v['card_type']];?></a></td>
                         <td>￥<?=fPrice($v['card_amount']);?></td>
                         <td><?=$v['card_num'];?></td>
-                        <td><?=$v['rule'];?></td>
+                        <!--<td><?=$v['rule'];?></td>-->
                         <td><?=$v['descr'];?></td>
                         <td><?=$v['end_time'];?></td>
                         <td><?=$v['create_time'];?></td>
