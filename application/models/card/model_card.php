@@ -9,14 +9,109 @@
  */
 class model_card extends MY_Model
 {
-    public $cardInfo = null;
+    public $cards = array();
+
     public $productInfo = null;
 
-    public function __construct(array $cardInfo, array $productInfo)
+    public function get_card_by_no($card_no)
     {
-        $this->cardInfo = $cardInfo;
-        $this->productInfo = $productInfo;
+        $this->db->select('*')->from('card');
+        //$this->db->where('uid', $uid);
+        if(is_array($card_no))
+        {
+            return $this->db->where_in('card_no', $card_no)->get()->result_array();
+        }
+        return $this->db->where('card_no', $card_no)->get()->row_array();
     }
+
+    public function get_card_model_by_id($model_id)
+    {
+        $this->db->select('*')->from('card_model');
+        //$this->db->where('uid', $uid);
+        if(is_array($model_id))
+        {
+            return $this->db->where_in('model_id', $model_id)->get()->result_array();
+        }
+        return $this->db->where('model_id', $model_id)->get()->row_array();
+    }
+
+    public function check_card($card_info, $uid, $use_amount)
+    {
+        $status = 0;
+        do {
+            if (empty ($card_info)) {
+                $status = 1;
+                break;
+            }
+
+            //判断有效期
+            if ($card_info['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
+                $status = 2;
+                break;
+            }
+
+            //判断卡是否绑定
+            if ($card_info['status'] == 2) {
+                $status = 3;
+                break;
+            }
+
+            //判断卡的归属
+            if ($card_info['uid'] != $uid) {
+                $status = 4;
+                break;
+            }
+
+            //判断卡余额
+            if ($card_info['card_amount'] < ($use_amount*100)) {
+                $status = 5;
+                break;
+            }
+        } while (FALSE);
+
+        return $status;
+    }
+
+    public function check_union($cards)
+    {
+        if(! $cards) //卡列表为空
+        {
+            return FALSE;
+        }
+
+        $model_id = array();
+        foreach($cards as $card)
+        {
+            if(!isset($model_id[$card['model_id']]))
+            {
+                $model_id[$card['model_id']] = $card['model_id'];
+            }
+        }
+        if(! $model_id) //模型id为空
+        {
+            return FALSE;
+        }
+        $this->db->select('*')->from('card');
+        $this->db->where_in('model_id', $model_id);
+        $models = $this->db->get()->result_array();
+        if(! $models) //模型为空
+        {
+            return FALSE;
+        }
+        $return_model = array();
+        foreach($models as $model)
+        {
+            if(! isset($return_model[$model['card_type']]))
+            {
+                $return_model[$model['card_type']] = TRUE;
+            }
+        }
+
+        return count($return_model) > 1 ? FALSE:TRUE;
+    }
+
+
+
 
     /**
      * 检查卡
