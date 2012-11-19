@@ -122,6 +122,13 @@ class model_card extends MY_Model
         return count($return_model) > 1 ? FALSE : TRUE;
     }
 
+    /**
+     * 卡消费
+     * @param $cards
+     * @param $uid
+     * @param $order
+     * @return mixed
+     */
     public function consume($cards, $uid, $order)
     {
         $_cards = array_keys($cards);
