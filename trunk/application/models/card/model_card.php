@@ -113,13 +113,17 @@ class model_card extends MY_Model
         $return_model = array();
         foreach($models as $model)
         {
-            if(! isset($return_model[$model['card_type']]))
-            {
-                $return_model[$model['card_type']] = TRUE;
-            }
+            if($model['card_type'] == 1)
+                $return_model[1][] = TRUE;
+            else
+                $return_model[0][] = TRUE;
         }
 
-        return count($return_model) > 1 ? FALSE : TRUE;
+        if(count($return_model) > 1 || count($return_model[0]) > 1)
+        {
+            return FALSE;
+        }
+        return TRUE;
     }
 
     /**
