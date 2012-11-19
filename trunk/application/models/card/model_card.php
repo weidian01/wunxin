@@ -9,10 +9,12 @@
  */
 class model_card extends MY_Model
 {
-    public $cards = array();
 
-    public $productInfo = null;
-
+    /**
+     * 通过卡号获取卡信息
+     * @param $card_no
+     * @return mixed
+     */
     public function get_card_by_no($card_no)
     {
         $this->db->select('*')->from('card');
@@ -24,6 +26,11 @@ class model_card extends MY_Model
         return $this->db->where('card_no', $card_no)->get()->row_array();
     }
 
+    /**
+     * 通过模型id获取卡模型信息
+     * @param $model_id
+     * @return mixed
+     */
     public function get_card_model_by_id($model_id)
     {
         $this->db->select('*')->from('card_model');
@@ -35,6 +42,12 @@ class model_card extends MY_Model
         return $this->db->where('model_id', $model_id)->get()->row_array();
     }
 
+    /**
+     * 检查卡是否可用
+     * @param $card_info
+     * @param $uid
+     * @return int
+     */
     public function check_card($card_info, $uid)
     {
         foreach($card_info as $card)
@@ -66,6 +79,11 @@ class model_card extends MY_Model
         return 0;
     }
 
+    /**
+     * 检查卡之间是否可复用
+     * @param $cards
+     * @return bool
+     */
     public function check_union($cards)
     {
         if(! $cards) //卡列表为空
@@ -102,41 +120,5 @@ class model_card extends MY_Model
         }
 
         return count($return_model) > 1 ? FALSE:TRUE;
-    }
-
-
-
-
-    /**
-     * 检查卡
-     */
-    public function checkCard()
-    {
-
-    }
-
-    public function getCardInfo()
-    {
-        $cardNo = array();
-        $uid = array();
-        foreach ($this->cardInfo as $v) {
-            $cardNo[] = $v['card_no'];
-        }
-    }
-
-    /**
-     * 构造统一的返回值
-     *
-     * @param $status
-     * @param $msg
-     * @return array
-     */
-    public function returnData($status, $msg)
-    {
-        $return = array(
-            'status' => $status,
-            'msg' => $msg,
-        );
-        return $return;
     }
 }
