@@ -119,11 +119,66 @@ class model_card extends MY_Model
             }
         }
 
-        return count($return_model) > 1 ? FALSE:TRUE;
+        return count($return_model) > 1 ? FALSE : TRUE;
     }
 
-    public function consume()
+    public function consume($cards, $uid, $order)
     {
+        $_cards = array_keys($cards);
+        $cards_info = $this->get_card_by_no($_cards);
+        foreach ($cards_info as $k=>$v) {
+            $cards_info[$k]['use_amount'] = $cards[$v['card_no']];
+        }
+        $status = $this->check_card($cards_info, $uid);
+        if($status !== 0)
+        {
+            return ;
+        }
+        $flag = $this->check_union($cards_info);
+        if($flag !== FALSE)
+        {
+            return ;
+        }
 
+        $this->load->model("model/model_order_receiver", 'receiver');
+
+        $date_time = date('Y-m-d H:i:s', TIMESTAMP);
+        $total_amount = 0;
+        foreach($cards_info as $item)
+        {
+            $card_balance = 0;
+            $item['use_amount'] = $item['use_amount'] * 100;
+            $item['use_amount'] = $item['use_amount'] >  $item['amount'] ? $item['amount'] : $item['use_amount'];
+            $card_balance = $item['amount'] - $item['use_amount'];
+            $this->db->where('card_no', $item['card_no'])
+                ->where('uid', $uid)
+                ->update('card', array('card_amount'=>$card_balance));
+            $data = array(
+                'order_sn' => $order['order_sn'],
+                'uid' => $uid,
+                //'uname' => $data['uname'],
+                'amount' => $item['use_amount'],
+                'pay_time' => $date_time,
+                'pay_type' => 4, //万象卡
+                //'pay_account' => $data['pay_account'],
+                'extended_information' => $item['card_no'],
+                'create_time' => $date_time
+            );
+            $this->receiver->addReceiver($data);
+            $total_amount += $data['amount'];
+        }
+
+        $up_order = array();
+        if($total_amount < $order['after_discount_price'])
+        {
+            $up_order['paid'] = $total_amount;
+        }
+        else
+        {
+            $up_order['paid'] = $total_amount;
+            $up_order['is_pay'] = 1;
+        }
+        $up_order && $this->db->where("order_sn", $order['order_sn'])->update('order', $up_order);
+        return ;
     }
 }
