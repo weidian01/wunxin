@@ -121,4 +121,9 @@ class model_card extends MY_Model
 
         return count($return_model) > 1 ? FALSE:TRUE;
     }
+
+    public function consume()
+    {
+
+    }
 }
