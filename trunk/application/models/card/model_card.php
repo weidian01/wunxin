@@ -178,6 +178,10 @@ class model_card extends MY_Model
         }
 
         $up_order = array();
+        if(! $total_amount)
+        {
+            return ;
+        }
         if($total_amount < $order['after_discount_price'])
         {
             $up_order['paid'] = $total_amount;
