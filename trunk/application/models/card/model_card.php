@@ -85,7 +85,7 @@ class model_card extends MY_Model
         {
             return FALSE;
         }
-        $this->db->select('*')->from('card');
+        $this->db->select('*')->from('card_model');
         $this->db->where_in('model_id', $model_id);
         $models = $this->db->get()->result_array();
         if(! $models) //模型为空
