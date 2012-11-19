@@ -49,7 +49,7 @@ class model_card extends MY_Model
             }
 
             //判断卡是否绑定
-            if ($card['status'] == 2) {
+            if ($card['status'] != 2) {
                 return 3;
             }
 
