@@ -159,19 +159,22 @@ class model_card extends MY_Model
             $this->db->where('card_no', $item['card_no'])
                 ->where('uid', $uid)
                 ->update('card', array('card_amount'=>$card_balance));
-            $data = array(
-                'order_sn' => $order['order_sn'],
-                'uid' => $uid,
-                //'uname' => $data['uname'],
-                'amount' => $item['use_amount'],
-                'pay_time' => $date_time,
-                'pay_type' => 4, //万象卡
-                //'pay_account' => $data['pay_account'],
-                'extended_information' => $item['card_no'],
-                'create_time' => $date_time
-            );
-            $this->receiver->addReceiver($data);
-            $total_amount += $data['amount'];
+            if($this->db->affected_rows())
+            {
+                $data = array(
+                    'order_sn' => $order['order_sn'],
+                    'uid' => $uid,
+                    //'uname' => $data['uname'],
+                    'amount' => $item['use_amount'],
+                    'pay_time' => $date_time,
+                    'pay_type' => 4, //万象卡
+                    //'pay_account' => $data['pay_account'],
+                    'extended_information' => $item['card_no'],
+                    'create_time' => $date_time
+                );
+                $this->receiver->addReceiver($data);
+                $total_amount += $data['amount'];
+            }
         }
 
         $up_order = array();
