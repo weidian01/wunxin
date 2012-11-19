@@ -153,7 +153,6 @@ class model_card extends MY_Model
         $total_amount = 0;
         foreach($cards_info as $item)
         {
-            $card_balance = 0;
             $item['use_amount'] = $item['use_amount'] * 100;
             $item['use_amount'] = $item['use_amount'] >  $item['amount'] ? $item['amount'] : $item['use_amount'];
             $card_balance = $item['amount'] - $item['use_amount'];
