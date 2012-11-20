@@ -122,7 +122,8 @@ class giftCard extends MY_Controller
     {
         $cardNo = $this->input->get_post('card_number');
         $useAmount = (int)$this->input->get_post('use_amount');
-
+        $useAmount = $useAmount;
+//p($cardNo);exit;
         $response = array('error' => '0', 'msg' => '使用礼物卡成功', 'code' => 'use_gift_card_success');
 
         $return = array(
@@ -168,7 +169,15 @@ class giftCard extends MY_Controller
                 break;
             }
 
+            //判断是否是取消使用卡,如果是取消卡，而不往下执行
             $cardList = $this->getUseCard();
+            if (isset ($cardList[$cardNo])) {
+                unset ($cardList[$cardNo]);
+                $response = error(70033);
+                $response['save_price'] = array_sum($cardList);
+                $this->setUseCard($cardList);
+                break;
+            }
             $cardList[$cardNo] = $useAmount;
 
             $this->load->model('card/model_card', 'card');
@@ -202,6 +211,33 @@ class giftCard extends MY_Controller
                 break;
             }
 
+            $response['save_price'] = array_sum($cardList);
+
+            $this->setUseCard($cardList);
+        } while (false);
+
+        $this->json_output($response);
+    }
+
+    /**
+     * 取消使用卡
+     */
+    public function unUseBandingCard()
+    {
+        $cardNo = $this->input->get_post('card_number');
+
+        $response = array('error' => '0', 'msg' => '取消使用礼物卡成功', 'code' => 'un_use_gift_card_success');
+
+        do {
+            if (empty ($cardNo)) {
+                $response = error(70033);
+                break;
+            }
+
+            $cardList = $this->getUseCard();
+            //print_r($cardList);
+            unset ($cardList[$cardNo]);
+            //print_r($cardList);
             $this->setUseCard($cardList);
         } while (false);
 

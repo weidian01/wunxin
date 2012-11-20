@@ -72,7 +72,7 @@ class model_card extends MY_Model
             }
 
             //判断卡余额
-            if ($card['card_amount'] < ($card['use_amount'] * 100)) {
+            if ($card['card_amount'] < ($card['use_amount'])) {
                 return 5;
             }
         }
@@ -99,6 +99,7 @@ class model_card extends MY_Model
                 $model_id[$card['model_id']] = $card['model_id'];
             }
         }
+
         if(! $model_id) //模型id为空
         {
             return FALSE;
@@ -119,7 +120,7 @@ class model_card extends MY_Model
                 $return_model[0][] = TRUE;
         }
 
-        if(count($return_model) > 1 || count($return_model[0]) > 1)
+        if(count($return_model) > 1 || (isset ($return_model[0]) && count($return_model[0]) > 1)) //修改 -- 此处有notice
         {
             return FALSE;
         }
@@ -128,6 +129,7 @@ class model_card extends MY_Model
 
     /**
      * 卡消费
+     *
      * @param $cards
      * @param $uid
      * @param $order
@@ -136,30 +138,36 @@ class model_card extends MY_Model
     public function consume($cards, $uid, $order)
     {
         $_cards = array_keys($cards);
+        if (empty ($_cards)) {
+            return false;
+        }
+
         $cards_info = $this->get_card_by_no($_cards);
         foreach ($cards_info as $k=>$v) {
             $cards_info[$k]['use_amount'] = $cards[$v['card_no']];
         }
+
         $status = $this->check_card($cards_info, $uid);
         if($status !== 0)
         {
             return ;
         }
         $flag = $this->check_union($cards_info);
-        if($flag !== FALSE)
+        if(!$flag)
         {
             return ;
         }
 
-        $this->load->model("model/model_order_receiver", 'receiver');
+        $this->load->model("order/model_order_receiver", 'receiver');
 
         $date_time = date('Y-m-d H:i:s', TIMESTAMP);
         $total_amount = 0;
         foreach($cards_info as $item)
         {
-            $item['use_amount'] = $item['use_amount'] * 100;
-            $item['use_amount'] = $item['use_amount'] >  $item['amount'] ? $item['amount'] : $item['use_amount'];
-            $card_balance = $item['amount'] - $item['use_amount'];
+            $item['use_amount'] = $item['use_amount'];
+            $item['use_amount'] = $item['use_amount'] >  $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
+            $card_balance = $item['card_amount'] - $item['use_amount'];
+
             $this->db->where('card_no', $item['card_no'])
                 ->where('uid', $uid)
                 ->update('card', array('card_amount'=>$card_balance));
@@ -168,11 +176,11 @@ class model_card extends MY_Model
                 $data = array(
                     'order_sn' => $order['order_sn'],
                     'uid' => $uid,
-                    //'uname' => $data['uname'],
+                    'uname' => '',
                     'amount' => $item['use_amount'],
                     'pay_time' => $date_time,
                     'pay_type' => 4, //万象卡
-                    //'pay_account' => $data['pay_account'],
+                    'pay_account' => '',
                     'extended_information' => $item['card_no'],
                     'create_time' => $date_time
                 );

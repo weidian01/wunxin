@@ -58,7 +58,7 @@ class order extends MY_Controller
         $userCard = $this->card->getUserCard($this->uInfo['uid'], 100, 0, array('card_amount >' => 0));
 
         //礼品卡处理
-        $giftCard = $this->giftCard();
+        $giftCard = $this->getUseCard();
 
         //p($cardModel);exit;
 
@@ -69,6 +69,7 @@ class order extends MY_Controller
             'gift_card' => $giftCard,
             'card_model' => $cardModel,
             'user_card' => $userCard,
+            'need_use_card' => $this->getUseCard(),
         );
         $this->load->view('order/order_confirm', $data);
     }
@@ -104,6 +105,11 @@ class order extends MY_Controller
             $recentData = $this->recent->getUserDefaultRecentAddressByaId($addressId, $this->uInfo['uid']);
             if (empty ($recentData)) {
                 $response = error(30016);
+                break;
+            }
+
+            if (!$this->isLogin()) {
+                $response = error(10009);
                 break;
             }
 
@@ -181,6 +187,23 @@ class order extends MY_Controller
 
             $this->order->addOrderProduct($orderProductData, $orderId);
 
+            //消费卡
+            $orderInfo = $this->order->getOrderByOrderSn($orderId);
+            $cardList = $this->getUseCard();
+            $this->load->model('card/model_card', 'card');
+
+            //p($cardList);p($this->uInfo['uid']);p($orderInfo);exit;
+
+            $this->card->consume($cardList, $this->uInfo['uid'], $orderInfo);//($cards, $uid, $order)
+
+            //清除购物车，活动，礼品卡
+            //$cInfo = array('pid' => '','pname' => '','product_price' => '','product_num' => '','product_size' => '','additional_info' => '',);
+            //$pData = array('promotion_id' => array('promotion_id' => 1),);
+
+            //$this->setCartToCookie($cInfo, -100);
+            //$this->setPromotion($pData, true, -100);
+            //$this->setUseCard(array(), -100);
+            $this->input->set_cookie('gift_card', '', -100);
             $this->input->set_cookie('cart_info', '', -100);
             $this->input->set_cookie('promotion', '', -100);
 

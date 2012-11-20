@@ -55,11 +55,11 @@ class pay extends MY_Controller
         switch ($bank) {
             case 'ALIPAY':
                 $this->load->model('pay/Model_Pay_Alipay', 'alipay');
-                $html = $this->alipay->request( $orderData['order_sn'], fPrice($orderData['after_discount_price']), trim($orderProduct[0]['pname']), trim($pDesc), $orderData );
+                $html = $this->alipay->request( $orderData['order_sn'], fPrice($orderData['after_discount_price'] - $orderData['paid']), trim($orderProduct[0]['pname']), trim($pDesc), $orderData );
                 break;
             default:
                 $this->load->model('pay/Model_Pay_Yeepay', 'yeepay');
-                $html = $this->yeepay->request($orderData['order_sn'], fPrice($orderData['after_discount_price']), $orderProduct[0]['pname'], $pDesc, $bank);
+                $html = $this->yeepay->request($orderData['order_sn'], fPrice($orderData['after_discount_price'] - $orderData['paid']), $orderProduct[0]['pname'], $pDesc, $bank);
         }
 
         if (!$html || $html == '') {
@@ -126,7 +126,7 @@ class pay extends MY_Controller
             }
 
             //支付金额有误
-            if ($orderInfo['after_discount_price'] != $payResult['amount']) {
+            if (($orderInfo['after_discount_price'] - $orderInfo['paid']) != $payResult['amount']) {
                 $data = array('is_pay' => 2, 'paid' => 0, 'need_pay' => $payResult['amount'], 'status' => 1, 'defray_type' => $payResult['pay_channel']);
                 $this->order->updateOrderByOrderSn($data, $payResult['order_sn']);
 

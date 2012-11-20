@@ -359,7 +359,7 @@ $(document).ready(function(){
               产品数量总计：<?=intval($total_num);?>&nbsp;&nbsp;&nbsp;&nbsp;
               赠送积分总计：<?=intval(fPrice($total_price));?>&nbsp;&nbsp;&nbsp;&nbsp;
               花费积分总计：0&nbsp;&nbsp;&nbsp;&nbsp;
-              商品金额总计：￥<?=fPrice($total_price);?></td>
+              商品金额总计：￥<span id="order_total_price"><?=fPrice($total_price);?></span></td>
         </tr>
       </table>
       <div class="order-info">
@@ -373,7 +373,6 @@ $(document).ready(function(){
                         <td align="center">卡名称</td>
                         <td align="center">卡金额</td>
                         <td align="center">使用说明</td>
-                        <td align="center">使用次数</td>
                         <td align="center">使用金额</td>
                         <td align="center">操作</td>
                     </tr>
@@ -394,15 +393,30 @@ $(document).ready(function(){
                     <?php foreach ($user_card as $k=>$v):?>
                     <tr style="background-color: <?=($k%2) ? '#FFFAFA': '';?>;">
                         <td style="word-break:break-all; width:22%;"><?=$v['card_no'];?></td>
-                        <td style="word-break:break-all; width:15%;"><?=$card_model[$v['model_id']]['card_name'];?></td>
-                        <td align="center">￥<?=fPrice($v['card_amount']);?></td>
-                        <td style="word-break:break-all; width:20%;"><?=$card_model[$v['model_id']]['descr'];?></td>
-                        <td align="center"><?=$v['use_num'];?>次</td>
-                        <td align="center"><input type="text" name="use_amount" value="<?=fPrice($v['card_amount']);?>" size="6" id="use_amount_<?=$v['card_no'];?>"/>元</td>
-                        <td align="center">
-                            <a href="javascript:void(0);" onclick="order.useGiftCard('<?=$v['card_no'];?>', <?=($v['card_amount']);?>, 'pop_<?=$v['card_no'];?>')" id="pop_<?=$v['card_no'];?>">
-                                <img src="<?=config_item('static_url')?>images/use.png" alt="使用礼品卡" title="使用礼品卡"/>
+                        <td style="word-break:break-all; width:15%;">
+                            <a href="<?=config_item('static_url')?>coupon/show/<?=$v['model_id'];?>" title="<?=$card_model[$v['model_id']]['card_name'];?>" target="_blank">
+                                    <?=mb_substr($card_model[$v['model_id']]['card_name'], 0, 10, 'UTF-8');?>
                             </a>
+                        </td>
+                        <td align="center">￥<?=fPrice($v['card_amount']);?></td>
+                        <td style="word-break:break-all; width:20%;">
+                            <span title="<?=$card_model[$v['model_id']]['descr'];?>">
+                                <?=mb_substr($card_model[$v['model_id']]['descr'], 0, 15, 'UTF-8');?>
+                            </span>
+                        </td>
+                        <td align="center">
+                            <input type="text" name="use_amount" value="<?=fPrice($v['card_amount']);?>" size="6" id="use_amount_<?=$v['card_no'];?>"/>元
+                        </td>
+                        <td align="center">
+
+                            <a href="javascript:void(0);" onclick="order.useGiftCard('<?=$v['card_no'];?>', <?=($v['card_amount']);?>, 'pop_<?=$v['card_no'];?>')" id="pop_<?=$v['card_no'];?>">
+                            <?php if (!isset ($need_use_card[$v['card_no']])){?>
+                                <img src="<?=config_item('static_url')?>images/use.png" alt="使用礼品卡" title="使用礼品卡"/>
+                            <?php } else {?>
+                                <img src="<?=config_item('static_url')?>images/cancel.jpg" alt="取消使用礼品卡" title="取消使用礼品卡"/>
+                            <?php }?>
+                            </a>
+
                         </td>
                     </tr>
                     <?php endforeach;?>
@@ -431,10 +445,10 @@ $(document).ready(function(){
           </div>
         </div>
         <div class="order-sum">运费：￥0<br/>
-          礼品卡冲抵：￥<?=fPrice( ($gift_card['total_price'] > $total_price) ? $total_price : $gift_card['total_price'] );?><br/>
+          礼品卡冲抵：￥<span id="card_use_amount"><?=fPrice( (array_sum($gift_card) > $total_price) ? $total_price : array_sum($gift_card) );?></span><br/>
           虚拟账户余额冲抵：￥0.00
           <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥
-              <?=fPrice( ($gift_card['total_price'] > $total_price) ? 0 : ($total_price - $gift_card['total_price']) );?></span>
+              <span id="final_pay_amount"><?=fPrice( (array_sum($gift_card) > $total_price) ? 0 : ($total_price - array_sum($gift_card)) );?></span></span>
           </div>
         </div>
       </div>

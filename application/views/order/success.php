@@ -42,7 +42,7 @@ $(document).ready(function(){
     <div class="order-c">
       <p>恭喜您，<?=($order['is_pay'] == ORDER_PAY_SUCC) ? '订单已支付成功了' : '订单提交成功了';?>！</p>
       <span class="font9">您的订单号：<?=$order['order_sn'];?>
-          <?=($order['is_pay'] == ORDER_PAY_SUCC)? '已' : '应';?>付金额：<span class="font6"><?=fPrice($order['after_discount_price']);?></span> 元，
+          <?=($order['is_pay'] == ORDER_PAY_SUCC)? '已' : '应';?>付金额：<span class="font6"><?=fPrice($order['after_discount_price'] - $order['paid']);?></span> 元，
           支付方式：<?php
           switch ($order['pay_type']) {
               case PAY_ONLINE: $ps = '线上支付'; break;

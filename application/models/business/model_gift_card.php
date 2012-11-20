@@ -238,7 +238,7 @@ class Model_Gift_Card extends MY_Model
      */
     public function getUserCardInfo($cardNo, $uId)
     {
-        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'uid' => $uId, 'status' => 2))->result_array();
+        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'uid' => $uId, 'status' => 2))->row_array();
 
         return $data;
     }
