@@ -35,6 +35,11 @@ class MY_Controller extends CI_Controller
         }
     }
 
+    /**
+     * 是否为POST请求
+     *
+     * @return bool
+     */
     protected function isPOST()
     {
         return $this->input->server('REQUEST_METHOD') === 'POST';
@@ -81,7 +86,11 @@ class MY_Controller extends CI_Controller
         return true;
     }
 
-
+    /**
+     * 检测后台用户是否登陆
+     *
+     * @return bool
+     */
     protected function AdminIsLogin()
     {
         //$prefix = config_item('cookie_prefix');
@@ -101,6 +110,14 @@ class MY_Controller extends CI_Controller
         return false;
     }
 
+    /**
+     * 输出JSON数据
+     *
+     * @static
+     * @param $data
+     * @param bool $JSONP
+     * @return mixed
+     */
     static protected function json_output($data,$JSONP = false)
     {
         if($JSONP && isset($_GET['callback']))
@@ -132,9 +149,10 @@ class MY_Controller extends CI_Controller
      * 设置购物车产品到cookie
      *
      * @param $pInfo
+     * @param int $timeOut
      * @return array|bool
      */
-    public function setCartToCookie($pInfo)
+    public function setCartToCookie($pInfo, $timeOut = 10000000)
     {
         $this->load->helper('cookie');
         $cInfo = array(
@@ -166,7 +184,7 @@ class MY_Controller extends CI_Controller
             $cData[] = $cInfo;
         }
 
-        $this->input->set_cookie('cart_info', json_encode($cData), 10000000);
+        $this->input->set_cookie('cart_info', json_encode($cData), $timeOut);
 
         return $cData;
     }
@@ -189,9 +207,10 @@ class MY_Controller extends CI_Controller
      *
      * @param array $promotion
      * @param bool $flag true 添加 false 删除
-     * @return array|mixed|string
+     * @param int $timeOut
+     * @return array|mixed
      */
-    public function setPromotion(array $promotion, $flag = true)
+    public function setPromotion(array $promotion, $flag = true, $timeOut = 10000000)
     {
         $this->load->helper('cookie');
 
@@ -222,7 +241,7 @@ class MY_Controller extends CI_Controller
             }
         }
 
-        $this->input->set_cookie('promotion', json_encode($promotionData), 10000000);
+        $this->input->set_cookie('promotion', json_encode($promotionData), $timeOut);
 
         return $promotionData;
     }
@@ -329,9 +348,10 @@ class MY_Controller extends CI_Controller
      * 设置用户已使用的卡
      *
      * @param $cardList
+     * @param int $timeOut
      */
-    public function setUseCard($cardList)
+    public function setUseCard($cardList, $timeOut = 3600)
     {
-        $this->input->set_cookie('gift_card', authcode(json_encode($cardList), 'ENCODE'), 3600);
+        $this->input->set_cookie('gift_card', authcode(json_encode($cardList), 'ENCODE'), $timeOut);
     }
 }

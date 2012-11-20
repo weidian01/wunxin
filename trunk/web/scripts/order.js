@@ -375,6 +375,7 @@ order.useGiftCard = function (card_no, base_amount, bindingId)
     var param = 'card_number='+cardNumber+'&use_amount='+useAmount;
     var data = wx.ajax(url, param);
 
+    /*
     var prompt = '系统繁忙，请稍后再试！';
     switch (data.error) {
         case '':prompt = '';break;
@@ -388,7 +389,38 @@ order.useGiftCard = function (card_no, base_amount, bindingId)
         case '70020':prompt = '礼品卡密码错误';break;
         case '60001':prompt = '购物车为空';break;
     }
+    //*/
 
-    wx.showPop(prompt, bindingId);
-    console.log(bindingId);
+    if (data.error == '10009') {
+        wx.loginLayer();
+        return;
+    }
+
+    if (data.error == '0') {
+        var img = '<img src="'+wx.base_url+'images/cancel.jpg" alt="取消使用礼品卡" title="取消使用礼品卡"/>';
+        $('#'+bindingId).html(img);
+    }
+
+    //是否是取消卡,如果是取消卡，则直接替换显示图片
+    if (data.error == '70033') {
+        var img = '<img src="'+wx.base_url+'images/use.png" alt="使用礼品卡" title="使用礼品卡"/>';
+        $('#'+bindingId).html(img);
+    }
+
+    wx.showPop(data.msg, bindingId);
+    order.updateCardView(data.save_price);
+    //console.log(bindingId);
+}
+
+order.updateCardView = function (savePrice)
+{
+    var orderTotalPrice = $('#order_total_price').text();
+
+    savePrice = wx.fPrice(savePrice);
+    $('#card_use_amount').html(savePrice);
+
+    var finalPrice = (orderTotalPrice * 100)-(savePrice * 100);
+    $('#final_pay_amount').html(wx.fPrice(finalPrice));
+    //console.log(savePrice);
+    //console.log(orderTotalPrice);
 }

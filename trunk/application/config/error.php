@@ -313,6 +313,8 @@ $error[70030] = array('error' => '70030', 'msg' => '领取优惠卷失败', 'cod
 $error[70031] = array('error' => '70031', 'msg' => '此卡不能同时使用', 'code' => 'this_card_cannot_be_used_at_the_same_time');
 $error[70032] = array('error' => '70032', 'msg' => '已领取过此优惠卡', 'code' => 'need_receive_this_card');
 
+$error[70033] = array('error' => '70033', 'msg' => '取消使用优惠卡成功', 'code' => 'un_use_gift_card_success');
+
 
 /**
  * 其他错误代码  --  其他相关错误代码以 70 开头
