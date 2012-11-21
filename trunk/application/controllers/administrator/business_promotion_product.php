@@ -287,6 +287,54 @@ class business_promotion_product extends MY_Controller
         return $info;
     }
 
+    public function edit()
+    {
+        $id = intval($this->uri->segment(4, 0));
+        if (empty ($id)) {
+            show_error('参数不全');
+        }
+        $this->load->model('business/model_business_promotion_product', 'promotion_product');
+        $promotionProductInfo = $this->promotion_product->getProductById($id);
+        if (empty ($promotionProductInfo)) {
+            show_error('活动产品不存在');
+        }
+
+        $promotionId = $promotionProductInfo['promotion_id'];
+        $productId = $promotionProductInfo['pid'];
+        if (!$promotionId) {
+            show_error('促销活动id为空！');
+        }
+        if (!$productId) {
+            show_error('产品ID为空！');
+        }
+
+        $this->load->model('/business/model_business_promotion', 'promotion');
+        $promotion = $this->promotion->getPromotion($promotionId);
+        if ( empty ($promotion) ) {
+            show_error('促销活动不存在！');
+        }
+
+        $this->load->model('/product/model_product', 'product');
+        $pData = $this->product->getProductById($productId);
+        if ( empty ($pData) ) {
+            show_error('促销产品不存在！');
+        }
+
+        $this->load->model('business/model_business_promotion_category', 'category');
+        $category = $this->category->getCategoryListByPromotionId($promotionId);
+
+        $pData = $promotionProductInfo['pname'];
+        $info = array(
+            'type' => 'add',
+            'promotion' => $promotion,
+            'product' => $pData,
+            'category' => $category,
+            'pProduct' => $promotionProductInfo,
+            'sales_status' => config_item('sales_status'),
+        );
+        $this->load->view('administrator/business/promotion/join_promotion', $info);
+    }
+
     /**
      * 删除促销产品
      */

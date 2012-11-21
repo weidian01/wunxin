@@ -399,28 +399,39 @@ order.useGiftCard = function (card_no, base_amount, bindingId)
     if (data.error == '0') {
         var img = '<img src="'+wx.base_url+'images/cancel.jpg" alt="取消使用礼品卡" title="取消使用礼品卡"/>';
         $('#'+bindingId).html(img);
+        order.updateCardView(data.save_price);
     }
 
     //是否是取消卡,如果是取消卡，则直接替换显示图片
     if (data.error == '70033') {
         var img = '<img src="'+wx.base_url+'images/use.png" alt="使用礼品卡" title="使用礼品卡"/>';
         $('#'+bindingId).html(img);
+        order.updateCardView(data.save_price);
     }
 
     wx.showPop(data.msg, bindingId);
-    order.updateCardView(data.save_price);
+
     //console.log(bindingId);
 }
 
 order.updateCardView = function (savePrice)
 {
     var orderTotalPrice = $('#order_total_price').text();
+    orderTotalPrice = parseFloat(orderTotalPrice)
+    orderTotalPrice = orderTotalPrice < 0 ? 0 : orderTotalPrice;
 
     savePrice = wx.fPrice(savePrice);
+    if (isNaN(savePrice) || !wx.isEmpty(savePrice)) {
+        savePrice = wx.fPrice(0);
+    }
+
+    //savePrice = savePrice >= orderTotalPrice ? 0 : savePrice
+
     $('#card_use_amount').html(savePrice);
 
-    var finalPrice = (orderTotalPrice * 100)-(savePrice * 100);
-    $('#final_pay_amount').html(wx.fPrice(finalPrice));
+    var finalPrice = savePrice >= orderTotalPrice ? 0 : (orderTotalPrice - savePrice);
+    //var finalPrice = (orderTotalPrice * 100)-(savePrice * 100);
+    $('#final_pay_amount').html(finalPrice);
     //console.log(savePrice);
     //console.log(orderTotalPrice);
 }

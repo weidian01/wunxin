@@ -45,8 +45,11 @@
                         <th>名称</th>
                         <th>促销范围</th>
                         <th>促销类型</th>
+                        <th>规则</th>
                         <th>是否并列</th>
                         <th>优先级</th>
+                        <th>结算方式</th>
+                        <th>优惠类型</th>
                         <th>开始时间</th>
                         <th>结束时间</th>
                         <th>描述</th>
@@ -74,15 +77,21 @@
                         <td><?=$v['name']?></td>
                         <td><?=$promotion_range[$v['promotion_range']];?></td>
                         <td><?=$promotion_type[$v['promotion_type']];?></td>
+                        <td><?=$v['rule'];?></td>
                         <td><?=$promotion_juxtaposed[$v['is_juxtaposed']];?></td>
                         <td><?=$v['priority'];?></td>
+                        <td><?=$pay_type[$v['pay_type']];?></td>
+                        <td><?=$discount_type[$v['discount_type']];?></td>
                         <td><?=$v['start_time'];?></td>
                         <td><?=$v['end_time'];?></td>
                         <td><?=$v['descr'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
+                            <?php if ($v['promotion_range']) {?>
                             <a href="<?=config_item('static_url')?>administrator/business_promotion_product/p_create/<?=$v['promotion_id'];?>" title="为此活动添加产品">加产品</a>
                             <a href="<?=config_item('static_url')?>administrator/business_promotion_category/create/<?=$v['promotion_id'];?>" title="为此活动添加产品">加分类</a><br/>
+                            <?php }?>
+
                             <a href="<?=config_item('static_url')?>administrator/business_promotion/edit/<?=$v['promotion_id'];?>" title="编辑">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
                             <a href="<?=config_item('static_url')?>administrator/business_promotion/delete/<?=$v['promotion_id'];?>" title="删除">

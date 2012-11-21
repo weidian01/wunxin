@@ -150,10 +150,11 @@
                             case '1':$name = '易宝支付';break;
                             case '2':$name = '支付宝转账';break;
                             case '3':$name = '银行汇款';break;
+                            case '4':$name = '礼品卡';break;
                             default :$name = '易宝支付';
                         }echo $name;?></td>
                     <!--<td><?=$rv['pay_status'] ? '支付成功' : '支付失败';?></td>-->
-                    <td><?=$rv['descr'];?></td>
+                    <td><?=$rv['descr'].'--'.$rv['extended_information'];;?></td>
                     <td><?=$rv['pay_account'];?></td>
                     <td><?=$rv['pay_time'];?></td>
                 </tr>

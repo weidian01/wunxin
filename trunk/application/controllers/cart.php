@@ -85,14 +85,14 @@ class cart extends MY_Controller
         //$promotion = $this->getUsedPromotion();
 
         if (!empty ($cData['cart'])) {
-            $data = $this->calculateDiscount($cData['cart'], array('unused_promotion'));
+            $data = $this->calculateDiscount($cData['cart'], array('unused_promotion', 'used_promotion'));
 
             //* 活动信息
             $cData['activity'] = $data['unused_promotion']; //获取可选未使用的活动列表
 
             $cData['cart'] = $data['product'];
         }
-
+//p($data);exit;
 
         //echo '<pre>';print_r($cData['cart']);exit;
         $this->json_output($cData);

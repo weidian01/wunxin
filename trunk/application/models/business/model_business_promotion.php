@@ -53,12 +53,15 @@ class model_business_promotion extends MY_Model
     {
         $info = array(
             'name' => $data['name'],
-            'promotion_range' => $data['promotion_range'],
-            'promotion_type' => $data['promotion_type'],
             'start_time' => $data['start_time'],
             'end_time' => $data['end_time'],
+            'promotion_range' => $data['promotion_range'],
+            'promotion_type' => $data['promotion_type'],
+            'rule' => $data['rule'],
             'descr' => $data['descr'],
             'is_juxtaposed' => $data['is_juxtaposed'],
+            'pay_type' => $data['pay_type'],
+            'discount_type' => $data['discount_type'],
             'priority' => $data['priority'],
             'create_time' => date('Y-m-d H:i:s', TIMESTAMP),
         );
@@ -100,9 +103,23 @@ class model_business_promotion extends MY_Model
      */
     public function editPromotion(array $data, $promotionId)
     {
+        $info = array(
+            'name' => $data['name'],
+            'start_time' => $data['start_time'],
+            'end_time' => $data['end_time'],
+            'promotion_range' => $data['promotion_range'],
+            'promotion_type' => $data['promotion_type'],
+            'rule' => $data['rule'],
+            'descr' => $data['descr'],
+            'is_juxtaposed' => $data['is_juxtaposed'],
+            'pay_type' => $data['pay_type'],
+            'discount_type' => $data['discount_type'],
+            'priority' => $data['priority'],
+        );
+
         $this->db->where('promotion_id', $promotionId);
 
-        return $this->db->update('promotion', $data);
+        return $this->db->update('promotion', $info);
     }
 
     /**
