@@ -780,5 +780,76 @@ function timeDiff($begin_time, $end_time)
     $res = array("day" => $days, "hour" => $hours, "min" => $min, "sec" => $secs);
     return $res;
 }
+
+//获取用户操作系统
+function getSystem()
+{
+	$sys = $_SERVER['HTTP_USER_AGENT'];
+	if(stripos($sys, "NT 6.1"))
+	   $os = "Windows 7";
+	elseif(stripos($sys, "NT 6.0"))
+	   $os = "Windows Vista";
+	elseif(stripos($sys, "NT 5.1"))
+	   $os = "Windows XP";
+	elseif(stripos($sys, "NT 5.2"))
+	   $os = "Windows Server 2003";
+	elseif(stripos($sys, "NT 5"))
+	   $os = "Windows 2000";
+	elseif(stripos($sys, "NT 4.9"))
+	   $os = "Windows ME";
+	elseif(stripos($sys, "NT 4"))
+	   $os = "Windows NT 4.0";
+	elseif(stripos($sys, "98"))
+	   $os = "Windows 98";
+	elseif(stripos($sys, "95"))
+	   $os = "Windows 95";
+	elseif(stripos($sys, "Mac"))
+	   $os = "Mac";
+	elseif(stripos($sys, "Linux"))
+	   $os = "Linux";
+	elseif(stripos($sys, "Unix"))
+	   $os = "Unix";
+	elseif(stripos($sys, "FreeBSD"))
+	   $os = "FreeBSD";
+	elseif(stripos($sys, "SunOS"))
+	   $os = "SunOS";
+	elseif(stripos($sys, "BeOS"))
+	   $os = "BeOS";
+	elseif(stripos($sys, "OS/2"))
+	   $os = "OS/2";
+	elseif(stripos($sys, "PC"))
+	   $os = "Macintosh";
+	elseif(stripos($sys, "AIX"))
+	   $os = "AIX";
+	else
+	   $os = "未知操作系统";
+
+	return $os;
+}
+
+//分析返回用户网页浏览器名称
+function getBrowser(){
+	$browser = $_SERVER['HTTP_USER_AGENT'];
+	if(strpos(strtolower($browser),"netcaptor"))
+	   $exp = "NetCaptor";
+	elseif(strpos(strtolower($browser),"firefox")){
+	   preg_match("/Firefox\/([^;)]+)+/i", $browser, $b);
+	   $exp = "Mozilla Firefox ".$b[1];
+	}elseif(strpos(strtolower($browser),"maxthon")){
+	   preg_match("/MAXTHON\s+([^;)]+)+/i", $browser, $b);
+	   preg_match("/MSIE\s+([^;)]+)+/i", $browser, $ie);
+	   $exp = $b[0]." (IE".$ie[1].")";
+	}elseif(strpos(strtolower($browser),"msie")){
+	   preg_match("/MSIE\s+([^;)]+)+/i", $browser, $ie);
+	   $exp = "Internet Explorer ".$ie[1];
+	}elseif(strpos(strtolower($browser),"netscape"))
+	   $exp = "Netscape";
+	elseif(strpos(strtolower($browser),"opera"))
+	   $exp = "Opera";
+	else
+	   $exp = "未知浏览器";
+
+	return $exp;
+}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
