@@ -156,4 +156,27 @@ class model_business_promotion_product extends MY_Model
         }
         return $this->db->where('pid', $pId)->get()->result_array('pid');
     }
+
+    /**
+     * 获取活动产品 -- 通过自增ID
+     *
+     * @param $id
+     * @param int $limit
+     * @param int $offset
+     * @param string $field
+     * @param null $where
+     * @param null $order
+     * @param null $group
+     * @return mixed
+     */
+    public function getProductById($id, $limit = 20, $offset = 0, $field = '*', $where = null, $order = null, $group = null)
+    {
+        $this->db->select($field)->from('promotion_product');
+        $where && $this->db->where($where);
+        $order && $this->db->order_by($order);
+        $group && $this->db->group_by($group);
+        $this->db->limit($limit, $offset);
+
+        return  $this->db->where_in('id', $id)->get()->row_array('pid');
+    }
 }

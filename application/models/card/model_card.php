@@ -147,13 +147,12 @@ class model_card extends MY_Model
             $cards_info[$k]['use_amount'] = $cards[$v['card_no']];
         }
 
-        $status = $this->check_card($cards_info, $uid);
-        if($status !== 0)
+        if(0 !== $this->check_card($cards_info, $uid))
         {
             return ;
         }
-        $flag = $this->check_union($cards_info);
-        if(!$flag)
+
+        if(! $this->check_union($cards_info))
         {
             return ;
         }
@@ -168,8 +167,9 @@ class model_card extends MY_Model
             $item['use_amount'] = $item['use_amount'] >  $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
             $card_balance = $item['card_amount'] - $item['use_amount'];
 
+
             $this->db->where('card_no', $item['card_no'])
-                ->where('uid', $uid)
+                ->where('uid', $uid)->set(array('use_num' => 'use_num+1'), '', false)
                 ->update('card', array('card_amount'=>$card_balance));
             if($this->db->affected_rows())
             {

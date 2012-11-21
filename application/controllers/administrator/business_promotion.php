@@ -51,6 +51,8 @@ class business_promotion extends MY_Controller
             'data' => $data,
             'page_html' => $pageHtml,
             'current_page' => $currentPage,
+            'discount_type' => config_item('promotion_type'),
+            'pay_type' => config_item('pay_type'),
             'promotion_type' => config_item('promotion_type'),
             'promotion_range' => config_item('promotion_range'),
             'promotion_juxtaposed' => config_item('promotion_juxtaposed')
@@ -65,7 +67,8 @@ class business_promotion extends MY_Controller
     {
         $data = array(
             'type' => 'add',
-            'promotion_type' => config_item('promotion_type'),
+            'discount_type' => config_item('promotion_type'),
+            'pay_type' => config_item('pay_type'),
             'promotion_range' => config_item('promotion_range'),
             'promotion_juxtaposed' => config_item('promotion_juxtaposed')
         );
@@ -78,19 +81,24 @@ class business_promotion extends MY_Controller
     public function save()
     {
         $data['name'] = $this->input->get_post('name');
-        $data['promotion_range'] = intval($this->input->get_post('promotion_range'));
         $data['promotion_type'] = intval($this->input->get_post('promotion_type'));
+        $data['rule'] = $this->input->get_post('rule');
+        $data['promotion_range'] = intval($this->input->get_post('promotion_range'));
+        $data['is_juxtaposed'] = intval($this->input->get_post('is_juxtaposed'));
+        $data['pay_type'] = intval($this->input->get_post('pay_type'));
+        $data['discount_type'] = intval($this->input->get_post('discount_type'));
+        $data['priority'] = intval($this->input->get_post('priority'));
         $data['start_time'] = $this->input->get_post('start_time');
         $data['end_time'] = $this->input->get_post('end_time');
         $data['descr'] = $this->input->get_post('descr');
-        $data['is_juxtaposed'] = intval($this->input->get_post('is_juxtaposed'));
-        $data['priority'] = intval($this->input->get_post('priority'));
+
         $promotionId = intval($this->input->get_post('promotion_id'));
 
-        if ( empty ($data['name']) ||
+        if (empty ($data['name']) ||
             empty ($data['start_time']) ||
             empty ($data['end_time']) ||
-            empty ($data['descr']) ) {
+            empty ($data['descr']) ||
+            empty ($data['rule'])) {
             show_error('参数不全！');
         }
 
@@ -132,10 +140,14 @@ class business_promotion extends MY_Controller
         $info = array(
             'type' => 'add',
             'info' => $data,
-            'promotion_type' => config_item('promotion_type'),
+            'discount_type' => config_item('promotion_type'),
+            'pay_type' => config_item('pay_type'),
             'promotion_range' => config_item('promotion_range'),
             'promotion_juxtaposed' => config_item('promotion_juxtaposed')
         );
+
+
+
         $this->load->view('/administrator/business/promotion/create', $info);
     }
 

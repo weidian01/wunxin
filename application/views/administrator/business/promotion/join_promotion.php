@@ -53,16 +53,18 @@
                             <select name="cid" class="small-input">
                                 <option value="0">默认</option>
                                 <?php foreach ($category as $item): ?>
-                                <option
-                                    value="<?=$item['cid']?>" <?php if (isset($info['parent_id']) && $info['parent_id'] == $item['cid']) {
-                                    echo 'selected="selected"';
-                                }?>><?=str_repeat("&nbsp;", $item['floor']), $item['name']?></option>
+                                <option value="<?=$item['cid']?>" <?php if (isset($pProduct['cid']) && $pProduct['cid'] == $item['cid']) { echo 'selected="selected"'; }?>>
+                                    <?=str_repeat("&nbsp;", $item['floor']), $item['name']?>
+                                </option>
                                 <?php endforeach;?>
                             </select>
                         </p>
                         <p>
                             <label>产品图片</label>
                             <input class="text-input small-input datepicker" type="file" name="product_image"/>
+                            <?php if (isset ($pProduct['product_image']) && !empty ($pProduct['product_image'])){?>
+                                <img src="<?=config_item('static_url')?><?=$pProduct['product_image']?>" alt="<?=$pProduct['pname']?>">
+                            <?php } else { echo '没有产品图片!'; }?>
                         </p>
                         <!--p>
                             <label>促销价格</label>
@@ -70,43 +72,45 @@
                         </p-->
                         <p>
                             <label>开始时间</label>
-                            <input class="text-input small-input datepicker" type="text" name="start_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input datepicker" type="text" name="start_time" value="<?=isset ($pProduct['start_time']) ? $pProduct['start_time'] : '';?>"
+                                   onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                         </p>
                         <p>
                             <label>结束时间</label>
-                            <input class="text-input small-input datepicker" type="text" name="end_time" onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
+                            <input class="text-input small-input datepicker" type="text" name="end_time" value="<?=isset ($pProduct['end_time']) ? $pProduct['end_time'] : '';?>"
+                                   onclick="WdatePicker({startDate:'%y-%M-01 00:00:00',dateFmt:'yyyy-MM-dd HH:mm:ss',alwaysUseStartDate:true})"/>
                         </p>
                         <p>
                             <label>库存量</label>
-                            <input class="text-input small-input datepicker" type="text" name="inventory" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input datepicker" type="text" name="inventory" onkeyup="value=value.replace(/[^\d]/g, '')"
+                                   value="<?=isset ($pProduct['inventory']) ? $pProduct['inventory'] : '';?>"/>
+                        </p>
+                        <p>
+                            <label>促销类型</label>
+                            <select name="promotion_type" style="width: 400px;" id="promotion_type" onchange="promotion.init(this.value)">
+
+                            </select>此处用来选择不同类型的活动
+                            <br/>
+                        </p>
+                        <p>
+                            <label>活动规则</label>
+                            <input class="text-input small-input" type="text" value="<?=isset($pProduct['rule']) ? $pProduct['rule'] : ''?>" name="rule" id="rule_id"/>
+                            <span id="rule_notice"></span>
+                            <br/>
                         </p>
                         <p>
                             <label>排序</label>
-                            <input class="text-input small-input datepicker" type="text" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            <input class="text-input small-input datepicker" type="text" name="sort" onkeyup="value=value.replace(/[^\d]/g, '')"
+                                   value="<?=isset ($pProduct['sort']) ? $pProduct['sort'] : '';?>"/>
                         </p>
                         <p>
                             <label>销售状态</label>
                             <select name="sales_status" style="width: 400px;">
                                 <?php foreach ($sales_status as $ssk=>$ssv):?>
-                                <option value="<?=$ssk?>" ><?=$ssv?></option>
+                                <option value="<?=$ssk?>" <?php if (isset($pProduct['sales_status']) && $pProduct['sales_status'] == $ssk) { echo 'selected="selected"'; }?>><?=$ssv?></option>
                                 <?php endforeach;?>
                             </select><br/>
                         </p>
-                        <!-- start 此处处理添加不同类型活动的表单 start -->
-                        <?php if ($promotion['promotion_type'] == PT_DISCOUNT):?>
-                            <p>
-                                <label>折扣</label>
-                                <input class="text-input small-input datepicker" value="<?=isset($info['rule']) ? $info['rule'] : ''?>"
-                                       type="text" name="discount" onkeyup="value=value.replace(/[^\d]/g, '')"/>折， 例：7.5折，填写75。
-                            </p>
-                        <?php  elseif ($promotion['promotion_type'] == PT_LIMIT_BUY):?>
-                            <p>
-                                <label>折扣</label>
-                                <input class="text-input small-input datepicker" value="<?=isset($info['rule']) ? $info['rule'] : ''?>"
-                                       type="text" name="discount" onkeyup="value=value.replace(/[^\d]/g, '')"/>折， 例：7.5折，填写75。
-                            </p>
-                        <?php endif;?>
-                        <!-- end 此处处理添加不同类型活动的表单 end -->
                         <p>
                             <input class="button" type="submit" value="Submit"/>
                         </p>
@@ -131,3 +135,7 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/promotion.js"></script>
+<script type="text/javascript">
+    promotion.init(2, '<?=isset ($info['promotion_type']) ? $info['promotion_type'] : '';?>', '<?=isset ($info['rule']) ? $info['rule'] : '';?>');
+</script>

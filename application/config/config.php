@@ -457,12 +457,14 @@ $config['alipay_request_url'] = 'https://mapi.alipay.com/gateway.do?';
 
 $config['pay_back_url'] = $config['base_url'].'pay/payBack/';
 
-//促销活动类型配置
-define('PT_DISCOUNT', '1');
-define('PT_LIMIT_BUY', '2');
+//促销活动类型配置 1赠送，2折扣，3满减，
+define('PT_GIVE', '1');
+define('PT_DISCOUNT', '2');
+define('PT_FULL_REDUCTION', '3');
 $config['promotion_type'] = array(
-    PT_DISCOUNT => '特价热卖',
-    PT_LIMIT_BUY => '限时抢购',
+    PT_GIVE => '赠送',
+    PT_DISCOUNT => '折扣',
+    PT_FULL_REDUCTION => '满减',
 );
 
 //促销活动范围配置
@@ -479,6 +481,14 @@ define('PJ_YES', '1');
 $config['promotion_juxtaposed'] = array(
     PJ_NO => '不并列',
     PJ_YES => '并列',
+);
+
+//结算方式
+define('PT_ORDER', '0');
+define('PT_PRODUCT', '1');
+$config['pay_type'] = array(
+    PT_ORDER => '针对订单',
+    PT_PRODUCT => '针对产品',
 );
 
 //销售状态配置

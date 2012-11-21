@@ -146,7 +146,7 @@
                             echo $payStatus;?></td>
                         <td><?=$v['uid'];?></td>
                         <td><?=$v['uname'];?></td>
-                        <td><?=$v['after_discount_price'];?></td>
+                        <td>￥<?=fPrice($v['after_discount_price']);?></td>
                         <td><?=$v['pay_type'].'--'.$v['defray_type'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td><small>

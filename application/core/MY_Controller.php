@@ -328,7 +328,7 @@ class MY_Controller extends CI_Controller
         if ($returnOpt && in_array('used_promotion', $returnOpt)) {
             $data['used_promotion'] = $this->promotion->get_used_promotion();
         }
-
+        //p($data);exit;
         return $data;
     }
 
