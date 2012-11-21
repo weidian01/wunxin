@@ -33,4 +33,28 @@ class tools extends CI_Controller
 echo $data;
 //echo '<pre>';print_r($data);
     }
+
+    public function userBrowseLog()
+    {
+        $this->load->library('browser');
+        $browser = new Browser();
+        $data['uniqid'] = $this->input->get_post('uniqid');
+        $data['browse_url'] = $this->input->get_post('browse_url');
+        $data['referer_url'] = $this->input->get_post('referer_url');
+        //$data['referer_url'] = $this->input->server('HTTP_REFERER');
+        $data['ip'] = $this->input->ip_address();
+        $data['ip'] = ip2long($data['ip']);
+        $data['os'] = getSystem();
+        //$data['browser'] = getBrowser();//$this->input->user_agent();//
+        $data['browser'] = $browser->getBrowser().$browser->getVersion();
+
+        if ($this->input->is_ajax_request() !== TRUE || empty ($data['uniqid']) || empty ($data['browse_url'])) {
+            return ;
+        }
+
+        $this->load->model('other/model_tools', 'tools');
+        $this->tools->addBrowseLog($data);
+
+
+    }
 }

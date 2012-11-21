@@ -1154,3 +1154,65 @@ eval(function (k, l, c, m, a, e) {
 
 $(function(){ sideToolsAct(); })
 /*右侧浮层菜单结束*/
+
+//生成一个唯一ID
+wx.uuid = (function () {
+    var a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split("");
+    return function (b, f) {
+        var h = a, e = [], d = Math.random;
+        f = f || h.length;
+        if (b) {
+            for (var c = 0; c < b; c++) {
+                e[c] = h[0 | d() * f];
+            }
+        } else {
+            var g;
+            e[8] = e[13] = e[18] = e[23] = "-";
+            e[14] = "4";
+            for (var c = 0; c < 36; c++) {
+                if (!e[c]) {
+                    g = 0 | d() * 16;
+                    e[c] = h[(c == 19) ? (g & 3) | 8 : g & 15];
+                }
+            }
+        }
+        return e.join("").toLowerCase();
+    };
+})();
+
+wx.getReferrer = function() {
+    var referrer = '';
+
+    try {
+        referrer = window.top.document.referrer;
+    } catch(e) {
+        if(window.parent) {
+            try {
+                referrer = window.parent.document.referrer;
+            } catch(e2) {
+                referrer = '';
+            }
+        }
+    }
+    if(referrer === '') {
+        referrer = document.referrer;
+    }
+    return referrer;
+}
+
+//记录用户浏览日志
+wx.userBrowse = function ()
+{
+    var uniqId = wx.getCookie('user_browse');
+    var currentUrl = document.URL;
+    var refererUrl = wx.getReferrer();//document.referrer;//
+
+    if (!wx.isEmpty(uniqId)) {
+        uniqId = wx.uuid();
+        wx.setCookie('user_browse', uniqId, 1000000000)//(name, value, expires)
+    }
+//alert('uniqid='+uniqId+'&browse_url='+currentUrl+'&referer_url='+refererUrl);
+    wx.ajax('tools/userBrowseLog', 'uniqid='+uniqId+'&browse_url='+currentUrl+'&referer_url='+refererUrl);
+}
+wx.userBrowse();
+//console.log(wx.uuid());
