@@ -74,16 +74,18 @@
                         <td><input type="checkbox"/></td>
                         <td><?=$v['id'];?></td>
                         <td><a href="<?=config_item('static_url')?>administrator/article/articleCLass/<?=$v['cid'];?>"><?=isset($class_data[$v['cid']]['cname']) ? $class_data[$v['cid']]['cname']:'NULL';?></a></td>
-                        <td><a href="<?=config_item('static_url')?>other/help/index/<?=$v['id'];?>"><?=$v['title'];?></a></td>
-                        <td><?=mb_substr($v['keywords'], 0, 20, 'utf-8');?></td>
-                        <td><?=mb_substr($v['descr'], 0, 20, 'utf-8');?></td>
-                        <td><?=mb_substr(strip_tags(htmlspecialchars_decode($v['content'])), 0, 20, 'utf-8');?></td>
+                        <td style="width: 200px;">
+                            <a href="<?=config_item('static_url')?>other/help/index/<?=$v['id'];?>"><?=$v['title'];?></a>
+                        </td>
+                        <td style="width: 150px;"><?=mb_substr($v['keywords'], 0, 20, 'utf-8');?></td>
+                        <td style="width: 150px;"><?=mb_substr($v['descr'], 0, 20, 'utf-8');?></td>
+                        <td style="width: 150px;"><?=mb_substr(strip_tags(htmlspecialchars_decode($v['content'])), 0, 20, 'utf-8');?></td>
                         <td><?=$v['visiblity'] ? '显示' : '不显示';?></td>
                         <td><?=$v['top'] ? '置顶' : '不置顶';?></td>
                         <td><?=$v['sort'];?></td>
                         <td><?=$v['is_valid'];?></td>
                         <td><?=$v['is_invalid'];?></td>
-                        <td><?=$v['create_time'];?></td>
+                        <td style="width: 70px;"><?=$v['create_time'];?></td>
                         <td>
                             <a href="<?=config_item('static_url')?>administrator/article/articleEdit/<?=$v['id'];?>" title="编辑文章"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑文章"/></a>
                             <a href="<?=config_item('static_url')?>administrator/article/articleDelete/<?=$v['id'].'/'.(isset ($current_page) ? $current_page : '1');?>" title="删除文章"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除文章"/></a>
