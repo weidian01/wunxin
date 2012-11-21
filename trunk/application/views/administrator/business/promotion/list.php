@@ -44,7 +44,7 @@
                         <th>ID</th>
                         <th>名称</th>
                         <th>促销范围</th>
-                        <th>促销类型</th>
+                        <th>促销类型(模板)</th>
                         <th>规则</th>
                         <th>是否并列</th>
                         <th>优先级</th>
@@ -74,28 +74,28 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?=$v['promotion_id'];?></td>
-                        <td><?=$v['name']?></td>
+                        <td style="width: 150px;"><?=$v['name']?></td>
                         <td><?=$promotion_range[$v['promotion_range']];?></td>
-                        <td><?=$promotion_type[$v['promotion_type']];?></td>
+                        <td style="width: 110px;"><?=$promotion_type[$v['promotion_type']];?></td>
                         <td><?=$v['rule'];?></td>
                         <td><?=$promotion_juxtaposed[$v['is_juxtaposed']];?></td>
                         <td><?=$v['priority'];?></td>
                         <td><?=$pay_type[$v['pay_type']];?></td>
                         <td><?=$discount_type[$v['discount_type']];?></td>
-                        <td><?=$v['start_time'];?></td>
-                        <td><?=$v['end_time'];?></td>
-                        <td><?=$v['descr'];?></td>
-                        <td><?=$v['create_time'];?></td>
-                        <td>
-                            <?php if ($v['promotion_range']) {?>
-                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/p_create/<?=$v['promotion_id'];?>" title="为此活动添加产品">加产品</a>
-                            <a href="<?=config_item('static_url')?>administrator/business_promotion_category/create/<?=$v['promotion_id'];?>" title="为此活动添加产品">加分类</a><br/>
-                            <?php }?>
-
+                        <td style="width: 70px;"><?=$v['start_time'];?></td>
+                        <td style="width: 70px;"><?=$v['end_time'];?></td>
+                        <td style="width: 100px;"><?=$v['descr'];?></td>
+                        <td style="width: 70px;"><?=$v['create_time'];?></td>
+                        <td style="width: 100px;">
                             <a href="<?=config_item('static_url')?>administrator/business_promotion/edit/<?=$v['promotion_id'];?>" title="编辑">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑"></a>
                             <a href="<?=config_item('static_url')?>administrator/business_promotion/delete/<?=$v['promotion_id'];?>" title="删除">
-                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a>
+                                <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除"/></a><br/>
+
+                            <?php if ($v['promotion_range']) {?>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_product/p_create/<?=$v['promotion_id'];?>" title="为此活动添加产品">加产品</a><br/>
+                            <a href="<?=config_item('static_url')?>administrator/business_promotion_category/create/<?=$v['promotion_id'];?>" title="为此活动添加产品">加分类</a>
+                            <?php }?>
                         </td>
                     </tr>
                         <?php }?>

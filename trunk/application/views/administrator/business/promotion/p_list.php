@@ -76,21 +76,21 @@
                     <tr>
                         <td><input type="checkbox"/></td>
                         <td><?=$v['id'];?></td>
-                        <td>
+                        <td style="width: 100px;">
                             <a href="<?=config_item('static_url')?>administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.$v['promotion_id'];?>">
                                 <?=$promotion[$v['promotion_id']]['name'];?>
                             </a>
                         </td>
                         <td><?=$v['pid'];?></td>
                         <td>
-                            <a href="<?=productURL($v['pid'])?>" target="_blank">
-                                <img src="<?=empty ($v['product_image']) ? config_item('img_url').'product/'.intToPath($v['pid']).'icon.jpg' : str_replace('\\', '/', $v['product_image']);?>" width="60" height="60"/>
+                            <a href="<?=productURL($v['pid'])?>" target="_blank" title="<?=$v['pname'];?>">
+                                <img src="<?=empty ($v['product_image']) ? config_item('img_url').'product/'.intToPath($v['pid']).'icon.jpg' : config_item('static_url').str_replace('\\', '/', $v['product_image']);?>" width="60" height="60"/>
                             </a>
                         </td>
-                        <td><?=$v['pname'];?></td>
+                        <td style="width: 150px;"><a href="<?=productURL($v['pid'])?>" target="_blank" title="<?=$v['pname'];?>"><?=$v['pname'];?></a></td>
                         <td>￥<?=fPrice($v['sell_price']);?></td>
                         <td>￥<?=fPrice($v['promotion_price']);?></td>
-                        <td>
+                        <td style="width: 60px;">
                             <a href="<?=config_item('static_url')?>administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.( empty ($promotion_id) ? '0' : $promotion_id).'/'.$v['cid'];?>">
                                 <?=$category[$v['cid']]['name'];?>
                             </a>

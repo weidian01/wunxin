@@ -30,7 +30,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 <div style="width: 980px;margin: 10px auto;">
   <div class="u-rights" style="width: 980px;">
     <div class="help_box" style="padding: 15px 0px 15px 0px;width: 980px;">
-      <div class="h-title" style="text-align: center;"><?=$data['title'];?></div>
+      <div class="article" style="text-align: center;"><?=$data['title'];?></div>
       <div class="h-cont" style="padding: 20px;">
         <?=htmlspecialchars_decode($data['content']);?>
           <!--

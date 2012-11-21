@@ -85,6 +85,34 @@ class model_business_promotion_product extends MY_Model
     }
 
     /**
+     * 修改活动产品
+     *
+     * @param array $data
+     * @param $id
+     * @return boolean
+     */
+    public function editProduct(array $data, $id)
+    {
+        $info = array(
+            'promotion_id' => $data['promotion_id'],
+            'cid' => $data['cid'],
+            'pid' => $data['pid'],
+            'pname' => $data['pname'],
+            'sell_price' => $data['sell_price'],
+            'promotion_price' => $data['promotion_price'],
+            'start_time' => $data['start_time'],
+            'end_time' => $data['end_time'],
+            'inventory' => $data['inventory'],
+            'sort' => $data['sort'],
+            'sales_status' => $data['sales_status'],
+            'rule' => $data['rule'],
+        );
+
+        $this->db->where('id', $id);
+        return $this->db->update('promotion_product', $info);
+    }
+
+    /**
      * 更新图片地址
      *
      * @param $file

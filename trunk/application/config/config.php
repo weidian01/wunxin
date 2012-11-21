@@ -461,7 +461,7 @@ $config['pay_back_url'] = $config['base_url'].'pay/payBack/';
 define('PT_GIVE', '1');
 define('PT_DISCOUNT', '2');
 define('PT_FULL_REDUCTION', '3');
-$config['promotion_type'] = array(
+$config['discount_type'] = array(
     PT_GIVE => '赠送',
     PT_DISCOUNT => '折扣',
     PT_FULL_REDUCTION => '满减',
@@ -518,8 +518,15 @@ $config['card_type'] = array(
 );
 
 
-
-
+//折扣模板 -- 与JS(promotion.js)中配置ID一致
+define('PROMOTION_TEMPLATE_DISCOUNT', '1');//全场或指定产品折扣优惠
+define('PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT', '2');//指定产品N件N折优惠
+define('PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT', '3');//全场或指定产品满N件N折优惠
+$config['promotion_type'] = array(
+    PROMOTION_TEMPLATE_DISCOUNT => '产品折扣',
+    PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT => '第N件折扣',
+    PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT => '满N件N折扣',
+);
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */

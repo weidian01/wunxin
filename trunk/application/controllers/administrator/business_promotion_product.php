@@ -177,6 +177,7 @@ class business_promotion_product extends MY_Controller
             'promotion' => $promotion,
             'product' => $pData,
             'category' => $category,
+            'pProduct' => array('rule' => $promotion['rule']),
             'sales_status' => config_item('sales_status'),
         );
         $this->load->view('administrator/business/promotion/join_promotion', $info);
@@ -188,12 +189,14 @@ class business_promotion_product extends MY_Controller
         $data['pid'] = intval($this->input->get_post('pid'));
         $data['pname'] = $this->input->get_post('pname');
         $data['cid'] = intval($this->input->get_post('cid'));
-        $data['promotion_price'] = intval($this->input->get_post('promotion_price'));
+        //$data['promotion_price'] = intval($this->input->get_post('promotion_price'));
+        $data['rule'] = $this->input->get_post('rule');
         $data['start_time'] = $this->input->get_post('start_time');
         $data['end_time'] = $this->input->get_post('end_time');
         $data['inventory'] = intval($this->input->get_post('inventory'));
         $data['sort'] = intval($this->input->get_post('sort'));
         $data['sales_status'] = intval($this->input->get_post('sales_status'));
+        $promotionProductId = intval($this->input->get_post('promotion_product_id'));
 
         if (empty ($data['promotion_id']) ||
             empty ($data['pid']) ||
@@ -213,29 +216,27 @@ class business_promotion_product extends MY_Controller
         $pData = $this->product->getProductById($data['pid']);
 
         if ( empty ($promotion) || empty ($pData) ) {
-            show_error('促销活动不存在 或 促销产品不存在！');
+            show_error('促销活动不存在 或 需要促销产品不存在！');
         }
 
-        //不同促销活动规则处理
-        $tmpData = $this->ruleProcess($promotion['promotion_type'], $pData['sell_price']);
-        if (empty ($tmpData['rule']) || empty ($tmpData['price'])){
-            show_error('活动规则处理错误，请注意填写！');
-        }
-
-        $data['rule'] = $tmpData['rule'];
-        $data['promotion_price'] = $tmpData['price'];
         $data['sell_price'] = $pData['sell_price'];
+        $data['promotion_price'] = $this->ruleProcess();//此处还需要进行修改。
 
         $this->load->model('/business/model_business_promotion_product', 'pp');
-        $lastId = $this->pp->addProduct($data);
+        if ($promotionProductId) {
+            $this->pp->editProduct($data, $promotionProductId);
+            $lastId = $promotionProductId;
+        } else {
+            $lastId = $this->pp->addProduct($data);
+        }
+
         if (!$lastId) {
             show_error('添加促销产品失败！');
         }
 
-//var_dump($_FILES);exit;
         if ($_FILES['product_image']['error'] == '0') {//echo 'f';
             $this->load->helper('directory');
-            $directory = DS.'upload' . DS . 'activity' . DS . 'promotion' . DS . date('Ymd') . DS;
+            $directory = 'upload' . DS . 'activity' . DS . 'promotion' . DS . date('Ymd') . DS;
             recursiveMkdirDirectory($directory);
 
             $config['upload_path'] = WEBROOT . $directory;
@@ -264,27 +265,12 @@ class business_promotion_product extends MY_Controller
     }
 
     /**
-     * 规则处理
+     * 规则处理,通过配置产品的活动规则，得到产品最终的活动价格
      */
-    private function ruleProcess($promotionType, $productPrice)
+    private function ruleProcess()
     {
-        $rule = '';
-        switch ($promotionType) {
-            case PT_DISCOUNT:
-                $rule = $this->input->get_post('discount');
-                $this->load->model('promotion/model_discount', 'p');
-                break;
-            case PT_LIMIT_BUY:
-                $rule = $this->input->get_post('discount');
-                $this->load->model('promotion/model_limit_buy', 'p');
-                break;
-        }
-//var_dump($this->p);
-        $this->p->init($rule);
-        $price = $this->p->compute($productPrice);
-
-        $info = array('rule' => $rule, 'price' => $price);
-        return $info;
+        //通过配置产品的活动规则，得到产品最终的活动价格
+        return 20;
     }
 
     public function edit()

@@ -182,13 +182,13 @@ class Model_Promotion extends MY_Model
         $products = $this->get_product($promotion_id, $p_info);
         if ($products) {
             switch ($p_info['promotion_type']) {
-                case 1: //折扣
+                case PROMOTION_TEMPLATE_DISCOUNT: //折扣
                     $way = $this->load->model('promotion/model_way_1', 'way1', FALSE, TRUE);
                     break;
-                case 2: //单一产品 第 N 件 X 折
+                case PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT: //单一产品 第 N 件 X 折
                     $way = $this->load->model('promotion/model_way_2', 'way2', FALSE, TRUE);
                     break;
-                case 3: //指定范围 产品 满 N 件 X 折扣
+                case PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT: //指定范围 产品 满 N 件 X 折扣
                     $way = $this->load->model('promotion/model_way_3', 'way3', FALSE, TRUE);
                     break;
                 default:
