@@ -42,6 +42,7 @@
                 <form action="<?=url('administrator/business_promotion_product/save')?>" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="promotion_id" value="<?=isset ($promotion['promotion_id']) ? $promotion['promotion_id'] : '';?>"/>
                     <input type="hidden" name="pid" value="<?=isset ($product['pid']) ? $product['pid'] : '';?>"/>
+                    <input type="hidden" name="promotion_product_id" value="<?=isset($pProduct['id']) ? $pProduct['id'] : ''?>"/>
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
@@ -86,16 +87,9 @@
                                    value="<?=isset ($pProduct['inventory']) ? $pProduct['inventory'] : '';?>"/>
                         </p>
                         <p>
-                            <label>促销类型</label>
-                            <select name="promotion_type" style="width: 400px;" id="promotion_type" onchange="promotion.init(this.value)">
-
-                            </select>此处用来选择不同类型的活动
-                            <br/>
-                        </p>
-                        <p>
                             <label>活动规则</label>
                             <input class="text-input small-input" type="text" value="<?=isset($pProduct['rule']) ? $pProduct['rule'] : ''?>" name="rule" id="rule_id"/>
-                            <span id="rule_notice"></span>
+                            <span style="color: red;">此处规则模板不可修改，只可修改模板中的折扣数字</span>
                             <br/>
                         </p>
                         <p>
@@ -135,7 +129,3 @@
 </body>
 <!-- Download From www.exet.tk-->
 </html>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/promotion.js"></script>
-<script type="text/javascript">
-    promotion.init(2, '<?=isset ($info['promotion_type']) ? $info['promotion_type'] : '';?>', '<?=isset ($info['rule']) ? $info['rule'] : '';?>');
-</script>

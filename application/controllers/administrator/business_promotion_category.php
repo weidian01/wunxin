@@ -139,6 +139,12 @@ class business_promotion_category extends MY_Controller
         }
         $this->load->model('business/model_business_promotion_category', 'category');
 
+        $this->load->model('/business/model_business_promotion_product', 'product');
+        $productData = $this->product->getProductList(1, 0, 'promotion_id', array('cid' => $class_id));//($limit = 20, $offset = 0, $field = '*', $where = null, $order = null)
+        if (!empty ($productData)) {
+            show_error('该促销活动下还有产品!');
+        }
+
         if ($this->category->isAlone($class_id)) {
             $this->category->delete($class_id);
             $this->load->helper('url');

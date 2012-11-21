@@ -47,7 +47,7 @@
                         </p>
                         <p>
                             <label>促销类型</label>
-                            <select name="promotion_type" style="width: 400px;" id="promotion_type" onchange="promotion.init(1, this.value)">
+                            <select name="promotion_type" style="width: 400px;" id="promotion_type" onchange="promotion.init(this.value)">
 
                             </select>此处用来选择不同类型的活动
                             <br/>
@@ -171,5 +171,5 @@ $(function () {
     });
 });
 */
-    promotion.init(1, '<?=isset ($info['promotion_type']) ? $info['promotion_type'] : '';?>', '<?=isset ($info['rule']) ? $info['rule'] : '';?>');
+    promotion.init('<?=isset ($info['promotion_type']) ? $info['promotion_type'] : '';?>', '<?=isset ($info['rule']) ? $info['rule'] : '';?>');
 </script>

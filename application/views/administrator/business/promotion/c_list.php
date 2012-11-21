@@ -50,6 +50,9 @@
                         <th>所属活动</th>
                         <th>分类级别</th>
                         <th>排序</th>
+                        <th>标题</th>
+                        <th>关键字</th>
+                        <th>描述</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -68,6 +71,9 @@
                         </td>
                         <td><?=$item['floor']?></td>
                         <td><?=$item['sort']?></td>
+                        <td style="width: 100px;"><?=$item['title'];?></td>
+                        <td style="width: 100px;"><?=$item['keywords'];?></td>
+                        <td style="width: 100px;"><?=$item['descr'];?></td>
                         <td>
                             <a href="<?=url("administrator/business_promotion_category/edit/{$item['cid']}")?>">
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>

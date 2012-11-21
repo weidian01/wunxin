@@ -51,7 +51,7 @@ class business_promotion extends MY_Controller
             'data' => $data,
             'page_html' => $pageHtml,
             'current_page' => $currentPage,
-            'discount_type' => config_item('promotion_type'),
+            'discount_type' => config_item('discount_type'),
             'pay_type' => config_item('pay_type'),
             'promotion_type' => config_item('promotion_type'),
             'promotion_range' => config_item('promotion_range'),
@@ -67,7 +67,7 @@ class business_promotion extends MY_Controller
     {
         $data = array(
             'type' => 'add',
-            'discount_type' => config_item('promotion_type'),
+            'discount_type' => config_item('discount_type'),
             'pay_type' => config_item('pay_type'),
             'promotion_range' => config_item('promotion_range'),
             'promotion_juxtaposed' => config_item('promotion_juxtaposed')
@@ -140,7 +140,7 @@ class business_promotion extends MY_Controller
         $info = array(
             'type' => 'add',
             'info' => $data,
-            'discount_type' => config_item('promotion_type'),
+            'discount_type' => config_item('discount_type'),
             'pay_type' => config_item('pay_type'),
             'promotion_range' => config_item('promotion_range'),
             'promotion_juxtaposed' => config_item('promotion_juxtaposed')
@@ -158,10 +158,28 @@ class business_promotion extends MY_Controller
     {
         $id = $this->uri->segment(4, 0);
         if (!$id) {
-            show_error('促销活动id为空');
+            show_error('促销活动id为空!');
         }
 
         $this->load->model('/business/model_business_promotion', 'promotion');
+
+        $promotionData = $this->promotion->getPromotion($id);
+        if (empty ($promotionData)) {
+            show_error('促销活动不存在!');
+        }
+
+        $this->load->model('/business/model_business_promotion_category', 'category');
+        $categoryData = $this->category->getCategoryListByPromotionId($id);
+
+        if (!empty ($categoryData)) {
+            show_error('该促销活动下还有分类！');
+        }
+
+        $this->load->model('/business/model_business_promotion_product', 'product');
+        $productData = $this->product->getProductByPromotionId($id);
+        if (!empty ($productData)) {
+            show_error('该促销活动下还有产品!');
+        }
 
         $status = $this->promotion->deletePromotion($id);
         if (!$status) {
