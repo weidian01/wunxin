@@ -68,14 +68,14 @@
                 <div class="blt-cont" id="blt1">
                     <ul>
                         <?php foreach ($bulletin as $bv) {?>
-                        <li><a href="<?=config_item('static_url')?>article/info/<?=$bv['id'];?>" target="_blank"><?=mb_substr($bv['title'], 0, 18, 'utf-8');?></a></li>
+                        <li><a href="<?=config_item('static_url')?>article/info/<?=$bv['id'];?>" target="_blank" title="<?=$bv['title'];?>"><?=$bv['title'];?></a></li>
                         <?php }?>
                     </ul>
                 </div>
                 <div class="blt-cont" id="blt2" style="display:none;">
                     <ul>
                         <?php foreach ($news as $nv) {?>
-                        <li><a href="<?=config_item('static_url')?>article/dynamic/<?=$nv['id'];?>" target="_blank"><?=mb_substr($nv['title'], 0, 18, 'utf-8');?></a></li>
+                        <li><a href="<?=config_item('static_url')?>article/dynamic/<?=$nv['id'];?>" target="_blank" title="<?=$nv['title'];?>"><?=$nv['title'];?></a></li>
                         <?php }?>
                     </ul>
                 </div>
