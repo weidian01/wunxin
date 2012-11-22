@@ -131,10 +131,13 @@ class Model_Promotion extends MY_Model
     function get_unused_promotion()
     {
         $unused = array();
-        foreach ($this->promotion as $item) {
+        foreach ($this->promotion as $key=>$item) {
             if (!isset($item['used']) || $item['used'] != true) {
-                if ($this->discount($item['promotion_id'])) {
-                    $unused[] = $item;
+                $r = $this->discount($item['promotion_id']);
+                //d($item['promotion_id']);d($r);
+                if ($r['order']) {
+                    $this->set_used_promotion($item['promotion_id'], $r['save'], FALSE);
+                    $unused[] = $this->promotion[$key];
                 }
             }
         }
@@ -218,32 +221,38 @@ class Model_Promotion extends MY_Model
                 return $way->result();
             }
         }
-        return array();
+        return array('save'=>0, 'order'=>array());
     }
 
     function compute()
     {
+        /**
+         * 以下针对产品优惠
+         */
         if(isset($this->use_promotion['product']))
         {
             foreach($this->use_promotion['product'] as $promotion_id)
             {
                 $use_products = $this->discount($promotion_id);
-                if ($use_products) {
-                    $this->set_product_final_price($use_products, $promotion_id);
-                    $this->clear_promotion_products($use_products);
+                if ($use_products['order']) {
+                    $this->set_used_promotion($promotion_id, $use_products['save'], true);
+                    $this->set_product_final_price($use_products['order'], $promotion_id);
+                    $this->clear_promotion_products($use_products['order']);
                 }
             }
         }
 
-
+        /**
+         * 以下针对订单优惠
+         */
         if(isset($this->use_promotion['order']))
         {
             $clear = FALSE;
             foreach($this->use_promotion['order'] as $promotion_id)
             {
-                $use_products = $this->discount($promotion_id);
-                if ($use_products) {
-                    $this->set_used_promotion($promotion_id);
+                $r = $this->discount($promotion_id);
+                if ($r['order']) {
+                    $this->set_used_promotion($promotion_id, $r['save'], true);
                     $clear = TRUE;
                     break;
                 }
@@ -270,14 +279,16 @@ class Model_Promotion extends MY_Model
 
     /**
      * 把已用的活动设置为使用过状态 used = 1
-     * @param $promotion_id
+     * @param $promotion_id 活动id
+     * @param $save         参与活动后节约金额
      * @return mixed
      */
-    private function set_used_promotion($promotion_id)
+    private function set_used_promotion($promotion_id, $save = 0, $use = false)
     {
         if(isset($this->promotion[$promotion_id]))
         {
-            $this->promotion[$promotion_id]['used'] = true;
+            $use && $this->promotion[$promotion_id]['used'] = true;
+            $this->promotion[$promotion_id]['save'] = $save;
         }
         return ;
     }
@@ -290,7 +301,7 @@ class Model_Promotion extends MY_Model
      */
     private function set_product_final_price($use_products, $promotion_id)
     {
-        $this->set_used_promotion($promotion_id);
+        //$this->set_used_promotion($promotion_id, 0, true);
         foreach($use_products as $product)
         {
             $this->order_products[$product['pid']]['promotion_id'] = $promotion_id;

@@ -43,10 +43,15 @@ class Model_Way_100 extends Model_Way
 
     public function result()
     {
+        $r = array('save'=>0, 'order'=>TRUE);
         if($this->order_amount < ($this->rule['limit'] * 100))
         {
-            return FALSE;
+            $r['order'] = FALSE;
         }
-        return $this->order_amount - ($this->order_amount * ($this->rule['discount'] * 0.1));
+        else
+        {
+            $r['save'] = $this->order_amount - ($this->order_amount * ($this->rule['discount'] * 0.1));
+        }
+        return $r;
     }
 }
