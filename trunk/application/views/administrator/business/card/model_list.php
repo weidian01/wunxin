@@ -17,6 +17,7 @@
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardModelAdd"><span><br/> 添加卡模型 </span></a></li>
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardModelList"><span><br/> 卡模型列表 </span></a></li>
         <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardList"><span><br/> 卡列表 </span></a></li>
+        <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardProduct"><span><br/> 卡产品列表 </span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -92,6 +93,9 @@
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑卡模型"/></a>
                             <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelDelete/<?=$v['model_id'].'/'.$current_page;?>" title="删除卡模型">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除卡模型"/></a>
+                            <?php if ($v['card_type'] == CARD_COPPER) {?>
+                            <br/><a href="<?=config_item('static_url')?>administrator/business_card_model/joinSales/<?=$v['model_id'];?>" title="将产品加入此卡销售">加入产品</a>
+                            <?php }?>
                         </td>
                     </tr>
                         <?php }?>

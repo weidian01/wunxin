@@ -13,6 +13,7 @@
 <!--                       Javascripts                       -->
 <!-- jQuery -->
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
+<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <!-- jQuery Configuration -->
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/simpla.jquery.configuration.js"></script>
 <!-- Facebox jQuery Plugin -->

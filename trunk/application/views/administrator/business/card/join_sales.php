@@ -13,17 +13,17 @@
     </div>
 </noscript>
 <!-- Page Head -->
-<h2><?=$promotion['name'];?></h2>
+<h2><?=$card_model['card_name'];?></h2>
 <!--p id="page-intro">产品分类管理</p-->
 <ul class="shortcut-buttons-set">
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/create"><span><br/> 添加促销 </span></a></li>
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion/lists"><span><br/> 促销列表 </span></a></li>
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_category/lists"><span><br/> 促销分类列表 </span></a></li>
-    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_promotion_product/lists"><span><br/> 促销产品列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardModelAdd"><span><br/> 添加卡模型 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardModelList"><span><br/> 卡模型列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardList"><span><br/> 卡列表 </span></a></li>
+    <li><a class="shortcut-button" href="<?=config_item('static_url')?>administrator/business_card_model/cardProduct"><span><br/> 卡产品列表 </span></a></li>
 </ul>
 <!-- End .shortcut-buttons-set -->
     <div class="clear">
-        <form action="<?=url('administrator/business_promotion_product/joinSales/'.$promotion_id);?>" method="post">
+        <form action="<?=url('administrator/business_card_model/joinSales/'.$model_id);?>" method="post">
             <p>
                 <label><b>输入关键字</b></label>
                 <input class="text-input small-input" type="text" id="small-input" name="keyword" value="<?=isset($keyword) ? $keyword : ''; ?>">
@@ -94,7 +94,9 @@
                     <td><?php if($item['status']):?>上架<?php else:?>下架<?php endif;?></td>
                     <td><?=empty ($item['stock']) ? '0' : $item['stock']?></td>
                     <td>
-                        <a href="<?=config_item('static_url')?>administrator/business_promotion_product/joinPromotion/<?=$promotion['promotion_id'].'/'.$item['pid'];?>"><b>加入活动</b></a>
+                        <!--<?=config_item('static_url')?>administrator/business_card_model/joinProduct/<?=$card_model['model_id'].'/'.$item['pid'];?>-->
+                        <a href="javascript:void(0);" onclick="join_sales(<?=$card_model['model_id'].','.$item['pid'];?>, 'prompt_<?=$card_model['model_id'].'.'.$item['pid'];?>')"
+                           id="prompt_<?=$card_model['model_id'].'.'.$item['pid'];?>"><b>加入销售</b></a>
                     </td>
                 </tr>
                     <?php endforeach;?>
@@ -129,17 +131,16 @@
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
 <script type="text/javascript">
-    function alertJoin(promotion_type)
+    function join_sales(modelId, pId, bingingId)
     {
-        var html = '';
-        switch (promotion_type)
-        {
-            case '1': html = '';break;
-            case '2': html = '';break;
-            case '3': html = '';break;
-            default : html = '';
+        if (!wx.isEmpty(modelId) || !wx.isEmpty(pId)) {
+            wx.showPop('参数不全!');
+            return;
         }
 
-        return html;
+        var url = 'administrator/business_card_model/joinProduct';
+        var data = wx.ajax(url, 'model_id='+modelId+'&pid='+pId);
+
+        wx.showPop(data.msg, bingingId);
     }
 </script>

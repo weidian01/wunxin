@@ -827,29 +827,5 @@ function getSystem()
 	return $os;
 }
 
-//分析返回用户网页浏览器名称
-function getBrowser(){
-	$browser = $_SERVER['HTTP_USER_AGENT'];
-	if(strpos(strtolower($browser),"netcaptor"))
-	   $exp = "NetCaptor";
-	elseif(strpos(strtolower($browser),"firefox")){
-	   preg_match("/Firefox\/([^;)]+)+/i", $browser, $b);
-	   $exp = "Mozilla Firefox ".$b[1];
-	}elseif(strpos(strtolower($browser),"maxthon")){
-	   preg_match("/MAXTHON\s+([^;)]+)+/i", $browser, $b);
-	   preg_match("/MSIE\s+([^;)]+)+/i", $browser, $ie);
-	   $exp = $b[0]." (IE".$ie[1].")";
-	}elseif(strpos(strtolower($browser),"msie")){
-	   preg_match("/MSIE\s+([^;)]+)+/i", $browser, $ie);
-	   $exp = "Internet Explorer ".$ie[1];
-	}elseif(strpos(strtolower($browser),"netscape"))
-	   $exp = "Netscape";
-	elseif(strpos(strtolower($browser),"opera"))
-	   $exp = "Opera";
-	else
-	   $exp = "未知浏览器";
-
-	return $exp;
-}
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
