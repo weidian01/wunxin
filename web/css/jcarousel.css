@@ -140,9 +140,9 @@
 .jcarousel-skin-ucenter .jcarousel-container-horizontal{width:765px; padding:5px 25px}
 .jcarousel-skin-ucenter .jcarousel-container-vertical{width:75px; height:245px; padding:40px 20px}
 .jcarousel-skin-ucenter .jcarousel-clip{overflow:hidden}
-.jcarousel-skin-ucenter .jcarousel-clip-horizontal{width: 765px; height:207px}
+.jcarousel-skin-ucenter .jcarousel-clip-horizontal{width: 765px; height:225px}
 .jcarousel-skin-ucenter .jcarousel-clip-vertical{width: 75px; height:200px}
-.jcarousel-skin-ucenter .jcarousel-item{ width:140px;height:205px;margin-left:0;margin-right:17px;background:none repeat scroll 0 0 #FFF;border:0px solid #E8E8E8}
+.jcarousel-skin-ucenter .jcarousel-item{ width:140px;height:220px;margin-left:0;margin-right:17px;background:none repeat scroll 0 0 #FFF;border:0px solid #E8E8E8}
 .jcarousel-skin-ucenter .jcarousel-direction-rtl .jcarousel-item-horizontal{margin-left:10px;margin-right:0}
 .jcarousel-skin-ucenter .jcarousel-item-vertical{ margin-bottom:10px}
 .jcarousel-skin-ucenter .jcarousel-item-placeholder{ background:#fff;color:#000}
