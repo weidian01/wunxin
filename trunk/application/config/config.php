@@ -519,9 +519,12 @@ $config['card_type'] = array(
 
 
 //折扣模板 -- 与JS(promotion.js)中配置ID一致
-define('PROMOTION_TEMPLATE_DISCOUNT', '1');//全场或指定产品折扣优惠
-define('PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT', '2');//指定产品N件N折优惠
-define('PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT', '3');//全场或指定产品满N件N折优惠
+define('PROMOTION_TEMPLATE_DISCOUNT', '1');          //全场或指定产品折扣优惠
+define('PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT', '2');  //指定产品N件N折优惠
+define('PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT', '3'); //全场或指定产品满N件N折优惠
+define('PROMOTION_TEMPLATE_ORDER_FULL_CUT_DISCOUNT', '100'); //全场或指定产品满N件N折优惠
+define('PROMOTION_TEMPLATE_ORDER_FULL_REBATE_DISCOUNT', '101'); //全场或指定产品满N件N折优惠
+
 $config['promotion_type'] = array(
     PROMOTION_TEMPLATE_DISCOUNT => '产品折扣',
     PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT => '第N件折扣',
