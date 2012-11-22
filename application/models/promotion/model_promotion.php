@@ -117,7 +117,7 @@ class Model_Promotion extends MY_Model
                     }
                     else
                     {
-                        $this->use_promotion['order'][] = $id;
+                        $this->use_promotion['order'][$id] = $id;
                     }
                 }
             }
@@ -179,7 +179,16 @@ class Model_Promotion extends MY_Model
     private function discount($promotion_id)
     {
         $p_info = $this->promotionInfo($promotion_id);
-        $products = $this->get_product($promotion_id, $p_info);
+        $products = array();
+        if($p_info['pay_type'] == 1)
+        {
+            $products = $this->get_product($promotion_id, $p_info);
+        }
+        elseif($p_info['pay_type'] == 0)
+        {
+            $products = $this->order_products;
+        }
+
         if ($products) {
             switch ($p_info['promotion_type']) {
                 case PROMOTION_TEMPLATE_DISCOUNT: //折扣
@@ -190,6 +199,12 @@ class Model_Promotion extends MY_Model
                     break;
                 case PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT: //指定范围 产品 满 N 件 X 折扣
                     $way = $this->load->model('promotion/model_way_3', 'way3', FALSE, TRUE);
+                    break;
+                case PROMOTION_TEMPLATE_ORDER_FULL_CUT_DISCOUNT: // 订单满X元 减Y元
+                    $way = $this->load->model('promotion/model_way_100', 'way100', FALSE, TRUE);
+                    break;
+                case PROMOTION_TEMPLATE_ORDER_FULL_REBATE_DISCOUNT: //订单满X元 Y折
+                    $way = $this->load->model('promotion/model_way_101', 'way101', FALSE, TRUE);
                     break;
                 default:
                     $way = NULL;
@@ -219,6 +234,37 @@ class Model_Promotion extends MY_Model
                 }
             }
         }
+
+
+        if(isset($this->use_promotion['order']))
+        {
+            $clear = FALSE;
+            foreach($this->use_promotion['order'] as $promotion_id)
+            {
+                $use_products = $this->discount($promotion_id);
+                if ($use_products) {
+                    $this->set_used_promotion($promotion_id);
+                    $clear = TRUE;
+                    break;
+                }
+            }
+
+            /**
+             * 从可使用优惠中清除其他订单优惠信息,订单优惠信息不可重复
+             * 所以使用过一次订单优惠,其他订单优惠则不可用
+             */
+            if($clear)
+            {
+                foreach($this->promotion as $key => $item)
+                {
+                    if($item['pay_type'] == 0 && (!isset($item['used']) || $item['used'] == false))
+                    {
+                        unset($this->promotion[$key]);
+                    }
+                }
+            }
+        }
+
         return ;
     }
 
