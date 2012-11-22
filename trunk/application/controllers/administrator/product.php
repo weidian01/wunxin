@@ -85,7 +85,7 @@ class product extends MY_Controller
                 $productData[] = empty ($data) ? null : $data;
         }
 
-        $this->load->view('/administrator/product/index', array('list' => $productData, 'searchType' => $this->searchType, 'sType' => $sType, 'keyword' => $keyword));
+        $this->load->view('/administrator/product/index', array('list' => $productData, 'searchType' => $this->searchType, 'sType' => $sType, 'keyword' => $keyword, 'current_page' => 1));
     }
 
     /**
