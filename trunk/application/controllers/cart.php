@@ -91,6 +91,8 @@ class cart extends MY_Controller
             $cData['activity'] = $data['unused_promotion']; //获取可选未使用的活动列表
 
             $cData['cart'] = $data['product'];
+
+            $cData['used_promotion'] = $data['used_promotion'];
         }
 //p($data);exit;
 
