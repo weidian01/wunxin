@@ -315,6 +315,9 @@ $error[70032] = array('error' => '70032', 'msg' => '已领取过此优惠卡', '
 
 $error[70033] = array('error' => '70033', 'msg' => '取消使用优惠卡成功', 'code' => 'un_use_gift_card_success');
 
+$error[70034] = array('error' => '70034', 'msg' => '产品加入礼品卡销售参数不全', 'code' => 'product_join_gift_card_sales_parameter_failure');
+$error[70035] = array('error' => '70035', 'msg' => '产品加入礼品卡销售失败', 'code' => 'product_join_gift_card_sales_failure');
+
 
 /**
  * 其他错误代码  --  其他相关错误代码以 70 开头

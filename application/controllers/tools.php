@@ -54,7 +54,5 @@ echo $data;
 
         $this->load->model('other/model_tools', 'tools');
         $this->tools->addBrowseLog($data);
-
-
     }
 }

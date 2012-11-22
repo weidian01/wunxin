@@ -7,9 +7,9 @@
  */
 var promotion = {
     'promotion_rule' : {
-        '1':{'name':'产品折扣','rule':'5', 'notice':'全场或指定产品优惠，例：产品5折', 'product_rule':false},
-        '2':{'name':'第N件折扣','rule':'2,5', 'notice':'指定产品第N件N折,例：第2件5折', 'product_rule':false},
-        '3':{'name':'满N件N折扣','rule':'2,75', 'notice':'全场或指定产品满N件N折优惠,例：满2件7.5折', 'product_rule':true}
+        '1':{'name':'产品折扣','rule':'5', 'notice':'全场或指定产品优惠，例：产品5折', 'view_name':'特价'},
+        '2':{'name':'第N件折扣','rule':'2,5', 'notice':'指定产品第N件N折,例：第2件5折', 'view_name':''},
+        '3':{'name':'满N件N折扣','rule':'2,75', 'notice':'全场或指定产品满N件N折优惠,例：满2件7.5折', 'view_name':'满'}
     }
 };
 

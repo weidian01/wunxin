@@ -1211,7 +1211,7 @@ wx.userBrowse = function ()
         uniqId = wx.uuid();
         wx.setCookie('user_browse', uniqId, 1000000000)//(name, value, expires)
     }
-//alert('uniqid='+uniqId+'&browse_url='+currentUrl+'&referer_url='+refererUrl);
+
     wx.ajax('tools/userBrowseLog', 'uniqid='+uniqId+'&browse_url='+currentUrl+'&referer_url='+refererUrl);
 }
 wx.userBrowse();
