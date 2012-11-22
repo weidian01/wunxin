@@ -28,7 +28,10 @@ cart.init = function ()
     html += '<table width="100%" border="0" cellspacing="0" cellpadding="0" id="shopping_cart_item">';
 
     //*
-    var activity = data['activity'];//console.log(wx.isEmpty(activity));
+    var activity = data['activity'];//未使用的活动
+    var usedPromotion = data['used_promotion'];//已使用的活动
+    data = data['cart'];//购物车信息
+
     if (wx.isEmpty(activity)) {
         html += '<tr style="width: 980px;"><td colspan="7" style="padding: 5px 0 5px 25px;"><h2>您还可以免费参加以下促销活动\
                     <a id="cart_top_free_prom_tab" showui="1" onclick="cart.switchActivity();" class="cartHide" href="javascript:void(0)" style="padding-right: 25px;">隐藏</a></h2></td></tr>';
@@ -37,12 +40,12 @@ cart.init = function ()
         for (var ii in activity) {
             if (!wx.isEmpty(activity[ii])) return;
             html += cart.getActivityTemplate(activity[ii]['discount_type'], activity[ii]['promotion_id'], activity[ii]['name'],
-                activity[ii]['descr'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status']);
+                activity[ii]['descr'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status'], activity[ii]['save']);
         }
         html += '</ul></div></td></tr>';
     }
 
-    html += '<tr><td colspan="2" align="center" class="tit">商品/商品号</td>';
+    html += '<tr><td width="47%" colspan="2" align="center" class="tit">商品/商品号</td>';
     html += '<td width="9%" align="center" class="tit">单价</td>';
     html += '<td width="9%" align="center" class="tit">尺码</td>';
     html += '<td width="13%" align="center" class="tit">数量</td>';
@@ -53,7 +56,7 @@ cart.init = function ()
     var totalIntegral = 0;
     var totalProductNum = 0;
 
-    data = data['cart'];
+
     for (var i in data) {
         //console.log(i);
         html += '<tr>';
@@ -63,7 +66,7 @@ cart.init = function ()
         html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname+'</a><br/>';
         html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
         html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+data[i].pid+')">删除</a></td>';
-        html += '<td align="center" style="padding-left: 8px;">'+wx.fPrice(data[i].final_price)+'</td>';
+        html += '<td align="center" style="padding-left: 8px;">￥'+wx.fPrice(data[i].final_price)+'</td>';
         html += '<td align="center" style="padding-left: 8px;">'+data[i].product_size+'</td>';
         html += '<td align="center" style="padding-left: 8px;">';
         html += (data[i].num > cart.product_min_num) ?
@@ -82,11 +85,22 @@ cart.init = function ()
         totalProductNum += (data[i].num);
     }
 
+    if (wx.isEmpty(usedPromotion)) {
+        html += '<tr><td colspan="7" style="padding: 10px;background-color: #F5F5F5;color: #888888"><b>已参加的活动</b></td></tr>';
+
+        for (var ui in usedPromotion) {
+            html += '<tr height="45"><td></td>\
+                <td colspan="6">'+usedPromotion[ui]['name']+'&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#B9151B;">节省：￥'+wx.fPrice(usedPromotion[ui]['save'])+'</span><br/>\
+                <a href="javascript:void(0);" onclick="cart.deletePromotion('+usedPromotion[ui]['promotion_id']+', \'delete_promotion\')" id="delete_promotion">删除</a></td></tr>';
+        }
+    }
+
+
     html += '<tr><td style="border-bottom:1px solid #a5afc3;">&nbsp;</td><td colspan="6" style="border-bottom:1px solid #a5afc3;">';
     html += '<div class="gsum"> 产品数量总计：<span class="font1">'+parseInt(totalProductNum)+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     html += '赠送积分总计：<span class="font1">'+parseInt(wx.fPrice(totalIntegral))+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     //html += '花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-    html += '商品金额总计：<span class="font1">'+wx.fPrice(totalPrice)+'</span></div></td></tr>';
+    html += '商品金额总计：<span class="font1">￥'+wx.fPrice(totalPrice)+'</span></div></td></tr>';
 
     html += '<tr><td colspan="7"><div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>\
 		<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div>\
@@ -109,7 +123,7 @@ cart.init = function ()
  * param pId int 产品ID
  * param DiscountPrice int 产品价格
  */
-cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice, activityStatus)
+cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice, activityStatus, save)
 {
     var typeName = 'zeng';
     var zengPid = '';
@@ -134,7 +148,8 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
             break;
     }
 
-    activityStatus = '<a href="javascript:void(0);" target="_blank" class="view_detail">查看详情</a>\
+    //activityStatus = '<a href="javascript:void(0);" target="_blank" class="view_detail">查看详情</a>\
+    activityStatus = '<a href="javascript:void(0);" class="view_detail" style="color: #B9151B;font-weight: bold;">立省:￥'+wx.fPrice(save)+'</a>\
     <a class="a-red" href="javascript:void(0);" style="color: #ffffff;" onclick="cart.usePromotion('+aId+', \'join_promotion_'+aId+'\');" id="join_promotion_'+aId+'"> <s></s>立即参加 </a>';
 
     /*
@@ -148,8 +163,8 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, pId, DiscountPrice
 
     var html = '<li>\
             <dt title="'+aTitle+'" class="pro-title promo_title">'+zengPid+'<b>'+aTitle+'</b></dt>\
-            <dd class="fl"><a class="img60" href="javascript:void(0)" target="_blank"><img src="'+activityImage+'" width="56" height="56" alt="'+aTitle+'"></a></dd>\
-            <dd class="proname"><a href="javascript:void(0)" target="_blank" title="'+aDesc+'">'+aDesc+'</a></dd>\
+            <dd class="fl"><a class="img60" href="javascript:void(0)"><img src="'+activityImage+'" width="56" height="56" alt="'+aTitle+'"></a></dd>\
+            <dd class="proname">&nbsp;&nbsp;<a href="javascript:void(0)" title="'+aDesc+'">'+aDesc+'</a></dd>\
             <dd>'+pInfo+'</dd>\
             <dd>'+activityStatus+'</dd>\
             <dd class="'+typeName+'"></dd>\

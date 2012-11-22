@@ -189,7 +189,8 @@ class business_promotion_product extends MY_Controller
         $data['pid'] = intval($this->input->get_post('pid'));
         $data['pname'] = $this->input->get_post('pname');
         $data['cid'] = intval($this->input->get_post('cid'));
-        //$data['promotion_price'] = intval($this->input->get_post('promotion_price'));
+        $data['promotion_price'] = intval($this->input->get_post('promotion_price'));
+        $data['promotion_price'] = $data['promotion_price'] * 100;
         $data['rule'] = $this->input->get_post('rule');
         $data['start_time'] = $this->input->get_post('start_time');
         $data['end_time'] = $this->input->get_post('end_time');
@@ -201,7 +202,6 @@ class business_promotion_product extends MY_Controller
         if (empty ($data['promotion_id']) ||
             empty ($data['pid']) ||
             empty ($data['pname']) ||
-            empty ($data['cid']) ||
             empty ($data['start_time']) ||
             empty ($data['end_time']) ||
             empty ($data['inventory']) ||
@@ -220,7 +220,7 @@ class business_promotion_product extends MY_Controller
         }
 
         $data['sell_price'] = $pData['sell_price'];
-        $data['promotion_price'] = $this->ruleProcess();//此处还需要进行修改。
+        //$data['promotion_price'] = $this->ruleProcess();//此处还需要进行修改。
 
         $this->load->model('/business/model_business_promotion_product', 'pp');
         if ($promotionProductId) {

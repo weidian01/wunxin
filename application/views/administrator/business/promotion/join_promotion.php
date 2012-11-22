@@ -55,7 +55,7 @@
                                 <option value="0">默认</option>
                                 <?php foreach ($category as $item): ?>
                                 <option value="<?=$item['cid']?>" <?php if (isset($pProduct['cid']) && $pProduct['cid'] == $item['cid']) { echo 'selected="selected"'; }?>>
-                                    <?=str_repeat("&nbsp;", $item['floor']), $item['name']?>
+                                    <?=str_repeat("&nbsp;", $item['floor']). $item['name']?>
                                 </option>
                                 <?php endforeach;?>
                             </select>
@@ -90,6 +90,13 @@
                             <label>活动规则</label>
                             <input class="text-input small-input" type="text" value="<?=isset($pProduct['rule']) ? $pProduct['rule'] : ''?>" name="rule" id="rule_id"/>
                             <span style="color: red;">此处规则模板不可修改，只可修改模板中的折扣数字</span>
+                            <br/>
+                        </p>
+                        <p>
+                            <label>活动价格</label>
+                            <input class="text-input small-input" type="text" value="<?=isset($pProduct['promotion_price']) ? $pProduct['promotion_price'] : ''?>" name="promotion_price"/>
+                            <span style="color: red;"><b style="font-size: 20px;">请注意填写！,单位为：元。</b>此价格是促销活动最终，需要自己计算，<b>计算公式：产品销售价*优惠规则</b>。
+                                此价格只作显示之用，结算之时需要选择相应活动。</span>
                             <br/>
                         </p>
                         <p>
