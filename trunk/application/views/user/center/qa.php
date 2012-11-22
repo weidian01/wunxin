@@ -59,8 +59,12 @@
                         <td width="20%" align="center"><a href="<?=productURL($v['pid'])?>" title="<?=$v['pname'];?>" target="_blank"><?=$v['pname'];?></a></td>
                         <td width="8%" align="center">￥<?=$v['sell_price'] / 100;?></td>
                         <td width="20%" align="left">
-                            <b>问：</b><?=$v['content'];?> <br />
+                            <b>问：</b><?=empty($v['content']) ? '' : $v['content'];?> <br />
+							<?php if (!empty($v['reply_content'])) {?>
                             <b>答：</b><?=$v['reply_content'];?> <span style="font-size: 10px;"> <?=date('m-d H:i:s', strtotime($v['reply_time']));?></span>
+							<?php } else {?>
+							<b>答：</b>等待回答
+							<?php }?>
                         </td>
                         <td width="15%" align="center">
                             <a href="#" title="共被回复 <?=$v['reply_num'];?> 条" style="color: #990000;font-size: 10px;">被回复 <?=$v['reply_num'];?> 条</a><br />
