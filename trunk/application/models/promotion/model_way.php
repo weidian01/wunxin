@@ -39,13 +39,13 @@ abstract class Model_way
 
         $result = array('save'=>0, 'order'=>array());
         foreach ($this->products as $p) {
-            $cost_price = $p['sell_price'] * $p['num'];
+            $cost_price += ($p['sell_price'] * $p['num']);
             if (isset ($p['final_price'])) {
-                $discount_price = $p['final_price'];
+                $discount_price += $p['final_price'];
                 $result['order'][$p['pid']] = array('pid' => $p['pid'], 'final_price' => $p['final_price']);
             }
         }
-        $result['save'] = $cost_price  - $discount_price;
+        $result['save'] = $cost_price  - $discount_price;//p($result);die;
         return $result;
     }
 }

@@ -22,7 +22,7 @@ class test extends MY_Controller
 
         }
         $this->promotion->add_product($pInfo);
-        $act = array(5);
+        $act = array(1,5);
         if($act)
         {
 
