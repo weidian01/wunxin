@@ -198,7 +198,12 @@
                         </p>
                         <p>
                             <label>货物淘宝地址</label>
-                            <input class="text-input large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
+                            <!--<input class="text-input large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">-->
+                            <select name="product_taobao_addr">
+                            <?php foreach ($brands as $k=>$v) {?>
+                            <option value="<?=$k?>"><?=$v?></option>
+                            <?php }?>
+                            </select>
                         </p>
                         <p>
                             <label>备用字段</label>
