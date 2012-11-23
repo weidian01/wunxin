@@ -16,8 +16,9 @@
     <!--h2>分类列表</h2-->
     <!--p id="page-intro">产品分类管理</p-->
     <ul class="shortcut-buttons-set">
-        <li><a class="shortcut-button" href="<?=site_url('administrator/product/create')?>"><span>添加产品</span></a></li><li><a class="shortcut-button" href="<?=site_url('administrator/product/index')?>"><span>产品列表</span></a>
-        </li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product/create')?>"><span>添加产品</span></a></li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product/index')?>"><span>产品列表</span></a></li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_taobao/index')?>"><span>添加淘宝产品</span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
@@ -34,7 +35,7 @@
             <!-- End #tab1 -->
             <div class="tab-content default-tab" id="tab1">
                 <?=form_open_multipart('administrator/product/save')?>
-                <input type="hidden" name="current_page" value="<?=$current_page;?>"/>
+                <input type="hidden" name="current_page" value="<?=isset ($current_page) ? $current_page : '';?>"/>
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
