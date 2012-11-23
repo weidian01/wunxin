@@ -75,10 +75,33 @@ class model_card extends MY_Model
             if ($card['card_amount'] < ($card['use_amount'])) {
                 return 5;
             }
+
+            //
+            if(! $this->get_card_product($card['card_no'], $card['card_type']))
+            {
+                return 6;
+            }
         }
         return 0;
     }
 
+    public function get_card_product($card_no, $card_type)
+    {
+        if(isset($this->card_product[$card_no]))
+        {
+            return $this->card_product[$card_no];
+        }
+
+        if(in_array($card_type, array(1, 3)))
+        {
+            return $this->card_product[$card_no] = TRUE;
+        }
+        $this->db->select('pid')->from('card_product');
+        $this->db->where_in('$card_type', card_type);
+        $product = $this->db->get()->result_array('pid');
+        $this->card_product[$card_no] = $product;
+        return $product;
+    }
     /**
      * 检查卡之间是否可复用
      * @param $cards
@@ -114,13 +137,12 @@ class model_card extends MY_Model
         $return_model = array();
         foreach($models as $model)
         {
-            if($model['card_type'] == 1)
-                $return_model[1][] = TRUE;
-            else
-                $return_model[0][] = TRUE;
+            $return_model[$model['card_type']][] = TRUE;
         }
 
-        if(count($return_model) > 1 || (isset ($return_model[0]) && count($return_model[0]) > 1)) //修改 -- 此处有notice
+        if(count($return_model) > 1 ||
+            (isset ($return_model[3]) && count($return_model[3]) > 1) ||
+            (isset ($return_model[4]) && count($return_model[4]) > 1)) //修改 -- 此处有notice
         {
             return FALSE;
         }
@@ -163,8 +185,21 @@ class model_card extends MY_Model
         $total_amount = 0;
         foreach($cards_info as $item)
         {
-            $item['use_amount'] = $item['use_amount'];
-            $item['use_amount'] = $item['use_amount'] >  $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
+            $card_product = $this->get_card_product($item['card_no'], $item['card_type']);
+            if($card_product == true && is_array($card_product))
+            {
+                $card_amount = 0;
+                foreach($order as $p)
+                {
+                    if(in_array($p['pid'], $card_product))
+                    {
+                        $card_amount += $p['final_price'];
+                    }
+                }
+                $card_amount && $item['card_amount'] = $card_amount;
+            }
+
+            $item['use_amount'] = $item['use_amount'] > $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
             $card_balance = $item['card_amount'] - $item['use_amount'];
 
 
