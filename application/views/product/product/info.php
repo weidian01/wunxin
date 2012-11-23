@@ -342,8 +342,12 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
     <div class="gbox-relation" id="g-relation2">
       <div class="shaidan" id="comment">
         <div class="sd-tit">
-          <div class="sdbt"><a name="anchorComment">商品评论&nbsp;<span class="font17" id="totalCount">0</span> <span class="font15">条评论</span></div>
-          <div class="sd-btn"><a href="javascript:void(0);" onclick="product.productComment(<?=$product['pid']?>, 'i_need_comment')" id="i_need_comment">我要评论</a></div>
+            <div class="sdbt">
+                <a name="anchorComment">商品评论&nbsp;<span class="font17" id="totalCount">0</span> <span class="font15">条评论</span></a>
+            </div>
+            <div class="sd-btn">
+                <a href="javascript:void(0);" onclick="product.productComment(<?=$product['pid']?>, 'i_need_comment')" id="i_need_comment">我要评论</a>
+            </div>
           <div class="sd-yh">购买过该商品的用户才能评论&nbsp;&nbsp;</div>
         </div>
         <div class="comm-dex">

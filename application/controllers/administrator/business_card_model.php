@@ -78,10 +78,16 @@ class business_card_model extends MY_Controller
         $cardName = $this->input->get_post('card_name');
         $cardType = intval($this->input->get_post('card_type'));
         $cardAmount = intval($this->input->get_post('card_amount'));
+        $cardAmount = $cardAmount * 100;
         $cardNum = $this->input->get_post('card_num');
         $descr = $this->input->get_post('descr');
         $endTime = $this->input->get_post('end_time');
         $modelId = $this->input->get_post('model_id');
+        $rule = '';
+        if ($cardType == CARD_MILLION || $cardType == CARD_THOUSAND) {
+            $rule = $this->input->get_post('rule');
+            $rule = $rule * 100;
+        }
 
         if (empty ($cardName) || empty ($cardType) || empty ($cardAmount) || empty ($cardNum) || empty ($descr) || empty ($endTime)) {
             show_error('参数不全');
@@ -125,13 +131,12 @@ class business_card_model extends MY_Controller
         $data = array(
             'card_name' => $cardName,
             'card_type' => $cardType,
-            'card_amount' => $cardAmount * 100,
+            'card_amount' => $cardAmount,
             'card_num' => $cardNum,
-            //'rule' => $rule,
+            'rule' => $rule,
             'end_time' => $endTime,
             'descr' => $descr,
         );
-
         $this->load->model('/business/Model_Gift_Card_Model', 'model');
 
         if ($modelId) {
@@ -370,6 +375,7 @@ class business_card_model extends MY_Controller
             'model' => $modelData,
             'page_html' => $pageHtml,
             'current_page' => $currentPage,
+            'card_type' => config_item('card_type'),
         );
         $this->load->view('/administrator/business/card/card_product_list', $info);
     }
@@ -394,7 +400,7 @@ class business_card_model extends MY_Controller
             show_error('卡模型不存在！');
         }
 
-        if ($modelData['card_type'] == PR_ALL) {
+        if ($modelData['card_type'] == CARD_GOLD || $modelData['card_type'] == CARD_MILLION) {
             show_error('此活动针对所有产品，不需要添加产品！');
         }
 
@@ -479,6 +485,7 @@ class business_card_model extends MY_Controller
 
             $data = array(
                 'model_id' => $modelId,
+                'card_type' => $modelData['card_type'],
                 'pid' => $pId,
                 'pname' => $productData['pname'],
                 'sell_price' => $productData['sell_price'],

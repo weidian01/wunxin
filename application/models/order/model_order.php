@@ -378,23 +378,26 @@ class Model_Order extends MY_Model
      *
      * @param $uid
      * @param $pid
-     * @return array
+     * @param null $orderSn
+     * @return null
      */
-    public function userIsBuyProduct($uid, $pid)
+    public function userIsBuyProduct($uid, $pid, $orderSn = null)
     {
         $field = 'order.order_sn, parent_id, address_id, order.uid, order.uname, after_discount_price, discount_rate, before_discount_price, pay_type, defray_type, is_pay,
         order_source, pay_time, delivert_time, annotated, invoice, paid, need_pay, ip, invoice_payable, invoice_content, recent_name, recent_address,
         zipcode, phone_num, call_num, picking_status, status, id, pid, pname, market_price, sell_price, product_num,
         comment_status, share_status, product_size, presentation_integral, preferential, warehouse, order.create_time';
-        $data = $this->db->select($field)->from('order_product')
+        $this->db->select($field)->from('order_product')
             ->join('order', 'order_product.order_sn=order.order_sn', 'left')
             ->where('order_product.uid', $uid)
             ->where('order_product.pid', $pid)
             ->where('order.parent_id !=', '-1')
-            ->where('order.is_pay', '1')
-            ->where('order.picking_status', '2')->get()->row_array();
+            ->where('order.is_pay', '1')->where('order.picking_status', '2');
 
-        return empty ($data) ? null : $data;
+        $orderSn && $this->db->where(array('order_product.order_sn' => $orderSn));
+        $data = $this->db->get()->result_array();
+
+        return $data;
     }
 
     /**

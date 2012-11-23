@@ -80,7 +80,7 @@
                         </p>
                         <p>
                             <label>结算方式</label>
-                            <select name="pay_type" style="width: 400px;">
+                            <select name="pay_type" style="width: 400px;" id="pay_type_id">
                                 <?php foreach ($pay_type as $ptk=>$ptv): ?>
                                 <option value="<?=$ptk;?>" <?php if (isset($info['pay_type']) && $info['pay_type'] == $ptk) { echo 'selected="selected"'; }?>>
                                     <?=$ptv;?>
@@ -91,7 +91,7 @@
                         </p>
                         <p>
                             <label>优惠类型</label>
-                            <select name="discount_type" style="width: 400px;">
+                            <select name="discount_type" style="width: 400px;" id="discount_type_id">
                                 <?php foreach ($discount_type as $dtk=>$dtv): ?>
                                 <option value="<?=$dtk;?>" <?php if (isset($info['discount_type']) && $info['discount_type'] == $dtk) { echo 'selected="selected"'; }?>>
                                     <?=$dtv;?>

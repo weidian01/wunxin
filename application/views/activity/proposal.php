@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>系统建议与意见 -- 个人中心</title>
+    <title>系统建议与意见 -- 万象网</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
@@ -29,6 +29,15 @@
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">系统建议与意见</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php //include ('center_left.php');?>

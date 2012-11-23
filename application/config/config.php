@@ -504,26 +504,29 @@ $config['sales_status'] = array(
 );
 
 /**
- * 金象卡 不限额 不限使用张数 不限产品
- * 银象卡 限额 限量 不限产品
- * 铜象卡 不限额 不限量 限产品
+ * 金象卡 不限额 不限使用张数 不限产品 代金卡，无任何限制
+ * 银象卡 限额 限量 限产品 代金卡，只限特定产品
+ * 万象卡 限额 限量 不限产品 满减卡，不限产品
+ * 千象卡 限额 限量 限产品 满减卡，限产品
  */
 define('CARD_GOLD' ,  1);//金象卡
 define('CARD_SILVER', 2);//银象卡
-define('CARD_COPPER', 3);//铜象卡
+define('CARD_MILLION', 3);//万象卡
+define('CARD_THOUSAND', 4);//千象卡
 $config['card_type'] = array(
     CARD_GOLD => '金象卡',
     CARD_SILVER => '银象卡',
-    CARD_COPPER => '铜象卡',
+    CARD_MILLION => '万象卡',
+    CARD_THOUSAND => '千象卡'
 );
 
 
 //折扣模板 -- 与JS(promotion.js)中配置ID一致
-define('PROMOTION_TEMPLATE_DISCOUNT', '1');          //全场或指定产品折扣优惠
-define('PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT', '2');  //指定产品N件N折优惠
-define('PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT', '3'); //全场或指定产品满N件N折优惠
-define('PROMOTION_TEMPLATE_ORDER_FULL_CUT_DISCOUNT', '100'); //全场或指定产品满N件N折优惠
-define('PROMOTION_TEMPLATE_ORDER_FULL_REBATE_DISCOUNT', '101'); //全场或指定产品满N件N折优惠
+define('PROMOTION_TEMPLATE_DISCOUNT', '1');          //全场或指定产品折扣优惠 -- 针对产品
+define('PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT', '2');  //指定产品N件X折优惠 -- 针对产品
+define('PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT', '3'); //全场或指定产品满N件X折优惠 -- 针对产品
+define('PROMOTION_TEMPLATE_ORDER_FULL_CUT_DISCOUNT', '100'); //订单满N元X折优惠 -- 针对订单
+define('PROMOTION_TEMPLATE_ORDER_FULL_REBATE_DISCOUNT', '101'); //订单满N元减X元优惠 -- 针对订单
 
 $config['promotion_type'] = array(
     PROMOTION_TEMPLATE_DISCOUNT => '产品折扣',

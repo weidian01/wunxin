@@ -16,6 +16,15 @@
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">收货地址管理</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -23,7 +32,7 @@
         <div class="u-r-box">
             <div class="u-r-tit">收货地址管理<span style="float:right;text-align: right;"><a href="<?=config_item('static_url')?>user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span></div>
         </div>
-            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+            <style> .o-list{font-weight: bold;color: #888888;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>

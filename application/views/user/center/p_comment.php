@@ -20,6 +20,15 @@
 <body>
 <!-- #BeginLibraryItem "/Library/header.lbi" (pId, title, content, rank, comfort, exterior, size_deviation)-->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">我的评论</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -56,7 +65,6 @@
                                     <?php } else {?>
                                         <?php foreach ($data as $v) {?>
                                         <tr>
-                                            <!--<td style="width:90px;text-align:center;"><?=$v['id'];?></td>-->
                                             <td style="width:20px;">
                                                 <div class="imgbox">
                                                     <a href="<?=productURL($v['pid'])?>" title="<?=$v['pname'];?>" target="_blank">
@@ -73,11 +81,11 @@
                                                 &nbsp;&nbsp;<a href="#" title="此评论被评论 <?=$v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">被评论 <?=$v['comment_num'];?> 条</a> <br />
                                                 &nbsp;&nbsp;<a href="#" title="此评论被回复 <?=$v['comment_num'];?> 条" style="color: #990000;font-size: 10px;">回复 <?=$v['reply_num'];?> 条</a>
                                             </td>
-                                            <td style="width:60px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
-                                            <td style="width:70px;text-align:center;">
+                                            <td style="width:70px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
+                                            <td style="width:80px;text-align:center;">
                                                 <a href="<?=productURL($v['pid'])?>" target="_blank">
                                                     <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
-                                                </a><br/>
+                                                </a>
                                                 <!--
                                                 <a href="javascript:void(0);" onclick="(<?=$v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/comment.png" title="评论此产品">
@@ -85,7 +93,7 @@
                                                 -->
                                                 <a href="javascript:void(0);" onclick="product.deleteProductComment(<?=$v['comment_id'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
-                                                </a> <br />
+                                                </a>
                                             </td>
                                         </tr>
                                         <?php }?>

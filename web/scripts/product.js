@@ -113,7 +113,7 @@ product.emptyFavorite = function(bindingId)
 
 
 //评论产品 -- 检测用户是否购买过此产品 -- 是否已经评论过
-product.productComment = function (pId, bindingId)
+product.productComment = function (pId, orderSn, bindingId)
 {
     if ( !wx.isEmpty(pId) ) {
         return false;
@@ -124,11 +124,11 @@ product.productComment = function (pId, bindingId)
     }
 
     var url = 'product/comment/isBuyProduct';
-    var param = 'pid='+pId;
+    var param = 'pid='+pId+'&order_sn='+orderSn;
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
-        wx.productCommentLayer(data.data.pid, data.data.pname);
+        wx.productCommentLayer(data.data.pid, data.data.pname, orderSn);
         return true;
     }
 
@@ -153,6 +153,8 @@ product.productCommentSubmit = function (bindingId)
     var comfort = document.getElementById('p_c_s_id').value;
     var exterior = document.getElementById('p_e_s_id').value;
     var size_deviation = wx.getRadioCheckBoxValue('size_deviation');
+    var order_sn = $('#order_sn').attr('value');//document.getElementById('order_sn').value;
+    order_sn = wx.isEmpty(order_sn) ? order_sn : '';
     //var pId = document.getElementById('size_deviation').value;
 
     if ( !wx.isEmpty(title) || title.length < 5) {
@@ -178,7 +180,7 @@ product.productCommentSubmit = function (bindingId)
     }
 
     var url = 'product/comment/addComment';
-    var param = 'pid='+pId+'&title='+title+'&content='+content+'&rank='+rank+'&comfort='+comfort+'&exterior='+exterior+'&size_deviation='+size_deviation;
+    var param = 'pid='+pId+'&title='+title+'&content='+content+'&rank='+rank+'&comfort='+comfort+'&exterior='+exterior+'&size_deviation='+size_deviation+'&order_sn='+order_sn;
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
@@ -478,7 +480,7 @@ product.deleteProductQa = function(qId, bindingId)
 }
 
 //产品晒单
-product.productShare = function (pId, bindingId)
+product.productShare = function (pId, order_sn, bindingId)
 {
     if ( !wx.isEmpty(pId) ) {
         //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
@@ -491,16 +493,11 @@ product.productShare = function (pId, bindingId)
     }
 
     var url = '/product/share/isBuyProduct';
-    var param = 'pid='+pId;
+    var param = 'pid='+pId+'&order_sn='+order_sn;
     var data = wx.ajax(url, param);
 
     if (data.error == '0') {
-        wx.productShareLayer(data.data.pid, data.data.pname);
-        return true;
-    }
-
-    if (data.error == '0') {
-        wx.productShareLayer(pId);
+        wx.productShareLayer(data.data.pid, order_sn);
         return true;
     }
 
@@ -511,7 +508,6 @@ product.productShare = function (pId, bindingId)
         case '50020': prompt = '您已对此产品进行过晒单';break;
     }
 
-    //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">'+prompt+'。</span><br/>' });
     wx.showPop(prompt, bindingId);
 }
 
@@ -521,21 +517,20 @@ product.productShareSubmit = function (bindingId)
     var title = document.getElementById('share_title_id').value;
     var content = document.getElementById('share_content_id').value;
     var file = document.getElementById('share_file_id').value;
+    var order_sn = $('#order_sn').attr('value');
+    order_sn = wx.isEmpty(order_sn) ? order_sn : '';
 
     if (title.length < 5 || title.length > 50) {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">标题小于5或小于50个字符。</span><br/>' });
         wx.showPop('标题小于5或小于50个字符。', bindingId);
         return false;
     }
 
     if (content.length < 5 || content.length > 80) {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">内容小于5或小于80个字符。</span><br/>' });
         wx.showPop('内容小于5或小于80个字符。', bindingId);
         return false;
     }
 
     if ( !wx.isEmpty(file) ) {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">请上传要晒单的图片。</span><br/>' });
         wx.showPop('请上传要晒单的图片。', bindingId);
         return false;
     }
@@ -547,7 +542,6 @@ product.productShareSubmit = function (bindingId)
 product.shareReplySubmit = function (sId, content, bindingId)
 {
     if ( !wx.isEmpty(sId) || !wx.isEmpty(content) ) {
-        //art.dialog({ title:false, follow: document.getElementById(bindingId), time: 5, content: '<br/><span style="color: #A10000;font-weight: bold;">参数不全。</span><br/>' });
         wx.showPop('参数不全。', bindingId);
         return false;
     }

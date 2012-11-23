@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>优惠卷领取 -- 万象网</title>
+    <title>优惠卷领取 免费领取-- 万象网</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/coupon.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
@@ -20,14 +20,27 @@
 </head>
 <body>
 <?php include APPPATH.'views/header.php';?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li class="last">优惠卷首页</li>
+    </ul>
+  </div>
+</div>
 <div class="wrap">
     <div log="pos=filter" class="filter"><p>
         <span class="label">类别：</span>
         <a <?php if (empty ($model_id)) {echo 'class="on"';}?> target="_self" href="/coupon/">全部</a>
         <span class="filter-content">
-            <a target="_self" href="<?=config_item('static_url')?>coupon/index/1" <?php if ($model_id == '1') {echo 'class="on"';}?>>金象券</a>
-            <a target="_self" href="<?=config_item('static_url')?>coupon/index/2" <?php if ($model_id == '2') {echo 'class="on"';}?>>银象券</a>
-            <a target="_self" href="<?=config_item('static_url')?>coupon/index/3" <?php if ($model_id == '3') {echo 'class="on"';}?>>铜象券</a>
+            <?php foreach ($card_type as $ctk=>$ctv){ ?>
+            <a target="_self" href="<?=config_item('static_url')?>coupon/index/<?=$ctk;?>" <?php if ($model_id == $ctk) {echo 'class="on"';}?>><?=$ctv;?></a>
+            <?php }?>
+            <!--
+            <a target="_self" href="<?=config_item('static_url')?>coupon/index/2" <?php if ($model_id == CARD_SILVER) {echo 'class="on"';}?>>银象券</a>
+            <a target="_self" href="<?=config_item('static_url')?>coupon/index/3" <?php if ($model_id == CARD_MILLION) {echo 'class="on"';}?>>万象券</a>
+            <a target="_self" href="<?=config_item('static_url')?>coupon/index/3" <?php if ($model_id == CARD_THOUSAND) {echo 'class="on"';}?>>千象券</a>
+            -->
         </span></p></div>
 
     <div class="list-main">
@@ -40,16 +53,18 @@
                         <?php
                         $images = 'card_gold.jpg';
                         switch($v['card_type']){
-                            case '1':$images = 'card_gold.jpg';break;
-                            case '2':$images = 'card_silver.jpg';break;
-                            case '3':$images = 'card_copper.jpg';break;
+                            case CARD_GOLD:$images = 'card_gold.jpg';break;
+                            case CARD_SILVER:$images = 'card_silver.jpg';break;
+                            case CARD_MILLION:$images = 'card_million.jpg';break;
+                            case CARD_THOUSAND:$images = 'card_thousand.jpg';break;
                         }
                         ?>
                         <img src="<?=config_item('static_url')?>images/<?=$images?>"/></b>
                         <b class="name"><?php switch($v['card_type']){
-                            case '1':$s = '金象卡';break;
-                            case '2':$s = '银象卡';break;
-                            case '3':$s = '铜象卡';break;
+                            case CARD_GOLD:$s = '金象卡';break;
+                            case CARD_SILVER:$s = '银象卡';break;
+                            case CARD_MILLION:$s = '万象卡';break;
+                            case CARD_THOUSAND:$s = '千象卡';break;
                             default:$s = '金象卡';
                             } echo $s;?></b></b></b><b class="right"><b class="nums"><b><?=$v['card_name']?></b></b>
                     <b class="btn"></b><span style="color: red;font-size: 10px;"><?=( ($v['card_num'] - $needReceive) <= 10 ) ? '余量有限，立即抢购！' : '';?></span></b>
@@ -94,7 +109,7 @@
                 <?php $i = 1;foreach ($recommend as $rv){?>
                 <li class="<?=($i <= 3) ? 'top3' : '';?>">
 
-                    <a log="rank=<?=$i?>" href="<?=config_item('static_url')?>coupon/show/<?=$rv['model_id'];?>" target="_blank">
+                    <a log="rank=<?=$i?>" href="<?=config_item('static_url')?>coupon/show/<?=$rv['model_id'];?>" target="_blank" title="<?=$rv['card_name'];?>">
                         <b><?=($i <= 3) ? $i : $i.'. ';?></b>
                         <span><?=$rv['card_name'];?></span>
                     </a>

@@ -610,9 +610,10 @@ wx.favoriteProductLayer = function(status, bindingId){
 }
 
 //产品评论浮层
-wx.productCommentLayer = function (pId, pNmae)
+wx.productCommentLayer = function (pId, pNmae, orderSn)
 {
-    var html ='<input type="hidden" name="pid" value="'+pId+'" id="pid"> <div class="commentDIV"><div class="tit">我要评论<div class="close-cm" onclick="wx.layerClose()"></div></div>\
+    var html ='<input type="hidden" name="pid" value="'+pId+'" id="pid"> <input type="hidden" name="order_sn" value="'+orderSn+'" id="order_sn">\
+    <div class="commentDIV"><div class="tit">我要评论<div class="close-cm" onclick="wx.layerClose()"></div></div>\
     <div class="cmt-gname"><strong>商品名称：</strong><a href="'+wx.productURL(pId)+'" target="_blank">'+pNmae+'</a></div><div class="cmtbox"> <dl id="p_s_s"><span id="p_s_s_n">(5分 - 非常满意)</span>\
     <input type="hidden" value="5" name="product_score" id="p_s_s_id"/><dt><strong>商品评分：</strong></dt> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 1)"></dd> \
     <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 2)"></dd> <dd class="pop" onmouseover="wx.scoreStatSelect(\'p_s_s\', 3)"></dd>\
@@ -784,9 +785,9 @@ wx.changeLRLayer = function (lr)
 }
 
 //产品晒单浮层
-wx.productShareLayer = function (pId)
+wx.productShareLayer = function (pId, order_sn)
 {
-    var data = wx.ajax('/product/share/getUserShareProduct', '');
+    var data = wx.ajax('/product/share/getUserShareProduct', 'order_sn='+order_sn);
 
     if ( !wx.isEmpty(data['data']) ) {
         wx.showPop('没有可以晒单的产品');
@@ -804,6 +805,7 @@ wx.productShareLayer = function (pId)
     var html = '<form action="'+wx.base_url+'product/share/add" method="post"  enctype="multipart/form-data" name="product_share_form">\
         <div class="commentDIV show-o-w"> <div class="tit">发表晒单 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="questbox">\
         <input type="hidden" name="pid" id="curr_share_product_id" value="'+pData[0].pid+'"/>\
+        <input type="hidden" name="order_sn" id="order_sn" value="'+order_sn+'"/>\
         <table class="queat-ms2" width="100%" border="0" cellspacing="0" cellpadding="0">\
         <tr><td align="right" valign="top"><strong>晒单商品</strong> <span class="popfont2">*</span></td>\
         <td><div class="show-goods" onmouseover="wx.shareProductLayer(1)" onmouseout="wx.shareProductLayer(0)"><span id="curr_share_product_name">'+pData[0].pname.substring(0, 40)+'</span>\

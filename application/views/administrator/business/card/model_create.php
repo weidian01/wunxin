@@ -1,5 +1,5 @@
 <?php include(APPPATH.'views/administrator/left.php');?>
-<div id="main-content">
+<div id="main-content" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
     <!-- Main Content Section with everything -->
     <noscript>
         <!-- Show a notification if the user has disabled javascript -->
@@ -36,6 +36,9 @@
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
+                            <span style="color: red;font-size: 20px;font-weight: bold;">所有卡类型，在同一订单中不能并列使用，每个订单只能使用同一类型的卡,例如：使用金象卡，则不能再使用银象、万象、千象卡。</span>
+                        </p>
+                        <p>
                             <label>模型名称</label>
                             <input class="text-input small-input" type="text" value="<?=isset($info['card_name']) ? $info['card_name'] : ''?>" name="card_name"/> <br/>
                         </p>
@@ -50,15 +53,28 @@
                                     <option value="<?=$k;?>"><?=$v;?></option>
                                     <?php } ?>
                                 <?php }?>
-                            </select>
+                            </select>&nbsp;&nbsp;&nbsp;&nbsp;<span id="card_type_id"></span>
+                        </p>
+                        <p id="rule">
+                            <label>规则</label>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['rule']) ? fPrice($info['rule']) : ''?>"
+                                   name="rule" onkeyup="value=value.replace(/[^\d|.]/g, '')"/>
+                            单元为元 &nbsp;&nbsp;&nbsp;&nbsp;<span id="rule_id" style="color: red;font-weight: bold;"></span>
+                            <br/>
                         </p>
                         <p>
                             <label>金额</label>
-                            <input class="text-input small-input" type="text" value="<?=isset($info['card_amount']) ? fPrice($info['card_amount']) : ''?>" name="card_amount" onkeyup="value=value.replace(/[^\d]/g, '')"/> <br/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['card_amount']) ? fPrice($info['card_amount']) : ''?>"
+                                   name="card_amount" onkeyup="value=value.replace(/[^\d|.]/g, '')"/>
+                            单元为元
+                            <br/>
                         </p>
                         <p>
                             <label>数量</label>
-                            <input class="text-input small-input" type="text" value="<?=isset($info['card_num']) ? $info['card_num'] : ''?>" name="card_num" onkeyup="value=value.replace(/[^\d]/g, '')"/> <br/>
+                            <input class="text-input small-input" type="text" value="<?=isset($info['card_num']) ? $info['card_num'] : ''?>"
+                                   name="card_num" onkeyup="value=value.replace(/[^\d]/g, '')"/>
+                            制卡的数量，请认真填写。
+                            <br/>
                         </p>
                         <p>
                             <label>截止日期</label>
@@ -99,51 +115,45 @@
 <script type="text/javascript">
     var CARD_GOLD = <?=CARD_GOLD;?>;
     var CARD_SILVER = <?=CARD_SILVER;?>;
-    var CARD_COPPER = <?=CARD_COPPER;?>;
+    var CARD_MILLION = <?=CARD_MILLION;?>;
+    var CARD_THOUSAND = <?=CARD_THOUSAND;?>
 
-    var editCardType = <?php echo isset ($info['card_type']) ? $info['card_type'] : '1';?>;
+    var editCardType = <?=isset ($info['card_type']) ? $info['card_type'] : '1';?>;
 
     var html = '';
-    function adTypeChange(v, limit, limitUseNum, limitProduct) {
+    var ruleNotice = '';
+    function adTypeChange(v) {
         v = parseInt(v);
         switch (v) {
             case CARD_GOLD:
-                limit = wx.isEmpty(limit) ? limit : '0';
-                limitUseNum = wx.isEmpty(limitUseNum) ? limitUseNum : '0';
-                limitProduct = wx.isEmpty(limitProduct) ? limitProduct : '0';
-
-                html = '限额：<input type="text" name="limit" value="'+limit+'" disabled="disabled"/>限制订单总金额达到多少后才可以使用，如：订单金额500元，才可以使用<br/>';
-                html += '限使用卡数量：<input type="text" name="limit_use_num" value="'+wx.fPrice(limitUseNum)+'" disabled="disabled"/>每个订单限制使用卡的数量<br/>';
-                html += '限产品：<input type="text" name="limit_product" value="'+limitProduct+'" disabled="disabled"/>限制某些产品才可以使用，0为不限，1为限制<br/>';
+                html += '不限制使用金额，不限制使用张数，不限制使用产品范围。相当于代金卡！';
+                ruleNotice = '不需要填写';
+                $('#rule').hide();
                 break;
             case CARD_SILVER:
-                limit = wx.isEmpty(limit) ? limit : '500';
-                limitUseNum = wx.isEmpty(limitUseNum) ? limitUseNum : '1';
-                limitProduct = wx.isEmpty(limitProduct) ? limitProduct : '0';
-
-                html = '限额：<input type="text" name="limit" value="'+limit+'"/>限制订单总金额达到多少后才可以使用，如：订单金额500元，才可以使用<br/>';
-                html += '限使用卡数量：<input type="text" name="limit_use_num" value="'+wx.fPrice(limitUseNum)+'"/>每个订单限制使用卡的数量<br/>';
-                html += '限产品：<input type="text" name="limit_product" value="'+limitProduct+'" disabled="disabled"/>限制某些产品才可以使用，0为不限，1为限制<br/>';
+                html += '不限制使用金额，不限制使用张数，限制使用产品范围。相当于代金卡！';
+                ruleNotice = '不需要填写';
+                $('#rule').hide();
                 break;
-            case CARD_COPPER:
-                limit = wx.isEmpty(limit) ? limit : '0';
-                limitUseNum = wx.isEmpty(limitUseNum) ? limitUseNum : '0';
-                limitProduct = wx.isEmpty(limitProduct) ? limitProduct : '1';
-
-                html = '限额：<input type="text" name="limit" value="'+limit+'" disabled="disabled"/>限制订单总金额达到多少后才可以使用，如：订单金额500元，才可以使用<br/>';
-                html += '限使用卡数量：<input type="text" name="limit_use_num" value="'+wx.fPrice(limitUseNum)+'" disabled="disabled"/>每个订单限制使用卡的数量<br/>';
-                html += '限产品：<input type="text" name="limit_product" value="'+limitProduct+'"/>限制某些产品才可以使用，0为不限，1为限制<br/>';
+            case CARD_MILLION:
+                html += '限制使用金额，限制使用张数，不限制使用产品范围。相当于满减卡！';
+                ruleNotice = '此处填写订单满多少才能使用，例如：1000。即为订单满1000元才可以使用卡';
+                $('#rule').show();
+                break;
+            case CARD_THOUSAND:
+                html += '限制使用金额，限制使用张数，限制使用产品范围。相当于满减卡！';
+                ruleNotice = '此处填写订单满多少才能使用，例如：1000。即为订单满1000元才可以使用卡';
+                $('#rule').show();
                 break;
         }
 
-        //$('#rule_area').html(html);
+        $('#card_type_id').html(html);
+        $('#rule_id').html(ruleNotice);
+        html = '';
+        ruleNotice = '';
     }
 
     var initCardType = wx.isEmpty(editCardType) ? editCardType : CARD_GOLD;
-    <?php if (isset ($info['rule'])) { $rule = explode(',', $info['rule']);?>
-        adTypeChange(initCardType, <?=$rule[0]?>,<?=$rule[1]?>, <?=$rule[2]?>);
-    <?php } else {?>
-        adTypeChange(initCardType);
-    <?php }?>
+    adTypeChange(initCardType);
 
 </script>

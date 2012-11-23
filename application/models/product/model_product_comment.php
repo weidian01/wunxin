@@ -117,7 +117,7 @@ class Model_Product_Comment extends MY_Model
 
         if ($lastId) {
             //更新订单产品评论状态
-            $this->db->update('order_product', array('comment_status' => 1), array('id' => $cInfo['o_p_id'], 'uid' => $cInfo['uid']));
+            $this->db->update('order_product', array('comment_status' => 1), array('id' => $cInfo['o_p_id'], 'uid' => $cInfo['uid'], 'order_sn' => $cInfo['order_sn'], 'comment_status' => 0));
 
             //更新产品评论数量
             $this->db->set(array('comment_num' => 'comment_num+1'), '', false)->where('pid', $cInfo['pid'])->update('product');

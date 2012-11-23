@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>优惠卷领取 -- 万象网</title>
+    <title><?=$data['card_name'];?> 优惠卷 -- 万象网</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/coupon.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
@@ -20,6 +20,14 @@
 </head>
 <body>
 <?php include APPPATH.'views/header.php';?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li class="last">优惠卷领取</li>
+    </ul>
+  </div>
+</div>
 <br/>
 <div class="wrap">
     <div class="main">
@@ -28,25 +36,28 @@
             <div log="pos=detail" class="detail">
                 <span class="coupon">
                     <b class="left"><i></i>
-                        <b log="site=NALA%C9%CC%B3%C7" class="site">
+                        <b class="site">
                             <a log="outsite=1" class="icon" href="http://www.nala.com.cn">
                                 <?php
                                 $images = 'card_gold.jpg';
                                 switch($data['card_type']){
-                                    case '1':$images = 'card_gold.jpg';break;
-                                    case '2':$images = 'card_silver.jpg';break;
-                                    case '3':$images = 'card_copper.jpg';break;
+                                    case CARD_GOLD:$images = 'card_gold.jpg';break;
+                                    case CARD_SILVER:$images = 'card_silver.jpg';break;
+                                    case CARD_MILLION:$images = 'card_million.jpg';break;
+                                    case CARD_THOUSAND:$images = 'card_thousand.jpg';break;
                                 }
                                 ?>
                                 <img src="<?=config_item('static_url')?>images/<?=$images?>"/>
                             </a>
                             <a log="outsite=1" class="name" href="javascript:void(0);">
-                                <?php switch($data['card_type']){
-                                        case '1':$s = '金象卡';break;
-                                        case '1':$s = '银象卡';break;
-                                        case '1':$s = '铜象卡';break;
-                                        default:$s = '金象卡';
-                                        } echo $s;?>
+                                <?php
+                                switch($data['card_type']){
+                                    case CARD_GOLD:$s = '金象卡';break;
+                                    case CARD_SILVER:$s = '银象卡';break;
+                                    case CARD_MILLION:$s = '万象卡';break;
+                                    case CARD_THOUSAND:$s = '千象卡';break;
+                                    default:$s = '金象卡';
+                                } echo $s;?>
                             </a></b></b><b
                 class="right"><b class="nums"><b><?=$data['card_name'];?></b></b></b><b class="shadow-right"></b><b
                 class="shadow-bottom"></b><b class="corner"></b></span>
@@ -139,6 +150,8 @@
                 prompt = '<h1>领取成功!</h1><br/> <span style="color:#000000;">去</span> "<a href="'+wx.base_url+'user/center/index" target="_blank" style="color:#A10000;">个人中心</a>" - ' +
                     ' "<a href="'+wx.base_url+'user/center/giftCard" target="_blank" style="color:#A10000;">礼品卡管理</a>" <span style="color:#000000;">中查看！</span>';
                 wx.showPop(prompt, bangingId, 20);
+                $('#receive_card').removeClass().addClass('btn-got');
+                $('#receive_card').attr('onclick', '');
                 break;
             case '70029':
                 prompt = '参数不全!';

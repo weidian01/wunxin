@@ -16,6 +16,15 @@
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">我的礼物卡</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -29,7 +38,7 @@
         <hr />
         <br />
         <div class="u-r-box">
-            <style> .o-list{font-weight: bold;color: #8B7B8B;}table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;}</style>
+            <style> .o-list{font-weight: bold;color: #888888;}table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;}</style>
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -58,7 +67,7 @@
                         <td width="15%" height="26" align="center"><?=$v['card_no'];?></td>
                         <td width="8%" align="center">￥<?=$v['card_amount'] / 100;?></td>
                         <td width="15%" align="center"><?=$v['card_name'];?></td>
-                        <td width="8%" align="center"><?=$v['card_type'];?></td>
+                        <td width="8%" align="center"><?=$card_type[$v['card_type']];?></td>
                         <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['end_time']));?></td>
                         <td width="8%" align="center"><?=$v['integral'];?></td>
                         <td width="8%" align="center"><?=$v['use_num'];?></td>

@@ -46,7 +46,7 @@
                         <th>类型</th>
                         <th>金额</th>
                         <th>数量</th>
-                        <!--<th>规则</th>-->
+                        <th>规则</th>
                         <th>使用说明</th>
                         <th>截止日期</th>
                         <th>创建时间</th>
@@ -77,7 +77,7 @@
                             <?=$card_type[$v['card_type']];?></a></td>
                         <td>￥<?=fPrice($v['card_amount']);?></td>
                         <td><?=$v['card_num'];?></td>
-                        <!--<td><?=$v['rule'];?></td>-->
+                        <td>￥<?=empty ($v['rule']) ? '无' : fPrice($v['rule']);?></td>
                         <td><?=$v['descr'];?></td>
                         <td><?=$v['end_time'];?></td>
                         <td><?=$v['create_time'];?></td>
@@ -93,7 +93,7 @@
                                 <img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑卡模型"/></a>
                             <a href="<?=config_item('static_url')?>administrator/business_card_model/cardModelDelete/<?=$v['model_id'].'/'.$current_page;?>" title="删除卡模型">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除卡模型"/></a>
-                            <?php if ($v['card_type'] == CARD_COPPER) {?>
+                            <?php if ($v['card_type'] == CARD_SILVER || $v['card_type'] == CARD_THOUSAND) {?>
                             <br/><a href="<?=config_item('static_url')?>administrator/business_card_model/joinSales/<?=$v['model_id'];?>" title="将产品加入此卡销售">加入产品</a>
                             <?php }?>
                         </td>

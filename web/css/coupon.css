@@ -160,7 +160,7 @@ s, b, i {
 .coupon .nums {
     color: #404040;
     display: block;
-    margin: 42px 0 10px;
+    margin: 15px 0 10px;
 }
 
 .coupon .nums b {
@@ -402,6 +402,9 @@ ol, ul {
 
 .hot li {
     vertical-align: top;
+    display: block;
+    height: 34px;
+    overflow: hidden;
 }
 
 .hot ul a {
