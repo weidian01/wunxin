@@ -14,6 +14,10 @@ class product extends MY_Controller
         2 => '商品名称',
     );
 
+    public $brands = array(
+        ''
+    );
+
     public function __construct()
     {
         parent::__construct();
@@ -241,6 +245,15 @@ class product extends MY_Controller
             foreach ($pData as $pdv) {
                 $info['class_id'] = $data['class_id'];
                 $info['model_id'] = $data['model_id'];
+                $info['spare'] = $data['spare'];
+                $info['product_taobao_addr'] = $data['product_taobao_addr'];
+                $info['warehouse'] = $data['warehouse'];
+                $info['keyword'] = $data['keyword'];
+                $info['descr'] = $data['descr'];
+                $info['stock'] = $data['stock'];
+                $info['sell_price'] = $data['sell_price'];
+                $info['cost_price'] = $data['cost_price'];
+                $info['market_price'] = $data['market_price'];
                 $this->product->editProduct($pdv['pid'], $info);
                 $this->product->delProductAttrById($pdv['pid']);
                 $this->product->delProductSizeById($pdv['pid']);
