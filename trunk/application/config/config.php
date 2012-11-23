@@ -534,5 +534,12 @@ $config['promotion_type'] = array(
     PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT => '满N件N折扣',
 );
 
+//品牌配置
+$config['brands'] = array(
+    '1' => array('name' => '理想年代', 'ename' => 'lixiangniandaijn'),
+    '2' => array('name' => '乐酷创想', 'ename' => 'lekuchuangxiang'),
+    '3' => array('name' => '第七公社', 'ename' => 'diqigongshe'),
+);
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */

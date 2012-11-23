@@ -193,17 +193,18 @@
                         <?php endif;?>
                         <p>
                             <label>仓库</label>
-                            <input class="text-input" id="" name="warehouse" type="text" value="<?=isset($info['warehouse']) ? $info['warehouse'] : ''?>">
+                            <select name="warehouse">
+                            <?php foreach ($brands as $k=>$v) {?>
+                            <option value="<?=$k?>" <?=($k == $info['brand_id']) ? 'selected="selected"' : '';?>><?=$v['name']?></option>
+                            <?php }?>
+                            </select>
+                            <!--<input class="text-input" id="" name="warehouse" type="text" value="<?=isset($info['warehouse']) ? $info['warehouse'] : ''?>">-->
                             <small style="color:red;">不包含http:// 例 : jsbike.taobao.com</small>
                         </p>
                         <p>
                             <label>货物淘宝地址</label>
-                            <!--<input class="text-input large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">-->
-                            <select name="product_taobao_addr">
-                            <?php foreach ($brands as $k=>$v) {?>
-                            <option value="<?=$k?>"><?=$v?></option>
-                            <?php }?>
-                            </select>
+                            <input class="text-input large-input" name="product_taobao_addr" type="text" value="<?php echo isset($info['product_taobao_addr']) ? $info['product_taobao_addr'] : ''?>">
+
                         </p>
                         <p>
                             <label>备用字段</label>

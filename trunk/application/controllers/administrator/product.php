@@ -14,10 +14,6 @@ class product extends MY_Controller
         2 => '商品名称',
     );
 
-    public $brands = array(
-        ''
-    );
-
     public function __construct()
     {
         parent::__construct();
@@ -112,7 +108,7 @@ class product extends MY_Controller
                 unset($color[$k]);
             }
         }
-        $this->load->view('administrator/product/create', array('category' => $category, 'model' => $model, 'color'=>$color));
+        $this->load->view('administrator/product/create', array('category' => $category, 'model' => $model, 'color'=>$color, 'brands' => config_item('brands')));
     }
 
     /**
@@ -198,11 +194,14 @@ class product extends MY_Controller
             'size' => $this->size->getSizeByType($info['size_type'], 'size_id,name'),
             'psize' => $psize,
             'current_page' => $currentPage,
+            'brands' => config_item('brands')
         ));
     }
 
     public function save()
     {
+        $brand = config_item('brands');
+
         //echo '<pre>';print_r($this->input->post());die;
         $data['pname'] = $this->input->post('pname');
         $data['class_id'] = $this->input->post('class_id');
@@ -220,10 +219,12 @@ class product extends MY_Controller
         $data['pcontent'] = $this->input->post('pcontent');
         $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
-        $data['warehouse'] = $this->input->post('warehouse');
+        $warehouse = $this->input->post('warehouse');
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
         $data['spare'] = $this->input->post('spare');
         $currentPage = $this->input->get_post('current_page');
+        $data['brand_id'] = $warehouse;
+        $data['warehouse'] = $brand[$warehouse]['ename'];
 
         //var_dump($size);
         $pid = $this->input->post('pid');
@@ -254,6 +255,8 @@ class product extends MY_Controller
                 $info['sell_price'] = $data['sell_price'];
                 $info['cost_price'] = $data['cost_price'];
                 $info['market_price'] = $data['market_price'];
+                $info['brand_id'] = $data['brand_id'];
+                $info['warehouse'] = $data['warehouse'];
                 $this->product->editProduct($pdv['pid'], $info);
                 $this->product->delProductAttrById($pdv['pid']);
                 $this->product->delProductSizeById($pdv['pid']);
