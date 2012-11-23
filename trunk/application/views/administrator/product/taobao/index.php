@@ -18,10 +18,8 @@
     <ul class="shortcut-buttons-set">
         <li><a class="shortcut-button" href="<?=site_url('administrator/product/create')?>"><span>添加产品</span></a>
         </li>
-        <li><a class="shortcut-button" href="<?=site_url('administrator/product/index')?>"><span>产品列表</span></a>
-        </li>
-        <li><a class="shortcut-button" href="<?=site_url('administrator/product_taobao/index')?>"><span>添加淘宝产品</span></a>
-        </li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product/index')?>"><span>产品列表</span></a></li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product_taobao/index')?>"><span>添加淘宝产品</span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
