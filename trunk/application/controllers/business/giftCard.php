@@ -30,15 +30,17 @@ class giftCard extends MY_Controller
             }
 
             $this->load->model('business/Model_Gift_Card', 'card');
-            $this->load->model('business/Model_Gift_Card_model', 'model');
             $cardInfo = $this->card->getCardInfoByCid($cardNo);
-            $modelInfo = $this->model->getCardModelByMid($cardInfo['model_id']);
+            
 
             //卡是否存在
             if (empty ($cardInfo)) {
                 $response = error(70017);
                 break;
             }
+
+            $this->load->model('business/Model_Gift_Card_model', 'model');
+			$modelInfo = $this->model->getCardModelByMid($cardInfo['model_id']);
 
             //判断有效期
             if ($modelInfo['end_time'] < date('Y-m-d H:i:s', TIMESTAMP)) {
@@ -49,6 +51,11 @@ class giftCard extends MY_Controller
             //判断卡是否绑定
             if ($cardInfo['status'] == 2) {
                 $response = error(70022);
+                break;
+            }
+
+			if ($cardInfo['status'] == 0) {
+                $response = error(70036);
                 break;
             }
 

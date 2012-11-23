@@ -139,7 +139,7 @@
 .shaidan{padding-top:15px}
 .shaidan .sd-tit{height:25px; border:1px solid #e3e3e3; background:url(http://wunxin.com/images/bgw_03.gif) repeat-x; padding-left:15px; padding-right:15px; margin-bottom:15px}
 .shaidan .sd-tit .sdbt{float:left; height:25px; line-height:25px; background-position:right 270px; font-size:14px; font-weight:bold}
-.sd-btn{float:right; height:25px; line-height:25px; padding:0px 20px; background-color:#9d031f}
+.sd-btn{float:right; height:25px; line-height:25px; padding:0px 20px; background-color:#9d031f;    text-align: center;width: 65px;font-weight: bold;}
 .shaidan .sd-tit .sd-btn a{font-size:14px; color:#FFF}
 .sd-yh{float:right; line-height:25px}
 .sd-main{padding:10px 0px 15px 0px; line-height:25px}

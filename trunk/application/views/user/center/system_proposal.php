@@ -13,10 +13,19 @@
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
     <![endif]-->
-    <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">我的建议与意见</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -25,7 +34,7 @@
             <div class="u-r-tit">我的建议与意见</div>
         </div>
         <div class="u-r-box">
-            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+            <style> .o-list{font-weight: bold;color: #888888;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -70,7 +79,7 @@
             <div class="tui-tit">热闹产品推荐</div>
             <div id="pic_list_1" class="scroll_horizontal">
                 <div class="box">
-                    <ul class="list">
+                    <ul class="list jcarousel-skin-ucenter" id="user_center_list">
                         <?php foreach ($favorite_recommend as $fv):?>
                         <li>
                             <a href="<?=productURL($fv['pid']);?>" title="<?=$fv['pname'].', ￥'.fPrice($fv['sell_price'])?>" target="_blank">
@@ -83,8 +92,10 @@
                         <?php endforeach;?>
                     </ul>
                 </div>
+				<!--
                 <div class="plus"></div>
                 <div class="minus"></div>
+				-->
             </div>
         </div>
 
@@ -93,7 +104,8 @@
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include(APPPATH."views/footer.php");?>
 <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/common.js"></SCRIPT>
-<SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.scrollshow.js"></SCRIPT>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.jcarousel.js"></script>
+<script type=text/javascript src="<?=config_item('static_url')?>scripts/user_center_broadcast.js"></script>
 <script type="text/javascript">
     function deleteProductQa(qId)
     {

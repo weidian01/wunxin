@@ -44,6 +44,7 @@
                         <th><input class="check-all" type="checkbox"/></th>
                         <th>ID</th>
                         <th>卡模型</th>
+                        <th>卡类型</th>
                         <th>产品ID</th>
                         <th>产品图片</th>
                         <th>产品名称</th>
@@ -72,6 +73,7 @@
                         <td><a href="<?=config_item('static_url')?>administrator/business_card_model/cardProduct/<?=$v['model_id'];?>" title="<?=$model[$v['model_id']]['card_name'];?>">
                             <?=$model[$v['model_id']]['card_name'];?></a>
                         </td>
+                        <td><?=$card_type[$v['card_type']]?></td>
                         <td><?=$v['pid'];?></td>
                         <td>
                             <a href="<?=productURL($v['pid'])?>" target="_blank" title="<?=$v['pname'];?>">

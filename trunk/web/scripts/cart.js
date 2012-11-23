@@ -44,7 +44,7 @@ cart.init = function ()
         }
         html += '</ul></div></td></tr>';
     }
-
+//console.log(html);
     html += '<tr><td width="47%" colspan="2" align="center" class="tit">商品/商品号</td>';
     html += '<td width="9%" align="center" class="tit">单价</td>';
     html += '<td width="9%" align="center" class="tit">尺码</td>';
@@ -55,6 +55,7 @@ cart.init = function ()
     var totalPrice = 0;
     var totalIntegral = 0;
     var totalProductNum = 0;
+    var savePrice = 0;
 
 
     for (var i in data) {
@@ -86,14 +87,26 @@ cart.init = function ()
     }
 
     if (wx.isEmpty(usedPromotion)) {
+        var img = '';
         html += '<tr><td colspan="7" style="padding: 10px;background-color: #F5F5F5;color: #888888"><b>已参加的活动</b></td></tr>';
 
         for (var ui in usedPromotion) {
-            html += '<tr height="45"><td></td>\
+            switch (usedPromotion[ui]['discount_type']) {
+                case '2': img = wx.base_url+'images/discounticon.gif';break;
+                case '3': img = wx.base_url+'images/cashicon.gif';break;
+                default : img = wx.base_url+'images/discounticon.gif';
+            }
+            html += '<tr height="45"><td><img src="'+img+'" alt="优惠"></td>\
                 <td colspan="6">'+usedPromotion[ui]['name']+'&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#B9151B;">节省：￥'+wx.fPrice(usedPromotion[ui]['save'])+'</span><br/>\
                 <a href="javascript:void(0);" onclick="cart.deletePromotion('+usedPromotion[ui]['promotion_id']+', \'delete_promotion\')" id="delete_promotion">删除</a></td></tr>';
+            if (usedPromotion[ui]['pay_type'] == 0) {
+                savePrice += usedPromotion[ui]['save'];
+            }
         }
     }
+
+    totalPrice = totalPrice - savePrice;
+    totalIntegral = totalIntegral - savePrice;
 
 
     html += '<tr><td style="border-bottom:1px solid #a5afc3;">&nbsp;</td><td colspan="6" style="border-bottom:1px solid #a5afc3;">';

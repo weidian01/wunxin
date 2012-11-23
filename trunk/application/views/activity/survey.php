@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>我提供的建议与意见 -- 个人中心</title>
+    <title>问卷调查 -- 万象网</title>
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/user.css" rel="stylesheet" type="text/css"/>
     <script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
@@ -60,6 +60,14 @@
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li class="last">问卷调查</li>
+    </ul>
+  </div>
+</div>
 <div class="answer_sheet">
 <h2 style="font-weight:bold; font-size:14px;">万象网问卷调研</h2>
 

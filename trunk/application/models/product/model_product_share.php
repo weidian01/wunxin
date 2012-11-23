@@ -16,9 +16,9 @@ class Model_Product_Share extends MY_Model
      */
     public function productShare($sInfo)
     {
-        $tableName = 'wx_share';
-        $checkStatus = $this->batchCheckTableField($tableName, $sInfo, true);
-        if (!$checkStatus) return false;
+        //$tableName = 'wx_share';
+        //$checkStatus = $this->batchCheckTableField($tableName, $sInfo, true);p($checkStatus);exit;
+        //if (!$checkStatus) return false;
 
         $data = array(
             'pid' => $sInfo['pid'],
@@ -33,13 +33,13 @@ class Model_Product_Share extends MY_Model
 
         $this->db->insert('share', $data);
         $status = $this->db->insert_id();
-
+        //p($data);exit;
         if ($status) {
             //更新产品晒单数量
             $this->db->where('pid', $sInfo['pid'])->set(array('share_num' => 'share_num+1'), '', false)->update('product');
 
             //更新订单产品评论状态
-            $this->db->update('order_product', array('share_status' => 1), array('pid' => $sInfo['pid'], 'uid' => $sInfo['uid']));
+            $this->db->limit(1)->update('order_product', array('share_status' => 1), array('pid' => $sInfo['pid'], 'uid' => $sInfo['uid'], 'order_sn' => $sInfo['order_sn'], 'share_status' => 0));
         }
 
         return $status;
@@ -116,9 +116,10 @@ class Model_Product_Share extends MY_Model
      * 获取用户可以晒单的产品
      *
      * @param $uId
-     * @return null | array
+     * @param null $orderSn
+     * @return null
      */
-    public function getUserShareProductList($uId)
+    public function getUserShareProductList($uId, $orderSn = null)
     {
         $this->db->select('*');
         $this->db->from('order_product');
@@ -127,9 +128,10 @@ class Model_Product_Share extends MY_Model
         $this->db->where('order.is_pay', ORDER_PAY_SUCC);
         $this->db->where('order.picking_status', PICKING_COMPLETED);
         $this->db->where('order_product.share_status', 0);
+        $orderSn && $this->db->where(array('order_product.order_sn' => $orderSn));
         $data = $this->db->get()->result_array();
 
-        return empty ($data) ? null : $data;
+        return $data;
     }
 
     /**

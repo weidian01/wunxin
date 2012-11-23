@@ -15,11 +15,7 @@
     </script>
     <![endif]-->
     <style type="text/css">
-        .path ul li.last { background: none repeat scroll 0 0 transparent; }
-        .path, .path ul li { height: 30px; line-height: 30px; background: url(<?=config_item('static_url')?>images/g-bg.png) no-repeat; }
-        .path, .path ul li { height: 30px; line-height: 30px; }
-        .path { padding-left: 20px; background-position: 0px -179px; }
-        .path ul li { float: left; padding-right: 12px; padding-left: 5px; display: block; background-position: right -91px; }
+
     </style>
     <link href="<?=config_item('static_url')?>css/scrollshow.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -42,7 +38,7 @@
             <div class="u-r-tit">订单中心</div>
         </div>
         <div class="u-r-box">
-            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+            <style> .o-list{font-weight: bold;color: #888888;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr class="o-list">
@@ -140,12 +136,12 @@
                         <?php }?>
 
                         <?php if ($v['picking_status'] == '2') {?>
-                        &nbsp;&nbsp;<a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
+                        <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品">
-                        </a><br/>
+                        </a>
                         <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品">
-                        </a>&nbsp;&nbsp;
+                        </a>
                         <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请退换货">
                         </a>

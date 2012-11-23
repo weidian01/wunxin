@@ -21,6 +21,7 @@ class comment extends MY_Controller
         $data['comfort'] = intval($this->input->get_post('comfort'));
         $data['exterior'] = intval($this->input->get_post('exterior'));
         $data['size_deviation'] = intval($this->input->get_post('size_deviation'));
+        $data['order_sn'] = intval($this->input->get_post('order_sn'));
 
         $response = array('error' => '0', 'msg' => '评论成功', 'code' => 'comment_success');
 
@@ -53,11 +54,23 @@ class comment extends MY_Controller
 
             //是否购买过产品
             $this->load->model('order/Model_order', 'order');
-            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid']);
+            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid'], $data['order_sn']);
             if (empty ($isBuyProduct)) {
                 $response = error(50002);
                 break;
             }
+
+            $key = 0;
+            if (empty ($data['order_sn'])) {
+                foreach ($isBuyProduct as $k=>$v) {
+                    if ($v['comment_status'] == 0) {
+                        $data['order_sn'] = $v['order_sn'];
+                        $key = $k;
+                    }
+                }
+            }
+
+            $isBuyProduct = $isBuyProduct[$key];
             $data['size'] = isset ($isBuyProduct['product_size']) ? $isBuyProduct['product_size'] : $isBuyProduct['product_size'];
 
             //是否评论过
@@ -89,6 +102,7 @@ class comment extends MY_Controller
     public function isBuyProduct()
     {
         $data['pid'] = intval($this->input->get_post('pid'));
+        $data['order_sn'] = intval($this->input->get_post('order_sn'));
 
         $response = array('error' => '0', 'msg' => '已购买', 'code' => 'need_buy');
 
@@ -103,21 +117,39 @@ class comment extends MY_Controller
                 break;
             }
 
+            if (empty ($data['order_sn'])) {
+                $data['order_sn'] = null;
+            }
+
             //是否购买过产品
             $this->load->model('order/Model_order', 'order');
-            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid']);
+            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid'], $data['order_sn']);
             if (empty ($isBuyProduct)) {
                 $response = error(50002);
                 break;
             }
+            //判断是否传过来订单ID，如没有传过来，则随机选取一条订单内产品
+            $flag = false;
+            foreach ($isBuyProduct as $v) {
+                if ($v['comment_status'] == 0) {
+                    $flag = true;
+                }
+            }
 
+            if (!$flag) {
+                $response = error(50019);
+                break;
+            }
+
+            /*
             //是否评论过
             if ($isBuyProduct['comment_status'] == '1') {
                 $response = error(50019);
                 break;
             }
+            //*/
 
-            $response['data'] = $isBuyProduct;
+            $response['data'] = $isBuyProduct[0];
         } while (false);
 
         self::json_output($response);

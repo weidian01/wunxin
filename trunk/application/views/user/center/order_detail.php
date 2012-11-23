@@ -55,6 +55,15 @@
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">订单详情</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -232,12 +241,17 @@
                                     <td width="90" align="center"><strong><?=$pv['product_num'];?></strong></td>
                                     <td width="90" align="center"><strong>￥<?=fPrice(($pv['final_price'] * $pv['product_num']));?></strong></td>
                                     <td width="90" align="center" class="end">
-                                        <a href="javascript:void(0);" onclick="product.productComment(<?=$pv['pid'];?>)">
+                                        <?php if ($pv['comment_status'] == 0) {?>
+                                        <a href="javascript:void(0);" onclick="product.productComment(<?=$pv['pid'];?>, '<?=$order_data['order_sn']?>')">
                                             <img src="<?=config_item('static_url')?>images/comment.png" title="评价此产品">
                                         </a>
-                                        <a href="javascript:void(0);" onclick="product.productShare(<?=$pv['pid'];?>)">
+                                        <?php }?>
+
+                                        <?php if ($pv['share_status'] == 0) {?>
+                                        <a href="javascript:void(0);" onclick="product.productShare(<?=$pv['pid'];?>, '<?=$order_data['order_sn']?>')">
                                             <img src="<?=config_item('static_url')?>images/share.jpg" title="对此产品进行晒单">
                                         </a><br/>
+                                        <?php }?>
                                         <!-- <a href="<?=config_item('static_url')?>user/center/addReturn?pid=<?=$pv['pid'];?>&order_sn=<?=$pv['order_sn'];?>"> -->
                                         <a href="javascript:void(0);" onclick="product.applyReturn(<?=$pv['pid'];?>, <?=$order_data['order_sn']?>)">
                                             <img src="<?=config_item('static_url')?>images/returns.jpg" title="申请此产品退换货">

@@ -140,7 +140,14 @@ $(document).ready(function(){
 </head>
 <body>
 <?php include APPPATH.'views/header.php';?>
-
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li class="last">描述晒单照片</li>
+    </ul>
+  </div>
+</div>
 <div class="box2">
     <div class="container">
 <div class="bg_mode" style="width: 980px;">

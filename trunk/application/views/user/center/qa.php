@@ -18,6 +18,15 @@
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">产品问答</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -26,7 +35,7 @@
             <div class="u-r-tit">产品问答</div>
         </div>
         <div class="u-r-box">
-            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+            <style> .o-list{font-weight: bold;color: #888888;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -73,10 +82,10 @@
                             <a href="#" title="共有 <?=$v['is_invalid'];?> 条有用" style="color: #990000;font-size: 10px;">无效 <?=$v['is_invalid'];?> 条</a>
                         </td>
                         <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
-                        <td width="8%" align="center">
+                        <td width="10%" align="center">
                             <a href="<?=productURL($v['qa_id']);?>" onclick="(<?=$v['qa_id'];?>)" target="_blank">
                                 <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
-                            </a><br />
+                            </a>
                             <a href="javascript:void(0);" onclick="product.deleteProductQa(<?=$v['qa_id'];?>)">
                                 <img src="<?=config_item('static_url')?>images/delete.png" title="删除此问答">
                             </a>

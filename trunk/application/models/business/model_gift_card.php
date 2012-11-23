@@ -197,7 +197,7 @@ class Model_Gift_Card extends MY_Model
      */
     public function getUserCardInfoAndModel($uId, $limit = 20, $offset = 0)
     {
-        $field = 'id, card_no, card.model_id, card.card_amount, card_pass, end_time, integral, uid, uname, use_num, status, card.create_time,
+        $field = 'id, card_no, card.model_id, card.card_amount, card_pass, card_model.end_time, integral, uid, uname, use_num, status, card.create_time,
         card_name, card_type, card_num';
 
         $this->db->select($field);

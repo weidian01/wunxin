@@ -29,8 +29,8 @@ class model_gift_card_product extends MY_Model
         return $this->db->insert_id();
         //*/
 
-        $sql = "INSERT IGNORE INTO wx_card_product(model_id, pid, pname, sell_price, create_time) values ";
-        $sql .= "({$data['model_id']}, {$data['pid']}, '{$data['pname']}', {$data['sell_price']}, '".date('Y-m-d H:i:s', TIMESTAMP)."')";
+        $sql = "INSERT IGNORE INTO wx_card_product(model_id, card_type, pid, pname, sell_price, create_time) values ";
+        $sql .= "({$data['model_id']}, {$data['card_type']}, {$data['pid']}, '{$data['pname']}', {$data['sell_price']}, '".date('Y-m-d H:i:s', TIMESTAMP)."')";
 
         $this->db->query($sql);
         return $this->db->insert_id();

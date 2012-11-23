@@ -17,6 +17,7 @@ class share extends MY_Controller
         $title = $this->input->get_post('title');
         $content = $this->input->get_post('content');
         $ip = $this->input->ip_address();
+        $orderSn = intval($this->input->get_post('order_sn'));
 
         if (empty ($pid) || empty ($title) || empty ($content)) {
             show_error('参数不全');
@@ -26,11 +27,26 @@ class share extends MY_Controller
             show_error('用户没有登陆');
         }
 
+        if (empty ($orderSn)) {
+            $orderSn = null;
+        }
+
         $this->load->model('order/Model_order', 'order');
-        $data = $this->order->userIsBuyProduct($this->uInfo['uid'], $pid); //($uid, $pid);
+        $data = $this->order->userIsBuyProduct($this->uInfo['uid'], $pid, $orderSn); //($uid, $pid);
         if (empty ($data)) {
             show_error('没有购买过此商品');
         }
+
+        $key = 0;
+        if (empty ($data['order_sn'])) {
+            foreach ($data as $k=>$v) {
+                if ($v['share_status'] == 0) {
+                    $orderSn = $v['order_sn'];
+                    $key = $k;
+                }
+            }
+        }
+        $data = $data[$key];
 
         if ($data['share_status'] == '1') {
             show_error('你已对此商品进行过晒单');
@@ -41,7 +57,7 @@ class share extends MY_Controller
         $this->load->model('product/model_product_color', 'color');
         $colorInfo = $this->color->getColorById($pInfo['color_id']);
 
-        $data = array(
+        $info = array(
             'pid' => $pid,
             'uid' => $this->uInfo['uid'],
             'title' => $title,
@@ -49,10 +65,11 @@ class share extends MY_Controller
             'ip' => $ip,
             'size' => $data['product_size'],
             'color' => $colorInfo['descr'],
+            'order_sn' => $orderSn,
         );
 
         $this->load->model('product/Model_Product_Share', 'share');
-        $status = $this->share->productShare($data);
+        $status = $this->share->productShare($info);
         if (!$status) {
             show_error('产品晒单失败');
         }
@@ -106,6 +123,7 @@ class share extends MY_Controller
     public function isBuyProduct()
     {
         $data['pid'] = intval($this->input->get_post('pid'));
+        $data['order_sn'] = intval($this->input->get_post('order_sn'));
 
         $response = array('error' => '0', 'msg' => '已购买', 'code' => 'need_buy');
 
@@ -120,21 +138,40 @@ class share extends MY_Controller
                 break;
             }
 
+            if (empty ($data['order_sn'])) {
+                $data['order_sn'] = null;
+            }
+
             //是否购买过产品
             $this->load->model('order/Model_order', 'order');
-            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid']);
+            $isBuyProduct = $this->order->userIsBuyProduct($this->uInfo['uid'], $data['pid'], $data['order_sn']);
             if (empty ($isBuyProduct)) {
                 $response = error(50002);
                 break;
             }
 
+            //判断是否传过来订单ID，如没有传过来，则随机选取一条订单内产品
+            $flag = false;
+            foreach ($isBuyProduct as $v) {
+                if ($v['share_status'] == 0) {
+                    $flag = true;
+                }
+            }
+
+            if (!$flag) {
+                $response = error(50020);
+                break;
+            }
+
+            /*
             //是否晒单过
             if ($isBuyProduct['share_status'] == '1') {
                 $response = error(50020);
                 break;
             }
+            //*/
 
-            $response['data'] = $isBuyProduct;
+            $response['data'] = $isBuyProduct[0];
         } while (false);
 
         self::json_output($response);
@@ -142,6 +179,8 @@ class share extends MY_Controller
 
     public function getUserShareProduct()
     {
+        $orderSn = intval($this->input->get_post('order_sn'));
+
         $response = array('error' => '0', 'msg' => '获取成功', 'code' => 'get_success');
 
         do {
@@ -151,7 +190,7 @@ class share extends MY_Controller
             }
 
             $this->load->model('product/Model_Product_Share', 'share');
-            $data = $this->share->getUserShareProductList($this->uInfo['uid']);
+            $data = $this->share->getUserShareProductList($this->uInfo['uid'], $orderSn);
 
             $response['data'] = $data;
         } while (false);

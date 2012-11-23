@@ -94,9 +94,9 @@
 .jcarousel-skin-cart .jcarousel-container-horizontal{width:928px; padding:5px 25px}
 .jcarousel-skin-cart .jcarousel-container-vertical{width:75px; height:245px; padding:40px 20px}
 .jcarousel-skin-cart .jcarousel-clip{overflow:hidden}
-.jcarousel-skin-cart .jcarousel-clip-horizontal{width: 926px; height:207px}
+.jcarousel-skin-cart .jcarousel-clip-horizontal{width: 926px; height:240px;}
 .jcarousel-skin-cart .jcarousel-clip-vertical{width: 75px; height:200px}
-.jcarousel-skin-cart .jcarousel-item{ width:140px;height:205px;margin-left:0;margin-right:15px;background:none repeat scroll 0 0 #FFF;border:0px solid #E8E8E8}
+.jcarousel-skin-cart .jcarousel-item{ width:140px;height:240px;margin-left:0;margin-right:15px;background:none repeat scroll 0 0 #FFF;border:0px solid #E8E8E8}
 .jcarousel-skin-cart .jcarousel-direction-rtl .jcarousel-item-horizontal{margin-left:10px;margin-right:0}
 .jcarousel-skin-cart .jcarousel-item-vertical{ margin-bottom:10px}
 .jcarousel-skin-cart .jcarousel-item-placeholder{ background:#fff;color:#000}

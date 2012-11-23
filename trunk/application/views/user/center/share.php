@@ -18,6 +18,15 @@
 </head>
 <body><!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">我的晒单</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -26,7 +35,7 @@
             <div class="u-r-tit">我的晒单</div>
         </div>
         <div class="u-r-box">
-            <style> .o-list{font-weight: bold;color: #8B7B8B;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
+            <style> .o-list{font-weight: bold;color: #888888;} table{table-layout: fixed;line-height: 26px;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -34,8 +43,8 @@
                         <td width="10%" align="center"><b>晒单产品</b></td>
                         <td width="20%" align="center"><b>晒单图片</b></td>
                         <td width="20%" align="center"><b>晒单标题</b></td>
-                        <td width="25%" align="center"><b>晒单内容</b></td>
-                        <td width="15%" align="center"><b>人气</b></td>
+                        <td width="20%" align="center"><b>晒单内容</b></td>
+                        <td width="10%" align="center"><b>人气</b></td>
                         <td width="10%" align="center"><b>晒单时间</b></td>
                         <!--<td width="17%" align="center">操作</td>-->
                     </tr>
@@ -64,8 +73,8 @@
                         </div>
                     </td>
                     <td width="20%" align="center"><?=$v['title']; ?></td>
-                    <td width="25%" align="center"><?=$v['content'];?></td>
-                    <td width="18%" align="center">
+                    <td width="20%" align="center"><?=$v['content'];?></td>
+                    <td width="10%" align="center">
                         <a href="#" title="查看 <?=$v['comment_num'];?> 条晒单评论" style="color: #990000;font-size: 10px;"> 查看评论 (<?=$v['comment_num'];?>)</a>
                     </td>
                     <td width="10%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>

@@ -39,7 +39,7 @@ class coupon extends MY_Controller
         $recommend = $this->model->getCardModelList(10, 0, '*', array('is_generation' => '1'), 'receive_num desc');
 
         //echo '<pre>';print_r($data);exit;
-        $this->load->view('coupon/index', array('data' => $data, 'model_id' => $modelId, 'needReceive' => $needReceive, 'recommend' => $recommend));
+        $this->load->view('coupon/index', array('data' => $data, 'model_id' => $modelId, 'needReceive' => $needReceive, 'recommend' => $recommend, 'card_type' => config_item('card_type')));
     }
 
     public function show()

@@ -236,7 +236,6 @@
                 var html = '';
                 var main = '';
                 $.each(data.share, function (i, o) {
-
                     switch (o.body_type){
                         case '1': bodyTypeName = '偏瘦';break;
                         case '2': bodyTypeName = '均称';break;
@@ -252,14 +251,14 @@
                     o.color = wx.isEmpty(o.color) ? o.color : '';
                     o.size = wx.isEmpty(o.size) ? o.size : '';
                     o.content = wx.isEmpty(o.content) ? o.content : '';
-                    o.img_addr = o.img_addr.replace("\\", "/");
+                    o.img_addr = wx.isEmpty(o.img_addr) ? o.img_addr.replace("\\", "/") : '';
 
                     if(offset == 0 && !main)
                     {
                         main = '<table class="tab1" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="83%">' +o.title+
                             '<img src="' + wx.static_url + 'images/kk_23.jpg" width="39" height="15" /></td><td width="17%">来自：'+o.nickname+'</td></tr></table>\
                                 <div class="sd-main"><div style="text-align:center">\
-                                  <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" /></div>\
+                                  <img class="lazy" src="' + wx.static_url + 'images/lazy.gif" data-original="' + wx.img_url+ 'product_share/' + o.img_addr + '" width="760"/></div>\
                                   <table class="tab6" width="100%" border="0" cellspacing="0" cellpadding="0">\
                                     <tr><td align="center" bgcolor="#f3f3f3">用户积分</td><td align="center" bgcolor="#f3f3f3">身高/体重</td>\
                                     <td align="center" bgcolor="#f3f3f3">体型</td><td align="center" bgcolor="#f3f3f3">颜色</td><td align="center" bgcolor="#f3f3f3">尺码</td></tr>\

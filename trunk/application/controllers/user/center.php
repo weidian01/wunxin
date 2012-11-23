@@ -716,7 +716,7 @@ class center extends MY_Controller
 
         $data = $this->card->getUserCardInfoAndModel($this->uInfo['uid'], $Limit, $offset);
 //echo '<pre>';print_r($data);exit;
-        $this->load->view('user/center/gift_card', array('data' => $data, 'page_html' => $pageHtml));
+        $this->load->view('user/center/gift_card', array('data' => $data, 'page_html' => $pageHtml, 'card_type' => config_item('card_type')));
     }
 
     public function bingCard()

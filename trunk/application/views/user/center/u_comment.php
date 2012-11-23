@@ -21,6 +21,15 @@
 <script type=text/javascript src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">设计师留言</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -82,10 +91,10 @@
                                             <td style="width:70px;text-align:center;">
                                                 <a href="javascript:void(0);" onclick="(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="查看此设计师">
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计师">
-                                                </a>  <br />
+                                                </a>
                                                 <a href="javascript:void(0);" onclick="(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="给此设计师留言">
                                                     <img src="<?=config_item('static_url')?>images/message.png" title="给此设计师留言">
-                                                </a>  <br />
+                                                </a>
                                                 <a href="javascript:void(0);" onclick="user.deleteDesignerMessage(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="删除此条留言">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除此条留言">
                                                 </a>

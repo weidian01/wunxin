@@ -20,6 +20,15 @@
 <body>
 <!-- #BeginLibraryItem "/Library/header.lbi" -->
 <?php include(APPPATH.'views/header.php');?>
+<div class="box">
+  <div class="path">
+    <ul>
+      <li><a href="<?=config_item('static_url')?>">首页</a></li>
+      <li><a href="<?=config_item('static_url')?>user/center/index">个人中心</a></li>
+      <li class="last">我的收藏夹</li>
+    </ul>
+  </div>
+</div>
 <!-- #EndLibraryItem -->
 <div class="box3 pad9">
     <?php include ('center_left.php');?>
@@ -87,7 +96,6 @@
                                                 <a href="#" class="a_e" title="查看此设计师">
                                                     <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计师">
                                                 </a>
-                                                <br/>
                                                 <a href="javascript:void(0);" class="a_e" title="删除收藏的设计师" onclick="user.deleteDesignerFavorite(<?=$v['fid'];?>)">
                                                     <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的设计师">
                                                 </a>
