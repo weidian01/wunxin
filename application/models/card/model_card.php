@@ -107,7 +107,7 @@ class model_card extends MY_Model
         }
         else
         {
-            $card_product = $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products));
+            $card_product = $this->get_card_product($card['card_no'], $card['card_type'], $pids);
             if ($card_product == true && is_array($card_product)) {
                 foreach ($products as $p) {
                     if (isset($card_product[$p['pid']])) {
@@ -116,6 +116,24 @@ class model_card extends MY_Model
                 }
             }
         }
+        return $card_max_use_discount;
+    }
+
+    /**
+     * 检查所有卡最大充抵金额
+     * @param $cards
+     * @param $products
+     * @return int
+     */
+    public function all_card_max_use_discount($cards, $products)
+    {
+        $card_max_use_discount = 0;
+
+        foreach($cards as $card)
+        {
+            $card_max_use_discount += $this->card_max_use_discount($card, $products);
+        }
+
         return $card_max_use_discount;
     }
 
@@ -244,10 +262,9 @@ class model_card extends MY_Model
 
         $date_time = date('Y-m-d H:i:s', TIMESTAMP);
         $total_amount = 0;
-        $pids = array_keys($products);
         foreach($cards_info as $item)
         {
-            $item['use_amount'] = $this->card_max_use_discount($item, $pids);
+            $item['use_amount'] = $this->card_max_use_discount($item, $products);
 //            $card_product = $this->get_card_product($item['card_no'], $item['card_type'], array_keys($products));
 //            if($card_product == true && is_array($card_product))
 //            {
