@@ -527,13 +527,11 @@ define('PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT', '2');  //指定产品N件X折优�
 define('PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT', '3'); //全场或指定产品满N件X折优惠 -- 针对产品
 define('PROMOTION_TEMPLATE_ORDER_FULL_CUT_DISCOUNT', '100'); //订单满N元X折优惠 -- 针对订单
 define('PROMOTION_TEMPLATE_ORDER_FULL_REBATE_DISCOUNT', '101'); //订单满N元减X元优惠 -- 针对订单
-
 $config['promotion_type'] = array(
     PROMOTION_TEMPLATE_DISCOUNT => '产品折扣',
     PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT => '第N件折扣',
     PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT => '满N件N折扣',
 );
-
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
