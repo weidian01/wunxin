@@ -48,7 +48,7 @@ class model_card extends MY_Model
      * @param $uid
      * @return int
      */
-    public function check_card($card_info, $uid, $order)
+    public function check_card($card_info, $uid, $products)
     {
         foreach($card_info as $card)
         {
@@ -81,7 +81,7 @@ class model_card extends MY_Model
                 return 6;
             }
 
-            if(! $this->get_card_discount_limit($card['card_no'], $uid, $order))
+            if(! $this->get_card_discount_limit($card['card_no'], $card['model_id'], $products))
             {
                 return 7;
             }
@@ -90,7 +90,7 @@ class model_card extends MY_Model
         return 0;
     }
 
-    public function get_card_discount_limit($card_no, $model_id, $order)
+    public function get_card_discount_limit($card_no, $model_id, $products)
     {
         $card_model = $this->get_card_model_by_id($model_id);
 
@@ -188,7 +188,7 @@ class model_card extends MY_Model
      * @param $order
      * @return mixed
      */
-    public function consume($cards, $uid, $order)
+    public function consume($cards, $uid, $order, $products)
     {
         $_cards = array_keys($cards);
         if (empty ($_cards)) {
@@ -200,7 +200,7 @@ class model_card extends MY_Model
             $cards_info[$k]['use_amount'] = $cards[$v['card_no']];
         }
 
-        if(0 !== $this->check_card($cards_info, $uid, $order))
+        if(0 !== $this->check_card($cards_info, $uid, $products))
         {
             return ;
         }
@@ -220,7 +220,7 @@ class model_card extends MY_Model
             if($card_product == true && is_array($card_product))
             {
                 $card_amount = 0;
-                foreach($order as $p)
+                foreach($products as $p)
                 {
                     if(in_array($p['pid'], $card_product))
                     {
