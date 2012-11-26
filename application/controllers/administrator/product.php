@@ -100,6 +100,10 @@ class product extends MY_Controller
         $model = $this->mod->getModelList(500);
         $this->load->model('product/Model_Product_Color', 'color');
         $color = $this->color->getList(500, 0, array('color_id'=>'*'));
+
+        //获取品牌
+        $this->load->model('product/model_product_brand', 'brand');
+        $brands = $this->brand->getBrandList(100);
         foreach($color as $k=>$item)
         {
             if($item['parent_id'] != 0)
@@ -108,7 +112,7 @@ class product extends MY_Controller
                 unset($color[$k]);
             }
         }
-        $this->load->view('administrator/product/create', array('category' => $category, 'model' => $model, 'color'=>$color, 'brands' => config_item('brands')));
+        $this->load->view('administrator/product/create', array('category' => $category, 'model' => $model, 'color'=>$color, 'brands' => $brands));
     }
 
     /**
@@ -156,6 +160,10 @@ class product extends MY_Controller
         $model = $this->mod->getModelList(500);
         $attr = $this->mod->getModel($info['model_id']);
 
+        //获取品牌
+        $this->load->model('product/model_product_brand', 'brand');
+        $brands = $this->brand->getBrandList(100);
+
         if (isset($attr['attrs'])) {
             foreach ($attr['attrs'] as $key => $item) {
                 $attr['attrs'][$key]['attr_value'] = explode(',', $item['attr_value']);
@@ -194,14 +202,12 @@ class product extends MY_Controller
             'size' => $this->size->getSizeByType($info['size_type'], 'size_id,name'),
             'psize' => $psize,
             'current_page' => $currentPage,
-            'brands' => config_item('brands')
+            'brands' => $brands,
         ));
     }
 
     public function save()
     {
-        $brand = config_item('brands');
-
         //echo '<pre>';print_r($this->input->post());die;
         $data['pname'] = $this->input->post('pname');
         $data['class_id'] = $this->input->post('class_id');
@@ -219,12 +225,19 @@ class product extends MY_Controller
         $data['pcontent'] = $this->input->post('pcontent');
         $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
-        $warehouse = $this->input->post('warehouse');
+        $warehouse = intval($this->input->post('warehouse'));
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
         $data['spare'] = $this->input->post('spare');
         $currentPage = $this->input->get_post('current_page');
+
+        $this->load->model('product/model_product_brand', 'brand');
+        $brand = $this->brand->getBrandByID($warehouse);
+        if (empty ($brand)) {
+            show_error('品牌不存在！');
+        }
+
         $data['brand_id'] = $warehouse;
-        $data['warehouse'] = $brand[$warehouse]['ename'];
+        $data['warehouse'] = $brand['ename'];
 
         //var_dump($size);
         $pid = $this->input->post('pid');

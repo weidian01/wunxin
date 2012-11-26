@@ -109,7 +109,7 @@ class model_card extends MY_Model
 
         foreach($cards as $card)
         {
-            $card_max_use_discount +=  $this->card_max_use_discount($card['card_no'], $card['card_type'], array_keys($products));
+            $card_max_use_discount +=  $this->get_card_discount_limit($card, $products);
         }
 
         return $card_max_use_discount;
@@ -127,11 +127,12 @@ class model_card extends MY_Model
                 $order_price += $product['final_price'];
             }
 
+
             $card['use_amount'] = min($card['use_amount'], $card['card_amount']);
 
             if($card_model['card_type'] <= 2)
             {
-                return min($order_price,$card['use_amount']);
+                return min($order_price, $card['use_amount']);
             }
             else
             {

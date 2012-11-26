@@ -134,11 +134,14 @@ class giftCard extends MY_Controller
         $response = array('error' => '0', 'msg' => '使用礼物卡成功', 'code' => 'use_gift_card_success');
 
         $return = array(
+            '0' => '',
             '1' => '',
             '2' => 70018,//有效期
             '3' => 70016,//判断卡是否绑定
             '4' => 70019,//判断卡的归属
             '5' => 70023,//判断卡余额
+            '6' => 70037,//订单产品不在此卡使用范围
+            '7' => 70038,//订单不符合此卡使用此规则
         );
 
         do {
@@ -187,6 +190,9 @@ class giftCard extends MY_Controller
             }
             $cardList[$cardNo] = $useAmount;
 
+            $cartData = $this->getCartToCookie();
+            $cartDataNeedProcess = $this->calculateDiscount($cartData);
+
             $this->load->model('card/model_card', 'card');
             $cardData = $this->card->get_card_by_no(array_keys($cardList));
 
@@ -195,11 +201,15 @@ class giftCard extends MY_Controller
             }
 
             //检测单张卡
-            $cardCheckStatus = $this->card->check_card($cardData, $this->uInfo['uid']);
+            $cardCheckStatus = $this->card->check_card($cardData, $this->uInfo['uid'], $cartDataNeedProcess['product']['products']);
+            //p($cardCheckStatus);exit;
             if ($cardCheckStatus != '0') {
                 $response = error($return[$cardCheckStatus]);
                 break;
             }
+
+            //获取卡抵冲金额
+            $savePrice = $this->card->all_card_max_use_discount($cardData, $cartDataNeedProcess['product']['products']);
 
             //多张卡检测
             $checkAllCardStatus = $this->card->check_union($cardData);
@@ -218,7 +228,7 @@ class giftCard extends MY_Controller
                 break;
             }
 
-            $response['save_price'] = array_sum($cardList);
+            $response['save_price'] = $savePrice;
 
             $this->setUseCard($cardList);
         } while (false);

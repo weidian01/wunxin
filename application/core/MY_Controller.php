@@ -319,7 +319,7 @@ class MY_Controller extends CI_Controller
         $this->promotion->use_promotion($promotionIdTmpArr); //使用活动 1
         $this->promotion->compute();
 
-        $data['product'] = $this->promotion->products();
+        $data['product'] = $this->promotion->result();
 
         if ($returnOpt && in_array('unused_promotion', $returnOpt)) {
             $data['unused_promotion'] = $this->promotion->get_unused_promotion();

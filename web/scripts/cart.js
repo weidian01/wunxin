@@ -30,6 +30,7 @@ cart.init = function ()
     //*
     var activity = data['activity'];//未使用的活动
     var usedPromotion = data['used_promotion'];//已使用的活动
+    var totalPrice = data['total_price'];
     data = data['cart'];//购物车信息
 
     if (wx.isEmpty(activity)) {
@@ -38,13 +39,14 @@ cart.init = function ()
         html += '<tr id="activity_list"><td colspan="7" style="padding: 5px 0;"><div class="activity_list"><ul id="list_ul" class="jcarousel-skin-activity">';
 
         for (var ii in activity) {
-            if (!wx.isEmpty(activity[ii])) return;
-            html += cart.getActivityTemplate(activity[ii]['discount_type'], activity[ii]['promotion_id'], activity[ii]['name'],
-                activity[ii]['descr'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status'], activity[ii]['save']);
+            if (wx.isEmpty(activity[ii])) {
+                html += cart.getActivityTemplate(activity[ii]['discount_type'], activity[ii]['promotion_id'], activity[ii]['name'],
+                    activity[ii]['descr'], activity[ii]['pid'], activity[ii]['discount_price'], activity[ii]['status'], activity[ii]['save']);
+            }
         }
         html += '</ul></div></td></tr>';
     }
-//console.log(html);
+
     html += '<tr><td width="47%" colspan="2" align="center" class="tit">商品/商品号</td>';
     html += '<td width="9%" align="center" class="tit">单价</td>';
     html += '<td width="9%" align="center" class="tit">尺码</td>';
@@ -52,11 +54,7 @@ cart.init = function ()
     html += '<td width="10%" align="center" class="tit">赠送积分</td>';
     html += '<td width="12%" align="center" class="tit">小计</td></tr>';
 
-    var totalPrice = 0;
-    var totalIntegral = 0;
     var totalProductNum = 0;
-    var savePrice = 0;
-
 
     for (var i in data) {
         //console.log(i);
@@ -81,8 +79,6 @@ cart.init = function ()
         html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].final_price * data[i].num) )+'</span></td>';
         html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].final_price * data[i].num)+'</span></td>';
         html += '</tr>';
-        totalIntegral += (data[i].final_price * data[i].num);
-        totalPrice += (data[i].final_price * data[i].num);
         totalProductNum += (data[i].num);
     }
 
@@ -99,19 +95,12 @@ cart.init = function ()
             html += '<tr height="45"><td><img src="'+img+'" alt="优惠"></td>\
                 <td colspan="6">'+usedPromotion[ui]['name']+'&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#B9151B;">节省：￥'+wx.fPrice(usedPromotion[ui]['save'])+'</span><br/>\
                 <a href="javascript:void(0);" onclick="cart.deletePromotion('+usedPromotion[ui]['promotion_id']+', \'delete_promotion\')" id="delete_promotion">删除</a></td></tr>';
-            if (usedPromotion[ui]['pay_type'] == 0) {
-                savePrice += usedPromotion[ui]['save'];
-            }
         }
     }
 
-    totalPrice = totalPrice - savePrice;
-    totalIntegral = totalIntegral - savePrice;
-
-
     html += '<tr><td style="border-bottom:1px solid #a5afc3;">&nbsp;</td><td colspan="6" style="border-bottom:1px solid #a5afc3;">';
     html += '<div class="gsum"> 产品数量总计：<span class="font1">'+parseInt(totalProductNum)+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-    html += '赠送积分总计：<span class="font1">'+parseInt(wx.fPrice(totalIntegral))+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+    html += '赠送积分总计：<span class="font1">'+parseInt(wx.fPrice(totalPrice))+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     //html += '花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     html += '商品金额总计：<span class="font1">￥'+wx.fPrice(totalPrice)+'</span></div></td></tr>';
 

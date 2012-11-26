@@ -332,8 +332,8 @@ $(document).ready(function(){
           <?php
           $total_num = 0;
           $total_price = 0;
-          foreach ($cart_info as $cv) {
-              $total_price += $cv['final_price'] * $cv['num'];
+          foreach ($cart_info['products'] as $cv) {
+              //$total_price += $cv['final_price'] * $cv['num'];
               $total_num += $cv['num'];
 
               ?>
@@ -357,9 +357,9 @@ $(document).ready(function(){
           <!--<td width="21%"><div class="sy"><span class="invo" id="invos" onclick="syinfo('syinv','invos')"></span></div></td>-->
           <td width="79%" align="right">
               产品数量总计：<?=intval($total_num);?>&nbsp;&nbsp;&nbsp;&nbsp;
-              赠送积分总计：<?=intval(fPrice($total_price));?>&nbsp;&nbsp;&nbsp;&nbsp;
+              赠送积分总计：<?=intval(fPrice($cart_info['total_price']));?>&nbsp;&nbsp;&nbsp;&nbsp;
               花费积分总计：0&nbsp;&nbsp;&nbsp;&nbsp;
-              商品金额总计：￥<span id="order_total_price"><?=fPrice($total_price);?></span></td>
+              商品金额总计：￥<span id="order_total_price"><?=fPrice($cart_info['total_price']);?></span></td>
         </tr>
       </table>
       <div class="order-info">
@@ -445,10 +445,10 @@ $(document).ready(function(){
           </div>
         </div>
         <div class="order-sum">运费：￥0<br/>
-          礼品卡冲抵：￥<span id="card_use_amount"><?=fPrice( (array_sum($gift_card) > $total_price) ? $total_price : array_sum($gift_card) );?></span><br/>
-          虚拟账户余额冲抵：￥0.00
+          礼品卡抵冲：￥<span id="card_use_amount"><?=fPrice( (array_sum($gift_card) > $cart_info['total_price']) ? $cart_info['total_price'] : array_sum($gift_card) );?></span><br/>
+          虚拟账户余额抵冲：￥0.00
           <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥
-              <span id="final_pay_amount"><?=fPrice( (array_sum($gift_card) > $total_price) ? 0 : ($total_price - array_sum($gift_card)) );?></span></span>
+              <span id="final_pay_amount"><?=fPrice( (array_sum($gift_card) > $cart_info['total_price']) ? 0 : ($cart_info['total_price'] - array_sum($gift_card)) );?></span></span>
           </div>
         </div>
       </div>
