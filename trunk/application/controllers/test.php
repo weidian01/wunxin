@@ -22,7 +22,7 @@ class test extends MY_Controller
 
         }
         $this->promotion->add_product($pInfo);
-        $act = array(1,5);
+        $act = array(1,5,11);
         if($act)
         {
 
@@ -35,7 +35,7 @@ class test extends MY_Controller
         $unused_promotin = $this->promotion->get_unused_promotion(); //获取可选未使用的活动列表
         p($used_promotin);
         p($unused_promotin);
-        p($this->promotion->products()); //获取使用过活动产品列表  包括参与过活动的最终价格
+        p($this->promotion->result()); //获取使用过活动产品列表  包括参与过活动的最终价格
         p($this->promotion);
         //print_r($this->promotion->get_promotion());
 

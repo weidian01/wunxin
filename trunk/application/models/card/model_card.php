@@ -48,7 +48,7 @@ class model_card extends MY_Model
      * @param $uid
      * @return int
      */
-    public function check_card($card_info, $uid)
+    public function check_card($card_info, $uid, $order)
     {
         foreach($card_info as $card)
         {
@@ -76,15 +76,45 @@ class model_card extends MY_Model
                 return 5;
             }
 
-            //
             if(! $this->get_card_product($card['card_no'], $card['card_type']))
             {
                 return 6;
             }
+
+            if(! $this->get_card_discount_limit($card['card_no'], $uid, $order))
+            {
+                return 7;
+            }
+
         }
         return 0;
     }
 
+    public function get_card_discount_limit($card_no, $model_id, $order)
+    {
+        $card_model = $this->get_card_model_by_id($model_id);
+
+        if ($card_model) {
+            $order_price = 0;
+            if (in_array($card_model['card_type'], array(3, 4))) {
+                $card_product = $this->get_card_product($card_no, $card_model['card_type']);
+                foreach($card_product as $p)
+                {
+                    $order_price += $order[$p['pid']]['final_price'];
+                }
+                return $order_price < $card_model['rule'] ? FALSE : TRUE;
+            }
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    /**
+     * 获取卡的可消费产品
+     * @param $card_no
+     * @param $card_type
+     * @return array
+     */
     public function get_card_product($card_no, $card_type)
     {
         if(isset($this->card_product[$card_no]))
@@ -102,6 +132,7 @@ class model_card extends MY_Model
         $this->card_product[$card_no] = $product;
         return $product;
     }
+
     /**
      * 检查卡之间是否可复用
      * @param $cards
@@ -169,7 +200,7 @@ class model_card extends MY_Model
             $cards_info[$k]['use_amount'] = $cards[$v['card_no']];
         }
 
-        if(0 !== $this->check_card($cards_info, $uid))
+        if(0 !== $this->check_card($cards_info, $uid, $order))
         {
             return ;
         }
@@ -198,7 +229,10 @@ class model_card extends MY_Model
                 }
                 $card_amount && $item['card_amount'] = $card_amount;
             }
-
+            if(in_array($item['card_type'], array(3,4)))
+            {
+                $item['use_amount'] = $item['card_amount'];
+            }
             $item['use_amount'] = $item['use_amount'] > $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
             $card_balance = $item['card_amount'] - $item['use_amount'];
 
