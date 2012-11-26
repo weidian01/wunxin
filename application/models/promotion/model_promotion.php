@@ -367,24 +367,40 @@ class Model_Promotion extends MY_Model
      * 获取参与活动后的
      * @return array
      */
-    function products()
+    function result()
     {
-        $r = array();
+        $r = array('products'=>array(), 'total_price'=>0);
         foreach($this->order_products as $p)
         {
             if(isset($p['promotion_id']) && $p['promotion_id'])
             {
                 $p['promotion_name'] = $this->promotion[$p['promotion_id']]['name'];
-                $r[$p['pid']] = $p;
+                $r['products'][$p['pid']] = $p;
             }
             else
             {
                 $p['promotion_name'] = '';
                 $p['promotion_id'] = 0;
                 $p['final_price'] = $p['sell_price'];
-                $r[$p['pid']] = $p;
+                $r['products'][$p['pid']] = $p;
             }
+            $r['total_price'] += $p['final_price'];
         }
+
+        $used_promotion = $this->get_used_promotion();
+        if($used_promotion)
+        {
+            $discount_price = 0;
+            foreach($used_promotion as $pp)
+            {
+                if(isset($pp['used']) && $pp['used'] == true && $pp['pay_type'] == 0)
+                {
+                    $discount_price = $pp['save'];
+                }
+            }
+            $r['total_price'] -= $discount_price;
+        }
+
         return $r;
     }
 
