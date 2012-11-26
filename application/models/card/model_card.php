@@ -100,7 +100,7 @@ class model_card extends MY_Model
                 $card_product = $this->get_card_product($card_no, $card_model['card_type']);
                 foreach($card_product as $p)
                 {
-                    $order_price += $order[$p['pid']]['final_price'];
+                    $order_price += $products[$p['pid']]['final_price'];
                 }
                 return $order_price < $card_model['rule'] ? FALSE : TRUE;
             }
@@ -127,7 +127,7 @@ class model_card extends MY_Model
             return $this->card_product[$card_no] = TRUE;
         }
         $this->db->select('pid')->from('card_product');
-        $this->db->where_in('$card_type', card_type);
+        $this->db->where_in('card_type', $card_type);
         $product = $this->db->get()->result_array('pid');
         $this->card_product[$card_no] = $product;
         return $product;
