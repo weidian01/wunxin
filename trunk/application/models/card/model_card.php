@@ -92,6 +92,33 @@ class model_card extends MY_Model
         return 0;
     }
 
+    /**
+     * 一张卡最大的充抵金额
+     * @param $card
+     * @param $products
+     * @return int
+     */
+    public function card_max_use_discount($card, $products)
+    {
+        $card_max_use_discount = 0;
+        if(in_array($card['card_type'], array(3,4)))
+        {
+            $card_max_use_discount = $card['use_amount'] > $card['card_amount'] ? $card['card_amount'] : $card['use_amount'];
+        }
+        else
+        {
+            $card_product = $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products));
+            if ($card_product == true && is_array($card_product)) {
+                foreach ($products as $p) {
+                    if (isset($card_product[$p['pid']])) {
+                        $card_max_use_discount += $p['final_price'];
+                    }
+                }
+            }
+        }
+        return $card_max_use_discount;
+    }
+
     public function get_card_discount_limit($card_no, $model_id, $products)
     {
         $card_model = $this->get_card_model_by_id($model_id);
@@ -217,25 +244,29 @@ class model_card extends MY_Model
 
         $date_time = date('Y-m-d H:i:s', TIMESTAMP);
         $total_amount = 0;
+        $pids = array_keys($products);
         foreach($cards_info as $item)
         {
-            $card_product = $this->get_card_product($item['card_no'], $item['card_type'], array_keys($products));
-            if($card_product == true && is_array($card_product))
-            {
-                $card_amount = 0;
-                foreach($products as $p)
-                {
-                    if(isset($card_product[$p['pid']]))
-                    {
-                        $card_amount += $p['final_price'];
-                    }
-                }
-                $card_amount && $item['card_amount'] = $card_amount;
-            }
-            if(in_array($item['card_type'], array(3,4)))
-            {
-                $item['use_amount'] = $item['card_amount'];
-            }
+            $item['use_amount'] = $this->card_max_use_discount($item, $pids);
+//            $card_product = $this->get_card_product($item['card_no'], $item['card_type'], array_keys($products));
+//            if($card_product == true && is_array($card_product))
+//            {
+//                $card_amount = 0;
+//                foreach($products as $p)
+//                {
+//                    if(isset($card_product[$p['pid']]))
+//                    {
+//                        $card_amount += $p['final_price'];
+//                    }
+//                }
+//                $card_amount && $item['card_amount'] = $card_amount;
+//            }
+//            if(in_array($item['card_type'], array(3,4)))
+//            {
+//                $item['use_amount'] = $item['card_amount'];
+//            }
+
+
             $item['use_amount'] = $item['use_amount'] > $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
             $card_balance = $item['card_amount'] - $item['use_amount'];
 
