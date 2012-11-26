@@ -12,6 +12,8 @@ class model_card extends MY_Model
 
     private $card_product = array();
 
+    private $card_model = array();
+
     /**
      * 通过卡号获取卡信息
      * @param $card_no
