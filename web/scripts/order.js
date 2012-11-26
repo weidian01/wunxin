@@ -429,9 +429,9 @@ order.updateCardView = function (savePrice)
 
     $('#card_use_amount').html(savePrice);
 
-    var finalPrice = savePrice >= orderTotalPrice ? 0 : (orderTotalPrice - savePrice);
+    var finalPrice = savePrice >= orderTotalPrice ? 0 : (orderTotalPrice - savePrice) * 100;
     //var finalPrice = (orderTotalPrice * 100)-(savePrice * 100);
-    $('#final_pay_amount').html(finalPrice);
+    $('#final_pay_amount').html(wx.fPrice(finalPrice));
     //console.log(savePrice);
     //console.log(orderTotalPrice);
 }

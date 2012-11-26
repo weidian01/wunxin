@@ -201,7 +201,7 @@ class giftCard extends MY_Controller
             }
 
             //检测单张卡
-            $cardCheckStatus = $this->card->check_card($cardData, $this->uInfo['uid'], $cartDataNeedProcess['product']['products']);
+            $cardCheckStatus = $this->card->check_card($cardData, $this->uInfo['uid'], $cartDataNeedProcess['products']);
             //p($cardCheckStatus);exit;
             if ($cardCheckStatus != '0') {
                 $response = error($return[$cardCheckStatus]);
@@ -209,8 +209,14 @@ class giftCard extends MY_Controller
             }
 
             //获取卡抵冲金额
-            $savePrice = $this->card->all_card_max_use_discount($cardData, $cartDataNeedProcess['product']['products']);
+            $savePrice = $this->card->all_card_max_use_discount($cardData, $cartDataNeedProcess['products']);
 
+            /*
+            $orderPrice = 0;
+            foreach ($cartDataNeedProcess as $cdnpv) {
+                $orderPrice = $cdnpv['final_price'];
+            }
+            /**/
             //多张卡检测
             $checkAllCardStatus = $this->card->check_union($cardData);
             if (!$checkAllCardStatus) {
@@ -221,9 +227,8 @@ class giftCard extends MY_Controller
 //print_r($cardCheckStatus);d($checkAllCardStatus);exit;
 
             //判断购物车是否为空
-            $cData['cart'] = $this->getCartToCookie();
-            $data = $this->calculateDiscount($cData['cart']);
-            if (empty ($data['product'])) {
+            $data = $cartDataNeedProcess;
+            if (empty ($data['products'])) {
                 $response = error(60001);
                 break;
             }

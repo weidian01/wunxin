@@ -49,7 +49,7 @@ class order extends MY_Controller
         $recentData = $this->recent->getUserRecentAddressByUid($this->uInfo['uid']);
 
         //计算活动价格
-        $cData = $this->calculateDiscount($cartInfo);
+        $cData = $this->calculateDiscount($cartInfo);//p($cData['products']);
 
         $this->load->model('business/Model_gift_card_model', 'model');
         $cardModel = $this->model->getCardModelList(200);
@@ -63,7 +63,7 @@ class order extends MY_Controller
         //p($cardModel);exit;
 
         $data = array (
-            'cart_info' => $cData['product'],
+            'cart_info' => $cData,
             'province_data' => $provinceData,
             'recent_data' => $recentData,
             'gift_card' => $giftCard,
@@ -119,10 +119,9 @@ class order extends MY_Controller
             $cdData = $this->calculateDiscount($cartData);
 
             $productTmpData = array();
-            $totalPrice = $cdData['product']['total_price'];p($totalPrice);exit;
-            foreach ($cdData['product'] as $cv) {
+            $totalPrice = $cdData['total_price'];//p($cdData);exit;
+            foreach ($cdData['products'] as $cv) {
                 $productData = $this->product->getProductById($cv['pid']);
-                $totalPrice += ($cv['final_price'] * $cv['num']);
                 $productTmpData[$productData['pid']] = $productData;
 
             }
@@ -162,7 +161,7 @@ class order extends MY_Controller
             }
             $response['order_sn'] = $orderId;
 
-            foreach ($cdData['product'] as $v) {
+            foreach ($cdData['products'] as $v) {
                 $productData = $productTmpData[$v['pid']];
                 $colorData = $this->color->getColorById($productData['color_id']);
 
@@ -198,7 +197,7 @@ class order extends MY_Controller
 
             //p($cardList);p($this->uInfo['uid']);p($orderInfo);exit;
 
-            $this->card->consume($cardList, $this->uInfo['uid'], $orderInfo, $cartDataNeedProcess['product']['products']);//($cards, $uid, $order)
+            $this->card->consume($cardList, $this->uInfo['uid'], $orderInfo, $cartDataNeedProcess['products']);//($cards, $uid, $order)
 
             //清除购物车，活动，礼品卡
             //$cInfo = array('pid' => '','pname' => '','product_price' => '','product_num' => '','product_size' => '','additional_info' => '',);
@@ -207,9 +206,10 @@ class order extends MY_Controller
             //$this->setCartToCookie($cInfo, -100);
             //$this->setPromotion($pData, true, -100);
             //$this->setUseCard(array(), -100);
-            $this->input->set_cookie('gift_card', '', -100);
-            $this->input->set_cookie('cart_info', '', -100);
-            $this->input->set_cookie('promotion', '', -100);
+
+            //$this->input->set_cookie('gift_card', '', -100);
+            //$this->input->set_cookie('cart_info', '', -100);
+            //$this->input->set_cookie('promotion', '', -100);
 
         } while (false);
 

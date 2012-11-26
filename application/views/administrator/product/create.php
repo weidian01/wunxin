@@ -53,7 +53,7 @@
                             <select name="class_id" class="small-input">
                                 <option value="0">顶级分类</option>
                                 <?php foreach ($category as $item): ?>
-                                <option value="<?=$item['class_id']?>" <?php if(isset($info['class_id']) && $info['class_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?=str_repeat("&nbsp;", $item['floor']), $item['cname']?></option>
+                                <option value="<?=$item['class_id']?>" <?php if(isset($info['class_id']) && $info['class_id']==$item['class_id'] ){echo 'selected="selected"';}?>><?=str_repeat("&nbsp;", $item['floor']). $item['cname']?></option>
                                 <?php endforeach;?>
                             </select>
                         </p>

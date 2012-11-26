@@ -25,7 +25,14 @@ class model_card extends MY_Model
         //$this->db->where('uid', $uid);
         if(is_array($card_no))
         {
-            return $this->db->where_in('card_no', $card_no)->get()->result_array();
+            $r = array();
+            $cards = $this->db->where_in('card_no', $card_no)->get()->result_array('card_no');
+            foreach($card_no as $card)
+            {
+                $r[$card] = $cards[$card];
+            }
+            return $r;
+            //return $this->db->where_in('card_no', $card_no)->get()->result_array();
         }
         return $this->db->where('card_no', $card_no)->get()->row_array();
     }
@@ -109,25 +116,26 @@ class model_card extends MY_Model
 
         foreach($cards as $card)
         {
-            $card_max_use_discount +=  $this->get_card_discount_limit($card, $products);
+            $card_max_use_discount += $this->get_card_discount_limit($card, $products, $card_max_use_discount);
         }
 
         return $card_max_use_discount;
     }
 
-    public function get_card_discount_limit($card,  $products)
+    public function get_card_discount_limit($card,  $products, $default = 0)
     {
         $card_model = $this->get_card_model_by_id($card['model_id']);
         $order_price = $total_price = 0;
         if ($card_model) {
 
             $card_product = $this->get_card_product($card['card_no'], $card_model['card_type'], $products);
+
             foreach($card_product as $product)
             {
                 $order_price += $product['final_price'];
             }
 
-
+            $order_price = $order_price - $default;
             $card['use_amount'] = min($card['use_amount'], $card['card_amount']);
 
             if($card_model['card_type'] <= 2)
@@ -136,12 +144,20 @@ class model_card extends MY_Model
             }
             else
             {
-                $order_price = 0;
-                foreach($products as $p)
+                if($card_model['card_type'] == 3)
                 {
-                    $total_price += $p['final_price'];
+                    foreach($products as $p) {
+                        $total_price += $p['final_price'];
+                    }
                 }
-                return $card_model['rule'] < $total_price ? 0 : min($order_price, $card['use_amount']);
+                else if($card_model['card_type'] == 4)
+                {
+                    $total_price = $order_price;
+                }
+
+
+                return $total_price < $card_model['rule'] ? 0 : min($order_price, $card['use_amount']);
+                //return $total_price < $card_model['rule'] ? 0 : $card['card_amount'];
             }
         }
         return $order_price;
@@ -181,7 +197,7 @@ class model_card extends MY_Model
             }
         }
 
-        return $this->card_product[$card_no];
+        return isset($this->card_product[$card_no]) ? $this->card_product[$card_no] : array();
 
     }
 
@@ -197,6 +213,7 @@ class model_card extends MY_Model
             return FALSE;
         }
 
+        /**
         $model_id = array();
         foreach($cards as $card)
         {
@@ -205,7 +222,7 @@ class model_card extends MY_Model
                 $model_id[$card['model_id']] = $card['model_id'];
             }
         }
-
+        //p($cards);
         if(! $model_id) //模型id为空
         {
             return FALSE;
@@ -222,7 +239,13 @@ class model_card extends MY_Model
         {
             $return_model[$model['card_type']][] = TRUE;
         }
-
+        p($return_model);
+         * */
+        $return_model = array();
+        foreach($cards as $card)
+        {
+            $return_model[$card['card_type']][] = TRUE;
+        }
         if(count($return_model) > 1 ||
             (isset ($return_model[3]) && count($return_model[3]) > 1) ||
             (isset ($return_model[4]) && count($return_model[4]) > 1)) //修改 -- 此处有notice
@@ -266,9 +289,12 @@ class model_card extends MY_Model
 
         $date_time = date('Y-m-d H:i:s', TIMESTAMP);
         $total_amount = 0;
+        $used_amount = 0;
         foreach($cards_info as $item)
         {
-            $item['use_amount'] = $this->get_card_discount_limit($item, $products);
+            $item['use_amount'] = $this->get_card_discount_limit($item, $products, $used_amount);
+            $used_amount += $item['use_amount'];
+
 //            $card_product = $this->get_card_product($item['card_no'], $item['card_type'], array_keys($products));
 //            if($card_product == true && is_array($card_product))
 //            {
@@ -286,31 +312,34 @@ class model_card extends MY_Model
 //            {
 //                $item['use_amount'] = $item['card_amount'];
 //            }
-
-
-            $item['use_amount'] = $item['use_amount'] > $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
-            $card_balance = $item['card_amount'] - $item['use_amount'];
-
-
-            $this->db->where('card_no', $item['card_no'])
-                ->where('uid', $uid)->set(array('use_num' => 'use_num+1'), '', false)
-                ->update('card', array('card_amount'=>$card_balance));
-            if($this->db->affected_rows())
+            if($item['use_amount'] > 0)
             {
-                $data = array(
-                    'order_sn' => $order['order_sn'],
-                    'uid' => $uid,
-                    'uname' => '',
-                    'amount' => $item['use_amount'],
-                    'pay_time' => $date_time,
-                    'pay_type' => 4, //万象卡
-                    'pay_account' => '',
-                    'extended_information' => $item['card_no'],
-                    'create_time' => $date_time
-                );
-                $this->receiver->addReceiver($data);
-                $total_amount += $data['amount'];
+                $item['use_amount'] = $item['use_amount'] > $item['card_amount'] ? $item['card_amount'] : $item['use_amount'];
+
+                //万象卡和千象卡使用一次，将不留余额，直接清除
+                $card_balance = ($item['card_type'] > 2) ? 0 : ($item['card_amount'] - $item['use_amount']);
+
+                $this->db->where('card_no', $item['card_no'])
+                    ->where('uid', $uid)->set(array('use_num' => 'use_num+1'), '', false)
+                    ->update('card', array('card_amount'=>$card_balance));
+                if($this->db->affected_rows())
+                {
+                    $data = array(
+                        'order_sn' => $order['order_sn'],
+                        'uid' => $uid,
+                        'uname' => '',
+                        'amount' => $item['use_amount'],
+                        'pay_time' => $date_time,
+                        'pay_type' => 4, //万象卡
+                        'pay_account' => '',
+                        'extended_information' => $item['card_no'],
+                        'create_time' => $date_time
+                    );
+                    $this->receiver->addReceiver($data);
+                    $total_amount += $data['amount'];
+                }
             }
+
         }
 
         $up_order = array();
