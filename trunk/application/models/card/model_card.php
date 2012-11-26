@@ -83,12 +83,12 @@ class model_card extends MY_Model
                 return 5;
             }
 
-            if(! $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products)))
+            if(! $this->get_card_product($card['card_no'], $card['card_type'], $products))
             {
                 return 6;
             }
 
-            if(! $this->get_card_discount_limit($card['card_no'], $card['model_id'], $products))
+            if(! $this->get_card_discount_limit($card, $products))
             {
                 return 7;
             }
@@ -109,29 +109,41 @@ class model_card extends MY_Model
 
         foreach($cards as $card)
         {
-            $card_max_use_discount +=  $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products));
+            $card_max_use_discount +=  $this->card_max_use_discount($card['card_no'], $card['card_type'], array_keys($products));
         }
 
         return $card_max_use_discount;
     }
 
-    public function get_card_discount_limit($card_no, $model_id, $products)
+    public function get_card_discount_limit($card,  $products)
     {
-        $card_model = $this->get_card_model_by_id($model_id);
-
+        $card_model = $this->get_card_model_by_id($card['model_id']);
+        $order_price = $total_price = 0;
         if ($card_model) {
-            $order_price = 0;
-            if (in_array($card_model['card_type'], array(3, 4))) {
-                $card_product = $this->get_card_product($card_no, $card_model['card_type'], array_keys($products));
-                foreach($card_product as $p)
-                {
-                    $order_price += $products[$p['pid']]['final_price'];
-                }
-                return $order_price < $card_model['rule'] ? 0 : $card_model['card_amount'];
+
+            $card_product = $this->get_card_product($card['card_no'], $card_model['card_type'], $products);
+            foreach($card_product as $product)
+            {
+                $order_price += $product['final_price'];
             }
-            return $card_model['card_amount'];
+
+            $card['use_amount'] = min($card['use_amount'], $card['card_amount']);
+
+            if($card_model['card_type'] <= 2)
+            {
+                return min($order_price,$card['use_amount']);
+            }
+            else
+            {
+                $order_price = 0;
+                foreach($products as $p)
+                {
+                    $total_price += $p['final_price'];
+                }
+                return $card_model['rule'] < $total_price ? 0 : min($order_price, $card['use_amount']);
+            }
         }
-        return 0;
+        return $order_price;
     }
 
     /**
@@ -140,7 +152,7 @@ class model_card extends MY_Model
      * @param $card_type
      * @return array
      */
-    public function get_card_product($card_no, $card_type, $pids)
+    public function get_card_product($card_no, $card_type, $products)
     {
         if(isset($this->card_product[$card_no]))
         {
@@ -149,14 +161,27 @@ class model_card extends MY_Model
 
         if(in_array($card_type, array(1, 3)))
         {
-            return $this->card_product[$card_no] = TRUE;
+            foreach($products as $p)
+            {
+                $this->card_product[$card_no][$p['pid']] = $p;
+            }
         }
-        $this->db->select('pid')->from('card_product');
-        $this->db->where('card_type', $card_type);
-        $this->db->where_in('pid', $pids);
-        $product = $this->db->get()->result_array('pid');
-        $this->card_product[$card_no] = $product;
-        return $product;
+        else
+        {
+            $this->db->select('pid')->from('card_product');
+            $this->db->where('card_type', $card_type);
+            $this->db->where_in('pid', array_keys($products));
+            $card_product = $this->db->get()->result_array();
+            if($card_product)
+            {
+                foreach($card_product as $p) {
+                    $this->card_product[$card_no][$p['pid']] = $products[$p['pid']];
+                }
+            }
+        }
+
+        return $this->card_product[$card_no];
+
     }
 
     /**
@@ -242,7 +267,7 @@ class model_card extends MY_Model
         $total_amount = 0;
         foreach($cards_info as $item)
         {
-            $item['use_amount'] = $this->card_max_use_discount($item, $products);
+            $item['use_amount'] = $this->get_card_discount_limit($item, $products);
 //            $card_product = $this->get_card_product($item['card_no'], $item['card_type'], array_keys($products));
 //            if($card_product == true && is_array($card_product))
 //            {
