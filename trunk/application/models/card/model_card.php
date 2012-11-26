@@ -10,6 +10,8 @@
 class model_card extends MY_Model
 {
 
+    private $card_product = array();
+
     /**
      * 通过卡号获取卡信息
      * @param $card_no
@@ -76,7 +78,7 @@ class model_card extends MY_Model
                 return 5;
             }
 
-            if(! $this->get_card_product($card['card_no'], $card['card_type']))
+            if(! $this->get_card_product($card['card_no'], $card['card_type']), array_keys($products))
             {
                 return 6;
             }
@@ -97,7 +99,7 @@ class model_card extends MY_Model
         if ($card_model) {
             $order_price = 0;
             if (in_array($card_model['card_type'], array(3, 4))) {
-                $card_product = $this->get_card_product($card_no, $card_model['card_type']);
+                $card_product = $this->get_card_product($card_no, $card_model['card_type'], array_keys($products));
                 foreach($card_product as $p)
                 {
                     $order_price += $products[$p['pid']]['final_price'];
@@ -115,7 +117,7 @@ class model_card extends MY_Model
      * @param $card_type
      * @return array
      */
-    public function get_card_product($card_no, $card_type)
+    public function get_card_product($card_no, $card_type, $pids)
     {
         if(isset($this->card_product[$card_no]))
         {
@@ -127,7 +129,8 @@ class model_card extends MY_Model
             return $this->card_product[$card_no] = TRUE;
         }
         $this->db->select('pid')->from('card_product');
-        $this->db->where_in('card_type', $card_type);
+        $this->db->where('card_type', $card_type);
+        $this->db->where_in('pid', $pids);
         $product = $this->db->get()->result_array('pid');
         $this->card_product[$card_no] = $product;
         return $product;
@@ -216,13 +219,13 @@ class model_card extends MY_Model
         $total_amount = 0;
         foreach($cards_info as $item)
         {
-            $card_product = $this->get_card_product($item['card_no'], $item['card_type']);
+            $card_product = $this->get_card_product($item['card_no'], $item['card_type'], array_keys($products));
             if($card_product == true && is_array($card_product))
             {
                 $card_amount = 0;
                 foreach($products as $p)
                 {
-                    if(in_array($p['pid'], $card_product))
+                    if(isset($card_product[$p['pid']]))
                     {
                         $card_amount += $p['final_price'];
                     }
