@@ -119,7 +119,7 @@ class order extends MY_Controller
             $cdData = $this->calculateDiscount($cartData);
 
             $productTmpData = array();
-            $totalPrice = 0;
+            $totalPrice = $cdData['product']['total_price'];p($totalPrice);exit;
             foreach ($cdData['product'] as $cv) {
                 $productData = $this->product->getProductById($cv['pid']);
                 $totalPrice += ($cv['final_price'] * $cv['num']);
@@ -187,6 +187,10 @@ class order extends MY_Controller
 
             $this->order->addOrderProduct($orderProductData, $orderId);
 
+            //获取订单产品 -- 活动处理后的价格
+            $cartData = $this->getCartToCookie();
+            $cartDataNeedProcess = $this->calculateDiscount($cartData);
+
             //消费卡
             $orderInfo = $this->order->getOrderByOrderSn($orderId);
             $cardList = $this->getUseCard();
@@ -194,7 +198,7 @@ class order extends MY_Controller
 
             //p($cardList);p($this->uInfo['uid']);p($orderInfo);exit;
 
-            $this->card->consume($cardList, $this->uInfo['uid'], $orderInfo);//($cards, $uid, $order)
+            $this->card->consume($cardList, $this->uInfo['uid'], $orderInfo, $cartDataNeedProcess['product']['products']);//($cards, $uid, $order)
 
             //清除购物车，活动，礼品卡
             //$cInfo = array('pid' => '','pname' => '','product_price' => '','product_num' => '','product_size' => '','additional_info' => '',);

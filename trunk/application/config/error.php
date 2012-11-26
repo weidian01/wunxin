@@ -320,6 +320,9 @@ $error[70035] = array('error' => '70035', 'msg' => '产品加入礼品卡销售�
 
 $error[70036] = array('error' => '70036', 'msg' => '礼品卡已删除', 'code' => 'gift_card_already_delete');
 
+$error[70037] = array('error' => '70037', 'msg' => '订单产品不在此卡使用范围', 'code' => 'order_product_not_in_this_card_use_range');
+$error[70038] = array('error' => '70038', 'msg' => '订单不符合此卡使用此规则', 'code' => 'order_not_conform_this_card_use_rule');
+
 
 /**
  * 其他错误代码  --  其他相关错误代码以 70 开头
