@@ -107,7 +107,7 @@ class model_card extends MY_Model
         }
         else
         {
-            $card_product = $this->get_card_product($card['card_no'], $card['card_type'], $pids);
+            $card_product = $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products));
             if ($card_product == true && is_array($card_product)) {
                 foreach ($products as $p) {
                     if (isset($card_product[$p['pid']])) {
