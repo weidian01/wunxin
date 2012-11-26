@@ -78,7 +78,7 @@ class model_card extends MY_Model
                 return 5;
             }
 
-            if(! $this->get_card_product($card['card_no'], $card['card_type']), array_keys($products))
+            if(! $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products)))
             {
                 return 6;
             }
