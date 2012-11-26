@@ -96,34 +96,6 @@ class model_card extends MY_Model
     }
 
     /**
-     * 一张卡最大的充抵金额
-     * @param $card
-     * @param $products
-     * @return int
-     */
-    public function card_max_use_discount($card, $products)
-    {
-        $card_max_use_discount = 0;
-        if(in_array($card['card_type'], array(3, 4)))
-        {
-            $card_max_use_discount = $card['use_amount'] > $card['card_amount'] ? $card['card_amount'] : $card['use_amount'];
-        }
-        else
-        {
-            $order_price = 0;
-            $card_product = $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products));
-            if ($card_product == true && is_array($card_product)) {
-                foreach ($products as $p) {
-                    if (isset($card_product[$p['pid']])) {
-                        $order_price += $p['final_price'];
-                    }
-                }
-            }
-        }
-        return $card_max_use_discount;
-    }
-
-    /**
      * 检查所有卡最大充抵金额
      * @param $cards
      * @param $products
@@ -135,7 +107,7 @@ class model_card extends MY_Model
 
         foreach($cards as $card)
         {
-            $card_max_use_discount += $this->card_max_use_discount($card, $products);
+            $card_max_use_discount +=  $this->get_card_product($card['card_no'], $card['card_type'], array_keys($products));
         }
 
         return $card_max_use_discount;
@@ -153,11 +125,11 @@ class model_card extends MY_Model
                 {
                     $order_price += $products[$p['pid']]['final_price'];
                 }
-                return $order_price < $card_model['rule'] ? FALSE : TRUE;
+                return $order_price < $card_model['rule'] ? 0 : $card_model['card_amount'];
             }
-            return TRUE;
+            return $card_model['card_amount'];
         }
-        return FALSE;
+        return 0;
     }
 
     /**
