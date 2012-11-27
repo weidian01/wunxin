@@ -41,7 +41,7 @@
             preloadImages:false,
             alwaysOn:false,
             showPreload:false,
-            preloadText:'正在加载产品图片...',
+            preloadText:'图片加载中...',
             fadeinSpeed:'fast',
             fadeoutSpeed:'fast'
         });
