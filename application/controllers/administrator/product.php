@@ -208,7 +208,7 @@ class product extends MY_Controller
 
     public function save()
     {
-        //echo '<pre>';print_r($this->input->post());die;
+        /*/echo '<pre>';print_r($this->input->post());die;
         $data['pname'] = $this->input->post('pname');
         $data['class_id'] = $this->input->post('class_id');
         $data['color_id'] = $this->input->post('color_id');
@@ -250,9 +250,6 @@ class product extends MY_Controller
 
 
         if ($pid) { //更新产品信息需要的操作
-
-
-            //* 暂用代码
             $pInfo = $this->product->getProductById($pid);
             $pData = $this->product->getProductByStyleNo($pInfo['style_no']);
             //echo '<pre>';print_r($data);exit;
@@ -275,15 +272,6 @@ class product extends MY_Controller
                 $this->product->delProductSizeById($pdv['pid']);
                 $this->product->addProductSize($size, $pdv['pid']);
             }
-            /*//
-
-            /*原代码
-            $this->product->editProduct($pid, $data);
-            $delphoto = $this->input->post('delphoto');
-            $delphoto && $this->product->delProductPhotoById($delphoto);
-            $this->product->delProductAttrById($pid);
-            $this->product->delProductSizeById($pid);
-            //*/
         } else {  //添加产品信息需要的操作
             $data['create_time'] = date('Y-m-d H:i:s', TIMESTAMP);
             $pid = $this->product->addProduct($data);
@@ -312,23 +300,7 @@ class product extends MY_Controller
                 }
             }
         }
-        //*/
         //echo '<pre>';print_r($attr);exit;
-        /*原代码
-        $attr = array();
-        $i = 0;
-        foreach ($attr_value as $attr_id => $item) {
-            foreach ($item as $v) {
-                if ($v) {
-                    $attr[$i]['pid'] = $pid;
-                    $attr[$i]['attr_id'] = $attr_id;
-                    $attr[$i]['model_id'] = $data['model_id'];
-                    $attr[$i]['attr_value'] = $v;
-                    $i++;
-                }
-            }
-        }
-        //*/
 
         foreach ($_FILES['images'] as $key => $item) {
             foreach ($item as $k => $v) {
@@ -376,7 +348,7 @@ class product extends MY_Controller
         $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
         $attr && $this->product->addProductAttr($attr);
 
-        /*生成默认图片*/
+        //生成默认图片
         $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();
         if($default_photo)
         {
@@ -385,11 +357,12 @@ class product extends MY_Controller
             copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
             copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
         }
-        /*生成默认图片*/
+        //*生成默认图片
         redirect('administrator/product/index/'.$currentPage);
+        //*/
 
 
-        /*
+        //*
         //echo '<pre>';print_r($this->input->post());die;
         $data['pname'] = $this->input->post('pname');
         $data['class_id'] = $this->input->post('class_id');
