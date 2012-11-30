@@ -189,7 +189,7 @@ class business_promotion_product extends MY_Controller
         $data['pid'] = intval($this->input->get_post('pid'));
         $data['pname'] = $this->input->get_post('pname');
         $data['cid'] = intval($this->input->get_post('cid'));
-        $data['promotion_price'] = intval($this->input->get_post('promotion_price'));
+        $data['promotion_price'] = $this->input->get_post('promotion_price');
         $data['promotion_price'] = $data['promotion_price'] * 100;
         $data['rule'] = $this->input->get_post('rule');
         $data['start_time'] = $this->input->get_post('start_time');
