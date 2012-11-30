@@ -98,8 +98,8 @@
          <dl class="side01">
              <dt><s></s>购物</dt>
              <dd>
-                 <a target="_blank" href="<?=config_item('static_url')?>activity/activity/qiang/4">限时抢购</a>
-                 <a target="_blank" href="<?=config_item('static_url')?>activity/activity/discount/2">特价热卖</a>
+                 <a target="_blank" href="<?=config_item('static_url')?>activity/activity/qiang/18">限时抢购</a>
+                 <a target="_blank" href="<?=config_item('static_url')?>activity/activity/discount/19">特价热卖</a>
                  <a target="_blank" href="<?=config_item('static_url')?>cart/">购物车</a>
                  <a target="_blank" href="<?=config_item('static_url')?>coupon/">优惠卷</a>
              </dd>
