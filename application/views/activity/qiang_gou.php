@@ -343,15 +343,16 @@
                 <ul class="bulklist clearfix" style="width: 2240px;">
                 <?php foreach ($before_lb as $blv):?>
                 <li class="slides" style="text-align: center;">
-					<a class="tit" href="<?=productURL($blv['pid']);?>" title="<?=$blv['pname'];?>" target="_blank"><?=$blv['pname'];?></a>
+
 					<a class="pic" href="<?=productURL($blv['pid']);?>">
                         <img class="lazy" width="164" height="197" title="<?=$blv['pname'];?>" alt="<?=$blv['pname'];?>" src="<?=config_item('static_url')?>images/lazy.gif" data-original="
                         <?=empty ($iv['product_image']) ?
                                 config_item('img_url').'product/'.intToPath($blv['pid']).'default.jpg' :
                                 config_item('base_url').str_replace('\\', '/', $blv['product_image']);?>">
                     </a><br/>
+                    <a class="tit" href="<?=productURL($blv['pid']);?>" title="<?=$blv['pname'];?>" target="_blank"><?=$blv['pname'];?></a>
 					<div class="bulkatt clearfix">
-						<span><em><?=empty ($blv['limit_buy_num']) ? '0' : $blv['limit_buy_num'];?></em>人已抢购</span>
+						<span><em><?=empty ($blv['sales_num']) ? '0' : $blv['sales_num'];?></em>人已抢购</span>
 						<a title="<?=$blv['pname'];?>" target="_blank" class="seebtn" href="<?=productURL($blv['pid']);?>">去看看</a>
 					</div>
 				</li>
