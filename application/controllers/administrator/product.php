@@ -427,6 +427,7 @@ class product extends MY_Controller
             }
         }
         unset($_FILES['images']);
+        $product_photo = array();
         if ($_FILES['image0']['size'] > 0) {
             $this->load->helper('directory');
             //$date = date('Y/m/d', TIMESTAMP);
@@ -440,7 +441,7 @@ class product extends MY_Controller
             $config['encrypt_name'] = true;
             $config['overwrite'] = true;
             $this->load->library('upload', $config);
-            $product_photo = array();
+
             foreach ($_FILES as $key => $item) {
                 if (!$this->upload->do_upload($key)) {
                     show_error($this->upload->display_errors());
