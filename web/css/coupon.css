@@ -64,6 +64,7 @@ a {
 }
 
 .list .item {
+	float:left;
     display: inline-block;
     margin-right: 10px;
     vertical-align: top;
@@ -407,20 +408,22 @@ ol, ul {
     overflow: hidden;
 }
 
-.hot ul a {
+.sidebar .boxs.hot ul .top3 a{
     color: #333333;
     display: block;
 }
 
 .hot .top3 a b {
+	float:left;
     background: url("http://wunxin.com/images/s2.png") no-repeat scroll -76px 0 transparent;
     color: #CF0102;
     font: 18px/26px tahoma;
     margin: 4px 9px 4px 13px;
 }
-
+.hot .top3 a span{ display:block; width:186px; height:31px; padding-top:3px; float:left; overflow:hidden;}
 .hot ul a b {
-    display: inline-block;
+	float:left;
+    display: block;
     height: 26px;
     text-align: center;
     vertical-align: top;

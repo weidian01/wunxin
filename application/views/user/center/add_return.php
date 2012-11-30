@@ -44,10 +44,10 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">申请退换货
+            <div class="u-r-tit">
                 <span style="float:right;text-align: right;">
                     <a style="color: #8B8878;font-size: 12px;" href="<?=config_item('static_url')?>user/center/returns">我的退换货记录&nbsp;&nbsp;</a>
-                </span>
+                </span>申请退换货
             </div>
         </div>
         <div class="u-r-box">
@@ -107,8 +107,8 @@
                         <span class="err">请上传一张货物问题的图。</span>
                     </td>
                 <tr>
-                    <td align="right">
-                        &nbsp;
+                    <td align="right">&nbsp;
+                        
                     </td>
                     <td>
                         <input id="submit" style="width: auto; height: auto; border: 0pt none;" type="image" src="<?=config_item('static_url')?>images/submit.jpg">
