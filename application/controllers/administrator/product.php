@@ -380,9 +380,19 @@ class product extends MY_Controller
         $data['pcontent'] = $this->input->post('pcontent');
         $data['size_type'] = $this->input->post('size_type');
         $size = $this->input->post('size');
-        $data['warehouse'] = $this->input->post('warehouse');
         $data['product_taobao_addr'] = $this->input->post('product_taobao_addr');
         $data['spare'] = $this->input->post('spare');
+        $warehouse = intval($this->input->post('warehouse'));
+        $currentPage = $this->input->get_post('current_page');
+
+        $this->load->model('product/model_product_brand', 'brand');
+        $brand = $this->brand->getBrandByID($warehouse);
+        if (empty ($brand)) {
+            show_error('品牌不存在！');
+        }
+
+        $data['brand_id'] = $warehouse;
+        $data['warehouse'] = $brand['ename'];
 
         //var_dump($size);
         $pid = $this->input->post('pid');
@@ -476,7 +486,7 @@ class product extends MY_Controller
             copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
         }
         //*生成默认图片
-        redirect('administrator/product/index');
+        redirect('administrator/product/index'.$currentPage);
         //*/
     }
 
