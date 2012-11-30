@@ -140,8 +140,8 @@
         .bulklist .pic{ display:block; margin:10px 0; border:1px solid #e6e6e6;}
         .bulklist .pic img{ display:block;}
         .bulkatt{ height:30px; line-height:30px;}
-        .bulkatt span{ float:left;  font-size:14px;}
-        .bulkatt span em{ padding-right:5px; position:relative; top:3px; color:#cc0000; font-size:24px; font-weight:bold;}
+        .bulkatt span{ float:left;  font-size:10px;}
+        .bulkatt span em{ padding-right:1px; position:relative; top:3px; color:#cc0000; font-size:18px; font-weight:bold;}
         .seebtn{ float:right; width:80px; height:30px; background-position:0 -357px; text-indent:-9999em;}
 
         .left_turn,.right_turn,.left_turn_hov,.right_turn_hov,.left_turn_no,.right_turn_no{ width:15px; height:29px; position:absolute; top:148px; text-indent:-9999em; cursor:pointer;}
@@ -352,8 +352,8 @@
                     </a><br/>
                     <a class="tit" href="<?=productURL($blv['pid']);?>" title="<?=$blv['pname'];?>" target="_blank"><?=$blv['pname'];?></a>
 					<div class="bulkatt clearfix">
-						<span><em><?=empty ($blv['sales_num']) ? '0' : $blv['sales_num'];?></em>人已抢购</span>
 						<a title="<?=$blv['pname'];?>" target="_blank" class="seebtn" href="<?=productURL($blv['pid']);?>">去看看</a>
+                        <span><em><?=empty ($blv['sales_num']) ? '0' : $blv['sales_num'];?></em>人已抢购</span>
 					</div>
 				</li>
                 <?php endforeach;?>
