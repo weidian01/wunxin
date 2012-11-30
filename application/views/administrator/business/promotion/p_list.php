@@ -92,7 +92,7 @@
                         <td>￥<?=fPrice($v['promotion_price']);?></td>
                         <td style="width: 60px;">
                             <a href="<?=config_item('static_url')?>administrator/business_promotion_product/lists/<?=empty($current_page) ? '0' : $current_page.'/'.( empty ($promotion_id) ? '0' : $promotion_id).'/'.$v['cid'];?>">
-                                <?=$category[$v['cid']]['name'];?>
+                                <?=(empty($v['cid'])) ? '默认' : $category[$v['cid']]['name'];?>
                             </a>
                         </td>
                         <td><?=$v['start_time'];?></td>
