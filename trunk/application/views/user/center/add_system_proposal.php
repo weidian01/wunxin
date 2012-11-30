@@ -43,10 +43,11 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">系统建议与意见
-                <span style="float:right;text-align: right;">
+            <div class="u-r-tit">
+              <span style="float:right;text-align: right;">
                     <a style="color: #8B8878;font-size: 12px;" href="<?=config_item('static_url')?>user/center/mySystemProposal">我的建议与意见&nbsp;&nbsp;</a>
                 </span>
+              系统建议与意见
             </div>
         </div>
         <div class="u-r-box">
@@ -82,8 +83,8 @@
                 </tr>
                 <tr><td colspan="2"></td> </tr>
                 <tr>
-                    <td align="right">
-                        &nbsp;
+                    <td align="right">&nbsp;
+                        
                     </td>
                     <td>
                         <input id="submit" style="width: auto; height: auto; border: 0pt none;" type="image" src="<?=config_item('static_url')?>images/submit.jpg" onclick="submitSystemProposal()">

@@ -88,7 +88,7 @@
 .goods-type .sizebox .sub-s{position:relative; z-index:1; display:block; float:left; height:35px; border:2px solid #ddd; padding:1px; margin-bottom:5px; margin-right:8px; background-color:#fff; text-decoration:none}
 .coview{float:left; display:block; width:35px; height:35px; cursor:pointer}
 .cotxt{float:left; display:block; height:35px; padding:0px 5px; cursor:pointer; white-space:nowrap; overflow:hidden}
-.selected, .selected2{position:absolute; display:block; height:10px; height:10px; z-index:1000; bottom:-2px; right:-2px; cursor:pointer; display:none}
+.selected, .selected2{position:absolute; display:block; width:10px; height:10px;z-index:1000; bottom:-2px; right:-2px; background:url(http://wunxin.com/images/a07.jpg) no-repeat 0px 0px; overflow:hidden; display:none;}
 .sub-cm{position:relative; z-index:1; display:block; float:left; padding:0px 8px; border:2px solid #ddd; height:25px; line-height:25px; background-color:#FFF; margin-right:6px; text-decoration:none}
 .buy-num{position:relative; z-index:1; padding:4px 20px 0px 20px; width:40px; height:24px; overflow:hidden}
 .buy-num input{border:1px solid #ddd; width:38px; height:20px}
@@ -249,7 +249,7 @@
     padding: 0;
     position: relative;
     width: 350px;
-    z-index: 0;
+    z-index: 100;
 }
 
 .danpinColorTitle {
@@ -314,7 +314,7 @@ em, strong, th {
     position: absolute;
     top: 25px;
     width: 320px;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .addressWindows span {

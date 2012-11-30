@@ -30,7 +30,7 @@
     <?php include ('center_left.php');?>
     <div class="u-right">
         <div class="u-r-box">
-            <div class="u-r-tit">收货地址管理<span style="float:right;text-align: right;"><a href="<?=config_item('static_url')?>user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span></div>
+            <div class="u-r-tit"><span style="float:right;text-align: right;"><a href="<?=config_item('static_url')?>user/center/addRecentAddress" style="color: #8B8878;font-size: 12px;">添加收货地址&nbsp;&nbsp;</a> </span>收货地址管理</div>
         </div>
             <style> .o-list{font-weight: bold;color: #888888;} table{table-layout: fixed;} td{word-break: break-all; word-wrap:break-word;} </style>
             <div class="o-list">
