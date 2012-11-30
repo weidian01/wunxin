@@ -154,8 +154,9 @@ $(document).ready(function(){
     <div class="extend">
       <div class="kz" id="kza"><img src="<?=config_item('static_url')?>images/arrow_down.gif"><span>更多</span></div>
     </div>
+    <div class="clear" style="height: 10px"></div>
     <?php endif;?>
-       <div class="clear" style="height: 10px"></div>
+
       <div id="listHeader" class="listHeader">
           <div class="tab">
               <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=config_item('static_url')?>category/<?=$category?>/1/default/1">默认</a>
