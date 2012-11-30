@@ -132,19 +132,14 @@
     <div class="prod-t-h"></div>
     <div class="prod-n-more">
         <ul>
-            <li class="cm"><a href="#" target="_blank">查看更多</a></li>
-            <li><a href="#" target="_blank">特卖</a></li>
-            <li><a href="#" target="_blank">新品</a></li>
-            <li><a href="#" target="_blank">热卖</a></li>
-            <li><a href="#" target="_blank">T恤</a></li>
-            <li><a href="#" target="_blank">连衣裙</a></li>
-            <li><a href="#" target="_blank">半裙</a></li>
-            <li><a href="#" target="_blank">衬衫</a></li>
-            <li><a href="#" target="_blank">背心/吊带衫</a></li>
-            <li><a href="#" target="_blank">小西装</a></li>
-            <li><a href="#" target="_blank">裤子</a></li>
-            <li><a href="#" target="_blank">薄针织</a></li>
-            <li style="background:none;"><a href="#" target="_blank">牛仔裤</a></li>
+            <li class="cm"><a href="<?=config_item('static_url')?>filter/1" target="_blank">查看更多</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/5/1/new/1" target="_blank">新品</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/1/1/sale/1" target="_blank">热卖</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/5" target="_blank">T恤</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/5" target="_blank">卫衣</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/5" target="_blank">棉裤</a></li>
+            <li><a href="#" target="_blank">理想年代</a></li>
+            <li style="background:none;"><a href="#" target="_blank">海贼王</a></li>
 
         </ul>
     </div>
@@ -209,20 +204,14 @@
     <div class="prod-t-h h-bg"></div>
     <div class="prod-n-more">
         <ul>
-            <li class="cm"><a href="#" target="_blank">查看更多</a></li>
-            <li><a href="#" target="_blank">特卖</a></li>
-            <li><a href="#" target="_blank">新品</a></li>
-            <li><a href="#" target="_blank">热卖</a></li>
-            <li><a href="#" target="_blank">T恤</a></li>
-            <li><a href="#" target="_blank">连衣裙</a></li>
-            <li><a href="#" target="_blank">半裙</a></li>
-            <li><a href="#" target="_blank">衬衫</a></li>
-            <li><a href="#" target="_blank">背心/吊带衫</a></li>
-            <li><a href="#" target="_blank">小西装</a></li>
-            <li><a href="#" target="_blank">裤子</a></li>
-            <li><a href="#" target="_blank">薄针织</a></li>
-            <li style="background:none;"><a href="#" target="_blank">牛仔裤</a></li>
-
+            <li class="cm"><a href="<?=config_item('static_url')?>filter/2" target="_blank">查看更多</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/2/1/new/1" target="_blank">新品</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/2/1/sale/1" target="_blank">热卖</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/7" target="_blank">T恤</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/8" target="_blank">卫衣</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/13" target="_blank">棉裤</a></li>
+            <li><a href="#" target="_blank">理想年代</a></li>
+            <li style="background:none;"><a href="#" target="_blank">海贼王</a></li>
         </ul>
     </div>
 </div>
@@ -296,19 +285,13 @@
     <div class="prod-t-h h-bg2"></div>
     <div class="prod-n-more">
         <ul>
-            <li class="cm"><a href="#" target="_blank">查看更多</a></li>
-            <li><a href="#" target="_blank">特卖</a></li>
-            <li><a href="#" target="_blank">新品</a></li>
-            <li><a href="#" target="_blank">热卖</a></li>
-            <li><a href="#" target="_blank">T恤</a></li>
-            <li><a href="#" target="_blank">连衣裙</a></li>
-            <li><a href="#" target="_blank">半裙</a></li>
-            <li><a href="#" target="_blank">衬衫</a></li>
-            <li><a href="#" target="_blank">背心/吊带衫</a></li>
-            <li><a href="#" target="_blank">小西装</a></li>
-            <li><a href="#" target="_blank">裤子</a></li>
-            <li><a href="#" target="_blank">薄针织</a></li>
-            <li style="background:none;"><a href="#" target="_blank">牛仔裤</a></li>
+            <li class="cm"><a href="<?=config_item('static_url')?>filter/15" target="_blank">查看更多</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/15/1/new/1" target="_blank">新品</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/15/1/sale/1" target="_blank">热卖</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/16" target="_blank">T恤</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/8" target="_blank">卫衣</a></li>
+            <li><a href="#" target="_blank">理想年代</a></li>
+            <li style="background:none;"><a href="#" target="_blank">海贼王</a></li>
         </ul>
     </div>
 </div>
@@ -341,19 +324,13 @@
     <div class="prod-t-h h-bg3"></div>
     <div class="prod-n-more">
         <ul>
-            <li class="cm"><a href="#" target="_blank">查看更多</a></li>
-            <li><a href="#" target="_blank">特卖</a></li>
-            <li><a href="#" target="_blank">新品</a></li>
-            <li><a href="#" target="_blank">热卖</a></li>
-            <li><a href="#" target="_blank">T恤</a></li>
-            <li><a href="#" target="_blank">连衣裙</a></li>
-            <li><a href="#" target="_blank">半裙</a></li>
-            <li><a href="#" target="_blank">衬衫</a></li>
-            <li><a href="#" target="_blank">背心/吊带衫</a></li>
-            <li><a href="#" target="_blank">小西装</a></li>
-            <li><a href="#" target="_blank">裤子</a></li>
-            <li><a href="#" target="_blank">薄针织</a></li>
-            <li style="background:none;"><a href="#" target="_blank">牛仔裤</a></li>
+            <li class="cm"><a href="<?=config_item('static_url')?>filter/3" target="_blank">查看更多</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/3/1/new/1" target="_blank">新品</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/3/1/sale/1" target="_blank">热卖</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/9" target="_blank">T恤</a></li>
+            <li><a href="<?=config_item('static_url')?>filter/10" target="_blank">卫衣</a></li>
+            <li><a href="#" target="_blank">理想年代</a></li>
+            <li style="background:none;"><a href="#" target="_blank">海贼王</a></li>
 
         </ul>
     </div>
