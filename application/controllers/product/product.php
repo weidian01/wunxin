@@ -241,6 +241,9 @@ class Product extends MY_Controller
         $keyword = $this->input->get('keyword');
         $sort = $this->input->get('sort');
         $by = $this->input->get('by');
+        $class_id = $this->input->get('class');
+        $brand_id = $this->input->get('brand');
+
         $dict = array('price'=>'sell_price', 'sales'=>'sales', 'new'=>'create_time');
         $order = null;
         if(isset($dict[$sort]))
@@ -251,19 +254,19 @@ class Product extends MY_Controller
         //var_dump($by);
         $offset = max((int)$this->input->get('offset'), 0);
         $this->load->model('product/Model_Product', 'product');
-        if ($keyword == false) {
-            $like = null;
-        }
-        else
-        {
-            $keyword = $this->db->escape_like_str($keyword);
-            $like = "pname LIKE '%{$keyword}%'";
-        }
-        $productCount = $this->product->getProductCount($like);
+
+        $where = array();
+        $keyword && $keyword = $this->db->escape_like_str($keyword);
+        $class_id && $where[] = " class_id = {$class_id}";
+        $brand_id && $where[] = " brand_id = {$brand_id}";
+        $keyword && $where[] = " pname LIKE '%{$keyword}%'";
+        $where = implode(' AND ', $where);
+
+        $productCount = $this->product->getProductCount($where);
         $products = array();
         if($productCount)
         {
-            $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", $like, $order);
+            $products = $this->product->getProductList($limit = 32, $offset, "pid, did, pname, market_price, sell_price", $where, $order);
         }
         if($this->input->is_ajax_request() !== true)
         {
