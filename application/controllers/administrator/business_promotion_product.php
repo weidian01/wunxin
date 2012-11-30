@@ -113,7 +113,7 @@ class business_promotion_product extends MY_Controller
             $this->load->library('pagination');
             $num = $this->product->getProductCount();
             $pageSize = 20;
-            $config['base_url'] = site_url('administrator/business_promotion/p_create/'.$id);
+            $config['base_url'] = site_url('administrator/business_promotion_product/p_create/'.$id);
             $config['total_rows'] = $num;
             $config['per_page'] = $pageSize;
             $config['use_page_numbers'] = TRUE;
