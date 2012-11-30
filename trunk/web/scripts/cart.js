@@ -48,7 +48,7 @@ cart.init = function ()
     }
 
     html += '<tr><td width="47%" colspan="2" align="center" class="tit">商品/商品号</td>';
-    html += '<td width="9%" align="center" class="tit">单价</td>';
+    html += '<td width="9%" align="center" class="tit">原价</td>';
     html += '<td width="9%" align="center" class="tit">尺码</td>';
     html += '<td width="13%" align="center" class="tit">数量</td>';
     html += '<td width="10%" align="center" class="tit">赠送积分</td>';
@@ -65,7 +65,7 @@ cart.init = function ()
         html += '<a class="gn" href="'+wx.productURL(data[i].pid)+'" target="_blank" title="'+data[i].pname+'">'+data[i].pname+'</a><br/>';
         html += '<a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+data[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;&nbsp;'
         html += '<a href="javascript:void(0);" onclick="cart.deleteCartItem('+data[i].pid+')">删除</a></td>';
-        html += '<td align="center" style="padding-left: 8px;">￥'+wx.fPrice(data[i].final_price)+'</td>';
+        html += '<td align="center" style="padding-left: 8px;">￥'+wx.fPrice(data[i].sell_price)+'</td>';
         html += '<td align="center" style="padding-left: 8px;">'+data[i].product_size+'</td>';
         html += '<td align="center" style="padding-left: 8px;">';
         html += (data[i].num > cart.product_min_num) ?
@@ -76,8 +76,8 @@ cart.init = function ()
             '<img src="'+wx.base_url+'images/plus_none.gif" width="11" height="11"/>' :
             '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+data[i].pid+', 1)"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
         html += '</td>';
-        html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].final_price * data[i].num) )+'</span></td>';
-        html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].final_price * data[i].num)+'</span></td>';
+        html += '<td align="center" style="padding-left: 8px;"><span class="font2">'+parseInt( wx.fPrice(data[i].final_price) )+'</span></td>';
+        html += '<td align="center" style="padding-left: 8px;"><span class="font6">'+wx.fPrice(data[i].final_price)+'</span></td>';
         html += '</tr>';
         totalProductNum += (data[i].num);
     }
@@ -101,12 +101,12 @@ cart.init = function ()
     html += '<tr><td style="border-bottom:1px solid #a5afc3;">&nbsp;</td><td colspan="6" style="border-bottom:1px solid #a5afc3;">';
     html += '<div class="gsum"> 产品数量总计：<span class="font1">'+parseInt(totalProductNum)+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     html += '赠送积分总计：<span class="font1">'+parseInt(wx.fPrice(totalPrice))+'</span>&nbsp;&nbsp;&nbsp;&nbsp;';
-    //html += '花费积分总计：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
+    html += '打折先金额：<span class="font1">0</span>&nbsp;&nbsp;&nbsp;&nbsp;';
     html += '商品金额总计：<span class="font1">￥'+wx.fPrice(totalPrice)+'</span></div></td></tr>';
 
     html += '<tr><td colspan="7"><div class="empty"><a href="javascript:void(0)" onclick="cart.emptyCart()">清空购物车</a></div>\
-		<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart()">寄存购物车</a></div>\
-        <div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart()">取出购物车</a></div> </div><div class="post-btn">';
+		<div class="storage"> <div class="st-d"><a href="javascript:void(0)" onclick="cart.saveCart(\'save_cart\')" id="save_cart">寄存购物车</a></div>\
+        <div class="st-a"><a href="javascript:void(0)" onclick="cart.removeCart(\'fetch_cart\')" id="fetch_cart">取出购物车</a></div> </div><div class="post-btn">';
     html += '<a href="javascript:void(0);" onclick="wx.goToBack()" class="continue_shopping"></a>&nbsp;&nbsp;';
     //html += '<a href="javascript:void(0);" onclick="wx.goToBack()"><img src="'+wx.base_url+'images/buy_bg_14.gif" alt="继续购物" width="115" height="32"/></a>&nbsp;&nbsp;';
     html += '<a href="javascript:void(0);" onclick="cart.goToOrderConfirm()" class="go_payment"></a></div></td></tr></table>';
@@ -317,11 +317,12 @@ cart.usePromotion = function (promotionId, bindingId)
         case '60021': popMessage = '活动不存在！';break;
     }
 
-    wx.showPop(popMessage, bindingId);
-
     if (data.error == '0') {
         cart.init();
+        return ;
     }
+
+    wx.showPop(popMessage, bindingId);
 }
 
 //删除活动
@@ -336,10 +337,11 @@ cart.deletePromotion = function (promotionId, bindingId)
         case '60022':popMessage = '删除活动参数不全！';break;
     }
 
-    wx.showPop(popMessage, bindingId);
-
     if (data.error == '0') {
         cart.init();
+        return;
     }
+
+    wx.showPop(popMessage, bindingId);
 }
 

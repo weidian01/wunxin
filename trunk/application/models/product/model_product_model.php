@@ -151,7 +151,7 @@ class Model_Product_Model extends MY_Model
         list($key, $field) = self::formatField($field);
         return $this->db
             ->select($field)
-            ->order_by('sort', 'desc')
+            ->order_by('sort desc, search desc, display desc')
             ->get_where('product_model_attr', $where)
             ->result_array($key);
     }

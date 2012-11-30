@@ -531,6 +531,8 @@ $config['promotion_type'] = array(
     PROMOTION_TEMPLATE_DISCOUNT => '产品折扣',
     PROMOTION_TEMPLATE_N_NUM_N_DISCOUNT => '第N件折扣',
     PROMOTION_TEMPLATE_FULL_N_N_DISCOUNT => '满N件N折扣',
+    PROMOTION_TEMPLATE_ORDER_FULL_CUT_DISCOUNT => '订单满N元X折优惠',
+    PROMOTION_TEMPLATE_ORDER_FULL_REBATE_DISCOUNT => '订单满N元减X元优惠',
 );
 
 /* End of file config.php */
