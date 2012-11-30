@@ -96,9 +96,9 @@
             <div class="otherbox">
                 <ul>
                     <li><a href="<?=config_item('static_url')?>category/0/1/new/1" target="_blank">最新到货</a></li>
-                    <li><a href="<?=config_item('static_url')?>activity/activity/discount/2" target="_blank">特价热卖</a></li>
+                    <li><a href="<?=config_item('static_url')?>activity/activity/discount/19" target="_blank">特价热卖</a></li>
                     <li><a href="<?=config_item('static_url')?>comment/hot" target="_blank">热门评论</a></li>
-                    <li class="end"><a href="<?=config_item('static_url')?>activity/activity/qiang/4" target="_blank">限时抢购</a></li>
+                    <li class="end"><a href="<?=config_item('static_url')?>activity/activity/qiang/18" target="_blank">限时抢购</a></li>
                 </ul>
             </div>
         </div>
