@@ -49,8 +49,9 @@ $(document).ready(function(){
       <div class="menu">
         <ul>
             <?php unset($clan[$ancestor]);foreach($clan as $item):?>
-            <li><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=config_item('static_url')?>category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
+            <li style="<?php if($item['floor'] == 0):?>clear: both;font-weight: bold;<?php else:?>float: left;<?php endif;?>"><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=config_item('static_url')?>category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
+            <li>&nbsp;</li>
         </ul>
       </div>
     </div>
