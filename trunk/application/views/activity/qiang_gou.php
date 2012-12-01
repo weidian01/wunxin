@@ -352,8 +352,8 @@
                     </a><br/>
                     <a class="tit" href="<?=productURL($blv['pid']);?>" title="<?=$blv['pname'];?>" target="_blank"><?=$blv['pname'];?></a>
 					<div class="bulkatt clearfix">
-						<a title="<?=$blv['pname'];?>" target="_blank" class="seebtn" href="<?=productURL($blv['pid']);?>">去看看</a>
                         <span><em><?=empty ($blv['sales_num']) ? '0' : $blv['sales_num'];?></em>人已抢购</span>
+						<a title="<?=$blv['pname'];?>" target="_blank" class="seebtn" href="<?=productURL($blv['pid']);?>">去看看</a>
 					</div>
 				</li>
                 <?php endforeach;?>
