@@ -827,5 +827,32 @@ function getSystem()
 	return $os;
 }
 
+//产品尺码排序
+function sizeSort($sizeArr)
+{
+    if (!is_array($sizeArr) || empty ($sizeArr)) {
+        return false;
+    }
+
+    $i = 10;
+    $rArr = array();
+    foreach ($sizeArr as $v) {
+        $tmpSize = strtoupper(trim($v['abbreviation']));
+        switch ($tmpSize) {
+            case 'XS': $rArr[0] = $v; break;
+            case 'S':  $rArr[1] = $v; break;
+            case 'M':  $rArr[2] = $v; break;
+            case 'L':  $rArr[3] = $v; break;
+            case 'XL': $rArr[4] = $v; break;
+            case 'XXL':$rArr[5] = $v; break;
+            case 'XXXL':$rArr[6] = $v; break;
+            default: $rArr[$i] = $v; break;
+        }
+        $i++;
+    }
+
+    return $rArr;
+}
+
 /* End of file Common.php */
 /* Location: ./system/core/Common.php */
