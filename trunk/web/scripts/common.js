@@ -687,7 +687,7 @@ wx.addToCartLayer = function (pId, pName, bindingId)
     }
 
     var html = '<div class="commentDIV"> <div class="tit">商品已成功加入购物车 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="addto-goods">\
-       <div class="p-img-g"><a href="'+wx.productURL(pId)+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(pId)+'default.jpg" width="109" height="109" /></a></div> <div class="p-cont-g">\
+       <div class="p-img-g"><a href="'+wx.productURL(pId)+'" target="_blank"><img src="'+wx.img_url+'product/'+idToPath(pId)+'default.jpg" width="109" height="131" /></a></div> <div class="p-cont-g">\
        <p><a href="'+wx.productURL(pId)+'" target="_blank">'+pName+'</a></p><div class="p-cont-price">购物车共 '+parseInt(totalNum)+' 件宝贝&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合计：<span class="popfont3">'+wx.fPrice(totalPrice)+'</span>元</div>\
        <div class="p-cont-btn"> <a class="goshopping" href="javascript:void(0);" onclick="wx.layerClose()">继续购物</a><a class="gocash" href="'+wx.static_url+'cart/">去结算</a> </div></div></div>\
        <div class="pop-t" style="padding-top:20px;"><span class="pop-b">看过该商品的人还购买过</span><a class="pop-c" href="'+wx.static_url+'">更多您可能喜欢的商品 >></a></div>\
@@ -706,7 +706,7 @@ wx.addToCartLayer = function (pId, pName, bindingId)
         var fHtml = '';
         for (var i in fData) {
             fHtml += '<li><div class="pop-img"><a href="'+wx.productURL(fData[i].pid)+'" target="_blank">' +
-                '<img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="84" alt="aaaa" /></a></div>\
+                '<img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'default.jpg" width="70" height="84" alt="aaaa" /></a></div>\
               <p><a href="'+wx.productURL(fData[i].pid)+'" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'" target="_blank">'+fData[i].pname.substring(0,15)+'</a></p>\
               <span class="popfont2">售价￥'+wx.fPrice(fData[i].sell_price)+'</span></li>';
         }

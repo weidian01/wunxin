@@ -143,7 +143,8 @@
         <div class="ctxt">尺&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</div>
         <div class="sizebox">
             <?php $psize = sizeSort($psize);foreach($psize as $size):?>
-            <a class="sub-cm" href="javascript:;" onclick="select_size(<?=$size['size_id']?>,'<?=$size['abbreviation']?>',this)"><span class="selected2"></span><?=$size['abbreviation']?></a>
+            <a class="sub-cm" href="javascript:;" onclick="select_size(<?=$size['size_id']?>,'<?=strtoupper(trim($size['abbreviation']));?>',this)">
+                <span class="selected2"></span><?=strtoupper(trim($size['abbreviation']));?></a>
             <?php endforeach;?>
         </div>
       </div>
