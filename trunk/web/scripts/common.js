@@ -861,7 +861,7 @@ wx.productQaLayer = function (data)
     var html = '<input type="hidden" name="pid" value="'+data.pid+'" id="pid_id"/><div class="commentDIV"> <div class="tit">我的提问 <div class="close-cm" onclick="wx.layerClose()"></div> </div>\
       <div class="addto-goods" style="padding-bottom:5px;">\
         <div class="p-img-g"><a href="'+wx.productURL(data.pid)+'" target="_blank">' +
-        '<img src="'+wx.static_url+'upload/product/'+idToPath(data.pid)+'icon.jpg" width="109" height="109" title="'+data.pname+'"/></a></div>\
+        '<img src="'+wx.static_url+'upload/product/'+idToPath(data.pid)+'default.jpg" width="109" height="131" title="'+data.pname+'"/></a></div>\
         <div class="p-cont-g2">\
           <a href="'+wx.productURL(data.pid)+'" target="_blank"><strong>'+data.pname+'</strong></a><br />\
           售价：<span class="popfont6">'+wx.fPrice(data.sell_price)+'</span> 元<br />\

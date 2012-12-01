@@ -362,7 +362,7 @@ a:active{color:#333; text-decoration:none;}
 .pop-goods li{ float:left; width:74px; padding-right:12px; line-height:18px;}
 .pop-goods li .pop-img a{ display:block; width:70px; height:84px; border:1px solid #ccc;}
 .pop-goods li .pop-img a:hover{ display:block; width:70px; height:84px; border:1px solid #a10000;}
-.pop-goods li p{ height:50px; overflow:hidden; margin:5px 0px;}
+.pop-goods li p{ height:70px; overflow:hidden; margin:5px 0px;}
 
 .close-cm,.cmt-button,.p-cont-g .p-cont-btn .goshopping,.p-cont-btn .gocash,.p-cont-pf .p-cont-star .p-star-full,.p-cont-pf .p-cont-star .p-star-emp,.pop-btn,.show-goods{ background:url(http://wunxin.com/images/bg-b.gif) no-repeat;}
 .commentDIV{ border:1px solid #a10000; width:470px; padding:1px; color:#666;}
