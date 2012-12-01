@@ -267,7 +267,7 @@
 <div class="box3">
   <div class="side-left">
     <div class="sidebox">
-      <div class="side-tit2">销售排行榜</div>
+      <div class="side-tit2" style="color:#A10000;">销售排行榜</div>
       <div class="side-qh">
         <div class="side-m current" id="sidet1" onmouseover="rankbox('sidet','rank','1')">同类别</div>
         <div class="side-m" id="sidet2" onmouseover="rankbox('sidet','rank','2')">全部类别</div>
@@ -294,7 +294,7 @@
       <div class="side-tit">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td width="68%">热评商品</td>
+            <td width="68%" style="color:#A10000;">热评商品</td>
             <td width="32%"><span class="font15"><a href="#">更多热评</a></span></td>
           </tr>
         </table>
