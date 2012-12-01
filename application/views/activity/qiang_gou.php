@@ -141,7 +141,7 @@
         .bulklist .pic img{ display:block;}
         .bulkatt{ height:30px; line-height:30px;}
         .bulkatt span{ float:left;  font-size:10px;}
-        .bulkatt span em{ padding-right:1px; position:relative; top:3px; color:#cc0000; font-size:18px; font-weight:bold;}
+        .bulkatt span em{ padding-right:1px; position:relative; top:3px; color:#cc0000; font-size:16px; font-weight:bold;}
         .seebtn{ float:right; width:80px; height:30px; background-position:0 -357px; text-indent:-9999em;}
 
         .left_turn,.right_turn,.left_turn_hov,.right_turn_hov,.left_turn_no,.right_turn_no{ width:15px; height:29px; position:absolute; top:148px; text-indent:-9999em; cursor:pointer;}
