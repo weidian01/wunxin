@@ -852,6 +852,7 @@ function sizeSort($sizeArr)
     }
 
     ksort($rArr);
+    
 
     return $rArr;
 }
