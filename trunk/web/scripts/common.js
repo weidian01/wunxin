@@ -601,7 +601,7 @@ wx.favoriteProductLayer = function(status, bindingId){
         var fHtml = '';
         for (var i in fData) {
             fHtml += '<li><div class="pop-img"><a href="'+wx.productURL(fData[i].pid)+'" target="_blank">\
-              <img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'icon.jpg" width="70" height="84" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'"/></a>\
+              <img src="'+wx.static_url+'upload/product/'+idToPath(fData[i].pid)+'default.jpg" width="70" height="84" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'"/></a>\
               </div> <p><a href="'+wx.productURL(fData[i].pid)+'" title="'+fData[i].pname+', ￥'+wx.fPrice(fData[i].sell_price)+'" target="_blank">'+fData[i].pname.substring(0,15)+'</a><br/>\
               <span class="popfont2" style="font-size: 11px;">￥'+wx.fPrice(fData[i].sell_price)+'</span></p></li>';
         }
