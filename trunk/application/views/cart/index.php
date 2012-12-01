@@ -44,6 +44,7 @@
           <img src="<?=config_item('static_url')?>images/loading.gif" alt="加载购物中......"><span>加载购物中......</span>
       </div>
   </div>
+
   <div class="other-shopping">
     <div class="tit">购买以上商品的顾客还购买过</div>
         <div id="pic_list_1" class="scroll_horizontal">
