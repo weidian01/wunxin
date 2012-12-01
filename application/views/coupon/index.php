@@ -107,10 +107,9 @@
         <div log="pos=hot" class="boxs hot"><h3><!--<a class="more" href="/coupon/">更多&gt;&gt;</a>-->热门优惠券</h3>
             <ul>
                 <?php $i = 1;foreach ($recommend as $rv){?>
-                <li class="<?=($i <= 3) ? 'top3' : '';?>">
-
+                <li class="<?=($i <= 4) ? 'top3' : '';?>">
                     <a log="rank=<?=$i?>" href="<?=config_item('static_url')?>coupon/show/<?=$rv['model_id'];?>" target="_blank" title="<?=$rv['card_name'];?>">
-                        <b><?=($i <= 3) ? $i : $i.'. ';?></b>
+                        <b><?=($i <= 4) ? $i : $i.'. ';?></b>
                         <span><?=$rv['card_name'];?></span>
                     </a>
                 </li>

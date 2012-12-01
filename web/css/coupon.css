@@ -348,7 +348,8 @@ ol, ul {
 }
 
 .step ul b {
-    display: inline-block;
+    display: block;
+	float:left;
     height: 29px;
     margin: 5px 12px 0 0;
     vertical-align: top;
@@ -394,7 +395,8 @@ ol, ul {
 
 .hot ul {
     line-height: 30px;
-    margin: 5px 0 10px;
+    margin: 5px 0 10px 0px;
+	padding:0px;
 }
 
 .hot .top3 {
@@ -419,6 +421,8 @@ ol, ul {
     color: #CF0102;
     font: 18px/26px tahoma;
     margin: 4px 9px 4px 13px;
+	_margin: 4px 9px 4px 6px;
+	
 }
 .hot .top3 a span{ display:block; width:186px; height:31px; padding-top:3px; float:left; overflow:hidden;}
 .hot ul a b {

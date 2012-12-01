@@ -18,9 +18,9 @@
     <![endif]-->
     <style type="text/css">
         .poster_grid poster_wall pins{width:200px; margin:5px; /*float:left;*/}
-        .poster_grid{display:inline; /*float:left;*/ margin-left:5px; margin-right:5px; width:188px; word-wrap:break-word}
-        .poster_grid .new_poster{background-color:#FFF; border-radius:4px 4px 4px 4px; box-shadow:0 1px 3px rgba(34,25,25,0.2); margin-top:14px; width:185px}
-        .poster_grid .new_poster .np_pic{padding:6px 6px; position:relative; text-align:center; width:175px}
+        .poster_grid{display:inline; /*float:left;*/ margin-left:5px; margin-right:5px; width:188px; word-wrap:break-word; overflow:hidden;}
+        .poster_grid .new_poster{background-color:#FFF; border-radius:4px 4px 4px 4px; box-shadow:0 1px 3px rgba(34,25,25,0.2); margin-top:14px; width:185px;overflow:hidden;}
+        .poster_grid .new_poster .np_pic{padding:6px 5px; position:relative; text-align:center; width:175px}
         .poster_grid .new_poster .pic_load{background:url("<?=config_item('static_url')?>images/g_loading1.gif") no-repeat scroll center center transparent; display:block}
         .like_merge{height:28px; left:6px; overflow:hidden; position:absolute; top:6px; width:200px}
         .like_merge .poster_del{background:url("<?=config_item('static_url')?>images/like_merge1.png") repeat-x scroll 0 0 transparent; border:1px solid #FCBCD2; border-radius:4px 4px 4px 4px; color:#F69; cursor:pointer; font-weight:bold; height:26px; line-height:26px; margin-right:7px; overflow:hidden; padding:0 5px; text-align:center}
@@ -30,7 +30,7 @@
         em{font-style:normal}
         .like_merge .line_num{border-left:1px solid #FCBCD2;display:inline-block;padding-left:5px}
         .poster_grid .new_poster .comm_box{padding:0 13px 8px}
-        .poster_grid .new_poster .comm_box .posterContent{line-height:18px;margin-top:8px}
+        .poster_grid .new_poster .comm_box .posterContent{line-height:18px;margin-top:8px; height:36px; overflow:hidden;}
         .poster_grid .new_poster .comm_box .comm_num{margin-top:8px;position:relative;width:175px}
         .l20_f{line-height:20px}
         .poster_grid .new_poster .comm_box .comm_num .pl{color:#F69;float:right;margin-right: 7px;}
