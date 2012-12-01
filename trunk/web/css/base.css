@@ -207,9 +207,10 @@ a.productimg:hover{border:1px solid #D00}
 .left-brand ul li{float:left; display:blockl; width:91px; height:91px; overflow:hidden}
 .left-brand ul li img{border-bottom:1px solid #ddd; border-right:1px solid #ddd}
 .rgt-p{float:left; padding:0px 0px 0px 8px; width:603px}
-.rgt-p .brand-pro{float:left; width:170px; padding-left:16px; padding-top:20px}
+.rgt-p .brand-pro{float:left; width:170px; padding-left:16px; padding-top:20px; overflow:hidden;}
 .rgt-p .brand-pro .brand-proimg a{display:block; border:1px solid #ddd; background:url(http://wunxin.com/images/bg3.gif) repeat-x; padding:4px}
 .rgt-p .brand-pro .brand-proimg a:hover{border:1px solid #d00}
+.rgt-p .brand-pro .brand-proimg a img{ display:block;}
 .rgt-p .brand-pro p{height:20px; padding-top:8px; line-height:20px; width:190px; overflow:hidden}
 .brand-ad{float:right; width:200px; background-color:#f7f7f7; height:288px; border-left:1px solid #e0e0e0}
 .help-center{padding:55px 0 0 0; margin:0px auto; background:url(http://wunxin.com/images/footbg.gif) repeat-x}
