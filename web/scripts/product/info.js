@@ -535,6 +535,12 @@
 
         var promotionHtml = '';
         var info = data['promotion'];
+
+        if (!wx.isEmpty(info)) {
+            $('#promotion_area').html('');
+            return;
+        }
+
         for (var i in info) {
             promotionHtml += '<span class="blank10"></span><p style="border-bottom: 1px double #C0C0C0;"><span>\
                 <a style="color:#CC0000;margin-left:0px;" href="javascript:void(0);" type="cash">'+info[i]['name']+'</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+info[i]['end_time']+'</p>';
