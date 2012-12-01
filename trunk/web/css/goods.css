@@ -314,7 +314,7 @@ em, strong, th {
     position: absolute;
     top: 25px;
     width: 320px;
-    z-index: 1000;
+    z-index:4;
 }
 
 .addressWindows span {
