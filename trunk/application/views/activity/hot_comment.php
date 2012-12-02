@@ -63,7 +63,7 @@
          .avatar32_f{ float:left;  height:32px;  width:32px}
         .avatar32_f img{ float:left;  height:32px;  width:32px}
          fieldset, img{ border:0 none}
-        .ml40_f{ margin-left:40px}
+        .ml40_f{ margin-left:40px;height: 45px;}
          .gray_f{ color:#999;  text-decoration:none}
          .c_f{ text-align:center}
     </style>
