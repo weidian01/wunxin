@@ -1,6 +1,6 @@
 <?php
 
-define("PROGRESS_DIRECTORY", "G:\\progress");
+define("PROGRESS_DIRECTORY", "/tmp/progress");
 
 define('DS', DIRECTORY_SEPARATOR);
 
@@ -9,6 +9,11 @@ define("PROGRESS_MAX_NUM", 10);//个
 define("LISTEN_DISTANCE", 1);//秒
 
 define("PROGRESS_TOTAL_NUM", 11);//个
+
+if (! is_dir(PROGRESS_DIRECTORY))
+{
+    mkdir(PROGRESS_DIRECTORY, 0777);
+}
 
 set_time_limit(0);
 
