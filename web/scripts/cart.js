@@ -149,7 +149,6 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, save)
         case '3' : typeName = 'jian'; typeImageName = 'cashicon.gif'; break;
     }
 
-    /*
     var html = '<li class="slideDiv">\
                   <div class="promo-tit"><span class="act-'+typeName+'"></span><span class="promo-txt"><a href="javascript:void(0);">'+aTitle+'</a></span></div>\
                   <div class="promo-img"><img src="'+wx.base_url+'images/'+typeImageName+'" width="56" height="56" /></div>\
@@ -159,17 +158,6 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, save)
                         <span></span>立即参加</a><span class="promo-save">立省￥'+wx.fPrice(save)+'</span></div>\
                   </div>\
                 </li>';
-    */
-
-    var html = '<li class="slideDiv"><p class="promo-tit"><span class="act-zhe"></span><span class="promo-txt"><a href="javascript:void(0);" title="'+aTitle+'">'+aTitle+'</a></span></p>\
-                  <span class="promo-img"><img src="'+wx.base_url+'images/'+typeImageName+'" width="56 height="56" /></span>\
-                  <p class="promo-cont">\
-                    <a class="promo-info" href="javascript:void(0);" target="_blank" title="'+aDesc+'">'+aDesc+'</a>\
-                    <span class="promo-btn">\
-                      <a class="promo-join" href="javascript:void(0);" onclick="cart.usePromotion('+aId+', \'join_promotion_'+aId+'\');" id="join_promotion_'+aId+'"><span></span>立即参加</a>\
-                      <span class="promo-save">立省￥'+wx.fPrice(save)+'</span>\
-                    </span>\
-                  </p></li>';
 
     return html;
 }
