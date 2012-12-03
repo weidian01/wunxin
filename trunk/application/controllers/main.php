@@ -106,7 +106,7 @@ class main extends MY_Controller
 
 
         $data = array(
-            'title' => '万象网首页',
+            'title' => '万象网 - 象你象我 却不是你我; 形似 神似 却也不似 我是万象',
             'broadcast_recommend' => $broadcast_recommend,
             'day_recommend' => $day_recommend,
             'product_recommend_data' => $product_recommend_data,

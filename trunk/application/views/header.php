@@ -58,7 +58,7 @@
         </div>
         -->
 
-        <div class="logo-img"><img src="/images/logo_03.jpg" width="267" height="66" /></div>
+        <div class="logo-img"><a href="<?=config_item('base_url')?>" title="万象网"><img src="/images/logo_03.jpg" width="267" height="66" /></a></div>
         <div class="search">
           <div class="s-input">
             <div class="sch">
