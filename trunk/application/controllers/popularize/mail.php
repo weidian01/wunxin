@@ -9,7 +9,9 @@
 
 function shutdown($pid_file)
 {
-    unlink($pid_file);
+	if (is_file($pid_file)) {
+		unlink($pid_file);
+	}
 }
 
 register_shutdown_function('shutdown', $argv[4]);
