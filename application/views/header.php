@@ -1,15 +1,3 @@
-<script type="text/javascript">
-$(document).ready(function(){
-  $("#keyword").focus(function(){
-    $(this).css("background","none");
-  });
-  $("#keyword").blur(function(){
-	if(this.value==""){
-    $(this).css("background","url(/images/fdj_11.gif) no-repeat 4px 3px");}
-	else{ $(this).css("background","none");}
-  });
-})
-</script>
 <div class="hd">
     <div class="hd-cont">
         <div class="hd-wel">您好&nbsp;&nbsp;<span id="user_name_id">欢迎光临万象网</span>！&nbsp;&nbsp;<span id="loginout_id"></span></div>
@@ -83,16 +71,33 @@ $(document).ready(function(){
           </div>
           <div class="hot-keyword">
             <ul>
-              <li>七分裤</li>
-              <li>雪纺裙</li>
-              <li>亲子装</li>
-              <li>哈伦裤</li>
-              <li>吊带长裙</li>
-              <li class="morehot"><a href="#">更多</a></li>
+                <?php if (empty($this->search_keyword) || !is_array($this->search_keyword)) $this->search_keyword = array();
+                foreach ($this->search_keyword as $sk):?>
+                <li><a href="<?=config_item('static_url')?>search?keyword=<?=$sk['title'];?>" target="_blank"><?=$sk['title'];?></a></li>
+                <?php endforeach;?>
+              <!--<li class="morehot"><a href="#">更多</a></li>-->
             </ul>
           </div>
         </div>
-
+        <script type="text/javascript">
+            //$(document).ready(function () {
+                var keyWord = $("#keyword").val();
+                if (keyWord != '') {
+                    $("#keyword").css("background", "none");
+                }
+                $("#keyword").focus(function () {
+                    $(this).css("background", "none");
+                });
+                $("#keyword").blur(function () {
+                    if (this.value == "") {
+                        $(this).css("background", "url(/images/fdj_11.gif) no-repeat 4px 3px");
+                    }
+                    else {
+                        $(this).css("background", "none");
+                    }
+                });
+            //})
+        </script>
         <div class="cedt">
           <table width="92%" border="0" cellspacing="0" cellpadding="0">
             <tr>
