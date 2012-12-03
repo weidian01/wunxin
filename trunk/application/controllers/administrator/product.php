@@ -464,7 +464,7 @@ class product extends MY_Controller
                     $fileNameALL = ($fileName . '.jpg');
 
                     copyImg($source_file, 350, 420, str_replace($fileNameALL, $fileName.'_M.jpg', $target_path . $fileNameALL), 100, 1.2);
-                    copyImg($source_file, 60, 60, str_replace($fileNameALL, $fileName.'_S.jpg', $target_path . $fileNameALL), 100, 1.2);
+                    copyImg($source_file, 60, 60, str_replace($fileNameALL, $fileName.'_S.jpg', $target_path . $fileNameALL), 100, 0);
 
                     $product_photo[] = $fileNameALL;
                 }
@@ -483,7 +483,7 @@ class product extends MY_Controller
             $img_path = UPLOAD . 'product' . DS . intToPath($default_photo['pid']) .$default_photo['img_addr'];
 
             copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
-            copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
+            copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 0);
         }
         //*生成默认图片
         redirect('administrator/product/index/'.$currentPage);

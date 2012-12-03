@@ -381,7 +381,7 @@ class Model_Promotion extends MY_Model
             {
                 $p['promotion_name'] = '';
                 $p['promotion_id'] = 0;
-                $p['final_price'] = $p['sell_price'];
+                $p['final_price'] = $p['sell_price'] * $p['num'];
                 $r['products'][$p['pid']] = $p;
             }
             $r['total_price'] += $p['final_price'];
