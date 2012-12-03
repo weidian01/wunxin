@@ -17,18 +17,64 @@ register_shutdown_function('shutdown', $argv[4]);
 class mail extends MY_Controller
 {
     private $conf = array(
+		'hotmail' => array(
+            'host' => 'smtp.live.com',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+		'yahoo' => array(
+            'host' => 'smtp.mail.yahoo.com',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+		'tom' => array(
+            'host' => 'smtp.tom.com',
+            'port' => 25,
+            'charset' => 'gb2312',
+        ),
         'qq' => array(
-            'host' => 'smtp.163vip.net',
+            'host' => 'smtp.qq.com',
             'port' => 25,
             'charset' => 'UTF-8',
         ),
         '126' => array(
-            'host' => 'smtp.163vip.net',
+            'host' => 'smtp.126.com',
             'port' => 25,
             'charset' => 'UTF-8',
         ),
         '163' => array(
-            'host' => 'smtp.163vip.net',
+            'host' => 'smtp.163.com',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+
+		'yeah' => array(
+            'host' => 'smtp.yeah.net',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+		'sina' => array(
+            'host' => 'smtp.sina.com',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+		'gmail' => array(
+            'host' => 'smtp.gmail.com',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+		'sohu' => array(
+            'host' => 'smtp.sohu.com',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+		'21cn' => array(
+            'host' => 'smtp.21cn.net',
+            'port' => 25,
+            'charset' => 'UTF-8',
+        ),
+		'hexun' => array(
+            'host' => 'smtp.hexun.com',
             'port' => 25,
             'charset' => 'UTF-8',
         ),
