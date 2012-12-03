@@ -161,7 +161,7 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, save)
                 </li>';
     */
 
-    var html = '<p class="promo-tit"><span class="act-zhe"></span><span class="promo-txt"><a href="javascript:void(0);" title="'+aTitle+'">'+aTitle+'</a></span></p>\
+    var html = '<li class="slideDiv"><p class="promo-tit"><span class="act-zhe"></span><span class="promo-txt"><a href="javascript:void(0);" title="'+aTitle+'">'+aTitle+'</a></span></p>\
                   <span class="promo-img"><img src="'+wx.base_url+'images/'+typeImageName+'" width="56 height="56" /></span>\
                   <p class="promo-cont">\
                     <a class="promo-info" href="javascript:void(0);" target="_blank" title="'+aDesc+'">'+aDesc+'</a>\
@@ -169,7 +169,7 @@ cart.getActivityTemplate = function(type, aId, aTitle, aDesc, save)
                       <a class="promo-join" href="javascript:void(0);" onclick="cart.usePromotion('+aId+', \'join_promotion_'+aId+'\');" id="join_promotion_'+aId+'"><span></span>立即参加</a>\
                       <span class="promo-save">立省￥'+wx.fPrice(save)+'</span>\
                     </span>\
-                  </p>';
+                  </p></li>';
 
     return html;
 }
