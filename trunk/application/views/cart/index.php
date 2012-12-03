@@ -119,7 +119,7 @@
 
         jQuery('#has_bought_list').jcarousel({auto:5, scroll:1});
         jQuery('#have_see_list').jcarousel({auto:4, scroll:1});
-        jQuery('#list_ul').jcarousel();
+        //jQuery('#list_ul').jcarousel();
 
     });
 </script>
