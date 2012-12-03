@@ -12,7 +12,7 @@
 .menu{padding:5px 0px 10px 0px}
 .menu ul li{line-height:30px; padding-left:15px}
 .side-qh{height:20px; padding-top:10px; padding-left:10px; border-bottom:1px solid #ca0000}
-.side-m{float:left; display:inline; margin-right:3px; padding:0px 8px; height:20px; line-height:20px; border-right:1px solid #e5e5e5; border-left:1px solid #e5e5e5; border-top:1px solid #e5e5e5}
+.side-m{float:left; display:inline; margin-right:3px; padding:0px 8px; height:20px; line-height:20px; border-right:1px solid #e5e5e5; border-left:1px solid #e5e5e5; border-top:1px solid #e5e5e5; white-space:nowrap;}
 .current{border-right:1px solid #ca0000; border-left:1px solid #ca0000; border-top:1px solid #ca0000}
 .rankbox{padding:15px 0px}
 .bdan{padding:0px 0px 0px 10px; width:182px; overflow:hidden}
