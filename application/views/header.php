@@ -1,3 +1,15 @@
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#keyword").focus(function(){
+    $(this).css("background","none");
+  });
+  $("#keyword").blur(function(){
+	if(this.value==""){
+    $(this).css("background","url(/images/fdj_11.gif) no-repeat 4px 3px");}
+	else{ $(this).css("background","none");}
+  });
+})
+</script>
 <div class="hd">
     <div class="hd-cont">
         <div class="hd-wel">您好&nbsp;&nbsp;<span id="user_name_id">欢迎光临万象网</span>！&nbsp;&nbsp;<span id="loginout_id"></span></div>
@@ -28,6 +40,7 @@
 
 <div class="box">
     <div class="banner" style="overflow:auto; zoom:1">
+        <!--
         <div class="logo-img"><a href="<?=config_item('static_url')?>"><img src="<?=config_item('static_url')?>images/logo.jpg" width="334" height="56" alt="万象网"/></a></div>
         <div class="search">
             <div class="s-input">
@@ -37,7 +50,6 @@
                     </form>
                 </div>
                 <div class="sbtn"><a href="javascript:;" onclick="document.forms['search'].submit()">
-                    <!--<img src="<?=config_item('static_url')?>images/wx_09.jpg" width="37" height="28"/>-->
                 </a></div>
             </div>
             <div class="hot-keyword">
@@ -47,32 +59,48 @@
                     foreach ($this->search_keyword as $sk):?>
                     <li><a href="<?=config_item('static_url')?>search?keyword=<?=$sk['title'];?>" target="_blank"><?=$sk['title'];?></a></li>
                     <?php endforeach;?>
-                    <!--
+
                     <li><a href="#" target="_blank">雪纺裙</a></li>
                     <li><a href="#" target="_blank">亲子装</a></li>
                     <li><a href="#" target="_blank">哈伦裤</a></li>
                     <li><a href="#" target="_blank">吊带长裙</a></li>
-                    -->
+
                 </ul>
             </div>
         </div>
+        -->
+
+        <div class="logo-img"><img src="/images/logo_03.jpg" width="267" height="66" /></div>
+        <div class="search">
+          <div class="s-input">
+            <div class="sch">
+                <form name="search" method="get" action="<?=config_item('base_url')?>search">
+              <input id="keyword" name="keyword" type="text" value="<?=isset($keyword) ? $keyword:'';?>"/>
+                </form>
+            </div>
+            <div class="sch-bg"></div>
+            <div class="sbtn"><a href="javascript:void(0);" onclick="document.forms['search'].submit()">搜&nbsp;&nbsp;索</a></div>
+          </div>
+          <div class="hot-keyword">
+            <ul>
+              <li>七分裤</li>
+              <li>雪纺裙</li>
+              <li>亲子装</li>
+              <li>哈伦裤</li>
+              <li>吊带长裙</li>
+              <li class="morehot"><a href="#">更多</a></li>
+            </ul>
+          </div>
+        </div>
+
         <div class="cedt">
-            <table width="92%" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td width="29%">
-                        <!--<img src="<?=config_item('static_url')?>images/wx_12.jpg" width="51" height="45" alt="正品保证"/>-->
-                        <b class="genuine"></b>
-                    </td>
-                    <td width="35%">
-                        <b class="audience_free_shipping"></b>
-                        <!--<img src="<?=config_item('static_url')?>images/wx_14.jpg" width="62" height="45" alt="全场免运费"/>-->
-                    </td>
-                    <td width="36%">
-                        <b class="no_reason_to_return"></b>
-                        <!--<img src="<?=config_item('static_url')?>images/wx_17.jpg" width="74" height="44" alt="无理由退换货"/>-->
-                    </td>
-                </tr>
-            </table>
+          <table width="92%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="29%"><img src="<?=config_item('static_url')?>images/wx_12.jpg" width="51" height="45" alt="正品保证" /></td>
+              <td width="35%"><img src="<?=config_item('static_url')?>images/wx_14.jpg" width="62" height="45" alt="全场免运费" /></td>
+              <td width="36%"><img src="<?=config_item('static_url')?>images/wx_17.jpg" width="74" height="44" alt="无理由退换货" /></td>
+            </tr>
+          </table>
         </div>
     </div>
 </div>

@@ -16,8 +16,8 @@ h1.shoppingitem{ padding:8px 6px; font-size:26px; font-family:"微软雅黑"; co
 input.gnum{ border:1px solid #ccc; height:16px; line-height:16px; width:30px; text-align:center;}
 .gsum{ padding:6px 15px; text-align:right;}
 .empty{ float:left; height:30px; padding-top:4px; width:90px;}
-.empty a{ display:block; height:30px; line-height:30px; padding-left:25px; background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -135px 0px; _background-position:-135px 0px;}
-.empty a:hover{background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -135px -23px; _background-position:-135px -23px;}
+.empty a{ display:block; height:30px; line-height:30px; padding-left:25px; background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -50px 7px; _background-position:-50px 9px;}
+.empty a:hover{background:url(http://wunxin.com/images/shoppingbg.png) no-repeat -50px -25px; _background-position:-50px -23px;}
 .storage{ float:left; padding-left:20px; padding-top:7px; width:200px; overflow:hidden;}
 .st-d{ float:left; width:66px; background:url(http://wunxin.com/images/btn-bg.gif) no-repeat; height:21px; padding-right:6px;}
 .st-a{ float:left; width:66px; background:url(http://wunxin.com/images/btn-bg.gif) no-repeat; height:21px; padding-right:6px;}
@@ -106,8 +106,8 @@ input.gnum{ border:1px solid #ccc; height:16px; line-height:16px; width:30px; te
 
 .promo-btn .promo-join,.promo-btn .promo-join span{ background:url(http://wunxin.com/images/bg_buycarsprite2.gif) no-repeat;}
 .promo-tit .act-zhe,.promo-tit .act-zeng,.promo-tit .act-jian,.cuxiao-l .scol-l,.cuxiao-r .scol-r{ background: url(http://wunxin.com/images/bg_sprite.gif) no-repeat;}
-.slidebox{ float:left; width:970px; height:120px; overflow:hidden;}
-.slideContainer{ height:120px; width:928px;}
+.slidebox{ float:left; width:928px; height:115px; overflow:hidden;}
+.slideContainer{ height:115px; width:928px;}
 .slideDiv{float:left; width:217px; height:105px; border:4px solid #eee; margin:0 7px 0 0;}
 .promo-tit{ height:30px; line-height:30px; width:215px;}
 .promo-tit .act-zhe{ float:left; display:block; height:30px; width:30px; background-position:-560px 0px; }
@@ -115,17 +115,17 @@ input.gnum{ border:1px solid #ccc; height:16px; line-height:16px; width:30px; te
 .promo-tit .act-jian{ float:left; display:block; height:30px; width:30px; background-position:-620px 0px; }
 .promo-txt{ float:left; display:block; width:184px; height:28px; overflow:hidden;}
 .slideDiv .promo-tit .promo-txt a{color:#D90000; font-weight:bold;}
-.promo-img{ float:left; width:62px; height:62px; padding-left:5px; overflow:hidden;}
+.promo-img{ float:left; display:block; width:62px; height:62px; padding-left:5px; overflow:hidden;}
 .promo-img img{border:1px solid #eee;}
 .promo-cont{ float:left; width:142px; padding-left:4px;}
-.promo-cont p{width:136px; height:36px; line-height:18px; overflow:hidden; display:block;}
-.promo-btn{ height:22px; width:142px; padding-top:14px;}
+.promo-cont .promo-info{ display:block;width:136px; height:36px; line-height:18px; overflow:hidden; display:block;}
+.promo-btn{ display:block; height:22px; width:142px; padding-top:14px; overflow:hidden}
 .promo-save{ display:block; float:left; width:75px; height:22px; padding-left:4px; line-height:22px; white-space:nowrap;font-weight:bold; color:#D90000; overflow:hidden;}
 .promo-cont .promo-btn .promo-join{ float:left; display:block; width:62px; height:22px; line-height:22px; background-position: -73px -370px; color:#fff; font-weight:bold; text-decoration:none;}
 .promo-btn .promo-join span{ float: left; display:block; width:3px; height:22px; background-position:-58px -370px;}
 .cuxiao .cuxiaotit{ width:958px; height:25px; line-height:25px; border-bottom:1px dashed #ddd; padding:0px 10px; font-weight:bold;}
 .cuxiao .cuxiaotit .hidden-cx{ float:right; display:block; font-weight:normal; color:#2F58A4; cursor:pointer; }
-.cuxiaoBox{  width:966px; height:125px; padding:10px 6px;}
+.cuxiaoBox{  width:966px; height:115px; padding:10px 6px;}
 .cuxiao-l{ float:left; width:24px; height:75px; padding-top:40px;}
 .cuxiao-r{ float:left; width:14px; height:75px; padding-top:40px;}
 .cuxiao-l .scol-l{ display:block; width:14px; height:26px; background-position:-291px -40px; cursor:pointer;}
