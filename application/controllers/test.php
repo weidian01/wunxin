@@ -41,4 +41,35 @@ class test extends MY_Controller
 
         //print_r($this->promotion->result());
     }
+
+    /**
+     * 导入QQ邮件账号
+     *
+     * @return mixed
+     */
+    public function importQQNumber()
+    {
+        $file = APPPATH.'logs/qq_number.txt';
+        if (!file_exists($file)) {
+            return;
+        }
+
+        $handle = @fopen($file, "r");
+        if ($handle) {
+            while (!feof($handle)) {
+                $buffer = fgets($handle, 4096);
+                $buffer = (int)trim($buffer);
+
+                $buffer = $buffer.'@qq.com';
+                $sql = "INSERT IGNORE INTO wx_z_mail_to(mail, ver, up_time, type) values('{$buffer}',0, ".TIMESTAMP.", 'qq')";
+                $this->db->query($sql);
+                $lastId = $this->db->insert_id();
+                if (!$lastId) {
+                    echo $buffer.'<br/>';
+                }
+            }
+            fclose($handle);
+        }
+        //echo APPPATH;
+    }
 }
