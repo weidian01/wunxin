@@ -165,7 +165,7 @@ a:active{color:#333; text-decoration:none}
 .help-center-acount p{visibility:hidden}
 .help-center dl a{color:#999}
 .help-center dl a:hover{color:#C00}
-.help-center dt{height:18px; line-height:99em; overflow:hidden; margin-bottom:14px; background:url(http://www.wunxin.com/images/help.png) no-repeat}
+.help-center dt{height:18px; line-height:99em; overflow:hidden; margin-bottom:14px; background:url(http://www.wunxin.com/images/help.gif) no-repeat}
 .help-center dd{line-height:1.9}
 .help-center-about dt{background-position:0px 0px}
 .help-center-novice dt{background-position:0px -19px}
@@ -176,21 +176,21 @@ a:active{color:#333; text-decoration:none}
 .guarantee-cont{background:url(http://www.wunxin.com/images/gut.jpg) no-repeat center; width:900px; height:55px; overflow:hidden; margin:0 auto}
 .guarantee-cont ul{visibility:hidden}
 .pubcertify{margin-left:auto; margin-right:auto; width:500px; text-align:center; height:45px}
-.pubcertify a{float:left; display:block; height:45px; text-indent:-99em; margin-right:10px; overflow:hidden; zoom:1; background:url(http://www.wunxin.com/images/help.png) no-repeat}
+.pubcertify a{float:left; display:block; height:45px; text-indent:-99em; margin-right:10px; overflow:hidden; zoom:1; background:url(http://www.wunxin.com/images/help.gif) no-repeat}
 .pubcertify a.pubcertify:after{content:""; clear:both; height:0; visibility:hidden; display:block}
-.pubcertify a.pubcertify-mast{width:64px; width:58px; background:url(http://www.wunxin.com/images/help.png) no-repeat 0px -100px}
+.pubcertify a.pubcertify-mast{width:64px; width:58px; background:url(http://www.wunxin.com/images/help.gif) no-repeat 0px -100px}
 .pubcertify a.pubcertify-visa{width:58px; background-position:0px -148px}
 .pubcertify a.pubcertify-visashop{width:83px; background-position:0px -190px}
 .pubcertify a.pubcertify-safe{width:46px; background-position:0px -234px}
 .pubcertify a.pubcertify-gscer{width:40px; background-position:right -236px}
 .pubcertify a.pubcertify-credit{background-position:0px -282px; width:114px; height:41px !important}
 .copyright{padding:20px 0 40px 0; text-align:center}
-#bottom-cart{margin:0px auto; width:900px; border:2px solid #9D1111; height:36px; background:url(http://www.wunxin.com/images/help.png) no-repeat 10px -322px}
+#bottom-cart{margin:0px auto; width:900px; border:2px solid #9D1111; height:36px; background:url(http://www.wunxin.com/images/help.gif) no-repeat 10px -322px}
 .cart-info{width:690px; padding:8px 0px; height:20px; padding-left:200px}
 .cart-info .forpay{float:left; padding-right:40px; width:100px}
 .cart-info .forpay .forpay-b{border:1px solid #d0d0d0; padding:2px 8px; height:16px}
 .cart-info .forpay .forpay-b span{float:left; display:block; line-height:16px; padding:0px 10px 0px 0px; float:left; border-right:1px solid #ddd}
 .cart-info .forpay .forpay-b a{display:block; line-height:16px; float:right; padding:0px 8px 0px 0px; color:#9A0505; font-weight:bold}
 .cart-info .coll2{padding-left:50px; width:120px}
-.return-top{float:right; padding:5px 0px; width:15px; background:url(http://www.wunxin.com/images/help.png) no-repeat 0px -360px}
+.return-top{float:right; padding:5px 0px; width:15px; background:url(http://www.wunxin.com/images/help.gif) no-repeat 0px -360px}
 .return-top a{ display:block;  width:15px;  height:15px}

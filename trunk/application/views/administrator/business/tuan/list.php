@@ -91,7 +91,7 @@
                         <td><?=$v['descr'];?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanView/<?=$v['tuan_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"></a>
+                            <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanView/<?=$v['tuan_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.gif" alt="查看订单"></a>
                             <a href="<?=config_item('static_url')?>administrator/business_tuan/tuanEdit/<?=$v['tuan_id'];?>" title="编辑团购"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="编辑团购"/></a>
                         </td>
                     </tr>

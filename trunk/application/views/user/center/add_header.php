@@ -15,19 +15,19 @@
     <![endif]-->
     <style type="text/css">
         /*设置头像*/
-        .sztx{width:800px;height:auto;background:url(<?=config_item('static_url')?>images/k_r_m.png) repeat-y;margin-bottom:10px;float:left;}
-        .sztx .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(<?=config_item('static_url')?>images/k_r_tg2.png) no-repeat top;float:left;}
-        .sztx .title h2{width:175px;height:15px;background:url(<?=config_item('static_url')?>images/z_sztx.png) no-repeat; text-indent:-999em;float:left;}
-        .sztx .main{width:798px;min-height:400px;_height:400px;padding:0px 1px 61px 1px;background:url(<?=config_item('static_url')?>images/k_r_b.png) no-repeat bottom;float:left;}
+        .sztx{width:800px;height:auto;background:url(<?=config_item('static_url')?>images/k_r_m.gif) repeat-y;margin-bottom:10px;float:left;}
+        .sztx .title{width:780px;height:28px;padding:12px 10px 0px 10px;background:url(<?=config_item('static_url')?>images/k_r_tg2.gif) no-repeat top;float:left;}
+        .sztx .title h2{width:175px;height:15px;background:url(<?=config_item('static_url')?>images/z_sztx.gif) no-repeat; text-indent:-999em;float:left;}
+        .sztx .main{width:798px;min-height:400px;_height:400px;padding:0px 1px 61px 1px;background:url(<?=config_item('static_url')?>images/k_r_b.gif) no-repeat bottom;float:left;}
         .sztx .main .uploadbox{width:778px;background:#efefef;padding:10px;float:left;}
         .sztx .main .uploadbox dt{width:70px;font-weight:bold;float:left;}
         .sztx .main .uploadbox dd{width:708px;float:left;}
         .sztx .main .uploadbox dd p{padding:0px 0px 15px 8px;line-height:20px;}
         .sztx .main .photobox{width:650px;padding:20px 60px;float:left;}
-        .sztx .main .photobox .photo{width:300px;height:300px;text-align:left;border:1px #000 solid;background:url(<?=config_item('static_url')?>images/photobox_bg.png);float:left;}
+        .sztx .main .photobox .photo{width:300px;height:300px;text-align:left;border:1px #000 solid;background:url(<?=config_item('static_url')?>images/photobox_bg.gif);float:left;}
         .sztx .main .submit{clear:both;padding-left:80px;}
         .sztx .main .submit p{padding:10px;}
-        .btn_b3 { background: url("<?=config_item('static_url')?>images/btn_b3.png") no-repeat scroll 0 0 transparent;
+        .btn_b3 { background: url("<?=config_item('static_url')?>images/btn_b3.gif") no-repeat scroll 0 0 transparent;
             border: 0 none; color: #FFFFFF; cursor: pointer; display: inline-block; font-size: 14px; font-weight: bold; height: 35px; line-height: 35px; text-align: center; width: 122px;
         }
 
@@ -128,7 +128,7 @@
                                             onerror="javascript:this.src='<?=config_item('static_url')?>images/avatar/avatar1.jpg'"/>
                                         <span class="blank10w"></span>
                                         <a id="OK" onclick="SaveHead();" name="my_avatar_change_save" style="width: 90px;float: left;">
-                                            <img border="0" src="<?=config_item('static_url')?>images/save_avatar.png" style="">
+                                            <img border="0" src="<?=config_item('static_url')?>images/save_avatar.gif" style="">
 
                                         </a>
                                         <span style="display: none;color: #A1A1A1;font-weight: bold;font-size: 11px;float: left;" id="setting_header_wait">

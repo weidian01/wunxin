@@ -127,17 +127,17 @@
                     <td width="10%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td width="15%" align="center">
                         <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>" class="views">
-                            <img src="<?=config_item('static_url')?>images/view.png" title="查看订单详情">
+                            <img src="<?=config_item('static_url')?>images/view.gif" title="查看订单详情">
                         </a>
                         <?php if ($v['is_pay'] != ORDER_PAY_SUCC && $v['status'] != ORDER_INVALID) {?>
                         <a href="<?=config_item('static_url')?>order/order/success/<?=$v['order_sn'];?>" class="views">
-                            <img src="<?=config_item('static_url')?>images/payment.png" title="订单支付">
+                            <img src="<?=config_item('static_url')?>images/payment.gif" title="订单支付">
                         </a>
                         <?php }?>
 
                         <?php if ($v['picking_status'] == '2') {?>
                         <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
-                            <img src="<?=config_item('static_url')?>images/comment.png" title="评价订单中的产品">
+                            <img src="<?=config_item('static_url')?>images/comment.gif" title="评价订单中的产品">
                         </a>
                         <a href="<?=config_item('static_url')?>user/center/orderDetail/<?=$v['order_sn'];?>">
                             <img src="<?=config_item('static_url')?>images/share.jpg" title="晒出订单中的产品">

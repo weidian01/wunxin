@@ -95,7 +95,7 @@
                         <td height="40" align="right">&nbsp;</td>
                         <td valign="bottom">
                             <a href="javascript:void(0);" onclick="user.submitRegisterForm()">
-                                <img src="<?=config_item('static_url')?>images/register_red.png" width="133" height="32" alt="注册为新会员"/>
+                                <img src="<?=config_item('static_url')?>images/register_red.gif" width="133" height="32" alt="注册为新会员"/>
                             </a>
                         </td>
                         <td>&nbsp;</td>

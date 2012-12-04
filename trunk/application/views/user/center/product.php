@@ -83,7 +83,7 @@
                             <!--<a href="javascript:void(0);" onclick="(<?=$v['pid'];?>)">修改</a>
                             <br/>-->
                             <a href="javascript:void(0);" onclick="deleteProduct(<?=$v['pid'];?>)">
-                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品">
+                                <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此产品">
                             </a>
                         </td>
                     </tr>

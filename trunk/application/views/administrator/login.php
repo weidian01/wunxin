@@ -26,7 +26,7 @@
   <div id="login-top">
     <h1>Simpla Admin</h1>
     <!-- Logo (221px width) -->
-    <a href="#"><img id="logo" src="<?=config_item('static_url')?>images/logo.png" alt="Simpla Admin logo" /></a> </div>
+    <a href="#"><img id="logo" src="<?=config_item('static_url')?>images/logo.gif" alt="Simpla Admin logo" /></a> </div>
   <!-- End #logn-top -->
   <div id="login-content">
       <form action="/administrator/admin_login/login" method="post">

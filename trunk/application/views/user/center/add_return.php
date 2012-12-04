@@ -14,14 +14,14 @@
     </script>
     <![endif]-->
     <style type="text/css">
-        .txi { background: url("<?=config_item('static_url')?>images/onShow.png") no-repeat scroll 5px 5px transparent; color: #999999; display: inline-block; font-size: 12px; height: 22px;
+        .txi { background: url("<?=config_item('static_url')?>images/onShow.gif") no-repeat scroll 5px 5px transparent; color: #999999; display: inline-block; font-size: 12px; height: 22px;
             line-height: 22px; padding-left: 25px; }
-        .input_1 { background: url("<?=config_item('static_url')?>images/input_1.png") repeat-x scroll 0 0 #FFFFFF; border: 1px solid #C9C9C9; color: #333333; height: 20px; line-height: 20px; vertical-align: top;width: 200px; }
-        .mistake { background: url("<?=config_item('static_url')?>images/onError.png") no-repeat scroll 5px 5px #FFF2E9; color: #E8044F; display: inline-block; font-size: 12px; height: 22px;
+        .input_1 { background: url("<?=config_item('static_url')?>images/input_1.gif") repeat-x scroll 0 0 #FFFFFF; border: 1px solid #C9C9C9; color: #333333; height: 20px; line-height: 20px; vertical-align: top;width: 200px; }
+        .mistake { background: url("<?=config_item('static_url')?>images/onError.gif") no-repeat scroll 5px 5px #FFF2E9; color: #E8044F; display: inline-block; font-size: 12px; height: 22px;
             line-height: 22px; padding-left: 25px; }
         tr{ padding: 10px;}
         td{font-size: 12px;font-weight: bold;color: #525252;}
-        textarea{margin: 0px; width: 509px; height: 169px;border: 1px solid #C9C9C9;background: url('<?=config_item('static_url')?>images/input_1.png') repeat-x scroll 0 0 #FFFFFF; }
+        textarea{margin: 0px; width: 509px; height: 169px;border: 1px solid #C9C9C9;background: url('<?=config_item('static_url')?>images/input_1.gif') repeat-x scroll 0 0 #FFFFFF; }
         h3{padding-left: 10px;}
         .s_notice li {padding-left: 30px;font-size: 13px;margin: 10px;}
         .err{font-size: 12px;font-weight:normal;color: #949494;padding-left: 10px;}

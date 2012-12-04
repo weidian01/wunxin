@@ -67,7 +67,7 @@
                     <td width="10%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                     <td width="10%" align="center">
                         <a href="javascript:void(0);" onclick="deleteInvoice(<?=$v['invoice_id'];?>)">
-                            <img src="<?=config_item('static_url')?>images/delete.png" title="删除此发票">
+                            <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此发票">
                         </a>
                     </td>
                 </tr>

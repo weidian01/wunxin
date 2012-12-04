@@ -81,7 +81,7 @@
                         <td><?=$v['create_time'];?></td>
                         <td>
                             <a href="<?=config_item('static_url')?>administrator/user_comment/commentDetail/<?=$v['message_id']?>" title="查看回复">
-                                <img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看回复"></a>
+                                <img src="<?=config_item('static_url')?>images/icons/view.gif" alt="查看回复"></a>
                             <a href="<?=config_item('static_url')?>administrator/user_comment/commentDelete/<?=$v['message_id'].'/'.$v['uid'].'/'.$current_page?>" title="删除留言">
                                 <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除留言"></a>
                         </td>

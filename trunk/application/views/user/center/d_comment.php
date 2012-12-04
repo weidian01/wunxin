@@ -88,16 +88,16 @@
                                             <td style="width:60px;text-align:center;">
                                                 <!--
                                                 <a href="#">
-                                                    <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计图">
+                                                    <img src="<?=config_item('static_url')?>images/view.gif" title="查看此设计图">
                                                 </a>
                                                 <br/>
                                                 <a href="#">
-                                                    <img src="<?=config_item('static_url')?>images/comment.png" title="评论此设计图">
+                                                    <img src="<?=config_item('static_url')?>images/comment.gif" title="评论此设计图">
                                                 </a>
                                                 <br/>
                                                 -->
                                                 <a href="javascript:void(0);" onclick="design.deleteComment(<?=$v['comment_id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图评论">
+                                                    <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此设计图评论">
                                                 </a>
                                             </td>
                                         </tr>

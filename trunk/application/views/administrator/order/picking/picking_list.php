@@ -118,7 +118,7 @@
                             <?php endif;?>
                         </th>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/order_picking/pickingDetail/<?=$v['picking_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/order_picking/pickingDetail/<?=$v['picking_id'];?>" title="查看订单"><img src="<?=config_item('static_url')?>images/icons/view.gif" alt="查看订单"/></a>
                         </td>
                     </tr>
                         <?php }?>

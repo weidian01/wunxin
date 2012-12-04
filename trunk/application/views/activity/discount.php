@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
         }
-        .link-btn, .clear-tit, .clear-icon, .clear-tab a.tab-in{background:url('<?=config_item('static_url')?>images/clear-bg.png') no-repeat -9999em 0}
+        .link-btn, .clear-tit, .clear-icon, .clear-tab a.tab-in{background:url('<?=config_item('static_url')?>images/clear-bg.gif') no-repeat -9999em 0}
         a { color: #666666; text-decoration: none; }
         img { vertical-align: top; }
         fieldset, img { border: 0 none; }

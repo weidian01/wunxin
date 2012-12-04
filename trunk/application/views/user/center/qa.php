@@ -84,10 +84,10 @@
                         <td width="8%" align="center"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                         <td width="10%" align="center">
                             <a href="<?=productURL($v['qa_id']);?>" onclick="(<?=$v['qa_id'];?>)" target="_blank">
-                                <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
+                                <img src="<?=config_item('static_url')?>images/buy.gif" title="购买此产品">
                             </a>
                             <a href="javascript:void(0);" onclick="product.deleteProductQa(<?=$v['qa_id'];?>)">
-                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此问答">
+                                <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此问答">
                             </a>
                         </td>
                     </tr>

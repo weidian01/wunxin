@@ -84,15 +84,15 @@
                                             <td style="width:70px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:80px;text-align:center;">
                                                 <a href="<?=productURL($v['pid'])?>" target="_blank">
-                                                    <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
+                                                    <img src="<?=config_item('static_url')?>images/buy.gif" title="购买此产品">
                                                 </a>
                                                 <!--
                                                 <a href="javascript:void(0);" onclick="(<?=$v['comment_id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/comment.png" title="评论此产品">
+                                                    <img src="<?=config_item('static_url')?>images/comment.gif" title="评论此产品">
                                                 </a>
                                                 -->
                                                 <a href="javascript:void(0);" onclick="product.deleteProductComment(<?=$v['comment_id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除此产品评论">
+                                                    <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此产品评论">
                                                 </a>
                                             </td>
                                         </tr>

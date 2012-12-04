@@ -411,7 +411,7 @@ $(document).ready(function(){
 
                             <a href="javascript:void(0);" onclick="order.useGiftCard('<?=$v['card_no'];?>', <?=($v['card_amount']);?>, 'pop_<?=$v['card_no'];?>')" id="pop_<?=$v['card_no'];?>">
                             <?php if (!isset ($need_use_card[$v['card_no']])){?>
-                                <img src="<?=config_item('static_url')?>images/use.png" alt="使用礼品卡" title="使用礼品卡"/>
+                                <img src="<?=config_item('static_url')?>images/use.gif" alt="使用礼品卡" title="使用礼品卡"/>
                             <?php } else {?>
                                 <img src="<?=config_item('static_url')?>images/cancel.jpg" alt="取消使用礼品卡" title="取消使用礼品卡"/>
                             <?php }?>
@@ -471,12 +471,12 @@ function syinfo(a, b)
     var dsc = document.getElementById(b);
     if (dsy.style.display == "none") {
         dsy.style.display = "";
-        dsc.style.background = "url(<?=config_item('static_url')?>images/button_images.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/button_images.gif) no-repeat";
         dsc.style.backgroundPosition = "-16px -150px";
     }
     else {
         dsy.style.display = "none";
-        dsc.style.background = "url(<?=config_item('static_url')?>images/button_images.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/button_images.gif) no-repeat";
         dsc.style.backgroundPosition = "-16px -180px";
     }
 }
@@ -487,11 +487,11 @@ function marksinfo(a, b)
     var dsc = document.getElementById(b);
     if (dsy.style.display == "none") {
         dsy.style.display = "";
-        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.gif) no-repeat";
         dsc.style.backgroundPosition = "0px -217px";
     } else {
         dsy.style.display = "none";
-        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.png) no-repeat";
+        dsc.style.background = "url(<?=config_item('static_url')?>images/shoppingbg.gif) no-repeat";
         dsc.style.backgroundPosition = "0px -109px";
     }
 }
