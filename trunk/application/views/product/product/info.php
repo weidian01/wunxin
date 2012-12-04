@@ -216,27 +216,27 @@
   <div class="designer">
     <div class="ginfo-title" style="border-bottom:0px;">
       <div class="dinfo-tle1" style="background-position:0px 0px;"><span onclick="showtab('dsnbox','1','4')" style="background-position:right -66px; color:#fff;">设计师介绍</span></div>
-      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','2','4');getDesignByUser(<?=$product['uid']?>)">设计师作品</span></div>
-      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','3','4');getProductByUser(<?=$product['uid']?>)">设计师产品</span></div>
+      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','2','4');getDesignByUser(<?//=$product['uid']?>)">设计师作品</span></div>
+      <div class="dinfo-tle1"><span onclick="showtab('dsnbox','3','4');getProductByUser(<?//=$product['uid']?>)">设计师产品</span></div>
     </div>
     <div class="d-box" id="dsnbox1">
       <div class="desbox">
-        <div class="d-photo"><img src="<?=config_item('img_url')?>design/<?=intToPath($design['did'])?>/icon.jpg" width="149" height="179" alt="<?=$design['dname']?>"/></div>
+        <div class="d-photo"><img src="<?//=config_item('img_url')?>design/<?//=intToPath($design['did'])?>/icon.jpg" width="149" height="179" alt="<?//=$design['dname']?>"/></div>
         <div class="d-text">
-          <div class="tit"><?=$design['dname']?></div>
-          <p><?=$design['ddetail']?></p>
-          <p><span class="font16">Show more&nbsp;</span>&nbsp;<img src="<?=config_item('static_url')?>images/smo_03.gif" width="10" height="7" /><br/>
+          <div class="tit"><?//=$design['dname']?></div>
+          <p><?//=$design['ddetail']?></p>
+          <p><span class="font16">Show more&nbsp;</span>&nbsp;<img src="<?//=config_item('static_url')?>images/smo_03.gif" width="10" height="7" /><br/>
             <span class="font17">&#8226;&nbsp;&nbsp;Copyright violation? Report design.</span><br />
             <span class="font17">&#8226;&nbsp;&nbsp;Copyright violation? Report design.</span><br />
           </p>
         </div>
       </div>
       <div class="desbox2">
-        <div class="d-photo2"><img src="<?=config_item('img_url')?>designer/<?=intToPath($designer['uid'])?>/icon.jpg" width="90" height="90" alt="ddd" />
+        <div class="d-photo2"><img src="<?//=config_item('img_url')?>designer/<?//=intToPath($designer['uid'])?>/icon.jpg" width="90" height="90" alt="ddd" />
           <div class="d-p-name">Bud Spencer</div>
         </div>
         <div class="d-text2">
-          <p><?=$designer['introduction']?></p>
+          <p><?//=$designer['introduction']?></p>
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tr>
               <td width="38%">Member since</td>
