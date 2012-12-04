@@ -937,6 +937,10 @@ wx.advert = function(position_id)
     var param = 'position_id='+position_id;
     var data = wx.ajax(url, param);
 
+    if (!wx.isEmpty(data)) {
+        return;
+    }
+    
     var html = '';
     var info = data['advert'];
     for (var i in info) {

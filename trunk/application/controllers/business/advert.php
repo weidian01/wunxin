@@ -17,7 +17,7 @@ class advert extends MY_Controller
         }
         $this->load->model('/business/Model_Ad_Position', 'position');
         $positionData = $this->position->getPositionByPid($positionId);
-        //p($positionData);
+
         if (empty ($positionData)) {
             return ;
         }
