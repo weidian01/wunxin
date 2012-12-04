@@ -124,10 +124,10 @@
                 <?php endif;?>
             <?php endforeach;?>
             <!--a class="last" href="#">亲子装款</a-->
-            <a href="<?=config_item('static_url')?>search?keyword=%E5%8D%AB%E8%A1%A3">卫衣</a>
-            <a href="<?=config_item('static_url')?>search?keyword=T%E6%81%A4">T恤</a>
-            <a href="<?=config_item('static_url')?>search?keyword=%E9%95%BF%E8%A2%96T%E6%81%A4">长袖T恤</a>
-            <a href="<?=config_item('static_url')?>search?keyword=<?=urlencode('裤')?>" class="last">裤装</a>
+            <a <?php if(isset($keyword) && $keyword == '卫衣'):?>class="curr"<?php endif;?> href="<?=config_item('static_url')?>search?keyword=%E5%8D%AB%E8%A1%A3">卫衣</a>
+            <a <?php if(isset($keyword) && $keyword == 'T恤'):?>class="curr"<?php endif;?> href="<?=config_item('static_url')?>search?keyword=T%E6%81%A4">T恤</a>
+            <a <?php if(isset($keyword) && $keyword == '长袖T恤'):?>class="curr"<?php endif;?> href="<?=config_item('static_url')?>search?keyword=%E9%95%BF%E8%A2%96T%E6%81%A4">长袖T恤</a>
+            <a <?php if(isset($keyword) && $keyword == '裤'):?>class="curr"<?php endif;?> href="<?=config_item('static_url')?>search?keyword=<?=urlencode('裤')?>" class="last">裤装</a>
         </div>
 
         <div class="other">
