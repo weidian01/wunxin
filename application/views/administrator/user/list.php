@@ -93,7 +93,7 @@
                         <td><?=$v['status'] ? '正常' : '已删除';?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/user/userDetail/<?=$v['uid']?>" title="查看用户"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看用户"></a>
+                            <a href="<?=config_item('static_url')?>administrator/user/userDetail/<?=$v['uid']?>" title="查看用户"><img src="<?=config_item('static_url')?>images/icons/view.gif" alt="查看用户"></a>
                             <a href="<?=config_item('static_url')?>administrator/user/userEdit/<?=$v['uid']?>" title="修改用户"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改用户"></a>
                             <a href="<?=config_item('static_url')?>administrator/user_comment/userCommentList/<?=$v['uid']?>" title="查看留言">查看留言</a>
                             <a href="<?=config_item('static_url')?>administrator/user_favorite/favoriteList/<?=$v['uid']?>" title="查看收藏">查看收藏</a>

@@ -68,7 +68,7 @@
                             <!--<a href="javascript:void(0);" onclick="(<?=$v['address_id'];?>)">修改</a>
                             <br/>-->
                             <a href="javascript:void(0);" onclick="deleteRecentAddress(<?=$v['address_id'];?>)">
-                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此地址">
+                                <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此地址">
                             </a>
                         </td>
                     </tr>

@@ -90,13 +90,13 @@
                                             <td style="width:60px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:70px;text-align:center;">
                                                 <a href="javascript:void(0);" onclick="(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="查看此设计师">
-                                                    <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计师">
+                                                    <img src="<?=config_item('static_url')?>images/view.gif" title="查看此设计师">
                                                 </a>
                                                 <a href="javascript:void(0);" onclick="(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="给此设计师留言">
-                                                    <img src="<?=config_item('static_url')?>images/message.png" title="给此设计师留言">
+                                                    <img src="<?=config_item('static_url')?>images/message.gif" title="给此设计师留言">
                                                 </a>
                                                 <a href="javascript:void(0);" onclick="user.deleteDesignerMessage(<?=$v['message_id'];?>)" style="cursor:pointer;color:#468fa2;" title="删除此条留言">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除此条留言">
+                                                    <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此条留言">
                                                 </a>
                                             </td>
                                         </tr>

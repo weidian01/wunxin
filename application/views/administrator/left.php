@@ -21,7 +21,7 @@
             <!-- Sidebar with logo and menu -->
             <h1 id="sidebar-title"><a href="#">万象电商管理系统</a></h1>
             <!-- Logo (221px wide) -->
-            <a href="#">万象电商管理系统<!--<img id="logo" src="<?=config_item('static_url')?>images/logo.png" alt="Simpla Admin logo"/>--></a>
+            <a href="#">万象电商管理系统<!--<img id="logo" src="<?=config_item('static_url')?>images/logo.gif" alt="Simpla Admin logo"/>--></a>
             <br/><br/><br/><br/>
             <!-- Sidebar Profile links -->
             <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?=$this->amInfo['am_uname'];?></a>

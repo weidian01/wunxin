@@ -582,7 +582,7 @@ body#login {
 				}
 				
 #login-wrapper {
-                background: url('http://www.wunxin.com/images/bg-login-top.png') top left repeat-x;
+                background: url('http://www.wunxin.com/images/bg-login-top.gif') top left repeat-x;
 				}
 
 #login-wrapper #login-top {
@@ -641,23 +641,23 @@ body#login {
 /*************** Facebox ***************/
 
 #facebox .b {
-  background:url(http://www.wunxin.com/images/b.png);
+  background:url(http://www.wunxin.com/images/b.gif);
 }
 
 #facebox .tl {
-  background:url(http://www.wunxin.com/images/tl.png);
+  background:url(http://www.wunxin.com/images/tl.gif);
 }
 
 #facebox .tr {
-  background:url(http://www.wunxin.com/images/tr.png);
+  background:url(http://www.wunxin.com/images/tr.gif);
 }
 
 #facebox .bl {
-  background:url(http://www.wunxin.com/images/bl.png);
+  background:url(http://www.wunxin.com/images/bl.gif);
 }
 
 #facebox .br {
-  background:url(http://www.wunxin.com/images/br.png);
+  background:url(http://www.wunxin.com/images/br.gif);
 }
 
 #facebox {

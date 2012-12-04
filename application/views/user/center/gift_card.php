@@ -76,7 +76,7 @@
                             <!--<a href="javascript:void(0);" onclick="(<?=$v['did'];?>)">修改</a>
                             <br/>-->
                             <a href="javascript:void(0);" onclick="deleteCard('<?=$v['card_no'];?>')">
-                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此礼物卡">
+                                <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此礼物卡">
                             </a>
                         </td>
                     </tr>

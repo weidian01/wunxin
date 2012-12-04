@@ -104,7 +104,7 @@ $(document).ready(function(){
   <!--left end-->
 
     <style>
-        .goods-list .listHeader { background: url("<?=config_item('static_url')?>images/listbg_1.png") repeat-x scroll 0 -514px transparent; height: 31px; padding-left: 33px; }
+        .goods-list .listHeader { background: url("<?=config_item('static_url')?>images/listbg_1.gif") repeat-x scroll 0 -514px transparent; height: 31px; padding-left: 33px; }
         .goods-list .tab a.cur { background-color: #A2A2A2; border-top-color: #EAEAEA; color: #FFFFFF; }
         .goods-list .tab a { border-bottom: 1px solid #999999; float: left; font-size: 12px; height: 28px; line-height: 28px; text-align: center; width: 67px; }
         .goods-list .tab a { border-bottom: 1px solid #999999; border-top: 2px solid #ECEDEC;color: #343434; float: left; font-size: 12px; height: 28px; line-height: 28px; text-align: center; width: 67px; }

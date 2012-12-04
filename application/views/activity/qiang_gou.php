@@ -21,8 +21,8 @@
         a:hover,.cate_item h3 a:hover,.cate_item p a:hover,.subcate li a:hover,.mod_hd .more:hover{ color:#cc0000; text-decoration:underline;}
         .recommendmod h3 a:hover,.snapmod h4 a:hover{ text-decoration:none;}
 
-        .contentbg{ padding-bottom:61px; background: url(<?=config_item('static_url')?>images/contentbg.png) 0 bottom repeat-x; background-color:#fafafa;}
-        .qiangbtn_small,.mod_hd h3,.qiangbtn_red,.ended,.qiangbtn_blue,.ico_baoyou,.ico_remai,.ico_xinpin,.ico_fengqiang,.seebtn,.left_turn,.right_turn,.left_turn_hov,.right_turn_hov,.left_turn_no,.right_turn_no,.sort_default,.sortlist .s_1,.sortlist .s_2,.sortlist .s_3{ background:url(<?=config_item('static_url')?>images/pic.png) no-repeat;}
+        .contentbg{ padding-bottom:61px; background: url(<?=config_item('static_url')?>images/contentbg.gif) 0 bottom repeat-x; background-color:#fafafa;}
+        .qiangbtn_small,.mod_hd h3,.qiangbtn_red,.ended,.qiangbtn_blue,.ico_baoyou,.ico_remai,.ico_xinpin,.ico_fengqiang,.seebtn,.left_turn,.right_turn,.left_turn_hov,.right_turn_hov,.left_turn_no,.right_turn_no,.sort_default,.sortlist .s_1,.sortlist .s_2,.sortlist .s_3{ background:url(<?=config_item('static_url')?>images/pic.gif) no-repeat;}
 
         .side{ width:230px; float:left;}
         .main{ width:980px; float:right;}
@@ -43,7 +43,7 @@
         .qiangnav_mod .now span{ padding:0 9px; margin:0; color:#fff;}
 
         /*recommendmod 限时限量抢*/
-        .recommendmod{ width:980px; height:474px; margin:15px auto 0; position:relative; background: url(<?=config_item('static_url')?>images/bgs.png) no-repeat;}
+        .recommendmod{ width:980px; height:474px; margin:15px auto 0; position:relative; background: url(<?=config_item('static_url')?>images/bgs.gif) no-repeat;}
         .recommendmod li{ width:300px; padding:0px; position:absolute; overflow:hidden; zoom:1;}
         .recommendmod .pic{ float:left; width:150px; margin:4px 15px 0 0;}
         .recommendmod .pic img{ display:block;}
@@ -118,7 +118,7 @@
         /*countdown 倒计时*/
         .countdown{height:28px; padding:8px 0 0; text-align:center; border:1px dotted #ccc; border-left:0 none; border-bottom:1px solid #f1f1f1;}
         .countdown span{ color:#999; padding:0 2px 0 4px;}
-        .countdown b{ width:12px; height:16px; display:inline-block; padding:0 1px; position:relative; top:1px; +top:0; _top:2px; top:2px\0; background: url(<?=config_item('static_url')?>images/time.png) no-repeat; text-indent:-9999em;}
+        .countdown b{ width:12px; height:16px; display:inline-block; padding:0 1px; position:relative; top:1px; +top:0; _top:2px; top:2px\0; background: url(<?=config_item('static_url')?>images/time.gif) no-repeat; text-indent:-9999em;}
         .countdown .n1{ background-position:0 0;}
         .countdown .n2{ background-position:0 -21px;}
         .countdown .n3{ background-position:0 -42px;}

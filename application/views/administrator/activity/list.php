@@ -86,7 +86,7 @@
                         <td><?=$v['status'] ? '进行中' : '已结束';?></td>
                         <td><?=$v['create_time'];?></td>
                         <td>
-                            <a href="<?=config_item('static_url')?>administrator/activity/activityView/<?=$v['activity_id'].'/'.$current_page;?>" title="查看活动"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看活动"/></a>
+                            <a href="<?=config_item('static_url')?>administrator/activity/activityView/<?=$v['activity_id'].'/'.$current_page;?>" title="查看活动"><img src="<?=config_item('static_url')?>images/icons/view.gif" alt="查看活动"/></a>
                             <a href="<?=config_item('static_url')?>administrator/activity/activityEdit/<?=$v['activity_id'].'/'.$current_page;?>" title="修改活动"><img src="<?=config_item('static_url')?>images/icons/pencil.png" alt="修改活动"/></a>
                             <a href="<?=config_item('static_url')?>administrator/activity/activityDelete/<?=$v['activity_id'].'/'.$current_page;?>" title="结束活动"><img src="<?=config_item('static_url')?>images/icons/cross.png" alt="结束活动"/></a>
                             <a href="<?=config_item('static_url')?>administrator/activity_prize/prizeAdd/<?=$v['activity_id'].'/'.$current_page;?>" title="设置奖品">设置奖品</a>

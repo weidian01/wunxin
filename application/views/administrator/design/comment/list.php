@@ -127,7 +127,7 @@
                         <td><?=$v['create_time'];?></td>
                         <td>
                             <a href="<?=config_item('static_url')?>administrator/design_comment/viewComment/<?=$v['comment_id'];?>"
-                               title="查看评论图评论"><img src="<?=config_item('static_url')?>images/icons/view.png" alt="Edit"/></a>
+                               title="查看评论图评论"><img src="<?=config_item('static_url')?>images/icons/view.gif" alt="Edit"/></a>
                             <a href="<?=config_item('static_url')?>administrator/design_comment/deleteComment/<?=$v['comment_id'];?>"
                                title="删除评论图评论"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="Delete"/></a>
                             <!--<a href="#" title="Edit Meta"><img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png"alt="Edit Meta"/></a>-->

@@ -89,10 +89,10 @@
                                             </td>
                                             <td style="width:90px;text-align:center;">
                                                 <a href="#" class="a_e" title="查看设计图">
-                                                    <img src="<?=config_item('static_url')?>images/view.png" title="查看设计图">
+                                                    <img src="<?=config_item('static_url')?>images/view.gif" title="查看设计图">
                                                 </a>
                                                 <a href="#" class="a_e" title="查看设计图" onclick="design.deleteFavorite(<?=$v['id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的设计图">
+                                                    <img src="<?=config_item('static_url')?>images/delete.gif" title="删除收藏的设计图">
                                                 </a>
                                             </td>
                                         </tr>

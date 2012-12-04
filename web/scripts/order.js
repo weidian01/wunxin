@@ -404,7 +404,7 @@ order.useGiftCard = function (card_no, base_amount, bindingId)
 
     //是否是取消卡,如果是取消卡，则直接替换显示图片
     if (data.error == '70033') {
-        var img = '<img src="'+wx.base_url+'images/use.png" alt="使用礼品卡" title="使用礼品卡"/>';
+        var img = '<img src="'+wx.base_url+'images/use.gif" alt="使用礼品卡" title="使用礼品卡"/>';
         $('#'+bindingId).html(img);
         order.updateCardView(data.save_price);
     }

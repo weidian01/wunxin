@@ -23,7 +23,7 @@
         .poster_grid .new_poster .np_pic{padding:6px 5px; position:relative; text-align:center; width:175px}
         .poster_grid .new_poster .pic_load{background:url("<?=config_item('static_url')?>images/g_loading1.gif") no-repeat scroll center center transparent; display:block}
         .like_merge{height:28px; left:6px; overflow:hidden; position:absolute; top:6px; width:200px}
-        .like_merge .poster_del{background:url("<?=config_item('static_url')?>images/like_merge1.png") repeat-x scroll 0 0 transparent; border:1px solid #FCBCD2; border-radius:4px 4px 4px 4px; color:#F69; cursor:pointer; font-weight:bold; height:26px; line-height:26px; margin-right:7px; overflow:hidden; padding:0 5px; text-align:center}
+        .like_merge .poster_del{background:url("<?=config_item('static_url')?>images/like_merge1.gif") repeat-x scroll 0 0 transparent; border:1px solid #FCBCD2; border-radius:4px 4px 4px 4px; color:#F69; cursor:pointer; font-weight:bold; height:26px; line-height:26px; margin-right:7px; overflow:hidden; padding:0 5px; text-align:center}
         .right_f{float:right}
         .lm_shouji{background-position:-32px -31px;padding:0 6px}
         .lm_love, .lm_love2, .lm_comm, .lm_shouji{height:12px}
@@ -37,13 +37,13 @@
         .poster_grid .new_poster .comm_box .comm_num span{padding-right:6px}
         .poster_grid .new_poster .comm_box .likes{border:1px solid #FF77A5;border-radius:4px 4px 4px 4px;cursor:pointer;height:21px;line-height:21px}
         .left_f{float:left}
-        .poster_grid .new_poster .comm_box .likes .likes_status{background:url("<?=config_item('static_url')?>images/like_merge1.png") repeat scroll 0 -145px transparent;color:#FFF;float:left;height:21px;margin-right:6px;text-align:center;width:50px}
+        .poster_grid .new_poster .comm_box .likes .likes_status{background:url("<?=config_item('static_url')?>images/like_merge1.gif") repeat scroll 0 -145px transparent;color:#FFF;float:left;height:21px;margin-right:6px;text-align:center;width:50px}
         b, strong{font-weight:bolder}
         .lm_love2{background-position:-53px -29px;padding:0 5px 0 6px}
         .lm_love, .lm_love2, .lm_comm, .lm_shouji{height:12px}
         .poster_grid .new_poster .comm_box .comm_num span{padding-right:6px}
         .red_f{color:#F69}
-        .poster_grid .new_poster .love_pro{background:url("<?=config_item('static_url')?>images/love_pro.png") no-repeat scroll 0 0 transparent;  color:#F69;  float:left;  height:30px;  left:0;  line-height:25px;  position:absolute;  text-align:center;  top:-30px;  width:130px}
+        .poster_grid .new_poster .love_pro{background:url("<?=config_item('static_url')?>images/love_pro.gif") no-repeat scroll 0 0 transparent;  color:#F69;  float:left;  height:30px;  left:0;  line-height:25px;  position:absolute;  text-align:center;  top:-30px;  width:130px}
         .none_f{ display:none}
         .clear_f{ clear:both;  height:0;  overflow:hidden}
         .poster_grid .new_poster .np_share, .poster_grid .new_poster .comm_share, .poster_grid .new_poster .discuss_one{ background:none repeat scroll 0 0 #F9F9F9;  border-bottom:1px solid #DDD;  color:#999;  line-height:18px;  overflow:hidden;  padding:10px 13px}

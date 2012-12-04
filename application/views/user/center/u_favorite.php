@@ -94,10 +94,10 @@
                                             <td style="width:90px;text-align:center;"><?=date('Y-m-d', strtotime($v['create_time']));?></td>
                                             <td style="width:90px;text-align:center;">
                                                 <a href="#" class="a_e" title="查看此设计师">
-                                                    <img src="<?=config_item('static_url')?>images/view.png" title="查看此设计师">
+                                                    <img src="<?=config_item('static_url')?>images/view.gif" title="查看此设计师">
                                                 </a>
                                                 <a href="javascript:void(0);" class="a_e" title="删除收藏的设计师" onclick="user.deleteDesignerFavorite(<?=$v['fid'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的设计师">
+                                                    <img src="<?=config_item('static_url')?>images/delete.gif" title="删除收藏的设计师">
                                                 </a>
                                                 <span class="det"  style="cursor:pointer;color:#468fa2;"></span>
                                             </td>

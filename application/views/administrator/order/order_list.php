@@ -172,7 +172,7 @@
                             </td>
                         <td>
                             <a href="<?=config_item('static_url')?>administrator/order/orderDetail/<?=$v['order_sn'];?>" title="查看订单">
-                                <img src="<?=config_item('static_url')?>images/icons/view.png" alt="查看订单"/></a>
+                                <img src="<?=config_item('static_url')?>images/icons/view.gif" alt="查看订单"/></a>
                             <!--<a href="<?=config_item('static_url')?>administrator/order/orderEdit/<?=$v['order_sn'];?>" title="编辑订单"> <img src="<?=config_item('static_url')?>images/icons/hammer_screwdriver.png" alt="编辑订单"/></a>-->
 
                             <!--&nbsp;<a href="<?=config_item('static_url')?>administrator/order/orderDelete/<?=$v['order_sn'];?>" title="删除订单"> <img src="<?=config_item('static_url')?>images/icons/cross.png" alt="删除订单"/></a>-->

@@ -1,13 +1,13 @@
 .scj{width:100%; height:auto; margin-bottom:10px; float:left}
 .scj .main{width:100%; padding:0px 1px 1px 1px; float:left}
-.scj .title{width:100%; ; height:28px; padding:12px 10px 0px 10px; background:url(http://www.wunxin.com/images/k_r_tg2.png) no-repeat top; float:left}
-.scj .title h2{width:175px; height:15px; background:url(http://www.wunxin.com/images/z_scj.png) no-repeat; text-indent:-999em; float:left}
-.scj .main .tab{width:97%; ; height:25px; background:url(http://www.wunxin.com/images/tab_lan2.png) repeat-x 0px -25px; margin:10px 10px 0px 10px; display:inline; float:left}
-.scj .main .tab a{width:98px; height:25px; line-height:25px; text-align:center; background:url(http://www.wunxin.com/images/tab_lan3.png) no-repeat -101px 0px; margin-right:3px; display:inline; color:#333; float:left}
-.scj .main .tab a.act{width:98px; height:25px; line-height:25px; text-align:center; background:url(http://www.wunxin.com/images/tab_lan3.png) no-repeat 0px 0px; margin-right:3px; display:inline; color:#333; font-weight:bold; float:left}
+.scj .title{width:100%; ; height:28px; padding:12px 10px 0px 10px; background:url(http://www.wunxin.com/images/k_r_tg2.gif) no-repeat top; float:left}
+.scj .title h2{width:175px; height:15px; background:url(http://www.wunxin.com/images/z_scj.gif) no-repeat; text-indent:-999em; float:left}
+.scj .main .tab{width:97%; ; height:25px; background:url(http://www.wunxin.com/images/tab_lan2.gif) repeat-x 0px -25px; margin:10px 10px 0px 10px; display:inline; float:left}
+.scj .main .tab a{width:98px; height:25px; line-height:25px; text-align:center; background:url(http://www.wunxin.com/images/tab_lan3.gif) no-repeat -101px 0px; margin-right:3px; display:inline; color:#333; float:left}
+.scj .main .tab a.act{width:98px; height:25px; line-height:25px; text-align:center; background:url(http://www.wunxin.com/images/tab_lan3.gif) no-repeat 0px 0px; margin-right:3px; display:inline; color:#333; font-weight:bold; float:left}
 .scj .main .list-m{width:97%; padding:0px 10px 0px 10px; float:left}
 .scj .main .list-b{width:97%; margin:0 0 0 10px; background:#f3f3f3; border-top:1px #e3e3e3 solid; float:left; height:35px}
-.scj .main h2{clear:both; min-height:21px; _height:21px; line-height:21px; padding-left:23px; background:url(http://www.wunxin.com/images/ico_arrow2.png) no-repeat 5px 5px #efefef; border:1px #e6e6e6 solid; font-size:12px; color:#ccc; font-weight:normal; margin-bottom:10px}
+.scj .main h2{clear:both; min-height:21px; _height:21px; line-height:21px; padding-left:23px; background:url(http://www.wunxin.com/images/ico_arrow2.gif) no-repeat 5px 5px #efefef; border:1px #e6e6e6 solid; font-size:12px; color:#ccc; font-weight:normal; margin-bottom:10px}
 .scj .main h2 a{color:#468fa2; display:inline-block}
 .scj .main h2 a.act{color:#e8044f; font-weight:bold}
 .scj .main .list-m table .act{background:#d0dce4}
@@ -32,4 +32,4 @@
 .table2 td, .table2 th{border-bottom:1px solid #E6E6E6; font-weight:normal; padding:5px}
 .table2 td{color:#666; text-align:left}
 .table2 tfoot{background:none repeat scroll 0 0 #F8F8F8; font-weight:bold; text-align:center}
-.btn_s1_z7{background:url("http://www.wunxin.com/images/btn_s1_z7.png") repeat-x scroll 0 0 transparent;  border:0 none;  color:#FFF;  cursor:pointer;  display:inline-block;  font-size:12px;  height:20px;  line-height:20px;  margin:0;  padding:0;  text-align:center;  width:102px}
+.btn_s1_z7{background:url("http://www.wunxin.com/images/btn_s1_z7.gif") repeat-x scroll 0 0 transparent;  border:0 none;  color:#FFF;  cursor:pointer;  display:inline-block;  font-size:12px;  height:20px;  line-height:20px;  margin:0;  padding:0;  text-align:center;  width:102px}

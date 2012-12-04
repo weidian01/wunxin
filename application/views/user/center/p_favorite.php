@@ -80,14 +80,14 @@
                                                 <a href="#" title="产品共被收藏 <?=$v['favorite_num'];?> 次" style="color: #990000;font-size: 10px;">共收藏 <?=$v['favorite_num'];?> 次</td>
                                             <td style="width:90px;text-align:center;">
                                                 <a href="<?=productURL($v['pid'])?>" class="a_e" target="_blank">
-                                                    <img src="<?=config_item('static_url')?>images/buy.png" title="购买此产品">
+                                                    <img src="<?=config_item('static_url')?>images/buy.gif" title="购买此产品">
                                                 </a>
                                                 <a href="<?=productURL($v['pid'])?>" class="a_e" target="_blank">
-                                                    <img src="<?=config_item('static_url')?>images/view.png" title="查看此产品">
+                                                    <img src="<?=config_item('static_url')?>images/view.gif" title="查看此产品">
                                                 </a>
 
                                                 <a href="javascript:void(0);" class="a_e" onclick="product.deleteFavoriteProduct(<?=$v['id'];?>)">
-                                                    <img src="<?=config_item('static_url')?>images/delete.png" title="删除收藏的此产品">
+                                                    <img src="<?=config_item('static_url')?>images/delete.gif" title="删除收藏的此产品">
                                                 </a>
                                             </td>
                                         </tr>

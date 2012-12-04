@@ -77,7 +77,7 @@
                             <!--<a href="javascript:void(0);" onclick="(<?=$v['did'];?>)">修改</a>
                             <br/>-->
                             <a href="javascript:void(0);" onclick="deleteDesign(<?=$v['did'];?>)">
-                                <img src="<?=config_item('static_url')?>images/delete.png" title="删除此设计图">
+                                <img src="<?=config_item('static_url')?>images/delete.gif" title="删除此设计图">
                             </a>
                         </td>
                     </tr>
