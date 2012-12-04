@@ -112,7 +112,7 @@
 <div class="nav">
     <div class="navbox">
         <div class="mainnav">
-            <a <?php if(!isset($category)):?>class="curr"<?php endif;?> href="<?=site_url()?>">首页</a>
+            <a <?php if(!isset($category) && !isset($keyword)):?>class="curr"<?php endif;?> href="<?=site_url()?>">首页</a>
             <?php foreach($this->channel as $channel):?>
                 <?php if($channel["parent_id"]==0):?>
                 <?php if(isset($category) && $category == $channel['class_id']):?>
