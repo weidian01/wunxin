@@ -64,8 +64,8 @@
         var stage = new Stage();
         var largeimage = new Largeimage();
         var loader = new Loader();
-        var min_height = 420;
-        var min_width = 350;
+        var min_height = 420;//大图最小高度,大图高度如果低于这个数值则不显示大图
+        var min_width = 350; //大图最小宽度,大图宽度如果低于这个数值则不显示大图
         //preventing default click,allowing the onclick event [exmple: lightbox]
         $(el).bind('click', function (e) {
             e.preventDefault();
