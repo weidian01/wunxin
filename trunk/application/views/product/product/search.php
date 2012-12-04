@@ -137,7 +137,7 @@ $(document).ready(function(){
       </div>
       <?php endforeach;?>
     </div>
-      <div class="loading" id="loading" style="display:none;text-align:center;vertical-align:middle;font-size:30px"><img src="<?=config_item('static_url')?>images/pac-man.gif">......</div>
+      <div class="loading" id="loading" style="display:none;text-align:center;vertical-align:middle;font-size:30px"><img src="<?=config_item('static_url')?>images/loading.gif">......</div>
       <div class="loading font10" id="nomoreresults" style="display:none;text-align:center;">没有更多.</div>
   </div>
   <!--right end-->
