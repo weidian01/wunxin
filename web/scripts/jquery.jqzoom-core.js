@@ -64,6 +64,8 @@
         var stage = new Stage();
         var largeimage = new Largeimage();
         var loader = new Loader();
+        var min_height = 420;
+        var min_width = 350;
         //preventing default click,allowing the onclick event [exmple: lightbox]
         $(el).bind('click', function (e) {
             e.preventDefault();
@@ -204,8 +206,12 @@
             activate: function (e) {
                 clearTimeout(el.timer);
                 //show lens and zoomWindow
-                lens.show();
-                stage.show();
+                if(largeimage.h > min_height && largeimage.w > min_width)
+                {
+                    lens.show();
+                    stage.show();
+                }
+
             },
             deactivate: function (e) {
                 switch (settings.zoomType) {
