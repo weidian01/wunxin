@@ -647,20 +647,20 @@ function copyImg($source_file, $new_width, $new_height, $new_file_name=null, $qu
 
     if ($keep_ratio != 0) {
         $ratio = round(($height / $width) * 10);
-        if ($ratio < 12) {
+        if ($ratio < 12) {//原图横宽
             if ($new_width > 0) {
-                $_new_width = (int)($new_height / ($height / $width));
+                $_new_width = ceil($new_height / ($height / $width));
             } else {
-                $new_width = (int)($height / $keep_ratio);
+                $new_width = ceil($height / $keep_ratio);
                 $_new_width = $width;
                 $new_height = $_new_height = $height;
             }
             $skewing_x = (int)(($_new_width - $new_width) / 2);
-        } elseif ($ratio > 12) {
+        } elseif ($ratio > 12) {//原图细高
             if ($new_height > 0) {
-                $_new_height = (int)($new_width * ($height / $width));
+                $_new_height = ceil($new_width * ($height / $width));
             } else {
-                $new_height = (int)($width * $keep_ratio);
+                $new_height = ceil($width * $keep_ratio);
                 $_new_height = $height;
                 $new_width = $_new_width = $width;
             }
