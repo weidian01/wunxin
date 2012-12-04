@@ -115,7 +115,12 @@
             <a class="curr" href="<?=site_url()?>">首页</a>
             <?php foreach($this->channel as $channel):?>
                 <?php if($channel["parent_id"]==0):?>
-                <a href="<?=config_item('static_url')?>category/<?=$channel['class_id']?>"><?=$channel['cname']?></a>
+                <?php if(isset($category) && $category == $channel['class_id']):?>
+                <?php $_view_curr = 'class="curr"';?>
+                <?php else:?>
+                <?php $_view_curr = '';?>
+                <?php endif;?>
+                <a <?=$_view_curr?></a> href="<?=config_item('static_url')?>filter/<?=$channel['class_id']?>"><?=$channel['cname']?></a>
                 <?php endif;?>
             <?php endforeach;?>
             <!--a class="last" href="#">亲子装款</a-->
@@ -128,7 +133,7 @@
         <div class="other">
             <div class="otherbox">
                 <ul>
-                    <li><a href="<?=config_item('static_url')?>category/0/1/new/1" target="_blank">最新到货</a></li>
+                    <li><a href="<?=config_item('static_url')?>filter/0/1/new/1" target="_blank">最新到货</a></li>
                     <li><a href="<?=config_item('static_url')?>activity/activity/discount/19" target="_blank">特价热卖</a></li>
                     <li><a href="<?=config_item('static_url')?>comment/hot" target="_blank">热门评论</a></li>
                     <li class="end"><a href="<?=config_item('static_url')?>activity/activity/qiang/18" target="_blank">限时抢购</a></li>
