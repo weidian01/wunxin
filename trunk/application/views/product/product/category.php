@@ -10,7 +10,7 @@
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
-EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
+//EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
 </script>
 <![endif]-->
 <script type="text/javascript">
@@ -130,7 +130,7 @@ $(document).ready(function(){
               <?php foreach($tmp as $k=>$v):?>
                   <?php $str .= "!{$k}-{$v}";?>
               <?php endforeach;?>
-              <div class="slect-item"><span><?=urldecode($item)?></span><a href="<?=config_item('static_url')?>category/<?echo $category,"/1/{$orderby}/{$orderrank}/",$str?>" class="close"></a></div>
+              <div class="slect-item"><span><?=urldecode($item)?></span><a href="<?=config_item('static_url')?>filter/<?echo $category,"/1/{$orderby}/{$orderrank}/",$str?>" class="close"></a></div>
             <?php endforeach;?>
           </td>
         </tr>
@@ -159,10 +159,10 @@ $(document).ready(function(){
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=config_item('static_url')?>category/<?=$category?>/1/default/1">默认</a>
-              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?=config_item('static_url')?>category/<?=$category?>/1/price/<?php if($orderby=='price' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">价格</a>
-              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?=config_item('static_url')?>category/<?=$category?>/1/sale/<?php if($orderby=='sale' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">销量</a>
-              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> class="ordby_new " name="orderby" href="<?=config_item('static_url')?>category/<?=$category?>/1/new/<?php if($orderby=='new' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">最新</a>
+              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=config_item('static_url')?>filter/<?=$category?>/1/default/1">默认</a>
+              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?=config_item('static_url')?>filter/<?=$category?>/1/price/<?php if($orderby=='price' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">价格</a>
+              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?=config_item('static_url')?>filter/<?=$category?>/1/sale/<?php if($orderby=='sale' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">销量</a>
+              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> class="ordby_new " name="orderby" href="<?=config_item('static_url')?>filter/<?=$category?>/1/new/<?php if($orderby=='new' && $orderrank==1):?>0<?php else:?>1<?php endif;?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
               <?php if($pageno > 1):?><a class="disabled" href="<?=config_item('static_url')?>category/<?=$category?>/<?=($pageno-1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=config_item('static_url')?>category/<?=$category?>/<?=($pageno+1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">下一页</a><?php endif;?>
