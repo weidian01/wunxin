@@ -61,7 +61,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 
     <div class="linksList">
         <ul>
-            <li><a target="_blank" href="//www.mytixu.com">T恤网</a></li>
+            <li><a target="_blank" href="//www.wunxin.com">万象网</a></li>
             <li><a target="_blank" href="//www.xiaomi.com/">小米手机</a></li>
             <li><a target="_blank" href="//www.lskong.com/ ">零食控</a></li>
         </ul>
