@@ -11,7 +11,7 @@
     </div>
     </noscript>
     <!-- Page Head -->
-    <h2>Welcome www.wunxin.com</h2>
+    <h2>Welcome <?=config_item('static_url')?></h2>
     <p id="page-intro">What would you like to do?</p>
     <ul class="shortcut-buttons-set">
       <li><a class="shortcut-button" href="#"><span> <img src="<?=config_item('static_url')?>images/icons/pencil_48.png" alt="icon" /><br />

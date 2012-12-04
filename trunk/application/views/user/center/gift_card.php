@@ -34,7 +34,7 @@
         </div>
 
         <span style="font-size: 12px;"> “我的礼物卡” 中只显示您通过各种渠道或促销活动所获得的万象礼品卡；此礼品卡您需登陆
-            <a href="http://www.wunxin.com/" style="color: #A10000;font-weight: bold;">万象网</a> 购物使用，使用成功后即可充抵相应货款。 </span>
+            <a href="<?=config_item('base_url')?>" style="color: #A10000;font-weight: bold;">万象网</a> 购物使用，使用成功后即可充抵相应货款。 </span>
         <hr />
         <br />
         <div class="u-r-box">

@@ -45,7 +45,7 @@ $_SESSION["appkey"]   = "933b7387daaef51e80af5c9cd35fb369";
 
 //QQ登录成功后跳转的地址,请确保地址真实可用，否则会导致登录失败。
 //$_SESSION["callback"] = "http://your domain/oauth/get_access_token.php"; 
-$_SESSION["callback"] = "http://www.wunxin.com/user/login/qqLoginCallBack";
+$_SESSION["callback"] = config_item('base_url')."user/login/qqLoginCallBack";
 
 //QQ授权api接口.按需调用
 $_SESSION["scope"] = "get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo";

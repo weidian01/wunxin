@@ -10,9 +10,9 @@
 
 
 var wx = {
-    'base_url':'http://wunxin.com/',
-    'img_url':'http://wunxin.com/upload/',
-    'static_url':'http://wunxin.com/',
+    'base_url':'http://www.wunxin.com/',
+    'img_url':'http://www.wunxin.com/upload/',
+    'static_url':'http://www.wunxin.com/',
     'cookie_prefix':'wunxin_',
     'cookie_domain':'wunxin.com',
     'cookie_path':'/'
@@ -393,7 +393,7 @@ wx.goToBack = function ()
 //收藏
 wx.addFavorite = function (title, url)
 {
-    title = wx.isEmpty(title) ? title : "万象网,中国最专业的个性化服装电子商务网站, www.wunxin.com";
+    title = wx.isEmpty(title) ? title : "万象网,中国最专业的个性化服装电子商务网站, "+this.base_url;
     url = wx.isEmpty(url) ? url : wx.base_url+"?fav";
 
 	if(window.sidebar) {
@@ -411,7 +411,7 @@ wx.addFavorite = function (title, url)
 wx.setHomepage = function () {
     if (document.all) {
         document.body.style.behavior = 'url(#default#homepage)';
-        document.body.setHomePage('http://www.wunxin.com');
+        document.body.setHomePage(this.base_url);
     } else if (window.sidebar) {
         if (window.netscape) {
             try {
@@ -422,7 +422,7 @@ wx.setHomepage = function () {
             }
         }
         var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
-        prefs.setCharPref('browser.startup.homepage', 'http://www.wunxin.com');
+        prefs.setCharPref('browser.startup.homepage', this.base_url);
     }
 }
 /*

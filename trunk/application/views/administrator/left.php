@@ -27,7 +27,7 @@
             <div id="profile-links"> Hello, <a href="#" title="Edit your profile"><?=$this->amInfo['am_uname'];?></a>
                 <!--, you have <a href="#messages" rel="modal" title="3 Messages">3 Messages</a><br/>-->
                 <br/><br/>
-                <a href="http://wunxin.com" title="View the Site">查看网站首页</a> |
+                <a href="<?=config_item('static_url')?>" title="View the Site">查看网站首页</a> |
                 <a href="<?=site_url('administrator/admin_login/logout')?>" title="Sign Out">退出</a></div>
             <ul id="main-nav">
                 <!-- Accordion Menu -->

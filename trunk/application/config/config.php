@@ -14,11 +14,11 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://wunxin.com/';
+$config['base_url']	= 'http://www.wunxin.com/';
 
-$config['img_url']	= 'http://wunxin.com/upload/';
+$config['img_url']	= 'http://www.wunxin.com/upload/';
 
-$config['static_url']	= 'http://wunxin.com/';
+$config['static_url']	= 'http://www.wunxin.com/';
 
 $config['http_expires']	= 7200;
 
