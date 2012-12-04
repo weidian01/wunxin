@@ -61,7 +61,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
 
     <div class="linksList">
         <ul>
-            <li><a target="_blank" href="//www.360buy.com">凡客诚品</a></li>
+            <li><a target="_blank" href="//www.mytixu.com">T恤网</a></li>
             <li><a target="_blank" href="//www.xiaomi.com/">小米手机</a></li>
             <li><a target="_blank" href="//www.lskong.com/ ">零食控</a></li>
         </ul>
@@ -74,14 +74,6 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
             <li><a target="_blank" href="//www.360buy.com">京东商城</a></li>
             <li><a target="_blank" href="//www.htjz.com/">胡桃夹子</a></li>
             <li><a target="_blank" href="//auto.sina.com.cn/">新浪汽车</a></li>
-        </ul>
-        <ul>
-            <li><a target="_blank" href="//www.vancl.com/zixun/chimaduizhaobiao/">尺码对照表</a></li>
-            <li><a target="_blank" href="//www.okjee.com/">杂良集</a></li>
-        </ul>
-        <ul>
-            <li><a target="_blank" href="//tmall.vancl.com/">淘宝商城女装</a></li>
-            <li><a target="_blank" href="//www.sjapk.com/soft.html">安卓软件下载</a></li>
         </ul>
     </div>
     <span class="blank15"></span>
