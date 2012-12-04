@@ -1,5 +1,5 @@
 @charset "utf-8"; 
-.path, .path ul li{height:30px; line-height:30px; background:url(http://wunxin.com/images/g-bg.png) no-repeat}
+.path, .path ul li{height:30px; line-height:30px; background:url(http://www.wunxin.com/images/g-bg.png) no-repeat}
 .path{padding-left:20px; background-position:0px -179px}
 .path ul li{float:left; padding-right:12px; padding-left:5px; display:block; background-position:right -91px}
 .path ul li.last{background:none}
@@ -7,8 +7,8 @@
 .goods-list{float:left; width:765px; padding-left:15px}
 .gbox-relation{width:765px; overflow:hidden}
 .sidebox{border:1px solid #e5e5e5; padding:1px; margin-bottom:15px}
-.side-tit{height:28px; line-height:28px; padding-left:10px; background:url(http://wunxin.com/images/bgw_03.gif) repeat-x; font-weight:bold; color:#CA0000}
-.side-tit2{height:28px; line-height:28px; padding-left:10px; background:url(http://wunxin.com/images/bgw_03.gif) repeat-x; font-weight:bold}
+.side-tit{height:28px; line-height:28px; padding-left:10px; background:url(http://www.wunxin.com/images/bgw_03.gif) repeat-x; font-weight:bold; color:#CA0000}
+.side-tit2{height:28px; line-height:28px; padding-left:10px; background:url(http://www.wunxin.com/images/bgw_03.gif) repeat-x; font-weight:bold}
 .menu{padding:5px 0px 10px 0px}
 .menu ul li{line-height:30px; padding-left:15px}
 .side-qh{height:20px; padding-top:10px; padding-left:10px; border-bottom:1px solid #ca0000}
@@ -34,7 +34,7 @@
 .select{border:1px solid #ddd; background-color:#f3f3f3; padding:18px}
 .slect-item{float:left; margin-left:8px; background-color:#fff9ec; border:1px solid #ca0000; height:19px; overflow:hidden; padding:0px 2px 0px 10px}
 .slect-item span{display:block; float:left; line-height:19px}
-.slect-item a.close{float:left; display:block; width:12px; height:13px; padding:3px 2px 0px 8px; background:url(http://wunxin.com/images/bgw_06.gif) no-repeat 8px 3px}
+.slect-item a.close{float:left; display:block; width:12px; height:13px; padding:3px 2px 0px 8px; background:url(http://www.wunxin.com/images/bgw_06.gif) no-repeat 8px 3px}
 .slect-item table td{ line-height:20px}
 .sitem li{ float:left;  padding:0px 15px;  line-height:20px;  white-space:nowrap;  cursor:pointer}
 .extend{ height:26px;  margin-top:-1px;  padding-left:330px;  z-index:99}
@@ -44,7 +44,7 @@
 .goods-cb .goods-cbox{border:1px solid #e8e8e8; padding:5px; width:164px}
 .goods-cb .goods-cbox p{line-height:18px; padding:5px 0px; display:block; height:34px; overflow:hidden}
 .viewhistory{margin-bottom:20px; width:978px; overflow:hidden; border:1px solid #e3e3e3}
-.viewhistory .tit{height:28px; line-height:28px; background:url(http://wunxin.com/images/bgw_03.gif) repeat-x;  padding-left:10px;  font-size:14px;  font-weight:bold;  color:#ca0000}
+.viewhistory .tit{height:28px; line-height:28px; background:url(http://www.wunxin.com/images/bgw_03.gif) repeat-x;  padding-left:10px;  font-size:14px;  font-weight:bold;  color:#ca0000}
 .viewhis{ padding:10px 0px;  height:218px}
 .viewhis .vhis{ float:left;  padding-left:18px;  width:142px;  height:216px;  overflow:hidden}
 .imgborder{ display:block;  border:1px solid #e3e3e3}
@@ -56,8 +56,8 @@
 .goods-pic{float:left; width:426px; height:424px}
 .goods-i{float:left; padding-left:15px; width:537px}
 .small-pic{float:left; width:64px; padding-right:10px}
-.small-pic .picqh, .small-pic .picqh2, .fullstar, .emptystar, .fullstar3, .emptystar3, .size .addcart .addcart-btn, .size .addcart .sc-btn, .share ul li a, .ginfo-title .ginfo-tle2 a, .shaidan .sd-tit .sdbt, .q-t-w{background:url(http://wunxin.com/images/goods-bg.png) no-repeat}
-.ginfo-tle1, .ginfo-tle1 span, .dinfo-tle1, .dinfo-tle1 span{background:url(http://wunxin.com/images/goods-bg.gif) no-repeat}
+.small-pic .picqh, .small-pic .picqh2, .fullstar, .emptystar, .fullstar3, .emptystar3, .size .addcart .addcart-btn, .size .addcart .sc-btn, .share ul li a, .ginfo-title .ginfo-tle2 a, .shaidan .sd-tit .sdbt, .q-t-w{background:url(http://www.wunxin.com/images/goods-bg.png) no-repeat}
+.ginfo-tle1, .ginfo-tle1 span, .dinfo-tle1, .dinfo-tle1 span{background:url(http://www.wunxin.com/images/goods-bg.gif) no-repeat}
 .small-pic .picqh{width:64px; height:12px; overflow:hidden; background-position:0px -269px; _background-position:0px -268px}
 .small-pic .picqh2{width:64px; height:12px; background-position:0px -281px}
 .smallpic-b{width:64px; padding-top:10px; height:385px}
@@ -88,12 +88,12 @@
 .goods-type .sizebox .sub-s{position:relative; z-index:1; display:block; float:left; height:35px; border:2px solid #ddd; padding:1px; margin-bottom:5px; margin-right:8px; background-color:#fff; text-decoration:none}
 .coview{float:left; display:block; width:35px; height:35px; cursor:pointer}
 .cotxt{float:left; display:block; height:35px; padding:0px 5px; cursor:pointer; white-space:nowrap; overflow:hidden}
-.selected, .selected2{position:absolute; display:block; width:10px; height:10px;z-index:1000; bottom:-2px; right:-2px; background:url(http://wunxin.com/images/a07.jpg) no-repeat 0px 0px; overflow:hidden; display:none;}
+.selected, .selected2{position:absolute; display:block; width:10px; height:10px;z-index:1000; bottom:-2px; right:-2px; background:url(http://www.wunxin.com/images/a07.jpg) no-repeat 0px 0px; overflow:hidden; display:none;}
 .sub-cm{position:relative; z-index:1; display:block; float:left; padding:0px 8px; border:2px solid #ddd; height:25px; line-height:25px; background-color:#FFF; margin-right:6px; text-decoration:none}
 .buy-num{position:relative; z-index:1; padding:4px 20px 0px 20px; width:40px; height:24px; overflow:hidden}
 .buy-num input{border:1px solid #ddd; width:38px; height:20px}
-.minus{position:absolute; left:0px; top:9px; display:block; width:12px; height:12px; overflow:hidden; background:url(http://wunxin.com/images/goods-bg.png) no-repeat 0px -312px}
-.plus{position:absolute; right:0px; top:9px; display:block; width:12px; height:12px; overflow:hidden; background:url(http://wunxin.com/images/goods-bg.png) no-repeat 0px -324px}
+.minus{position:absolute; left:0px; top:9px; display:block; width:12px; height:12px; overflow:hidden; background:url(http://www.wunxin.com/images/goods-bg.png) no-repeat 0px -312px}
+.plus{position:absolute; right:0px; top:9px; display:block; width:12px; height:12px; overflow:hidden; background:url(http://www.wunxin.com/images/goods-bg.png) no-repeat 0px -324px}
 .goods-type2 .sizebox ul li{float:left; padding:0px 5px; line-height:25px; color:#ac1116}
 .addcart{padding:5px 0px; height:40px}
 .size .addcart .addcart-btn{display:block; float:left; width:150px; height:34px; background-position:-76px -141px}
@@ -128,16 +128,16 @@
 .d-text2{float:left; width:298px; padding-left:15px; line-height:20px}
 .d-p-name{padding:8px 0 0 0; text-align:center; font-size:16px; font-weight:bold; color:#0086c4}
 .goods-tj{border:1px solid #e3e3e3; margin:10px 0px; width:978px; overflow:hidden}
-.goods-tj .tit{height:28px; line-height:28px; background:url(http://wunxin.com/images/bgw_03.gif) repeat-x; padding-left:15px}
+.goods-tj .tit{height:28px; line-height:28px; background:url(http://www.wunxin.com/images/bgw_03.gif) repeat-x; padding-left:15px}
 .goods-tp{padding:15px 0px}
 .goods-tp td{padding-left:8px; line-height:30px; border-bottom:1px solid #fff}
-.detail-tit{height:49px; background:url(http://wunxin.com/images/info_05.jpg) repeat-x; overflow:hidden; margin-bottom:15px}
-.detail-tit .titles{height:49px; background:url(http://wunxin.com/images/info_03.jpg) no-repeat; text-indent:-99em}
-.detail-tit .titles2{height:49px; background:url(http://wunxin.com/images/info_10.jpg) no-repeat; text-indent:-99em}
+.detail-tit{height:49px; background:url(http://www.wunxin.com/images/info_05.jpg) repeat-x; overflow:hidden; margin-bottom:15px}
+.detail-tit .titles{height:49px; background:url(http://www.wunxin.com/images/info_03.jpg) no-repeat; text-indent:-99em}
+.detail-tit .titles2{height:49px; background:url(http://www.wunxin.com/images/info_10.jpg) no-repeat; text-indent:-99em}
 .goods-detail{padding:15px 0px 0px 0px}
 .goods-detail .goodsimg{text-align:center; padding-bottom:10px}
 .shaidan{padding-top:15px}
-.shaidan .sd-tit{height:25px; border:1px solid #e3e3e3; background:url(http://wunxin.com/images/bgw_03.gif) repeat-x; padding-left:15px; padding-right:15px; margin-bottom:15px}
+.shaidan .sd-tit{height:25px; border:1px solid #e3e3e3; background:url(http://www.wunxin.com/images/bgw_03.gif) repeat-x; padding-left:15px; padding-right:15px; margin-bottom:15px}
 .shaidan .sd-tit .sdbt{float:left; height:25px; line-height:25px; background-position:right 270px; font-size:14px; font-weight:bold}
 .sd-btn{float:right; height:25px; line-height:25px; padding:0px 20px; background-color:#9d031f;    text-align: center;width: 65px;font-weight: bold;}
 .shaidan .sd-tit .sd-btn a{font-size:14px; color:#FFF}
@@ -157,9 +157,9 @@
 .comm-dex{padding:0px 0px 15px 0px; width:765px; overflow:hidden}
 .cdex-b{float:left; width:243px; border:1px solid #e3e3e3; margin-right:10px; padding-bottom:10px}
 .cdex-b .cdtit{width:233px; height:30px; padding-left:10px; line-height:30px; background-color:#f6f6f6; border-bottom:2px solid #a10000}
-.cdex-b .cdtit .full-st, .cdex-b .cdtit .ban-st{float:left; display:block; height:22px; width:20px; background:url(http://wunxin.com/images/str_31.gif) no-repeat 0px 6px}
+.cdex-b .cdtit .full-st, .cdex-b .cdtit .ban-st{float:left; display:block; height:22px; width:20px; background:url(http://www.wunxin.com/images/str_31.gif) no-repeat 0px 6px}
 .cdex-b .cdtit .cd-pf{float:left; display:block}
-.cdex-b .cdtit .ban-st{background:url(http://wunxin.com/images/str_33.gif) no-repeat 0px 6px}
+.cdex-b .cdtit .ban-st{background:url(http://www.wunxin.com/images/str_33.gif) no-repeat 0px 6px}
 .cmtbar{height:12px; width:100px; background-color:#f0f0f0}
 .colorbar{height:12px; width:80%; background-color:#CE0000}
 .chima{margin:0px 0px 10px 0px; height:30px; border:1px solid #e3e3e3}
@@ -170,11 +170,11 @@
 .u-cmt{float:left; width:530px; line-height:20px; padding-left:15px}
 .u-time{float:right; line-height:20px; width:120px; text-align:right}
 .u-info{padding:10px 10px 0px 10px; height:26px; border-top:1px dashed #e3e3e3}
-.u-ly{float:right; height:26px; border:1px solid #e3e3e3; background:url(http://wunxin.com/images/bgw_03.gif) repeat-x; padding:0px 15px; line-height:26px; color:#1B72C0; cursor:pointer}
+.u-ly{float:right; height:26px; border:1px solid #e3e3e3; background:url(http://www.wunxin.com/images/bgw_03.gif) repeat-x; padding:0px 15px; line-height:26px; color:#1B72C0; cursor:pointer}
 .question{border:1px solid #e3e3e3; padding:1px 0 0 0; width:763px}
 .q-text{padding:15px; background-color:#f5f3f4}
-.q-t-1{width:360px; line-height:20px; padding-top:33px; background:url(http://wunxin.com/images/zpbz_06.gif) no-repeat 0px 0px}
-.q-t-2{width:360px; line-height:20px; padding-top:33px; background:url(http://wunxin.com/images/zpbz_03.gif) no-repeat 0px 0px}
+.q-t-1{width:360px; line-height:20px; padding-top:33px; background:url(http://www.wunxin.com/images/zpbz_06.gif) no-repeat 0px 0px}
+.q-t-2{width:360px; line-height:20px; padding-top:33px; background:url(http://www.wunxin.com/images/zpbz_03.gif) no-repeat 0px 0px}
 .q-t-1 p, .q-t-2 p{padding:8px 15px 0px 30px; color:#928685}
 .q-t-w{padding:10px 0 0 16px; background-position:-66px -333px; height:25px; line-height:25px}
 .q-t-w a{font-weight:bold; color:#a10000}
@@ -185,8 +185,8 @@
 .ginfo-title .ginfo-tle1 span, .ginfo-title .dinfo-tle1 span{display:block; height:32px; width:123px; text-align:center; overflow:hidden; line-height:32px; background-position:right -98px; font-weight:bold; font-size:14px; cursor:pointer; text-decoration:none}
 .q-a{width:733px; padding:15px 0px; border-bottom:1px solid #eee}
 .q-a-u{height:25px; line-height:25px; text-align:right}
-.q-a-wt{padding-left:18px; background:url(http://wunxin.com/images/qa_17.gif) no-repeat 0px 5px; line-height:20px; padding-bottom:6px}
-.q-a-hd{padding-left:18px; background:url(http://wunxin.com/images/qa_20.gif) no-repeat 0px 5px; line-height:20px; color:#a10000}
+.q-a-wt{padding-left:18px; background:url(http://www.wunxin.com/images/qa_17.gif) no-repeat 0px 5px; line-height:20px; padding-bottom:6px}
+.q-a-hd{padding-left:18px; background:url(http://www.wunxin.com/images/qa_20.gif) no-repeat 0px 5px; line-height:20px; color:#a10000}
 .moreqa{padding:10px 15px 10px 0px; text-align:right; font-weight:bold}
 .shaidan .question .moreqa a{color:#a10000}
 .clearrecord{float:right; width:40px; line-height:25px; font-size:12px; font-weight:normal}
@@ -200,8 +200,8 @@
 .tuihuantxt p{padding-bottom:10px}
 .shsever .tuihuantxt p .sermail{text-decoration:underline; color:#1677BE}
 .payment{width:763px; border:1px solid #e3e3e3; border-top:0px}
-.payment-tit{height:27px; background:url(http://wunxin.com/images/pb_03.gif) repeat-x; padding-left:15px; line-height:27px; font-size:14px; font-weight:bold}
-.paytit{height:27px; padding-left:20px; background:url(http://wunxin.com/images/yuan_03.gif) no-repeat 0px 7px}
+.payment-tit{height:27px; background:url(http://www.wunxin.com/images/pb_03.gif) repeat-x; padding-left:15px; line-height:27px; font-size:14px; font-weight:bold}
+.paytit{height:27px; padding-left:20px; background:url(http://www.wunxin.com/images/yuan_03.gif) no-repeat 0px 7px}
 .pay-zw{ padding:15px;  line-height:20px}
 .payment .pay-zw .payfont{ text-decoration:underline;  color:#1677BE}
 .paypic{ padding:10px 0px 10px 40px;  margin:0px;  width:680px;  overflow:hidden}
@@ -233,7 +233,7 @@
 .detailPromo div p span {color: #CC0000;margin-right: 10px;}
 .property a:link, .property a:visited {color: #0066CC;}
 .detailPromo div p a {margin-left: 10px;}
-.detailPromo a.unfoldBtn, .detailPromo a.unfoldBtn:link, .detailPromo a.unfoldBtn:visited {background: url("http://wunxin.com/images/detailFoldBg.gif") no-repeat scroll 33px -104px #EEEEEE;color: #333333;display: block;line-height: 18px;margin: 0 auto;padding: 0 18px 0 6px;width: 24px; }
+.detailPromo a.unfoldBtn, .detailPromo a.unfoldBtn:link, .detailPromo a.unfoldBtn:visited {background: url("http://www.wunxin.com/images/detailFoldBg.gif") no-repeat scroll 33px -104px #EEEEEE;color: #333333;display: block;line-height: 18px;margin: 0 auto;padding: 0 18px 0 6px;width: 24px; }
 .promoTips {
     color: #999999;
     position: absolute;

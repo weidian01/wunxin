@@ -90,11 +90,15 @@
             <ul id="list_switch" class="jcarousel-skin-index">
                 <?php foreach ($product_recommend_data as $drdv) {?>
                 <li class="norm">
-                    <a href="<?=productURL($drdv['pid'])?>" class="designimg" title="<?=$drdv['pname']?>" target="_blank">
+                    <a href="<?=productURL($drdv['pid'])?>" class="designimg" title="<?=$drdv['pname']?> ￥<?=fPrice($drdv['sell_price'])?>" target="_blank">
                         <img alt="<?=$drdv['pname']?>" src="<?=config_item('static_url')?>upload/product/<?=str_replace('\\', '/', intToPath($drdv['pid']))?>default.jpg" width="164" height="197"/>
                     </a>
-                    <div class="pro-n"> <p><a target="_blank" title="十字 T恤65, ￥212.31" href="http://wunxin.com/product/2">十字 T恤65</a></p>
-                                    <span class="font4">￥212.31</span></div>
+                    <div class="pro-n">
+                        <p>
+                            <a target="_blank" title="<?=$drdv['pname']?> ￥<?=fPrice($drdv['sell_price'])?>" href="<?=productURL($drdv['pid'])?>"><?=$drdv['pname']?></a>
+                        </p>
+                        <span class="font4">￥<?=fPrice($drdv['sell_price'])?></span>
+                    </div>
                 </li>
                 <?php }?>
             </ul>

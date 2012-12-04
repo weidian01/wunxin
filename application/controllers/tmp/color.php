@@ -109,8 +109,8 @@ class color extends MY_Controller
 
         echo '</table>';
         echo $pagehtml;
-        echo '<SCRIPT type=text/javascript src="http://wunxin.com/scripts/jquery.js"></SCRIPT>
-        <SCRIPT type=text/javascript src="http://wunxin.com/scripts/artdialog.js"></SCRIPT>';
+        echo '<SCRIPT type=text/javascript src="'.config_item('base_url').'scripts/jquery.js"></SCRIPT>
+        <SCRIPT type=text/javascript src="'.config_item('base_url').'scripts/artdialog.js"></SCRIPT>';
 echo <<< END
 <script>
 function set_color(pid, cid)

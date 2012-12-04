@@ -108,7 +108,7 @@ EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3
         <dl>
             <dt>1.</dt>
             <dd><p>请先在贵网站做好万象网的文字友情链接：</p>
-                <p>链接文字：万象网 链接地址：http://www.wunxin.com</p></dd>
+                <p>链接文字：万象网 链接地址：<?=config_item('static_url')?></p></dd>
         </dl>
         <dl>
             <dt>2.</dt>

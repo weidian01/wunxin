@@ -280,7 +280,7 @@ class product_taobao extends MY_Controller
         {
             $query .= "&product_id[]={$pid}";
         }
-        header("Location:http://wunxin.com/administrator/product_taobao/show_result?{$query}");
+        header("Location:".config_item('base_url')."administrator/product_taobao/show_result?{$query}");
     }
 
     public function show_result()

@@ -236,7 +236,7 @@
 </html>
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
 <script charset="utf-8" src="<?=config_item('static_url')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
-<link rel="stylesheet" href="http://wunxin.com/css/artdialog.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="<?=config_item('static_url')?>css/artdialog.css" type="text/css" media="screen"/>
 <script>
 function load_size(val)
 {

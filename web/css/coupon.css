@@ -106,7 +106,7 @@ s, b, i {
 }
 
 .coupon .left {
-    background: url("http://wunxin.com/images/coupon-bg.png") repeat-x scroll 0 0 transparent;
+    background: url("http://www.wunxin.com/images/coupon-bg.png") repeat-x scroll 0 0 transparent;
     height: 146px;
     left: 0;
     position: absolute;
@@ -115,7 +115,7 @@ s, b, i {
 }
 
 .coupon .left i {
-    background: url("http://wunxin.com/images/rule-bg.png") repeat-y scroll 0 0 transparent;
+    background: url("http://www.wunxin.com/images/rule-bg.png") repeat-y scroll 0 0 transparent;
     display: inline;
     float: right;
     height: 146px;
@@ -172,7 +172,7 @@ s, b, i {
 }
 
 .coupon .btn {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll 0 -130px transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll 0 -130px transparent;
     display: block;
     height: 30px;
     margin: 0 auto;
@@ -183,7 +183,7 @@ a.coupon:hover .right {
     background-color: #FFFEDD;
 }
 a.coupon:hover .btn {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll 0 0 transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll 0 0 transparent;
 }
 .coupon .shadow-right, .coupon .shadow-bottom, .coupon .corner {
     font-size: 0;
@@ -227,7 +227,7 @@ a.coupon:hover .shadow-right, a.coupon:hover .shadow-bottom, a.coupon:hover .cor
 }
 
 .coupon .corner {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll -15px -206px transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll -15px -206px transparent;
     bottom: -5px;
     font-size: 0;
     height: 7px;
@@ -280,7 +280,7 @@ a.coupon:hover .corner {
 }
 
 .pager .pre, .pager .next {
-    background: url("http://wunxin.com/images/conpon_bg1.png") no-repeat scroll -278px 0 transparent;
+    background: url("http://www.wunxin.com/images/conpon_bg1.png") no-repeat scroll -278px 0 transparent;
     height: 37px;
     line-height: 37px;
     margin: 0 10px;
@@ -292,7 +292,7 @@ a.coupon:hover .corner {
 }
 
 .pager .on {
-    background: url("http://wunxin.com/images/conpon_bg1.png") no-repeat scroll -149px 0 transparent;
+    background: url("http://www.wunxin.com/images/conpon_bg1.png") no-repeat scroll -149px 0 transparent;
     width: 36px;
 }
 
@@ -304,7 +304,7 @@ a.coupon:hover .corner {
 }
 
 .pager a, .pager span {
-    background: url("http://wunxin.com/images/conpon_bg1.png") no-repeat scroll -370px -36px transparent;
+    background: url("http://www.wunxin.com/images/conpon_bg1.png") no-repeat scroll -370px -36px transparent;
     display: inline-block;
     height: 35px;
     line-height: 35px;
@@ -325,7 +325,7 @@ a.coupon:hover .corner {
 }
 
 .boxs h3 {
-    background: url("http://wunxin.com/images/h3-bg.png") repeat-x scroll 0 0 transparent;
+    background: url("http://www.wunxin.com/images/h3-bg.png") repeat-x scroll 0 0 transparent;
     border-bottom: 1px solid #E0E0E0;
     font-size: 14px;
     font-weight: bold;
@@ -344,7 +344,7 @@ ol, ul {
 }
 
 .step ul .step1 b {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll -32px -161px transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll -32px -161px transparent;
 }
 
 .step ul b {
@@ -361,11 +361,11 @@ ol, ul {
 }
 
 .step ul .step2 b {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll 0 -161px transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll 0 -161px transparent;
 }
 
 .step ul .step3 b {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll -33px -191px transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll -33px -191px transparent;
 }
 
 .boxs {
@@ -376,7 +376,7 @@ ol, ul {
 }
 
 .boxs h3 {
-    background: url("http://wunxin.com/images/h3-bg.png") repeat-x scroll 0 0 transparent;
+    background: url("http://www.wunxin.com/images/h3-bg.png") repeat-x scroll 0 0 transparent;
     border-bottom: 1px solid #E0E0E0;
     font-size: 14px;
     font-weight: bold;
@@ -417,7 +417,7 @@ ol, ul {
 
 .hot .top3 a b {
 	float:left;
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll -76px 0 transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll -76px 0 transparent;
     color: #CF0102;
     font: 18px/26px tahoma;
     margin: 4px 9px 4px 13px;
@@ -541,7 +541,7 @@ ol, ul {
 }
 
 .detail .info .btn-get {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll 0 -64px transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll 0 -64px transparent;
 }
 .detail .info .btn-get, .detail .info .btn-got, .detail .info .btn-none {
     display: inline-block;
@@ -551,5 +551,5 @@ ol, ul {
 }
 
 .detail .info .btn-got {
-    background: url("http://wunxin.com/images/s2.png") no-repeat scroll -115px -33px transparent;
+    background: url("http://www.wunxin.com/images/s2.png") no-repeat scroll -115px -33px transparent;
 }

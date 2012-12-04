@@ -2,7 +2,7 @@
 .scroll_horizontal {position:relative;width:100%;height:auto;padding:10px 0 0px 0;background:#fff;}
 .scroll_horizontal .box{overflow:hidden;position:relative;width:100%;margin:0 auto;border:solid red 0px;}
 .scroll_horizontal .plus,
-.scroll_horizontal .minus{position:absolute;top:50px;width:33px;height:60px;background: url(http://wunxin.com/images/u-bg.gif) no-repeat;/*background:#f90;*/cursor:pointer;}
+.scroll_horizontal .minus{position:absolute;top:50px;width:33px;height:60px;background: url(http://www.wunxin.com/images/u-bg.gif) no-repeat;/*background:#f90;*/cursor:pointer;}
 .scroll_horizontal .plus{left:20px;top: 60px;background-position: 0px -93px;}
 .scroll_horizontal .minus{right:20px;top: 60px;background-position: -33px -93px;}
 /*.scroll_horizontal .plus:hover,
