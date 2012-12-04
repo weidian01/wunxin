@@ -53,7 +53,7 @@
                                 <?php foreach ($day_recommend as $drv) {?>
                                 <li style="display: block; float: left; ">
                                     <a target="_blank" title="" href="<?=$drv['link'];?>">
-                                        <img alt="<?=$drv['title'];?>" src="<?=base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="95" height="120"/>
+                                        <img alt="<?=$drv['title'];?>" src="<?=base_url().str_replace('\\', '/', $drv['img_addr']);?>" width="100" height="120"/>
                                     </a>
                                 </li>
                                 <?php }?>
