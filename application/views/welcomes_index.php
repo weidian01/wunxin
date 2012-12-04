@@ -168,7 +168,7 @@
     <div class="prod-ct">
         <?php foreach ($man_recommend_2_3 as $mr23) {?>
         <?php if ($mr23['emission'] == '2') { ?>
-        <a href="<?=$mr23['pid']?>" title="<?=$mr23['title']?>" target="_blank">
+        <a href="<?=$mr23['link']?>" title="<?=$mr23['title']?>" target="_blank">
             <img src="<?=config_item('static_url')?>images/lazy.gif" alt="<?=$mr23['title'];?>" width="200" height="320"
                 data-original="<?=base_url(). str_replace('\\', '/', $mr23['img_addr']);?>" class="lazy"/>
         </a>
