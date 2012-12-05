@@ -51,7 +51,7 @@ $(document).ready(function(){
             <?php unset($clan[$ancestor]);foreach($clan as $item):?>
             <li style="<?php if($item['floor'] == 0):?>clear: both;font-weight: bold;<?php else:?>float: left;<?php endif;?>"><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=config_item('static_url')?>filter/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
-            <li>&nbsp;</li>
+            <li style="clear:both">&nbsp;</li>
         </ul>
       </div>
     </div>
