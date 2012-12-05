@@ -35,7 +35,7 @@ $(document).ready(function(){
         <?php if($category ==$v['class_id']):?>
             <li class="last"><?=$v['cname']?></a></li>
         <?php else:?>
-            <li><a href="<?=config_item('static_url')?>category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
+            <li><a href="<?=config_item('static_url')?>filter/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
         <?php endif;?>
       <?php endforeach;?>
       <!--li class="last">T恤/卫衣</li-->
@@ -49,7 +49,7 @@ $(document).ready(function(){
       <div class="menu">
         <ul>
             <?php unset($clan[$ancestor]);foreach($clan as $item):?>
-            <li style="<?php if($item['floor'] == 0):?>clear: both;font-weight: bold;<?php else:?>float: left;<?php endif;?>"><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=config_item('static_url')?>category/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
+            <li style="<?php if($item['floor'] == 0):?>clear: both;font-weight: bold;<?php else:?>float: left;<?php endif;?>"><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=config_item('static_url')?>filter/<?=$item['class_id']?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
             <li>&nbsp;</li>
         </ul>
@@ -144,7 +144,7 @@ $(document).ready(function(){
                     <?php foreach($tmp as $k=>$v):?>
                         <?php $str .= "!{$k}-{$v}";?>
                     <?php endforeach;?>
-                    <li><a href="<?=config_item('static_url')?>category/<?echo $category,"/1/{$orderby}/{$orderrank}/!",$item['attr_id'],'-',$tiem,$str?>"><?=$tiem?></a></li>
+                    <li><a href="<?=config_item('static_url')?>filter/<?echo $category,"/1/{$orderby}/{$orderrank}/!",$item['attr_id'],'-',$tiem,$str?>"><?=$tiem?></a></li>
                 <?php endforeach;?>
               </ul></td>
           </tr>
