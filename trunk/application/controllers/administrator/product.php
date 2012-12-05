@@ -530,6 +530,8 @@ class product extends MY_Controller
             {
                 die('目标不存在');
             }
+			
+			
 
             $this->load->model('product/Model_Product_Model', 'mod');
             $attr = $this->mod->getAttrByPID($source, 'attr_id, model_id, attr_value, search');
@@ -537,7 +539,10 @@ class product extends MY_Controller
             {
                 $this->db->where('pid', $target);
                 $this->db->delete('product_attr');
-
+				
+				$up = $this->product->getProductById($source, 'class_id, model_id, brand_id');
+				$this->product->editProduct($target, $up);
+				
                 foreach($attr as $key=>$item)
                 {
                     $attr[$key]['pid'] = $target;
