@@ -51,6 +51,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <?php $_view_size_type = config_item('size_type');?>
                     <?php foreach ($list as $item): ?>
                     <tr>
                         <td>
@@ -64,7 +65,7 @@
                             <?=$item['descr']?>
                         </td>
                         <td>
-                            <?php if($item['type'] == 1):?>T恤<?php elseif($item['type'] == 2):?>卫衣<?php elseif($item['type'] == 3):?>衬衫<?php else:?>裤子<?php endif;?>
+                            <?php echo $_view_size_type[$item['type']];?>
                         </td>
                         <td><a href="<?=site_url("administrator/product_size/edit/{$item['size_id']}")?>"><img
                             src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
