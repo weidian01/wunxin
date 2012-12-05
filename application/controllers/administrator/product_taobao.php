@@ -192,21 +192,21 @@ class product_taobao extends MY_Controller
         //echo "尚未替换结束\n\n\n";
         if($desc_img)
         {
-            $search  = $replace = array();
+            $search = $replace = array();
             foreach ($desc_img as $item) {
                 list($search[], $replace[]) = explode('|||||', $item);
             }
             $desc = str_replace($search, $replace, $desc);
         }
 
-        //echo "开始";
-        //echo $desc, "结束\n\n\n";
+        echo "开始";
+        echo $desc, "结束\n\n\n";
         $desc = preg_replace('/<img[^<^>).]*?src="http:\/\/(?!wunxin).*?>/', '', $desc);
         $desc = preg_replace('/<b[\s<>br]*r>/', '<br>', $desc);
 
-        //p($search);p($replace);
-        //echo "替换后\n",$desc;
-        //die;
+        p($search);p($replace);
+        echo "替换后\n",$desc;
+        die;
         $info['size'] = $this->get_product_size($match['size']);
         $info['color'] = $this->get_product_color($match['color']);
         $skuMap = $this->get_product_skuMap($match['skuMap']);
@@ -268,7 +268,7 @@ class product_taobao extends MY_Controller
         //p($result_id);
         //p($insert);
         //p($def_img);
-        //p($desc_img);
+        //p($desc_img);die;
         foreach($result_id as $id)
         {
             echo "<a href=\"/administrator/product/edit/{$id}\" target=\"_blank\">{$id}</a><br>";
