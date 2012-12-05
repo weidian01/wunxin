@@ -406,6 +406,7 @@ class product_taobao extends MY_Controller
             $img = file_get_contents($url);
             file_put_contents($file_path, $img, LOCK_EX);
         }
+        p(getimagesize('/upload/attached/tb_product/' . intToPath($unique_id) . $file_name));
         return '/upload/attached/tb_product/' . intToPath($unique_id) . $file_name;
     }
 
