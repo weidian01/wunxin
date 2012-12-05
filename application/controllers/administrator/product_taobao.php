@@ -216,6 +216,7 @@ class product_taobao extends MY_Controller
         foreach($pro_list as $kk=> $pp)
         {
             $insert[] = array('pname'=>$pname,
+                'market_price'=> $pp['price'] * 1.1,
                 'sell_price'=>$pp['price'],
                 'style_no'=>md5($unique_id),
                 'keyword'=>$pname,
