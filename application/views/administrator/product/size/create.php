@@ -61,7 +61,7 @@
                         <p>
                             <label>类型</label>
                             <select name="type">
-                            <?php config_item('size_type') as $k => $v):?>
+                            <?php foreach(config_item('size_type') as $k => $v):?>
                             <option value="<?=$k?>" <?php if(isset($type) && $type==$k) echo 'selected="selected"'?>><?=$v?></option>
                             <?php endforeach;?>
                             </select>
