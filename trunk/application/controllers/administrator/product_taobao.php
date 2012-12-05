@@ -227,9 +227,10 @@ class product_taobao extends MY_Controller
         }
         //p($insert);
         $result_id = array();
-        $pro_photo = array();
+
         foreach($insert as $insert_item)
         {
+            $pro_photo = array();
             $_def_img = $insert_item['def_img'];
             $_def_img = $this->get_pro_img($_def_img, $unique_id);
             unset($insert_item['def_img']);
