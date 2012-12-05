@@ -211,8 +211,8 @@ class product_taobao extends MY_Controller
         $skuMap = $this->get_product_skuMap($match['skuMap']);
         $skuMap = json_decode($skuMap, true);
         $pro_list = $this->product_format($info, $skuMap);
-        p($info);p($skuMap);
-        p($pro_list);die;
+        //p($info);p($skuMap);
+        //p($pro_list);die;
         $insert = array();
         foreach($pro_list as $kk=> $pp)
         {
@@ -292,7 +292,7 @@ class product_taobao extends MY_Controller
         //{
         //    echo "<a href=\"/administrator/product/edit/{$id}\" target=\"_blank\">{$id}</a><br>";
         //}
-        $this->load->view('administrator/product/taobao/show_result', array("product_id"=>$product_id));
+        $this->load->view('administrator/product/taobao/show_result', array("product_id"=>$product_id ? $product_id:array()));
     }
 
     function get_product_info()
