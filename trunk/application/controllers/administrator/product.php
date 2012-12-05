@@ -504,4 +504,57 @@ class product extends MY_Controller
         $this->product->deleteProduct($id);
         redirect('/administrator/product/index');
     }
+
+    /**
+     * 复制模型属性
+     */
+    public function copy_attr()
+    {
+        if($this->isPOST())
+        {
+            $source = $this->input->post('source');
+            $target = $this->input->post('target');
+            $this->load->model('product/Model_Product', 'product');
+
+            if($source == $target)
+            {
+                die('来源和目标相同');
+            }
+
+            if($this->product->getProductCount(array('pid' => $source)) == FALSE)
+            {
+                die('来源不存在');
+            }
+
+            if($this->product->getProductCount(array('pid' => $target)) == FALSE)
+            {
+                die('目标不存在');
+            }
+
+            $this->load->model('product/Model_Product_Model', 'mod');
+            $attr = $this->mod->getAttrByPID($source, 'attr_id, model_id, attr_value, search');
+            if($attr)
+            {
+                $this->db->where('pid', $target);
+                $this->db->delete('product_attr');
+
+                foreach($attr as $key=>$item)
+                {
+                    $attr[$key]['pid'] = $target;
+                }
+                $this->db->insert_batch('product_attr', $attr);
+            }
+            die('复制模型属性成功');
+        }
+        else
+        {
+            echo <<<EOT
+<form method="POST" action="/administrator/product/copy_attr">
+来源:<input type="text" name="source">
+目标:<input type="text" name="target">
+<input type="submit">
+</form>
+EOT;
+        }
+    }
 }
