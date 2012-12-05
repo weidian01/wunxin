@@ -201,7 +201,7 @@ class product_taobao extends MY_Controller
 
         echo "开始";
         echo $desc, "结束\n\n\n";
-        $desc = preg_replace('/<img[^<^>).]*?src="http:\/\/(?!wunxin).*?>/', '', $desc);
+        $desc = preg_replace('/<img[^<^>).]*?src="http:\/\/(?!www\.wunxin).*?>/', '', $desc);
         $desc = preg_replace('/<b[\s<>br]*r>/', '<br>', $desc);
 
         p($search);p($replace);
