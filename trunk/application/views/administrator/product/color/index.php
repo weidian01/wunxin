@@ -68,7 +68,7 @@
                             <?=$item['english_name']?>
                         </td>
                         <td>
-                            <div style="float:left;margin-right:5px;display:block;width:20px;height:20px;background-color:<?=$item['code']?>;"></div> <?=$item['code']?>
+                            <div style="float:left;margin-right:5px;display:block;width:20px;height:20px;background-color:#<?=$item['code']?>;">&nbsp;</div> <?=$item['code']?>
                         </td>
                         <td>
                             <?php if($item['image']):?><img width="20" height="20" src="<?=config_item('static_url').'upload/color/'.$item['image']?>"><?php endif;?>
