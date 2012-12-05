@@ -370,6 +370,7 @@ class product_taobao extends MY_Controller
                 foreach($info['size'] as $size)
                 {
                     $key = ";{$size['id']};{$item['id']};";
+                    $key = isset($skuMap['skuMap'][$key]) ? $key : ";{$item['id']};{$size['id']};";
                     if(isset($skuMap['skuMap'][$key]))
                     {
                         if(!isset($result[$item['id']]))
