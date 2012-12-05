@@ -390,7 +390,7 @@ class product_taobao extends MY_Controller
         $file_path = $path . $file_name;
         if(! is_file($file_path)) {
             recursiveMkdirDirectory($path);
-            $img = file_get_contents($url);
+            $img = file_get_contents($url, FALSE, stream_context_create(array('http' => array('timeout' => 60))));
             file_put_contents($file_path, $img, LOCK_EX);
         }
         return '/tmp/taobao_img/' . intToPath($unique_id) . $file_name;
@@ -403,11 +403,11 @@ class product_taobao extends MY_Controller
         $file_path = $path . $file_name;
         if(! is_file($file_path)) {
             recursiveMkdirDirectory($path);
-            $img = file_get_contents($url);
+            $img = file_get_contents($url, FALSE, stream_context_create(array('http' => array('timeout' => 60))));
             file_put_contents($file_path, $img, LOCK_EX);
         }
-        echo $file_path;
-        p(getimagesize($file_path));
+        //echo $file_path;
+        //p(getimagesize($file_path));
         return '/upload/attached/tb_product/' . intToPath($unique_id) . $file_name;
     }
 
@@ -424,7 +424,7 @@ class product_taobao extends MY_Controller
         }
         else
         {
-            $html = file_get_contents($url);
+            $html = file_get_contents($url, FALSE, stream_context_create(array('http' => array('timeout' => 60))));
             file_put_contents($file_path, $html, LOCK_EX);
         }
         return iconv('GBK', "UTF-8//IGNORE", $html);
