@@ -22,6 +22,7 @@
         </li>
         <li><a class="shortcut-button" href="<?=site_url('administrator/product_taobao/index')?>"><span>添加淘宝产品</span></a>
         </li>
+        <li><a class="shortcut-button" href="<?=site_url('administrator/product/copy_attr')?>" target="_blank"><span>复制产品属性</span></a></li>
     </ul>
     <!-- End .shortcut-buttons-set -->
     <div class="clear"></div>
