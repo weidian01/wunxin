@@ -54,10 +54,10 @@ input.gnum{ border:1px solid #ccc; height:16px; line-height:16px; width:30px; te
 .bankpic a{ display:block; width:157px; height:40px; overflow:hidden; text-indent:-99em; border:1px solid #eee; background:url(http://www.wunxin.com/images/bank.jpg) no-repeat;}
 .bankpic span{ display:block; width:157px; height:40px; overflow:hidden; text-indent:-99em; background:url(http://www.wunxin.com/images/bank.jpg) no-repeat;}
 .bankpic a:hover{ border:1px solid #a10000;}
-.bankpic span#onlinepay{ background-position:0px -48px;}
-.bankpic span#icbc{ background-position:0px -96px;}
-.bankpic span#cmb{ background-position:0px -144px;}
-.bankpic span#boc{ background-position:0px -190px;}
+.bankpic span#onlinepay{ background-position:0 -98px;}
+.bankpic span#icbc{ background-position:0px -144px;}
+.bankpic span#cmb{ background-position:0px -190px;}
+.bankpic span#boc{ background-position:-195px -482px;}
 .bankpic span#ccb{ background-position:0px -238px;}
 .bankpic span#abc{ background-position:0px -286px;}
 .bankpic span#cgb{ background-position:0px -334px;}
