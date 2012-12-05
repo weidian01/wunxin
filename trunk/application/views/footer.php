@@ -91,6 +91,13 @@
   </div>
 </div>
 
+<!-- 统计代码 -->
+<div style="display: none;">
+    <script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F16bb50f85674659975075acf26e3650f' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
 <!-- 右侧导航浮动菜单开始 -->
 <div id="sideTools" class="" style="top: 397.5px; right: -52px; ">
      <p class="miniNav" name="dac_index_ycdhsh07"><a class=""><s></s><span>快速导航</span></a></p>
