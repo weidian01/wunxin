@@ -51,7 +51,6 @@ class tool extends MY_Controller
         $this->load->model('product/Model_Product_Category', 'category');
         $category = $this->category->getCategroyList();
 
-
         $brand = array();
         foreach ($brands as $v) {
             $brand[$v['bid']] = $v;
@@ -63,7 +62,8 @@ class tool extends MY_Controller
             'brand' => $brand,
             'category' => $category,
             'size_type' => config_item('size_type'),
-            'up_flag' => $this->upFlag
+            'up_flag' => $this->upFlag,
+            //'color' => $color,
         );
 
         //echo '<pre>';print_r($category);exit;
@@ -82,7 +82,9 @@ class tool extends MY_Controller
             'up_flag' => $this->upFlag,
             'class' => $category,
             'brand' => $brands,
+            //'color' => $color,
         );
+        //p($color);exit;
         $this->load->view('/administrator/tool/crawl_product_add', $data);
     }
 
@@ -109,6 +111,7 @@ class tool extends MY_Controller
             'up_flag' => $this->upFlag,
             'class' => $category,
             'brand' => $brands,
+            //'color' => $color,
         );
 //p($data);exit;
         $this->load->view('/administrator/tool/crawl_product_add', $info);
@@ -121,6 +124,7 @@ class tool extends MY_Controller
         $upFlag = $this->input->get_post('up_flag');
         $bId = $this->input->get_post('bid');
         $cId = $this->input->get_post('cid');
+        //$colorId = $this->input->get_post('color_id');
         $id = $this->input->get_post('id');
 
         $data = array(
@@ -129,6 +133,7 @@ class tool extends MY_Controller
             'up_flag' => $upFlag,
             'bid' => $bId,
             'cid' => $cId,
+            //'color_id' => $colorId,
         );
 
 
