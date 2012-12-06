@@ -91,6 +91,7 @@ class tool extends MY_Controller
     public function crawlProductEdit()
     {
         $id = $this->uri->segment(4, 0);
+        $currentPage = $this->uri->segment(5, 1);
         if (empty ($id)) {
             show_error('参数不全!');
         }
@@ -111,6 +112,7 @@ class tool extends MY_Controller
             'up_flag' => $this->upFlag,
             'class' => $category,
             'brand' => $brands,
+            'current_page' => $currentPage,
             //'color' => $color,
         );
 //p($data);exit;
@@ -126,6 +128,8 @@ class tool extends MY_Controller
         $cId = $this->input->get_post('cid');
         //$colorId = $this->input->get_post('color_id');
         $id = $this->input->get_post('id');
+
+        $currentPage = $this->input->get_post('current_page');
 
         $data = array(
             'url' => $url,
@@ -145,12 +149,13 @@ class tool extends MY_Controller
         }
 
         $this->load->helper('url');
-        redirect('/administrator/tool/crawlProductList');
+        redirect('/administrator/tool/crawlProductList/'.$currentPage);
     }
 
     public function crawl_product_delete()
     {
         $id = $this->uri->segment(4, 0);
+        $currentPage = $this->uri->segment(5, 1);
 
         if (empty ($id)) {
             show_error('参数不全!');
@@ -159,6 +164,6 @@ class tool extends MY_Controller
         $this->db->delete('wx_z_product', array('id' => $id));
 
         $this->load->helper('url');
-        redirect('/administrator/tool/crawlProductList');
+        redirect('/administrator/tool/crawlProductList/'.$currentPage);
     }
 }
