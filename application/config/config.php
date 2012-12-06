@@ -438,7 +438,7 @@ $config['maritalStatus'] = array(
     '2' => '未婚',
 );
 
-$config['size_type'] = array(0=>'请选择',1=>'T恤',2=>'卫衣',3=>'衬衫',4=>'裤子',5=>'棉服', 6 => '裙装');
+$config['size_type'] = array(0=>'请选择',1=>'T恤',2=>'卫衣',3=>'衬衫',4=>'裤子',5=>'棉服', 6 => '裙装', 7 => '背心');
 
 $config['pay_channel'] = array(
     'ICBC-NET-B2C', 'CMBCHINA-NET-B2C', 'BOC-NET-B2C', 'HKBEA-NET-B2C', 'CCB-NET-B2C', 'ABC-NET-B2C', 'GDB-NET-B2C', 'CMBC-NET-B2C', 'CIB-NET-B2C', 'BCCB-NET-B2C', 'BJRCB-NET-B2C',
