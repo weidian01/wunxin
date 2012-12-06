@@ -47,14 +47,6 @@
                             <?php }?>
                         </p>
                         <p>
-                            <label>号码类别</label>
-                            <select name="size_type">
-                                <?php foreach(config_item('size_type') as $k => $v):?>
-                                <option value="<?=$k?>" <?php if(isset($info['size_type']) && $info['size_type'] == $k):?>selected="selected"<?php endif;?>><?=$v?></option>
-                                <?php endforeach;?>
-                            </select>
-                        </p>
-                        <p>
                             <label>更新标记</label>
                             <select name="up_flag">
                                 <?php foreach ($up_flag as $k=>$v) {?>
@@ -69,6 +61,14 @@
                                 <?php foreach ($brand as $v) {?>
                                 <option value="<?=$v['bid']?>" <?=(isset($info['bid'])) && ($v['bid'] == $info['bid']) ? 'selected="selected"' : '';?>><?=$v['name']?></option>
                                 <?php } ?>
+                            </select>
+                        </p>
+                        <p>
+                            <label>号码类别</label>
+                            <select name="size_type">
+                                <?php foreach(config_item('size_type') as $k => $v):?>
+                                <option value="<?=$k?>" <?php if(isset($info['size_type']) && $info['size_type'] == $k):?>selected="selected"<?php endif;?>><?=$v?></option>
+                                <?php endforeach;?>
                             </select>
                         </p>
                         <p>
