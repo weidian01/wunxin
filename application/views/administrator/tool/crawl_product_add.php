@@ -41,6 +41,9 @@
                             <label>链接地址</label>
                             <input class="text-input medium-input" type="text" value="<?=isset($info['url']) ? $info['url'] : ''?>" name="url"/>
                             <br/>
+                            <?php if (isset ($info['url'])) {?>
+                            <a href="<?=$info['url']?>" target="_blank"><?=$info['url']?></a>
+                            <?php }?>
                         </p>
                         <p>
                             <label>号码类别</label>
@@ -54,7 +57,8 @@
                             <label>更新标记</label>
                             <select name="up_flag">
                                 <?php foreach ($up_flag as $k=>$v) {?>
-                                <option value="<?=$k;?>" <?=(isset ($info['up_flag']) && $k == $info['up_flag']) ? 'selected="selected"' : '' ?>><?=$v;?></option>
+                                <!--<option value="<?=$k;?>" <?=(isset ($info['up_flag']) && $k == $info['up_flag']) ? 'selected="selected"' : '' ?>><?=$v;?></option>-->
+                                <option value="<?=$k;?>"><?=$v;?></option>
                                 <?php } ?>
                             </select>
                         </p>

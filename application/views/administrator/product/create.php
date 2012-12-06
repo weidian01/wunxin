@@ -196,7 +196,7 @@
                             <label>仓库</label>
                             <select name="warehouse">
                             <?php foreach ($brands as $v) {?>
-                            <option value="<?=$v['bid']?>" <?=($v['bid'] == $info['brand_id']) ? 'selected="selected"' : '';?>><?=$v['name']?></option>
+                            <option value="<?=$v['bid']?>" <?=(isset ($info['brand_id']) && $v['bid'] == $info['brand_id']) ? 'selected="selected"' : '';?>><?=$v['name']?></option>
                             <?php }?>
                             </select>
                             <!--<input class="text-input" id="" name="warehouse" type="text" value="<?=isset($info['warehouse']) ? $info['warehouse'] : ''?>">-->
