@@ -3,6 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?=$title;?></title>
+    <meta name="description" content="万象网是目前领先的创意与个性化产品的在线零售平台 导倡'人人都是设计师 全民创意'的概念 象你象我 却不是你我 形似 神似 却也不似 我是万象 这是万象网的品牌文化" />
+    <meta name="keywords" content="T恤 创意 万象网 设计 卫衣" />
     <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
     <link href="<?=config_item('static_url')?>css/jcarousel.css" rel="stylesheet" type="text/css"/>
     <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
