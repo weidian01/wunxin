@@ -35,6 +35,7 @@
             <div class="tab-content default-tab" id="tab1">
                 <form action="<?=config_item('base_url')?>administrator/tool/crawlProductSave" method="post">
                     <input type="hidden" name="id" value="<?=isset($info['id']) ? $info['id'] : ''?>">
+                    <input type="hidden" name="current_page" value="<?=isset($current_page) ? $current_page : '';?>"/>
                     <fieldset>
                         <!-- Set class to "column-left" or "column-right" on fieldsets to divide the form into columns -->
                         <p>
