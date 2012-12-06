@@ -29,10 +29,15 @@ class tool extends MY_Controller
         $limit = 20;
         $currentPage = $this->uri->segment(4, 1);
         $offset = ($currentPage - 1) * $limit;
+        $upFlag = (int)$this->uri->segment(5);
 
+        $where = array();
+        if ($upFlag !== false) {
+            $where = array('up_flag' => $upFlag);
+        }
 
-        $totalNum = $this->db->from('wx_z_product')->count_all_results();
-        $data = $this->db->get_where('wx_z_product', array(), $limit, $offset)->result_array();
+        $totalNum = $this->db->from('wx_z_product')->where($where)->count_all_results();
+        $data = $this->db->get_where('wx_z_product', $where, $limit, $offset)->result_array();
 
         $this->load->library('pagination');
         $config['base_url'] = site_url() . '/administrator/tool/crawlProductList/';

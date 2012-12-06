@@ -26,7 +26,11 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3>淘宝产品链接列表</h3>
+            <h3>淘宝产品链接列表
+                <a href="<?=config_item('static_url')?>administrator/tool/crawlProductList/<?=$current_page?>/0">初始</a>
+                <a href="<?=config_item('static_url')?>administrator/tool/crawlProductList/<?=$current_page?>/1">待抓取</a>
+                <a href="<?=config_item('static_url')?>administrator/tool/crawlProductList/<?=$current_page?>/2">已抓取</a>
+            </h3>
             <!--
             <ul class="content-box-tabs">
                 <li><a href="#tab1" class="default-tab">Table</a></li>
