@@ -96,6 +96,7 @@
                 <li><a href="#" class="nav-top-item <?php if(strpos($this->uri->segment(2) ,'other') === 0):?>current<?php endif;?>">其他管理</a>
                     <ul>
                         <li><a href="<?=config_item('static_url')?>administrator/other_system_proposal/systemProposalList" title="">建议与意见</a></li>
+                        <li><a href="<?=config_item('static_url')?>administrator/tool/crawlProductList" title="">淘宝产品待抓取列表</a></li>
                     </ul>
                 </li>
             </ul>
