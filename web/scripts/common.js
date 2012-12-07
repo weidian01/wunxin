@@ -1009,7 +1009,7 @@ function sideToolsAct() {
     var t = u.find(".miniNav a");
 
     var w = u.find(".stMoreClose");
-    var r = false;
+    var r,r1  = false;
     var o;
     var x = !!window.ActiveXObject;
     var v = x && !window.XMLHttpRequest;
@@ -1019,7 +1019,7 @@ function sideToolsAct() {
         clearTimeout(o);
         u.stop().animate({right:0})
     }, function () {
-        if (!r) {
+        if (!r && !r1) {
             o = setTimeout(function () {
                 u.stop(true, true).animate({right:"-52px"})
             }, 300)
@@ -1028,6 +1028,7 @@ function sideToolsAct() {
 
     t.click(function () {
         p()
+        r1 && p1()
     });
     w.click(function () {
         p()
@@ -1076,13 +1077,14 @@ function sideToolsAct() {
 
     t1.click(function () {
         p1()
+        r && p()
     });
     w1.click(function () {
         p1()
     });
     function p1() {
         var c = y1.height();
-        if (!r) {
+        if (!r1) {
             t1.addClass("on");
             y1.show().height("auto");
             var e = y1.height();
@@ -1102,7 +1104,7 @@ function sideToolsAct() {
                 u.stop().animate({top:b + "px"}, 350)
             }
             w1.show();
-            r = true
+            r1 = true
         } else {
             t1.removeClass("on");
             y1.animate({height:0}, 180);
@@ -1114,7 +1116,7 @@ function sideToolsAct() {
                 })
             }
             w1.hide();
-            r = false
+            r1 = false
         }
     }
 

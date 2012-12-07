@@ -731,7 +731,7 @@ function proeuctFilterURL($param, $suffix = '.html')
     }
     ! isset($param['category']) && $param['category'] = 0;
     ! isset($param['page']) && $param['page'] = 1;
-    ! isset($param['order']) && $param['order'] = array('order'=>'0', 'by'=>'0');;
+    ! isset($param['order']) && $param['order'] = array('order'=>'0', 'by'=>'0');
     //! isset($param['by']) && $param['by'] = 1;
     ! isset($param['param']) && $param['param'] = array();
     return config_item('base_url') . "filter/{$param['category']}/{$param['page']}/".implode('-', $param['order']).'/!' . implode('!', $param['param']) . $suffix;

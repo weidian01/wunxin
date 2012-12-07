@@ -141,8 +141,8 @@ $(document).ready(function(){
             <td width="10%" align="right"><?=$item['attr_name']?>：</td>
             <td width="90%"><ul class="sitem">
             <?php foreach($item['attrs'] as $value):?>
-                <?php $key = array_search($value['value_id'], $param);if($key === false):$tmp = $param;$_view_tmp[]=$value['value_id']?>
-                <li><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>"$order_param",'param'=>$_view_tmp));?>"><?=$value['value_name']?></a></li>
+                <?php $key = array_search($value['value_id'], $param);if($key === false):$_view_tmp = $param;$_view_tmp[]=$value['value_id']?>
+                <li><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param,'param'=>$_view_tmp));?>"><?=$value['value_name']?></a></li>
                 <?php else:$_view_tmp = $param;unset($_view_tmp[$key]);?>
                     <li style="padding:0 0 0 0;"><div class="slect-item"><span><?=$value['value_name']?></span><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$_view_tmp));?>" class="close"></a></div></li>
                 <?php endif;?>
