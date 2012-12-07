@@ -142,9 +142,9 @@ $(document).ready(function(){
             <td width="90%"><ul class="sitem">
             <?php foreach($item['attrs'] as $value):?>
                 <?php $key = array_search($value['value_id'], $param);if($key === false):$tmp = $param;$_view_tmp[]=$value['value_id']?>
-                <li><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$orderby,'by'=>$orderrank,'param'=>$_view_tmp));?>"><?=$value['value_name']?></a></li>
+                <li><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>"$order_param",'param'=>$_view_tmp));?>"><?=$value['value_name']?></a></li>
                 <?php else:$_view_tmp = $param;unset($_view_tmp[$key]);?>
-                    <li style="padding:0 0 0 0;"><div class="slect-item"><span><?=$value['value_name']?></span><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$orderby,'by'=>$orderrank,'param'=>$_view_tmp));?>" class="close"></a></div></li>
+                    <li style="padding:0 0 0 0;"><div class="slect-item"><span><?=$value['value_name']?></span><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$_view_tmp));?>" class="close"></a></div></li>
                 <?php endif;?>
                 <?php endforeach;?>
             </ul></td>
@@ -161,13 +161,13 @@ $(document).ready(function(){
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>0,'by'=>1,'param'=>$param,));?>">默认</a>
-              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>1,'by'=>$orderby==1 && $orderrank==1?0:1,'param'=>$param,));?>">价格</a>
-              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>2,'by'=>$orderby==2 && $orderrank==1?0:1,'param'=>$param,));?>">销量</a>
-              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>3,'by'=>$orderby==3 && $orderrank==1?0:1,'param'=>$param,));?>">最新</a>
+              <a <?php if($order_param['order']=='0'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$param));?>">默认</a>
+              <a <?php if($order_param['order']=='1'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?php $_view_order = array('order'=>1,'by'=>0);$_view_order['by'] = ($order_param['order']==1 && $order_param['by']==1)?0:1;echo proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">价格</a>
+              <a <?php if($order_param['order']=='2'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?php $_view_order = array('order'=>2,'by'=>0); $_view_order['by'] = ($order_param['order']==2 && $order_param['by']==1)?0:1;echo proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">销量</a>
+              <a <?php if($order_param['order']=='3'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?php $_view_order = array('order'=>3,'by'=>0);$_view_order['by'] = ($order_param['order']==3 && $order_param['by']==1)?0:1;echo proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
-              <?php if($pageno > 1):?><a class="disabled" href="<?=config_item('static_url')?>category/<?=$category?>/<?=($pageno-1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=config_item('static_url')?>category/<?=$category?>/<?=($pageno+1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">下一页</a><?php endif;?>
+              <?php if($pageno > 1):?><a class="disabled" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>$pageno-1,'order'=>$order_param, 'param'=>$param));?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>$pageno+1,'order'=>$order_param, 'param'=>$param));?>">下一页</a><?php endif;?>
           </div>
       </div>
     <div class="goodsbox">
