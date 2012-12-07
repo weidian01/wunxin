@@ -63,7 +63,7 @@ class into extends MY_Controller
                 {
                     $info = array();
 
-                    $info['model_id'] = $this->get_class_model_id($v['cid']);
+                    $product_model_id = $info['model_id'] = $this->get_class_model_id($v['cid']);
                     $brand = $this->get_brand($v['bid']);
                     $size_conf = $this->_get_product_size($v['size_type']);
                     //p($size_conf);
@@ -138,6 +138,7 @@ class into extends MY_Controller
                         }
                         $insert[] = array(
                             'class_id' => $v['cid'],
+                            'model_id'=>$product_model_id,
                             'warehouse' => $brand['ename'],
                             'brand_id' =>  $brand['bid'],
                             'uname' =>  $brand['name'],
@@ -197,7 +198,7 @@ class into extends MY_Controller
                         echo $tmp_id,"\n";
                     }
                     $this->up($v['id'], array('up_flag'=>2));
-                    die;
+                    //die;
                 }
             }
             else
