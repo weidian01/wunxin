@@ -36,7 +36,7 @@ class product_category extends MY_Controller
     {
         $this->load->model('product/Model_Product_Category', 'category');
         $category = $this->category->getCategroyList();
-        $this->load->model('product/Model_Product_Model', 'mod');
+        $this->load->model('product/Model_Product_Models', 'mod');
         $model = $this->mod->getModelList(500);
         $this->load->view('administrator/product/category/create', array('category' => $category, 'model' => $model));
     }
@@ -56,7 +56,7 @@ class product_category extends MY_Controller
             show_error('分类信息不存在');
         }
         $category = $this->category->getCategroyList();
-        $this->load->model('product/Model_Product_Model', 'mod');
+        $this->load->model('product/Model_Product_Models', 'mod');
         $model = $this->mod->getModelList(500);
         $this->load->view('administrator/product/category/create', array('category' => $category, 'model' => $model, 'class_id' => $class_id, 'info' => $info));
     }

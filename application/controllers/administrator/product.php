@@ -96,7 +96,7 @@ class product extends MY_Controller
         $this->load->helper('form');
         $this->load->model('product/Model_Product_Category', 'category');
         $category = $this->category->getCategroyList();
-        $this->load->model('product/Model_Product_Model', 'mod');
+        $this->load->model('product/Model_Product_Models', 'mod');
         $model = $this->mod->getModelList(500);
         $this->load->model('product/Model_Product_Color', 'color');
         $color = $this->color->getList(500, 0, array('color_id'=>'*'));
@@ -137,9 +137,9 @@ class product extends MY_Controller
         $pattr = array();
         foreach($tmp as $v)
         {
-            $pattr[$v['attr_id']][] = $v['attr_value'];
+            $pattr[$v['attr_id']][] = $v['value_id'];
         }
-        //print_r($pattr);
+        //p($pattr);
 
         $tmp = $this->product->getProductSize($id);
 
@@ -156,21 +156,21 @@ class product extends MY_Controller
         $this->load->helper('form');
         $this->load->model('product/Model_Product_Category', 'category');
         $category = $this->category->getCategroyList();
-        $this->load->model('product/Model_Product_Model', 'mod');
+        $this->load->model('product/Model_Product_Models', 'mod');
         $model = $this->mod->getModelList(500);
-        $attr = $this->mod->getModel($info['model_id']);
-
+        $attr = $this->mod->get_model_detail($info['model_id']);
+        //p($attr);die;
         //获取品牌
         $this->load->model('product/model_product_brand', 'brand');
         $brands = $this->brand->getBrandList(100);
 
-        if (isset($attr['attrs'])) {
-            foreach ($attr['attrs'] as $key => $item) {
-                $attr['attrs'][$key]['attr_value'] = explode(',', $item['attr_value']);
-            }
-        } else {
-            $attr['attrs'] = array();
-        }
+//        if (isset($attr['attrs'])) {
+//            foreach ($attr['attrs'] as $key => $item) {
+//                $attr['attrs'][$key]['attr_value'] = explode(',', $item['attr_value']);
+//            }
+//        } else {
+//            $attr['attrs'] = array();
+//        }
         //print_r($attr);
 
         $this->load->model('product/Model_Product_Size', 'size');
@@ -196,7 +196,7 @@ class product extends MY_Controller
             'category' => $category,
             'model' => $model,
             'color' => $color,
-            'attrs' => $attr['attrs'],
+            'attrs' => $attr,
             'pattr' => $pattr,
             'photo' => $photo,
             'size' => $this->size->getSizeByType($info['size_type'], 'size_id,name'),
@@ -420,12 +420,12 @@ class product extends MY_Controller
         $attr = array();
         $i = 0;
         foreach ($attr_value as $attr_id => $item) {
-            foreach ($item as $v) {
-                if ($v) {
+            foreach ($item as $value_id) {
+                if ($value_id) {
                     $attr[$i]['pid'] = $pid;
                     $attr[$i]['attr_id'] = $attr_id;
                     $attr[$i]['model_id'] = $data['model_id'];
-                    $attr[$i]['attr_value'] = $v;
+                    $attr[$i]['value_id'] = $value_id;
                     $i++;
                 }
             }
@@ -474,7 +474,7 @@ class product extends MY_Controller
         $default_photo = $this->input->post('default_photo');
         $default_photo && $this->product->setProductDefaultPhoto($pid, $default_photo);
         $product_photo && $this->product->addProductPhoto($product_photo, $pid, $default_photo);
-        $attr && $this->product->addProductAttr($attr);
+        $attr && $this->product->addProductAttr($pid, $attr);
 
         //*生成默认图片
         $default_photo = $this->db->get_where('product_photo',array('pid'=>$pid, 'is_default'=>1))->row_array();

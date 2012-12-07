@@ -136,13 +136,13 @@ class product_models extends MY_Controller
         redirect('/administrator/product_model/index');
     }
 
-    public function modelinfo()
+    public function get_model_attr()
     {
         $model_id = $this->input->get_post('model_id');
-        $this->load->model('product/Model_Product_Model', 'mod');
-        $data = $this->mod->getModel($model_id);
-        //print_r($data);
-        self::json_output($data['attrs']);
+        $this->load->model('product/Model_Product_Models', 'mod');
+        $data = $this->mod->get_model_detail($model_id);
+        //p($data);
+        self::json_output($data);
     }
 
 
@@ -329,7 +329,7 @@ class product_models extends MY_Controller
         {
             if($post['attr_id'][$key] && isset($attrs[$attr_id]))
             {
-                isset($post['id'][$key]) && $post['id'][$key] && $attr_conf[$attr_id]['id'] = $post['id'][$key];
+                //isset($post['id'][$key]) && $post['id'][$key] && $attr_conf[$attr_id]['id'] = $post['id'][$key];
                 $attr_conf[$attr_id]['attr_id'] = $post['attr_id'][$key];
                 $attr_conf[$attr_id]['attr_name'] = $attrs[$attr_id]['attr_name'];
                 $attr_conf[$attr_id]['type'] = (int)$post['type'][$key];
@@ -340,7 +340,7 @@ class product_models extends MY_Controller
         }
         //p($attr_conf);die;
         $this->mod->save_model($input, $attr_conf);
-        redirect('/administrator/product_models/model_index');
+        redirect("/administrator/product_models/model_edit/{$input['model_id']}");
     }
 
     public function model_del()

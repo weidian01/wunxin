@@ -316,10 +316,16 @@ class Model_Product extends MY_Model
      * @param $attr
      * @return mixed
      */
-    public function addProductAttr($attr)
+    public function addProductAttr($pid, $attr)
     {
+        if($pid)
+        {
+            $this->db->where(array('pid'=> $pid));
+            $this->db->delete('wx_product_attrs');
+        }
+
         if ($attr) {
-            $this->db->insert_batch('product_attr', $attr);
+            $this->db->insert_batch('product_attrs', $attr);
         }
         return ;
     }
@@ -332,7 +338,7 @@ class Model_Product extends MY_Model
      */
     public function getProductAttr($pid)
     {
-        return $this->db->get_where('product_attr',array('pid'=>$pid))->result_array();
+        return $this->db->get_where('product_attrs',array('pid'=>$pid))->result_array();
     }
 
     /**

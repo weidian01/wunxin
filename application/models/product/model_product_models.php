@@ -166,7 +166,9 @@ class Model_Product_Models extends MY_Model
     {
         $data = $this->db
             ->select('model_id, model_name')
-            ->get_where('product_models', null, $limit, $offset)
+            ->from('product_models')
+            ->limit($limit, $offset)
+            ->get()
             ->result_array();
         return $data;
     }
@@ -317,8 +319,17 @@ class Model_Product_Models extends MY_Model
      */
     function save_model($data, $attrs)
     {
-
+        p($attrs);
         $last_id = $this->_save('product_models', 'model_id', $data);
+        $model_id = isset($data['model_id']) && $data['model_id'] ? $data['model_id']:$last_id;
+        foreach($attrs as $key=>$value)
+        {
+            $attrs[$key]['model_id'] = $model_id;
+        }
+        $this->db->where('model_id', $model_id);
+        $this->db->delete('product_models_attr');
+        $attrs && $this->db->insert_batch('product_models_attr', $attrs);
+        /*
         if((! isset($data['model_id']) || ! $data['model_id']) && $last_id) //(没有设置模型id || 模型id为空) && 获得最终插入id
         {
             foreach($attrs as $key=>$value)
@@ -344,6 +355,7 @@ class Model_Product_Models extends MY_Model
                 $this->db->delete('product_models_attr');
             }
         }
+        */
         return ;
     }
 
@@ -366,7 +378,7 @@ class Model_Product_Models extends MY_Model
 
     public function get_model_attrs($model_id)
     {
-        return $this->db->get_where('wx_product_models_attr', array('model_id' => $model_id))->result_array();
+        return $this->db->get_where('wx_product_models_attr', array('model_id' => $model_id))->result_array('attr_id');
     }
 
     public function get_model_value($model_id = 0, $attr_id = 0)
@@ -376,5 +388,44 @@ class Model_Product_Models extends MY_Model
         $attr_id && $where['attr_id'] = $attr_id;
         return $this->db->get_where('product_models_value', $where)->result_array('value_id');
 
+    }
+
+    public function get_model_detail($model_id)
+    {
+        $attrs = $this->get_model_attrs($model_id);
+        $values = $this->get_model_value($model_id, $attr_id = 0);
+        //p($attrs);p($values);
+        foreach($values as $value)
+        {
+            if(isset($attrs[$value['attr_id']]))
+            {
+                $attrs[$value['attr_id']]['attrs'][$value['value_id']] = $value;
+            }
+        }
+        foreach($attrs as $key => $attr)
+        {
+            !isset($attr['attrs']) && $attrs[$key]['attrs'] = array();
+        }
+        return $attrs;
+    }
+
+    function get_attr_by_pid($pid, $field="*")
+    {
+        list($key, $field) = self::formatField($field);
+        $data = $this->db
+            ->select($field)
+            ->get_where('product_attrs', array('pid'=>$pid))
+            ->result_array($key);
+        return $data;
+    }
+
+    function get_pid_by_model_value($model_id, $value_id, $field="*")
+    {
+        if(! $value_id) return array();
+        list($key, $field) = self::formatField($field);
+        $this->db->select($field)->from('product_attrs');
+        $model_id && $this->db->where(array('model_id'=>$model_id));
+        $this->db->where_in('value_id',$value_id);
+        return $this->db->get()->result_array($key);
     }
 }

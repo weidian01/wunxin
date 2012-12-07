@@ -41,7 +41,7 @@
 $route['default_controller'] = "main";
 //$route['product/([a-z]+)\/?(.*)'] = "product/product/$1";
 $route['category/(.*)'] = "product/product/category/$1";
-$route['filter/(.*)'] = "product/product/category/$1";
+$route['filter/(.*)'] = "product/filter/index/$1";
 $route['product/(:num)'] = "product/product/info/$1";
 $route['newproduct'] = "product/newproduct/index";
 $route['search(.*)'] = "product/product/search/$1";

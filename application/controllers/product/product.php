@@ -193,24 +193,24 @@ class Product extends MY_Controller
             $this->load->model('product/Model_Product_Brand', 'brand');
             $product['brand'] = $this->brand->getBrandByID($product['brand_id'], 'name');
 
-            $this->load->model('product/Model_Product_Model', 'mod');
-            $modelAttr = $this->mod->getModelAttr($product['model_id'], null, 'attr_id, attr_name, attr_value'); //echo APPPATH;
-            $productAttr = $this->mod->getAttrByPID($product['pid'], 'attr_id, attr_value');
-            foreach ($modelAttr as $k => $v) {
-                $modelAttr[$k]['attr_value'] = '';
-                foreach($productAttr as $key => $attr){
-                    if($attr['attr_id'] == $v['attr_id'])
-                    {
-                        $modelAttr[$k]['attr_value'] .= $attr['attr_value'].'&nbsp;';
-                        unset($productAttr[$key]);
-                    }
-                }
-                if($modelAttr[$k]['attr_value'] == '')
+            $this->load->model('product/Model_Product_Models', 'mod');
+            $model_detail = $this->mod->get_model_detail($product['model_id']);
+            //p($model_detail);
+            $product_attr = $this->mod->get_attr_by_pid($pid);
+            //p($product_attr);
+            $modelAttr = array();// = $this->mod->getModelAttr($product['model_id'], null, 'attr_id, attr_name, attr_value'); //echo APPPATH;
+            //$productAttr = $this->mod->getAttrByPID($product['pid'], 'attr_id, attr_value');
+            foreach ($product_attr as $k => $v) {
+                if(! isset($modelAttr[$v['attr_id']]))
                 {
-                    unset($modelAttr[$k]);
-                }
+                    $modelAttr[$v['attr_id']] = array('pid'=>$v['pid'], 'model_id' => $v['model_id'],'attr_id' => $v['attr_id'],'attr_name' => $model_detail[$v['attr_id']]['attr_name']);
+
+
+                };
+                $modelAttr[$v['attr_id']]['attrs'][$v['value_id']]['value_id'] = $v['value_id'];
+                $modelAttr[$v['attr_id']]['attrs'][$v['value_id']]['value_name'] = $model_detail[$v['attr_id']]['attrs'][$v['value_id']]['value_name'];
             }
-            //print_r($modelAttr);
+            //print_r($modelAttr);die;
             //echo '<pre>';print_r($this->product->getProductSize($pid));exit;
             $this->load->view('product/product/info', array(
                 'nav' => $this->cate->getParents($product['class_id']),
