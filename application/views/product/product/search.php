@@ -99,19 +99,6 @@ $(document).ready(function(){
       </div>
 
   </div>
-    <style>
-        .goods-list .listHeader { background: url("<?=config_item('static_url')?>images/listbg_1.gif") repeat-x scroll 0 -514px transparent; height: 31px; padding-left: 33px; }
-        .goods-list .tab a.cur { background-color: #A2A2A2; border-top-color: #EAEAEA; color: #FFFFFF; }
-        .goods-list .tab a { border-bottom: 1px solid #999999; float: left; font-size: 12px; height: 28px; line-height: 28px; text-align: center; width: 67px; }
-        .goods-list .tab a { border-bottom: 1px solid #999999; border-top: 2px solid #ECEDEC;color: #343434; float: left; font-size: 12px; height: 28px; line-height: 28px; text-align: center; width: 67px; }
-        .goods-list .addons { color: #666666; display: inline; float: right; font-family: Verdana, Geneva, sans-serif; line-height: 32px; margin: 0 10px 0 0; }
-        .goods-list .addons span { margin-right: 10px; }
-        .goods-list .addons a.disabled { color: #999999; }
-        .goods-list .addons a { margin-right: 10px; }
-        .goods-list .addons a:link, .goods-list .addons a:visited { color: #990000; }
-        .goods-list .addons a { margin-right: 10px; }
-
-    </style>
   <!--left end-->
   <div class="goods-list">
 
@@ -138,7 +125,7 @@ $(document).ready(function(){
       </div>
       <?php endforeach;?>
     </div>
-      <div class="loading" id="loading" style="display:none;text-align:center;vertical-align:middle;font-size:30px"><img src="<?=config_item('static_url')?>images/loading.gif">......</div>
+      <div class="loading" id="loading" style="display:none;text-align:center;vertical-align:middle;font-size:30px"><img src="<?=config_item('static_url')?>images/ajax-loader.gif"></div>
       <div class="loading font10" id="nomoreresults" style="display:none;text-align:center;">没有更多.</div>
   </div>
   <!--right end-->
