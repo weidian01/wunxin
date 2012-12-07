@@ -723,7 +723,7 @@ function productURL($pid, $suffix = '')
     return config_item('base_url').'product/' . $pid . $suffix;
 }
 
-function proeuctFilterURL($param, $suffix = '.html')
+function productFilterURL($param=array(), $suffix = '.html')
 {
     if(is_string($param))
     {
