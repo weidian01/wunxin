@@ -378,7 +378,7 @@ class Model_Product_Models extends MY_Model
 
     public function get_model_attrs($model_id)
     {
-        return $this->db->get_where('wx_product_models_attr', array('model_id' => $model_id))->result_array('attr_id');
+        return $this->db->get_where('wx_product_models_attr', array('model_id' => $model_id))->order_by('sort desc')->result_array('attr_id');
     }
 
     public function get_model_value($model_id = 0, $attr_id = 0)
