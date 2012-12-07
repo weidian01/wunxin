@@ -1027,8 +1027,8 @@ function sideToolsAct() {
     });
 
     t.click(function () {
+        r1 && p1()//修改
         p()
-        r1 && p1()
     });
     w.click(function () {
         p()
@@ -1076,8 +1076,8 @@ function sideToolsAct() {
     var w1 = u.find(".stMoreClose1");
 
     t1.click(function () {
+        r && p()//修改
         p1()
-        r && p()
     });
     w1.click(function () {
         p1()
