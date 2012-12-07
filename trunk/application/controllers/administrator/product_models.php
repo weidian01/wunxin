@@ -366,9 +366,20 @@ class product_models extends MY_Controller
 
         $this->load->model('product/Model_Product_Models', 'mod');
         $attrData = $this->mod->get_attr_by_id($attr_id);
+        $modelData = $this->mod->getModel($model_id);
+
         $attrs = $this->mod->get_values_by_attr_id($attr_id, array('value_id'=>"*"));
         $values = $this->mod->get_model_value($model_id, $attr_id);
-        $this->load->view('administrator/product/models/model_attr_value_edit',  array('model_id'=>$model_id,'attr_id'=>$attr_id, 'attrs'=>$attrs, 'values'=>$values, 'attr_data' => $attrData));
+
+        $data = array(
+            'model_id'=>$model_id,
+            'attr_id'=>$attr_id,
+            'attrs'=>$attrs,
+            'values'=>$values,
+            'attr_data' => $attrData,
+            'model_data' => $modelData,
+        );
+        $this->load->view('administrator/product/models/model_attr_value_edit',  $data);
     }
 
     public function model_attr_value_save()
