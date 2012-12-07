@@ -125,8 +125,8 @@ class Filter extends MY_Controller
                 $pagesize = 32;
                 $pageNUM = ceil($num / $pagesize);
                 $pageno = $pageno > $pageNUM ? $pageNUM:$pageno;
-                $config['base_url'] = "/category/{$category}";
-                $config['suffix'] = $param ? "/{$order_param['order']}-{$order_param['by']}/{$query}" : "/{$order_param['order']}-{$order_param['by']}";
+                $config['base_url'] = "/filter/{$category}";
+                $config['suffix'] = $param ? "/{$order_param['order']}-{$order_param['by']}/{$query}.html" : "/{$order_param['order']}-{$order_param['by']}/!.html";
                 $config['total_rows'] = $num;
                 $config['per_page'] = $pagesize;
                 $config['use_page_numbers'] = TRUE;
