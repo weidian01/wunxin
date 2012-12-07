@@ -47,20 +47,20 @@ class Filter extends MY_Controller
         $pageno = max((int)$this->uri->rsegment(4, 1), 1);
         $query = $this->uri->rsegment(7, '');
         $param = self::parse_param($query);
-        $orderby = $this->uri->rsegment(5, 'default');
+        $orderby = $this->uri->rsegment(5, '0');
         //p($param);
         $rank = $this->uri->rsegment(6, '1');
         switch ($orderby) {
-            case 'price':
+            case '1': //按价格
                 $order = $rank == '0' ? "sell_price ASC" : "sell_price DESC" ;
                 break;
-            case 'sale':
+            case '2': //按销量
                 $order = $rank == '0' ? "sales ASC" : "sales DESC" ;
                 break;
-            case 'new':
+            case '3': //按上架时间
                 $order = $rank == '0' ? "create_time ASC" : "create_time DESC" ;
                 break;
-            default:
+            default://默认排序
                 $order = null;
         }
 
