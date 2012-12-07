@@ -138,7 +138,7 @@ $(document).ready(function(){
               <a <?php if($order_param['order']=='2'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?php $_view_order = array('order'=>2,'by'=>0); $_view_order['by'] = ($order_param['order']==2 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">销量</a>
               <a <?php if($order_param['order']=='3'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?php $_view_order = array('order'=>3,'by'=>0);$_view_order['by'] = ($order_param['order']==3 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">最新</a>
           </div>
-          <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
+          <div class="addons"><span>共找到约 <span class="font19"><?=$productCount?></span>个商品</span>
               <?php if($pageno > 1):?><a class="disabled" href="<?=productFilterURL(array('category'=>$category,'page'=>$pageno-1,'order'=>$order_param, 'param'=>$param));?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=productFilterURL(array('category'=>$category,'page'=>$pageno+1,'order'=>$order_param, 'param'=>$param));?>">下一页</a><?php endif;?>
           </div>
       </div>
@@ -159,7 +159,7 @@ $(document).ready(function(){
     <?php if($pageHTML):?>
     <div class="pages">
         <?=$pageHTML?>
-        共<span class="font18"><?=$pageNUM?></span>页&nbsp;&nbsp;&nbsp;&nbsp;
+        共 <span class="font19"><?=$pageNUM?></span> 页&nbsp;&nbsp;&nbsp;&nbsp;
         <!--到第<input class="input6" name="input" type="text" /> 页 <input type="button" class="input7" value="确定" /> -->
     </div>
     <?php endif;?>
