@@ -41,8 +41,8 @@
                         <th>
                             <input class="check-all" type="checkbox"/>
                         </th>
-                        <th>ID</th>
                         <th>属性</th>
+                        <th>属性值ID</th>
                         <th>属性值</th>
                         <th>操作</th>
                     </tr>
