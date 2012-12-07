@@ -35,9 +35,9 @@ $(document).ready(function(){
         <?php if($category ==$v['class_id']):?>
             <li class="last"><?=$v['cname']?></a></li>
         <?php else:?>
-            <li><a href="<?=config_item('static_url')?>filter/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
+            <li><a href="<?=productFilterURL()?>"><?=$v['cname']?></a></li>
         <?php endif;?>
-      <?php endforeach;?>
+      <?php endforeach;?><?php if(empty($nav)) echo '<li class="last">全部分类</a></li>';?>
       <!--li class="last">T恤/卫衣</li-->
     </ul>
   </div>
@@ -49,7 +49,7 @@ $(document).ready(function(){
       <div class="menu">
         <ul>
             <?php unset($clan[$ancestor]);foreach($clan as $item):?>
-            <li style="<?php if($item['floor'] == 0):?>clear: both;font-weight: bold;<?php else:?>float: left;<?php endif;?>"><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=proeuctFilterURL(array('category'=>$item['class_id']));?>"><?=$item['cname']?></a></li>
+            <li style="<?php if($item['floor'] == 0):?>clear: both;font-weight: bold;<?php else:?>float: left;<?php endif;?>"><?=str_repeat("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $item['floor']+1-1);?><a href="<?=productFilterURL(array('category'=>$item['class_id']));?>"><?=$item['cname']?></a></li>
             <?php endforeach;?>
             <li style="clear:both"></li>
         </ul>
@@ -107,20 +107,6 @@ $(document).ready(function(){
     <?php if(isset($model_detail) && $model_detail && ! isset($this->channel[$category]['is_parent']) &&  $category > 0):?>
     <div id="modelAttr" class="select">
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
-        <?php if(false && isset($param) && $param):?>
-        <tr>
-          <td width="10%" align="right">您已选择：</td>
-          <td width="90%">
-            <?php foreach($param as $key=>$item):?>
-              <?php $tmp=$param;unset($tmp[$key]);$str='';?>
-              <?php foreach($tmp as $k=>$v):?>
-                  <?php $str .= "!{$k}-{$v}";?>
-              <?php endforeach;?>
-              <div class="slect-item"><span><?=urldecode($item)?></span><a href="<?=config_item('static_url')?>filter/<?echo $category,"/1/{$orderby}/{$orderrank}/",$str?>" class="close"></a></div>
-            <?php endforeach;?>
-          </td>
-        </tr>
-        <?php endif;?>
         <?php foreach($model_detail as $item):?>
           <?php if($item['attrs']):?>
           <tr <?php if($item['display']==0):?>class="attr_hidden"<?php endif;?>>
@@ -128,9 +114,9 @@ $(document).ready(function(){
             <td width="90%"><ul class="sitem">
             <?php foreach($item['attrs'] as $value):?>
                 <?php $key = array_search($value['value_id'], $param);if($key === false):$_view_tmp = $param;$_view_tmp[]=$value['value_id']?>
-                <li><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param,'param'=>$_view_tmp));?>"><?=$value['value_name']?></a></li>
+                <li><a href="<?=productFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param,'param'=>$_view_tmp));?>"><?=$value['value_name']?></a></li>
                 <?php else:$_view_tmp = $param;unset($_view_tmp[$key]);?>
-                    <li style="padding:0 0 0 0;"><div class="slect-item"><span><?=$value['value_name']?></span><a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$_view_tmp));?>" class="close"></a></div></li>
+                    <li style="padding:0 0 0 0;"><div class="slect-item"><span><?=$value['value_name']?></span><a href="<?=productFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$_view_tmp));?>" class="close"></a></div></li>
                 <?php endif;?>
                 <?php endforeach;?>
             </ul></td>
@@ -147,13 +133,13 @@ $(document).ready(function(){
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a <?php if($order_param['order']=='0'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$param));?>">默认</a>
-              <a <?php if($order_param['order']=='1'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?php $_view_order = array('order'=>1,'by'=>0);$_view_order['by'] = ($order_param['order']==1 && $order_param['by']==1)?0:1;echo proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">价格</a>
-              <a <?php if($order_param['order']=='2'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?php $_view_order = array('order'=>2,'by'=>0); $_view_order['by'] = ($order_param['order']==2 && $order_param['by']==1)?0:1;echo proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">销量</a>
-              <a <?php if($order_param['order']=='3'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?php $_view_order = array('order'=>3,'by'=>0);$_view_order['by'] = ($order_param['order']==3 && $order_param['by']==1)?0:1;echo proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">最新</a>
+              <a <?php if($order_param['order']=='0'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=productFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$param));?>">默认</a>
+              <a <?php if($order_param['order']=='1'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?php $_view_order = array('order'=>1,'by'=>0);$_view_order['by'] = ($order_param['order']==1 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">价格</a>
+              <a <?php if($order_param['order']=='2'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?php $_view_order = array('order'=>2,'by'=>0); $_view_order['by'] = ($order_param['order']==2 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">销量</a>
+              <a <?php if($order_param['order']=='3'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?php $_view_order = array('order'=>3,'by'=>0);$_view_order['by'] = ($order_param['order']==3 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
-              <?php if($pageno > 1):?><a class="disabled" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>$pageno-1,'order'=>$order_param, 'param'=>$param));?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=proeuctFilterURL(array('category'=>$category,'page'=>$pageno+1,'order'=>$order_param, 'param'=>$param));?>">下一页</a><?php endif;?>
+              <?php if($pageno > 1):?><a class="disabled" href="<?=productFilterURL(array('category'=>$category,'page'=>$pageno-1,'order'=>$order_param, 'param'=>$param));?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=productFilterURL(array('category'=>$category,'page'=>$pageno+1,'order'=>$order_param, 'param'=>$param));?>">下一页</a><?php endif;?>
           </div>
       </div>
     <div class="goodsbox">
