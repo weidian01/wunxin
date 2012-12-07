@@ -97,6 +97,7 @@ class Filter extends MY_Controller
 
             $this->load->model('product/Model_Product_Models', 'mod');
             $model_detail = $this->mod->get_model_detail($cate_info['model_id']);
+            //p($model_detail);
             $pids = array();
             if($param)
             {

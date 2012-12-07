@@ -118,7 +118,7 @@ $(document).ready(function(){
     </style>
 
   <div class="goods-list">
-    <?php if(! isset($this->channel[$category]['is_parent']) &&  $category > 0):?>
+    <?php if(isset($model_detail) && $model_detail && ! isset($this->channel[$category]['is_parent']) &&  $category > 0):?>
     <div id="modelAttr" class="select">
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
         <?php if(false && isset($param) && $param):?>
