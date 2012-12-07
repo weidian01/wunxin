@@ -61,6 +61,7 @@ class into extends MY_Controller
             {
                 foreach($urls as $v)
                 {
+                    //echo $v['url']."\n";continue;
                     sleep(5);
                     $info = array();
 
@@ -69,7 +70,7 @@ class into extends MY_Controller
                     $size_conf = $this->_get_product_size($v['size_type']);
                     //p($size_conf);
 
-                    $url = 'http://detail.tmall.com/item.htm?spm=a1z10.3.0.157.ghkVEg&id=15132024033&';//$v['url'];
+                    $url = $v['url'];//'http://detail.tmall.com/item.htm?spm=a1z10.3.0.157.ghkVEg&id=15132024033&';//
                     $unique_id = self::get_unique_id($url);
                     $match = $this->get_match($url);
                     //p($match);
