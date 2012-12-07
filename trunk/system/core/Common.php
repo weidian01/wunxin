@@ -718,9 +718,24 @@ function fPrice($price, $type = 1)
     return sprintf('%.2f', $p);
 }
 
-function productURL($pid)
+function productURL($pid, $suffix = '')
 {
-    return config_item('base_url').'product/'.$pid;
+    return config_item('base_url').'product/' . $pid . $suffix;
+}
+
+function proeuctFilterURL($param, $suffix = '')
+{
+    if(is_string($param))
+    {
+        return config_item('base_url') . "filter/{$param}{$suffix}";
+    }
+    ! isset($param['category']) && $param['category'] = 0;
+    ! isset($param['page']) && $param['page'] = 1;
+    ! isset($param['order']) && $param['order'] = 'default';
+    ! isset($param['by']) && $param['by'] = 1;
+    ! isset($param['param']) && $param['param'] = array();
+    return config_item('base_url') . "filter/{$param['category']}/{$param['page']}/{$param['order']}/{$param['by']}/!" . implode('!', $param['param']) . $suffix;
+
 }
 
 function p($variable)

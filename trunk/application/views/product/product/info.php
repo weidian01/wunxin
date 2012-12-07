@@ -323,7 +323,7 @@
           <ul class="model_attr">
             <?php foreach($modelAttr as $attr):?>
               <li class="title"><?=$attr['attr_name']?>：</li>
-              <li class="content"><?=$attr['attr_value']?></li>
+              <li class="content"><?php foreach($attr['attrs'] as $v):?><?=$v['value_name']?> <?php endforeach;?></li>
               <?endforeach;?>
           </ul>
       </div>

@@ -78,19 +78,16 @@
                         <p id="model">
                             <?php if(isset($attrs)):?>
                                 <?php foreach($attrs as $attr):?>
-                                    <?=$attr['attr_name']?> : <?php if ($attr['type'] == 3):?><select name="attr_value[<?=$attr['attr_id']?>][]"><option value="">请选择</option><?php endif;?>
-                                    <?php foreach($attr['attr_value'] as $v):?>
+                                <?php if ($attr['attrs']):?>
+                                    <?=$attr['attr_name']?> ：
+                                    <?php foreach($attr['attrs'] as $v):?>
                                         <?php if ($attr['type'] == 1): ?>
-                                        <input type="radio" name="attr_value[<?=$attr['attr_id']?>][]"  value="<?=$v?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
+                                        <input type="radio" name="attr_value[<?=$attr['attr_id']?>][]"  value="<?=$v['value_id']?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v['value_id'], $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v['value_name']?>
                                         <?php elseif ($attr['type'] == 2): ?>
-                                        <input type="checkbox" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$v?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v, $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v?>
-                                        <?php elseif ($attr['type'] == 3): ?>
-                                        <option value="<?=$v?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v, $pattr[$attr['attr_id']])):?>selected="selected"<?php endif;?>><?=$v?></option>
-                                        <?php elseif ($attr['type'] == 4): ?>
-                                        <input class="text-input" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$pattr[$attr['attr_id']][0]?>" type="text">
+                                        <input type="checkbox" name="attr_value[<?=$attr['attr_id']?>][]" value="<?=$v['value_id']?>" <?php if(isset($pattr[$attr['attr_id']]) && in_array($v['value_id'], $pattr[$attr['attr_id']])):?>checked<?php endif;?>> <?=$v['value_name']?>
                                         <?php endif;?>
-                                    <?php endforeach;?>
-                                <?php if ($attr['type'] == 3):?></select><?php endif;?><br />
+                                    <?php endforeach;?><br />
+                                <?php endif;?>
                                 <?php endforeach;?>
                             <?php endif;?>
                         </p>
@@ -264,7 +261,7 @@ function load_model(val)
     {
         return ;
     }
-    $.post("<?=site_url('administrator/product_model/modelinfo')?>", {model_id: val},
+    $.post("<?=site_url('administrator/product_models/get_model_attr')?>", {model_id: val},
        function(data){
            if(data)
            {
@@ -291,7 +288,13 @@ function create_element(json) {
         default :
             type = 'select';
     }
-
+    var html= '';
+    $.each(json.attrs, function(i, n){
+        html += ' <input type="' + type + '" name="attr_value[' + json.attr_id + '][]" value="' + n.value_id + '"> ' + n.value_name
+    });
+    html = html ? json.attr_name + ' ：' + html + '<br>' : '';
+    $("#model").append(html)
+    return;
     var tmp = json.attr_value.split(',');
     $("#model").append(json.attr_name + ' :')
     var html='';
