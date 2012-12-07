@@ -563,6 +563,8 @@ class into extends MY_Controller
 
     function insert_product_size($pid, $size)
     {
+        if (empty ($size) || !is_array($size)) return false;
+
         foreach($size as $key => $item)
         {
             $size[$key]['pid'] = $pid;
