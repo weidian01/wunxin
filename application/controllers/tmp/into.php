@@ -61,6 +61,7 @@ class into extends MY_Controller
             {
                 foreach($urls as $v)
                 {
+                    sleep(5);
                     $info = array();
 
                     $product_model_id = $info['model_id'] = $this->get_class_model_id($v['cid']);
