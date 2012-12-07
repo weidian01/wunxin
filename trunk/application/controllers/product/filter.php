@@ -36,6 +36,17 @@ class Filter extends MY_Controller
         return $param;
     }
 
+    static private function parse_order($query, $cut = '-')
+    {
+        $tmp = explode($cut, $query);
+        if(2 > count($tmp))
+        {
+            return array('order'=>'0', 'by'=>'0');
+        }
+        return array('order'=>$tmp[0], 'by'=>$tmp[1]);
+    }
+
+
     /**
      * 产品列表
      */
@@ -45,20 +56,21 @@ class Filter extends MY_Controller
 
         $category = (int)$this->uri->rsegment(3, 0);
         $pageno = max((int)$this->uri->rsegment(4, 1), 1);
-        $query = $this->uri->rsegment(7, '');
+        $query = $this->uri->rsegment(0, '');
         $param = self::parse_param($query);
-        $orderby = $this->uri->rsegment(5, '0');
+        $order_param = $this->uri->rsegment(5, '0');
+        $order_param = self::parse_order($order_param);
         //p($param);
-        $rank = $this->uri->rsegment(6, '1');
-        switch ($orderby) {
+        //$rank = $this->uri->rsegment(6, '1');
+        switch ($order_param['order']) {
             case '1': //按价格
-                $order = $rank == '0' ? "sell_price ASC" : "sell_price DESC" ;
+                $order = $order_param['by'] == '0' ? "sell_price ASC" : "sell_price DESC" ;
                 break;
             case '2': //按销量
-                $order = $rank == '0' ? "sales ASC" : "sales DESC" ;
+                $order = $order_param['by'] == '0' ? "sales ASC" : "sales DESC" ;
                 break;
             case '3': //按上架时间
-                $order = $rank == '0' ? "create_time ASC" : "create_time DESC" ;
+                $order = $order_param['by'] == '0' ? "create_time ASC" : "create_time DESC" ;
                 break;
             default://默认排序
                 $order = null;
@@ -113,7 +125,7 @@ class Filter extends MY_Controller
                 $pageNUM = ceil($num / $pagesize);
                 $pageno = $pageno > $pageNUM ? $pageNUM:$pageno;
                 $config['base_url'] = "/category/{$category}";
-                $config['suffix'] = $param ? "/{$orderby}/{$rank}/{$query}" : "/{$orderby}/{$rank}";
+                $config['suffix'] = $param ? "/{$order_param['order']}-{$order_param['by']}/{$query}" : "/{$order_param['order']}-{$order_param['by']}";
                 $config['total_rows'] = $num;
                 $config['per_page'] = $pagesize;
                 $config['use_page_numbers'] = TRUE;
@@ -144,8 +156,7 @@ class Filter extends MY_Controller
                 'products' => $products,
                 'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM, 'pageno'=>$pageno, 'query'=>$query,
                 'salesRank' => $this->salesRank($class_id),
-                'orderby'=>$orderby,
-                'orderrank'=>$rank,
+                'order_param'=>$order_param,
             ));
             //print_r($this->channel);
         } else {
