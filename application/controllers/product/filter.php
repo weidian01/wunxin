@@ -23,14 +23,8 @@ class Filter extends MY_Controller
     {
         $param = array();
         if ($query) {
-            $param = explode('!', trim($query, '!.html'));
-//            p($tmp);
-//            foreach ($tmp as $item) {
-//                if (strpos($item, '-') === false) continue;
-//                list($key, $value) = explode('-', $item);
-//                $key && $value && $param[$key] = urldecode($value);
-//            }
-//            $param && ksort($param); //参数排序
+            $query = trim($query, '!.html');
+            $param = $query ? explode('!', $query):array();
         }
         //var_dump($param);
         return $param;
@@ -109,6 +103,7 @@ class Filter extends MY_Controller
             $category && $where = "class_id in ({$classes}) AND";
             $where .= ' status=1';
             $where .=   ($param && $pids) ? ' AND pid IN (' . implode(',', $pids) . ')' : '';
+
             if($param && !$pids) //参数有,产品id无 即使通过参数没有搜索到任何产品
             {
                 $num = 0;
