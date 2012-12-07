@@ -188,7 +188,7 @@ $(document).ready(function(){
     <div class="pages">
         <?=$pageHTML?>
         共<?=$pageNUM?>页&nbsp;&nbsp;&nbsp;&nbsp;
-        到第<input class="input6" name="input" type="text" /> 页 <input type="button" class="input7" value="确定" />
+        <!--到第<input class="input6" name="input" type="text" /> 页 <input type="button" class="input7" value="确定" /> -->
     </div>
     <?php endif;?>
   </div>
