@@ -72,4 +72,23 @@ class test extends MY_Controller
         }
         //echo APPPATH;
     }
+
+    public function checkIsCrawl()
+    {
+        $data = $this->db->get_where('z_product',array('up_flag' => 2), 20000)->result_array();
+
+        foreach ($data as $v) {
+            preg_match('/id=(.*)&/sU', $v['url'], $url);
+            $tPid = $url[1];
+            if (empty ($tPid)) {
+                echo $v['url']." -- ERROR<br/>";exit;
+            }
+
+            $isCrawl = $this->db->select('pid')->from('wx_product')->like('product_taobao_addr', $tPid)->get()->row_array();
+            if (empty ($isCrawl)) {
+                echo $v['id'].', ';
+            }
+            //p($isCrawl);exit;
+        }
+    }
 }
