@@ -161,10 +161,10 @@ $(document).ready(function(){
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>'default','by'=>1,'param'=>$param,));?>">默认</a>
-              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>'price','by'=>$orderby=='price' && $orderrank==1?0:1,'param'=>$param,));?>">价格</a>
-              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>'sale','by'=>$orderby=='sale' && $orderrank==1?0:1,'param'=>$param,));?>">销量</a>
-              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>'new','by'=>$orderby=='new' && $orderrank==1?0:1,'param'=>$param,));?>">最新</a>
+              <a <?php if($orderby=='default'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>0,'by'=>1,'param'=>$param,));?>">默认</a>
+              <a <?php if($orderby=='price'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>1,'by'=>$orderby==1 && $orderrank==1?0:1,'param'=>$param,));?>">价格</a>
+              <a <?php if($orderby=='sale'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>2,'by'=>$orderby==2 && $orderrank==1?0:1,'param'=>$param,));?>">销量</a>
+              <a <?php if($orderby=='new'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?=proeuctFilterURL(array('category'=>$category,'page'=>1,'order'=>3,'by'=>$orderby==3 && $orderrank==1?0:1,'param'=>$param,));?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
               <?php if($pageno > 1):?><a class="disabled" href="<?=config_item('static_url')?>category/<?=$category?>/<?=($pageno-1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">上一页</a><?php endif;?><?php if($pageno < $pageNUM):?> <a href="<?=config_item('static_url')?>category/<?=$category?>/<?=($pageno+1)?>/<?=$orderby?>/<?=$orderrank?>/<?=$query?>">下一页</a><?php endif;?>
