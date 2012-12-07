@@ -56,7 +56,7 @@ class Filter extends MY_Controller
 
         $category = (int)$this->uri->rsegment(3, 0);
         $pageno = max((int)$this->uri->rsegment(4, 1), 1);
-        $query = $this->uri->rsegment(0, '');
+        $query = $this->uri->rsegment(6, '');
         $param = self::parse_param($query);
         $order_param = $this->uri->rsegment(5, '0');
         $order_param = self::parse_order($order_param);

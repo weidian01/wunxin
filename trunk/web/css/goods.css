@@ -41,7 +41,7 @@
 .extend .kz{ width:116px;  height:26px;  border:1px solid #DDD; border-top:0px; background-color:#F3F3F3; cursor:pointer; text-align:center; line-height:25px}
 .goodsbox{padding:10px 0 0 0; width:765px; overflow:hidden}
 .goods-cb{float:left; width:176px; overflow:hidden; padding:0px 8px 15px 7px}
-.goods-cb .goods-cbox{border:1px solid #e8e8e8; padding:5px; width:164px}
+.goods-cb .goods-cbox{border:1px solid #e8e8e8; padding:5px; width:164px;height: 256px;}
 .goods-cb .goods-cbox p{line-height:18px; padding:5px 0px; display:block; height:34px; overflow:hidden}
 .viewhistory{margin-bottom:20px; width:978px; overflow:hidden; border:1px solid #e3e3e3}
 .viewhistory .tit{height:28px; line-height:28px; background:url(http://www.wunxin.com/images/bgw_03.gif) repeat-x;  padding-left:10px;  font-size:14px;  font-weight:bold;  color:#ca0000}
