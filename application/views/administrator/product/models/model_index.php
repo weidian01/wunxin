@@ -40,6 +40,7 @@
                         <th>
                             <input class="check-all" type="checkbox"/>
                         </th>
+                        <th>模型ID</th>
                         <th>模型名称</th>
                         <th>操作</th>
                     </tr>
@@ -50,6 +51,7 @@
                         <td>
                             <input type="checkbox"/>
                         </td>
+                        <td><?=$item['model_id']?></td>
                         <td><?=$item['model_name']?></td>
                         <td><a href="<?=site_url("administrator/product_models/model_edit/{$item['model_id']}")?>"><img
                             src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
