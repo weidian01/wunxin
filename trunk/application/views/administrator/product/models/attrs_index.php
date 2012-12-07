@@ -41,6 +41,7 @@
                         <th>
                             <input class="check-all" type="checkbox"/>
                         </th>
+                        <th>属性ID</th>
                         <th>属性名称</th>
                         <th>操作</th>
                     </tr>
@@ -51,6 +52,7 @@
                         <td>
                             <input type="checkbox"/>
                         </td>
+                        <td><?=$item['attr_id']?></td>
                         <td><a href="<?=site_url('administrator/product_models/value_index')?>/?attr_id=<?=$item['attr_id']?>"><?=$item['attr_name']?></a></td>
                         <td><a href="<?=site_url("administrator/product_models/attrs_edit/{$item['attr_id']}")?>"><img
                             src="<?=config_item('static_url')?>images/icons/pencil.png" alt="Edit"/></a>
