@@ -22,7 +22,9 @@
     <div class="content-box">
         <!-- Start Content Box -->
         <div class="content-box-header">
-            <h3>属性值列表</h3>
+            <h3>属性值列表 &nbsp;&nbsp;&nbsp;&nbsp;
+                <?=isset($attr_data['attr_id']) ? '属性ID：'.$attr_data['attr_id'] : ''?>
+                <?=isset($attr_data['attr_name']) ? '属性名称：'.$attr_data['attr_name'] : ''?></h3>
             <!--ul class="content-box-tabs">
 <li><a href="#tab1" class="default-tab">Table</a></li>
 <!-- href must be unique and match the id of target div -->
