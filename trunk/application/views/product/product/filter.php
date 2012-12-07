@@ -35,7 +35,7 @@ $(document).ready(function(){
         <?php if($category ==$v['class_id']):?>
             <li class="last"><?=$v['cname']?></a></li>
         <?php else:?>
-            <li><a href="<?=productFilterURL()?>"><?=$v['cname']?></a></li>
+            <li><a href="<?=productFilterURL(array('category'=>$v['class_id']))?>"><?=$v['cname']?></a></li>
         <?php endif;?>
       <?php endforeach;?><?php if(empty($nav)) echo '<li class="last">全部分类</a></li>';?>
       <!--li class="last">T恤/卫衣</li-->
