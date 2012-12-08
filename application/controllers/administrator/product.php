@@ -533,12 +533,12 @@ class product extends MY_Controller
 			
 			
 
-            $this->load->model('product/Model_Product_Model', 'mod');
-            $attr = $this->mod->getAttrByPID($source, 'attr_id, model_id, attr_value, search');
+            $this->load->model('product/Model_Product_Models', 'mod');
+            $attr = $this->mod->getAttrByPID($source, 'attr_id, model_id, value_id');
             if($attr)
             {
                 $this->db->where('pid', $target);
-                $this->db->delete('product_attr');
+                $this->db->delete('product_attrs');
 				
 				$up = $this->product->getProductById($source, 'class_id, model_id, brand_id');
 				$this->product->editProduct($target, $up);
@@ -547,7 +547,7 @@ class product extends MY_Controller
                 {
                     $attr[$key]['pid'] = $target;
                 }
-                $this->db->insert_batch('product_attr', $attr);
+                $this->db->insert_batch('product_attrs', $attr);
             }
             die('复制模型属性成功');
         }

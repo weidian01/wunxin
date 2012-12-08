@@ -213,7 +213,7 @@ class Model_Product_Models extends MY_Model
         list($key, $field) = self::formatField($field);
         $data = $this->db
             ->select($field)
-            ->get_where('product_attr', array('pid'=>$pid))
+            ->get_where('product_attrs', array('pid'=>$pid))
             ->result_array($key);
         return $data;
     }
