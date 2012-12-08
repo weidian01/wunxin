@@ -13,6 +13,8 @@ class Filter extends MY_Controller
         parent::__construct();
     }
 
+    const PAGE_STATIC = FALSE;
+
     /**
      * 解析属性参数
      * @static
@@ -140,6 +142,7 @@ class Filter extends MY_Controller
             }
             //$this->cache_view("category/\d+/?\d*");
             //print_r($this->cate->getClan($this->channel[$category]['ancestor']));
+
             $this->load->view('product/product/filter', array(
                 'title' => "{$cate_info['title']} 分类列表",
                 'category' => $category,
@@ -154,6 +157,18 @@ class Filter extends MY_Controller
                 'salesRank' => $this->salesRank($class_id),
                 'order_param'=>$order_param,
             ));
+
+            if(self::PAGE_STATIC)
+            {
+                $this->load->helper('directory');
+                $file =  WEBROOT . ltrim($this->uri->uri_string(), '/');
+                $offset = strrpos($file, "/");
+                if($offset !== false)
+                {
+                    $dir = substr($file, 0, $offset);
+                    recursiveMkdirDirectory($dir) && file_put_contents($file, $this->output->get_output(), LOCK_EX);
+                }
+            }
             //print_r($this->channel);
         } else {
             show_404("分类不存在");

@@ -115,17 +115,39 @@ class order extends MY_Controller
 
             $this->load->model('product/Model_Product', 'product');
             $this->load->model('product/Model_Product_Color', 'color');
-
-            $cdData = $this->calculateDiscount($cartData);
-
-            $productTmpData = array();
-            $totalPrice = $cdData['total_price'];//p($cdData);exit;
-            foreach ($cdData['products'] as $cv) {
-                $productData = $this->product->getProductById($cv['pid']);
-                $productTmpData[$productData['pid']] = $productData;
-
+            //p($cartData);
+            /****************校验购物车内产品开始*****************/
+            $order_pids = array();
+            foreach($cartData as $item)
+            {
+                $order_pids[] = $item['pid'];
             }
-
+            $productTmpData = $this->product->getProductById($order_pids, array('pid'=>'pid, pname, uid, uname, brand_id, color_id, market_price, sell_price, warehouse'), array('status'=>1));
+            //p($productTmpData);
+            foreach($cartData as $key => $item)
+            {
+                if(!isset($productTmpData[$item['pid']]))
+                {   //清除购物车内不合法产品
+                    unset($cartData[$key]);
+                }
+                else
+                {   //设置金额
+                    $cartData[$key]['product_price'] = $productTmpData[$item['pid']]['sell_price'];
+                }
+            }
+            //p($cartData);die;
+            /****************校验购物车内产品结束*****************/
+            $cdData = $this->calculateDiscount($cartData);
+            //p($cdData);die;
+            //$productTmpData = array();
+            $totalPrice = $cdData['total_price'];
+//            foreach ($cdData['products'] as $cv) {
+//                $productData = $this->product->getProductById($cv['pid']);
+//                $productTmpData[$productData['pid']] = $productData;
+//
+//            }
+            //p($productTmpData);die;
+            //p($cdData);exit;
             //$discount = $this->userDiscount($totalPrice);
 
             $data = array(
@@ -162,26 +184,29 @@ class order extends MY_Controller
             $response['order_sn'] = $orderId;
 
             foreach ($cdData['products'] as $v) {
-                $productData = $productTmpData[$v['pid']];
-                $colorData = $this->color->getColorById($productData['color_id']);
+                if(isset($productTmpData[$v['pid']]))
+                {
+                    $productData = $productTmpData[$v['pid']];
+                    $colorData = $this->color->getColorById($productData['color_id']);
 
-                $orderProductData[] = array (
-                    'order_sn' => $orderId,
-                    'pid' => $productData['pid'],
-                    'uid' => $this->uInfo['uid'],
-                    'uname' => $this->uInfo['uname'],
-                    'pname' => $productData['pname'],
-                    'market_price' => $productData['market_price'],
-                    'sell_price' => $productData['sell_price'],
-                    'final_price' => $v['final_price'],
-                    'product_num' => $v['num'],
-                    'color' => $colorData['china_name'],
-                    'product_size' => $v['product_size'],
-                    'presentation_integral' => fPrice($productData['sell_price']),
-                    'preferential' => '',
-                    'ext' => $v['promotion_id'].'-'.$v['promotion_name'],
-                    'warehouse'=> $productData['warehouse'],
-                );
+                    $orderProductData[] = array (
+                        'order_sn' => $orderId,
+                        'pid' => $productData['pid'],
+                        'uid' => $this->uInfo['uid'],
+                        'uname' => $this->uInfo['uname'],
+                        'pname' => $productData['pname'],
+                        'market_price' => $productData['market_price'],
+                        'sell_price' => $productData['sell_price'],
+                        'final_price' => $v['final_price'],
+                        'product_num' => $v['num'],
+                        'color' => $colorData['china_name'],
+                        'product_size' => $v['product_size'],
+                        'presentation_integral' => fPrice($productData['sell_price']),
+                        'preferential' => '',
+                        'ext' => $v['promotion_id'].'-'.$v['promotion_name'],
+                        'warehouse'=> $productData['warehouse'],
+                    );
+                }
             }
 
             $this->order->addOrderProduct($orderProductData, $orderId);
