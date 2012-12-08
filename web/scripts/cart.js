@@ -76,7 +76,7 @@ cart.init = function ()
                     <div class="cart-gimg"><img src="'+wx.img_url+'product/'+idToPath(cartData[i].pid)+'icon.jpg" width="50" height="50" /></div>\
                     <div class="cart-gname"><a class="cart-gn" href="'+wx.productURL(cartData[i].pid)+'" target="_blank" title="'+cartData[i].pname+'">'+cartData[i].pname+'</a><br/>\
                     <a href="javascript:void(0);" id="cart_favorite_id" onclick="product.favoriteProduct('+cartData[i].pid+', \'cart_favorite_id\')">收藏</a>&nbsp;&nbsp;\
-                    <a href="javascript:void(0);" onclick="cart.deleteCartItem('+cartData[i].pid+')">&nbsp;删除</a></div>\
+                    <a href="javascript:void(0);" onclick="cart.deleteCartItem('+cartData[i].pid+', '+cartData[i].size_id+')">&nbsp;删除</a></div>\
                   </div>\
                   <div class="cartCell cart-price">￥'+wx.fPrice(cartData[i].sell_price)+'</div>\
                   <div class="cartCell cart-size">'+cartData[i].product_size+'</div>\
@@ -202,16 +202,16 @@ cart.addToCart = function (pid, pSize, pNum, additional_info, bindingId)
 }
 
 //删除购物车中产品
-cart.deleteCartItem = function (pid, bindingId)
+cart.deleteCartItem = function (pid, size_id, bindingId)
 {
     pid = parseInt(pid);
-    if ( !wx.isEmpty(pid) && pid !== 0) {
+    if ( !wx.isEmpty(pid) && pid !== 0 && !wx.isEmpty(size_id) && size_id !== 0) {
         wx.showPop('参数不全。', bindingId);
         return false;
     }
 
     var url = 'cart/deleteCartProduct';
-    var param = 'pid='+pid;
+    var param = 'pid='+pid+'&size_id'+size_id;
     var data = wx.ajax(url, param);
 
     cart.init();

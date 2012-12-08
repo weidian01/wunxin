@@ -191,11 +191,12 @@ class cart extends MY_Controller
     public function deleteCartProduct()
     {
         $pId = intval($this->input->get_post('pid'));
+        $size_id = strtolower($this->input->get_post('size_id'));
 
         $response = array('error' => '0', 'msg' => '删除/重新添加产品至购物车中成功', 'code' => 'remove_re_add_product_to_shopping_cart_success');
 
         do {
-            if ($pId < 0) {
+            if ($pId < 0 || ! $size_id) {
                 $response = error(60010);
                 break;
             }
@@ -211,7 +212,7 @@ class cart extends MY_Controller
             $cData = $this->getCartToCookie();
 
             foreach ($cData as $k=>$v) {
-                if ($pId == $v['pid']) {
+                if ($pId == $v['pid'] && $size_id == $v['size_id']) {
                     unset ($cData[$k]);
                 }
             }
