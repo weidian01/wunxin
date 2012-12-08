@@ -852,7 +852,14 @@ function sizeSort($sizeArr)
     $i = 10;
     $rArr = array();
     foreach ($sizeArr as $v) {
+        /** 判断尺码来源于产品尺码表还是来自于配置表 **/
+        if (isset ($v['name']) && isset ($v['abbreviation'])) {
+            return array();
+        }
+
+        $v['name'] = isset ($v['name']) ? $v['name'] : $v['abbreviation'];
         $tmpSize = strtoupper(trim($v['name']));
+
         switch ($tmpSize) {
             case 'XS': $rArr[0] = $v; break;
             case 'S':  $rArr[1] = $v; break;
