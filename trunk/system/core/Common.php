@@ -862,13 +862,13 @@ function sizeSort($sizeArr)
             case 'XXL':$rArr[5] = $v; break;
             case 'XXXL':$rArr[6] = $v; break;
 
-            case '90cm': $rArr[7] = $v; break;
-            case '100cm': $rArr[8] = $v; break;
-            case '110cm': $rArr[9] = $v; break;
-            case '120cm': $rArr[10] = $v; break;
-            case '130cm': $rArr[11] = $v; break;
-            case '140cm': $rArr[12] = $v; break;
-            case '150cm': $rArr[13] = $v; break;
+            case '90CM': $rArr[7] = $v; break;
+            case '100CM': $rArr[8] = $v; break;
+            case '110CM': $rArr[9] = $v; break;
+            case '120CM': $rArr[10] = $v; break;
+            case '130CM': $rArr[11] = $v; break;
+            case '140CM': $rArr[12] = $v; break;
+            case '150CM': $rArr[13] = $v; break;
 
             default: $rArr[$i] = $v; break;
         }
