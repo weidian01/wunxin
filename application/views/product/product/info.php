@@ -3,14 +3,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?=$product['pname']?> -- 万象网</title>
-<link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
-<link href="<?=config_item('static_url')?>css/goods.css" rel="stylesheet" type="text/css" />
-<link href="<?=config_item('static_url')?>css/jquery.jqzoom.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.jqzoom-core.js"> </script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
+<link href="<?=url('static')?>css/base.css" rel="stylesheet" type="text/css" />
+<link href="<?=url('static')?>css/goods.css" rel="stylesheet" type="text/css" />
+<link href="<?=url('static')?>css/jquery.jqzoom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?=url('static')?>scripts/jquery.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/jquery.jqzoom-core.js"> </script>
+<script type="text/javascript" src="<?=url('static')?>scripts/jquery.lazyload.min.js"> </script>
 <!--[if lt IE 7]>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/iepng.js"></script>
 <script type="text/javascript">
 //EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
 </script>
@@ -43,8 +43,8 @@
             <?php $def_photo='';foreach($photo as $item):?>
             <?php if($item['is_default'] == 1){$def_photo = $item['img_addr'];}?>
             <div class="pic-rn">
-                <a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$item['img_addr']?>'}">
-                    <img src="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
+                <a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: '<?=url('img')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $item['img_addr'])?>',largeimage: '<?=url('img')?>product/<?=intToPath($product['pid']).$item['img_addr']?>'}">
+                    <img src="<?=url('img')?>product/<?=intToPath($product['pid']).str_replace('.','_S.', $item['img_addr'])?>" width="60" height="60" alt="<?=$product['pname']?>" /></a></div>
             <?php endforeach;?>
           </div>
         </div>
@@ -52,16 +52,16 @@
       <div class="picqh2" id="button_next"></div>
     </div>
     <div class="big-pic">
-        <a href="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="" >
-        <img src="<?=config_item('static_url')?>images/lazy.gif" width="350" height="420"
-             data-original="<?=config_item('img_url')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $def_photo)?>" class="lazy"/>
+        <a href="<?=url('img')?>product/<?=intToPath($product['pid']).$def_photo?>" rel='gal1' class="jqzoom" title="" >
+        <img src="<?=url('static')?>images/lazy.gif" width="350" height="420"
+             data-original="<?=url('img')?>product/<?=intToPath($product['pid']).str_replace('.','_M.', $def_photo)?>" class="lazy"/>
         </a>
     </div>
   </div>
   <div class="goods-i">
     <div class="goods-name">
 
-      <h1><?=$product['pname']?> <img src="<?=config_item('static_url')?>images/lazy.gif" width="31" height="13" data-original="<?=config_item('static_url')?>images/buy_bg_10.gif" class="lazy"/></h1>
+      <h1><?=$product['pname']?> <img src="<?=url('static')?>images/lazy.gif" width="31" height="13" data-original="<?=url('static')?>images/buy_bg_10.gif" class="lazy"/></h1>
       <!--<span class="font3"><?=date('Y');?>新品 </span>--></div>
     <p><!--商品编号：CY0569852310000<br/>-->
       特&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：<span class="font12">￥<?=fPrice($product['sell_price'])?></span><br/>
@@ -123,15 +123,15 @@
           <div class="sizebox">
               <?php foreach($alike as $item):?>
                   <?php if(isset($item['color']) && $item['color']):?>
-                  <a class="sub-s" href="<?=config_item('static_url')?>product/<?=$item['pid']?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
+                  <a class="sub-s" href="<?=productURL($item['pid'])?>" <?php if($item['pid'] === $product['pid']) echo 'style="border:2px solid #ac1116"'?>>
                     <span class="selected" style="display:<?=($item['pid'] === $product['pid']) ? 'block':'none';?>">
-                    <img src="<?=config_item('static_url')?>images/lazy.gif" width="10" height="10" data-original="<?=config_item('static_url')?>images/a07.jpg" class="lazy"/></span>
+                    <img src="<?=url('static')?>images/lazy.gif" width="10" height="10" data-original="<?=url('static')?>images/a07.jpg" class="lazy"/></span>
                         <?php if(true)://根据产品默认图片显示图片?>
                         <span class="coview">
-                            <img src="<?=config_item('static_url')?>images/lazy.gif" width="35" height="35" data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" class="lazy"/>
+                            <img src="<?=url('static')?>images/lazy.gif" width="35" height="35" data-original="<?=url('img')?>product/<?=intToPath($item['pid']).'icon.jpg'?>" class="lazy"/>
                         </span>
                         <?php else://根据产品颜色显示图片?>
-                        <span class="coview" style="background:<?if ($item['color']['image']):?>url(<?=config_item('static_url')?>upload/color/<?=$item['color']['image']?>)<?php else:?><?=$item['color']['code']?><?php endif;?>"></span>
+                        <span class="coview" style="background:<?if ($item['color']['image']):?>url(<?=url('img')?>upload/color/<?=$item['color']['image']?>)<?php else:?><?=$item['color']['code']?><?php endif;?>"></span>
                         <?php endif;?>
                     <span class="cotxt"><?=$item['color']['china_name']?></span>
                   </a>
@@ -284,7 +284,7 @@
             <li<?php if($k == 0):?> class="on"<?php endif;?>>
               <div class="no1"><?=($k+1)?></div>
               <div class="bdimg"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>">
-                  <img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" /></a></div>
+                  <img src="<?=url('img')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" /></a></div>
               <div class="bdancont"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><?=$item['pname']?></a>
                 <div class="bdprice"> <span class="font4">￥<?=fprice($item['sell_price'])?></span></div>
               </div>
@@ -339,7 +339,7 @@
         <div class="detail-tit">
           <div class="titles2">细节展示</div>
         </div>
-        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="'.config_item('static_url').'images/lazy.gif" data-original=', $product['pcontent'])?></div>
+        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="'.url('static').'images/lazy.gif" data-original=', $product['pcontent'])?></div>
       </div>
     </div>
     <div class="gbox-relation" id="g-relation2">
@@ -421,7 +421,7 @@
                   </div></td>
               </tr>
             </table>
-            <div class="q-t-w">更多关于万象网购物问题及配送方式问题，详情请 <a href="<?=config_item('static_url')?>other/help/index/22" target="_blank">点击这里 >></a></div>
+            <div class="q-t-w">更多关于万象网购物问题及配送方式问题，详情请 <a href="<?=url('static')?>other/help/index/22" target="_blank">点击这里 >></a></div>
           </div>
           <div class="q-a-box" id='_hdwd'><!--互动问答内容--></div>
           <div id="more_qa" style="float:center;display:none" class="pages"><!--更多--></div>
@@ -429,15 +429,15 @@
       </div>
     </div>
     <div class="gbox-relation pad9" id="g-relation5" style="display:none;">
-      <div class="shsever"> <img src="<?=config_item('static_url')?>images/lazy.gif" width="293" height="18" align="换货流程" data-original="<?=config_item('static_url')?>images/shouhou_03.gif" class="lazy"/><br><br>
-        <div class="pad12"><img src="<?=config_item('static_url')?>images/lazy.gif" width="651" height="140" align="换货流程" data-original="<?=config_item('static_url')?>images/shouhou_07.gif" class="lazy"/></div>
-        <img src="<?=config_item('static_url')?>images/lazy.gif" width="235" height="22" align="退货流程" data-original="<?=config_item('static_url')?>images/shouhou_11.gif" class="lazy"/><br>
+      <div class="shsever"> <img src="<?=url('static')?>images/lazy.gif" width="293" height="18" align="换货流程" data-original="<?=url('static')?>images/shouhou_03.gif" class="lazy"/><br><br>
+        <div class="pad12"><img src="<?=url('static')?>images/lazy.gif" width="651" height="140" align="换货流程" data-original="<?=url('static')?>images/shouhou_07.gif" class="lazy"/></div>
+        <img src="<?=url('static')?>images/lazy.gif" width="235" height="22" align="退货流程" data-original="<?=url('static')?>images/shouhou_11.gif" class="lazy"/><br>
         <br>
-        <div class="pad12"><img src="<?=config_item('static_url')?>images/lazy.gif" width="652" height="120" align="退货流程" data-original="<?=config_item('static_url')?>images/shouhou_15.gif" class="lazy"/></div>
+        <div class="pad12"><img src="<?=url('static')?>images/lazy.gif" width="652" height="120" align="退货流程" data-original="<?=url('static')?>images/shouhou_15.gif" class="lazy"/></div>
         <div class="tuihuantxt">
           <div class="tuihuan-tit">退换货承诺：</div>
-          <p>自您签收货后7日内可以退换货，15天内可以换货，在商品不影响二次销售的情况下，万象网将为您办理退换货服务，请在 <a href="<?=config_item('static_url')?>">万象网</a> -
-              <a href="<?=config_item('static_url')?>user/center/index" target="_blank">我的订单</a> "申请退换货"
+          <p>自您签收货后7日内可以退换货，15天内可以换货，在商品不影响二次销售的情况下，万象网将为您办理退换货服务，请在 <a href="<?=url()?>">万象网</a> -
+              <a href="<?=url('member')?>user/center/index" target="_blank">我的订单</a> "申请退换货"
             申请。注意：商品在非质量问题，运费将由您来承担！
           </p>
           <div class="tuihuan-tit">退换货方式：</div>
@@ -462,10 +462,10 @@
         </div>
         <div class="pay-zw"> 易宝在线支付、工行在线支付、招行在线支付、中国银行在线支付、支付宝在线支付6种在线支付方式，几乎涵盖所有大中型银行发卡的银行卡，覆盖率达98%，选择在线支付即时到账，准确快捷！
           <ul class="paypic">
-            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="114" height="42" data-original="<?=config_item('static_url')?>images/paybg_11.jpg" class="lazy"/></span>易宝在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="98" height="48" data-original="<?=config_item('static_url')?>images/paybg_06.jpg" class="lazy"/></span> 支付宝在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="112" height="46" data-original="<?=config_item('static_url')?>images/paybg_08.jpg" class="lazy"/></span>工商银行在线支付</li>
-            <li><span><img src="<?=config_item('static_url')?>images/lazy.gif" width="120" height="50" data-original="<?=config_item('static_url')?>images/paybg_03.jpg" class="lazy"/></span>一网通在线支付</li>
+            <li><span><img src="<?=url('static')?>images/lazy.gif" width="114" height="42" data-original="<?=url('static')?>images/paybg_11.jpg" class="lazy"/></span>易宝在线支付</li>
+            <li><span><img src="<?=url('static')?>images/lazy.gif" width="98" height="48" data-original="<?=url('static')?>images/paybg_06.jpg" class="lazy"/></span> 支付宝在线支付</li>
+            <li><span><img src="<?=url('static')?>images/lazy.gif" width="112" height="46" data-original="<?=url('static')?>images/paybg_08.jpg" class="lazy"/></span>工商银行在线支付</li>
+            <li><span><img src="<?=url('static')?>images/lazy.gif" width="120" height="50" data-original="<?=url('static')?>images/paybg_03.jpg" class="lazy"/></span>一网通在线支付</li>
           </ul>
           温馨提示：在线支付付款等待期限为24小时。请您在订购后24小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电010-62962388，我们将竭诚为您服务！ </div>
         <div class="payment-tit">
@@ -474,7 +474,7 @@
         <div class="pay-zw">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td width="25%" height="100"><img src="<?=config_item('static_url')?>images/lazy.gif" width="90" height="86" data-original="<?=config_item('static_url')?>images/paybg_18.jpg" class="lazy"/></td>
+              <td width="25%" height="100"><img src="<?=url('static')?>images/lazy.gif" width="90" height="86" data-original="<?=url('static')?>images/paybg_18.jpg" class="lazy"/></td>
               <td width="75%" valign="top"><span class="font21"><strong>邮局汇款：</strong>选择此方式支付货款的客户，请您在下单后尽快到邮局进行汇款。汇款完毕后，请务必进入订单信息填写页面填写并确认汇款信息<br/>
                 <strong>温馨提示：</strong>在线支付付款等待期限为72小时。请您在订购后72小时内付款，否则我们将不会保留您的订单，感谢您对我们的支持，此规则最终解释权贵万象网所有，如有疑问请致电010-62962388，我们将竭诚为您服务！</span></td>
             </tr>
@@ -486,9 +486,9 @@
         <div class="pay-zw">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td width="25%" align="center"><img src="<?=config_item('static_url')?>images/lazy.gif" width="82" height="138" data-original="<?=config_item('static_url')?>images/paybg_21.jpg" class="lazy"/></td>
+              <td width="25%" align="center"><img src="<?=url('static')?>images/lazy.gif" width="82" height="138" data-original="<?=url('static')?>images/paybg_21.jpg" class="lazy"/></td>
               <td width="75%" valign="middle"><span class="font21"><strong>礼品卡支付：</strong>在进入结算中心 - 提交订单页面，输入您的礼品卡及密码
-                  (注意：礼品卡是需要先<a href="<?=config_item('static_url')?>user/center/bingCard" target="_blank">绑定卡</a>),点击验证进行支付订单，如您的礼品卡余额不足够支付订单，请使用其他方式支付。<br/>
+                  (注意：礼品卡是需要先<a href="<?=url('member')?>user/center/bingCard" target="_blank">绑定卡</a>),点击验证进行支付订单，如您的礼品卡余额不足够支付订单，请使用其他方式支付。<br/>
                 <br/>
                 <strong>虚拟账户支付：</strong>是您在万象网的专属账户; 您在万象网购物多支付的部分或报销运费等金额都会存入你的虚拟账户中，你可以在万象网购物时使用。</span></td>
             </tr>
@@ -501,7 +501,7 @@
         <div class="pay-zw">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td width="25%" align="center"><img src="<?=config_item('static_url')?>images/paybg_25.jpg" width="80" height="58" /></td>
+              <td width="25%" align="center"><img src="<?=url('static')?>images/paybg_25.jpg" width="80" height="58" /></td>
               <td width="75%" valign="middle"><span class="font21"><strong>电话支付：</strong>选择此方式支付货款的客户，请您在下单后尽快到邮局进行汇款。汇款完毕后，请务必进入订单信息填写页面填写并确认汇款信息</span></td>
             </tr>
           </table>
@@ -522,11 +522,11 @@
 <!-- #BeginLibraryItem "/Library/footer.lbi" -->
 <?php include APPPATH.'views/footer.php';?>
 <!-- #EndLibraryItem -->
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/artdialog.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/info.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/artdialog.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/common.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/product.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/user.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/product/info.js"></script>
 <script>
 product.class_id = <?=$product['class_id']?>;
 product.pid = <?=$product['pid']?>;
