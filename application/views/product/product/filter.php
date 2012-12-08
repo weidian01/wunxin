@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?=$title?> -- 万象网</title>
-<link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
-<link href="<?=config_item('static_url')?>css/goods.css" rel="stylesheet" type="text/css" />
-<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
+<link href="<?=url('static')?>css/base.css" rel="stylesheet" type="text/css" />
+<link href="<?=url('static')?>css/goods.css" rel="stylesheet" type="text/css" />
+<script type=text/javascript src="<?=url('static')?>scripts/jquery.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/jquery.lazyload.min.js"> </script>
 <!--[if lt IE 7]>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/iepng.js"></script>
 <script type="text/javascript">
 //EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
 </script>
@@ -70,7 +70,7 @@ $(document).ready(function(){
             <div class="no1"><?=($k+1)?></div>
             <div class="bdimg">
                 <a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>">
-                <img src="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" title="<?=$item['pname']?>"/>
+                <img src="<?=url('img')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="50" height="50" title="<?=$item['pname']?>"/>
                 </a>
             </div>
             <div class="bdancont"><a href="<?=productURL($item['pid'])?>" target="_blank" title="<?=$item['pname']?>"><?=mb_substr($item['pname'], 0, 16, 'utf-8')?></a>
@@ -94,11 +94,11 @@ $(document).ready(function(){
       </div>
       <div class="rankbox pad10" id="hotComment" style="display:none"><!--热评商品--></div>
     </div>
-      <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
+      <script type="text/javascript" src="<?=url('static')?>scripts/common.js"></script>
       <script type="text/javascript">wx.advert(1);//$(document).ready(function(){ wx.advert(1); });</script>
       <!--
-    <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
-    <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+    <div class="adpic"><img src="<?=url('static')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+    <div class="adpic"><img src="<?=url('static')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
     -->
   </div>
   <!--left end-->
@@ -126,7 +126,7 @@ $(document).ready(function(){
       </table>
     </div>
     <div class="extend">
-      <div class="kz" id="kza"><img src="<?=config_item('static_url')?>images/arrow_down.gif"><span>更多</span></div>
+      <div class="kz" id="kza"><img src="<?=url('static')?>images/arrow_down.gif"><span>更多</span></div>
     </div>
     <div class="clear" style="height: 10px"></div>
     <?php endif;?>
@@ -147,11 +147,10 @@ $(document).ready(function(){
       <div class="goods-cb">
         <div class="goods-cbox">
             <a href="<?=productURL($product['pid'])?>" target="_blank" title="<?=$product['pname']?>">
-                <img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" />
+                <img class="lazy" src="<?=url('static')?>images/lazy.gif" data-original="<?=url('img')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" />
             </a>
             <span class="font19">￥<?=fPrice($product['sell_price'])?></span>
             <p><a href="<?=productURL($product['pid'])?>" target="_blank" title="<?=$product['pname']?>"><?=$product['pname']?></a></p>
-
         </div>
       </div>
     <?php endforeach;?>
@@ -177,4 +176,4 @@ $(document).ready(function(){
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/category.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/product/category.js"></script>
