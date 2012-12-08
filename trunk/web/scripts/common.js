@@ -327,12 +327,12 @@ wx.cartGlobalInit = function ()
         html += '<div class="cart-goodsimg"><a href="'+wx.productURL(data[i].pid)+'" target="_blank">' +
             '<img src="'+wx.img_url+'product/'+idToPath(data[i].pid)+'icon.jpg" width="50" height="50" alt="'+data[i].pname+'" title="'+data[i].pname+'"/></a></div>';
         html += '<div class="cart-goodsname"><a href="'+wx.productURL(data[i].pid)+'" title="'+data[i].pname+'" target="_blank">'+data[i].pname.substring(0,25)+'</a><br/>' +
-            '<span class="font5">￥'+wx.fPrice(data[i].final_price)+'</span>';
+            '<span class="font5">￥'+wx.fPrice(data[i].sell_price)+'</span>';
         html += '<span> &nbsp;&nbsp;&nbsp; 尺码：'+data[i].product_size+'</span>';
         html += '<span> &nbsp;&nbsp;&nbsp; 数量：'+parseInt(data[i].num)+'</span>';
         html += '</div><div class="clear" onclick="cart.deleteCartItem('+i+')"></div>';
         html += '</div>';
-        totalPrice += (parseInt(data[i].final_price) * parseInt(data[i].num));
+        totalPrice += parseInt(data[i].final_price);
         totalNum += parseInt(data[i].num);
     }
 
