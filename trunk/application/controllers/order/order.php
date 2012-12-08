@@ -262,9 +262,9 @@ class order extends MY_Controller
             //$this->setPromotion($pData, true, -100);
             //$this->setUseCard(array(), -100);
 
-            //$this->input->set_cookie('gift_card', '', -100);
-            //$this->input->set_cookie('cart_info', '', -100);
-            //$this->input->set_cookie('promotion', '', -100);
+            $this->input->set_cookie('gift_card', '', -100);
+            $this->input->set_cookie('cart_info', '', -100);
+            $this->input->set_cookie('promotion', '', -100);
 
         } while (false);
 
