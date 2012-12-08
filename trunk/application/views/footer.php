@@ -15,7 +15,7 @@
       </div>
       <div class="help-info">
         <div class="help-tit help_newbie">
-            <!--<img src="<?=config_item('static_url')?>images/lazy.gif" width="71" height="18" alt="新手上路" data-original="<?=url('static')?>images/help_05.gif" class="lazy"/>-->
+            <!--<img src="<?=url('static')?>images/lazy.gif" width="71" height="18" alt="新手上路" data-original="<?=url('static')?>images/help_05.gif" class="lazy"/>-->
         </div>
         <ul>
           <li><a target="_blank" href="<?=url('static')?>other/help/index/15">购物流程演示</a></li>
@@ -105,10 +105,10 @@
          <dl class="side01">
              <dt><s></s>购物</dt>
              <dd>
-                 <a target="_blank" href="<?=config_item('static_url')?>activity/activity/qiang/18">限时抢购</a>
-                 <a target="_blank" href="<?=config_item('static_url')?>activity/activity/discount/19">特价热卖</a>
-                 <a target="_blank" href="<?=config_item('static_url')?>cart/">购物车</a>
-                 <a target="_blank" href="<?=config_item('static_url')?>coupon/">优惠卷</a>
+                 <a target="_blank" href="<?=url()?>activity/activity/qiang/18">限时抢购</a>
+                 <a target="_blank" href="<?=url()?>activity/activity/discount/19">特价热卖</a>
+                 <a target="_blank" href="<?=url('cart')?>cart/">购物车</a>
+                 <a target="_blank" href="<?=url()?>coupon/">优惠卷</a>
              </dd>
          </dl>
          <!--
@@ -122,8 +122,8 @@
          <dl class="side03">
              <dt><s></s>服务</dt>
              <dd>
-                 <a target="_blank" href="<?=config_item('static_url')?>user/center/index">订单中心</a>
-                 <a target="_blank" href="<?=config_item('static_url')?>other/help/index/27">联系客服</a>
+                 <a target="_blank" href="<?=url('member')?>user/center/index">订单中心</a>
+                 <a target="_blank" href="<?=url('static')?>other/help/index/27">联系客服</a>
              </dd>
          </dl>
      </div>
@@ -159,8 +159,8 @@
     </div>
     <em class="stMoreClose1" style="display: none; "><a title="关闭导航"><i></i></a></em>
 
-    <p class="proposal"><a target="_blank" name="dac_index_ycdhsh08" href="<?=config_item('static_url')?>activity/activity/proposal"><s></s><span>帮助完善</span></a></p>
-    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="<?=config_item('static_url')?>activity/activity/survey"><s></s><span>问卷调查</span></a></p>
+    <p class="proposal"><a target="_blank" name="dac_index_ycdhsh08" href="<?=url()?>activity/activity/proposal"><s></s><span>帮助完善</span></a></p>
+    <p class="iRpt"><a target="_blank" name="dac_index_ycdhsh04" href="<?=url()?>activity/activity/survey"><s></s><span>问卷调查</span></a></p>
      <p class="iToTop"><a name="dac_index_ycdhsh06" href="javascript:void(0);" onclick="backToTop();"><s></s><span>回顶部</span></a></p>
  </div>
 <!-- 右侧导航浮动菜单结束 -->
