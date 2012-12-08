@@ -19,136 +19,136 @@ class Product extends MY_Controller
      * @param $query
      * @return array
      */
-    static private function parse_param($query)
-    {
-        $param = array();
-        if ($query) {
-            $tmp = explode('!', trim($query, '!.html'));
-            foreach ($tmp as $item) {
-                if (strpos($item, '-') === false) continue;
-                list($key, $value) = explode('-', $item);
-                $key && $value && $param[$key] = urldecode($value);
-            }
-            $param && ksort($param); //参数排序
-        }
-        //var_dump($param);
-        return $param;
-    }
+//    static private function parse_param($query)
+//    {
+//        $param = array();
+//        if ($query) {
+//            $tmp = explode('!', trim($query, '!.html'));
+//            foreach ($tmp as $item) {
+//                if (strpos($item, '-') === false) continue;
+//                list($key, $value) = explode('-', $item);
+//                $key && $value && $param[$key] = urldecode($value);
+//            }
+//            $param && ksort($param); //参数排序
+//        }
+//        //var_dump($param);
+//        return $param;
+//    }
 
     /**
      * 产品列表
      */
-    public function category()
-    {
-        //$this->HTTPLastModified();
-
-        $category = (int)$this->uri->rsegment(3, 0);
-        $pageno = max((int)$this->uri->rsegment(4, 1), 1);
-        $query = $this->uri->rsegment(7, '');
-        $param = self::parse_param($query);
-        $orderby = $this->uri->rsegment(5, 'default');
-
-        $rank = $this->uri->rsegment(6, '1');
-        switch ($orderby) {
-            case 'price':
-                $order = $rank == '0' ? "sell_price ASC" : "sell_price DESC" ;
-                break;
-            case 'sale':
-                $order = $rank == '0' ? "sales ASC" : "sales DESC" ;
-                break;
-            case 'new':
-                $order = $rank == '0' ? "create_time ASC" : "create_time DESC" ;
-                break;
-            default:
-                $order = null;
-        }
-
-        //$this->load->database();
-        //$this->db->cache_on();
-        //$this->db->cache_off();
-        //获取分类信息
-        $this->load->model('product/Model_Product_Category', 'cate');
-        if($category === 0)
-        {
-            //print_r($this->channel);
-            $cate_info = array('model_id'=>0, 'title'=>'全部产品');
-        }
-        else
-        {
-            $cate_info = isset($this->channel[$category]) ? $this->channel[$category]:null;
-        }
-
-        if ($cate_info) {
-            $classes = $class_id = array_keys($this->cate->getChildren($category));
-            $classes = implode(',', $classes);
-
-            $this->load->model('product/Model_Product_Model', 'mod');
-            $modelAttr = $this->mod->getModelAttr($cate_info['model_id'], 1); //echo APPPATH;
-            foreach ($modelAttr as $k => $v) {
-                $modelAttr[$k]['attr_value'] = explode(',', $v['attr_value']);
-            }
-            $pids = $this->mod->getPidByAttr($param);
-
-            $where = '';
-            $category && $where = "class_id in ({$classes}) AND";
-            $where .= ' status=1';
-            $where .=   ($param && $pids) ? ' AND pid IN (' . implode(',', $pids) . ')' : '';
-            if($param && !$pids) //参数有,产品id无 即使通过参数没有搜索到任何产品
-            {
-                $num = 0;
-            }
-            else
-            {
-                $this->load->model('product/Model_Product', 'product');
-                $num = $this->product->getProductCount($where);
-            }
-            $products = array();
-            $pageHTML = '';
-            $pageNUM = 1;
-            if ($num) {
-                $pagesize = 32;
-                $pageNUM = ceil($num / $pagesize);
-                $pageno = $pageno > $pageNUM ? $pageNUM:$pageno;
-                $config['base_url'] = "/category/{$category}";
-                $config['suffix'] = $param ? "/{$orderby}/{$rank}/{$query}" : "/{$orderby}/{$rank}";
-                $config['total_rows'] = $num;
-                $config['per_page'] = $pagesize;
-                $config['use_page_numbers'] = TRUE;
-                $config['uri_segment'] = 3;
-                $config['num_links'] = 4;
-                $config['cur_tag_open'] = '<span class="current">';
-                $config['cur_tag_close'] = '</span>';
-                $config['prev_link'] = '上一页';
-                $config['next_link'] = '下一页';
-                //print_r($config);
-                $this->load->library('pagination');
-                $this->pagination->initialize($config);
-                $pageHTML = $this->pagination->create_links();
-                $offset = ($pageno - 1) * $pagesize;
-                $products = $this->product->getProductList($pagesize, $offset, "pid, did, pname, market_price, sell_price", $where, $order);
-            }
-            //$this->cache_view("category/\d+/?\d*");
-            //print_r($this->cate->getClan($this->channel[$category]['ancestor']));
-            $this->load->view('product/product/category', array(
-                'title' => "{$cate_info['title']} 分类列表",
-                'category' => $category,
-                'nav'=> $this->cate->getParents($category),
-                'ancestor'=> $category ? $this->channel[$category]['ancestor'] : 0,
-                'clan'=> $category ? $this->cate->getClan($this->channel[$category]['ancestor']) : $this->channel,
-                'param' => $param,
-                'modelAttr' => $modelAttr,
-                'productCount' => $num,
-                'products' => $products,
-                'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM, 'pageno'=>$pageno, 'query'=>$query,
-                'salesRank' => $this->salesRank($class_id),
-                'orderby'=>$orderby,
-                'orderrank'=>$rank,
-            ));
-            //print_r($this->channel);
-        } else {
-            show_404("分类不存在");
-        }
-    }
+//    public function category()
+//    {
+//        //$this->HTTPLastModified();
+//
+//        $category = (int)$this->uri->rsegment(3, 0);
+//        $pageno = max((int)$this->uri->rsegment(4, 1), 1);
+//        $query = $this->uri->rsegment(7, '');
+//        $param = self::parse_param($query);
+//        $orderby = $this->uri->rsegment(5, 'default');
+//
+//        $rank = $this->uri->rsegment(6, '1');
+//        switch ($orderby) {
+//            case 'price':
+//                $order = $rank == '0' ? "sell_price ASC" : "sell_price DESC" ;
+//                break;
+//            case 'sale':
+//                $order = $rank == '0' ? "sales ASC" : "sales DESC" ;
+//                break;
+//            case 'new':
+//                $order = $rank == '0' ? "create_time ASC" : "create_time DESC" ;
+//                break;
+//            default:
+//                $order = null;
+//        }
+//
+//        //$this->load->database();
+//        //$this->db->cache_on();
+//        //$this->db->cache_off();
+//        //获取分类信息
+//        $this->load->model('product/Model_Product_Category', 'cate');
+//        if($category === 0)
+//        {
+//            //print_r($this->channel);
+//            $cate_info = array('model_id'=>0, 'title'=>'全部产品');
+//        }
+//        else
+//        {
+//            $cate_info = isset($this->channel[$category]) ? $this->channel[$category]:null;
+//        }
+//
+//        if ($cate_info) {
+//            $classes = $class_id = array_keys($this->cate->getChildren($category));
+//            $classes = implode(',', $classes);
+//
+//            $this->load->model('product/Model_Product_Model', 'mod');
+//            $modelAttr = $this->mod->getModelAttr($cate_info['model_id'], 1); //echo APPPATH;
+//            foreach ($modelAttr as $k => $v) {
+//                $modelAttr[$k]['attr_value'] = explode(',', $v['attr_value']);
+//            }
+//            $pids = $this->mod->getPidByAttr($param);
+//
+//            $where = '';
+//            $category && $where = "class_id in ({$classes}) AND";
+//            $where .= ' status=1';
+//            $where .=   ($param && $pids) ? ' AND pid IN (' . implode(',', $pids) . ')' : '';
+//            if($param && !$pids) //参数有,产品id无 即使通过参数没有搜索到任何产品
+//            {
+//                $num = 0;
+//            }
+//            else
+//            {
+//                $this->load->model('product/Model_Product', 'product');
+//                $num = $this->product->getProductCount($where);
+//            }
+//            $products = array();
+//            $pageHTML = '';
+//            $pageNUM = 1;
+//            if ($num) {
+//                $pagesize = 32;
+//                $pageNUM = ceil($num / $pagesize);
+//                $pageno = $pageno > $pageNUM ? $pageNUM:$pageno;
+//                $config['base_url'] = "/category/{$category}";
+//                $config['suffix'] = $param ? "/{$orderby}/{$rank}/{$query}" : "/{$orderby}/{$rank}";
+//                $config['total_rows'] = $num;
+//                $config['per_page'] = $pagesize;
+//                $config['use_page_numbers'] = TRUE;
+//                $config['uri_segment'] = 3;
+//                $config['num_links'] = 4;
+//                $config['cur_tag_open'] = '<span class="current">';
+//                $config['cur_tag_close'] = '</span>';
+//                $config['prev_link'] = '上一页';
+//                $config['next_link'] = '下一页';
+//                //print_r($config);
+//                $this->load->library('pagination');
+//                $this->pagination->initialize($config);
+//                $pageHTML = $this->pagination->create_links();
+//                $offset = ($pageno - 1) * $pagesize;
+//                $products = $this->product->getProductList($pagesize, $offset, "pid, did, pname, market_price, sell_price", $where, $order);
+//            }
+//            //$this->cache_view("category/\d+/?\d*");
+//            //print_r($this->cate->getClan($this->channel[$category]['ancestor']));
+//            $this->load->view('product/product/category', array(
+//                'title' => "{$cate_info['title']} 分类列表",
+//                'category' => $category,
+//                'nav'=> $this->cate->getParents($category),
+//                'ancestor'=> $category ? $this->channel[$category]['ancestor'] : 0,
+//                'clan'=> $category ? $this->cate->getClan($this->channel[$category]['ancestor']) : $this->channel,
+//                'param' => $param,
+//                'modelAttr' => $modelAttr,
+//                'productCount' => $num,
+//                'products' => $products,
+//                'pageHTML' => $pageHTML, 'pageNUM' => $pageNUM, 'pageno'=>$pageno, 'query'=>$query,
+//                'salesRank' => $this->salesRank($class_id),
+//                'orderby'=>$orderby,
+//                'orderrank'=>$rank,
+//            ));
+//            //print_r($this->channel);
+//        } else {
+//            show_404("分类不存在");
+//        }
+//    }
 
     /**
      * 产品详情
