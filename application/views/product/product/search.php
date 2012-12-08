@@ -3,10 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?=$title?> -- 万象网</title>
-<link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css" />
-<link href="<?=config_item('static_url')?>css/goods.css" rel="stylesheet" type="text/css" />
-<script type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/jquery.lazyload.min.js"> </script>
+<link href="<?=url('static')?>css/base.css" rel="stylesheet" type="text/css" />
+<link href="<?=url('static')?>css/goods.css" rel="stylesheet" type="text/css" />
+<script type=text/javascript src="<?=url('static')?>scripts/jquery.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/jquery.lazyload.min.js"> </script>
 <!--[if lt IE 7]>
 <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
 <script type="text/javascript">
@@ -30,7 +30,7 @@ $(document).ready(function(){
 <div class="box">
   <div class="path">
     <ul>
-      <li><a href="<?=site_url()?>">首页</a></li>
+      <li><a href="<?=url()?>">首页</a></li>
       <li>搜索</li>
       <li class="last"><?=$keyword?></a></li>
       <!--li class="last">T恤/卫衣</li-->
@@ -62,7 +62,7 @@ $(document).ready(function(){
           <?php foreach($rank as $k => $item):?>
           <li<?php if($k == 0):?> class="on"<?php endif;?>>
             <div class="no1"><?=($k+1)?></div>
-            <div class="bdimg"><img  class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('img_url')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="53" height="54" /></div>
+            <div class="bdimg"><img  class="lazy" src="<?=url('static')?>images/lazy.gif" data-original="<?=url('img')?>product/<?=intToPath($item['pid'])?>icon.jpg" width="53" height="54" /></div>
             <div class="bdancont"><a href="<?=productURL($item['pid'])?>"><?=$item['pname']?></a>
               <div class="bdprice"> <span class="font4">￥<?=fprice($item['sell_price'])?></span></div>
             </div>
@@ -84,11 +84,11 @@ $(document).ready(function(){
       </div>
       <div class="rankbox pad10" id="hotComment" style="display:none"><!--热评商品--></div>
     </div>
-      <script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
+      <script type="text/javascript" src="<?=url('static')?>scripts/common.js"></script>
       <script type="text/javascript">wx.advert(5);//$(document).ready(function(){ wx.advert(5); });</script>
     <!--
-    <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
-    <div class="adpic"><img src="<?=config_item('static_url')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+    <div class="adpic"><img src="<?=url('static')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
+    <div class="adpic"><img src="<?=url('static')?>images/goods_03.jpg" width="198" height="233" alt="ffff" /></div>
     -->
 
       <div class="sidebox" id="browseHistory" style="display:none">
@@ -104,10 +104,10 @@ $(document).ready(function(){
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a val="" class="ordby_default <?php if(!$sort):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>">默认</a>
-              <a val="pr" class="ordby_pr <?php if($sort=='price'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>&sort=price&by=<?php if($sort=='price' && $by !=='ASC'):?>ASC<?php endif;?>">价格</a>
-              <a val="sale" class="ordby_sale <?php if($sort=='sales'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>&sort=sales&by=<?php if($sort=='sales' && $by !=='ASC'):?>ASC<?php endif;?>">销量</a>
-              <a val="new" class="ordby_new <?php if($sort=='new'):?>cur<?php endif;?>" href="<?=config_item('static_url')?>search?keyword=<?=$keyword?>&sort=new&by=<?php if($sort=='new' && $by !=='ASC'):?>ASC<?php endif;?>">最新</a>
+              <a val="" class="ordby_default <?php if(!$sort):?>cur<?php endif;?>" href="<?=url('search')?>search?keyword=<?=$keyword?>">默认</a>
+              <a val="pr" class="ordby_pr <?php if($sort=='price'):?>cur<?php endif;?>" href="<?=url('search')?>search?keyword=<?=$keyword?>&sort=price&by=<?php if($sort=='price' && $by !=='ASC'):?>ASC<?php endif;?>">价格</a>
+              <a val="sale" class="ordby_sale <?php if($sort=='sales'):?>cur<?php endif;?>" href="<?=url('search')?>search?keyword=<?=$keyword?>&sort=sales&by=<?php if($sort=='sales' && $by !=='ASC'):?>ASC<?php endif;?>">销量</a>
+              <a val="new" class="ordby_new <?php if($sort=='new'):?>cur<?php endif;?>" href="<?=url('search')?>search?keyword=<?=$keyword?>&sort=new&by=<?php if($sort=='new' && $by !=='ASC'):?>ASC<?php endif;?>">最新</a>
           </div>
           <div class="addons"><span>共找到约 <span class="font18"><?=$productCount?></span>个商品</span>
               <!--a class="disabled" href="javascript:void(0)">上一页</a> <a href="javascript:jumppage(2)">下一页</a-->
@@ -118,14 +118,14 @@ $(document).ready(function(){
       <?php foreach($products as $product):?>
       <div class="goods-cb">
         <div class="goods-cbox">
-            <a href="<?=productURL($product['pid'])?>" target="_blank"><img class="lazy" src="<?=config_item('static_url')?>images/lazy.gif" data-original="<?=config_item('static_url')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" /></a>
+            <a href="<?=productURL($product['pid'])?>" target="_blank"><img class="lazy" src="<?=url('static')?>images/lazy.gif" data-original="<?=url('img')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" /></a>
             <p><?=$product['pname']?><br/>
             <span class="font4">售价 ￥<?=fPrice($product['sell_price'])?></span></p>
         </div>
       </div>
       <?php endforeach;?>
     </div>
-      <div class="loading" id="loading" style="display:none;text-align:center;vertical-align:middle;font-size:30px"><img src="<?=config_item('static_url')?>images/ajax-loader.gif"></div>
+      <div class="loading" id="loading" style="display:none;text-align:center;vertical-align:middle;font-size:30px"><img src="<?=url('static')?>images/ajax-loader.gif"></div>
       <div class="loading font10" id="nomoreresults" style="display:none;text-align:center;">没有更多.</div>
   </div>
   <!--right end-->
@@ -135,6 +135,6 @@ $(document).ready(function(){
 <!-- #EndLibraryItem -->
 </body>
 </html>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/scrollpagination.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/scrollpagination.js"></script>
 <script>var global = {}; global.next_page = '/search?keyword=<?=$keyword?>';</script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/product/search.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/product/search.js"></script>
