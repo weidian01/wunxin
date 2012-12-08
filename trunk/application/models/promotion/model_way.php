@@ -46,7 +46,7 @@ abstract class Model_way
             }
             else
             {
-                $discount_price += $p['sell_price'];
+                $discount_price += ($p['sell_price'] * $p['num']);
             }
         }
         $result['save'] = $cost_price  - $discount_price;//p($result);die;
