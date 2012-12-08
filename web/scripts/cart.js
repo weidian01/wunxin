@@ -211,7 +211,7 @@ cart.deleteCartItem = function (pid, size_id, bindingId)
     }
 
     var url = 'cart/deleteCartProduct';
-    var param = 'pid='+pid+'&size_id'+size_id;
+    var param = 'pid='+pid+'&size_id='+size_id;
     var data = wx.ajax(url, param);
 
     cart.init();
