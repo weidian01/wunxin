@@ -23,10 +23,10 @@
 <div class="box">
   <div class="path">
     <ul>
-      <li><a href="#">首页</a></li>
+      <li><a href="<?=site_url();?>">首页</a></li>
 
         <?php foreach($nav as $v):?>
-            <li><a href="<?=config_item('static_url')?>category/<?=$v['class_id']?>"><?=$v['cname']?></a></li>
+            <li><a href="<?=productFilterURL(array('category'=>$v['class_id']))?>"><?=$v['cname']?></a></li>
         <?php endforeach;?>
       <li class="last"><?=$product['pname']?></li>
 
