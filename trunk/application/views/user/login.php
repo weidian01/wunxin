@@ -4,11 +4,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>万象网 -- 会员登陆</title>
-    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="<?=config_item('static_url')?>css/member.css" rel="stylesheet" type="text/css"/>
-    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
+    <link href="<?=url('static')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=url('static')?>css/member.css" rel="stylesheet" type="text/css"/>
+    <SCRIPT type=text/javascript src="<?=url('static')?>scripts/jquery.js"></SCRIPT>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="<?=config_item('static_url')?>script/iepng.js"></script>
+    <script type="text/javascript" src="<?=url('static')?>script/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -59,7 +59,7 @@
                         <td colspan="2">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                    <td width="38%"><img src="<?=config_item('static_url')?>images/rg_12.gif" width="146" height="53"/></td>
+                                    <td width="38%"><img src="<?=url('static')?>images/rg_12.gif" width="146" height="53"/></td>
                                     <td width="62%">看不清楚？<a href="#">换一张</a></td>
                                 </tr>
                             </table>
@@ -86,7 +86,7 @@
                                 <tr>
                                     <td width="35%">
                                         <a href="javascript:void(0);" onclick="user.submitLoginForm()">
-                                            <img src="<?=config_item('static_url')?>images/login.jpg" width="133" height="32" alt="登录"/>
+                                            <img src="<?=url('static')?>images/login.jpg" width="133" height="32" alt="登录"/>
                                         </a>
                                     </td>
                                     <td width="65%">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">找回密码</a></td>
@@ -118,8 +118,8 @@
                 注册后您的个人信息可以永久保存，下次购物后不需要再次输入相同的信息</p>
 
             <div class="turn-to-regist">
-                <a href="<?=config_item('static_url')?>user/register" title="免费注册用户">
-                    <img src="<?=config_item('static_url')?>images/register.jpg" width="173" height="32" alt="注册"/>
+                <a href="<?=url('member')?>user/register" title="免费注册用户">
+                    <img src="<?=url('static')?>images/register.jpg" width="173" height="32" alt="注册"/>
                 </a>
             </div>
             <div class="tip3">注册只需花费您10秒钟哦</div>
@@ -127,7 +127,7 @@
     </div>
 </div>
 <?php include APPPATH.'views/footer.php';?>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/common.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/user.js"></script>
 </body>
 </html>

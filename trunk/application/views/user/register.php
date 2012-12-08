@@ -3,11 +3,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>万象网 -- 会员免费注册</title>
-    <link href="<?=config_item('static_url')?>css/base.css" rel="stylesheet" type="text/css"/>
-    <link href="<?=config_item('static_url')?>css/member.css" rel="stylesheet" type="text/css"/>
-    <SCRIPT type=text/javascript src="<?=config_item('static_url')?>scripts/jquery.js"></SCRIPT>
+    <link href="<?=url('static')?>css/base.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=url('static')?>css/member.css" rel="stylesheet" type="text/css"/>
+    <SCRIPT type=text/javascript src="<?=url('static')?>scripts/jquery.js"></SCRIPT>
     <!--[if lt IE 7]>
-    <script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
+    <script type="text/javascript" src="<?=url('static')?>scripts/iepng.js"></script>
     <script type="text/javascript">
         EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
     </script>
@@ -31,8 +31,8 @@
     <div class="user-login">
         <div class="regist-lf"><span class="font13">已经是会员？立即登录</span>
             <div class="turn-to-login">
-                <a href="<?=config_item('static_url')?>user/login/" title="快速登陆">
-                    <img src="<?=config_item('static_url')?>images/login_yellow.jpg" width="135" height="36" alt="登录"/>
+                <a href="<?=url('member')?>user/login/" title="快速登陆">
+                    <img src="<?=url('static')?>images/login_yellow.jpg" width="135" height="36" alt="登录"/>
                 </a>
             </div>
         </div>
@@ -71,8 +71,8 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td width="38%">
-                                        <img src="<?=config_item('static_url')?>user/register/verifyCode" id="verify_code"/>
-                                        <!-- <img src="<?=config_item('static_url')?>user/register/verifyCode" width="146" height="53"/> -->
+                                        <img src="<?=url('member')?>user/register/verifyCode" id="verify_code"/>
+                                        <!-- <img src="<?=url('member')?>user/register/verifyCode" width="146" height="53"/> -->
                                     </td>
                                     <td width="62%">&nbsp;&nbsp;看不清楚？<a href="javascript:void(0);" onclick="user.refreshVerifyCode()">换一张</a></td>
                                 </tr>
@@ -95,7 +95,7 @@
                         <td height="40" align="right">&nbsp;</td>
                         <td valign="bottom">
                             <a href="javascript:void(0);" onclick="user.submitRegisterForm()">
-                                <img src="<?=config_item('static_url')?>images/register_red.gif" width="133" height="32" alt="注册为新会员"/>
+                                <img src="<?=url('static')?>images/register_red.gif" width="133" height="32" alt="注册为新会员"/>
                             </a>
                         </td>
                         <td>&nbsp;</td>
@@ -106,7 +106,7 @@
     </div>
 </div>
 <?php include APPPATH.'views/footer.php';?>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/common.js"></script>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/user.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/common.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/user.js"></script>
 </body>
 </html>

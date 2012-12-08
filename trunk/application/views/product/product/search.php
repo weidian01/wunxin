@@ -8,7 +8,7 @@
 <script type=text/javascript src="<?=url('static')?>scripts/jquery.js"></script>
 <script type="text/javascript" src="<?=url('static')?>scripts/jquery.lazyload.min.js"> </script>
 <!--[if lt IE 7]>
-<script type="text/javascript" src="<?=config_item('static_url')?>scripts/iepng.js"></script>
+<script type="text/javascript" src="<?=url('static')?>scripts/iepng.js"></script>
 <script type="text/javascript">
 EvPNG.fix('div, ul, img, li, input, a, table, td, th, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, span');
 </script>
