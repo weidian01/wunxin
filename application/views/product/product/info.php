@@ -23,7 +23,7 @@
 <div class="box">
   <div class="path">
     <ul>
-      <li><a href="<?=site_url();?>">首页</a></li>
+      <li><a href="<?=url();?>">首页</a></li>
 
         <?php foreach($nav as $v):?>
             <li><a href="<?=productFilterURL(array('category'=>$v['class_id']))?>"><?=$v['cname']?></a></li>

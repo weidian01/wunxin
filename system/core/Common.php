@@ -622,10 +622,10 @@ function authcode($string, $operation = 'DECODE', $expiry = 0, $key = '')
 	}
 }
 
-function url($string, $prefix='base')
+function url($prefix='base')
 {
     $url = config_item("{$prefix}_url");
-    return $url . $string;
+    return $url . config_item('index_page');
 }
 
 /**

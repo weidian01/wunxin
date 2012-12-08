@@ -30,7 +30,7 @@ $(document).ready(function(){
 <div class="box">
   <div class="path">
     <ul>
-      <li><a href="<?=site_url()?>">首页</a></li>
+      <li><a href="<?=url()?>">首页</a></li>
       <?php foreach($nav as $v):?>
         <?php if($category ==$v['class_id']):?>
             <li class="last"><?=$v['cname']?></a></li>

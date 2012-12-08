@@ -20,6 +20,16 @@ $config['img_url']	= 'http://www.wunxin.com/upload/';
 
 $config['static_url']	= 'http://www.wunxin.com/';
 
+$config['member_url']	= 'http://www.wunxin.com/';
+
+$config['cart_url']	= 'http://www.wunxin.com/';
+
+$config['order_url']	= 'http://www.wunxin.com/';
+
+$config['search_url']	= 'http://www.wunxin.com/';
+
+$config['product_url']	= 'http://www.wunxin.com/';
+
 $config['http_expires']	= 7200;
 
 /*
