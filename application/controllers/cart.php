@@ -83,28 +83,31 @@ class cart extends MY_Controller
         $cData = array();
         $cData['cart'] = $this->getCartToCookie();
         //p($cData);
-        /****************校验购物车内产品开始*****************/
-        $this->load->model('product/Model_Product', 'product');
-        $order_pids = array();
-        foreach($cData['cart'] as $item)
+        if($cData['cart'])
         {
-            $order_pids[] = $item['pid'];
-        }
-        $productTmpData = $this->product->getProductById($order_pids, array('pid'=>'pid, pname, uid, uname, brand_id, color_id, market_price, sell_price, warehouse'), array('status'=>1));
-        //p($productTmpData);
-        foreach($cData['cart'] as $key => $item)
-        {
-            if(!isset($productTmpData[$item['pid']]))
-            {   //清除购物车内不合法产品
-                unset($cData['cart'][$key]);
+            /****************校验购物车内产品开始*****************/
+            $this->load->model('product/Model_Product', 'product');
+            $order_pids = array();
+            foreach($cData['cart'] as $item)
+            {
+                $order_pids[] = $item['pid'];
             }
-            else
-            {   //设置金额
-                $cData['cart'][$key]['product_price'] = $productTmpData[$item['pid']]['sell_price'];
+            $productTmpData = $this->product->getProductById($order_pids, array('pid'=>'pid, pname, uid, uname, brand_id, color_id, market_price, sell_price, warehouse'), array('status'=>1));
+            //p($productTmpData);
+            foreach($cData['cart'] as $key => $item)
+            {
+                if(!isset($productTmpData[$item['pid']]))
+                {   //清除购物车内不合法产品
+                    unset($cData['cart'][$key]);
+                }
+                else
+                {   //设置金额
+                    $cData['cart'][$key]['product_price'] = $productTmpData[$item['pid']]['sell_price'];
+                }
             }
+            //p($cData);die;
+            /****************校验购物车内产品结束*****************/
         }
-        //p($cData);die;
-        /****************校验购物车内产品结束*****************/
         //$promotion = $this->getUsedPromotion();
 
         if (!empty ($cData['cart'])) {

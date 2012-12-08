@@ -37,30 +37,31 @@ class order extends MY_Controller
         }
 
         $cartInfo = $this->getCartToCookie();
-
-        /****************校验购物车内产品开始*****************/
-        $this->load->model('product/Model_Product', 'product');
-        $order_pids = array();
-        foreach($cartInfo as $item)
+        if($cartInfo)
         {
-            $order_pids[] = $item['pid'];
-        }
-        $productTmpData = $this->product->getProductById($order_pids, array('pid'=>'pid, pname, uid, uname, brand_id, color_id, market_price, sell_price, warehouse'), array('status'=>1));
-        //p($productTmpData);
-        foreach($cartInfo as $key => $item)
-        {
-            if(!isset($productTmpData[$item['pid']]))
-            {   //清除购物车内不合法产品
-                unset($cartInfo[$key]);
+            /****************校验购物车内产品开始*****************/
+            $this->load->model('product/Model_Product', 'product');
+            $order_pids = array();
+            foreach($cartInfo as $item)
+            {
+                $order_pids[] = $item['pid'];
             }
-            else
-            {   //设置金额
-                $cartInfo[$key]['product_price'] = $productTmpData[$item['pid']]['sell_price'];
+            $productTmpData = $this->product->getProductById($order_pids, array('pid'=>'pid, pname, uid, uname, brand_id, color_id, market_price, sell_price, warehouse'), array('status'=>1));
+            //p($productTmpData);
+            foreach($cartInfo as $key => $item)
+            {
+                if(!isset($productTmpData[$item['pid']]))
+                {   //清除购物车内不合法产品
+                    unset($cartInfo[$key]);
+                }
+                else
+                {   //设置金额
+                    $cartInfo[$key]['product_price'] = $productTmpData[$item['pid']]['sell_price'];
+                }
             }
+            //p($cData);die;
+            /****************校验购物车内产品结束*****************/
         }
-        //p($cData);die;
-        /****************校验购物车内产品结束*****************/
-
         if (empty ($cartInfo)) {
             echo "<script type='text/javascript'>alert('购物车为空！');window.location.href = '".$referer."'</script>";
             return ;
@@ -158,6 +159,11 @@ class order extends MY_Controller
                 {   //设置金额
                     $cartData[$key]['product_price'] = $productTmpData[$item['pid']]['sell_price'];
                 }
+            }
+            //购物车如果为空，则跳转到购物车页面
+            if ( empty ($cartData) ) {
+                redirect('/cart/');
+                return false;
             }
             //p($cartData);die;
             /****************校验购物车内产品结束*****************/
