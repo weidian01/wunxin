@@ -66,7 +66,7 @@ cart.init = function ()
         tmpHtml = (cartData[i].num > cart.product_min_num) ?
             '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+cartData[i].pid+', 0, '+cartData[i].size_id+')"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' :
             '&nbsp;<img src="'+wx.base_url+'images/reduce_none.gif" alt="减少"/>&nbsp;';
-        tmpHtml += '<input name="product_num" type="text" class="gnum" id="product_num_'+cartData[i].pid+'" value="'+cartData[i].num+'" maxlength="2" onchange="cart.changeQuantity('+cartData[i].pid+', 2, '+cartData[i].size_id+')"/>'
+        tmpHtml += '<input name="product_num" type="text" class="gnum" id="product_num_'+cartData[i].pid+'_'+cartData[i].size_id+'" value="'+cartData[i].num+'" maxlength="2" onchange="cart.changeQuantity('+cartData[i].pid+', 2, '+cartData[i].size_id+')"/>'
         tmpHtml += (cartData[i].num >= cart.product_max_num) ?
             '<img src="'+wx.base_url+'images/plus_none.gif" width="11" height="11"/>' :
             '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+cartData[i].pid+', 1, '+cartData[i].size_id+')"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
@@ -220,7 +220,7 @@ cart.deleteCartItem = function (pid, bindingId)
 //更改购物中产品的数量
 cart.changeQuantity = function (pid, type, size_id, bindingId)
 {
-    var productNum = document.getElementById('product_num_'+pid).value;
+    var productNum = document.getElementById('product_num_'+pid+'_'+size_id).value;
     productNum = parseInt(productNum);
 
     var num = (type == 2) ? productNum : ( type ? (productNum + 1) : (productNum - 1) );
