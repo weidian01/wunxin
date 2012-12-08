@@ -96,6 +96,8 @@ class product_size extends MY_Controller
         $type =  $this->input->get_post('type');
         $this->load->model('product/Model_Product_Size', 'size');
         $data = $this->size->getSizeByType($type,'size_id, name');
+        $data = sizeSort($data);
+        
         echo self::json_output($data);
     }
 
