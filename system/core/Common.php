@@ -852,7 +852,7 @@ function sizeSort($sizeArr)
     $i = 10;
     $rArr = array();
     foreach ($sizeArr as $v) {
-        $tmpSize = strtoupper(trim($v['abbreviation']));
+        $tmpSize = strtoupper(trim($v['name']));
         switch ($tmpSize) {
             case 'XS': $rArr[0] = $v; break;
             case 'S':  $rArr[1] = $v; break;
@@ -861,6 +861,15 @@ function sizeSort($sizeArr)
             case 'XL': $rArr[4] = $v; break;
             case 'XXL':$rArr[5] = $v; break;
             case 'XXXL':$rArr[6] = $v; break;
+
+            case '90cm': $rArr[7] = $v; break;
+            case '100cm': $rArr[8] = $v; break;
+            case '110cm': $rArr[9] = $v; break;
+            case '120cm': $rArr[10] = $v; break;
+            case '130cm': $rArr[11] = $v; break;
+            case '140cm': $rArr[12] = $v; break;
+            case '150cm': $rArr[13] = $v; break;
+
             default: $rArr[$i] = $v; break;
         }
         $i++;
