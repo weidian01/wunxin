@@ -292,7 +292,7 @@ class Model_Pay_Alipay extends MY_Model
         $para['sign'] = $mySign;
         $para['sign_type'] = 'MD5';
 
-        $sHtml = "<form id='aliPay_submit' name='aliPay_submit' action='".$gateway."_input_charset=utf-8' method='POST'>";
+        $sHtml = "<form id='aliPay_submit' name='aliPay_submit' action='".$gateway."_input_charset=utf-8' method='POST' style='display:none;'>";
         foreach ($para as $key => $val) {
             $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
         }
