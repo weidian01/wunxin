@@ -61,8 +61,11 @@ class Model_Promotion extends MY_Model
         if($promotions)
         {
             $promotion_id = array_keys($promotions);
-            $pid = array_keys($this->order_products);
-
+            $pid = array();//array_keys($this->order_products);
+            foreach($this->order_products as $item)
+            {
+                $pid[] = $item['pid'];
+            }
             $this->db->select('*')->from('promotion_product');
             $pid && $this->db->where_in('pid', $pid);
             $this->db->where_in('promotion_id', $promotion_id);
@@ -93,7 +96,8 @@ class Model_Promotion extends MY_Model
     {
         foreach($products as $p)
         {
-            $this->order_products[$p['pid']] = $p;
+            $key = "{$p['pid']}-{$p['size_id']}";
+            $this->order_products[$key] = $p;
         }
         $this->set_promotion_product();
         return ;
@@ -302,10 +306,10 @@ class Model_Promotion extends MY_Model
     private function set_product_final_price($use_products, $promotion_id)
     {
         //$this->set_used_promotion($promotion_id, 0, true);
-        foreach($use_products as $product)
+        foreach($use_products as $key => $product)
         {
-            $this->order_products[$product['pid']]['promotion_id'] = $promotion_id;
-            $this->order_products[$product['pid']]['final_price'] = $product['final_price'];
+            $this->order_products[$key]['promotion_id'] = $promotion_id;
+            $this->order_products[$key]['final_price'] = $product['final_price'];
         }
         return ;
     }
@@ -317,10 +321,14 @@ class Model_Promotion extends MY_Model
      */
     private function clear_promotion_products($use_products)
     {
-        $keys = array_keys($use_products);
+        $keys = array();//array_keys($use_products);
+        foreach($use_products as $v)
+        {
+            $keys[$v['pid']] = true;
+        }
         foreach($this->promotion_products as $key => $product)
         {
-            if(in_array($product['pid'],$keys))
+            if(isset($keys[$product['pid']]))//if(in_array($product['pid'],$keys))
             {
                 unset($this->promotion_products[$key]);
             }
@@ -352,11 +360,19 @@ class Model_Promotion extends MY_Model
         {
             foreach($this->promotion_products as $info)
             {
-                if($promotion_id == $info['promotion_id'] && !isset($this->order_products[$info['pid']]['promotion_id']))
+                //p($this->order_products);p($this->promotion_products);die;
+                //$key = "{$info['pid']}-{$info['size_id']}";
+                if($promotion_id == $info['promotion_id'] )
                 {
-                    $tmp = $this->order_products[$info['pid']];
-                    $tmp['rule'] = array('rule'=>$info['rule'],'start_time'=>$info['start_time'], 'end_time'=>$info['end_time']);;
-                    $return[$info['pid']] = $tmp;
+                    foreach($this->order_products as $key => $item)
+                    {
+                       list($pid, $size_id) = explode('-', $key);
+                       if($pid == $info['pid'] && ! isset($this->order_products[$key]['promotion_id']))
+                       {
+                           $item['rule'] = array('rule' => $info['rule'], 'start_time' => $info['start_time'], 'end_time' => $info['end_time']);
+                           $return[$key] = $item;
+                       }
+                    }
                 }
             }
         }
@@ -369,20 +385,22 @@ class Model_Promotion extends MY_Model
      */
     function result()
     {
+        //p($this->order_products);
         $r = array('products'=>array(), 'total_price'=>0);
         foreach($this->order_products as $p)
         {
+            $key = "{$p['pid']}-{$p['size_id']}";
             if(isset($p['promotion_id']) && $p['promotion_id'])
             {
                 $p['promotion_name'] = $this->promotion[$p['promotion_id']]['name'];
-                $r['products'][$p['pid']] = $p;
+                $r['products'][$key] = $p;
             }
             else
             {
                 $p['promotion_name'] = '';
                 $p['promotion_id'] = 0;
                 $p['final_price'] = $p['sell_price'] * $p['num'];
-                $r['products'][$p['pid']] = $p;
+                $r['products'][$key] = $p;
             }
             $r['total_price'] += $p['final_price'];
         }
@@ -400,7 +418,7 @@ class Model_Promotion extends MY_Model
             }
             $r['total_price'] -= $discount_price;
         }
-
+        //p($this);
         return $r;
     }
 
