@@ -147,7 +147,7 @@ $(document).ready(function(){
       <div class="goods-cb">
         <div class="goods-cbox">
             <a href="<?=productURL($product['pid'])?>" target="_blank" title="<?=$product['pname']?>">
-                <img class="lazy" src="<?=url('static')?>images/lazy.gif" data-original="<?=url('img')?>upload/product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" />
+                <img class="lazy" src="<?=url('static')?>images/lazy.gif" data-original="<?=url('img')?>product/<?=intToPath($product['pid'])?>default.jpg" width="164" height="197" alt="<?=$product['pname']?>" />
             </a>
             <span class="font19">￥<?=fPrice($product['sell_price'])?></span>
             <p><a href="<?=productURL($product['pid'])?>" target="_blank" title="<?=$product['pname']?>"><?=$product['pname']?></a></p>
