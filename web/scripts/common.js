@@ -546,8 +546,8 @@ wx.initLoginStatus = function ()
         $('#user_name_id').html(userInfo.nickname);
         $('#loginout_id').html(html);
 
-        $('#user_info_id').remove();
-        $('#user_login_out_id').remove();
+        $('#user_info_id').hide();
+        $('#user_login_out_id').hide();
     }
 
 }
