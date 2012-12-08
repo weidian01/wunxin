@@ -152,7 +152,7 @@ class MY_Model extends CI_Model
             if (count($this->db->queries)) {
                 echo '<div  style="margin: 12px 15px 12px 15px;float: right;border: 1px solid #D0D0D0;display: none;">';
                 foreach ($this->db->queries as $k => $v) {
-                    echo "\n",'TIME:', sprintf("%.10f",$this->db->query_times[$k]),"\tSQL:", str_replace("\n", '', $v), "\n" ,  "<br>";
+                    echo "\n",'TIME:', sprintf("%.10f",$this->db->query_times[$k]),"\tSQL:", str_replace("\n", ' ', $v), "<br>";
                 }
                 echo '</div>';
             }
