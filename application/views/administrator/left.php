@@ -36,7 +36,7 @@
                     <ul>
                         <li><a href="<?=site_url('administrator/product/index')?>">产品管理</a></li>
                         <li><a href="<?=site_url('administrator/product_category/index')?>">产品分类</a></li>
-                        <li><a href="<?=site_url('administrator/product_models/index')?>">产品模型</a></li>
+                        <li><a href="<?=site_url('administrator/product_models/model_index')?>">产品模型</a></li>
                         <li><a href="<?=site_url('administrator/product_size/index')?>">产品尺码</a></li>
                         <li><a href="<?=site_url('administrator/product_color/index')?>">产品颜色</a></li>
                         <li><a href="<?=config_item('static_url')?>administrator/product_collocation/pcList/" title="">产品搭配管理</a></li>
