@@ -17,7 +17,6 @@ cart.init = function ()
 {
     var html = '';
     var data = wx.ajax('cart/getCart', '');
-
     if (data['cart'] == '' || data['cart'] == undefined) {
         html = '<br /><h1 style="text-align: center;">您的购物车中没有商品，请您去 <a href="javascript:void(0);" onclick="wx.goToBack()" style="color: #b5161c;">选购商品</a> 或 ' +
             '<a style="color: #b5161c;" href="javascript:void(0);" onclick="cart.removeCart()">取出寄存的产品</a>&nbsp;&nbsp;» </h1><br /><br /><br /><br />';
@@ -65,12 +64,12 @@ cart.init = function ()
     var tmpHtml = '';
     for (var i in cartData) {
         tmpHtml = (cartData[i].num > cart.product_min_num) ?
-            '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+cartData[i].pid+', 0)"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' :
+            '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+cartData[i].pid+', 0, '+cartData[i].size_id+')"><img src="'+wx.base_url+'images/reduce.gif" alt="减少"/></a>&nbsp;' :
             '&nbsp;<img src="'+wx.base_url+'images/reduce_none.gif" alt="减少"/>&nbsp;';
-        tmpHtml += '<input name="product_num" type="text" class="gnum" id="product_num_'+cartData[i].pid+'" value="'+cartData[i].num+'" maxlength="2" onchange="cart.changeQuantity('+cartData[i].pid+', 2)"/>'
+        tmpHtml += '<input name="product_num" type="text" class="gnum" id="product_num_'+cartData[i].pid+'" value="'+cartData[i].num+'" maxlength="2" onchange="cart.changeQuantity('+cartData[i].pid+', 2, '+cartData[i].size_id+')"/>'
         tmpHtml += (cartData[i].num >= cart.product_max_num) ?
             '<img src="'+wx.base_url+'images/plus_none.gif" width="11" height="11"/>' :
-            '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+cartData[i].pid+', 1)"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
+            '&nbsp;<a href="javascript:void(0);" onclick="cart.changeQuantity('+cartData[i].pid+', 1, '+cartData[i].size_id+')"><img src="'+wx.base_url+'images/plus.gif" width="11" height="11"/></a>';
 
         html += '<div class="cartRow">\
                   <div class="cartCell cart-goods">\
@@ -219,7 +218,7 @@ cart.deleteCartItem = function (pid, bindingId)
 }
 
 //更改购物中产品的数量
-cart.changeQuantity = function (pid, type, bindingId)
+cart.changeQuantity = function (pid, type, size_id, bindingId)
 {
     var productNum = document.getElementById('product_num_'+pid).value;
     productNum = parseInt(productNum);
@@ -232,7 +231,7 @@ cart.changeQuantity = function (pid, type, bindingId)
     }
 
     var url = 'cart/changeQuantity';
-    var param = 'pid='+pid+'&num='+num;
+    var param = 'pid='+pid+'&size_id='+size_id+'&num='+num;
     var data = wx.ajax(url, param);
 
     cart.init();

@@ -24,17 +24,35 @@ class Model_Way_2 extends Model_Way
 
     public function compute()
     {
-        foreach($this->products as $pid=>$product)
+        $time = time();
+        $group = $this->grouping();//p($group);
+        foreach($group as $pid=>$products)
         {
-            $time = time();
-            //echo '<pre>';print_r($product);exit;
-            $rule = self::formatRule($product['rule']);
-
-            if ($time > $rule['start_time'] && $time < $rule['end_time'] && $product['num'] >= $rule['num'])
+            $total = 0;
+            $key = $rule = NULL;
+            foreach ($products as $k => $product)
             {
-                $this->products[$pid]['final_price'] = ( $product['sell_price'] * ($product['num']-1) +  ($product['sell_price'] * $rule['discount'] * 0.1) );
+                $key === NULL && $key = $k;
+                $rule === NULL && $rule = self::formatRule($product['rule']);
+                $total += $product['num'];
             }
         }
+        if($total >= $rule['num'] && $time > $rule['start_time'] && $time < $rule['end_time'])
+        {
+            $this->products[$key]['final_price'] = ($this->products[$key]['sell_price'] * ($this->products[$key]['num'] - 1) + ($this->products[$key]['sell_price'] * $rule['discount'] * 0.1));
+        }
+        //p($this->products);
+    }
+
+    private function grouping()
+    {
+        $group = array();
+        foreach($this->products as $key=>$product)
+        {
+            list($pid, $size_id) = explode('-', $key);
+            $group[$pid][$key] = $product;
+        }
+        return $group;
     }
 
     static function formatRule($conf)

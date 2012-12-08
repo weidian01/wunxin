@@ -236,6 +236,7 @@ class cart extends MY_Controller
     public function changeQuantity()
     {
         $pId = intval($this->input->get_post('pid'));
+        $size_id = intval($this->input->get_post('size_id'));
         $num = intval($this->input->get_post('num'));
 
         $response = array('error' => '0', 'msg' => '更改购物车产品数量成功', 'code' => 'change_cart_products_successful');
@@ -252,7 +253,7 @@ class cart extends MY_Controller
                 break;
             }
             foreach ($cData as $k=>$v) {
-                if ($pId == $v['pid']) {
+                if ($pId == $v['pid'] && $size_id == $v['size_id']) {
                     $cData[$k]['product_num'] = $num;
                 }
             }
