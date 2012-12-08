@@ -30,8 +30,14 @@ class Model_Way_100 extends Model_Way
     {
         foreach($this->products as $pid=>$product)
         {
-            if(isset($product['sell_price']))
-                $this->order_amount += $product['sell_price'];
+            if(isset($product['final_price']))
+            {
+                $this->order_amount += $product['final_price'];
+            }
+            else
+            {
+                $this->order_amount += $product['sell_price'] * $product['num'];
+            }
         }
     }
 
