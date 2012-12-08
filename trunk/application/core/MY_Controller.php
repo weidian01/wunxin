@@ -305,6 +305,7 @@ class MY_Controller extends CI_Controller
                 'pname' => $cv['pname'],
                 'sell_price' => $cv['product_price'],
                 'num' => $cv['product_num'],
+                'size_id' => $cv['size_id'],
                 'product_size' => $cv['product_size'],
                 'additional_info' => $cv['additional_info'],
             );

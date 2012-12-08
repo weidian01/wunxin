@@ -75,7 +75,7 @@ class order extends MY_Controller
 
         //计算活动价格
         $cData = $this->calculateDiscount($cartInfo);//p($cData['products']);
-
+        //p($cData);
         $this->load->model('business/Model_gift_card_model', 'model');
         $cardModel = $this->model->getCardModelList(200);
 
