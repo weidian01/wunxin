@@ -160,10 +160,11 @@ class MY_Controller extends CI_Controller
             'pname' => $pInfo['pname'],
             'product_price' => $pInfo['product_price'],
             'product_num' => $pInfo['product_num'],
+            'size_id' => $pInfo['size_id'],
             'product_size' => $pInfo['product_size'],
             'additional_info' => $pInfo['additional_info'],
         );
-
+        //p($cInfo);
         if (empty ($cInfo['pid'])) {
             return false;
         }
