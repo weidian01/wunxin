@@ -166,7 +166,11 @@
         </div>
       </div>
       <div class="addcart">
+          <?php if($product['status'] == 1):?>
           <a class="addcart-btn" href="javascript:;" onclick="addToCart();" id="add_to_cart"></a>
+          <?php else:?>
+          <a class="past-due" href="javascript:;">产品已下架</a>
+          <?php endif;?>
           <!--<a class="addcart-btn" href="javascript:;" onclick="wx.addToCartLayer(<?=$product['pid'];?>, '<?=$product['pname'];?>', 'add_to_cart');" id="add_to_cart"></a>-->
           <a class="sc-btn" href="javascript:;" onclick="product.favoriteProduct(<?=$product['pid']?>, 'but_favorite')" id="but_favorite"></a>
 

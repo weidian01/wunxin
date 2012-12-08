@@ -107,6 +107,7 @@
 .goods-type2 .sizebox ul li{float:left; padding:0px 5px; line-height:25px; color:#ac1116}
 .addcart{padding:5px 0px; height:40px}
 .size .addcart .addcart-btn{display:block; float:left; width:150px; height:34px; background-position:-76px -141px}
+.size .addcart .past-due{display:block; float:left; width:80px; height:34px;}
 .size .addcart .sc-btn{display:block; float:left; width:120px; height:34px; margin-left:12px; background-position:-106px -176px}
 .share{padding:8px 0px; height:16px}
 .share ul li{float:right; width:16px; height:16px; padding-right:6px}
