@@ -19,13 +19,14 @@ class Model_Product extends MY_Model
      */
     public function getProductById($pid, $field = '*', $where = null, $order = null)
     {
+        list($key, $field) = self::formatField($field);
         $this->db->select($field)->from('product');
         $where && $this->db->where($where);
         $order && $this->db->order_by($order);
 
         if(is_array($pid))
         {
-            return $this->db->where_in('pid', $pid)->get()->result_array();
+            return $this->db->where_in('pid', $pid)->get()->result_array($key);
         }
         return $this->db->where('pid', $pid)->get()->row_array();
 
