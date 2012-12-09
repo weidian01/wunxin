@@ -72,7 +72,7 @@ $(document).ready(function(){
 
             if ($order['is_pay'] == ORDER_PAY_SUCC) {
                 echo ' 您于'.date('Y-m-d H:i',strtotime($order['pay_time'])).' 已成功付款，我们将尽快安排发货，可随时登陆万象网
-                    <a href="'.config_item('static_url').'/user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
+                    <a href="'.url('member').'user/center/index" style="color:#A10000;" target="_blank"><b>(我的订单)</b></a> 查看订单状态。';
             } else {
                 switch ($order['pay_type']) {
                     case PAY_ONLINE : $timeOut = (TIME_OUT_PAY_ONLINE / 3600);break;//在线支付
@@ -261,7 +261,7 @@ $(document).ready(function(){
                   <li class="rq">
                       <div class="rqimg">
                           <a href="<?=productURL($rv['pid'])?>" title="<?=$rv['pname'];?>" target="_blank">
-                            <img src="<?=config_item('static_url')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="164" height="197" title="<?=$rv['pname'];?>"/>
+                            <img src="<?=url('img')?>upload/product/<?=intToPath($rv['pid'])?>default.jpg" width="164" height="197" title="<?=$rv['pname'];?>"/>
                           </a>
                       </div>
                       <p>
