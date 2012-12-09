@@ -17,6 +17,7 @@ class Model_Order extends MY_Model
     public function addOrder(array $orderInfo)
     {
         $data = array(
+            'parent_id'=> isset($orderInfo['parent_id']) && $orderInfo['parent_id'] ? $orderInfo['parent_id'] : 0,
             'uid' => $orderInfo['uid'],
             'uname' => $orderInfo['uname'],
             'after_discount_price' => $orderInfo['after_discount_price'],
@@ -118,7 +119,7 @@ class Model_Order extends MY_Model
     public function addOrderAndProduct(array $orderInfo, array $productInfo)
     {
         $orderSn = $this->addOrder($orderInfo);
-        if (!$orderInfo) return false;
+        if (!$orderSn) return false;
 
         $status = $this->addOrderProduct($productInfo, $orderSn);
         if (!$status) return false;

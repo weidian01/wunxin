@@ -186,7 +186,7 @@ class order extends MY_Controller
     {
         $order_sn = $this->input->get_post('order_sn');
         $this->load->model('order/Model_Order', 'order');
-        $field = "pid,uid,uname,pname,market_price,sell_price,final_price,product_num,comment_status,share_status,product_size,presentation_integral,preferential,warehouse";
+        $field = "pid,uid,uname,pname,market_price,sell_price,final_price,product_num,comment_status,share_status,product_size,color,presentation_integral,preferential,warehouse,ext";
         $order_product = $this->order->getOrderAllProductByOrderSn($order_sn, $field);
         if(!$order_product)
         {
@@ -195,7 +195,7 @@ class order extends MY_Controller
         }
 
         $field = "parent_id,address_id,uid,uname,after_discount_price,discount_rate,before_discount_price,pay_type,defray_type,is_pay,order_source,pay_time,delivert_time,
-        annotated,invoice,paid,need_pay,ip,invoice_payable,invoice_content,recent_name,recent_address,zipcode,phone_num,call_num,picking_status,status";
+        annotated,invoice,paid,need_pay,ip,invoice_payable,invoice_content,recent_name,recent_address,zipcode,phone_num,call_num,picking_status,status,is_print_price";
         $order_info = $this->order->getOrderByOrderSn($order_sn, $field);
         if($order_info['parent_id'] != 0)
         {
@@ -228,13 +228,13 @@ class order extends MY_Controller
             $split_order_product[$item['warehouse']]['products'][] = $item;
         }
 
-        if(count($split_order_product) === 1)//如果产品只出自一个仓库则步用拆分订单
+        if(count($split_order_product) === 1)//如果产品只出自一个仓库则不用拆分订单
         {
-            $this->db->update('order', array('parent_id'=>$order_sn), array('order_sn' => $order_sn, 'parent_id'=>0, 'is_pay'=>ORDER_PAY_SUCC, 'status'=>ORDER_CONFIRM));
+            $this->db->update('order', array('parent_id' => $order_sn), array('order_sn' => $order_sn, 'parent_id' => 0, 'is_pay' => ORDER_PAY_SUCC, 'status' => ORDER_CONFIRM));
         }
         else
         {
-            $this->db->update('order', array('parent_id'=>-1), array('order_sn' => $order_sn, 'parent_id'=>0,'is_pay'=>ORDER_PAY_SUCC, 'status'=>ORDER_CONFIRM));
+            $this->db->update('order', array('parent_id' => -1), array('order_sn' => $order_sn, 'parent_id' => 0, 'is_pay' => ORDER_PAY_SUCC, 'status' => ORDER_CONFIRM));
             foreach($split_order_product as $item)
             {
                 $order_info['parent_id'] = $order_sn;
