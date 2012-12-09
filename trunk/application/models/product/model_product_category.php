@@ -22,7 +22,7 @@ class Model_Product_Category extends MY_Model
             ->select()
             ->order_by('sort', 'desc')
             ->get_where('product_category')
-            ->result_array();
+            ->result_array('class_id');
         $this->category = $this->sortdata($categroyList);
         return $this->category;
     }
@@ -34,7 +34,7 @@ class Model_Product_Category extends MY_Model
      * @param int $id
      * @return array
      */
-    private static function sortdata(&$catArray, $id = 0)
+    private static function sortdata($catArray, $id = 0)
     {
         static $formatCat = array();
         static $floor = 0;
