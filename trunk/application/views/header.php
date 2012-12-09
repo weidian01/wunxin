@@ -120,7 +120,7 @@
                 <?php else:?>
                 <?php $_view_curr = '';?>
                 <?php endif;?>
-                <a <?=$_view_curr?> href="<?=productFilterURL(array('category'=>$channel['class_id']))?>"><?=$channel['cname']?></a>
+                <a <?=$_view_curr?> href="<?=empty($channel['url'])?productFilterURL(array('category'=>$channel['class_id'])):$channel['url']?>"><?=$channel['cname']?></a>
                 <?php endif;?>
             <?php endforeach;?>
             <!--a class="last" href="#">亲子装款</a-->
