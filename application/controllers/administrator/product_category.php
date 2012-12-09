@@ -71,6 +71,7 @@ class product_category extends MY_Controller
         $data['title'] = $this->input->post('title');
         $data['keywords'] = $this->input->post('keywords');
         $data['descr'] = $this->input->post('descr');
+        $data['url'] = trim($this->input->post('url'));
         $class_id = $this->input->post('class_id');
 
         if (!$data['cname'])

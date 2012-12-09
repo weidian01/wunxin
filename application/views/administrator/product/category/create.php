@@ -73,7 +73,12 @@
                             <label>排序</label>
                             <input class="text-input datepicker"
                                    type="text" value="<?=isset($info['sort']) ? $info['sort'] : ''?>" name="sort"/>
-
+                        </p>
+                        <p>
+                            <label>URL</label>
+                            <input class="text-input datepicker"
+                                   type="text" value="<?=isset($info['url']) ? $info['url'] : ''?>" name="url"/>
+                        </p>
                         <p>
                             <label>SEO标题</label>
                             <input class="text-input small-input" type="text"
