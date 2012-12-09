@@ -238,6 +238,8 @@ class order extends MY_Controller
             foreach($split_order_product as $item)
             {
                 $order_info['parent_id'] = $order_sn;
+                $order_info['is_pay'] = 1;
+                $order_info['status'] = 2;
                 $order_info['before_discount_price'] = $item['price'];
                 //print_r($order_info);
                 $this->order->addOrderAndProduct($order_info, $item['products']);
