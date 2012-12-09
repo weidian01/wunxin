@@ -147,7 +147,7 @@ class order_picking extends MY_Controller
         $order_info['ed_id'] = $this->input->post('ed_id');
         $order_info['logistics_orders_sn'] = $this->input->post('logistics_orders_sn');
         $order_info['descr'] = $this->input->post('descr');
-
+        $order_info['status'] = 1;
         $order_product = $this->order->getOrderAllProductByOrderSn($order_sn, "`pid`,`pname`,`product_num`");
         if(!$order_product)
         {
