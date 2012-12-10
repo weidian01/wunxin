@@ -183,9 +183,9 @@ class order extends MY_Controller
             $data = array(
                 'uid' => $this->uInfo['uid'],
                 'uname' => $this->uInfo['uname'],
-                'after_discount_price' => $cdData['cost_price'],
+                'after_discount_price' => $totalPrice,
                 'discount_rate' => $totalPrice,
-                'before_discount_price' => $totalPrice,
+                'before_discount_price' => $cdData['cost_price'],
                 'pay_type' => $payType,
                 'order_source' => '1',
                 'delivert_time' => $delivertTime,
