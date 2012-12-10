@@ -183,7 +183,7 @@ class order extends MY_Controller
             $data = array(
                 'uid' => $this->uInfo['uid'],
                 'uname' => $this->uInfo['uname'],
-                'after_discount_price' => $totalPrice,
+                'after_discount_price' => $cdData['cost_price'],
                 'discount_rate' => $totalPrice,
                 'before_discount_price' => $totalPrice,
                 'pay_type' => $payType,

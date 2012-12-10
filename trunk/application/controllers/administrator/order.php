@@ -215,16 +215,23 @@ class order extends MY_Controller
 
         //echo '<pre>';print_r($order_info);
         $split_order_product = array();
+        $flag = FALSE;
         foreach($order_product as $item)
         {
-            if(isset($split_order_product[$item['warehouse']]['price']))
-            {
-                $split_order_product[$item['warehouse']]['price'] += $item['final_price'];
-            }
-            else
-            {
-                $split_order_product[$item['warehouse']]['price'] = $item['final_price'];
-            }
+            ! isset($split_order_product[$item['warehouse']]['total_sell_price']) && $split_order_product[$item['warehouse']]['total_sell_price'] = 0;
+            ! isset($split_order_product[$item['warehouse']]['total_final_price']) && $split_order_product[$item['warehouse']]['total_final_price'] = 0;
+
+            $split_order_product[$item['warehouse']]['total_final_price'] += $item['final_price'];
+            $split_order_product[$item['warehouse']]['total_sell_price'] += $item['sell_price'];
+
+//            if(isset($split_order_product[$item['warehouse']]['price']))
+//            {
+//                $split_order_product[$item['warehouse']]['price'] += $item['final_price'];
+//            }
+//            else
+//            {
+//                $split_order_product[$item['warehouse']]['price'] = $item['final_price'];
+//            }
             $split_order_product[$item['warehouse']]['products'][] = $item;
         }
 
@@ -238,9 +245,10 @@ class order extends MY_Controller
             foreach($split_order_product as $item)
             {
                 $order_info['parent_id'] = $order_sn;
-                $order_info['is_pay'] = 1;
-                $order_info['status'] = 2;
-                $order_info['before_discount_price'] = $item['price'];
+                $order_info['is_pay'] = ORDER_PAY_SUCC;
+                $order_info['status'] = ORDER_CONFIRM;
+                $order_info['before_discount_price'] = $item['total_final_price'];
+                $order_info['after_discount_price'] = $item['total_sell_price'];
                 //print_r($order_info);
                 $this->order->addOrderAndProduct($order_info, $item['products']);
             }
