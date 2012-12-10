@@ -39,18 +39,14 @@
 
 
   <h1 class="shoppingitem">购物车</h1>
-  <div class="shopping-cart" id="shopping_cart">
-      <div style="text-align: center;">
-          <img src="<?=config_item('static_url')?>images/loading.gif" alt="加载购物中......"><span>加载购物中......</span>
-      </div>
-  </div>
-    <div class="shopping-cart" id="shopping_cart"><br>
-        <h1 style="text-align: center;">您的购物车中没有商品，请您去
-            <a href="javascript:void(0);" onclick="wx.goToBack()" style="color: #b5161c;">选购商品</a> 或
-            <a style="color: #b5161c;"
-                                                                                                href="javascript:void(0);"
-                                                                                                onclick="cart.removeCart()">取出寄存的产品</a>&nbsp;&nbsp;»
-        </h1><br><br><br><br></div>
+    <div class="shopping-cart" id="shopping_cart">
+        <br><br><br>
+        <h1 style="text-align: center;">
+          <img src="<?=config_item('static_url')?>images/ajax-loader.gif" alt="加载购物中......"><span>&nbsp;&nbsp;加载购物中......</span>
+        </h1>
+        <br><br><br>
+    </div>
+
 
   <div class="other-shopping">
     <div class="tit">购买以上商品的顾客还购买过</div>
