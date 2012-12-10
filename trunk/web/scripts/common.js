@@ -682,7 +682,7 @@ wx.addToCartLayer = function (pId, pName, bindingId)
 //console.log(cartData.length);
     for (var ci in cartData) {
         totalNum += cartData[ci]['num'];
-        totalPrice += cartData[ci]['final_price'] * cartData[ci]['num'];
+        totalPrice += cartData[ci]['final_price'];
     }
 
     var html = '<div class="commentDIV"> <div class="tit">商品已成功加入购物车 <div class="close-cm" onclick="wx.layerClose()"></div> </div> <div class="addto-goods">\
