@@ -17,5 +17,4 @@ class product_tools extends MY_Controller
             redirect('/administrator/admin_login/index');
         }
     }
-
 }
