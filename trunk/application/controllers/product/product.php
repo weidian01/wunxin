@@ -201,7 +201,7 @@ class Product extends MY_Controller
             $modelAttr = array();
 
             foreach ($product_attr as $k => $v) {
-                if(isset($model_detail[$v['attr_id']]) && ! isset($modelAttr[$v['attr_id']]))
+                if(isset($model_detail[$v['attr_id']]['attrs'][$v['value_id']]) && ! isset($modelAttr[$v['attr_id']]))
                 {
                     $modelAttr[$v['attr_id']] = array('pid'=>$v['pid'], 'model_id' => $v['model_id'],'attr_id' => $v['attr_id'],'attr_name' => $model_detail[$v['attr_id']]['attr_name'], 'attrs' => array());
                 }
