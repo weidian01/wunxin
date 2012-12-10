@@ -263,7 +263,7 @@ order.savePayRecent = function ()
 }
 
 //提交订单
-order.orderSubmit = function ()
+order.orderSubmit = function (bandingId)
 {
     var addressId = $("input[name='address_id']:checked").val();//wx.getRadioCheckBoxValue('address_id');//配货地址
     var payType = $("input[name='pay_type']:checked").val();//wx.getRadioCheckBoxValue('pay_type');//支付方式
@@ -292,12 +292,14 @@ order.orderSubmit = function ()
     var param = 'address_id='+addressId+'&pay_type='+payType+'&delivert_time='+delivertTime+'&annotated='+annotated+'&is_print_price='+isPrintPrice;//+'&invoice_payable='+invoicePayable+'&invoice_content='+invoiceContent;
     var data = wx.ajax(url, param);
 
-    if (data.error == '30013') {
+    if (data.error == '0') {
         wx.goToUrl('/order/order/success/'+data.order_sn);
+        return;
     }
 
-    alert(data.msg);
+    //alert(data.msg);
     //document.order_form_id.submit();
+    wx.showPop(data.msg, bandingId);
 }
 
 //提交进行支付

@@ -111,7 +111,7 @@ class order extends MY_Controller
         $isPrintPrice = $this->input->get_post('is_print_price');
         $cartData = $this->getCartToCookie();
 
-        $response = array('error' => '30013', 'msg' => '添加订单成功', 'code' => 'add_order_success');
+        $response = array('error' => '0', 'msg' => '添加订单成功', 'code' => 'add_order_success');
 
         do {
             if (empty ($addressId) || empty ($payType) || empty ($delivertTime)) {
@@ -121,8 +121,8 @@ class order extends MY_Controller
 
             //购物车如果为空，则跳转到购物车页面
             if ( empty ($cartData) ) {
-                redirect('/cart/');
-                return false;
+                $response = error(60001);
+                break;
             }
 
             //获取用户收货地址
@@ -162,8 +162,8 @@ class order extends MY_Controller
             }
             //购物车如果为空，则跳转到购物车页面
             if ( empty ($cartData) ) {
-                redirect('/cart/');
-                return false;
+                $response = error(60001);
+                break;
             }
             //p($cartData);die;
             /****************校验购物车内产品结束*****************/
