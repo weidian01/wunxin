@@ -180,13 +180,14 @@
                         <?php if(isset($photo)):?>
                         <style>.default_photo{border:3px solid #ff4500;}</style>
                         <div id="product_photo">
-                        <?php foreach($photo as $v):?>
+                        <?php $_view_flag = false;foreach($photo as $v):?>
                             <div id="photo_<?=$v['id']?>">
                                 <img src="<?=config_item('static_url').'upload/product/'.intToPath($v['pid']).str_replace('.','_S.', $v['img_addr'])?>"
                                      width="60" height="60" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="select_photo(<?=$v['id']?>)"/>
                                 <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
-                            <?php if($v['is_default']==1):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id']?>"/><?php endif;?>
+                            <?php if($v['is_default']==1):$_view_flag = true;?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id'];?>"/><?php endif;?>
                         <?php endforeach;?>
+                        <?php if($_view_flag == false):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id']?>"/><?php endif;?>
                         </div>
                         <?php endif;?>
                         <p>
