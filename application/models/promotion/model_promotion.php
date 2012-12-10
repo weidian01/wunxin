@@ -386,7 +386,7 @@ class Model_Promotion extends MY_Model
     function result()
     {
         //p($this->order_products);
-        $r = array('products'=>array(), 'total_price'=>0);
+        $r = array('products'=>array(), 'cost_price'=>0, 'total_price'=>0);
         foreach($this->order_products as $p)
         {
             $key = "{$p['pid']}-{$p['size_id']}";
@@ -402,6 +402,7 @@ class Model_Promotion extends MY_Model
                 $p['final_price'] = $p['sell_price'] * $p['num'];
                 $r['products'][$key] = $p;
             }
+            $r['cost_price'] += ($p['sell_price'] * $p['num']);
             $r['total_price'] += $p['final_price'];
         }
 

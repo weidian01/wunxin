@@ -18,8 +18,8 @@ class Model_Order extends MY_Model
     {
         $data = array(
             'parent_id'=> isset($orderInfo['parent_id']) && $orderInfo['parent_id'] ? $orderInfo['parent_id'] : 0,
-            'is_pay'=> isset($orderInfo['is_pay']) && $orderInfo['is_pay'] ? $orderInfo['is_pay'] : 0,
-            'status'=> isset($orderInfo['status']) && $orderInfo['status'] ? $orderInfo['status'] : 0,
+            'is_pay'=> isset($orderInfo['is_pay']) && $orderInfo['is_pay'] ? $orderInfo['is_pay'] : ORDER_PAY_INIT,
+            'status'=> isset($orderInfo['status']) && $orderInfo['status'] ? $orderInfo['status'] : ORDER_NORMAL,
             'uid' => $orderInfo['uid'],
             'uname' => $orderInfo['uname'],
             'after_discount_price' => $orderInfo['after_discount_price'],
