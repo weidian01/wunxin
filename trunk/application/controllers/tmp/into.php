@@ -67,8 +67,14 @@ class into extends MY_Controller
             $this->product_html = $html = self::get_html($url, $unique_id);
 
             $product_attr = $this->get_product_attr($match['attribute']);
-
-            $this->insert_product_attr($url, $product_attr);
+            if($product_attr)
+            {
+                $this->insert_product_attr($url, $product_attr);
+            }
+            else
+            {
+               echo 'none',"\n\n";
+            }
 
         }
     }
@@ -626,10 +632,11 @@ class into extends MY_Controller
     function get_product_attr($match)
     {
         preg_match($match[0], $this->product_html, $matches);//p($matches);
+        $attr = array();
         if(isset($matches[1]) && $matches[1])
         {
             preg_match_all($match[1], $matches[1], $out, PREG_SET_ORDER);
-            $attr = array();
+
             foreach($out as $v)
             {
                 $attr[$v[1]] = self::font_foramt($v[2]);
