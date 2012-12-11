@@ -147,7 +147,8 @@ table.tab5 td{line-height:30px; padding:3px 0px}
 .slide ul li img{padding:0px; border:1px solid #e0e0e0}
 .slide ul li.curr{float:left; display:block; text-align:center; width:221px; height:267px; padding:0px}
 .slide ul li .designimg{border: 1px solid #EEEEEE;display: block;width: 164px;height: 197px;overflow: hidden;}
-.slide ul li a:hover{border:0px solid #D00}
+.slide ul li a:hover{border:1px solid #D00}
+.slide ul li p a:hover{border:0px solid #D00}
 .slide-pre{position:absolute; z-index:100; width:26px; height:35px; top:95px; left:-1px; background:url(http://www.wunxin.com/images/bg.png) no-repeat -26px -39px}
 .slide-pre a, .slide-next a{display:block; width:26px; height:35px}
 .slide-next{position:absolute; z-index:100; width:26px; height:35px; top:95px; right:-1px; background:url(http://www.wunxin.com/images/bg.png) no-repeat 0px -39px}
