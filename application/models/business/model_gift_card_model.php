@@ -99,7 +99,7 @@ class Model_Gift_Card_Model extends MY_Model
      */
     public function getCardModelByMid($mId)
     {
-        $data = $this->db->select('*')->from('card')->where('model_id', $mId)->get()->row_array();
+        $data = $this->db->select('*')->from('card_model')->where('model_id', $mId)->get()->row_array();
 
         return $data;
     }

@@ -54,8 +54,25 @@ class into extends MY_Controller
         set_time_limit(0);
     }
 
-    public function index()
+    public function lixiangniandai()
     {
+        $list = $this->db->select('pid, product_taobao_addr')->get_where('product',array('brand_id'=>1))->result_array();
+        foreach($list as $v)
+        {
+            $url = $v['product_taobao_addr'];
+            $unique_id = self::get_unique_id($url);
+            $match = $this->get_match($url);
+            $this->product_html = $html = self::get_html($url, $unique_id);
+
+            $product_attr = $this->get_product_attr($match['attribute']);
+
+            $this->insert_product_attr($url, $product_attr);
+            echo $v['pid'],"\n";
+        }
+    }
+
+    public function index()
+    {   die('走错门了');
         while(true)
         {
             $urls = $this->get_product_url(100);//每次取100个

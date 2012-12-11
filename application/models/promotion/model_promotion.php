@@ -386,7 +386,7 @@ class Model_Promotion extends MY_Model
     function result()
     {
         //p($this->order_products);
-        $r = array('products'=>array(), 'cost_price'=>0, 'total_price'=>0);
+        $r = array('products'=>array(), 'cost_price'=>0, 'total_price'=>0, 'order_discount'=>0);
         foreach($this->order_products as $p)
         {
             $key = "{$p['pid']}-{$p['size_id']}";
@@ -416,10 +416,14 @@ class Model_Promotion extends MY_Model
                 {
                     $discount_price = $pp['save'];
                 }
+                if($pp['pay_type'] == 0 )
+                {
+                    $r['order_discount'] = $pp['save'];
+                }
             }
             $r['total_price'] -= $discount_price;
         }
-        //p($this);
+        //p($r);
         return $r;
     }
 

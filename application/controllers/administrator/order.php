@@ -234,7 +234,7 @@ class order extends MY_Controller
 //            }
             $split_order_product[$item['warehouse']]['products'][] = $item;
         }
-
+        $order_discount = $order_info['discount_rate'];
         if(count($split_order_product) === 1)//如果产品只出自一个仓库则不用拆分订单
         {
             $this->db->update('order', array('parent_id' => $order_sn), array('order_sn' => $order_sn, 'parent_id' => 0, 'is_pay' => ORDER_PAY_SUCC, 'status' => ORDER_CONFIRM));
@@ -244,11 +244,27 @@ class order extends MY_Controller
             $this->db->update('order', array('parent_id' => -1), array('order_sn' => $order_sn, 'parent_id' => 0, 'is_pay' => ORDER_PAY_SUCC, 'status' => ORDER_CONFIRM));
             foreach($split_order_product as $item)
             {
+                if($order_discount)
+                {
+                    if($item['total_final_price'] < $order_discount)
+                    {
+                        $order_info['discount_rate'] = $item['total_final_price'];
+                        $order_discount -= $item['total_final_price'];
+                        $item['total_final_price'] = 0;
+                    }
+                    else
+                    {
+                        $item['total_final_price'] -= $order_discount;
+                        $order_info['discount_rate'] = $order_discount;
+                        $order_discount = 0;
+                    }
+                }
+
                 $order_info['parent_id'] = $order_sn;
                 $order_info['is_pay'] = ORDER_PAY_SUCC;
                 $order_info['status'] = ORDER_CONFIRM;
-                $order_info['before_discount_price'] = $item['total_final_price'];
-                $order_info['after_discount_price'] = $item['total_sell_price'];
+                $order_info['before_discount_price'] = $item['total_sell_price'];
+                $order_info['after_discount_price'] = $item['total_final_price'];
                 //print_r($order_info);
                 $this->order->addOrderAndProduct($order_info, $item['products']);
             }
