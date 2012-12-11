@@ -180,14 +180,14 @@
                         <?php if(isset($photo)):?>
                         <style>.default_photo{border:3px solid #ff4500;}</style>
                         <div id="product_photo">
-                        <?php $_view_flag = false;foreach($photo as $v):?>
+                        <?php $_view_flag = $_view_last_img_id = 0;foreach($photo as $v):$_view_last_img_id = $v['id'];?>
                             <div id="photo_<?=$v['id']?>">
                                 <img src="<?=config_item('static_url').'upload/product/'.intToPath($v['pid']).str_replace('.','_S.', $v['img_addr'])?>"
                                      width="60" height="60" <?php if($v['is_default']==1):?>class="default_photo"<?php endif;?> onclick="select_photo(<?=$v['id']?>)"/>
                                 <a href="javascript:void(null);" onclick="del_photo(<?=$v['id']?>)">删除</a></div>
-                            <?php if($v['is_default']==1):$_view_flag = true;?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id'];?>"/><?php endif;?>
+                            <?php if($v['is_default']==1):$_view_flag = TRUE;?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id'];?>"/><?php endif;?>
                         <?php endforeach;?>
-                        <?php if($_view_flag == false):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$v['id']?>"/><?php endif;?>
+                        <?php if($_view_flag == 0):?><input type="hidden" id="default_photo" name="default_photo" value="<?=$_view_last_img_id?>"/><?php endif;?>
                         </div>
                         <?php endif;?>
                         <p>
@@ -289,9 +289,10 @@ function create_element(json) {
         default :
             type = 'select';
     }
-    var html= '';
+    var html = '';
     $.each(json.attrs, function(i, n){
-        html += ' <input type="' + type + '" name="attr_value[' + json.attr_id + '][]" value="' + n.value_id + '"> ' + n.value_name
+        var checked = type == 'radio' && !html ? 'checked="checked"':'';
+        html += ' <input '+checked+' type="' + type + '" name="attr_value[' + json.attr_id + '][]" value="' + n.value_id + '"> ' + n.value_name
     });
     html = html ? json.attr_name + ' ：' + html + '<br>' : '';
     $("#model").append(html)
