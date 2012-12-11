@@ -59,6 +59,7 @@ class into extends MY_Controller
         $list = $this->db->select('pid, product_taobao_addr')->get_where('product',array('brand_id'=>1))->result_array();
         foreach($list as $v)
         {
+            sleep(3);
             $url = $v['product_taobao_addr'];
             echo $v['pid'],"\t",$url,"\n";
             $unique_id = self::get_unique_id($url);
@@ -68,7 +69,7 @@ class into extends MY_Controller
             $product_attr = $this->get_product_attr($match['attribute']);
 
             $this->insert_product_attr($url, $product_attr);
-            sleep(3);
+
         }
     }
 
