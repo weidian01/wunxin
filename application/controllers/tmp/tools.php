@@ -33,7 +33,7 @@ class tools extends MY_Controller
                     if (!$pv['model_id']){
                         p($pData);exit;
                     }
-                    $t = $this->db->get_where('wx_product_attrs', array('pid' => $pv['pid'], 'value_id' => $v['value_id']))->result_array();
+                    $t = $this->db->get_where('wx_product_attrs', array('pid' => $pv['pid'], 'value_id' => $v['value_id']))->row_array();
                     if (empty ($t)) {
                         $iData = array(
                             'pid' => $pv['pid'],
@@ -43,6 +43,9 @@ class tools extends MY_Controller
                         );
 
                         $this->db->insert('wx_product_attrs', $iData);
+                    } else {
+                        //p($t);exit;
+                        echo 'error:',$t['pid'],'<br/>';
                     }
                 }
 
