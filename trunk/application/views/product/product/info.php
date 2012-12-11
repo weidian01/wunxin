@@ -160,7 +160,7 @@
         <div class="ctxt">已选择：</div>
         <div class="sizebox">
           <ul>
-            <li><?=$alike[$product['pid']]['color']['china_name']?></li>
+            <li><?=isset($alike[$product['pid']]['color']['china_name']) ?$alike[$product['pid']]['color']['china_name']:'' ?></li>
             <li id="product_size"></li>
           </ul>
         </div>
