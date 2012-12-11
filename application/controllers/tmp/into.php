@@ -60,6 +60,7 @@ class into extends MY_Controller
         foreach($list as $v)
         {
             $url = $v['product_taobao_addr'];
+            echo $v['pid'],"\t",$url,"\n";
             $unique_id = self::get_unique_id($url);
             $match = $this->get_match($url);
             $this->product_html = $html = self::get_html($url, $unique_id);
@@ -67,7 +68,6 @@ class into extends MY_Controller
             $product_attr = $this->get_product_attr($match['attribute']);
 
             $this->insert_product_attr($url, $product_attr);
-            echo $v['pid'],"\t",$url,"\n";
             sleep(3);
         }
     }
