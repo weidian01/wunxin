@@ -6,6 +6,7 @@
  * Time: 上午11:18
  * To change this template use File | Settings | File Templates.
  */
+die;
 class test extends MY_Controller
 {
 
