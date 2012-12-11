@@ -275,7 +275,7 @@ class into extends MY_Controller
         $file_path = $path . $file_name;
         recursiveMkdirDirectory($path);
 
-        if(is_file($file_path) && filemtime($file_path) < (time()-self::TIMEOUT))
+        if(is_file($file_path) && filemtime($file_path) > (time()-self::TIMEOUT))
         {
             $html = file_get_contents($file_path);
         }
