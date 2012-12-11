@@ -30,8 +30,8 @@ class tools extends CI_Controller
         }
 
 
-echo $data;
-//echo '<pre>';print_r($data);
+        echo $data;
+        //echo '<pre>';print_r($data);
     }
 
     public function userBrowseLog()

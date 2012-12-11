@@ -73,6 +73,9 @@ class test extends MY_Controller
         //echo APPPATH;
     }
 
+    /**
+     * 检查是否抓取
+     */
     public function checkIsCrawl()
     {
         $data = $this->db->get_where('z_product',array('up_flag' => 2), 20000)->result_array();

@@ -9,6 +9,8 @@
 
 class into extends MY_Controller
 {
+    const TIMEOUT = 0;
+
     private $class = array();
 
     private $brand = array();
@@ -256,7 +258,7 @@ class into extends MY_Controller
         $file_path = $path . $file_name;
         recursiveMkdirDirectory($path);
 
-        if(is_file($file_path) && filemtime($file_path) < (time()-86400))
+        if(is_file($file_path) && filemtime($file_path) < (time()-self::TIMEOUT))
         {
             $html = file_get_contents($file_path);
         }
