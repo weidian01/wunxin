@@ -67,7 +67,8 @@ class into extends MY_Controller
             $product_attr = $this->get_product_attr($match['attribute']);
 
             $this->insert_product_attr($url, $product_attr);
-            echo $v['pid'],"\n";
+            echo $v['pid'],"\t",$url,"\n";
+            sleep(3);
         }
     }
 
