@@ -418,7 +418,7 @@ order.useGiftCard = function (card_no, base_amount, bindingId)
 
 order.updateCardView = function (savePrice)
 {
-    var orderTotalPrice = $('#order_total_price').text();
+    var orderTotalPrice = $('#order_final_price').val();
     orderTotalPrice = parseFloat(orderTotalPrice)
     orderTotalPrice = orderTotalPrice < 0 ? 0 : orderTotalPrice;
 
