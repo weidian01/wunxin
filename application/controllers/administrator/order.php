@@ -222,7 +222,7 @@ class order extends MY_Controller
             ! isset($split_order_product[$item['warehouse']]['total_final_price']) && $split_order_product[$item['warehouse']]['total_final_price'] = 0;
 
             $split_order_product[$item['warehouse']]['total_final_price'] += $item['final_price'];
-            $split_order_product[$item['warehouse']]['total_sell_price'] += $item['sell_price'];
+            $split_order_product[$item['warehouse']]['total_sell_price'] += $item['sell_price'] * $item['product_num'];
 
 //            if(isset($split_order_product[$item['warehouse']]['price']))
 //            {
@@ -234,7 +234,8 @@ class order extends MY_Controller
 //            }
             $split_order_product[$item['warehouse']]['products'][] = $item;
         }
-        $order_discount = $order_info['discount_rate'];
+        $order_discount = $order_info['discount_rate'];//p($split_order_product);die;
+        $order_paid = $order_info['paid'];
         if(count($split_order_product) === 1)//如果产品只出自一个仓库则不用拆分订单
         {
             $this->db->update('order', array('parent_id' => $order_sn), array('order_sn' => $order_sn, 'parent_id' => 0, 'is_pay' => ORDER_PAY_SUCC, 'status' => ORDER_CONFIRM));
@@ -244,20 +245,26 @@ class order extends MY_Controller
             $this->db->update('order', array('parent_id' => -1), array('order_sn' => $order_sn, 'parent_id' => 0, 'is_pay' => ORDER_PAY_SUCC, 'status' => ORDER_CONFIRM));
             foreach($split_order_product as $item)
             {
-                if($order_discount)
-                {
-                    if($item['total_final_price'] < $order_discount)
-                    {
-                        $order_info['discount_rate'] = $item['total_final_price'];
-                        $order_discount -= $item['total_final_price'];
-                        $item['total_final_price'] = 0;
-                    }
-                    else
-                    {
-                        $item['total_final_price'] -= $order_discount;
-                        $order_info['discount_rate'] = $order_discount;
-                        $order_discount = 0;
-                    }
+                $order_info['discount_rate'] = 0;
+                $order_info['paid'] = 0;
+
+                if ($order_discount && $item['total_final_price'] < $order_discount) {
+                    $order_info['discount_rate'] = $item['total_final_price'];
+                    $order_discount -= $item['total_final_price'];
+                    $item['total_final_price'] = 0;
+                } else if ($order_discount && $item['total_final_price'] >= $order_discount) {
+                    $item['total_final_price'] -= $order_discount;
+                    $order_info['discount_rate'] = $order_discount;
+                    $order_discount = 0;
+                }
+                if ($order_paid && $item['total_final_price'] < $order_paid) {
+                    $order_info['paid'] = $item['total_final_price'];
+                    $order_paid -= $item['total_final_price'];
+                    $item['total_final_price'] = 0;
+                } else if ($order_paid && $item['total_final_price'] >= $order_paid) {
+                    $item['total_final_price'] -= $order_paid;
+                    $order_info['paid'] = $order_paid;
+                    $order_discount = 0;
                 }
 
                 $order_info['parent_id'] = $order_sn;

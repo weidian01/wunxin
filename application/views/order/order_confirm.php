@@ -324,7 +324,6 @@ $(document).ready(function(){
         <tr>
           <td align="center">&nbsp;</td>
           <td align="left"><span class="font11">产品名称</span></td>
-          <td width="9%" align="center"><span class="font11">单价</span></td>
           <td width="13%" align="center"><span class="font11">尺码</span></td>
           <td width="13%" align="center"><span class="font11">数量</span></td>
           <td width="10%" align="center"><span class="font11">赠送积分</span></td>
@@ -345,12 +344,11 @@ $(document).ready(function(){
               </a>
           </td>
           <td width="49%"><a class="gn2" href="<?=productURL($cv['pid'])?>" target="_blank"><?=mb_substr($cv['pname'], 0, 70, 'utf-8');?></a><br/>
-            <!-- <span class="font2">GZ26052909-S</span> --></td>
-          <td align="center"><?=fPrice($cv['sell_price']);?></td>
+          <span class="font2">￥<?=fPrice($cv['sell_price']);?></span></td>
           <td align="center"><?=$cv['product_size'];?></td>
           <td align="center"><?=intval($cv['num']);?></td>
           <td align="center"><?=intval(fPrice($cv['final_price']));?></td>
-          <td align="center"><span class="font6"><?=fPrice($cv['final_price']);?></span></td>
+          <td align="center"><span class="font6"><?=fPrice($cv['num'] * $cv['sell_price']);?></span></td>
         </tr>
           <?php }?>
       </table>
@@ -361,7 +359,7 @@ $(document).ready(function(){
               产品数量总计：<?=intval($total_num);?>&nbsp;&nbsp;&nbsp;&nbsp;
               赠送积分总计：<?=intval(fPrice($cart_info['total_price']));?>&nbsp;&nbsp;&nbsp;&nbsp;
               花费积分总计：0&nbsp;&nbsp;&nbsp;&nbsp;
-              商品金额总计：￥<span id="order_total_price"><?=fPrice($cart_info['total_price']);?></span></td>
+              商品金额总计：￥<span><?=fPrice($cart_info['cost_price']);?></span></td>
         </tr>
       </table>
       <div class="order-info">
@@ -446,11 +444,13 @@ $(document).ready(function(){
 
           </div>
         </div>
-        <div class="order-sum">运费：￥0<br/>
+        <div class="order-sum">运费：￥0.00<br/>
+          活动抵冲：￥<span><?=fPrice($cart_info['product_discount'] + $cart_info['order_discount']);?></span><br/>
           礼品卡抵冲：￥<span id="card_use_amount"><?=fPrice( (array_sum($gift_card) > $cart_info['total_price']) ? $cart_info['total_price'] : array_sum($gift_card) );?></span><br/>
           虚拟账户余额抵冲：￥0.00
           <div style="padding:10px 0 0 0;">您共需要为订单支付：<span class="font12">￥
               <span id="final_pay_amount"><?=fPrice( (array_sum($gift_card) > $cart_info['total_price']) ? 0 : ($cart_info['total_price'] - array_sum($gift_card)) );?></span></span>
+              <input type="hidden" id="order_final_price" value="<?=fPrice($cart_info['total_price'])?>">
           </div>
         </div>
       </div>
