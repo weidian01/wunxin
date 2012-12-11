@@ -1139,6 +1139,7 @@ function d(b) {
     return(a = document.cookie.match(RegExp("(^| )" + b + "=([^;]*)(;|$)"))) ? decodeURIComponent(a[2].replace(/\+/g, "%20")) : null
 }
 
+//右侧浮层
 eval(function (k, l, c, m, a, e) {
     a = function (b) {
         return(b < l ? "" : a(parseInt(b / l))) + ((b = b % l) > 35 ? String.fromCharCode(b + 29) : b.toString(36))
@@ -1187,6 +1188,7 @@ wx.uuid = (function () {
     };
 })();
 
+//获取用户来源页面
 wx.getReferrer = function() {
     var referrer = '';
 
@@ -1221,5 +1223,5 @@ wx.userBrowse = function ()
 
     wx.ajax('tools/userBrowseLog', 'uniqid='+uniqId+'&browse_url='+currentUrl+'&referer_url='+refererUrl);
 }
-wx.userBrowse();
+//wx.userBrowse();
 //console.log(wx.uuid());
