@@ -194,7 +194,7 @@ class order extends MY_Controller
             die;
         }
 
-        $field = "parent_id,address_id,uid,uname,after_discount_price,discount_rate,before_discount_price,pay_type,defray_type,is_pay,order_source,pay_time,delivert_time,
+        $field = "parent_id,address_id,uid,uname,after_discount_price,order_discount,before_discount_price,pay_type,defray_type,is_pay,order_source,pay_time,delivert_time,
         annotated,invoice,paid,need_pay,ip,invoice_payable,invoice_content,recent_name,recent_address,zipcode,phone_num,call_num,picking_status,status,is_print_price";
         $order_info = $this->order->getOrderByOrderSn($order_sn, $field);
         if($order_info['parent_id'] != 0)
@@ -234,7 +234,7 @@ class order extends MY_Controller
 //            }
             $split_order_product[$item['warehouse']]['products'][] = $item;
         }
-        $order_discount = $order_info['discount_rate'];//p($split_order_product);die;
+        $order_discount = $order_info['order_discount'];//p($split_order_product);die;
         $order_paid = $order_info['paid'];
         if(count($split_order_product) === 1)//如果产品只出自一个仓库则不用拆分订单
         {
@@ -245,16 +245,16 @@ class order extends MY_Controller
             $this->db->update('order', array('parent_id' => -1), array('order_sn' => $order_sn, 'parent_id' => 0, 'is_pay' => ORDER_PAY_SUCC, 'status' => ORDER_CONFIRM));
             foreach($split_order_product as $item)
             {
-                $order_info['discount_rate'] = 0;
+                $order_info['order_discount'] = 0;
                 $order_info['paid'] = 0;
 
                 if ($order_discount && $item['total_final_price'] < $order_discount) {
-                    $order_info['discount_rate'] = $item['total_final_price'];
+                    $order_info['order_discount'] = $item['total_final_price'];
                     $order_discount -= $item['total_final_price'];
                     $item['total_final_price'] = 0;
                 } else if ($order_discount && $item['total_final_price'] >= $order_discount) {
                     $item['total_final_price'] -= $order_discount;
-                    $order_info['discount_rate'] = $order_discount;
+                    $order_info['order_discount'] = $order_discount;
                     $order_discount = 0;
                 }
                 if ($order_paid && $item['total_final_price'] < $order_paid) {

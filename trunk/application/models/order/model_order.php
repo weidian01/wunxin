@@ -23,7 +23,7 @@ class Model_Order extends MY_Model
             'uid' => $orderInfo['uid'],
             'uname' => $orderInfo['uname'],
             'after_discount_price' => $orderInfo['after_discount_price'],
-            'discount_rate' => $orderInfo['discount_rate'],
+            'order_discount' => $orderInfo['order_discount'],
             'before_discount_price' => $orderInfo['before_discount_price'],
             'pay_type' => $orderInfo['pay_type'],
             'order_source' => $orderInfo['order_source'],
@@ -386,7 +386,7 @@ class Model_Order extends MY_Model
      */
     public function userIsBuyProduct($uid, $pid, $orderSn = null)
     {
-        $field = 'order.order_sn, parent_id, address_id, order.uid, order.uname, after_discount_price, discount_rate, before_discount_price, pay_type, defray_type, is_pay,
+        $field = 'order.order_sn, parent_id, address_id, order.uid, order.uname, after_discount_price, order_discount, before_discount_price, pay_type, defray_type, is_pay,
         order_source, pay_time, delivert_time, annotated, invoice, paid, need_pay, ip, invoice_payable, invoice_content, recent_name, recent_address,
         zipcode, phone_num, call_num, picking_status, status, id, pid, pname, market_price, sell_price, product_num,
         comment_status, share_status, product_size, presentation_integral, preferential, warehouse, order.create_time';
