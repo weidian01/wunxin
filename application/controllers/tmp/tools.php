@@ -13,8 +13,6 @@ class tools extends MY_Controller
      */
     public function exportProductAttr()
     {
-        if (!$this->input->input->is_cli_request()) return;
-        
         set_time_limit(0);
         //ob_start();
         $data = $this->db->get_where('wx_z_product_attr', array('id >' => 22195) )->result_array();
