@@ -71,7 +71,7 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-$db['default']['save_queries'] = TRUE;
+$db['default']['save_queries'] = FALSE;
 
 
 /* End of file database.php */
