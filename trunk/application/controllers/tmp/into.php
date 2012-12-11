@@ -56,7 +56,7 @@ class into extends MY_Controller
 
     public function lixiangniandai()
     {
-        $list = $this->db->select('pid, product_taobao_addr')->get_where('product',array('brand_id'=>1))->result_array();
+        $list = $this->db->select('pid, product_taobao_addr')->group_by('product_taobao_addr')->get_where('product',array('brand_id'=>1))->result_array();
         foreach($list as $v)
         {
             sleep(3);
