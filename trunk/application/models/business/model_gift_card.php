@@ -38,7 +38,7 @@ class Model_Gift_Card extends MY_Model
     {
         //$cardPassword = md5($cardPassword);
 
-        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'card_pass' => $cardPassword, 'status' => 2))->row_array();
+        $data = $this->db->select('*')->get_where('card', array('card_no' => $cardNo, 'card_pass' => $cardPassword, 'status' => 1))->row_array();
 
         return empty ($data) ? false : true;
     }

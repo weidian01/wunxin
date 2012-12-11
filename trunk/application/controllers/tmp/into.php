@@ -62,6 +62,13 @@ class into extends MY_Controller
             sleep(3);
             $url = $v['product_taobao_addr'];
             echo $v['pid'],"\t",$url,"\n";
+
+            $tmp = $this->db->select('id, url')->get_where('z_product_attr',array('url'=>$url))->row_array();
+            if ($tmp) {
+                echo 'pass',"\n\n";
+                continue;
+            }
+
             $unique_id = self::get_unique_id($url);
             $match = $this->get_match($url);
             $this->product_html = $html = self::get_html($url, $unique_id);
