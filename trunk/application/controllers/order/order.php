@@ -184,7 +184,7 @@ class order extends MY_Controller
                 'uid' => $this->uInfo['uid'],
                 'uname' => $this->uInfo['uname'],
                 'after_discount_price' => $totalPrice,
-                'discount_rate' => $totalPrice,
+                'discount_rate' => $cdData['order_discount'],
                 'before_discount_price' => $cdData['cost_price'],
                 'pay_type' => $payType,
                 'order_source' => '1',
