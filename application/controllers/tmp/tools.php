@@ -73,7 +73,7 @@ class tools extends MY_Controller
                 case 15: $tmp['value_id'] = 295 ;break;//裙装
             }
 
-            $this->db->insert('wx_product_attrs', $tmp);
+            $this->db->insert('wx_product_attrs', $tmp, true);
 
 
         }
