@@ -50,11 +50,32 @@ class tools extends MY_Controller
                 }
 
             }
+        }
+    }
 
-            //$sql = "insert into wx_product_attrs(pid,attr_id,model_id,value_id) values()";
+    /**
+     * 导出产品默认属性 -- 品类
+     */
+    public function exportProductDefaultAttr()
+    {
+        $pData = $this->db->select('pid, class_id, model_id')->get_where('wx_product', array('pid >' => 1604) )->result_array();
+
+        foreach ($pData as $v) {
+            $tmp = array('pid' => $v['pid'], 'attr_id' => 175, 'model_id' => $v['model_id']);
+            switch ($v['model_id']) {
+                case 1: $tmp['value_id'] = 288;break;//T恤
+                case 3: $tmp['value_id'] = 289 ;break;//卫衣
+                case 5: $tmp['value_id'] = 302 ;break;//衬衫
+                case 7: $tmp['value_id'] = 291 ;break;//裤装
+                case 9: $tmp['value_id'] = 292 ;break;//POLO衫
+                case 11: $tmp['value_id'] = 290 ;break;//棉服
+                case 13: $tmp['value_id'] = 294 ;break;//背心
+                case 15: $tmp['value_id'] = 295 ;break;//裙装
+            }
+
+            $this->db->insert('wx_product_attrs', $tmp);
 
 
         }
-
     }
 }
