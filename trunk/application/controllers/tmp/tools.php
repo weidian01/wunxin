@@ -54,7 +54,7 @@ class tools extends MY_Controller
     }
 
     /**
-     * 导出产品默认属性 -- 品类
+     * 导出产品默认属性 -- 品类 人群
      */
     public function exportProductDefaultAttr()
     {
@@ -75,7 +75,18 @@ class tools extends MY_Controller
 
             $this->db->insert('wx_product_attrs', $tmp, true);
 
+            $tmp = array('pid' => $v['pid'], 'attr_id' => 176, 'model_id' => $v['model_id']);
+            if (in_array($v['class_id'], array(1,5,6,14,18,26,27,31))) {//男装
+                $tmp['value_id'] = 297;
+            } elseif (in_array($v['class_id'], array(2,7,8,13,19,23,24,25,32))) {//女装
+                $tmp['value_id'] = 298;
+            } elseif (in_array($v['class_id'], array(15,16,17))) {//情侣
+                $tmp['value_id'] = 299;
+            } elseif (in_array($v['class_id'], array(3,28,29,30))) {//亲子
+                $tmp['value_id'] = 300;
+            }
 
+            $this->db->insert('wx_product_attrs', $tmp, true);
         }
     }
 }
