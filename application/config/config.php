@@ -30,6 +30,8 @@ $config['search_url']	= 'http://www.wunxin.com/';
 
 $config['product_url']	= 'http://www.wunxin.com/';
 
+$config['admin_url']	= 'http://www.wunxin.com/';
+
 $config['http_expires']	= 7200;
 
 /*
