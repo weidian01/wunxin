@@ -540,8 +540,8 @@ class product extends MY_Controller
                 $this->db->where('pid', $target);
                 $this->db->delete('product_attrs');
 				
-				$up = $this->product->getProductById($source, 'class_id, model_id, brand_id');
-				$this->product->editProduct($target, $up);
+				//$up = $this->product->getProductById($source, 'class_id, model_id, brand_id');
+				//$this->product->editProduct($target, $up);
 				
                 foreach($attr as $key=>$item)
                 {
