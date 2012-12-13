@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="<?=url('static')?>/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="<?=url('static')?>bootstrap/css/bootstrap.css" rel="stylesheet">
     <style>
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -30,17 +30,17 @@
             font-size: 1em !important;
         }
     </style>
-    <link href="<?=url('static')?>/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="<?=url('static')?>bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="<?=url('static')?>/bootstrap/ico/favicon.ico">
+    <link rel="shortcut icon" href="<?=url('static')?>bootstrap/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
-          href="<?=url('static')?>/bootstrap/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=url('static')?>/bootstrap/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="<?=url('static')?>/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+          href="<?=url('static')?>bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=url('static')?>bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="<?=url('static')?>bootstrap/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <body>
 <?php require(APPPATH . 'views/administrator/bootstrap/navbar.php');?>
@@ -104,14 +104,6 @@
         </div>
     </div>
 </div>
-<footer>
-    <p>&copy; Copyright 2012 万象乾鑫科技有限公司</p>
-</footer>
-<!-- /container -->
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="<?=url('static')?>/bootstrap/js/jquery.js"></script>
-<script src="<?=url('static')?>/bootstrap/js/bootstrap.js"></script>
+<?php require(APPPATH . 'views/administrator/bootstrap/footer.php');?>
 </body>
 </html>
