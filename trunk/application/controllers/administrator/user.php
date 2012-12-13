@@ -29,17 +29,43 @@ class user extends MY_Controller
         $data = $this->user->getUserList($Limit, $offset);
 
         $this->load->library('pagination');
-        $config['base_url'] = site_url() . '/administrator/user/userList/';
+        $config['base_url'] = url('admin') . '/administrator/user/userList/';
         $config['total_rows'] = $totalNum;
         $config['per_page'] = $Limit;
         $config['num_links'] = 10;
         $config['uri_segment'] = 4;
         $config['use_page_numbers'] = TRUE;
-        $config['anchor_class'] = 'class="number"';
+        //$config['anchor_class'] = 'class="number"';
+
+        //所有页码外围
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        //当前页码
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        //其他页码
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //上一页
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        //下一页
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        //首页
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        //尾页
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+
+
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
         //echo '<pre>';print_r($data);exit;
-        $this->load->view('/administrator/user/list', array('data' => $data, 'page_html' => $pageHtml, 'current_page' => $currentPage));
+        $this->load->view('/administrator/bootstrap/user/list', array('data' => $data, 'page_html' => $pageHtml, 'current_page' => $currentPage));
     }
 
     public function search()
