@@ -89,4 +89,21 @@ class tools extends MY_Controller
             $this->db->insert('wx_product_attrs', $tmp, true);
         }
     }
+
+    public function replaceProductInfo()
+    {
+        $pData = $this->db->select('pid, class_id, model_id, pcontent')->get_where('wx_product', array('pid'=>1022) )->result_array();
+//p($pData);
+        foreach ($pData as $v) {
+            $c = $v['pcontent'];
+            //echo $v['pcontent'];
+            //preg_match('/.*width=.*/sU', $c, $v);
+            $c = preg_replace('/<img.*src=["|\']["|\'].*>/sU', '', $c);
+            $c = preg_replace('/width=["|\'].*["|\']/sU', '', $c);
+            $c = preg_replace('/height=["|\'].*["|\']/sU', '', $c);
+
+            $this->db->update('wx_product', array('pcontent' => $c), array('pid' => $v['pid']));
+            //p($v);
+        }
+    }
 }
