@@ -95,7 +95,7 @@ class tools extends MY_Controller
      */
     public function checkAttr()
     {
-        $pData = $this->db->select('pid, class_id, model_id')->get_where('wx_product', array('pid'=>100) )->result_array();
+        $pData = $this->db->select('pid, class_id, model_id')->get_where('wx_product', array() )->result_array();
         foreach ($pData as $v) {
             $pId = $v['pid'];
             $nums = 0;
