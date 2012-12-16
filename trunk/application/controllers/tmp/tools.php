@@ -90,12 +90,49 @@ class tools extends MY_Controller
         }
     }
 
+    /**
+     * 检查产品属性是否全部添加
+     */
+    public function checkAttr()
+    {
+        $pData = $this->db->select('pid, class_id, model_id')->get_where('wx_product', array('pid'=>100) )->result_array();
+        foreach ($pData as $v) {
+            $pId = $v['pid'];
+            $nums = 0;
+            switch ($v['model_id']) {
+                case 1: $nums = 12;break;//T恤
+                case 3: $nums = 12 ;break;//卫衣
+                case 5: $nums = 12 ;break;//衬衫
+                case 7: $nums = 12 ;break;//裤装
+                case 9: $nums = 12 ;break;//POLO衫
+                case 11: $nums = 12 ;break;//棉服
+                case 13: $nums = 6 ;break;//背心
+                case 15: $nums = 12 ;break;//裙装
+            }
+
+            $attrNum = $this->db->select('*')->from('wx_product_attrs')->where('pid', $pId)->group_by('attr_id')->get()->result_array();//->count_all_results();
+
+            if (count($attrNum) < $nums) {
+                echo $pId."<br/>";
+            }
+            //p(count($attrNum));exit;
+        }
+    }
+
     public function replaceProductInfo()
     {
-        $pData = $this->db->select('pid, class_id, model_id, pcontent')->get_where('wx_product', array() )->result_array();
+        $pData = $this->db->select('pid, class_id, model_id, pcontent')->get_where('wx_product', array('pid'=>1781) )->result_array();
 //p($pData);
         foreach ($pData as $v) {
-            $c = $v['pcontent'];
+            $c = $v['pcontent'];echo $c;
+            //$c = '<img alt="" border="0"/>';
+
+            preg_match_all('/<img(?!(str).*).*>/sU', $c, $s);
+p($s);
+
+            exit;
+
+
             //echo $v['pcontent'];
             //preg_match('/.*width=.*/sU', $c, $v);
             $c = preg_replace('/<img.*src=["|\']["|\'].*>/sU', '', $c);
