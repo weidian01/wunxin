@@ -92,7 +92,7 @@ class tools extends MY_Controller
 
     public function replaceProductInfo()
     {
-        $pData = $this->db->select('pid, class_id, model_id, pcontent')->get_where('wx_product', array('pid'=>1022) )->result_array();
+        $pData = $this->db->select('pid, class_id, model_id, pcontent')->get_where('wx_product', array() )->result_array();
 //p($pData);
         foreach ($pData as $v) {
             $c = $v['pcontent'];
