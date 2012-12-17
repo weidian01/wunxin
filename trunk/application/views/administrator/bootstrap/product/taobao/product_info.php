@@ -1,10 +1,10 @@
-<table class="table table-striped table-condensed span6">
+<table class="table table-striped table-condensed span5">
     <tr><th>属性</th><th>值</th><tr>
     <?php foreach($attr as $k=>$v):?>
     <tr><td><?=$k?></td><td><?=$v?></td><tr>
     <?php endforeach;?>
 </table>
-<table class="table table-striped table-condensed span6">
+<table class="table table-striped table-condensed span5">
 <tr><th>id</th><th>颜色</th><th>图片</th><th>价格</th><th>尺寸</th></tr>
 <?php foreach($product as $p):?>
 <tr>
