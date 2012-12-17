@@ -401,7 +401,7 @@ function _alert(text)
                 top = parseInt(wrap[0].style.top);
                 hide = top + wrap[0].offsetHeight;
 
-                wrap.css('top', hide + 'px')
+                wrap.css({'top': (hide + 'px'), 'left': '0px'})
                     .animate({top: top + 'px'}, duration, function () {
                         opt.init && opt.init.call(api, here);
                     });
