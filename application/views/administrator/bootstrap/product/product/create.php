@@ -23,7 +23,7 @@
                       <div class="control-group">
                         <label for="input01" class="control-label">产品名称</label>
                         <div class="controls">
-                          <input type="text" id="input01" class="input-xlarge" value="<?=isset($info['pname']) ? $info['pname'] : ''?>" name="pname" placeholder="不可为空">
+                          <input type="text" id="input01" class="input-xxlarge" value="<?=isset($info['pname']) ? $info['pname'] : ''?>" name="pname" placeholder="不可为空">
                         </div>
                       </div>
                         <div class="control-group">
