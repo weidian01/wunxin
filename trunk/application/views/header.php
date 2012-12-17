@@ -122,7 +122,7 @@
                 <?php endif;?>
                 <a <?=$_view_curr?> href="<?=empty($channel['url'])?productFilterURL(array('category'=>$channel['class_id'])):$channel['url']?>"><?=$channel['cname']?></a>
                 <?php endif;?>
-            <?php endforeach;?>
+            <?php endforeach;?>123123
             <!--a class="last" href="#">亲子装款</a-->
             <?php if(FLASE):?>
             <a <?php if(isset($keyword) && $keyword == '卫衣'):?>class="curr"<?php endif;?> href="<?=url('search')?>search?keyword=%E5%8D%AB%E8%A1%A3">卫衣</a>
