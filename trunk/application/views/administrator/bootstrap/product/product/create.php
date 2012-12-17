@@ -312,7 +312,7 @@ function create_element(json) {
 
 function del_photo(id)
 {
-    $("#hidden").append('<input type="hidden" name="delphoto[]" value="'+id+'" />');
+    $(".form-actions").append('<input type="hidden" name="delphoto[]" value="'+id+'" />');
     var tmp = $("#photo_"+id).children(".default_photo").attr('class');
 
     $("#photo_"+id).remove();
