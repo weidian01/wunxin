@@ -79,7 +79,6 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="<?=url('static')?>bootstrap/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
           href="<?=url('admin')?>bootstrap/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?=url('static')?>bootstrap/ico/apple-touch-icon-72-precomposed.png">
