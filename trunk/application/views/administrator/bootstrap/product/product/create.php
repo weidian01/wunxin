@@ -14,6 +14,12 @@
 
             <form class="form-horizontal" method="post" action="<?=url('admin')?>administrator/product/save" accept-charset="utf-8" enctype="multipart/form-data">
                     <fieldset>
+                    <div class="control-group">
+                      <label for="input01" class="control-label"> </label>
+                      <div class="controls">
+                          <a class="btn btn-info" href="javascript:get_product_info()"><i class="icon-info-sign icon-white"></i>获取产品信息参考(来自淘宝的产品)</a>
+                      </div>
+                    </div>
                       <div class="control-group">
                         <label for="input01" class="control-label">产品名称</label>
                         <div class="controls">
@@ -228,6 +234,7 @@
 <?php require(APPPATH . 'views/administrator/bootstrap/footer.php');?>
 <script charset="utf-8" src="<?=url('admin')?>scripts/kindeditor-4.1.1/kindeditor-min.js"></script>
 <script charset="utf-8" src="<?=url('admin')?>scripts/kindeditor-4.1.1/lang/zh_CN.js"></script>
+<script type="text/javascript" src="<?=url('admin')?>scripts/artdialog.js"></script>
 <link rel="stylesheet" href="<?=url('admin')?>css/artdialog.css" type="text/css" media="screen"/>
 <script>
 function load_size(val)
