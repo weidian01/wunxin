@@ -322,7 +322,7 @@ class product_taobao extends MY_Controller
         $product_attr = $this->get_product_attr($match['attribute']);
        // p($product_attr);
         //p($res);
-        $this->load->view('administrator/product/taobao/product_info', array("product" => $res, 'attr'=>$product_attr));
+        $this->load->view('administrator/bootstrap/product/taobao/product_info', array("product" => $res, 'attr'=>$product_attr));
     }
 
     static function get_unique_id($url)
