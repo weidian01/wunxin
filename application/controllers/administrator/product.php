@@ -565,6 +565,9 @@ class product extends MY_Controller
                 $attr = $this->mod->getAttrByPID($source, 'attr_id, model_id, value_id');
                 if($attr)
                 {
+                    $up = $this->product->getProductById($source, 'model_id');
+                    $this->product->editProduct($target, $up);
+
                     $this->db->where('pid', $target);
                     $this->db->delete('product_attrs');
                     foreach($attr as $key=>$item)
