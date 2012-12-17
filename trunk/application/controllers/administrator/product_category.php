@@ -26,7 +26,7 @@ class product_category extends MY_Controller
     {
         $this->load->model('product/Model_Product_Category', 'category');
         $category = $this->category->getCategroyList();
-        $this->load->view('administrator/product/category/index', array('category' => $category));
+        $this->load->view('administrator/bootstrap/product/category/index', array('category' => $category));
     }
 
     /**
@@ -38,7 +38,7 @@ class product_category extends MY_Controller
         $category = $this->category->getCategroyList();
         $this->load->model('product/Model_Product_Models', 'mod');
         $model = $this->mod->getModelList(500);
-        $this->load->view('administrator/product/category/create', array('category' => $category, 'model' => $model));
+        $this->load->view('administrator/bootstrap/product/category/create', array('category' => $category, 'model' => $model));
     }
 
     /**
@@ -58,7 +58,7 @@ class product_category extends MY_Controller
         $category = $this->category->getCategroyList();
         $this->load->model('product/Model_Product_Models', 'mod');
         $model = $this->mod->getModelList(500);
-        $this->load->view('administrator/product/category/create', array('category' => $category, 'model' => $model, 'class_id' => $class_id, 'info' => $info));
+        $this->load->view('administrator/bootstrap/product/category/create', array('category' => $category, 'model' => $model, 'class_id' => $class_id, 'info' => $info));
     }
 
     public function save()

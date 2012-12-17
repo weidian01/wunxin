@@ -40,11 +40,34 @@ class article extends MY_Controller
         $config['num_links'] = 10;
         $config['uri_segment'] = 4;
         $config['use_page_numbers'] = TRUE;
-        $config['anchor_class'] = 'class="number"';
+        //$config['anchor_class'] = 'class="number"';
+        //所有页码外围
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        //当前页码
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        //其他页码
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //上一页
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        //下一页
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        //首页
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        //尾页
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 //echo '<pre>';print_r($data);exit;
-        $this->load->view('/administrator/article/list', array('data' => $data, 'class_data' => $cdata, 'page_html' => $pageHtml, 'current_page' => $currentPage));
+        $this->load->view('/administrator/bootstrap/article/article/index', array('data' => $data, 'class_data' => $cdata, 'page_html' => $pageHtml, 'current_page' => $currentPage));
     }
 
     /**
@@ -74,11 +97,34 @@ class article extends MY_Controller
         $config['num_links'] = 10;
         $config['uri_segment'] = 5;
         $config['use_page_numbers'] = TRUE;
-        $config['anchor_class'] = 'class="number"';
+        //$config['anchor_class'] = 'class="number"';
+        //所有页码外围
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        //当前页码
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        //其他页码
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //上一页
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        //下一页
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        //首页
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        //尾页
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 
-        $this->load->view('/administrator/article/list', array('data' => $data, 'class_data' => $cdata, 'page_html' => $pageHtml));
+        $this->load->view('/administrator/bootstrap/article/article/index', array('data' => $data, 'class_data' => $cdata, 'page_html' => $pageHtml));
     }
 
     /**
@@ -89,7 +135,7 @@ class article extends MY_Controller
         $this->load->model('article/Model_Article_Category', 'category');
         $data = $this->category->getCategoryList();
 
-        $this->load->view('/administrator/article/create', array('class_data' => $data, 'type' => 'add'));
+        $this->load->view('/administrator/bootstrap/article/article/create', array('class_data' => $data, 'type' => 'add'));
     }
 
     /**
@@ -105,7 +151,7 @@ class article extends MY_Controller
         $top = $this->input->get_post('top');
         $content = htmlspecialchars( stripslashes($_REQUEST['content']));//$this->input->get_post('content');$this->input->get_post('content');
 
-        if (empty ($title) || empty ($keyword) || empty ($descr) || empty ($content)) {
+        if (empty($cid) || empty ($title) || empty ($keyword) || empty ($descr) || empty ($content)) {
             show_error('参数不全');
         }
 
@@ -143,7 +189,7 @@ class article extends MY_Controller
         $this->load->model('article/Model_Article_Category', 'category');
         $cData = $this->category->getCategoryList();
 
-        $this->load->view('/administrator/article/create', array('info' => $data, 'class_data' => $cData, 'type' => 'edit'));
+        $this->load->view('/administrator/bootstrap/article/article/create', array('info' => $data, 'class_data' => $cData, 'type' => 'edit'));
     }
 
     /**
@@ -161,7 +207,7 @@ class article extends MY_Controller
         $id = $this->input->get_post('id');
         //echo '<pre>';print_r($_REQUEST);exit;
 //echo $content;exit;
-        if (empty ($title) || empty ($keyword) || empty ($descr) || empty ($content)) {
+        if (empty($cid) || empty ($title) || empty ($keyword) || empty ($descr) || empty ($content)) {
             show_error('参数不全');
         }
 

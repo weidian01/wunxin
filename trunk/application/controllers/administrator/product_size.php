@@ -34,7 +34,32 @@ class product_size extends MY_Controller
         $config['use_page_numbers'] = TRUE;
         $config['uri_segment'] = 4;
         $config['num_links'] = 10;
-        $config['anchor_class'] = 'class="number" ';
+        //$config['anchor_class'] = 'class="number" ';
+
+        //所有页码外围
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        //当前页码
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        //其他页码
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //上一页
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        //下一页
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        //首页
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        //尾页
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+
         $this->pagination->initialize($config);
 
         $page = $this->uri->segment(4, 1);
@@ -43,7 +68,7 @@ class product_size extends MY_Controller
             $page = (abs($page) - 1) * $pagesize;
             $data = $this->size->getList($pagesize, $page);
         }
-        $this->load->view('administrator/product/size/index',array('list' => $data, 'page' => $this->pagination->create_links()));
+        $this->load->view('administrator/bootstrap/product/size/index',array('list' => $data, 'page' => $this->pagination->create_links()));
     }
 
     /**
@@ -55,7 +80,7 @@ class product_size extends MY_Controller
         //$category = $this->category->getCategroyList();
         //$this->load->model('product/Model_Product_Model', 'mod');
         //$model = $this->mod->getModelList(500);
-        $this->load->view('administrator/product/size/create');
+        $this->load->view('administrator/bootstrap/product/size/create');
     }
 
     /**
@@ -72,7 +97,7 @@ class product_size extends MY_Controller
         if (!$info) {
             show_error('号码信息不存在');
         }
-        $this->load->view('administrator/product/size/create', $info);
+        $this->load->view('administrator/bootstrap/product/size/create', $info);
     }
 
     public function save()

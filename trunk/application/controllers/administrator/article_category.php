@@ -39,11 +39,36 @@ class article_category extends MY_Controller
         $config['num_links'] = 10;
         $config['uri_segment'] = 4;
         $config['use_page_numbers'] = TRUE;
-        $config['anchor_class'] = 'class="number"';
+        //$config['anchor_class'] = 'class="number"';
+
+        //所有页码外围
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        //当前页码
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        //其他页码
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //上一页
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        //下一页
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        //首页
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        //尾页
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+
         $this->pagination->initialize($config);
         $pageHtml = $this->pagination->create_links();
 //echo '<pre>';print_r($cdata);exit;
-        $this->load->view('/administrator/article/category/list', array('data' => $data, 'class_data' => $cdata));
+        $this->load->view('/administrator/bootstrap/article/category/index', array('data' => $data, 'class_data' => $cdata));
     }
 
     /**
@@ -54,7 +79,7 @@ class article_category extends MY_Controller
         $this->load->model('article/Model_Article_Category', 'article');
         $data = $this->article->getCategoryList();
 
-        $this->load->view('/administrator/article/category/create', array('data' => $data, 'type' => 'add'));
+        $this->load->view('/administrator/bootstrap/article/category/create', array('data' => $data, 'type' => 'add'));
     }
 
     /**
@@ -101,7 +126,7 @@ class article_category extends MY_Controller
         $cData = $this->article->getCategoryById($cId);
         $data = $this->article->getCategoryList();
 
-        $this->load->view('/administrator/article/category/create', array('info' => $cData, 'data' => $data, 'type' => 'edit'));
+        $this->load->view('/administrator/bootstrap/article/category/create', array('info' => $cData, 'data' => $data, 'type' => 'edit'));
     }
 
     /**

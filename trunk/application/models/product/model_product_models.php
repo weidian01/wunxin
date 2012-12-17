@@ -319,7 +319,7 @@ class Model_Product_Models extends MY_Model
      */
     function save_model($data, $attrs)
     {
-        p($attrs);
+        //p($attrs);
         $last_id = $this->_save('product_models', 'model_id', $data);
         $model_id = isset($data['model_id']) && $data['model_id'] ? $data['model_id']:$last_id;
         foreach($attrs as $key=>$value)
