@@ -33,7 +33,7 @@
 .rankbox .bdan .bdancont{float:left; padding-top:4px; width:152px; height:22px; overflow:hidden; padding-left:8px; line-height:19px}
 .rankbox .bdan .bdancont .bdprice{padding-top:5px; display:none}
 .rankbox .bdan .on{height:60px; padding-top:8px}
-.rankbox .bdan .on .bdancont{width:100px; height:60px}
+.rankbox .bdan .on .bdancont{width:100px; height:56px}
 .rankbox .bdan .on .bdimg{float:left; width:55px; display:block}
 .rankbox .bdan .on .bdprice{float:left; width:55px; display:block}
 .bdan2{padding:10px 0px 0px 10px; width:182px; height:95px; overflow:hidden; border-bottom:1px solid #eee; padding-bottom:3px; line-height:25px}
