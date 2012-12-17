@@ -151,7 +151,7 @@ class product_models extends MY_Controller
     {
         $this->load->model('product/Model_Product_Models', 'mod');
         $attrs = $this->mod->get_all_attr();
-        $this->load->view('administrator/product/models/attrs_index', array('attrs' => $attrs));
+        $this->load->view('administrator/bootstrap/product/models/attrs_index', array('attrs' => $attrs));
 
     }
 
@@ -165,12 +165,12 @@ class product_models extends MY_Controller
             show_404("属性不存在");
         }
         //p($attr);
-        $this->load->view('administrator/product/models/attrs_create', $attr);
+        $this->load->view('administrator/bootstrap/product/models/attrs_create', $attr);
     }
 
     public function attrs_create()
     {
-        $this->load->view('administrator/product/models/attrs_create');
+        $this->load->view('administrator/bootstrap/product/models/attrs_create');
     }
 
     public function attrs_save()
@@ -203,7 +203,7 @@ class product_models extends MY_Controller
         $this->load->model('product/Model_Product_Models', 'mod');
         $attrs = $this->mod->get_all_attr(array('attr_id'=>'*'));
         $values = $this->mod->get_values_by_attr_id($attr_id);
-        $this->load->view('administrator/product/models/value_index', array('attrs' => $attrs, 'values'=>$values));
+        $this->load->view('administrator/bootstrap/product/models/value_index', array('attrs' => $attrs, 'values'=>$values));
 
     }
 
@@ -218,14 +218,14 @@ class product_models extends MY_Controller
         }
         $attrs = $this->mod->get_all_attr(array('attr_id'=>'*'));
         //p($value);p($attrs);
-        $this->load->view('administrator/product/models/value_create', array('attrs'=>$attrs, 'value'=>$value));
+        $this->load->view('administrator/bootstrap/product/models/value_create', array('attrs'=>$attrs, 'value'=>$value));
     }
 
     public function value_create()
     {
         $this->load->model('product/Model_Product_Models', 'mod');
         $attrs = $this->mod->get_all_attr(array('attr_id'=>'*'));
-        $this->load->view('administrator/product/models/value_create', array('attrs'=>$attrs));
+        $this->load->view('administrator/bootstrap/product/models/value_create', array('attrs'=>$attrs));
     }
 
     public function value_save()
@@ -246,8 +246,9 @@ class product_models extends MY_Controller
 
         $this->load->model('product/Model_Product_Models', 'mod');
 
-        $this->mod->save_value($input);
-        redirect('/administrator/product_models/value_index');
+        $last_id = $this->mod->save_value($input);
+        $last_id = $input['attr_id'] ? $input['attr_id'] : $last_id;
+        redirect("/administrator/product_models/value_index/?attr_id={$last_id}");
     }
 
     public function value_del()
@@ -273,7 +274,32 @@ class product_models extends MY_Controller
         $config['use_page_numbers'] = TRUE;
         $config['uri_segment'] = 4;
         $config['num_links'] = 10;
-        $config['anchor_class'] = 'class="number" ';
+        //$config['anchor_class'] = 'class="number" ';
+
+        //所有页码外围
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        //当前页码
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        //其他页码
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //上一页
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        //下一页
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        //首页
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        //尾页
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+
         $this->pagination->initialize($config);
 
         $page = $this->uri->segment(4, 1);
@@ -283,7 +309,7 @@ class product_models extends MY_Controller
             $data = $this->mod->getModelList($pagesize, $page);
         }
 
-        $this->load->view('administrator/product/models/model_index', array('models' => $data, 'page' => $this->pagination->create_links()));
+        $this->load->view('administrator/bootstrap/product/models/model_index', array('models' => $data, 'page' => $this->pagination->create_links()));
     }
 
     public function model_create()
@@ -291,7 +317,7 @@ class product_models extends MY_Controller
         $this->load->model('product/Model_Product_Models', 'mod');
         $attrs = $this->mod->get_all_attr();
         //p($attrs);
-        $this->load->view('administrator/product/models/model_create', array('attrs'=>$attrs, 'attr_conf'=>array()));
+        $this->load->view('administrator/bootstrap/product/models/model_create', array('attrs'=>$attrs, 'attr_conf'=>array()));
     }
 
     public function model_edit()
@@ -302,7 +328,7 @@ class product_models extends MY_Controller
         $attr_conf = $this->mod->get_model_attrs($model_id);
         $attrs = $this->mod->get_all_attr(array('attr_id'=>'*'));
         //p($attrs);p($attr_conf);
-        $this->load->view('administrator/product/models/model_create',  array('attr_conf'=>$attr_conf, 'attrs'=>$attrs, 'model'=>$model));
+        $this->load->view('administrator/bootstrap/product/models/model_create',  array('attr_conf'=>$attr_conf, 'attrs'=>$attrs, 'model'=>$model));
     }
 
     public function model_save()
@@ -340,7 +366,7 @@ class product_models extends MY_Controller
         }
         //p($attr_conf);die;
         $this->mod->save_model($input, $attr_conf);
-        redirect("/administrator/product_models/model_edit/{$input['model_id']}");
+        redirect("/administrator/product_models/model_index");
     }
 
     public function model_del()
@@ -379,7 +405,7 @@ class product_models extends MY_Controller
             'attr_data' => $attrData,
             'model_data' => $modelData,
         );
-        $this->load->view('administrator/product/models/model_attr_value_edit',  $data);
+        $this->load->view('administrator/bootstrap/product/models/model_attr_value_edit',  $data);
     }
 
     public function model_attr_value_save()

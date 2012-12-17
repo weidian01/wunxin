@@ -39,7 +39,32 @@ class product extends MY_Controller
         $config['use_page_numbers'] = TRUE;
         $config['uri_segment'] = 4;
         $config['num_links'] = 10;
-        $config['anchor_class'] = 'class="number" ';
+        //$config['anchor_class'] = 'class="number" ';
+
+        //所有页码外围
+        $config['full_tag_open'] = '<div class="pagination"><ul>';
+        $config['full_tag_close'] = '</ul></div>';
+        //当前页码
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        //其他页码
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        //上一页
+        $config['prev_link'] = '«';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '</li>';
+        //下一页
+        $config['next_link'] = '»';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '</li>';
+        //首页
+        $config['first_tag_open'] = '<li>';
+        $config['first_tag_close'] = '</li>';
+        //尾页
+        $config['last_tag_open'] = '<li>';
+        $config['last_tag_close'] = '</li>';
+
         $this->pagination->initialize($config);
 
         $currentPage = $page = $this->uri->segment(4, 1);
@@ -56,7 +81,7 @@ class product extends MY_Controller
             'page' => $this->pagination->create_links(),
             'current_page' => $currentPage,
         );
-        $this->load->view('administrator/product/index', $info);
+        $this->load->view('administrator/bootstrap/product/product/index', $info);
     }
 
     /**
@@ -85,7 +110,7 @@ class product extends MY_Controller
                 $productData[] = empty ($data) ? null : $data;
         }
 
-        $this->load->view('/administrator/product/index', array('list' => $productData, 'searchType' => $this->searchType, 'sType' => $sType, 'keyword' => $keyword, 'current_page' => 1));
+        $this->load->view('administrator/bootstrap/product/product/index', array('list' => $productData, 'searchType' => $this->searchType, 'sType' => $sType, 'keyword' => $keyword, 'current_page' => 1));
     }
 
     /**
@@ -112,7 +137,7 @@ class product extends MY_Controller
                 unset($color[$k]);
             }
         }
-        $this->load->view('administrator/product/create', array('category' => $category, 'model' => $model, 'color'=>$color, 'brands' => $brands));
+        $this->load->view('administrator/bootstrap/product/product/create', array('category' => $category, 'model' => $model, 'color'=>$color, 'brands' => $brands));
     }
 
     /**
@@ -191,7 +216,7 @@ class product extends MY_Controller
             }
         }
 
-        $this->load->view('administrator/product/create', array(
+        $this->load->view('administrator/bootstrap/product/product/create', array(
             'info' => $info,
             'category' => $category,
             'model' => $model,
@@ -516,50 +541,47 @@ class product extends MY_Controller
             $target = $this->input->post('target');
             $this->load->model('product/Model_Product', 'product');
 
-            if($source == $target)
+            do
             {
-                die('来源和目标相同');
-            }
-
-            if($this->product->getProductCount(array('pid' => $source)) == FALSE)
-            {
-                die('来源不存在');
-            }
-
-            if($this->product->getProductCount(array('pid' => $target)) == FALSE)
-            {
-                die('目标不存在');
-            }
-			
-			
-
-            $this->load->model('product/Model_Product_Models', 'mod');
-            $attr = $this->mod->getAttrByPID($source, 'attr_id, model_id, value_id');
-            if($attr)
-            {
-                $this->db->where('pid', $target);
-                $this->db->delete('product_attrs');
-				
-				//$up = $this->product->getProductById($source, 'class_id, model_id, brand_id');
-				//$this->product->editProduct($target, $up);
-				
-                foreach($attr as $key=>$item)
+                if($source == $target)
                 {
-                    $attr[$key]['pid'] = $target;
+                    $info = array('type'=>'error','content'=>'来源和目标相同');
+                    break;
                 }
-                $this->db->insert_batch('product_attrs', $attr);
-            }
-            die('复制模型属性成功');
+
+                if($this->product->getProductCount(array('pid' => $source)) == FALSE)
+                {
+                    $info = array('type'=>'error','content'=>'来源不存在');
+                    break;
+                }
+
+                if($this->product->getProductCount(array('pid' => $target)) == FALSE)
+                {
+                    $info = array('type'=>'error','content'=>'目标不存在');
+                    break;
+                }
+
+                $this->load->model('product/Model_Product_Models', 'mod');
+                $attr = $this->mod->getAttrByPID($source, 'attr_id, model_id, value_id');
+                if($attr)
+                {
+                    $this->db->where('pid', $target);
+                    $this->db->delete('product_attrs');
+                    foreach($attr as $key=>$item)
+                    {
+                        $attr[$key]['pid'] = $target;
+                    }
+                    $this->db->insert_batch('product_attrs', $attr);
+                }
+                $info = array('type'=>'success','content'=>'复制属性成功');
+            }while(FALSE);
+
         }
         else
         {
-            echo <<<EOT
-<form method="POST" action="/administrator/product/copy_attr">
-来源:<input type="text" name="source">
-目标:<input type="text" name="target">
-<input type="submit">
-</form>
-EOT;
+            $info = array('type'=>'info','content'=>'例如A产品属性复制给B产品, A产品ID为"来源产品ID", B产品ID为"目标产品ID"');
         }
+        $this->load->view('administrator/bootstrap/product/product/copy_attrs', array('info'=>$info));
+
     }
 }

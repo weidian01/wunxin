@@ -27,7 +27,7 @@ class product_color extends MY_Controller
         $this->load->model('product/Model_Product_Color', 'color');
         $pid = max($this->uri->segment(4, 0), 0);
         $data = $this->color->getList(500, 0, '*', array('parent_id' => $pid));
-        $this->load->view('administrator/product/color/index', array('list' => $data, 'page' => '',/*$this->pagination->create_links()*/));
+        $this->load->view('administrator/bootstrap/product/color/index', array('list' => $data, 'page' => '',/*$this->pagination->create_links()*/));
     }
 
     /**
@@ -38,7 +38,7 @@ class product_color extends MY_Controller
         $this->load->helper('form');
         $this->load->model('product/Model_Product_Color', 'color');
         $color = $this->color->getList(500, 0, '*', array('parent_id' => 0));
-        $this->load->view('administrator/product/color/create', array('color'=>$color));
+        $this->load->view('administrator/bootstrap/product/color/create', array('color'=>$color));
     }
 
     /**
@@ -57,7 +57,7 @@ class product_color extends MY_Controller
         }
         $this->load->helper('form');
         $info['color'] = $this->color->getList(500, 0, '*', "parent_id = 0");
-        $this->load->view('administrator/product/color/create', $info);
+        $this->load->view('administrator/bootstrap/product/color/create', $info);
     }
 
     public function save()

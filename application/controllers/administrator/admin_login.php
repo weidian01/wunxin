@@ -24,7 +24,7 @@ class Admin_login extends MY_Controller
 
     public function index()
     {
-        $this->load->view('administrator/login');
+        $this->load->view('administrator/bootstrap/login');
     }
 
     public function login()
@@ -37,6 +37,12 @@ class Admin_login extends MY_Controller
 
         if (empty ($username) || empty ($password)) {
             show_error('用户名或密码为空!', 500);
+        }
+
+        $verify_code = $this->input->get_post('verify_code');
+        $server_code = $this->getVerifyCode();$this->usetVerifyCode();
+        if ('' === $verify_code || md5(strtolower($verify_code)) !== $server_code) {
+            show_error('验证码错误!', 500);
         }
 
         $this->load->model('administrator/Model_admin_user', 'adminuser');
@@ -61,5 +67,53 @@ class Admin_login extends MY_Controller
 
         delete_cookie('admin_auth');
         redirect('/administrator/admin_login/');
+    }
+
+    /**
+     * 显示验证码图片
+     */
+    public function verifyCode()
+    {
+        $code = $this->setVerifyCode();
+        //$this->input->set_cookie('verify_code', $code, 60);
+        $this->lib('captcha', array('code'=>$code));
+        $this->captcha->display();
+    }
+
+    /**
+     * 获取验证码
+     * @return mixed
+     */
+    private function getVerifyCode()
+    {
+        $this->lib('session');
+        return $this->session->userdata('verifyCode');
+    }
+
+    /**
+     * 销毁验证码
+     * @return mixed
+     */
+    private function usetVerifyCode()
+    {
+        $this->lib('session');
+        $this->session->unset_userdata('verifyCode');
+        return;
+    }
+
+    /**
+     * 生成验证码
+     * @param int $lenght
+     * @return mixed
+     */
+    private function setVerifyCode($lenght = 4)
+    {
+
+        $this->load->helper('string');
+        $rand_str =  str_replace(array('0','O','1','l'), array('o','o','L','L'), random_string('alnum', $lenght));
+        $newdata = array('verifyCode'  => md5(strtolower($rand_str)));
+        $this->lib('session');
+        $this->session->set_userdata($newdata);
+        return $rand_str;
     }
 }

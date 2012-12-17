@@ -24,7 +24,7 @@ class product_style extends MY_Controller
      */
     public function create()
     {
-        $this->load->view('administrator/product/style/create');
+        $this->load->view('administrator/bootstrap/product/style/create');
     }
 
     public function save()

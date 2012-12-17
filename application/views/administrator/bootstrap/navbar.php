@@ -2,7 +2,7 @@
 $_view_nav_conf = array(
     array('title' => '产品', 'links' => array(
         array('title' => '产品管理', 'url' => 'product/index'),
-        array('title' => '分类管理', 'url' => 'product_category/index'),
+        array('title' => '产品分类', 'url' => 'product_category/index'),
         array('title' => '产品模型', 'url' => 'product_models/model_index'),
         array('title' => '产品尺码', 'url' => 'product_size/index'),
         array('title' => '产品颜色', 'url' => 'product_color/index'),
@@ -53,7 +53,7 @@ $_view_nav_conf = array(
         <div class="container-fluid">
             <a class="brand" href="<?=url('admin')?>">万象电商管理系统 </a>
             <div class="nav-collapse">
-                <p class="navbar-text pull-right"><a href="<?=url('admin')?>administrator/admin_login/logout">退出</a></p>
+                <p class="navbar-text pull-right"><i class="icon-white icon-user"></i><?=$this->amInfo['am_uname'];?> <a href="<?=url('admin')?>administrator/admin_login/logout">退出</a></p>
                 <ul class="nav">
                     <li class="active"><a href="<?=url('admin')?>administrator">首页</a></li>
                     <?php foreach($_view_nav_conf as $item):?>
