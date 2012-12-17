@@ -133,7 +133,7 @@ $(document).ready(function(){
 
       <div id="listHeader" class="listHeader">
           <div class="tab">
-              <a <?php if($order_param['order']=='0'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=productFilterURL(array('category'=>$category,'page'=>1,'order'=>$order_param, 'param'=>$param));?>">默认</a>
+              <a <?php if($order_param['order']=='0'):?>class="ordby_default cur"<?php endif;?> name="orderby" href="<?=productFilterURL(array('category'=>$category,'page'=>1,'order'=>array('order'=>0, 'by'=>0), 'param'=>$param));?>">默认</a>
               <a <?php if($order_param['order']=='1'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_pr" href="<?php $_view_order = array('order'=>1,'by'=>0);$_view_order['by'] = ($order_param['order']==1 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">价格</a>
               <a <?php if($order_param['order']=='2'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_sale " href="<?php $_view_order = array('order'=>2,'by'=>0); $_view_order['by'] = ($order_param['order']==2 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">销量</a>
               <a <?php if($order_param['order']=='3'):?>class="ordby_default cur"<?php endif;?> name="orderby" class="ordby_new" href="<?php $_view_order = array('order'=>3,'by'=>0);$_view_order['by'] = ($order_param['order']==3 && $order_param['by']==1)?0:1;echo productFilterURL(array('category'=>$category,'page'=>1,'order'=>$_view_order,'param'=>$param));?>">最新</a>
