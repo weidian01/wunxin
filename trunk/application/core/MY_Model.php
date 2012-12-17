@@ -150,7 +150,7 @@ class MY_Model extends CI_Model
         --self::$obj_num;
         if (ENVIRONMENT === 'development' && self::$obj_num === 0 && ! $this->input->is_ajax_request() && ! $this->input->is_cli_request() ) {
             if (count($this->db->queries)) {
-                echo '<div  style="margin: 12px 15px 12px 15px;float: right;border: 1px solid #D0D0D0;display: none;">';
+                echo '<div  style="margin: 12px 15px 12px 15px;float: right;border: 1px solid #D0D0D0;display: block;">';
                 foreach ($this->db->queries as $k => $v) {
                     echo "\n",'TIME:', sprintf("%.10f",$this->db->query_times[$k]),"\tSQL:", str_replace("\n", ' ', $v), "<br>";
                 }

@@ -122,9 +122,9 @@
                 <?php endif;?>
                 <a <?=$_view_curr?> href="<?=empty($channel['url'])?productFilterURL(array('category'=>$channel['class_id'])):$channel['url']?>"><?=$channel['cname']?></a>
                 <?php endif;?>
-            <?php endforeach;?>123123
+            <?php endforeach;?>
             <!--a class="last" href="#">亲子装款</a-->
-            <?php if(FLASE):?>
+            <?php if(FALSE):?>
             <a <?php if(isset($keyword) && $keyword == '卫衣'):?>class="curr"<?php endif;?> href="<?=url('search')?>search?keyword=%E5%8D%AB%E8%A1%A3">卫衣</a>
             <a <?php if(isset($keyword) && $keyword == 'T恤'):?>class="curr"<?php endif;?> href="<?=url('search')?>search?keyword=T%E6%81%A4">T恤</a>
             <a <?php if(isset($keyword) && $keyword == '长袖T恤'):?>class="curr"<?php endif;?> href="<?=url('search')?>search?keyword=%E9%95%BF%E8%A2%96T%E6%81%A4">长袖T恤</a>
