@@ -113,7 +113,7 @@ class tools extends MY_Controller
             $attrNum = $this->db->select('*')->from('wx_product_attrs')->where('pid', $pId)->group_by('attr_id')->get()->result_array();//->count_all_results();
 
             if (count($attrNum) < $nums) {
-                echo $pId."<br/>";
+                echo '<a href="http://www.wunxin.com/administrator/product/edit/'.$pId.'" target="_blank">'.$pId."</a><br/>";
             }
             //p(count($attrNum));exit;
         }
