@@ -339,7 +339,7 @@
         <div class="detail-tit">
           <div class="titles2">细节展示</div>
         </div>
-        <div id="product_detail"><?=preg_replace('/img\s+src=/', 'img class="lazy" src="'.url('static').'images/lazy.gif" data-original=', $product['pcontent'])?></div>
+        <div id="product_detail"><?=preg_replace('/img.*?src=/', 'img class="lazy" src="'.url('static').'images/lazy.gif" data-original=', $product['pcontent'])?></div>
       </div>
     </div>
     <div class="gbox-relation" id="g-relation2">
