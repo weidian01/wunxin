@@ -421,18 +421,21 @@ class Model_Product_Models extends MY_Model
 
     function get_pid_by_model_value($model_id, $value_id, $field="*")
     {
+        //SELECT `pid`, count(pid) FROM (`wx_product_attrs`) WHERE model_id = 1 and value_id in (288,199) group by pid having(count(pid) =2)
         if(! $value_id) return array();
         list($key, $field) = self::formatField($field);
         $this->db->select($field)->from('product_attrs');
-        $where = '';
-        foreach($value_id as $vid)
-        {
-            $where && $where .= " AND ";
-            $where .= " (model_id = {$model_id} AND value_id = {$vid}) ";
-        }
+//        $where = '';
+//        foreach($value_id as $vid)
+//        {
+//            $where && $where .= " AND ";
+//            $where .= " (model_id = {$model_id} AND value_id = {$vid}) ";
+//        }
+//        $where && $this->db->where($where);
         $model_id && $this->db->where(array('model_id'=>$model_id));
-        $where && $this->db->where($where);
-        //$this->db->where_in('value_id',$value_id);
+        $this->db->where_in('value_id',$value_id);
+        $this->db->group_by('pid');
+        $this->db->having('count(pid) = ' . count($value_id));
         return $this->db->get()->result_array($key);
     }
 }
