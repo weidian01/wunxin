@@ -93,6 +93,7 @@ class Filter extends MY_Controller
 
             $this->load->model('product/Model_Product_Models', 'mod');
             $model_detail = $this->mod->get_model_detail($cate_info['model_id']);
+            isset($cate_info['url']) && $cate_info['url'] && $class_id = $classes = 0;
             //p($model_detail);
             $pids = array();
             if($param)
@@ -102,10 +103,10 @@ class Filter extends MY_Controller
             }
 
             $where = '';
-            $category && $where = "class_id in ({$classes}) AND";
-            $where .= ' status=1';
+            $category && $classes && $where = "class_id in ({$classes}) AND";
+            $where .= ' status=1 ';
             $where .=   ($param && $pids) ? ' AND pid IN (' . implode(',', $pids) . ')' : '';
-
+            //p($where);
             if($param && !$pids) //参数有,产品id无 即使通过参数没有搜索到任何产品
             {
                 $num = 0;
@@ -115,6 +116,7 @@ class Filter extends MY_Controller
                 $this->load->model('product/Model_Product', 'product');
                 $num = $this->product->getProductCount($where);
             }
+            //p($num);
             $products = array();
             $pageHTML = '';
             $pageNUM = 1;
@@ -123,7 +125,7 @@ class Filter extends MY_Controller
                 $pageNUM = ceil($num / $pagesize);
                 $pageno = $pageno > $pageNUM ? $pageNUM:$pageno;
                 $config['base_url'] = "/filter/{$category}";
-                $config['suffix'] = $param ? "/{$order_param['order']}-{$order_param['by']}/{$query}.html" : "/{$order_param['order']}-{$order_param['by']}/!.html";
+                $config['suffix'] = $param ? "/{$order_param['order']}-{$order_param['by']}/{$query}" : "/{$order_param['order']}-{$order_param['by']}/!.html";
                 $config['total_rows'] = $num;
                 $config['per_page'] = $pagesize;
                 $config['use_page_numbers'] = TRUE;
