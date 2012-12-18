@@ -115,12 +115,12 @@ $(document).ready(function(){
             <span class="font2">如010-12345678，固定电话和手机号码请至少填写一项</span></td>
         </tr>
         <tr>
-          <td align="right"><span class="font10">*</span> 电子邮件：</td>
+          <td align="right"><!--<span class="font10">*</span>--> 电子邮件：</td>
           <td><input name="email" type="text" class="input4" id="email_id" />
             <span class="font2" id="email_notice_id">用于接收订单提醒邮件，便于您及时了解订单状态</span></td>
         </tr>
         <tr>
-          <td align="right"><span class="font10">*</span> 邮编：</td>
+          <td align="right"><!--<span class="font10">*</span>--> 邮编：</td>
           <td><input name="post_code" type="text" class="input4" id="post_code_id" />
             <span class="font2" id="post_code_notice_id">建议邮编：<span id="proposal_post_code_id"></span></span></td>
         </tr>
