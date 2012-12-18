@@ -117,10 +117,10 @@ order.saveAddress = function (urls)
     $('#email_notice_id').html('用于接收订单提醒邮件，便于您及时了解订单状态!');
     if (!wx.isEmpty(email)) {
         //$('#email_notice_id').html('<span style="color:#D20000;">请填写邮件地址!</span>');
-        return false;
+        //return false;
     } else if (!wx.isEmail (email)) {
-        $('#email_notice_id').html('<span style="color:#D20000;">邮件地址格式错误!</span>');
-        return false;
+        //$('#email_notice_id').html('<span style="color:#D20000;">邮件地址格式错误!</span>');
+        //return false;
     }
 
     /*
