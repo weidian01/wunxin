@@ -124,10 +124,10 @@ class pay extends MY_Controller
                 $response['order_sn'] = $payResult['order_sn'];
                 break;
             }
-
+//d(($payResult['amount'] >= ($orderInfo['after_discount_price'] - $orderInfo['paid'])));exit;
             //支付金额有误 此处判断用于，如果用户多支付了钱，更新订单成功
             //if (($orderInfo['after_discount_price'] - $orderInfo['paid']) != $payResult['amount']) {
-            if ($payResult['amount'] >= ($orderInfo['after_discount_price'] - $orderInfo['paid'])) {
+            if ($payResult['amount'] < ($orderInfo['after_discount_price'] - $orderInfo['paid'])) {
                 $data = array('is_pay' => 2, 'paid' => 0, 'need_pay' => $payResult['amount'], 'status' => 1, 'defray_type' => $payResult['pay_channel']);
                 $this->order->updateOrderByOrderSn($data, $payResult['order_sn']);
 
