@@ -424,8 +424,15 @@ class Model_Product_Models extends MY_Model
         if(! $value_id) return array();
         list($key, $field) = self::formatField($field);
         $this->db->select($field)->from('product_attrs');
+        $where = '';
+        foreach($value_id as $vid)
+        {
+            $where && $where .= " AND ";
+            $where .= " (model_id = {$model_id} AND value_id = {$vid}) ";
+        }
         $model_id && $this->db->where(array('model_id'=>$model_id));
-        $this->db->where_in('value_id',$value_id);
+        $where && $this->db->where($where);
+        //$this->db->where_in('value_id',$value_id);
         return $this->db->get()->result_array($key);
     }
 }
