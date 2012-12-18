@@ -506,7 +506,7 @@ class product extends MY_Controller
         if($default_photo)
         {
             $img_path = UPLOAD . 'product' . DS . intToPath($default_photo['pid']) .$default_photo['img_addr'];
-            die($img_path);
+            //die($img_path);
             copyImg($img_path, 164, 197, substr($img_path, 0, strrpos($img_path, '/')) . '/default' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
             copyImg($img_path, 50, 50, substr($img_path, 0, strrpos($img_path, '/')) . '/icon' . substr($img_path, strpos($img_path, '.')), 100, 1.2);
         }
