@@ -108,7 +108,7 @@ $(document).ready(function(){
     <div id="modelAttr" class="select">
       <table class="tab3" width="100%" border="0" cellspacing="0" cellpadding="0">
         <?php foreach($model_detail as $item):?>
-          <?php if($item['attrs']):?>
+          <?php if($item['attrs'] && $item['search'] == 1):?>
           <tr <?php if($item['display']==0):?>class="attr_hidden"<?php endif;?>>
             <td width="10%" align="right"><?=$item['attr_name']?>：</td>
             <td width="90%"><ul class="sitem">
